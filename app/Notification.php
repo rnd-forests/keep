@@ -3,8 +3,11 @@
 use Exception;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Notification extends Model {
+
+    use SoftDeletes;
 
     /**
      * Object associated with the notification.
@@ -22,7 +25,7 @@ class Notification extends Model {
      * The attributes that should be treated as Carbon instances.
      * @var array
      */
-    protected $dates = ['sent_at'];
+    protected $dates = ['sent_at', 'deleted_at'];
 
     /**
      * The attributes that should be casted to native types.

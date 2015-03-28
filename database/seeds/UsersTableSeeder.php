@@ -14,13 +14,25 @@ class UsersTableSeeder extends Seeder {
         User::create([
             'name' => 'Vinh Nguyen',
             'email' => 'ngocvinh.nnv@gmail.com',
-            'password' => '8815121993',
+            'password' => '123456',
             'birthday' => Carbon::create(1993, 12, 15),
             'address' => 'Thai Phuong - Hung Ha - Thai Binh',
             'company' => 'FPT Software',
-            'website' => 'http://www.vinhnguyenict.com',
-            'phone' => '01649609698',
+            'website' => 'http://www.vinhnguyen-hust.com',
+            'phone' => '01649000000',
             'about' => 'I am a very simple person!',
+            'active' => true
+        ]);
+
+        User::create([
+            'name' => 'Hang Dang',
+            'email' => 'hangdt.aa@gmail.com',
+            'password' => '123456',
+            'birthday' => Carbon::create(1993, 8, 8),
+            'address' => 'Thai Phuong - Hung Ha - Thai Binh',
+            'company' => 'Deloitte',
+            'website' => 'http://www.hangdt-eof.com',
+            'phone' => '01697000000',
             'active' => true
         ]);
 

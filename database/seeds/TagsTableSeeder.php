@@ -7,7 +7,7 @@ class TagsTableSeeder extends Seeder {
 
     public function run()
     {
-        $tags = ['personal', 'work', 'coding', 'book', 'love', 'reading', 'drawing', 'climbing'];
+        $tags = ['personal', 'work', 'coding', 'book', 'film', 'reading', 'drawing', 'climbing'];
 
         foreach ($tags as $tag)
         {

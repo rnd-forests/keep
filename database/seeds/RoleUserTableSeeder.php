@@ -10,6 +10,7 @@ class RoleUserTableSeeder extends Seeder {
         $user = User::find(1);
         $user->roles()->attach(1);
         $user->roles()->attach(2);
+        $user->roles()->attach(3);
     }
 
 }

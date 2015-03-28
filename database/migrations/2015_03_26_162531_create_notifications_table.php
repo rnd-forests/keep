@@ -24,6 +24,7 @@ class CreateNotificationsTable extends Migration {
             $table->string('object_type', 128);
             $table->boolean('is_read')->default(false);
             $table->dateTime('sent_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
 		});
 	}

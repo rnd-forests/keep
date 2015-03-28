@@ -10,12 +10,13 @@ class RolesTableSeeder extends Seeder {
         $roles = [
             'manage_tasks' => 'manage tasks',
             'manage_users' => 'manage user accounts',
+            'manage_notifications' => 'manage application notification system'
         ];
 
         foreach ($roles as $role => $description)
         {
             Role::create([
-                'name'        => $role,
+                'name' => $role,
                 'description' => $description,
             ]);
         }
