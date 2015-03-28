@@ -1,0 +1,44 @@
+.user-profile-wrapper {
+    textarea {
+        resize: none;
+    }
+
+    .username {
+        margin: 25px 0;
+    }
+
+    .tab-content {
+        padding-top: 25px;
+
+        .panel {
+            border: none;
+            box-shadow: none;
+
+            .list-group {
+                .list-group-item {
+                    background: 0 0;
+                    border: none;
+                    text-align: center;
+                    color: #5fcf80;
+
+                    .list-group-item-heading {
+                        color: #6e6e6e;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.user-avatar {
+    display: block;
+
+    .user-avatar-picture {
+        border-radius: 50%;
+        border: 1px solid transparent;
+
+        &:hover {
+            border: 1px solid #5fcf80;
+        }
+    }
+}

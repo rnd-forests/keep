@@ -1,0 +1,19 @@
+.form-wrapper {
+    .form-header {
+        margin-top: 0;
+        text-align: center;
+        text-shadow: 0 0 1px #555555;
+    }
+
+    .form-link a {
+        color: #444444;
+
+        &:hover {
+            color: #5fcf80;
+        }
+    }
+
+    textarea {
+        resize: none;
+    }
+}

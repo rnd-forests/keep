@@ -1,0 +1,27 @@
+.keep-navigation {
+    background: #f6f9fa;
+    border-bottom-color: #e9f0f3;
+
+    .navbar-brand {
+        font-weight: bold;
+        color: #5fcf80;
+
+        &:hover {
+            color: darken(#5fcf80, 15%);
+        }
+    }
+
+    .navbar-nav > li a {
+        i {
+            padding-right: 5px;
+        }
+
+        &:hover, &:active, &:focus {
+            color: #657278;
+        }
+    }
+
+    .navbar-toggle {
+        border: none;
+    }
+}

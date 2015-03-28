@@ -1,0 +1,30 @@
+.form-group {
+    .control-label {
+        color: #8d9aa5;
+        font-weight: normal;
+        margin-bottom: 5px;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        margin-top: 30px;
+    }
+}
+
+.panel-dangerzone {
+    .panel-heading {
+        background: #d9534f;
+        color: #ffffff;
+        border-bottom: none;
+    }
+
+    .panel-body {
+        border: 1px solid #f9f9fa;
+        border-top: none;
+    }
+
+    .btn {
+        width: auto;
+    }
+}
