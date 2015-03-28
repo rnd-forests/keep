@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="keep-nav">
             <ul class="nav navbar-nav">
                 <li><a href="{{ route('home_path') }}"><i class="fa fa-home"></i>Home</a></li>
-                @if (Auth::user()->isAdmin())
+                @if (Auth::check() && Auth::user()->isAdmin())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lock"></i>Admin Actions <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
