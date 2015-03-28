@@ -1,6 +1,5 @@
 <?php  namespace Keep\Repositories\Task; 
 
-use Auth;
 use Keep\Task;
 use Keep\User;
 

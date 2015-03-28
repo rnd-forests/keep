@@ -7,11 +7,11 @@
 @section('content')
     <div class="row placeholders">
         <div class="col-xs-6 col-sm-3 placeholder">
-            <img data-src="holder.js/200x200/auto/members/text:{{ $users->count() }}" class="img-responsive">
+            <img data-src="holder.js/200x200/auto/members/text:{{ $userList->count() }}" class="img-responsive">
             <h4>Members</h4>
         </div>
         <div class="col-xs-6 col-sm-3 placeholder">
-            <img data-src="holder.js/200x200/auto/tasks/text:{{ $tasks->count() }}" class="img-responsive">
+            <img data-src="holder.js/200x200/auto/tasks/text:{{ $taskList->count() }}" class="img-responsive">
             <h4>Tasks</h4>
         </div>
         <div class="col-xs-6 col-sm-3 placeholder">

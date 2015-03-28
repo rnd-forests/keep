@@ -4,7 +4,7 @@
         <h4 class="text-warning">{{ $user->name }}</h4>
     </div>
     <ul class="nav nav-sidebar">
-        <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="{{ route('admin.dashboard') }}">Overview <span class="sr-only">(current)</span></a></li>
         <li><a href="{{ route('admin.manage.members') }}">Manage Member Accounts</a></li>
         <li><a href="#">Manage Published Tasks</a></li>
         <li><a href="#">Notification Center</a></li>

@@ -5,5 +5,5 @@
 @stop
 
 @section('content')
-    {{ var_dump($users) }}
+    {{ var_dump($userList) }}
 @stop
