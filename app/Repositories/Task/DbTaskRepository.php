@@ -31,7 +31,6 @@ class DbTaskRepository implements TaskRepositoryInterface {
     public function create(array $data)
     {
         return Task::create([
-            'user_id' => Auth::user()->id,
             'title' => $data['title'],
             'content' => $data['content'],
             'note' => $data['note'],

@@ -23,8 +23,6 @@ class CreateTasksTable extends Migration {
             $table->timestamp('finished_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 		});
 	}
 

@@ -76,7 +76,7 @@ class UserTaskController extends Controller {
 	{
         $author = $this->userRepository->getAuthUser();
 
-        $task = $this->createTask($request);
+        $task = $author->tasks()->save($this->createTask($request));
 
         event(new TaskWasCreatedEvent($author, $task));
 
@@ -155,7 +155,7 @@ class UserTaskController extends Controller {
 	}
 
     /**
-     * Syncing the tags.
+     * Syncing up the tags of a task.
      *
      * @param       $task
      * @param array $tags
