@@ -27,22 +27,46 @@ class RegisterAccountCommandHandler {
      */
 	public function handle(RegisterAccountCommand $command)
 	{
-		$data = array(
-            'name' => $command->getName(),
-            'email' => $command->getEmail(),
+        return $this->registerAccount($command);
+	}
+
+    /**
+     * Get request data.
+     *
+     * @param RegisterAccountCommand $command
+     *
+     * @return array
+     */
+    private function getRequestData(RegisterAccountCommand $command)
+    {
+        $credentials = array(
+            'name'     => $command->getName(),
+            'email'    => $command->getEmail(),
             'password' => $command->getPassword()
         );
 
-        $user = $this->userRepository->create($data);
+        return $credentials;
+    }
 
-        if ($user)
+    /**
+     * Register new account.
+     *
+     * @param RegisterAccountCommand $command
+     *
+     * @return bool
+     */
+    private function registerAccount(RegisterAccountCommand $command)
+    {
+        $user = $this->userRepository->create($this->getRequestData($command));
+
+        if ( ! $user)
         {
-            event(new UserWasRegisteredEvent($user));
-
-            return true;
+            return false;
         }
 
-        return false;
-	}
+        event(new UserWasRegisteredEvent($user));
+
+        return true;
+    }
 
 }

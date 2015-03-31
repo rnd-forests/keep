@@ -30,22 +30,48 @@ class ConfirmAccountCommandHandler {
      */
 	public function handle(ConfirmAccountCommand $command)
 	{
+        $user = $this->activateAccount($command);
+
+        return $this->persistActivatedAccount($user);
+	}
+
+    /**
+     * Activate user account.
+     *
+     * @param ConfirmAccountCommand $command
+     *
+     * @return mixed
+     */
+    private function activateAccount(ConfirmAccountCommand $command)
+    {
         $user = $this->userRepository->findByCodeAndActiveState($command->getCode(), false);
 
         $user->activation_code = '';
 
         $user->active = true;
 
-        if ($user->save())
+        return $user;
+    }
+
+    /**
+     * Persist activating account to the database.
+     *
+     * @param $user
+     *
+     * @return bool
+     */
+    private function persistActivatedAccount($user)
+    {
+        if ( ! $user->save())
         {
-            event(new UserWasActivatedEvent($user));
-
-            $this->auth->login($user);
-
-            return true;
+            return false;
         }
 
-        return false;
-	}
+        event(new UserWasActivatedEvent($user));
+
+        $this->auth->login($user);
+
+        return true;
+    }
 
 }

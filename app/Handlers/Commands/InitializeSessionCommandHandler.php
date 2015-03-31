@@ -26,18 +26,25 @@ class InitializeSessionCommandHandler {
      */
 	public function handle(InitializeSessionCommand $command)
 	{
-		$credentials = array(
-            'email' => $command->getEmail(),
+        return $this->auth->attempt($this->getRequestData($command), $command->getRemember());
+	}
+
+    /**
+     * Get the request data.
+     *
+     * @param InitializeSessionCommand $command
+     *
+     * @return array
+     */
+    private function getRequestData(InitializeSessionCommand $command)
+    {
+        $credentials = array(
+            'email'    => $command->getEmail(),
             'password' => $command->getPassword(),
-            'active' => $command->getActive(),
+            'active'   => $command->getActive(),
         );
 
-        if ($this->auth->attempt($credentials, $command->getRemember()))
-        {
-            return true;
-        }
-
-        return false;
-	}
+        return $credentials;
+    }
 
 }

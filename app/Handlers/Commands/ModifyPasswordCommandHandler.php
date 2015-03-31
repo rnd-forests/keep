@@ -29,18 +29,7 @@ class ModifyPasswordCommandHandler {
      */
 	public function handle(ModifyPasswordCommand $command)
 	{
-        $user = $this->userRepository->findById($this->userRepository->getAuthUser()->id);
-
-        if ($this->checkOldPassword($command, $user))
-        {
-            $user->password = $command->getNewPassword();
-
-            $user->save();
-
-            return true;
-        }
-
-        return false;
+        return $this->modifyPassword($command);
 	}
 
     /**
@@ -54,6 +43,27 @@ class ModifyPasswordCommandHandler {
     private function checkOldPassword(ModifyPasswordCommand $command, $user)
     {
         return $this->bcrypt->check($command->getOldPassword(), $user->password);
+    }
+
+    /**
+     * Modify the user account password.
+     *
+     * @param ModifyPasswordCommand $command
+     *
+     * @return bool
+     */
+    private function modifyPassword(ModifyPasswordCommand $command)
+    {
+        $user = $this->userRepository->findById($this->userRepository->getAuthUser()->id);
+
+        if ( ! $this->checkOldPassword($command, $user))
+        {
+            return false;
+        }
+
+        $user->password = $command->getNewPassword();
+
+        return $user->save();
     }
 
 }
