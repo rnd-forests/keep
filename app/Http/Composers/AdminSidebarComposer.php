@@ -3,20 +3,15 @@
 use Illuminate\Contracts\View\View;
 use Keep\Repositories\User\UserRepositoryInterface;
 
-class AdminPanelNavComposer {
+class AdminSidebarComposer {
 
     protected $userRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    function __construct(UserRepositoryInterface $userRepository)
     {
         $this->userRepository = $userRepository;
     }
 
-    /**
-     * Composer admin panel navigation view.
-     *
-     * @param View $view
-     */
     public function compose(View $view)
     {
         $view->with('user', $this->userRepository->getAuthUser());

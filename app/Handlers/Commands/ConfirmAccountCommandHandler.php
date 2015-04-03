@@ -54,7 +54,7 @@ class ConfirmAccountCommandHandler {
     }
 
     /**
-     * Persist activating account to the database.
+     * Persist activated account to the database.
      *
      * @param $user
      *

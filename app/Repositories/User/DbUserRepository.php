@@ -10,6 +10,11 @@ class DbUserRepository implements UserRepositoryInterface {
         return User::all();
     }
 
+    public function paginate($num)
+    {
+        return User::paginate($num);
+    }
+
     public function getAuthUser()
     {
         return Auth::user();
@@ -58,6 +63,11 @@ class DbUserRepository implements UserRepositoryInterface {
     public function getTasks(User $user)
     {
         return $user->tasks()->latest('created_at')->paginate(10);
+    }
+
+    public function getTasksNotPaginated(User $user)
+    {
+        return $user->tasks()->latest('created_at')->get();
     }
 
 }

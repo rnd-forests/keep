@@ -1,85 +1,61 @@
-.dashboard-wrapper {
-    .sub-header {
-        padding-bottom: 10px;
-        border-bottom: 1px solid #eee;
+.admin-dashboard {
+    .panel {
+        color: #ffffff;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     }
 
-    .sidebar {
-        display: none;
-    }
+    .row-table {
+        display: table;
+        table-layout: fixed;
+        height: 100%;
+        width: 100%;
+        margin: 0;
 
-    @media (min-width: 768px) {
-        .sidebar {
-            position: fixed;
-            top: 51px;
-            bottom: 0;
-            left: 0;
-            z-index: 1000;
-            display: block;
-            padding: 20px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            background-color: #32323A;
+        & > [class*=col-] {
+            display: table-cell;
+            float: none;
+            table-layout: fixed;
+            vertical-align: middle;
         }
     }
 
-    .nav-sidebar {
-        margin-right: -21px;
+    .widget {
         margin-bottom: 20px;
-        margin-left: -20px;
 
-        & > li > a {
-            color: #D6DADF;
-            padding-right: 20px;
-            padding-left: 20px;
-
-            &:hover,
-            &:active,
-            &:focus {
-                color: #ffffff;
-                background-color: #1FB5AC;
-            }
-        }
-
-        & > .active > a,
-        & > .active > a:hover,
-        & > .active > a:focus {
-            color: #ffffff;
-            background-color: #1FB5AC;
+        &.panel {
+            overflow: hidden;
         }
     }
 
-    .main {
-        padding: 20px;
-
-        .page-header {
-            margin-top: 0;
-        }
+    .bg-purple {
+        background: #7266ba;
     }
 
-    @media (min-width: 768px) {
-        .main {
-            padding-right: 40px;
-            padding-left: 40px;
-        }
+    .bg-purple-dark {
+        background: darken(#7266ba, 5%);
     }
 
-    .placeholders {
-        margin-bottom: 30px;
-        text-align: center;
+    .bg-green {
+        background: #16A085;
+    }
 
-        h4 {
-            margin-bottom: 0;
-        }
+    .bg-green-dark {
+        background: darken(#16A085, 5%);
+    }
 
-        .placeholder {
-            margin-bottom: 20px;
+    .bg-red {
+        background: #E74C3C;
+    }
 
-            img {
-                display: inline-block;
-                border-radius: 50%;
-            }
-        }
+    .bg-red-dark {
+        background: darken(#E74C3C, 5%);
+    }
+
+    .bg-yellow {
+        background: #FF6D3A;
+    }
+
+    .bg-yellow-dark {
+        background: darken(#FF6D3A, 5%);
     }
 }
-

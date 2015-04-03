@@ -5,6 +5,7 @@ use Keep\User;
 interface UserRepositoryInterface {
 
     public function all();
+    public function paginate($num);
     public function getAuthUser();
     public function findById($id);
     public function findBySlug($slug);
@@ -13,5 +14,6 @@ interface UserRepositoryInterface {
     public function update($slug, array $credentials);
     public function delete($slug);
     public function getTasks(User $user);
+    public function getTasksNotPaginated(User $user);
 
 }

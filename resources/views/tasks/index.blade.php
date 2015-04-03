@@ -52,28 +52,10 @@
                                 @endif
                             </div>
                             <div class="panel-footer">
-                                <div class="modal fade" id="delete-task-modal" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog modal-sm">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <p>Are you sure you want to delete this task? Once your task is deleted,
-                                                    it cannot be recovered. Be careful!</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <div class="text-center">
-                                                    {!! Form::delete(route('users.tasks.destroy', [$user->slug, $task->slug]),
-                                                        'Confirm', ['class' => 'btn btn-danger']) !!}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <a href="{{ route('users.tasks.edit', array($user->slug, $task->slug)) }}" class="task-action">
                                     <i class="fa fa-wrench"></i> Update
                                 </a>
-                                <a class="task-action" data-toggle="modal" data-target="#delete-task-modal">
-                                    <i class="fa fa-trash-o"></i>Delete
-                                </a>
+                                @include('tasks.partials.delete_form')
                             </div>
                         </div>
                     @endforeach

@@ -31,7 +31,7 @@ class UserPresenter extends Presenter {
      */
     public function formatUserTime($timestamp)
     {
-        return Carbon::parse($timestamp)->format('d-F-Y');
+        return Carbon::parse($timestamp)->format('Y-m-d');
     }
 
     /**

@@ -1,7 +1,10 @@
 $(function() {
-
     $('div.alert').not('.alert-danger').delay(3000).slideUp(300);
-    //--------------------------------------------------------------------------------
+});
+
+//--------------------------------------------------------------------------------
+
+$(function() {
     $('#user_update_form_datetimepicker').datetimepicker({
         format: "L"
     });
@@ -9,7 +12,11 @@ $(function() {
     $('.task_form_datetimepicker').datetimepicker({
         format: 'LLL'
     });
-    //--------------------------------------------------------------------------------
+});
+
+//--------------------------------------------------------------------------------
+
+$(function() {
     $('a[data-toggle = "tab"]').on('shown.bs.tab', function() {
         localStorage.setItem('lastTab', $(this).attr('href'));
     });
@@ -21,17 +28,25 @@ $(function() {
     } else {
         $('a[data-toggle="tab"]:first').tab('show');
     }
-    //--------------------------------------------------------------------------------
+});
+
+//--------------------------------------------------------------------------------
+
+$(function() {
     $('#tag_list').select2({
         placeholder: 'Choose your tags'
     });
-    //--------------------------------------------------------------------------------
+});
+
+//--------------------------------------------------------------------------------
+
+$(function() {
     $('#scroll-top').click(function() {
         $('body, html').animate({
-            scrollTop:0}, 1000
+                scrollTop:0}, 1000
         );
         return false;
-    })
+    });
 
     $(window).scroll(function() {
         if ($(window).scrollTop() == 0) {
@@ -40,32 +55,53 @@ $(function() {
             $('#scroll-top').stop(false, true).fadeIn(400);
         }
     });
-    //--------------------------------------------------------------------------------
-    Holder.addTheme("members", {
-        background: "#E74C3C",
-        foreground: "#ffffff",
-        size: 50,
-        font: "Source Sans Pro"
+});
+
+//--------------------------------------------------------------------------------
+
+$(function() {
+    $('#side-menu').metisMenu();
+});
+
+$(function() {
+    $(window).bind("load resize", function() {
+        var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+        if (width < 768) {
+            $('div.navbar-collapse').addClass('collapse');
+        } else {
+            $('div.navbar-collapse').removeClass('collapse');
+        }
     });
 
-    Holder.addTheme("tasks", {
-        background: "#9B59B6",
-        foreground: "#ffffff",
-        size: 50,
-        font: "Source Sans Pro"
-    });
+    var url = window.location;
+    var element = $('ul.nav a').filter(function() {
+        return this.href == url || url.href.indexOf(this.href) == 0;
+    }).addClass('active').parent().parent().addClass('in').parent();
+    if (element.is('li')) {
+        element.addClass('active');
+    }
+});
 
-    Holder.addTheme("notifications", {
-        background: "#1ABC9C",
-        foreground: "#ffffff",
-        size: 50,
-        font: "Source Sans Pro"
-    });
+//--------------------------------------------------------------------------------
 
-    Holder.addTheme("visitors", {
-        background: "#3A5A97",
-        foreground: "#ffffff",
-        size: 50,
-        font: "Source Sans Pro"
+$(function() {
+    $('#admin-cancel-account-modal').on('show.bs.modal', function(event) {
+        var form = $(event.relatedTarget).closest('form');
+        $(this).find('.modal-footer #confirm').data('form', form);
+    })
+
+    $('#admin-cancel-account-modal').find('.modal-footer #confirm').on('click', function() {
+        $(this).data('form').submit();
     });
-})(jQuery);
+});
+
+$(function() {
+    $('#delete-task-modal').on('show.bs.modal', function(event) {
+        var form = $(event.relatedTarget).closest('form');
+        $(this).find('.modal-footer #confirm').data('form', form);
+    })
+
+    $('#delete-task-modal').find('.modal-footer #confirm').on('click', function() {
+        $(this).data('form').submit();
+    });
+});

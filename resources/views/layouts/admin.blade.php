@@ -16,19 +16,15 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-@include('layouts.partials.nav')
+<body class="admin-panel">
 
-<div class="container-fluid">
-    <div class="row dashboard-wrapper">
-        @include('admin.partials.sidebar')
+    @include('admin.partials.nav')
+
+    <div class="admin-wrapper">
         @include('flash::message')
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            @yield('content')
-        </div>
+        @yield('content')
     </div>
-</div>
 
-{!! Html::script('js/all.js') !!}
+    {!! Html::script('js/all.js') !!}
 </body>
 </html>

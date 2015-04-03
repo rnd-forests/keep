@@ -146,7 +146,6 @@ return [
 		'Keep\Providers\ConfigServiceProvider',
 		'Keep\Providers\EventServiceProvider',
 		'Keep\Providers\RouteServiceProvider',
-        'Keep\Providers\MacroServiceProvider',
         'Keep\Providers\ViewComposerServiceProvider',
 
         'Laracasts\Flash\FlashServiceProvider',

@@ -64,16 +64,8 @@
         .panel-footer {
             border-top: none;
 
-            .modal {
-                .modal-body {
-                    text-align: center;
-                }
-            }
-
-            .btn {
-                background: #637a91;
-                border: none;
-                color: #ffffff;
+            form {
+                display: inline-block;
             }
 
             .task-action {

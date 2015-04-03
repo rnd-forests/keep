@@ -13,7 +13,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
 	{
         $this->composeTaskForm();
         $this->composeAdminPanel();
-        $this->composeAdminPanelNav();
+        $this->composeAdminSidebar();
     }
 
 	/**
@@ -35,20 +35,22 @@ class ViewComposerServiceProvider extends ServiceProvider {
     }
 
     /**
-     * Composer admin panel view.
+     * Composer admin panel views.
      */
     private function composeAdminPanel()
     {
         view()->composer('admin.dashboard', 'Keep\Http\Composers\AdminPanelComposer@compose');
-        view()->composer('admin.manage_users', 'Keep\Http\Composers\AdminPanelComposer@compose');
+        view()->composer('admin.manage-users', 'Keep\Http\Composers\AdminPanelComposer@compose');
+        view()->composer('admin.manage-tasks', 'Keep\Http\Composers\AdminPanelComposer@compose');
+        view()->composer('admin.partials.nav', 'Keep\Http\Composers\AdminPanelComposer@compose');
     }
 
     /**
-     * Composer admin panel navigation view.
+     * Composer admin panel sidebar view.
      */
-    private function composeAdminPanelNav()
+    private function composeAdminSidebar()
     {
-        view()->composer('admin.partials.sidebar', 'Keep\Http\Composers\AdminPanelNavComposer@compose');
+        view()->composer('admin.partials.nav', 'Keep\Http\Composers\AdminSidebarComposer@compose');
     }
 
 }

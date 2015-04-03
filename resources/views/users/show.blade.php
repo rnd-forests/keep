@@ -70,12 +70,6 @@
                             <div class="modal fade" id="cancel-account-modal" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            <h4 class="modal-title">Are your sure you want to delete your current account?</h4>
-                                        </div>
                                         <div class="modal-body">
                                             <p>Once your account is deleted, the system will immediately delete all your tasks, and
                                             all other things related to your account.</p>

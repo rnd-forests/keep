@@ -17,14 +17,15 @@ class AdminPanelComposer {
     }
 
     /**
-     * Compose admin panel view.
+     * Compose admin panel views.
      *
      * @param View $view
      */
     public function compose(View $view)
     {
-        $view->with('adminUser', $this->userRepository->getAuthUser());
-        $view->with('userList', $this->userRepository->all());
-        $view->with('taskList', $this->taskRepository->all());
+        $view->with('users', $this->userRepository->paginate(25));
+        $view->with('userCount', $this->userRepository->all()->count());
+        $view->with('tasks', $this->taskRepository->paginate(40));
+        $view->with('taskCount', $this->taskRepository->all()->count());
     }
 }

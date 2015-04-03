@@ -11,6 +11,7 @@ elixir(function(mix) {
         'vendor/bootstrap.css',
         'vendor/datetimepicker.css',
         'vendor/select2.css',
+        'vendor/metis-menu.css',
         'app.css'
     ], null, 'public/css');
 
@@ -22,7 +23,7 @@ elixir(function(mix) {
         'vendor/angular.js',
         'vendor/chart.js',
         'vendor/select2.js',
-        'vendor/holder.js',
+        'vendor/metismenu.js',
         'app.js'
     ], null, 'public/js');
 

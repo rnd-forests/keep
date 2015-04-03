@@ -23,8 +23,11 @@ Route::resource('users.tasks', 'UserTaskController');
 
 Route::group(['middleware' => ['auth', 'auth.confirmed'], 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::group(['middleware' => 'valid.roles', 'roles' => ['manage_users', 'manage_tasks']], function() {
-        Route::get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
-        Route::get('manage-members', ['as' => 'admin.manage.members', 'uses' => 'UsersController@members']);
+        Route::get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@dashboard']);
+        Route::get('accounts', ['as' => 'admin.manage.accounts', 'uses' => 'UsersController@manageAccounts']);
+        Route::get('accounts/{users}', ['as' => 'admin.accounts.profile', 'uses' => 'UsersController@profile']);
+        Route::delete('accounts/{users}', ['as' => 'admin.accounts.delete', 'uses' => 'UsersController@deleteAccount']);
+        Route::get('tasks', ['as' => 'admin.manage.tasks', 'uses' => 'TasksController@manageTasks']);
     });
 });
 

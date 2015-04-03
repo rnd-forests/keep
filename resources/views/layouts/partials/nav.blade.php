@@ -14,15 +14,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ route('home_path') }}"><i class="fa fa-home"></i>Home</a></li>
                 @if (Auth::check() && Auth::user()->isAdmin())
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lock"></i>Admin Actions <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                            <li><a href="#">Manage Accounts</a></li>
-                            <li><a href="#">Manage Tasks</a></li>
-                            <li><a href="#">Create Notification</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-lock"></i>Admin Panel</a></li>
                 @endif
                 @if (Auth::check())
                     <li><a href="{{ route('users.tasks.create', Auth::user()->slug) }}"><i class="fa fa-pencil-square-o"></i>Create task</a></li>

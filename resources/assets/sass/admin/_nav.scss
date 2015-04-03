@@ -1,0 +1,86 @@
+.admin-navbar {
+    background: #ffffff;
+    border-bottom: none;
+
+    .navbar-brand {
+        background: #16232d;
+        text-align: center;
+        width: 220px;
+        color: #bfd1de !important;
+    }
+
+    .navbar-toggle {
+        background-color: darken(#1c2b36, 5%);
+
+        .icon-bar {
+            background-color: #bfd1de;
+        }
+    }
+
+    .sidebar {
+        background: #1c2b36;
+
+        .admin-user {
+            padding-top: 20px;
+
+            a {
+                color: #ffffff;
+            }
+        }
+
+        .sidebar-nav.navbar-collapse {
+            max-height: 100%;
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        ul li a {
+            padding: 15px;
+            font-size: 14px;
+            color: #6b94b3;
+
+            .fa {
+                margin-right: 15px;
+            }
+
+            &:hover, &:focus {
+                background-color: #16232d;
+            }
+
+            &.active {
+                background-color: #16232d;
+            }
+        }
+
+        .arrow-control {
+            float: right;
+        }
+
+        .fa.arrow-control:before {
+            content: "\f104";
+        }
+
+        .active > a > .fa.arrow-control:before {
+            content: "\f107";
+        }
+
+        .nav-second-level {
+            li {
+                border-bottom: 0 !important;
+
+                a {
+                    padding-left: 35px;
+                }
+            }
+        }
+    }
+
+    @media(min-width:768px) {
+        .sidebar {
+            z-index: 1;
+            position: absolute;
+            width: 220px;
+            margin-top: 50px;
+        }
+    }
+}

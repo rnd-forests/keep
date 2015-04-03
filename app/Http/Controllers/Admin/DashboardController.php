@@ -9,7 +9,7 @@ class DashboardController extends Controller {
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function dashboard()
     {
         return view('admin.dashboard');
     }

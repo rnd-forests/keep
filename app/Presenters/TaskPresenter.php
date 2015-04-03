@@ -43,4 +43,21 @@ class TaskPresenter extends Presenter {
         return $count . " " . str_plural('day', $count) . ' remaining';
     }
 
+    /**
+     * Print task status.
+     *
+     * @param $completed
+     *
+     * @return string
+     */
+    public function printStatus($completed)
+    {
+        if ($completed)
+        {
+            return 'Completed';
+        }
+
+        return 'Not completed';
+    }
+
 }
