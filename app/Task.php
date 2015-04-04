@@ -71,6 +71,16 @@ class Task extends Model implements SluggableInterface {
     }
 
     /**
+     * Check if a task is completed or not.
+     *
+     * @return mixed
+     */
+    public function isCompleted()
+    {
+        return $this->attributes['completed'];
+    }
+
+    /**
      * Getter for task slug.
      *
      * @return string

@@ -9,14 +9,6 @@
         color: #bfd1de !important;
     }
 
-    .navbar-toggle {
-        background-color: darken(#1c2b36, 5%);
-
-        .icon-bar {
-            background-color: #bfd1de;
-        }
-    }
-
     .sidebar {
         background: #1c2b36;
 
@@ -30,8 +22,6 @@
 
         .sidebar-nav.navbar-collapse {
             max-height: 100%;
-            padding-right: 0;
-            padding-left: 0;
         }
 
         ul li a {
@@ -69,7 +59,12 @@
                 border-bottom: 0 !important;
 
                 a {
-                    padding-left: 35px;
+                    padding-left: 30px;
+
+                    &:before {
+                        content: "+";
+                        padding-right: 5px;
+                    }
                 }
             }
         }
@@ -81,6 +76,22 @@
             position: absolute;
             width: 220px;
             margin-top: 50px;
+        }
+    }
+
+    @media(max-width:750px) {
+        .navbar-header {
+            background-color: #16232d;
+        }
+
+        .navbar-toggle {
+            .icon-bar {
+                background-color: #bfd1de;
+            }
+        }
+
+        .navbar-brand {
+            text-align: left;
         }
     }
 }

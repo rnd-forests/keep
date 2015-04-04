@@ -35,5 +35,5 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::submit($taskFormSubmitButton, ['class' => 'btn btn-lg btn-success']) !!}
+    {!! Form::submit($taskFormSubmitButton, ['class' => 'btn btn-lg btn-primary']) !!}
 </div>

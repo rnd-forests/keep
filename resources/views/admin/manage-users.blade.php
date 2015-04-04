@@ -1,22 +1,22 @@
 @extends('layouts.admin')
 
 @section('title')
-    Manage Accounts
+    Active Accounts
 @stop
 
 @section('content')
     <div class="admin-contents-wrapper">
         <div class="row">
             <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><i class="fa fa-area-chart"></i></div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><i class="fa fa-area-chart"></i> Current number of active accounts</div>
                     <div class="panel-body">
                         <div class="huge text-center">{{ $userCount }} active accounts</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">Accounts Table</div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
@@ -33,12 +33,12 @@
                     <tbody>
                         @foreach($users as $user)
                             <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
+                                <td class="text-center">{{ $user->id }}</td>
+                                <td class="text-navy">{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->tasks()->count() }}</td>
-                                <td>{{ $user->present()->formatUserTime($user->created_at) }}</td>
-                                <td>
+                                <td class="text-center">{{ $user->tasks()->count() }}</td>
+                                <td class="text-center">{{ $user->present()->formatUserTime($user->created_at) }}</td>
+                                <td class="text-center">
                                     <a href="{{ route('admin.accounts.profile', $user->slug) }}" class="btn btn-primary btn-circle">
                                         <i class="fa fa-user"></i>
                                     </a>

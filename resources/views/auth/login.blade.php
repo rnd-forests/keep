@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {!! Form::submit('Login', ['class' => 'btn btn-lg btn-success']) !!}
+                        {!! Form::submit('Login', ['class' => 'btn btn-lg btn-primary']) !!}
                     </div>
                 {!! Form::close() !!}
                 <div class="text-center help-block form-link">

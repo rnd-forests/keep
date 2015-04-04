@@ -4776,7 +4776,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-    background-color: #5fcf80;
+    background-color: #1ab394;
     color: #ffffff;
     cursor: default;
     border-bottom-color: transparent;
@@ -4784,7 +4784,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
 .nav-tabs.nav-justified {
     width: 100%;
-    border-bottom: 2px solid #5fcf80;
+    border-bottom: 2px solid #1ab394;
 }
 
 .nav-tabs.nav-justified > li {

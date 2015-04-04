@@ -1,0 +1,73 @@
+.tasks-wrapper {
+    .task-control {
+        background: 0 0;
+    }
+
+    .panel {
+        background: #f9f9fa;
+        border: none;
+    }
+
+    .panel-heading {
+        border: none;
+        text-align: center;
+
+        .task-title {
+            font-size: 25px;
+            color: #ffffff;
+
+            &:hover {
+                color: darken(#ffffff, 5%);
+            }
+        }
+
+        .task-time-ago {
+            color: #ffffff;
+            margin: 5px 0;
+        }
+    }
+
+    .panel-body {
+        .task-labels {
+            margin-bottom: 15px;
+            text-align: center;
+
+            .label {
+                margin-bottom: 5px;
+                display: inline-block;
+            }
+        }
+
+        .well {
+            background: #ffffff;
+            color: #7f8a94;
+
+            .label {
+                font-size: 12px;
+                margin-right: 5px;
+            }
+
+            .fa {
+                padding-right: 5px;
+            }
+        }
+    }
+
+    .panel-footer {
+        border-top: none;
+
+        form {
+            display: inline-block;
+        }
+
+        .task-action {
+            margin-right: 20px;
+            cursor: pointer;
+            color: #7f8a94;
+
+            &:hover {
+                color: #1AB394;
+            }
+        }
+    }
+}

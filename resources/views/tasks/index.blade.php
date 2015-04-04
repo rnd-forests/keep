@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $user->name }}'s Tasks
+    {{ $user->name }} - Tasks
 @stop
 
 @section('content')
@@ -13,26 +13,26 @@
                 @else
                     <div class="well task-control">
                         <div class="text-center">
-                            <a class="btn btn-success" href="{{ route('users.tasks.create', Auth::user()->slug) }}">
+                            <a class="btn btn-info" href="{{ route('users.tasks.create', Auth::user()->slug) }}">
                                 <i class="fa fa-plus" style="padding-right: 5px"></i>Add new task
                             </a>
                         </div>
                     </div>
                     @foreach($tasks as $task)
-                        <div class="panel panel-default">
+                        <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <a class="task-title" href="{{ route('users.tasks.show', array($user->slug, $task->slug)) }}">{{ $task->title }}</a>
+                                <a class="task-title" href="{{ route('users.tasks.show', [$user->slug, $task->slug]) }}">{{ $task->title }}</a>
                                 <h6 class="task-time-ago">{{ $task->present()->taskTimeForHumans($task->created_at) }}</h6>
                             </div>
                             <div class="panel-body">
                                 <div class="task-labels">
-                                    <span class="label">
+                                    <span class="label label-primary">
                                         {{ $task->present()->formatTaskTime($task->starting_date) }} to
                                         {{ $task->present()->formatTaskTime($task->finishing_date) }}
                                     </span>
-                                    <span class="label">{{ $task->present()->getRemainingDays($task->finishing_date) }}</span>
+                                    <span class="label label-primary">{{ $task->present()->getRemainingDays($task->finishing_date) }}</span>
                                     @if ($task->completed)
-                                        <span class="label label-success">Completed</span>
+                                        <button class="btn btn-danger btn-circle"><i class="fa fa-check"></i></button>
                                     @endif
                                 </div>
                                 <div class="well">{{ $task->content }}</div>
@@ -46,15 +46,13 @@
                                     <div class="well">
                                         <i class="fa fa-tags"></i>
                                         @foreach($task->tags as $tag)
-                                            <span class="label label-primary">{{ $tag->name }}</span>
+                                            <span class="label label-default">{{ $tag->name }}</span>
                                         @endforeach
                                     </div>
                                 @endif
                             </div>
                             <div class="panel-footer">
-                                <a href="{{ route('users.tasks.edit', array($user->slug, $task->slug)) }}" class="task-action">
-                                    <i class="fa fa-wrench"></i> Update
-                                </a>
+                                <a href="{{ route('users.tasks.edit', array($user->slug, $task->slug)) }}" class="task-action">Update</a>
                                 @include('tasks.partials.delete_form')
                             </div>
                         </div>

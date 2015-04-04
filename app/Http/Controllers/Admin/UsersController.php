@@ -26,7 +26,7 @@ class UsersController extends Controller {
      *
      * @return \Illuminate\View\View
      */
-    public function manageAccounts()
+    public function activeAccounts()
     {
         return view('admin.manage-users');
     }

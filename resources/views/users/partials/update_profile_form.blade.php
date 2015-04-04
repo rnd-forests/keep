@@ -32,6 +32,6 @@
         {!! Form::textarea('about', null, ['class' => 'form-control', 'rows' => 5]) !!}
     </div>
     <div class="form-group">
-        {!! Form::submit('Update Profile', ['class' => 'btn btn-lg btn-success']) !!}
+        {!! Form::submit('Update Profile', ['class' => 'btn btn-lg btn-primary']) !!}
     </div>
 {!! Form::close() !!}

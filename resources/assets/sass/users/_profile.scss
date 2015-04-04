@@ -5,6 +5,7 @@
 
     .username {
         margin: 25px 0;
+        text-shadow: 0 0 1px #555555;
     }
 
     .tab-content {
@@ -12,14 +13,12 @@
 
         .panel {
             border: none;
-            box-shadow: none;
 
             .list-group {
                 .list-group-item {
                     background: 0 0;
                     border: none;
                     text-align: center;
-                    color: #5fcf80;
 
                     .list-group-item-heading {
                         color: #6e6e6e;
@@ -34,11 +33,6 @@
     display: block;
 
     .user-avatar-picture {
-        border-radius: 50%;
-        border: 1px solid transparent;
-
-        &:hover {
-            border: 1px solid #5fcf80;
-        }
+        border-radius: 4px;
     }
 }

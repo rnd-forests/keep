@@ -22,6 +22,6 @@
         {!! Form::password('new_password_confirmation', ['class' => 'form-control input-lg']) !!}
     </div>
     <div class="form-group">
-        {!! Form::submit('Change your password', ['class' => 'btn btn-danger']) !!}
+        {!! Form::submit('Update password', ['class' => 'btn btn-danger']) !!}
     </div>
 {!! Form::close() !!}

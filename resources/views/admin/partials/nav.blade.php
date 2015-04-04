@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ route('home_path') }}">Keep</a>
+        <a class="navbar-brand" href="{{ route('home_path') }}">@Keep</a>
     </div>
 
     <div class="sidebar" role="navigation">
@@ -17,7 +17,13 @@
                     <h4><a href="{{ route('users.show', $user->slug) }}">{{ $user->name }}</a></h4>
                 </div>
                 <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a></li>
-                <li><a href="{{ route('admin.manage.accounts') }}"><i class="fa fa-users fa-fw"></i>Accounts Management</a></li>
+                <li>
+                    <a href="#"><i class="fa fa-users fa-fw"></i>Accounts<span class="fa arrow-control"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="{{ route('admin.manage.accounts') }}">Active Accounts</a></li>
+                        <li><a href="#">Disabled Accounts</a></li>
+                    </ul>
+                </li>
                 <li><a href="{{ route('admin.manage.tasks') }}"><i class="fa fa-tasks fa-fw"></i>Tasks Management</a></li>
                 <li>
                     <a href="#"><i class="fa fa-bell-o fa-fw"></i>Notifications<span class="fa arrow-control"></span></a>

@@ -19,7 +19,7 @@
                         {!! Form::email('email', null, ['class' => 'form-control input-lg', 'placeholder' => 'username@example.com']) !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::submit('Send Password Reset Link', ['class' => 'btn btn-lg btn-success']) !!}
+                        {!! Form::submit('Send Password Reset Link', ['class' => 'btn btn-lg btn-primary']) !!}
                     </div>
                 {!! Form::close() !!}
                 <div class="text-center help-block form-link">

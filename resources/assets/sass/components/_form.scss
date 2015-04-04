@@ -8,8 +8,8 @@
     .form-link a {
         color: #444444;
 
-        &:hover {
-            color: #5fcf80;
+        &:hover, &:focus, &:active {
+            color: #1ab394;
         }
     }
 

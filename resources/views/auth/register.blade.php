@@ -28,7 +28,7 @@
                         {!! Form::password('password_confirmation', ['class' => 'form-control input-lg']) !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::submit('Create Account', ['class' => 'btn btn-lg btn-success']) !!}
+                        {!! Form::submit('Create Account', ['class' => 'btn btn-lg btn-primary']) !!}
                     </div>
                 {!! Form::close() !!}
                 <div class="text-center help-block form-link">

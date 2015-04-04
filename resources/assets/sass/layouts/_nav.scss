@@ -3,21 +3,16 @@
     border-bottom-color: #e9f0f3;
 
     .navbar-brand {
-        font-weight: bold;
-        color: #5fcf80;
+        color: #1ab394;
 
-        &:hover {
-            color: darken(#5fcf80, 15%);
+        &:hover, &:active, &:focus {
+            color: darken(#1ab394, 10%);
         }
     }
 
     .navbar-nav > li a {
-        i {
-            padding-right: 5px;
-        }
-
         &:hover, &:active, &:focus {
-            color: #657278;
+            color: #1ab394;
         }
     }
 
