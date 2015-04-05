@@ -3,8 +3,8 @@
 use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use Keep\Exceptions\InvalidRoleException;
 use Laracasts\Presenter\PresentableTrait;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Cviebrock\EloquentSluggable\SluggableTrait;
@@ -14,7 +14,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, SluggableInterface {
 
-	use Authenticatable, CanResetPassword, PresentableTrait, SluggableTrait, SoftDeletes;
+	use Authenticatable, CanResetPassword, PresentableTrait, SluggableTrait, SoftDeletes, EntrustUserTrait;
 
     /**
      * Unique slug for user model.
@@ -89,6 +89,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function isConfirmed()
     {
         return $this->active;
+    }
+
+    /**
+     * Check if a user is admin user or not.
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->hasRole('admin');
     }
 
     /**

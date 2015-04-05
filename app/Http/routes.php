@@ -21,16 +21,14 @@ Route::group(['middleware' => ['auth', 'auth.confirmed']], function() {
 
 Route::resource('users.tasks', 'UserTaskController');
 
-Route::group(['middleware' => ['auth', 'auth.confirmed'], 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
-    Route::group(['middleware' => 'valid.roles', 'roles' => ['manage_users', 'manage_tasks']], function() {
-        Route::get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@dashboard']);
-        Route::get('accounts/active', ['as' => 'admin.active.accounts', 'uses' => 'UsersController@activeAccounts']);
-        Route::get('accounts/active/{users}', ['as' => 'admin.active.account.profile', 'uses' => 'UsersController@profile']);
-        Route::delete('accounts/active/{users}', ['as' => 'admin.active.account.disable', 'uses' => 'UsersController@disableAccount']);
-        Route::get('accounts/disabled', ['as' => 'admin.disabled.accounts', 'uses' => 'UsersController@disabledAccounts']);
-        Route::put('accounts/disabled/{users}', ['as' => 'admin.restore.account', 'uses' => 'UsersController@restoreAccount']);
-        Route::delete('accounts/disabled/{users}', ['as' => 'admin.force.delete.account', 'uses' => 'UsersController@forceDeleteAccount']);
-        Route::get('tasks', ['as' => 'admin.manage.tasks', 'uses' => 'TasksController@manageTasks']);
-    });
+Route::group(['middleware' => ['auth', 'auth.confirmed', 'valid.admin.user'], 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
+    Route::get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@dashboard']);
+    Route::get('accounts/active', ['as' => 'admin.active.accounts', 'uses' => 'UsersController@activeAccounts']);
+    Route::get('accounts/active/{users}', ['as' => 'admin.active.account.profile', 'uses' => 'UsersController@profile']);
+    Route::delete('accounts/active/{users}', ['as' => 'admin.active.account.disable', 'uses' => 'UsersController@disableAccount']);
+    Route::get('accounts/disabled', ['as' => 'admin.disabled.accounts', 'uses' => 'UsersController@disabledAccounts']);
+    Route::put('accounts/disabled/{users}', ['as' => 'admin.restore.account', 'uses' => 'UsersController@restoreAccount']);
+    Route::delete('accounts/disabled/{users}', ['as' => 'admin.force.delete.account', 'uses' => 'UsersController@forceDeleteAccount']);
+    Route::get('tasks', ['as' => 'admin.manage.tasks', 'uses' => 'TasksController@manageTasks']);
 });
 

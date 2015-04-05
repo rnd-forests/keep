@@ -29,7 +29,8 @@ class Kernel extends HttpKernel {
 		'guest' => 'Keep\Http\Middleware\RedirectIfAuthenticated',
         'auth.correct' => 'Keep\Http\Middleware\RedirectIfNotCorrectUser',
         'auth.confirmed' => 'Keep\Http\Middleware\VerifyConfirmedAccount',
-        'valid.roles' => 'Keep\Http\Middleware\HasCorrectRoles',
+        'valid.permissions' => 'Keep\Http\Middleware\HasCorrectPermissions',
+        'valid.admin.user' => 'Keep\Http\Middleware\VerifyAdminUser',
 	];
 
 }

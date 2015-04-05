@@ -4,7 +4,7 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Keep\Exceptions\NotAuthorizedException;
 
-class HasCorrectRoles {
+class HasCorrectPermissions {
 
     protected $auth;
 
@@ -33,11 +33,11 @@ class HasCorrectRoles {
 
         $action = $request->route()->getAction();
 
-        if (array_key_exists('roles', $action))
+        if (array_key_exists('permissions', $action))
         {
-            if (! ($this->auth->check() && $user->hasRoles($action['roles'])))
+            if (! ($this->auth->check() && $user->ability([], $action['permissions'])))
             {
-                throw new NotAuthorizedException($user->name . ' does not have the required role(s) to perform this request.');
+                throw new NotAuthorizedException($user->name . ' does not have the required permission(s) to perform this request.');
             }
         }
 

@@ -18,6 +18,8 @@ class CreateTasksTable extends Migration {
             $table->integer('user_id')->unsigned();
             $table->string('title');
             $table->text('content');
+            $table->text('location')->nullable();
+            $table->text('note')->nullable();
             $table->timestamp('starting_date');
             $table->timestamp('finishing_date');
             $table->timestamp('finished_at')->nullable();

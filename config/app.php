@@ -150,6 +150,7 @@ return [
 
         'Laracasts\Flash\FlashServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+        'Zizaco\Entrust\EntrustServiceProvider'
 
 	],
 
@@ -202,6 +203,7 @@ return [
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'Flash'     => 'Laracasts\Flash\Flash',
         'Socialize' => 'Laravel\Socialite\Facades\Socialite',
+        'Entrust'   => 'Zizaco\Entrust\EntrustFacade'
 
 	],
 
