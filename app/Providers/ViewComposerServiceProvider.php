@@ -40,7 +40,8 @@ class ViewComposerServiceProvider extends ServiceProvider {
     private function composeAdminPanel()
     {
         view()->composer('admin.dashboard', 'Keep\Http\Composers\AdminPanelComposer@compose');
-        view()->composer('admin.manage-users', 'Keep\Http\Composers\AdminPanelComposer@compose');
+        view()->composer('admin.active_accounts', 'Keep\Http\Composers\AdminPanelComposer@compose');
+        view()->composer('admin.disabled_accounts', 'Keep\Http\Composers\AdminPanelComposer@compose');
         view()->composer('admin.manage-tasks', 'Keep\Http\Composers\AdminPanelComposer@compose');
         view()->composer('admin.partials.nav', 'Keep\Http\Composers\AdminPanelComposer@compose');
     }

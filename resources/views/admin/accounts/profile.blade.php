@@ -7,7 +7,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-4 account-profile">
-            @include('admin.users.basic_information')
+            @include('admin.accounts.basic_information')
         </div>
         <div class="col-md-8">
             <div class="timeline timeline-center">

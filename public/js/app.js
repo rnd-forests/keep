@@ -1,5 +1,6 @@
 $(function() {
     $('div.alert').not('.alert-danger').delay(3000).slideUp(300);
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 //--------------------------------------------------------------------------------

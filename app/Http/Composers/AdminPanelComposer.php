@@ -23,9 +23,9 @@ class AdminPanelComposer {
      */
     public function compose(View $view)
     {
-        $view->with('users', $this->userRepository->paginate(25));
+        $view->with('users', $this->userRepository->getPaginatedUsers(25));
         $view->with('userCount', $this->userRepository->all()->count());
-        $view->with('tasks', $this->taskRepository->paginate(40));
+        $view->with('tasks', $this->taskRepository->getPaginatedTasks(40));
         $view->with('taskCount', $this->taskRepository->all()->count());
     }
 }

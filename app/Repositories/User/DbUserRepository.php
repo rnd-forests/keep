@@ -10,7 +10,7 @@ class DbUserRepository implements UserRepositoryInterface {
         return User::all();
     }
 
-    public function paginate($num)
+    public function getPaginatedUsers($num)
     {
         return User::paginate($num);
     }
@@ -55,9 +55,25 @@ class DbUserRepository implements UserRepositoryInterface {
         return $user;
     }
 
+    public function restore($slug)
+    {
+        $user = $this->findTrashedUserBySlug($slug);
+
+        return $user->restore() && $user->tasks()->restore();
+    }
+
     public function delete($slug)
     {
         return $this->findBySlug($slug)->delete();
+    }
+
+    public function forceDelete($slug)
+    {
+        $user = $this->findTrashedUserBySlug($slug);
+
+        $user->tasks()->forceDelete();
+
+        $user->forceDelete();
     }
 
     public function getTasks(User $user)
@@ -68,6 +84,17 @@ class DbUserRepository implements UserRepositoryInterface {
     public function getTasksNotPaginated(User $user)
     {
         return $user->tasks()->latest('created_at')->get();
+    }
+
+    public function getTrashedUsers()
+    {
+        return User::onlyTrashed()->latest('deleted_at')->paginate(25);
+    }
+
+
+    private function findTrashedUserBySlug($slug)
+    {
+        return User::onlyTrashed()->where('slug', $slug)->firstOrFail();
     }
 
 }

@@ -7,7 +7,7 @@
 @section('content')
     <div class="row admin-dashboard">
         <div class="col-md-3">
-            <a href="{{ route('admin.manage.accounts') }}">
+            <a href="{{ route('admin.active.accounts') }}">
                 <div class="panel widget bg-purple">
                     <div class="row row-table">
                         <div class="col-xs-4 bg-purple-dark text-center pv-lg"><i class="fa fa-users fa-3x"></i></div>

@@ -23,7 +23,7 @@ class UserPresenter extends Presenter {
     }
 
     /**
-     * Format user timestamps.
+     * Format user timestamp.
      *
      * @param $timestamp
      *
@@ -32,6 +32,18 @@ class UserPresenter extends Presenter {
     public function formatUserTime($timestamp)
     {
         return Carbon::parse($timestamp)->format('Y-m-d');
+    }
+
+    /**
+     * Format user full timestamp.
+     *
+     * @param $timestamp
+     *
+     * @return string
+     */
+    public function formatUserTimeFull($timestamp)
+    {
+        return Carbon::parse($timestamp)->format('Y-m-d, H:i:s');
     }
 
     /**

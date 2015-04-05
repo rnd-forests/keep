@@ -10,7 +10,7 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return Task::all();
     }
 
-    public function paginate($num)
+    public function getPaginatedTasks($num)
     {
         return Task::paginate($num);
     }

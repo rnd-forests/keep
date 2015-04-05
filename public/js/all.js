@@ -48628,6 +48628,7 @@ S2.define('jquery.select2',[
 })(jQuery, window, document);
 $(function() {
     $('div.alert').not('.alert-danger').delay(3000).slideUp(300);
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 //--------------------------------------------------------------------------------

@@ -3,7 +3,7 @@
 interface TaskRepositoryInterface {
 
     public function all();
-    public function paginate($num);
+    public function getPaginatedTasks($num);
     public function findById($id);
     public function findCorrectTaskById($userId, $taskId);
     public function findCorrectTaskBySlug($userSlug, $taskSlug);

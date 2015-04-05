@@ -20,8 +20,8 @@
                 <li>
                     <a href="#"><i class="fa fa-users fa-fw"></i>Accounts<span class="fa arrow-control"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="{{ route('admin.manage.accounts') }}">Active Accounts</a></li>
-                        <li><a href="#">Disabled Accounts</a></li>
+                        <li><a href="{{ route('admin.active.accounts') }}">Active Accounts</a></li>
+                        <li><a href="{{ route('admin.disabled.accounts') }}">Disabled Accounts</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('admin.manage.tasks') }}"><i class="fa fa-tasks fa-fw"></i>Tasks Management</a></li>

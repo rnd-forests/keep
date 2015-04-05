@@ -22,17 +22,29 @@ class UsersController extends Controller {
     }
 
     /**
-     * Get accounts management page.
+     * Get active accounts.
      *
      * @return \Illuminate\View\View
      */
     public function activeAccounts()
     {
-        return view('admin.manage-users');
+        return view('admin.active_accounts');
     }
 
     /**
-     * Get user profile.
+     * Get disabled accounts.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function disabledAccounts()
+    {
+        $disabledAccounts = $this->userRepository->getTrashedUsers();
+
+        return view('admin.disabled_accounts', compact('disabledAccounts'));
+    }
+
+    /**
+     * Get account profile.
      *
      * @param $slug
      *
@@ -44,23 +56,55 @@ class UsersController extends Controller {
 
         $tasks = $this->userRepository->getTasksNotPaginated($user);
 
-        return view('admin.users.profile', compact('user', 'tasks'));
+        return view('admin.accounts.profile', compact('user', 'tasks'));
     }
 
     /**
-     * Delete an user account.
+     * Disable an account.
      *
      * @param $slug
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function deleteAccount($slug)
+    public function disableAccount($slug)
     {
         $this->userRepository->delete($slug);
 
         flash()->success("This account has been disabled.");
 
-        return redirect()->route('admin.manage.accounts');
+        return redirect()->route('admin.active.accounts');
+    }
+
+    /**
+     * Restore a disabled account.
+     *
+     * @param $slug
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function restoreAccount($slug)
+    {
+        $this->userRepository->restore($slug);
+
+        flash()->info('This account has been restored.');
+
+        return redirect()->back();
+    }
+
+    /**
+     * Permanently delete an account.
+     *
+     * @param $slug
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function forceDeleteAccount($slug)
+    {
+        $this->userRepository->forceDelete($slug);
+
+        flash()->info('This account was permanently deleted.');
+
+        return redirect()->back();
     }
 
 }

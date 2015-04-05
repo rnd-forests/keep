@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="panel panel-info">
-            <div class="panel-heading">Accounts Table</div>
+            <div class="panel-heading">Active Accounts Table</div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -39,14 +39,16 @@
                                 <td class="text-center">{{ $user->tasks()->count() }}</td>
                                 <td class="text-center">{{ $user->present()->formatUserTime($user->created_at) }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin.accounts.profile', $user->slug) }}" class="btn btn-primary btn-circle">
+                                    <a href="{{ route('admin.active.account.profile', $user->slug) }}" class="btn btn-primary btn-circle"
+                                       data-toggle="tooltip" data-placement="bottom" title="View Profile">
                                         <i class="fa fa-user"></i>
                                     </a>
-                                    <a class="btn btn-info btn-circle">
+                                    <a href="#" class="btn btn-info btn-circle"
+                                       data-toggle="tooltip" data-placement="bottom" title="Send notification">
                                         <i class="fa fa-bell-o"></i>
                                     </a>
                                     @unless($user->isAdmin())
-                                        @include('admin.users.delete_form')
+                                        @include('admin.accounts.delete_form')
                                     @endunless
                                 </td>
                             </tr>
