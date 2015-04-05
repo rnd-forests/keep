@@ -6,9 +6,14 @@ use Keep\Repositories\User\UserRepositoryInterface;
 
 class AdminPanelComposer {
 
-    protected $userRepository;
-    protected $taskRepository;
+    protected $userRepository, $taskRepository;
 
+    /**
+     * Constructor.
+     *
+     * @param UserRepositoryInterface $userRepository
+     * @param TaskRepositoryInterface $taskRepository
+     */
     public function __construct(UserRepositoryInterface $userRepository,
                                 TaskRepositoryInterface $taskRepository)
     {

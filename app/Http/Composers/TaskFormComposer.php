@@ -7,6 +7,11 @@ class TaskFormComposer {
 
     protected $tags;
 
+    /**
+     * Constructor.
+     *
+     * @param TagRepositoryInterface $tags
+     */
     public function __construct(TagRepositoryInterface $tags)
     {
         $this->tags = $tags;

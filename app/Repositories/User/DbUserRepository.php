@@ -32,8 +32,7 @@ class DbUserRepository implements UserRepositoryInterface {
 
     public function findByCodeAndActiveState($code, $state)
     {
-        return User::where('activation_code', '=', $code)
-            ->where('active', '=', $state)->firstOrFail();
+        return User::where('activation_code', '=', $code)->where('active', '=', $state)->firstOrFail();
     }
 
     public function create(array $credentials)
@@ -90,7 +89,6 @@ class DbUserRepository implements UserRepositoryInterface {
     {
         return User::onlyTrashed()->latest('deleted_at')->paginate(25);
     }
-
 
     private function findTrashedUserBySlug($slug)
     {

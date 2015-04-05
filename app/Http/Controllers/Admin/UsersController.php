@@ -16,7 +16,7 @@ class UsersController extends Controller {
      *
      * @param UserRepositoryInterface $userRepository
      */
-    function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository)
     {
         $this->userRepository = $userRepository;
     }

@@ -22,6 +22,8 @@
                     <ul class="nav nav-second-level">
                         <li><a href="{{ route('admin.active.accounts') }}">Active Accounts</a></li>
                         <li><a href="{{ route('admin.disabled.accounts') }}">Disabled Accounts</a></li>
+                        <li><a href="#">Create group</a></li>
+                        <li><a href="#">Manage groups</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('admin.manage.tasks') }}"><i class="fa fa-tasks fa-fw"></i>Tasks Management</a></li>

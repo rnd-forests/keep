@@ -37,7 +37,7 @@ class HasCorrectRoles {
         {
             if (! ($this->auth->check() && $user->hasRoles($action['roles'])))
             {
-                throw new NotAuthorizedException($user->name . ' does not have the required role(s) to access this page.');
+                throw new NotAuthorizedException($user->name . ' does not have the required role(s) to perform this request.');
             }
         }
 

@@ -98,7 +98,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function isConfirmed()
     {
-        return (bool) $this->active;
+        return $this->active;
     }
 
     /**
@@ -214,13 +214,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     private function cascadingDeletesTasks()
     {
         $ids = array();
-        if ($this->tasks) {
-            foreach ($this->tasks as $task) {
+        if ($this->tasks)
+        {
+            foreach ($this->tasks as $task)
+            {
                 $ids[] = $task->id;
             }
         }
 
-        if (count($ids) > 0) {
+        if (count($ids) > 0)
+        {
             Task::whereIn('id', $ids)->delete();
         }
     }
