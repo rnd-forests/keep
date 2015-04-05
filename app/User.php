@@ -62,16 +62,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     ];
 
     /**
-     * A user can have many associated roles.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function roles()
-    {
-        return $this->belongsToMany('Keep\Role');
-    }
-
-    /**
      * A user can have many associated tasks.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -102,69 +92,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
-     * Check if a user is admin user or not.
-     *
-     * @return bool
-     */
-    public function isAdmin()
-    {
-        return $this->hasRoles(['manage_users', 'manage_tasks']);
-    }
-
-    /**
-     * Validate given role against database roles.
-     *
-     * @param array $roles
-     *
-     * @return bool
-     * @throws InvalidRoleException
-     */
-    public function hasRoles($roles = array())
-    {
-        $roleList = app()->make('Keep\Repositories\Role\RoleRepository')->getRoleList();
-
-        foreach ((array) $roles as $role)
-        {
-            if (! in_array($role, $roleList))
-            {
-                throw new InvalidRoleException("Unidentified role: {$role}");
-            }
-
-            if (! $this->roleCollectionHasRole($role))
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * Compare roles.
-     *
-     * @param $allowedRole
-     *
-     * @return bool
-     */
-    private function roleCollectionHasRole($allowedRole)
-    {
-        $roles = $this->roles()->get();
-
-        if ($roles)
-        {
-            foreach ($roles as $role)
-            {
-                if (strtolower($role->name) == strtolower($allowedRole))
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * Create new notification.
      *
      * @return Notification
@@ -192,11 +119,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 
     //--- ACCESSORS vs. MUTATORS ---//
-    public function setRolesAttribute($roles)
-    {
-        return $this->roles()->sync((array) $roles);
-    }
-
     public function setBirthdayAttribute($date)
     {
         $this->attributes['birthday'] = Carbon::parse($date);
