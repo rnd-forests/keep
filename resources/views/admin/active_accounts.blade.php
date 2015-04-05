@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-info">
+        <div class="panel panel-default">
             <div class="panel-heading">Active Accounts Table</div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">

@@ -177,6 +177,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $notification;
     }
 
+    /**
+     * Override the delete method of Model class for cascading soft deletes.
+     *
+     * @return bool|null
+     * @throws \Exception
+     */
+    public function delete()
+    {
+        $this->cascadingDeletesTasks();
+
+        return parent::delete();
+    }
+
 
     //--- ACCESSORS vs. MUTATORS ---//
     public function setRolesAttribute($roles)
@@ -192,6 +205,24 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+
+    /**
+     * Cascading deletes all tasks associated with the current user.
+     */
+    private function cascadingDeletesTasks()
+    {
+        $ids = array();
+        if ($this->tasks) {
+            foreach ($this->tasks as $task) {
+                $ids[] = $task->id;
+            }
+        }
+
+        if (count($ids) > 0) {
+            Task::whereIn('id', $ids)->delete();
+        }
     }
 
 }
