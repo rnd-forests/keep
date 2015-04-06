@@ -12,7 +12,7 @@ class TaskPresenter extends Presenter {
      *
      * @return string
      */
-    public function formatTaskTime($timestamp)
+    public function formatTime($timestamp)
     {
         return Carbon::parse($timestamp)->format('Y-m-d');
     }
@@ -24,9 +24,9 @@ class TaskPresenter extends Presenter {
      *
      * @return string
      */
-    public function taskTimeForHumans($timestamp)
+    public function formatTimeForHumans($timestamp)
     {
-        return 'Added ' . Carbon::parse($timestamp)->diffForHumans();
+        return Carbon::parse($timestamp)->diffForHumans();
     }
 
     /**
@@ -54,10 +54,10 @@ class TaskPresenter extends Presenter {
     {
         if ($completed)
         {
-            return 'Completed';
+            return '<button class="btn btn-primary btn-circle"><i class="fa fa-check"></i></button>';
         }
 
-        return 'Not completed';
+        return '<button class="btn btn-warning btn-circle"><i class="fa fa-close"></i></button>';
     }
 
 }

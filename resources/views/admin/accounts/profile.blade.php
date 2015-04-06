@@ -18,7 +18,7 @@
                     <li class="tl-item">
                         <div class="tl-wrap b-success">
                             <span class="tl-date">
-                                {{ $taskSet[0]->present()->formatTaskTime($taskSet[0]->created_at) }}
+                                {{ $taskSet[0]->present()->formatTime($taskSet[0]->created_at) }}
                                 @if($taskSet[0]->isCompleted())
                                     <button class="btn btn-info btn-circle"><i class="fa fa-check"></i></button>
                                 @else
@@ -40,7 +40,7 @@
                         <li class="tl-item tl-left">
                             <div class="tl-wrap b-primary">
                                 <span class="tl-date">
-                                    {{ $taskSet[1]->present()->formatTaskTime($taskSet[0]->created_at) }}
+                                    {{ $taskSet[1]->present()->formatTime($taskSet[0]->created_at) }}
                                     @if($taskSet[1]->isCompleted())
                                         <button class="btn btn-info btn-circle"><i class="fa fa-check"></i></button>
                                     @else

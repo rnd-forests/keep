@@ -49,7 +49,7 @@ class Notification extends Model {
      */
     public function user()
     {
-        return $this->belongsTo('Keep\User');
+        return $this->belongsTo('Keep\User', 'user_id');
     }
 
     /**

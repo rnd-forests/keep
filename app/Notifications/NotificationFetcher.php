@@ -5,11 +5,11 @@ use Keep\User;
 use Keep\Notification;
 use Illuminate\Database\Eloquent\Collection;
 
-class NotificationFetcher {
+class NotificationFetcher implements NotifiableInterface {
 
     /**
      * User to fetch notifications for.
-     * @var
+     * @var User
      */
     protected $user;
 
@@ -28,7 +28,7 @@ class NotificationFetcher {
     /**
      * Constructor.
      *
-     * @param \Keep\User $user
+     * @param User $user
      */
     public function __construct(User $user)
     {
@@ -38,7 +38,7 @@ class NotificationFetcher {
     /**
      * Fetch the notifications.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public function fetch()
     {
@@ -75,7 +75,7 @@ class NotificationFetcher {
      *
      * @param $notifications
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     private function toCollection($notifications)
     {
@@ -92,7 +92,7 @@ class NotificationFetcher {
     }
 
     /**
-     * Setter for the unread property
+     * Setter for the unread property.
      *
      * @return $this
      */
@@ -104,7 +104,7 @@ class NotificationFetcher {
     }
 
     /**
-     * Setter for the limit property
+     * Setter for the limit property.
      *
      * @param $limit
      *

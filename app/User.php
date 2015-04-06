@@ -44,7 +44,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * The attributes that should be hidden for arrays.
      * @var array
      */
-	protected $hidden = ['password', 'remember_token', 'activation_code', 'active'];
+	protected $hidden = ['password', 'remember_token', 'activation_code'];
 
     /**
      * The attributes that should be casted to native types.
@@ -127,19 +127,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return parent::delete();
     }
 
-
-    //--- ACCESSORS vs. MUTATORS ---//
-    public function setBirthdayAttribute($date)
-    {
-        $this->attributes['birthday'] = Carbon::parse($date);
-    }
-
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
-
-
     /**
      * Cascading deletes all tasks associated with the current user.
      */
@@ -158,6 +145,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         {
             Task::whereIn('id', $ids)->delete();
         }
+    }
+
+
+    //--- ACCESSORS vs. MUTATORS ---//
+    public function setBirthdayAttribute($date)
+    {
+        $this->attributes['birthday'] = Carbon::parse($date);
+    }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
     }
 
 }

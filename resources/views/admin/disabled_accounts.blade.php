@@ -30,7 +30,7 @@
                                 <td class="text-center">{{ $user->id }}</td>
                                 <td class="text-navy">{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td class="text-center">{{ $user->present()->formatUserTimeFull($user->deleted_at) }}</td>
+                                <td class="text-center">{{ $user->present()->formatFullTime($user->deleted_at) }}</td>
                                 <td class="text-center">
                                     @include('admin.accounts.restore_form')
                                     @include('admin.accounts.force_delete_form')

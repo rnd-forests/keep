@@ -22,13 +22,13 @@
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <a class="task-title" href="{{ route('users.tasks.show', [$user->slug, $task->slug]) }}">{{ $task->title }}</a>
-                                <h6 class="task-time-ago">{{ $task->present()->taskTimeForHumans($task->created_at) }}</h6>
+                                <h6 class="task-time-ago">{{ $task->present()->formatTimeForHumans($task->created_at) }}</h6>
                             </div>
                             <div class="panel-body">
                                 <div class="task-labels">
                                     <span class="label label-primary">
-                                        {{ $task->present()->formatTaskTime($task->starting_date) }} to
-                                        {{ $task->present()->formatTaskTime($task->finishing_date) }}
+                                        {{ $task->present()->formatTime($task->starting_date) }} to
+                                        {{ $task->present()->formatTime($task->finishing_date) }}
                                     </span>
                                     <span class="label label-primary">{{ $task->present()->getRemainingDays($task->finishing_date) }}</span>
                                     @if ($task->completed)

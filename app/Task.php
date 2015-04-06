@@ -57,7 +57,7 @@ class Task extends Model implements SluggableInterface {
      */
     public function owner()
     {
-        return $this->belongsTo('Keep\User');
+        return $this->belongsTo('Keep\User', 'user_id');
     }
 
     /**

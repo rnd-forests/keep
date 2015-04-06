@@ -29,7 +29,7 @@ class UserPresenter extends Presenter {
      *
      * @return string
      */
-    public function formatUserTime($timestamp)
+    public function formatTime($timestamp)
     {
         return Carbon::parse($timestamp)->format('Y-m-d');
     }
@@ -41,7 +41,7 @@ class UserPresenter extends Presenter {
      *
      * @return string
      */
-    public function formatUserTimeFull($timestamp)
+    public function formatFullTime($timestamp)
     {
         return Carbon::parse($timestamp)->format('Y-m-d, H:i:s');
     }
@@ -53,7 +53,7 @@ class UserPresenter extends Presenter {
      *
      * @return string
      */
-    public function printAttribute($attribute)
+    public function attribute($attribute)
     {
         if (empty($attribute))
         {

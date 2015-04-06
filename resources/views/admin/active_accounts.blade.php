@@ -37,7 +37,7 @@
                                 <td class="text-navy">{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td class="text-center">{{ $user->tasks()->count() }}</td>
-                                <td class="text-center">{{ $user->present()->formatUserTime($user->created_at) }}</td>
+                                <td class="text-center">{{ $user->present()->formatTime($user->created_at) }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.active.account.profile', $user->slug) }}" class="btn btn-primary btn-circle"
                                        data-toggle="tooltip" data-placement="bottom" title="View Profile">
