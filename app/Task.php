@@ -15,7 +15,7 @@ class Task extends Model implements SluggableInterface {
      * Unique slug for task model.
      * @var array
      */
-    protected $sluggable = ['build_from' => 'task_slug', 'save_to' => 'slug'];
+    protected $sluggable = ['build_from' => 'title', 'save_to' => 'slug'];
 
     /**
      * Table used by the model.
@@ -77,19 +77,7 @@ class Task extends Model implements SluggableInterface {
      */
     public function isCompleted()
     {
-        return $this->attributes['completed'];
-    }
-
-    /**
-     * Getter for task slug.
-     *
-     * @return string
-     */
-    public function getTaskSlugAttribute()
-    {
-        $date = Carbon::parse($this->created_at)->format('Y-m-d');
-
-        return $date . ' ' . $this->title;
+        return $this->completed;
     }
 
     //--- ACCESSORS vs. MUTATORS ---//
