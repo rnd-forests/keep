@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-    Dashboard
-@stop
+@section('title', 'Dashboard')
 
 @section('content')
     <div class="admin-dashboard">

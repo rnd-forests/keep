@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-    Manage Tasks
-@stop
+@section('title', 'Manage Tasks')
 
 @section('content')
     <div class="admin-contents-wrapper">

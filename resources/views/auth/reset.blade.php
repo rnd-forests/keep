@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    Password Reset
-@stop
+@section('title', 'Password Reset')
 
 @section('content')
 	<div class="row">

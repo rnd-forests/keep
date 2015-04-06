@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    Password Recovery
-@stop
+@section('title', 'Password Recovery')
 
 @section('content')
 	<div class="row">

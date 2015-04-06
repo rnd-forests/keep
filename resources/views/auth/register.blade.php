@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    Register
-@stop
+@section('title', 'Register')
 
 @section('content')
 	<div class="row">

@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-    Disabled Accounts
-@stop
+@section('title', 'Disabled Accounts')
 
 @section('content')
     <div class="admin-contents-wrapper">

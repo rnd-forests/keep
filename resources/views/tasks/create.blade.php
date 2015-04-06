@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    New Task
-@stop
+@section('title', 'New Task')
 
 @section('content')
     <div class="row">
