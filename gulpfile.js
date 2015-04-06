@@ -16,14 +16,13 @@ elixir(function(mix) {
     ], null, 'public/css');
 
     mix.scripts([
-        'vendor/jquery.js',
-        'vendor/moment.js',
-        'vendor/bootstrap.js',
-        'vendor/datetimepicker.js',
-        'vendor/angular.js',
-        'vendor/chart.js',
-        'vendor/select2.js',
-        'vendor/metismenu.js',
+        'vendor/jquery.min.js',
+        'vendor/moment.min.js',
+        'vendor/bootstrap.min.js',
+        'vendor/datetimepicker.min.js',
+        'vendor/chart.min.js',
+        'vendor/select2.min.js',
+        'vendor/metismenu.min.js',
         'app.js'
     ], null, 'public/js');
 
