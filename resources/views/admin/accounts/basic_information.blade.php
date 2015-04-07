@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        @if($user->isAdmin())
+        @if($user->roles->contains('name', 'admin'))
             <span class="pull-right label label-danger">Admin</span>
         @endif
         {{ $user->name }}

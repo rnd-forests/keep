@@ -18,7 +18,7 @@
                             </a>
                         </div>
                     </div>
-                    @foreach($tasks as $task)
+                    @foreach($tasks->load('tags') as $task)
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <a class="task-title" href="{{ route('users.tasks.show', [$user->slug, $task->slug]) }}">{{ $task->title }}</a>
@@ -32,16 +32,16 @@
                                     </span>
                                     <span class="label label-primary">{{ $task->present()->getRemainingDays($task->finishing_date) }}</span>
                                     @if ($task->completed)
-                                        <button class="btn btn-danger btn-circle"><i class="fa fa-check"></i></button>
+                                        <button class="btn btn-info btn-circle"><i class="fa fa-check"></i></button>
                                     @endif
                                 </div>
                                 <div class="well">{{ $task->content }}</div>
                                 @unless (empty($task->location))
                                     <div class="well"><i class="fa fa-map-marker"></i><strong>{{ $task->location }}</strong></div>
-                                @endif
+                                @endunless
                                 @unless (empty($task->note))
                                     <div class="well"><i class="fa fa-pencil"></i><em>{{ $task->note }}</em></div>
-                                @endif
+                                @endunless
                                 @unless ($task->tags->isEmpty())
                                     <div class="well">
                                         <i class="fa fa-tags"></i>
@@ -49,7 +49,7 @@
                                             <span class="label label-default">{{ $tag->name }}</span>
                                         @endforeach
                                     </div>
-                                @endif
+                                @endunless
                             </div>
                             <div class="panel-footer">
                                 <a href="{{ route('users.tasks.edit', array($user->slug, $task->slug)) }}" class="task-action">Update</a>

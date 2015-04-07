@@ -14,7 +14,7 @@
                 <li class="tl-header">
                     <div class="btn btn-info">Now</div>
                 </li>
-                @foreach($tasks->chunk(2) as $taskSet)
+                @foreach($user->tasks->chunk(2) as $taskSet)
                     <li class="tl-item">
                         <div class="tl-wrap b-success">
                             <span class="tl-date">

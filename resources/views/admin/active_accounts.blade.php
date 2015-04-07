@@ -9,7 +9,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading"><i class="fa fa-area-chart"></i> Current number of active accounts</div>
                     <div class="panel-body">
-                        <div class="huge text-center">{{ $userCount }} active accounts</div>
+                        <div class="huge text-center">{{ $usersCount }} active accounts</div>
                     </div>
                 </div>
             </div>
@@ -29,15 +29,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($users as $user)
+                        @foreach($activeAccounts as $account)
                             <tr>
-                                <td class="text-center">{{ $user->id }}</td>
-                                <td class="text-navy">{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td class="text-center">{{ $user->tasks()->count() }}</td>
-                                <td class="text-center">{{ $user->present()->formatTime($user->created_at) }}</td>
+                                <td class="text-center">{{ $account->id }}</td>
+                                <td class="text-navy">{{ $account->name }}</td>
+                                <td>{{ $account->email }}</td>
+                                <td class="text-center">{{ $account->tasks->count() }}</td>
+                                <td class="text-center">{{ $account->present()->formatTime($account->created_at) }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin.active.account.profile', $user->slug) }}" class="btn btn-primary btn-circle"
+                                    <a href="{{ route('admin.active.account.profile', $account->slug) }}" class="btn btn-primary btn-circle"
                                        data-toggle="tooltip" data-placement="bottom" title="View Profile">
                                         <i class="fa fa-user"></i>
                                     </a>
@@ -45,7 +45,7 @@
                                        data-toggle="tooltip" data-placement="bottom" title="Send notification">
                                         <i class="fa fa-bell-o"></i>
                                     </a>
-                                    @unless($user->isAdmin())
+                                    @unless($account->roles->contains('name', 'admin'))
                                         @include('admin.accounts.delete_form')
                                     @endunless
                                 </td>
@@ -55,7 +55,7 @@
                 </table>
             </div>
             <footer class="panel-footer">
-                <div class="pull-right">{!! $users->render() !!}</div>
+                <div class="pull-right">{!! $activeAccounts->render() !!}</div>
                 <div class="clearfix"></div>
             </footer>
         </div>

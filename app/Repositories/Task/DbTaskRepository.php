@@ -10,9 +10,14 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return Task::all();
     }
 
+    public function count()
+    {
+        return Task::all()->count();
+    }
+
     public function getPaginatedTasks($num)
     {
-        return Task::paginate($num);
+        return Task::with('owner')->paginate($num);
     }
 
     public function findById($id)
@@ -22,14 +27,14 @@ class DbTaskRepository implements TaskRepositoryInterface {
 
     public function findCorrectTaskById($userId, $taskId)
     {
-        return Task::where(['user_id' => $userId, 'id' => $taskId])->firstOrFail();
+        return Task::whereUserIdAndId($userId, $taskId)->firstOrFail();
     }
 
     public function findCorrectTaskBySlug($userSlug, $taskSlug)
     {
         $user = User::findBySlug($userSlug);
 
-        return Task::where(['user_id' => $user->id, 'slug' => $taskSlug])->firstOrFail();
+        return Task::whereUserIdAndSlug($user->id, $taskSlug)->firstOrFail();
     }
 
     public function create(array $data)

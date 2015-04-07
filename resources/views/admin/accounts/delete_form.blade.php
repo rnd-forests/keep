@@ -1,5 +1,4 @@
-{!! Form::open(array('method' => 'DELETE', 'route' => array('admin.active.account.disable', $user->slug))) !!}
-    {{--type="button" -- important--}}
+{!! Form::open(array('method' => 'DELETE', 'route' => array('admin.active.account.disable', $account->slug))) !!}
     <button type="button" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#admin-cancel-account-modal">
         <i class="fa fa-times"></i>
     </button>

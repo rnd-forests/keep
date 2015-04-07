@@ -12,7 +12,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
 	public function boot()
 	{
         $this->composeTaskForm();
-        $this->composeAdminPanel();
+        $this->composeAdminPanelTasks();
         $this->composeAdminSidebar();
     }
 
@@ -35,15 +35,11 @@ class ViewComposerServiceProvider extends ServiceProvider {
     }
 
     /**
-     * Composer admin panel views.
+     * Composer admin panel task views.
      */
-    private function composeAdminPanel()
+    private function composeAdminPanelTasks()
     {
-        view()->composer('admin.dashboard', 'Keep\Http\Composers\AdminPanelComposer@compose');
-        view()->composer('admin.active_accounts', 'Keep\Http\Composers\AdminPanelComposer@compose');
-        view()->composer('admin.disabled_accounts', 'Keep\Http\Composers\AdminPanelComposer@compose');
-        view()->composer('admin.manage-tasks', 'Keep\Http\Composers\AdminPanelComposer@compose');
-        view()->composer('admin.partials.nav', 'Keep\Http\Composers\AdminPanelComposer@compose');
+        view()->composer('admin.manage_tasks', 'Keep\Http\Composers\AdminPanelTaskComposer@compose');
     }
 
     /**

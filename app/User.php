@@ -1,6 +1,7 @@
 <?php namespace Keep;
 
 use Carbon\Carbon;
+use Keep\Services\KeepHelper;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -132,19 +133,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     private function cascadingDeletesTasks()
     {
-        $ids = array();
-        if ($this->tasks)
-        {
-            foreach ($this->tasks as $task)
-            {
-                $ids[] = $task->id;
-            }
-        }
-
-        if (count($ids) > 0)
-        {
-            Task::whereIn('id', $ids)->delete();
-        }
+        Task::whereIn('id', KeepHelper::getIdsOfTasksInRelation($this))->delete();
     }
 
 

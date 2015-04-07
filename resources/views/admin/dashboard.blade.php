@@ -11,7 +11,7 @@
                         <div class="row row-table">
                             <div class="col-xs-4 bg-purple-dark text-center pv-lg"><i class="fa fa-users fa-3x"></i></div>
                             <div class="col-xs-8">
-                                <div class="huge">{{ $userCount }}</div>
+                                <div class="huge">{{ $usersCount }}</div>
                                 <span>Members</span>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                         <div class="row row-table">
                             <div class="col-xs-4 bg-green-dark text-center pv-lg"><i class="fa fa-tasks fa-3x"></i></div>
                             <div class="col-xs-8">
-                                <div class="huge">{{ $taskCount }}</div>
+                                <div class="huge">{{ $tasksCount }}</div>
                                 <span>Tasks</span>
                             </div>
                         </div>

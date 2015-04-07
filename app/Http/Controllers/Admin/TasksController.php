@@ -11,6 +11,7 @@ class TasksController extends Controller {
      */
     public function manageTasks()
     {
-        return view('admin.manage-tasks');
+        return view('admin.manage_tasks');
     }
+
 }

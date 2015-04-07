@@ -10,9 +10,14 @@ class DbUserRepository implements UserRepositoryInterface {
         return User::all();
     }
 
-    public function getPaginatedUsers($num)
+    public function count()
     {
-        return User::paginate($num);
+        return User::all()->count();
+    }
+
+    public function getPaginatedUsers($limit)
+    {
+        return User::with('tasks', 'roles')->paginate($limit);
     }
 
     public function getAuthUser()
@@ -30,9 +35,16 @@ class DbUserRepository implements UserRepositoryInterface {
         return User::findBySlug($slug);
     }
 
+    public function findBySlugWithTasks($slug)
+    {
+        return User::with(['tasks' => function($query) {
+            $query->latest('created_at');
+        }, 'roles'])->whereSlug($slug)->firstOrFail();
+    }
+
     public function findByCodeAndActiveState($code, $state)
     {
-        return User::where('activation_code', '=', $code)->where('active', '=', $state)->firstOrFail();
+        return User::whereActivationCodeAndActive($code, $state)->firstOrFail();
     }
 
     public function create(array $credentials)
@@ -75,24 +87,19 @@ class DbUserRepository implements UserRepositoryInterface {
         $user->forceDelete();
     }
 
-    public function getTasks(User $user)
-    {
-        return $user->tasks()->latest('created_at')->paginate(10);
-    }
-
-    public function getTasksNotPaginated(User $user)
-    {
-        return $user->tasks()->latest('created_at')->get();
-    }
-
     public function getTrashedUsers()
     {
         return User::onlyTrashed()->latest('deleted_at')->paginate(25);
     }
 
-    private function findTrashedUserBySlug($slug)
+    public function findTrashedUserBySlug($slug)
     {
-        return User::onlyTrashed()->where('slug', $slug)->firstOrFail();
+        return User::onlyTrashed()->whereSlug($slug)->firstOrFail();
+    }
+
+    public function getPaginatedAssociatedTasks($user, $limit)
+    {
+        return $user->tasks()->latest('created_at')->paginate($limit);
     }
 
 }

@@ -28,7 +28,11 @@ class UsersController extends Controller {
      */
     public function activeAccounts()
     {
-        return view('admin.active_accounts');
+        $usersCount = $this->userRepository->count();
+
+        $activeAccounts = $this->userRepository->getPaginatedUsers(25);
+
+        return view('admin.active_accounts', compact('usersCount', 'activeAccounts'));
     }
 
     /**
@@ -52,11 +56,9 @@ class UsersController extends Controller {
      */
     public function profile($slug)
     {
-        $user = $this->userRepository->findBySlug($slug);
+        $user = $this->userRepository->findBySlugWithTasks($slug);
 
-        $tasks = $this->userRepository->getTasksNotPaginated($user);
-
-        return view('admin.accounts.profile', compact('user', 'tasks'));
+        return view('admin.accounts.profile', compact('user'));
     }
 
     /**

@@ -48,7 +48,7 @@ class UserTaskController extends Controller {
 	{
 		$user = $this->userRepository->findBySlug($userSlug);
 
-        $tasks = $this->userRepository->getTasks($user);
+        $tasks = $this->userRepository->getPaginatedAssociatedTasks($user, 10);
 
         return view('tasks.index', compact('user', 'tasks'));
 	}
