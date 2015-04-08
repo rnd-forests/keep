@@ -33,6 +33,14 @@ interface TaskRepositoryInterface {
     public function findById($id);
 
     /**
+     * Find a task by slug.
+     *
+     * @param $slug
+     * @return mixed
+     */
+    public function findBySlug($slug);
+
+    /**
      * Find the correct task associated with a given user by its ID.
      *
      * @param $userId
@@ -69,12 +77,51 @@ interface TaskRepositoryInterface {
     public function update($userSlug, $taskSlug, array $data);
 
     /**
-     * Soft delete a task.
+     * Soft delete a task with user constraint.
      *
      * @param $userSlug
      * @param $taskSlug
      * @return mixed
      */
-    public function delete($userSlug, $taskSlug);
+    public function deleteWithUserConstraint($userSlug, $taskSlug);
+
+    /**
+     * Soft delete a task.
+     *
+     * @param $slug
+     * @return mixed
+     */
+    public function delete($slug);
+
+    /**
+     * Restore a soft delete task.
+     *
+     * @param $slug
+     * @return bool
+     */
+    public function restore($slug);
+
+    /**
+     * Force delete a task.
+     *
+     * @param $slug
+     * @return mixed
+     */
+    public function forceDelete($slug);
+
+    /**
+     * Get the trashed tasks.
+     *
+     * @return mixed
+     */
+    public function getTrashedTasks();
+
+    /**
+     * Find a trashed task by slug.
+     *
+     * @param $slug
+     * @return mixed
+     */
+    public function findTrashedTaskBySlug($slug);
 
 }

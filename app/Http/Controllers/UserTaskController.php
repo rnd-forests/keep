@@ -147,7 +147,7 @@ class UserTaskController extends Controller {
      */
 	public function destroy($userSlug, $taskSlug)
 	{
-		$this->taskRepository->delete($userSlug, $taskSlug);
+		$this->taskRepository->deleteWithUserConstraint($userSlug, $taskSlug);
 
         flash()->success('Your task was successfully destroyed.');
 

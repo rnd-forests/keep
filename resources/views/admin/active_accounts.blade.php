@@ -54,10 +54,9 @@
                     </tbody>
                 </table>
             </div>
-            <footer class="panel-footer">
-                <div class="pull-right">{!! $activeAccounts->render() !!}</div>
-                <div class="clearfix"></div>
-            </footer>
+            <div class="panel-footer">
+                <div class="text-center">{!! $activeAccounts->render() !!}</div>
+            </div>
         </div>
     </div>
 @stop

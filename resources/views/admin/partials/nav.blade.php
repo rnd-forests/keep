@@ -18,7 +18,7 @@
                 </div>
                 <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a></li>
                 <li>
-                    <a href="#"><i class="fa fa-users fa-fw"></i>Accounts<span class="fa arrow-control"></span></a>
+                    <a href="#"><i class="fa fa-users fa-fw"></i>Manage Accounts<span class="fa arrow-control"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="{{ route('admin.active.accounts') }}">Active Accounts</a></li>
                         <li><a href="{{ route('admin.disabled.accounts') }}">Disabled Accounts</a></li>
@@ -26,7 +26,13 @@
                         <li><a href="#">Manage groups</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('admin.manage.tasks') }}"><i class="fa fa-tasks fa-fw"></i>Tasks Management</a></li>
+                <li>
+                    <a href="#"><i class="fa fa-tasks fa-fw"></i>Manage Tasks<span class="fa arrow-control"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="{{ route('admin.manage.tasks') }}">Active Tasks</a></li>
+                        <li><a href="{{ route('admin.trashed.tasks') }}">Trashed Tasks</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="#"><i class="fa fa-bell-o fa-fw"></i>Notifications<span class="fa arrow-control"></span></a>
                     <ul class="nav nav-second-level">

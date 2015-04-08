@@ -38,10 +38,9 @@
                         </tbody>
                     </table>
                 </div>
-                <footer class="panel-footer">
-                    <div class="pull-right">{!! $disabledAccounts->render() !!}</div>
-                    <div class="clearfix"></div>
-                </footer>
+                <div class="panel-footer">
+                    <div class="text-center">{!! $disabledAccounts->render() !!}</div>
+                </div>
             @endif
         </div>
     </div>

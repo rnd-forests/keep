@@ -23,12 +23,19 @@ Route::resource('users.tasks', 'UserTaskController');
 
 Route::group(['middleware' => ['auth', 'auth.confirmed', 'valid.admin.user'], 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@dashboard']);
+
     Route::get('accounts/active', ['as' => 'admin.active.accounts', 'uses' => 'UsersController@activeAccounts']);
     Route::get('accounts/active/{users}', ['as' => 'admin.active.account.profile', 'uses' => 'UsersController@profile']);
     Route::delete('accounts/active/{users}', ['as' => 'admin.active.account.disable', 'uses' => 'UsersController@disableAccount']);
     Route::get('accounts/disabled', ['as' => 'admin.disabled.accounts', 'uses' => 'UsersController@disabledAccounts']);
     Route::put('accounts/disabled/{users}', ['as' => 'admin.restore.account', 'uses' => 'UsersController@restoreAccount']);
     Route::delete('accounts/disabled/{users}', ['as' => 'admin.force.delete.account', 'uses' => 'UsersController@forceDeleteAccount']);
-    Route::get('tasks', ['as' => 'admin.manage.tasks', 'uses' => 'TasksController@manageTasks']);
+
+    Route::get('tasks/active', ['as' => 'admin.manage.tasks', 'uses' => 'TasksController@activeTasks']);
+    Route::get('tasks/active/{tasks}', ['as' => 'admin.task.show', 'uses' => 'TasksController@showTask']);
+    Route::delete('tasks/active/{tasks}', ['as' => 'admin.task.soft.delete', 'uses' => 'TasksController@softDelete']);
+    Route::get('tasks/trashed', ['as' => 'admin.trashed.tasks', 'uses' => 'TasksController@trashedTasks']);
+    Route::put('tasks/trashed/{tasks}', ['as' => 'admin.restore.task', 'uses' => 'TasksController@restoreTask']);
+    Route::delete('tasks/trashed/{tasks}', ['as' => 'admin.force.delete.task', 'uses' => 'TasksController@forceDeleteTask']);
 });
 

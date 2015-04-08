@@ -12,7 +12,6 @@ class ViewComposerServiceProvider extends ServiceProvider {
 	public function boot()
 	{
         $this->composeTaskForm();
-        $this->composeAdminPanelTasks();
         $this->composeAdminSidebar();
     }
 
@@ -32,14 +31,6 @@ class ViewComposerServiceProvider extends ServiceProvider {
     private function composeTaskForm()
     {
         view()->composer('tasks.partials.form', 'Keep\Http\Composers\TaskFormComposer@compose');
-    }
-
-    /**
-     * Composer admin panel task views.
-     */
-    private function composeAdminPanelTasks()
-    {
-        view()->composer('admin.manage_tasks', 'Keep\Http\Composers\AdminPanelTaskComposer@compose');
     }
 
     /**

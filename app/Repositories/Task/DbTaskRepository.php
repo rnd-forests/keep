@@ -25,6 +25,11 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return Task::findOrFail($id);
     }
 
+    public function findBySlug($slug)
+    {
+        return Task::with('tags')->whereSlug($slug)->firstOrFail();
+    }
+
     public function findCorrectTaskById($userId, $taskId)
     {
         return Task::whereUserIdAndId($userId, $taskId)->firstOrFail();
@@ -59,9 +64,38 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return $task;
     }
 
-    public function delete($userSlug, $taskSlug)
+    public function deleteWithUserConstraint($userSlug, $taskSlug)
     {
         return $this->findCorrectTaskBySlug($userSlug, $taskSlug)->delete();
+    }
+
+    public function delete($slug)
+    {
+        return $this->findBySlug($slug)->delete();
+    }
+
+    public function restore($slug)
+    {
+        $task = $this->findTrashedTaskBySlug($slug);
+
+        return $task->restore();
+    }
+
+    public function forceDelete($slug)
+    {
+        $task = $this->findTrashedTaskBySlug($slug);
+
+        $task->forceDelete();
+    }
+
+    public function getTrashedTasks()
+    {
+        return Task::with('owner')->onlyTrashed()->latest('deleted_at')->paginate(50);
+    }
+
+    public function findTrashedTaskBySlug($slug)
+    {
+        return Task::onlyTrashed()->whereSlug($slug)->firstOrFail();
     }
 
 }

@@ -18,6 +18,18 @@ class TaskPresenter extends Presenter {
     }
 
     /**
+     * Format task full timestamp.
+     *
+     * @param $timestamp
+     *
+     * @return string
+     */
+    public function formatFullTime($timestamp)
+    {
+        return Carbon::parse($timestamp)->format('Y-m-d, H:i:s');
+    }
+
+    /**
      * Task time difference for humans.
      *
      * @param $timestamp
