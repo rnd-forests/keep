@@ -1,21 +1,9 @@
 <?php  namespace Keep\Http\Composers; 
 
+use App;
 use Illuminate\Contracts\View\View;
-use Keep\Repositories\User\UserRepositoryInterface;
 
 class AdminSidebarComposer {
-
-    protected $userRepository;
-
-    /**
-     * Constructor.
-     *
-     * @param UserRepositoryInterface $userRepository
-     */
-    public function __construct(UserRepositoryInterface $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
 
     /**
      * Compose admin sidebar view.
@@ -24,7 +12,9 @@ class AdminSidebarComposer {
      */
     public function compose(View $view)
     {
-        $view->with('user', $this->userRepository->getAuthUser());
+        $users = App::make('Keep\Repositories\User\UserRepositoryInterface');
+
+        $view->with('user', $users->getAuthUser());
     }
 
 }

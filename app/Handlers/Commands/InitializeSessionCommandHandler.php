@@ -1,21 +1,9 @@
 <?php namespace Keep\Handlers\Commands;
 
-use Illuminate\Contracts\Auth\Guard;
+use App;
 use Keep\Commands\InitializeSessionCommand;
 
 class InitializeSessionCommandHandler {
-
-    protected $auth;
-
-    /**
-     * Create the command handler.
-     *
-     * @param Guard $auth
-     */
-	public function __construct(Guard $auth)
-	{
-		$this->auth = $auth;
-	}
 
     /**
      * Handle the command.
@@ -26,7 +14,9 @@ class InitializeSessionCommandHandler {
      */
 	public function handle(InitializeSessionCommand $command)
 	{
-        return $this->auth->attempt($this->getRequestData($command), $command->getRemember());
+        $auth = App::make('Illuminate\Contracts\Auth\Guard');
+
+        return $auth->attempt($this->getRequestData($command), $command->getRemember());
 	}
 
     /**
