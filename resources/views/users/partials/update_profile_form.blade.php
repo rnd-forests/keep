@@ -6,7 +6,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('birthday', 'Birthday', ['class' => 'control-label']) !!}
-        <div class="input-group" id="user_update_form_datetimepicker">
+        <div class="input-group" id="user-birthday-form">
             {!! Form::text('birthday', $user->birthday->format('m/d/Y'), ['class' => 'form-control input-lg']) !!}
             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
         </div>

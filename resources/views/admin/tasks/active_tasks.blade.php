@@ -45,7 +45,7 @@
                                    data-toggle="tooltip" data-placement="bottom" title="Show Task">
                                     <i class="fa fa-arrow-right"></i>
                                 </a>
-                                @include('admin.tasks.delete_form')
+                                @include('admin.tasks.partials.delete_form')
                             </td>
                         </tr>
                     @endforeach

@@ -30,8 +30,8 @@
                                 <td>{{ $user->email }}</td>
                                 <td class="text-center">{{ $user->present()->formatFullTime($user->deleted_at) }}</td>
                                 <td class="text-center">
-                                    @include('admin.accounts.restore_form')
-                                    @include('admin.accounts.force_delete_form')
+                                    @include('admin.accounts.partials.restore_form')
+                                    @include('admin.accounts.partials.force_delete_form')
                                 </td>
                             </tr>
                         @endforeach

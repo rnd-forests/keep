@@ -40,6 +40,11 @@ class AppServiceProvider extends ServiceProvider {
             'Keep\Repositories\Task\DbTaskRepository'
         );
 
+        $this->app->bind(
+            'Keep\Repositories\UserGroup\UserGroupRepositoryInterface',
+            'Keep\Repositories\UserGroup\DbUserGroupRepository'
+        );
+
         if ($this->app->environment() == 'local') {
             $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
         }

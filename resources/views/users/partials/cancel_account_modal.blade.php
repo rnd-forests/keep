@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <p>Once your account is deleted, the system will immediately delete all your tasks, and
+                <p class="text-center">Once your account is deleted, the system will immediately delete all your tasks, and
                     all other things related to your account.</p>
             </div>
             <div class="modal-footer">

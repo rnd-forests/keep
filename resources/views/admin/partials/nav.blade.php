@@ -18,12 +18,18 @@
                 </div>
                 <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a></li>
                 <li>
-                    <a href="#"><i class="fa fa-users fa-fw"></i>Manage Accounts<span class="fa arrow-control"></span></a>
+                    <a href="#"><i class="fa fa-user fa-fw"></i>Manage Accounts<span class="fa arrow-control"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="{{ route('admin.active.accounts') }}">Active Accounts</a></li>
                         <li><a href="{{ route('admin.disabled.accounts') }}">Disabled Accounts</a></li>
-                        <li><a href="#">Create group</a></li>
-                        <li><a href="#">Manage groups</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-users fa-fw"></i>Manage Groups<span class="fa arrow-control"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="{{ route('admin.groups.create') }}">Create Group</a></li>
+                        <li><a href="{{ route('admin.active.groups') }}">Active Groups</a></li>
+                        <li><a href="{{ route('admin.trashed.groups') }}">Trashed Groups</a></li>
                     </ul>
                 </li>
                 <li>

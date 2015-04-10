@@ -34,7 +34,7 @@ class RedirectIfNotCorrectUser {
 	{
         $user = $this->userRepository->findBySlug($request->route('users'));
 
-        if (($user->id != $this->auth->user()->id))
+        if (($user->id != $this->auth->user()->id) && ! $this->auth->user()->isAdmin())
         {
             flash()->warning('You has no right to access this page.');
 

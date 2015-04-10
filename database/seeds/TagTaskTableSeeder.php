@@ -7,7 +7,7 @@ class TagTaskTableSeeder extends Seeder {
 
     public function run()
     {
-        for ($i = 1; $i <= 300; $i++)
+        for ($i = 1; $i <= 325; $i++)
         {
             $task = Task::find($i);
 

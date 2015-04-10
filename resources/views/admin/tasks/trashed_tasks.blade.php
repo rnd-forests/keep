@@ -34,8 +34,8 @@
                                 <td class="text-center">{{ $task->present()->formatTime($task->starting_date) }}</td>
                                 <td class="text-center">{{ $task->present()->formatTime($task->finishing_date) }}</td>
                                 <td class="text-center">
-                                    @include('admin.tasks.restore_form')
-                                    @include('admin.tasks.force_delete_form')
+                                    @include('admin.tasks.partials.restore_form')
+                                    @include('admin.tasks.partials.force_delete_form')
                                 </td>
                             </tr>
                         @endforeach

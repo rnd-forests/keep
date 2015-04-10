@@ -32,7 +32,7 @@ class UsersController extends Controller {
 
         $activeAccounts = $this->userRepository->getPaginatedUsers(25);
 
-        return view('admin.active_accounts', compact('usersCount', 'activeAccounts'));
+        return view('admin.accounts.active_accounts', compact('usersCount', 'activeAccounts'));
     }
 
     /**
@@ -44,7 +44,7 @@ class UsersController extends Controller {
     {
         $disabledAccounts = $this->userRepository->getTrashedUsers();
 
-        return view('admin.disabled_accounts', compact('disabledAccounts'));
+        return view('admin.accounts.disabled_accounts', compact('disabledAccounts'));
     }
 
     /**

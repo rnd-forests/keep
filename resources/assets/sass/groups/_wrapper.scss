@@ -1,0 +1,31 @@
+.groups-wrapper {
+    .panel {
+        .label {
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .panel-body {
+            h5 {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+        }
+
+        .panel-footer {
+            form {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.group-wrapper {
+    .group-wrapper--users {
+        margin-top: 40px;
+
+        .well {
+            background-color: #ffffff;
+        }
+    }
+}

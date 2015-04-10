@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder {
             'active' => true
         ]);
 
-        for ($i = 1; $i <= 50; $i++)
+        for ($i = 1; $i <= 150; $i++)
         {
             User::create([
                 'name' => $faker->name,

@@ -46,7 +46,7 @@
                                         <i class="fa fa-bell-o"></i>
                                     </a>
                                     @unless($account->roles->contains('name', 'admin'))
-                                        @include('admin.accounts.delete_form')
+                                        @include('admin.accounts.partials.delete_form')
                                     @endunless
                                 </td>
                             </tr>

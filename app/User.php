@@ -83,6 +83,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
+     * A user can belong to many different groups.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function groups()
+    {
+        return $this->belongsToMany('Keep\Group');
+    }
+
+    /**
      * Determine if the user has confirmed his email address already or not.
      *
      * @return bool

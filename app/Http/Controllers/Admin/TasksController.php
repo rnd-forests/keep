@@ -28,7 +28,7 @@ class TasksController extends Controller {
 
         $tasks = $this->taskRepository->getPaginatedTasks(50);
 
-        return view('admin.active_tasks', compact('tasksCount', 'tasks'));
+        return view('admin.tasks.active_tasks', compact('tasksCount', 'tasks'));
     }
 
     /**
@@ -68,7 +68,7 @@ class TasksController extends Controller {
     {
         $trashedTasks = $this->taskRepository->getTrashedTasks();
 
-        return view('admin.trashed_tasks', compact('trashedTasks'));
+        return view('admin.tasks.trashed_tasks', compact('trashedTasks'));
     }
 
     /**

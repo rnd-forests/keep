@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder {
         'permissions',
         'tags',
         'tag_task',
+        'groups',
+        'group_user',
     ];
 
     /**
@@ -32,6 +34,8 @@ class DatabaseSeeder extends Seeder {
         'PermissionsTableSeeder',
         'TagsTableSeeder',
         'TagTaskTableSeeder',
+        'GroupsTableSeeder',
+        'GroupUserTableSeeder',
     ];
 
 	/**

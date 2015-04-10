@@ -1,5 +1,3 @@
-process.env.DISABLE_NOTIFIER = true;
-
 var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
@@ -10,10 +8,11 @@ elixir(function(mix) {
         'vendor/font-awesome.css',
         'vendor/bootstrap.css',
         'vendor/datetimepicker.css',
-        'vendor/select2.css',
         'vendor/metis-menu.css',
         'app.css'
     ], null, 'public/css');
+
+    mix.version('public/css/all.css');
 
     mix.scripts([
         'vendor/jquery.min.js',
@@ -23,9 +22,8 @@ elixir(function(mix) {
         'vendor/chart.min.js',
         'vendor/select2.min.js',
         'vendor/metismenu.min.js',
+        'plugins.js',
         'app.js'
-    ], null, 'public/js');
-
-    mix.version('public/css/all.css');
+    ], 'public/js', 'resources/assets/js');
 
 });

@@ -1,4 +1,8 @@
 <?php
+//Event::listen('illuminate.query', function($sql)
+//{
+//    var_dump($sql);
+//});
 
 Route::get('/', ['as' => 'home_path', 'uses' => 'HomeController@home']);
 
@@ -30,6 +34,17 @@ Route::group(['middleware' => ['auth', 'auth.confirmed', 'valid.admin.user'], 'p
     Route::get('accounts/disabled', ['as' => 'admin.disabled.accounts', 'uses' => 'UsersController@disabledAccounts']);
     Route::put('accounts/disabled/{users}', ['as' => 'admin.restore.account', 'uses' => 'UsersController@restoreAccount']);
     Route::delete('accounts/disabled/{users}', ['as' => 'admin.force.delete.account', 'uses' => 'UsersController@forceDeleteAccount']);
+
+    Route::get('groups/active', ['as' => 'admin.active.groups', 'uses' => 'UserGroupsController@activeGroups']);
+    Route::get('groups/active/create', ['as' => 'admin.groups.create', 'uses' => 'UserGroupsController@create']);
+    Route::post('groups/active', ['as' => 'admin.groups.store', 'uses' => 'UserGroupsController@store']);
+    Route::get('groups/active/{groups}', ['as' => 'admin.groups.show', 'uses' => 'UserGroupsController@show']);
+    Route::get('groups/active/{groups}/edit', ['as' => 'admin.groups.edit', 'uses' => 'UserGroupsController@edit']);
+    Route::patch('groups/active/{groups}', ['as' => 'admin.groups.update', 'uses' => 'UserGroupsController@update']);
+    Route::delete('groups/active/{groups}', ['as' => 'admin.groups.delete', 'uses' => 'UserGroupsController@destroy']);
+    Route::get('groups/trashed', ['as' => 'admin.trashed.groups', 'uses' => 'UserGroupsController@trashedGroups']);
+    Route::put('groups/trashed/{groups}', ['as' => 'admin.groups.restore', 'uses' => 'UserGroupsController@restore']);
+    Route::delete('groups/trashed/{groups}', ['as' => 'admin.force.delete.group', 'uses' => 'UserGroupsController@forceDeleteGroup']);
 
     Route::get('tasks/active', ['as' => 'admin.manage.tasks', 'uses' => 'TasksController@activeTasks']);
     Route::get('tasks/active/{tasks}', ['as' => 'admin.task.show', 'uses' => 'TasksController@showTask']);

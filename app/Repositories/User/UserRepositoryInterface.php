@@ -51,7 +51,7 @@ interface UserRepositoryInterface {
     public function findBySlug($slug);
 
     /**
-     * Find a user by slug with paginated eager loading tasks.
+     * Find a user by slug with eager loading tasks.
      *
      * @param $slug
      * @return \Illuminate\Database\Eloquent\Model|static

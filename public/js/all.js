@@ -55,23 +55,26 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
  */
 !function(a,b,c){function d(b,c){this.element=a(b),this.settings=a.extend({},f,c),this._defaults=f,this._name=e,this.init()}var e="metisMenu",f={toggle:!0,doubleTapToGo:!1};d.prototype={init:function(){var b=this.element,d=this.settings.toggle,f=this;this.isIE()<=9?(b.find("li.active").has("ul").children("ul").collapse("show"),b.find("li").not(".active").has("ul").children("ul").collapse("hide")):(b.find("li.active").has("ul").children("ul").addClass("collapse in"),b.find("li").not(".active").has("ul").children("ul").addClass("collapse")),f.settings.doubleTapToGo&&b.find("li.active").has("ul").children("a").addClass("doubleTapToGo"),b.find("li").has("ul").children("a").on("click."+e,function(b){return b.preventDefault(),f.settings.doubleTapToGo&&f.doubleTapToGo(a(this))&&"#"!==a(this).attr("href")&&""!==a(this).attr("href")?(b.stopPropagation(),void(c.location=a(this).attr("href"))):(a(this).parent("li").toggleClass("active").children("ul").collapse("toggle"),void(d&&a(this).parent("li").siblings().removeClass("active").children("ul.in").collapse("hide")))})},isIE:function(){for(var a,b=3,d=c.createElement("div"),e=d.getElementsByTagName("i");d.innerHTML="<!--[if gt IE "+ ++b+"]><i></i><![endif]-->",e[0];)return b>4?b:a},doubleTapToGo:function(a){var b=this.element;return a.hasClass("doubleTapToGo")?(a.removeClass("doubleTapToGo"),!0):a.parent().children("ul").length?(b.find(".doubleTapToGo").removeClass("doubleTapToGo"),a.addClass("doubleTapToGo"),!1):void 0},remove:function(){this.element.off("."+e),this.element.removeData(e)}},a.fn[e]=function(b){return this.each(function(){var c=a(this);c.data(e)&&c.data(e).remove(),c.data(e,new d(this,b))}),this}}(jQuery,window,document);
 $(function() {
+
     $('div.alert').not('.alert-danger').delay(3000).slideUp(300);
+
     $('[data-toggle="tooltip"]').tooltip();
-});
 
-//--------------------------------------------------------------------------------
-
-$(function() {
-    $('#user_update_form_datetimepicker').datetimepicker({
+    $('#user-birthday-form').datetimepicker({
         format: "L"
     });
 
-    $('.task_form_datetimepicker').datetimepicker({
+    $('.task-time-form').datetimepicker({
         format: 'LLL'
     });
-});
 
-//--------------------------------------------------------------------------------
+    $('#tag_list').select2({
+        placeholder: 'Choose tags for this task.'
+    });
+
+    $('#side-menu').metisMenu();
+
+});
 
 $(function() {
     $('a[data-toggle = "tab"]').on('shown.bs.tab', function() {
@@ -87,16 +90,6 @@ $(function() {
     }
 });
 
-//--------------------------------------------------------------------------------
-
-$(function() {
-    $('#tag_list').select2({
-        placeholder: 'Choose your tags'
-    });
-});
-
-//--------------------------------------------------------------------------------
-
 $(function() {
     $('#scroll-top').click(function() {
         $('body, html').animate({
@@ -104,20 +97,6 @@ $(function() {
         );
         return false;
     });
-
-    $(window).scroll(function() {
-        if ($(window).scrollTop() == 0) {
-            $('#scroll-top').stop(false, true).fadeOut(400);
-        } else {
-            $('#scroll-top').stop(false, true).fadeIn(400);
-        }
-    });
-});
-
-//--------------------------------------------------------------------------------
-
-$(function() {
-    $('#side-menu').metisMenu();
 });
 
 $(function() {
@@ -139,180 +118,30 @@ $(function() {
     }
 });
 
-//--------------------------------------------------------------------------------
-
 $(function() {
-    $('#admin-cancel-account-modal').on('show.bs.modal', function(event) {
+    var modal = $('#admin-cancel-account-modal');
+
+    modal.on('show.bs.modal', function(event) {
         var form = $(event.relatedTarget).closest('form');
         $(this).find('.modal-footer #confirm').data('form', form);
-    })
+    });
 
-    $('#admin-cancel-account-modal').find('.modal-footer #confirm').on('click', function() {
+    modal.find('.modal-footer #confirm').on('click', function() {
         $(this).data('form').submit();
     });
 });
 
 $(function() {
-    $('#delete-task-modal').on('show.bs.modal', function(event) {
+    var modal = $('#delete-task-modal');
+
+    modal.on('show.bs.modal', function(event) {
         var form = $(event.relatedTarget).closest('form');
         $(this).find('.modal-footer #confirm').data('form', form);
-    })
+    });
 
-    $('#delete-task-modal').find('.modal-footer #confirm').on('click', function() {
+    modal.find('.modal-footer #confirm').on('click', function() {
         $(this).data('form').submit();
     });
 });
 
-$(function() {
-    var ctx = $('#dashboard-line-chart').get(0).getContext("2d");
-    var data = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-            {
-                label: "My First dataset",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 80, 81, 56, 55, 40]
-            },
-            {
-                label: "My Second dataset",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [28, 48, 40, 19, 86, 27, 90]
-            }
-        ]
-    };
-    new Chart(ctx).Line(data, {
-        scaleShowGridLines : false
-    });
-});
-
-$(function() {
-    var ctx = $('#dashboard-bar-chart').get(0).getContext("2d");
-    var data = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-            {
-                label: "My First dataset",
-                fillColor: "rgba(220,220,220,0.5)",
-                strokeColor: "rgba(220,220,220,0.8)",
-                highlightFill: "rgba(220,220,220,0.75)",
-                highlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 80, 81, 56, 55, 40]
-            },
-            {
-                label: "My Second dataset",
-                fillColor: "rgba(151,187,205,0.5)",
-                strokeColor: "rgba(151,187,205,0.8)",
-                highlightFill: "rgba(151,187,205,0.75)",
-                highlightStroke: "rgba(151,187,205,1)",
-                data: [28, 48, 40, 19, 86, 27, 90]
-            }
-        ]
-    };
-    new Chart(ctx).Bar(data, {
-        scaleShowGridLines : false
-    });
-});
-
-$(function() {
-    var ctx = $('#dashboard-radar-chart').get(0).getContext("2d");
-    var data = {
-        labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
-        datasets: [
-            {
-                label: "My First dataset",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 90, 81, 56, 55, 40]
-            },
-            {
-                label: "My Second dataset",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [28, 48, 40, 19, 96, 27, 100]
-            }
-        ]
-    };
-
-    new Chart(ctx).Radar(data);
-});
-
-$(function() {
-    var ctx = $('#dashboard-doughnut-chart').get(0).getContext("2d");
-    var data = [
-        {
-            value: 300,
-            color:"#F7464A",
-            highlight: "#FF5A5E",
-            label: "Red"
-        },
-        {
-            value: 50,
-            color: "#46BFBD",
-            highlight: "#5AD3D1",
-            label: "Green"
-        },
-        {
-            value: 100,
-            color: "#FDB45C",
-            highlight: "#FFC870",
-            label: "Yellow"
-        }
-    ]
-    new Chart(ctx).Doughnut(data);
-});
-
-$(function() {
-    var ctx = $('#dashboard-polar-chart').get(0).getContext("2d");
-    var data = [
-        {
-            value: 300,
-            color:"#F7464A",
-            highlight: "#FF5A5E",
-            label: "Red"
-        },
-        {
-            value: 50,
-            color: "#46BFBD",
-            highlight: "#5AD3D1",
-            label: "Green"
-        },
-        {
-            value: 100,
-            color: "#FDB45C",
-            highlight: "#FFC870",
-            label: "Yellow"
-        },
-        {
-            value: 40,
-            color: "#949FB1",
-            highlight: "#A8B3C5",
-            label: "Grey"
-        },
-        {
-            value: 120,
-            color: "#4D5360",
-            highlight: "#616774",
-            label: "Dark Grey"
-        }
-    ];
-    new Chart(ctx).PolarArea(data);
-});
 //# sourceMappingURL=all.js.map

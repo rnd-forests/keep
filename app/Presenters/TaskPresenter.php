@@ -5,47 +5,12 @@ use Laracasts\Presenter\Presenter;
 
 class TaskPresenter extends Presenter {
 
-    /**
-     * Format task timestamps.
-     *
-     * @param $timestamp
-     *
-     * @return string
-     */
-    public function formatTime($timestamp)
-    {
-        return Carbon::parse($timestamp)->format('Y-m-d');
-    }
-
-    /**
-     * Format task full timestamp.
-     *
-     * @param $timestamp
-     *
-     * @return string
-     */
-    public function formatFullTime($timestamp)
-    {
-        return Carbon::parse($timestamp)->format('Y-m-d, H:i:s');
-    }
-
-    /**
-     * Task time difference for humans.
-     *
-     * @param $timestamp
-     *
-     * @return string
-     */
-    public function formatTimeForHumans($timestamp)
-    {
-        return Carbon::parse($timestamp)->diffForHumans();
-    }
+    use KeepPresentableTrait;
 
     /**
      * Get task remaining days.
      *
      * @param $finish
-     *
      * @return string
      */
     public function getRemainingDays($finish)
@@ -59,7 +24,6 @@ class TaskPresenter extends Presenter {
      * Print task status.
      *
      * @param $completed
-     *
      * @return string
      */
     public function printStatus($completed)

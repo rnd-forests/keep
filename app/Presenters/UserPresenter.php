@@ -1,6 +1,5 @@
 <?php  namespace Keep\Presenters; 
 
-use Carbon\Carbon;
 use Laracasts\Presenter\Presenter;
 
 /**
@@ -8,11 +7,12 @@ use Laracasts\Presenter\Presenter;
  */
 class UserPresenter extends Presenter {
 
+    use KeepPresentableTrait;
+
     /**
      * Get user gravatar picture.
      *
      * @param int $size
-     *
      * @return string
      */
     public function gravatar($size = 35)
@@ -23,34 +23,9 @@ class UserPresenter extends Presenter {
     }
 
     /**
-     * Format user timestamp.
-     *
-     * @param $timestamp
-     *
-     * @return string
-     */
-    public function formatTime($timestamp)
-    {
-        return Carbon::parse($timestamp)->format('Y-m-d');
-    }
-
-    /**
-     * Format user full timestamp.
-     *
-     * @param $timestamp
-     *
-     * @return string
-     */
-    public function formatFullTime($timestamp)
-    {
-        return Carbon::parse($timestamp)->format('Y-m-d, H:i:s');
-    }
-
-    /**
      * Print user model attributes.
      *
      * @param $attribute
-     *
      * @return string
      */
     public function attribute($attribute)
