@@ -52,26 +52,6 @@ class Task extends Model implements SluggableInterface {
     ];
 
     /**
-     * Override parent class boot() method to listen to model events
-     */
-    public static function boot()
-    {
-        parent::boot();
-
-        Task::deleting(function($task)
-        {
-            $task->deleted_by = Auth::user()->id;
-            $task->save();
-        });
-
-        Task::restoring(function($task)
-        {
-            $task->deleted_by = 0;
-            $task->save();
-        });
-    }
-
-    /**
      * A task belongs to a specific user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

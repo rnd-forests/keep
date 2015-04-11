@@ -1,5 +1,7 @@
 <?php namespace Keep\Providers;
 
+use Auth;
+use Keep\Task;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -31,7 +33,20 @@ class EventServiceProvider extends ServiceProvider {
 	public function boot(DispatcherContract $events)
 	{
 		parent::boot($events);
-        //
+
+        // Task model deleting events
+        Task::deleting(function($task)
+        {
+            $task->deleted_by = Auth::user()->id;
+            $task->save();
+        });
+
+        // Task model restoring events
+        Task::restoring(function($task)
+        {
+            $task->deleted_by = 0;
+            $task->save();
+        });
 	}
 
 }
