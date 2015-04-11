@@ -34,14 +34,14 @@ class EventServiceProvider extends ServiceProvider {
 	{
 		parent::boot($events);
 
-        // Task model deleting events
+        // Task model deleting event
         Task::deleting(function($task)
         {
             $task->deleted_by = Auth::user()->id;
             $task->save();
         });
 
-        // Task model restoring events
+        // Task model restoring event
         Task::restoring(function($task)
         {
             $task->deleted_by = 0;
