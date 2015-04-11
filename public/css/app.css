@@ -753,6 +753,14 @@ fieldset[disabled] .btn-white {
     color: #1ab394; }
   .keep-navigation .navbar-toggle {
     border: none; }
+  .keep-navigation .dropdown-menu {
+    border: none;
+    background-color: #f6f9fa; }
+    .keep-navigation .dropdown-menu a:hover, .keep-navigation .dropdown-menu a:active {
+      background: 0 0; }
+  .keep-navigation .divider {
+    margin: 3px 0;
+    background-color: #ecf2f5; }
 
 .footer {
   padding: 40px 0;
@@ -1108,16 +1116,7 @@ fieldset[disabled] .btn-white {
       color: #1AB394; }
 
 .admin-panel {
-  padding-top: 0;
-  margin-top: 50px;
-  background: #1c2b36; }
-  .admin-panel .admin-wrapper {
-    background-color: #f0f3f4; }
-  @media (min-width: 768px) {
-    .admin-panel .admin-wrapper {
-      position: inherit;
-      margin: 0 0 0 220px;
-      padding: 20px; } }
+  background: #f0f3f4; }
 
 .admin-contents-wrapper .table th {
   text-align: center; }
@@ -1133,59 +1132,6 @@ fieldset[disabled] .btn-white {
 .pv-lg {
   padding-top: 15px !important;
   padding-bottom: 15px !important; }
-
-.admin-navbar {
-  background: #ffffff;
-  border-bottom: none; }
-  .admin-navbar .navbar-brand {
-    background: #16232d;
-    text-align: center;
-    width: 220px;
-    color: #bfd1de !important; }
-  .admin-navbar .sidebar {
-    background: #1c2b36; }
-    .admin-navbar .sidebar .admin-user {
-      padding-top: 20px; }
-      .admin-navbar .sidebar .admin-user a {
-        color: #ffffff; }
-    .admin-navbar .sidebar .sidebar-nav.navbar-collapse {
-      max-height: 100%; }
-    .admin-navbar .sidebar ul li a {
-      padding: 15px;
-      font-size: 14px;
-      color: #6b94b3; }
-      .admin-navbar .sidebar ul li a .fa {
-        margin-right: 15px; }
-      .admin-navbar .sidebar ul li a:hover, .admin-navbar .sidebar ul li a:focus {
-        background-color: #16232d; }
-      .admin-navbar .sidebar ul li a.active {
-        background-color: #16232d; }
-    .admin-navbar .sidebar .arrow-control {
-      float: right; }
-    .admin-navbar .sidebar .fa.arrow-control:before {
-      content: "\f104"; }
-    .admin-navbar .sidebar .active > a > .fa.arrow-control:before {
-      content: "\f107"; }
-    .admin-navbar .sidebar .nav-second-level li {
-      border-bottom: 0 !important; }
-      .admin-navbar .sidebar .nav-second-level li a {
-        padding-left: 30px; }
-        .admin-navbar .sidebar .nav-second-level li a:before {
-          content: "+";
-          padding-right: 5px; }
-  @media (min-width: 768px) {
-    .admin-navbar .sidebar {
-      z-index: 1;
-      position: absolute;
-      width: 220px;
-      margin-top: 50px; } }
-  @media (max-width: 750px) {
-    .admin-navbar .navbar-header {
-      background-color: #16232d; }
-    .admin-navbar .navbar-toggle .icon-bar {
-      background-color: #bfd1de; }
-    .admin-navbar .navbar-brand {
-      text-align: left; } }
 
 .admin-dashboard .panel {
   color: #ffffff; }
@@ -1241,11 +1187,14 @@ fieldset[disabled] .btn-white {
   margin-top: 40px; }
   .group-wrapper .group-wrapper--users .well {
     background-color: #ffffff; }
+.group-wrapper .group-name {
+  color: #1ab394; }
 
 body {
   font: normal 16px "Source Sans Pro", sans-serif;
   color: #525252;
   padding-top: 70px;
+  position: relative;
   -webkit-font-smoothing: antialiased; }
 
 a {

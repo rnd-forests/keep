@@ -54,9 +54,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="panel-footer">
-                <div class="text-center">{!! $activeAccounts->render() !!}</div>
-            </div>
         </div>
+        <div class="text-center">{!! $activeAccounts->render() !!}</div>
     </div>
 @stop

@@ -19,4 +19,18 @@
     .navbar-toggle {
         border: none;
     }
+
+    .dropdown-menu {
+        border: none;
+        background-color: #f6f9fa;
+
+        a:hover, a:active {
+            background: 0 0;
+        }
+    }
+
+    .divider {
+        margin: 3px 0;
+        background-color: darken(#f6f9fa, 3%);
+    }
 }

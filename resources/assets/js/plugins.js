@@ -16,6 +16,4 @@ $(function() {
         placeholder: 'Choose tags for this task.'
     });
 
-    $('#side-menu').metisMenu();
-
 });

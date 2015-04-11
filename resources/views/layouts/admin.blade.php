@@ -17,14 +17,11 @@
     <![endif]-->
 </head>
 <body class="admin-panel">
-
     @include('admin.partials.nav')
-
-    <div class="admin-wrapper">
+    <div class="container">
         @include('flash::message')
         @yield('content')
     </div>
-
     {!! Html::script('js/all.js') !!}
 </body>
 </html>

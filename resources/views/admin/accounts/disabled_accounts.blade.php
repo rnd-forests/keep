@@ -38,10 +38,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="panel-footer">
-                    <div class="text-center">{!! $disabledAccounts->render() !!}</div>
-                </div>
             @endif
         </div>
+        <div class="text-center">{!! $disabledAccounts->render() !!}</div>
     </div>
 @stop

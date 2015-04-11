@@ -52,9 +52,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="panel-footer">
-                <div class="text-center">{!! $tasks->render() !!}</div>
-            </div>
         </div>
+        <div class="text-center">{!! $tasks->render() !!}</div>
     </div>
 @stop
