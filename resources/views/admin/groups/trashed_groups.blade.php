@@ -4,19 +4,18 @@
 
 @section('content')
     <div class="admin-contents-wrapper">
-        <div class="panel panel-default">
-            <div class="panel-heading">Trashed Groups Table</div>
-            @if ($trashedGroups->isEmpty())
-                <div class="panel-body">
-                    <div class="text-center">Currently, there is no trashed group.</div>
-                </div>
-            @else
+        @if ($trashedGroups->isEmpty())
+            <div class="well text-center">Currently, there is no trashed group.</div>
+        @else
+            <div class="panel panel-default">
+                <div class="panel-heading">Trashed Groups Table</div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Members</th>
                             <th>Deleted at</th>
                             <th>Actions</th>
                         </tr>
@@ -26,6 +25,7 @@
                             <tr>
                                 <td class="text-center">{{ $group->id }}</td>
                                 <td class="text-navy">{{ $group->name }}</td>
+                                <td class="text-center">{{ $group->users->count() }}</td>
                                 <td class="text-center">{{ $group->present()->formatFullTime($group->deleted_at) }}</td>
                                 <td class="text-center">
                                     @include('admin.groups.partials.restore_form')
@@ -36,8 +36,8 @@
                         </tbody>
                     </table>
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
         <div class="text-center">{!! $trashedGroups->render() !!}</div>
     </div>
 @stop

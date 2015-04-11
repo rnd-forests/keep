@@ -19,6 +19,11 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
         return Group::with('users')->latest('created_at')->paginate($limit);
     }
 
+    public function findById($id)
+    {
+        return Group::findOrFail($id);
+    }
+
     public function findBySlug($slug)
     {
         return Group::findBySlug($slug);
@@ -62,7 +67,7 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
 
     public function getTrashedGroups()
     {
-        return Group::onlyTrashed()->latest('deleted_at')->paginate(10);
+        return Group::with('users')->onlyTrashed()->latest('deleted_at')->paginate(10);
     }
 
     public function findTrashedGroupBySlug($slug)
@@ -72,7 +77,7 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
 
     public function getPaginatedAssociatedUsers($group, $limit)
     {
-        return $group->users()->latest('created_at')->paginate($limit);
+        return $group->users()->orderBy('name', 'asc')->paginate($limit);
     }
 
 }

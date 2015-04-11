@@ -26,7 +26,7 @@ class UserGroupsController extends Controller {
      */
     public function activeGroups()
     {
-        $groups = $this->groupRepository->getPaginatedGroups(16);
+        $groups = $this->groupRepository->getPaginatedGroups(15);
 
         return view('admin.groups.active_groups', compact('groups'));
     }
@@ -155,6 +155,50 @@ class UserGroupsController extends Controller {
         flash()->info('This group was permanently deleted.');
 
         return redirect()->back();
+    }
+
+    /**
+     * Remove a user from a specific group.
+     *
+     * @param $groupSlug
+     * @param $userId
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeUser($groupSlug, $userId)
+    {
+        $this->groupRepository->findBySlug($groupSlug)->users()->detach($userId);
+
+        flash()->info('This user was removed form the current group');
+
+        return redirect()->route('admin.groups.show', $groupSlug);
+    }
+
+    /**
+     * Remove all users from a specific group.
+     *
+     * @param $groupSlug
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function flush($groupSlug)
+    {
+        $this->groupRepository->findBySlug($groupSlug)->users()->detach();
+
+        flash()->info('All members were removed from this group');
+
+        return redirect()->route('admin.groups.show', $groupSlug);
+    }
+
+    /**
+     * Load view to add new users to a group.
+     *
+     * @param $slug
+     * @return \Illuminate\View\View
+     */
+    public function addUsers($slug)
+    {
+        $group = $this->groupRepository->findBySlug($slug);
+
+        return view('admin.groups.add_users', compact('group'));
     }
 
 }

@@ -1,6 +1,5 @@
 <?php namespace Keep;
 
-use Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;

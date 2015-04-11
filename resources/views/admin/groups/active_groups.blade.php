@@ -5,11 +5,7 @@
 @section('content')
     <div class="groups-wrapper">
         @if($groups->isEmpty())
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="text-center">Currently, there is no active group.</div>
-                </div>
-            </div>
+            <div class="well text-center">Currently, there is no active group.</div>
         @else
             @foreach($groups->chunk(3) as $groupStack)
                 <div class="row">
@@ -24,12 +20,15 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="well">{{ $group->description }}</div>
-                                    <div class="well text-center">
+                                    <div class="text-center">
                                         <h5>Created at: {{ $group->present()->formatFullTime($group->created_at) }}</h5>
-                                        <h5>( {{ $group->present()->formatTimeForHumans($group->created_at) }} )</h5>
                                     </div>
                                 </div>
                                 <div class="panel-footer">
+                                    <span class="btn btn-default btn-circle"
+                                          data-toggle="tooltip" data-placement="bottom" title="Group ID">
+                                        {{ $group->id }}
+                                    </span>
                                     <a href="{{ route('admin.groups.show', $group->slug) }}" class="btn btn-info btn-circle"
                                        data-toggle="tooltip" data-placement="bottom" title="View group details">
                                         <i class="fa fa-arrow-right"></i>

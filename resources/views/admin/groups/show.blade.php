@@ -6,12 +6,22 @@
 
 @section('content')
     <div class="group-wrapper">
-        <div class="text-center"><h3 class="group-name">{{ $group->name }}</h3></div>
+        <div class="jumbotron text-center">
+            <h2 class="jumbotron__heading">{{ $group->name }}</h2>
+            <p class="jumbotron__sub-heading">
+                Created {{ $group->present()->formatTimeForHumans($group->created_at) }}
+            </p>
+        </div>
         <div class="text-center">
-            <h5>Created at: {{ $group->present()->formatFullTime($group->created_at) }}</h5>
-            <span class="label label-primary">
-                {{ $users->count() }} {{ str_plural('member', $users->count()) }}
-            </span>
+            <div class="btn-group inline">
+                <div class="btn-group" role="group">
+                    @include('admin.groups.partials.flush_form')
+                    <a href="{{ route('admin.groups.add.users', $group->slug) }}">
+                        <button type="button" class="btn btn-primary">Add new users</button>
+                    </a>
+                </div>
+
+            </div>
         </div>
         <div class="group-wrapper--users">
             @if($users->isEmpty())
@@ -32,7 +42,7 @@
                                         </div>
                                         <div class="media-body">
                                             <h5 class="media-heading">{{ $user->name  }}</h5>
-                                            ...
+                                            @include('admin.groups.partials.remove_form')
                                         </div>
                                     </div>
                                 </div>

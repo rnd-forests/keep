@@ -8231,18 +8231,17 @@ a.badge:focus {
     padding: 30px 15px;
     margin-bottom: 30px;
     color: inherit;
-    background-color: #eee;
+    background-color: #ffffff;
 }
 
-.jumbotron h1,
-.jumbotron .h1 {
+.jumbotron h2,
+.jumbotron .h2 {
     color: inherit;
 }
 
 .jumbotron p {
-    margin-bottom: 15px;
+    margin: 0;
     font-size: 21px;
-    font-weight: 200;
 }
 
 .jumbotron > hr {
@@ -8251,7 +8250,7 @@ a.badge:focus {
 
 .container .jumbotron,
 .container-fluid .jumbotron {
-    border-radius: 6px;
+    border-radius: 3px;
 }
 
 .jumbotron .container {
@@ -8260,18 +8259,18 @@ a.badge:focus {
 
 @media screen and (min-width: 768px) {
     .jumbotron {
-        padding: 48px 0;
+        padding: 20px 0;
     }
 
     .container .jumbotron,
     .container-fluid .jumbotron {
-        padding-right: 60px;
-        padding-left: 60px;
+        padding-right: 20px;
+        padding-left: 20px;
     }
 
-    .jumbotron h1,
+    .jumbotron h2,
     .jumbotron .h1 {
-        font-size: 63px;
+        font-size: 35px;
     }
 }
 
@@ -10692,6 +10691,14 @@ button.close {
   width: 100%;
   margin-top: 30px; }
 
+.jumbotron .jumbotron__heading {
+  margin: 0;
+  line-height: 1em;
+  line-height: 1.2em; }
+.jumbotron .jumbotron__sub-heading {
+  font-size: 16px;
+  margin-top: 5px; }
+
 .panel-dangerzone .panel-heading {
   background: #ed5565;
   color: #ffffff;
@@ -11803,6 +11810,8 @@ fieldset[disabled] .btn-white {
 .admin-panel {
   background: #f0f3f4; }
 
+.admin-contents-wrapper .well {
+  background-color: #ffffff; }
 .admin-contents-wrapper .table th {
   text-align: center; }
 .admin-contents-wrapper .table td {
@@ -11862,18 +11871,22 @@ fieldset[disabled] .btn-white {
 .groups-wrapper .panel .label {
   display: inline-block;
   margin-top: 15px; }
+.groups-wrapper .panel .well {
+  background-color: #f6f9fa; }
 .groups-wrapper .panel .panel-body h5 {
   margin-top: 0;
   margin-bottom: 0; }
 .groups-wrapper .panel .panel-footer form {
   display: inline-block; }
+.groups-wrapper .well {
+  background-color: #ffffff; }
 
 .group-wrapper .group-wrapper--users {
   margin-top: 40px; }
   .group-wrapper .group-wrapper--users .well {
     background-color: #ffffff; }
-.group-wrapper .group-name {
-  color: #1ab394; }
+.group-wrapper form {
+  display: inline-block; }
 
 body {
   font: normal 16px "Source Sans Pro", sans-serif;

@@ -4,13 +4,11 @@
 
 @section('content')
     <div class="admin-contents-wrapper">
-        <div class="panel panel-default">
-            <div class="panel-heading">Trashed Tasks Table</div>
-            @if ($trashedTasks->isEmpty())
-                <div class="panel-body">
-                    <div class="text-center">Currently, there is no trashed task.</div>
-                </div>
-            @else
+        @if ($trashedTasks->isEmpty())
+            <div class="well text-center">Currently, there is no trashed task.</div>
+        @else
+            <div class="panel panel-default">
+                <div class="panel-heading">Trashed Tasks Table</div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -44,8 +42,8 @@
                         </tbody>
                     </table>
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
         <div class="text-center">{!! $trashedTasks->render() !!}</div>
     </div>
 @stop

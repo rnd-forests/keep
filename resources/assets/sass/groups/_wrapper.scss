@@ -5,6 +5,10 @@
             margin-top: 15px;
         }
 
+        .well {
+            background-color: #f6f9fa;
+        }
+
         .panel-body {
             h5 {
                 margin-top: 0;
@@ -18,6 +22,10 @@
             }
         }
     }
+
+    .well {
+        background-color: #ffffff;
+    }
 }
 
 .group-wrapper {
@@ -29,7 +37,7 @@
         }
     }
 
-    .group-name {
-        color: #1ab394;
+    form {
+        display: inline-block;
     }
 }

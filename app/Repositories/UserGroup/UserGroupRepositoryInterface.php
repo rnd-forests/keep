@@ -25,6 +25,14 @@ interface UserGroupRepositoryInterface {
     public function getPaginatedGroups($limit);
 
     /**
+     * Find a group by its id.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function findById($id);
+
+    /**
      * Find a group by its slug.
      *
      * @param $slug

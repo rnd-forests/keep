@@ -4,13 +4,11 @@
 
 @section('content')
     <div class="admin-contents-wrapper">
-        <div class="panel panel-default">
-            <div class="panel-heading">Disabled Accounts Table</div>
-            @if ($disabledAccounts->isEmpty())
-                <div class="panel-body">
-                    <div class="text-center">Currently, there is no disabled account.</div>
-                </div>
-            @else
+        @if ($disabledAccounts->isEmpty())
+            <div class="well text-center">Currently, there is no disabled account.</div>
+        @else
+            <div class="panel panel-default">
+                <div class="panel-heading">Disabled Accounts Table</div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -38,8 +36,8 @@
                         </tbody>
                     </table>
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
         <div class="text-center">{!! $disabledAccounts->render() !!}</div>
     </div>
 @stop

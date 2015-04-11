@@ -7,6 +7,14 @@
   width: 100%;
   margin-top: 30px; }
 
+.jumbotron .jumbotron__heading {
+  margin: 0;
+  line-height: 1em;
+  line-height: 1.2em; }
+.jumbotron .jumbotron__sub-heading {
+  font-size: 16px;
+  margin-top: 5px; }
+
 .panel-dangerzone .panel-heading {
   background: #ed5565;
   color: #ffffff;
@@ -1118,6 +1126,8 @@ fieldset[disabled] .btn-white {
 .admin-panel {
   background: #f0f3f4; }
 
+.admin-contents-wrapper .well {
+  background-color: #ffffff; }
 .admin-contents-wrapper .table th {
   text-align: center; }
 .admin-contents-wrapper .table td {
@@ -1177,18 +1187,22 @@ fieldset[disabled] .btn-white {
 .groups-wrapper .panel .label {
   display: inline-block;
   margin-top: 15px; }
+.groups-wrapper .panel .well {
+  background-color: #f6f9fa; }
 .groups-wrapper .panel .panel-body h5 {
   margin-top: 0;
   margin-bottom: 0; }
 .groups-wrapper .panel .panel-footer form {
   display: inline-block; }
+.groups-wrapper .well {
+  background-color: #ffffff; }
 
 .group-wrapper .group-wrapper--users {
   margin-top: 40px; }
   .group-wrapper .group-wrapper--users .well {
     background-color: #ffffff; }
-.group-wrapper .group-name {
-  color: #1ab394; }
+.group-wrapper form {
+  display: inline-block; }
 
 body {
   font: normal 16px "Source Sans Pro", sans-serif;
