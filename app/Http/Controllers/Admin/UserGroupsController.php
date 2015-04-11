@@ -26,7 +26,7 @@ class UserGroupsController extends Controller {
      */
     public function activeGroups()
     {
-        $groups = $this->groupRepository->getPaginatedGroups(15);
+        $groups = $this->groupRepository->getPaginatedGroups(16);
 
         return view('admin.groups.active_groups', compact('groups'));
     }

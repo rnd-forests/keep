@@ -17,6 +17,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Deleted Date</th>
+                            <th>Deleted by</th>
                             <th>Author</th>
                             <th>Title</th>
                             <th>Starting</th>
@@ -29,6 +30,7 @@
                             <tr>
                                 <td>{{ $task->id }}</td>
                                 <td class="text-center">{{ $task->present()->formatTime($task->deleted_at) }}</td>
+                                <td class="text-center">{{ $task->destroyer->name }}</td>
                                 <td class="text-center">{{ $task->owner->name }}</td>
                                 <td class="text-navy">{{ $task->title }}</td>
                                 <td class="text-center">{{ $task->present()->formatTime($task->starting_date) }}</td>

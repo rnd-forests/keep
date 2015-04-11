@@ -1,5 +1,6 @@
 <?php namespace Keep;
 
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -47,8 +48,28 @@ class Task extends Model implements SluggableInterface {
      */
     protected $fillable = [
         'title', 'slug', 'content', 'user_id', 'location', 'note',
-        'starting_date', 'finishing_date', 'finished_at', 'completed'
+        'starting_date', 'finishing_date', 'finished_at', 'completed', 'deleted_by'
     ];
+
+    /**
+     * Override parent class boot() method to listen to model events
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        Task::deleting(function($task)
+        {
+            $task->deleted_by = Auth::user()->id;
+            $task->save();
+        });
+
+        Task::restoring(function($task)
+        {
+            $task->deleted_by = 0;
+            $task->save();
+        });
+    }
 
     /**
      * A task belongs to a specific user.
@@ -58,6 +79,16 @@ class Task extends Model implements SluggableInterface {
     public function owner()
     {
         return $this->belongsTo('Keep\User', 'user_id');
+    }
+
+    /**
+     * Get the user who deleted a specific task.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function destroyer()
+    {
+        return $this->belongsTo('Keep\User', 'deleted_by');
     }
 
     /**

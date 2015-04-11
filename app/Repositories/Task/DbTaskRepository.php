@@ -90,7 +90,7 @@ class DbTaskRepository implements TaskRepositoryInterface {
 
     public function getTrashedTasks()
     {
-        return Task::with('owner')->onlyTrashed()->latest('deleted_at')->paginate(50);
+        return Task::with('owner', 'destroyer')->onlyTrashed()->latest('deleted_at')->paginate(50);
     }
 
     public function findTrashedTaskBySlug($slug)

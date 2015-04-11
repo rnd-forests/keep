@@ -40,6 +40,7 @@
                         @endforeach
                     </div>
                 @endforeach
+                <div class="text-center">{!! $users->render() !!}</div>
             @endif
         </div>
     </div>
