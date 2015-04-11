@@ -11,7 +11,7 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
 
     public function count()
     {
-        return Group::all()->count();
+        return Group::count();
     }
 
     public function getPaginatedGroups($limit)

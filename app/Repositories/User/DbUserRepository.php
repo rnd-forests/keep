@@ -12,7 +12,7 @@ class DbUserRepository implements UserRepositoryInterface {
 
     public function count()
     {
-        return User::all()->count();
+        return User::count();
     }
 
     public function getPaginatedUsers($limit)

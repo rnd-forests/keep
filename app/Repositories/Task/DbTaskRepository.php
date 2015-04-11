@@ -12,12 +12,12 @@ class DbTaskRepository implements TaskRepositoryInterface {
 
     public function count()
     {
-        return Task::all()->count();
+        return Task::count();
     }
 
-    public function getPaginatedTasks($num)
+    public function getPaginatedTasks($limit)
     {
-        return Task::with('owner')->paginate($num);
+        return Task::with('owner')->paginate($limit);
     }
 
     public function findById($id)

@@ -19,10 +19,10 @@ interface TaskRepositoryInterface {
     /**
      * Retrieve the paginated collection of tasks.
      *
-     * @param $num
+     * @param $limit
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginatedTasks($num);
+    public function getPaginatedTasks($limit);
 
     /**
      * Find a task by ID.
