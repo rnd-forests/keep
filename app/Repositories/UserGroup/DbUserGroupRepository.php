@@ -1,6 +1,8 @@
-<?php  namespace Keep\Repositories\UserGroup; 
+<?php  namespace Keep\Repositories\UserGroup;
 
+use Keep\User;
 use Keep\Group;
+use Keep\Services\KeepHelper;
 
 class DbUserGroupRepository implements UserGroupRepositoryInterface {
 
@@ -78,6 +80,16 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
     public function getPaginatedAssociatedUsers($group, $limit)
     {
         return $group->users()->orderBy('name', 'asc')->paginate($limit);
+    }
+
+    public function getUsersOutsideGroup($slug)
+    {
+        return User::whereNotIn('id', KeepHelper::getIdsOfUsersInRelationWithGroup($this->findBySlug($slug)))->get();
+    }
+
+    public function attachUsers($group, array $users)
+    {
+        $group->users()->attach($users);
     }
 
 }

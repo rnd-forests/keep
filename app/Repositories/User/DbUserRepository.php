@@ -75,7 +75,9 @@ class DbUserRepository implements UserRepositoryInterface {
 
     public function delete($slug)
     {
-        return $this->findBySlug($slug)->delete();
+        $user = $this->findBySlug($slug);
+
+        return $user->delete() && $user->tasks()->delete();
     }
 
     public function forceDelete($slug)

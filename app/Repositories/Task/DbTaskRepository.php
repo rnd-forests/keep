@@ -98,4 +98,9 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return Task::onlyTrashed()->whereSlug($slug)->firstOrFail();
     }
 
+    public function syncTags($task, array $tags)
+    {
+        $task->tags()->sync($tags);
+    }
+
 }

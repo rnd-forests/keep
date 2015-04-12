@@ -1,8 +1,8 @@
 <?php namespace Keep\Http\Controllers\Admin;
 
-use Keep\Http\Requests;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\UserGroupRequest;
+use Keep\Http\Requests\AddUsersToGroupRequest;
 use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
 
 class UserGroupsController extends Controller {
@@ -170,7 +170,7 @@ class UserGroupsController extends Controller {
 
         flash()->info('This user was removed form the current group');
 
-        return redirect()->route('admin.groups.show', $groupSlug);
+        return redirect()->back();
     }
 
     /**
@@ -198,7 +198,40 @@ class UserGroupsController extends Controller {
     {
         $group = $this->groupRepository->findBySlug($slug);
 
-        return view('admin.groups.add_users', compact('group'));
+        $users = $this->groupRepository->getPaginatedAssociatedUsers($group, 30);
+
+        $outsiders = $this->groupRepository->getUsersOutsideGroup($slug)->lists('name', 'id');
+
+        return view('admin.groups.add_users', compact('group', 'users', 'outsiders'));
+    }
+
+    /**
+     * Add new users to current group.
+     *
+     * @param                        $slug
+     * @param AddUsersToGroupRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function storeNewUsers($slug, AddUsersToGroupRequest $request)
+    {
+        $ids = $request->input('group_new_users');
+
+        $this->groupRepository->attachUsers($this->groupRepository->findBySlug($slug), $ids);
+
+        flash()->success($this->getUpdateMembersMessage($ids));
+
+        return redirect()->back();
+    }
+
+    /**
+     * Get the flash message after adding users.
+     *
+     * @param array $ids
+     * @return string
+     */
+    private function getUpdateMembersMessage(array $ids)
+    {
+        return count($ids) . ' new ' . str_plural('member', count($ids)) . ' added to this group';
     }
 
 }

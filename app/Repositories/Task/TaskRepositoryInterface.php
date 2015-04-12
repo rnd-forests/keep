@@ -124,4 +124,13 @@ interface TaskRepositoryInterface {
      */
     public function findTrashedTaskBySlug($slug);
 
+    /**
+     * Sync up the list of tags for the current task.
+     *
+     * @param       $task
+     * @param array $tags
+     * @return mixed
+     */
+    public function syncTags($task, array $tags);
+
 }

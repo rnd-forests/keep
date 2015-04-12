@@ -41,3 +41,33 @@
         display: inline-block;
     }
 }
+
+.add-users-wrapper {
+    .list-group-item {
+        border: none;
+
+        &:hover {
+            background-color: #eaeaea;
+        }
+
+        a {
+            color: #333333;
+            vertical-align: middle;
+
+            &:hover, &:active, &:focus {
+                color: #1ab394;
+            }
+        }
+
+        .btn-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 12px;
+            padding: 4px 0;
+        }
+    }
+
+    .panel {
+        border: none;
+    }
+}

@@ -11,16 +11,16 @@
             <p class="jumbotron__sub-heading">
                 Created {{ $group->present()->formatTimeForHumans($group->created_at) }}
             </p>
-        </div>
-        <div class="text-center">
-            <div class="btn-group inline">
-                <div class="btn-group" role="group">
-                    @include('admin.groups.partials.flush_form')
-                    <a href="{{ route('admin.groups.add.users', $group->slug) }}">
-                        <button type="button" class="btn btn-primary">Add new users</button>
-                    </a>
-                </div>
-
+            <div class="text-center jumbotron__sub-heading">
+                <a href="{{ route('admin.active.groups') }}" class="btn btn-circle btn-primary"
+                   data-toggle="tooltip" data-placement="bottom" title="Back to active groups collection">
+                    <i class="fa fa-arrow-left"></i>
+                </a>
+                @include('admin.groups.partials.flush_form')
+                <a href="{{ route('admin.groups.add.users', $group->slug) }}" class="btn btn-circle btn-primary"
+                   data-toggle="tooltip" data-placement="bottom" title="Add new users to this group">
+                    <i class="fa fa-plus"></i>
+                </a>
             </div>
         </div>
         <div class="group-wrapper--users">

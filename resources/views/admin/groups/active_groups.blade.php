@@ -37,6 +37,10 @@
                                        data-toggle="tooltip" data-placement="bottom" title="Edit group information">
                                         <i class="fa fa-pencil"></i>
                                     </a>
+                                    <a href="{{ route('admin.groups.add.users', $group->slug) }}" class="btn btn-violet btn-circle"
+                                       data-toggle="tooltip" data-placement="bottom" title="Add more users">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
                                     <a href="#" class="btn btn-warning btn-circle"
                                        data-toggle="tooltip" data-placement="bottom" title="Send notification">
                                         <i class="fa fa-bell-o"></i>

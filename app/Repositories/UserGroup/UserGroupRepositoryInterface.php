@@ -105,4 +105,21 @@ interface UserGroupRepositoryInterface {
      */
     public function getPaginatedAssociatedUsers($group, $limit);
 
+    /**
+     * Get all users that do not belong to a specific group.
+     *
+     * @param $slug
+     * @return mixed
+     */
+    public function getUsersOutsideGroup($slug);
+
+    /**
+     * Attach new users to a specific group.
+     *
+     * @param       $group
+     * @param array $users
+     * @return mixed
+     */
+    public function attachUsers($group, array $users);
+
 }

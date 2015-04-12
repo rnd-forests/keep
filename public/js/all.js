@@ -52,6 +52,10 @@ $(function() {
         placeholder: 'Choose tags for this task.'
     });
 
+    $('#group_new_users').select2({
+        placeholder: 'Search and choose users to add'
+    });
+
 });
 
 $(function() {

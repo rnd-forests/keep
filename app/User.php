@@ -1,7 +1,6 @@
 <?php namespace Keep;
 
 use Carbon\Carbon;
-use Keep\Services\KeepHelper;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -123,27 +122,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $notification->user()->associate($this);
 
         return $notification;
-    }
-
-    /**
-     * Override the delete method of Model class for cascading soft deletes.
-     *
-     * @return bool|null
-     * @throws \Exception
-     */
-    public function delete()
-    {
-        $this->cascadingDeletesTasks();
-
-        return parent::delete();
-    }
-
-    /**
-     * Cascading deletes all tasks associated with the current user.
-     */
-    private function cascadingDeletesTasks()
-    {
-        Task::whereIn('id', KeepHelper::getIdsOfTasksInRelation($this))->delete();
     }
 
 

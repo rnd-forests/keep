@@ -1,6 +1,5 @@
 <?php namespace Keep\Http\Controllers;
 
-use Keep\Task;
 use Keep\Http\Requests;
 use Keep\Http\Requests\TaskRequest;
 use Keep\Events\TaskWasCreatedEvent;
@@ -130,7 +129,7 @@ class UserTaskController extends Controller {
 	{
         $task = $this->taskRepository->update($userSlug, $taskSlug, $request->all());
 
-        $this->syncTags($task, $request->input('tag_list', []));
+        $this->taskRepository->syncTags($task, $request->input('tag_list', []));
 
         flash()->info('Your task was successfully updated');
 
@@ -155,17 +154,6 @@ class UserTaskController extends Controller {
 	}
 
     /**
-     * Syncing up the tags of a task.
-     *
-     * @param       $task
-     * @param array $tags
-     */
-    private function syncTags(Task $task, array $tags)
-    {
-        $task->tags()->sync($tags);
-    }
-
-    /**
      * Create new task.
      *
      * @param TaskRequest $request
@@ -176,7 +164,7 @@ class UserTaskController extends Controller {
     {
         $task = $this->taskRepository->create($request->all());
 
-        $this->syncTags($task, $request->input('tag_list', []));
+        $this->taskRepository->syncTags($task, $request->input('tag_list', []));
 
         return $task;
     }

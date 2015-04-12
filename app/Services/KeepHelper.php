@@ -1,18 +1,18 @@
 <?php  namespace Keep\Services; 
 
-use Keep\User;
+use Keep\Group;
 
 class KeepHelper {
 
     /**
-     * Pluck all ids of tasks associated with a given user.
+     * Pluck all ids of users associated with a given group.
      *
-     * @param User $user
+     * @param Group $group
      * @return array
      */
-    public static function getIdsOfTasksInRelation(User $user)
+    public static function getIdsOfUsersInRelationWithGroup(Group $group)
     {
-        return array_fetch($user->tasks()->select('id')->get()->toArray(), 'id');
+        return array_fetch($group->users()->select('id')->get()->toArray(), 'id');
     }
 
 }

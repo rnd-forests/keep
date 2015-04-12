@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth', 'auth.confirmed', 'valid.admin.user'], 'p
     Route::post('groups/active', ['as' => 'admin.groups.store', 'uses' => 'UserGroupsController@store']);
     Route::get('groups/active/{groups}', ['as' => 'admin.groups.show', 'uses' => 'UserGroupsController@show']);
     Route::get('groups/active/{groups}/add', ['as' => 'admin.groups.add.users', 'uses' => 'UserGroupsController@addUsers']);
+    Route::post('groups/active/{groups}/add', ['as' => 'admin.groups.sync.users', 'uses' => 'UserGroupsController@storeNewUsers']);
     Route::post('groups/active/{groups}/{users}', ['as' => 'admin.groups.remove.user', 'uses' => 'UserGroupsController@removeUser']);
     Route::get('groups/active/{groups}/edit', ['as' => 'admin.groups.edit', 'uses' => 'UserGroupsController@edit']);
     Route::post('groups/active/{groups}', ['as' => 'admin.groups.flush', 'uses' => 'UserGroupsController@flush']);

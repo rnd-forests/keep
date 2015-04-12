@@ -3,5 +3,33 @@
 @section('title', 'Add Users to Group')
 
 @section('content')
-    {{ var_dump($group) }}
+    <div class="row add-users-wrapper">
+        <div class="col-md-5">
+            <div class="list-group">
+                <div class="list-group-item active">
+                    <strong>{{ $group->name }}</strong> |
+                    {{ $users->count() }} current {{ str_plural('member', $users->count()) }}
+                </div>
+                @foreach($users as $user)
+                    <div class="list-group-item">
+                        <a href="{{ route('admin.active.account.profile', $user->slug) }}">{{ $user->name }}</a>
+                        <div class="pull-right">
+                            @include('admin.groups.partials.remove_form')
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="text-center">{!! $users->render() !!}</div>
+        </div>
+        <div class="col-md-7">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Add new members</div>
+                <div class="panel-body">
+                    @include('layouts.partials.errors')
+                    @include('admin.groups.partials.add_users_form')
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
