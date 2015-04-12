@@ -78,7 +78,7 @@ return [
 	|
 	*/
 
-	'key' => env('APP_KEY', 'SomeRandomString'),
+	'key' => env('APP_KEY'),
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -148,9 +148,12 @@ return [
 		'Keep\Providers\RouteServiceProvider',
         'Keep\Providers\ViewComposerServiceProvider',
 
+        /**
+         * Third-party service providers...
+         */
         'Laracasts\Flash\FlashServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
-        'Zizaco\Entrust\EntrustServiceProvider'
+        'Zizaco\Entrust\EntrustServiceProvider',
 
 	],
 
@@ -203,7 +206,7 @@ return [
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'Flash'     => 'Laracasts\Flash\Flash',
         'Socialize' => 'Laravel\Socialite\Facades\Socialite',
-        'Entrust'   => 'Zizaco\Entrust\EntrustFacade'
+        'Entrust'   => 'Zizaco\Entrust\EntrustFacade',
 
 	],
 
