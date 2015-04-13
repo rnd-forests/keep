@@ -41,6 +41,7 @@ class UsersTableSeeder extends Seeder {
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->email,
+                'birthday' => Carbon::now()->subYears(rand(18, 60)),
                 'password' => 'secret',
                 'active' => true
             ]);

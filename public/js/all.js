@@ -957,7 +957,7 @@ return g("note-image-dialog",a.image.insert,f,h)},link:function(a,b){var c='<div
 
 $(function() {
 
-    $('div.alert').not('.alert-danger').delay(3000).slideUp(300);
+    $('div.alert').not('.alert-danger, .register-note').delay(3000).slideUp(300);
 
     $('[data-toggle="tooltip"]').tooltip();
 

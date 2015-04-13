@@ -8,6 +8,13 @@
             <div class="form-wrapper">
                 <h2 class="form-header">Register</h2>
                 @include('layouts.partials.errors')
+                <div class="alert alert-info register-note alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>What's up?</strong> Your birthday will be set to past 7 years from now as default.
+                    Make sure you change it later.
+                </div>
                 {!! Form::open() !!}
                     <div class="form-group">
                         {!! Form::label('name', 'Name', ['class' => 'control-label']) !!}
