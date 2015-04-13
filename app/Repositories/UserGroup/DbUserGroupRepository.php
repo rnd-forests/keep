@@ -84,7 +84,9 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
 
     public function getUsersOutsideGroup($slug)
     {
-        return User::whereNotIn('id', KeepHelper::getIdsOfUsersInRelationWithGroup($this->findBySlug($slug)))->get();
+        return User::whereNotIn(
+            'id', KeepHelper::getIdsOfUsersInRelationWithGroup($this->findBySlug($slug))
+        )->orderBy('name', 'asc')->get();
     }
 
     public function attachUsers($group, array $users)

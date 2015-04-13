@@ -1,4 +1,4 @@
-.form-group {
+.form-group:not(.summernote-container) {
     .control-label {
         color: #8d9aa5;
         font-weight: normal;
@@ -12,10 +12,32 @@
     }
 }
 
+.summernote-container {
+    .note-editor {
+        border: none;
+
+        .note-toolbar {
+            background-color: #dbd9d9;
+            border-bottom: none;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .note-editable {
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            background-color: #f6f9fa;
+        }
+
+        .btn-toolbar {
+            margin-left: 0;
+        }
+    }
+}
+
 .jumbotron {
     .jumbotron__heading {
         margin: 0;
-        line-height: 1em;
         line-height: 1.2em;
     }
 
@@ -238,70 +260,6 @@ fieldset[disabled] .btn-info {
     &:hover, &:focus, &:active, &.active {
         background-color: #26d7d9;
         border-color: #26d7d9;
-    }
-}
-
-.btn-default {
-    background-color: #c2c2c2;
-    border-color: #c2c2c2;
-    color: #ffffff;
-
-    &:hover, &:focus, &:active, &.active {
-        background-color: #bababa;
-        border-color: #bababa;
-        color: #ffffff;
-    }
-}
-
-.open .dropdown-toggle.btn-default {
-    background-color: #bababa;
-    border-color: #bababa;
-    color: #ffffff;
-}
-
-.btn-default {
-    &:active, &.active {
-        background-image: none;
-    }
-}
-
-.open .dropdown-toggle.btn-default {
-    background-image: none;
-}
-
-.btn-default {
-    &.disabled {
-        background-color: #cccccc;
-        border-color: #cccccc;
-
-        &:hover, &:focus, &:active, &.active {
-            background-color: #cccccc;
-            border-color: #cccccc;
-        }
-    }
-
-    &[disabled] {
-        background-color: #cccccc;
-        border-color: #cccccc;
-        &:hover, &:focus, &:active {
-            background-color: #cccccc;
-            border-color: #cccccc;
-        }
-    }
-
-    &.active[disabled] {
-        background-color: #cccccc;
-        border-color: #cccccc;
-    }
-}
-
-fieldset[disabled] .btn-default {
-    background-color: #cccccc;
-    border-color: #cccccc;
-
-    &:hover, &:focus, &:active, &.active {
-        background-color: #cccccc;
-        border-color: #cccccc;
     }
 }
 

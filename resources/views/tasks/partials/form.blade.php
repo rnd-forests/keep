@@ -2,9 +2,9 @@
     {!! Form::label('title', 'Task Header', ['class' => 'control-label']) !!}
     {!! Form::text('title', null, ['class' => 'form-control input-lg']) !!}
 </div>
-<div class="form-group">
+<div class="form-group summernote-container">
     {!! Form::label('content', 'Task Details', ['class' => 'control-label']) !!}
-    {!! Form::textarea('content', null, ['class' => 'form-control', 'rows' => 6]) !!}
+    {!! Form::textarea('content', null, ['id' => 'summernote']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('starting_date', 'Starting Date', ['class' => 'control-label']) !!}

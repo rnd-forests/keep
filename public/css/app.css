@@ -1,15 +1,28 @@
-.form-group .control-label {
+.form-group:not(.summernote-container) .control-label {
   color: #8d9aa5;
   font-weight: normal;
   margin-bottom: 5px; }
-.form-group .btn {
+.form-group:not(.summernote-container) .btn {
   display: block;
   width: 100%;
   margin-top: 30px; }
 
+.summernote-container .note-editor {
+  border: none; }
+  .summernote-container .note-editor .note-toolbar {
+    background-color: #dbd9d9;
+    border-bottom: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px; }
+  .summernote-container .note-editor .note-editable {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #f6f9fa; }
+  .summernote-container .note-editor .btn-toolbar {
+    margin-left: 0; }
+
 .jumbotron .jumbotron__heading {
   margin: 0;
-  line-height: 1em;
   line-height: 1.2em; }
 .jumbotron .jumbotron__sub-heading {
   font-size: 16px;
@@ -157,49 +170,6 @@ fieldset[disabled] .btn-info {
   fieldset[disabled] .btn-info:hover, fieldset[disabled] .btn-info:focus, fieldset[disabled] .btn-info:active, fieldset[disabled] .btn-info.active {
     background-color: #26d7d9;
     border-color: #26d7d9; }
-
-.btn-default {
-  background-color: #c2c2c2;
-  border-color: #c2c2c2;
-  color: #ffffff; }
-  .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active {
-    background-color: #bababa;
-    border-color: #bababa;
-    color: #ffffff; }
-
-.open .dropdown-toggle.btn-default {
-  background-color: #bababa;
-  border-color: #bababa;
-  color: #ffffff; }
-
-.btn-default:active, .btn-default.active {
-  background-image: none; }
-
-.open .dropdown-toggle.btn-default {
-  background-image: none; }
-
-.btn-default.disabled {
-  background-color: #cccccc;
-  border-color: #cccccc; }
-  .btn-default.disabled:hover, .btn-default.disabled:focus, .btn-default.disabled:active, .btn-default.disabled.active {
-    background-color: #cccccc;
-    border-color: #cccccc; }
-.btn-default[disabled] {
-  background-color: #cccccc;
-  border-color: #cccccc; }
-  .btn-default[disabled]:hover, .btn-default[disabled]:focus, .btn-default[disabled]:active {
-    background-color: #cccccc;
-    border-color: #cccccc; }
-.btn-default.active[disabled] {
-  background-color: #cccccc;
-  border-color: #cccccc; }
-
-fieldset[disabled] .btn-default {
-  background-color: #cccccc;
-  border-color: #cccccc; }
-  fieldset[disabled] .btn-default:hover, fieldset[disabled] .btn-default:focus, fieldset[disabled] .btn-default:active, fieldset[disabled] .btn-default.active {
-    background-color: #cccccc;
-    border-color: #cccccc; }
 
 .btn-warning {
   background-color: #f8ac59;
@@ -807,7 +777,7 @@ fieldset[disabled] .btn-violet {
   .keep-navigation .dropdown-menu {
     border: none;
     background-color: #f6f9fa; }
-    .keep-navigation .dropdown-menu a:hover, .keep-navigation .dropdown-menu a:active {
+    .keep-navigation .dropdown-menu a:hover, .keep-navigation .dropdown-menu a:active, .keep-navigation .dropdown-menu a:focus {
       background: 0 0; }
   .keep-navigation .divider {
     margin: 3px 0;
@@ -1263,6 +1233,8 @@ fieldset[disabled] .btn-violet {
     padding: 4px 0; }
 .add-users-wrapper .panel {
   border: none; }
+  .add-users-wrapper .panel .panel-footer {
+    border-top: none; }
 
 body {
   font: normal 16px "Source Sans Pro", sans-serif;

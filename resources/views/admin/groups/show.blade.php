@@ -8,9 +8,6 @@
     <div class="group-wrapper">
         <div class="jumbotron text-center">
             <h2 class="jumbotron__heading">{{ $group->name }}</h2>
-            <p class="jumbotron__sub-heading">
-                Created {{ $group->present()->formatTimeForHumans($group->created_at) }}
-            </p>
             <div class="text-center jumbotron__sub-heading">
                 <a href="{{ route('admin.active.groups') }}" class="btn btn-circle btn-primary"
                    data-toggle="tooltip" data-placement="bottom" title="Back to active groups collection">
@@ -20,6 +17,10 @@
                 <a href="{{ route('admin.groups.add.users', $group->slug) }}" class="btn btn-circle btn-primary"
                    data-toggle="tooltip" data-placement="bottom" title="Add new users to this group">
                     <i class="fa fa-plus"></i>
+                </a>
+                <a href="#" class="btn btn-warning btn-circle"
+                   data-toggle="tooltip" data-placement="bottom" title="Send notification">
+                    <i class="fa fa-bell-o"></i>
                 </a>
             </div>
         </div>

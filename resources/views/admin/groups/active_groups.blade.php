@@ -21,7 +21,10 @@
                                 <div class="panel-body">
                                     <div class="well">{{ $group->description }}</div>
                                     <div class="text-center">
-                                        <h5>Created at: {{ $group->present()->formatFullTime($group->created_at) }}</h5>
+                                        <h5>
+                                            Created at: {{ $group->present()->formatFullTime($group->created_at) }}<br/>
+                                            {{ $group->present()->formatTimeForHumans($group->created_at) }}
+                                        </h5>
                                     </div>
                                 </div>
                                 <div class="panel-footer">

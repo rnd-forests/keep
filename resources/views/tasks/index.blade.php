@@ -35,7 +35,7 @@
                                         <button class="btn btn-info btn-circle"><i class="fa fa-check"></i></button>
                                     @endif
                                 </div>
-                                <div class="well">{{ $task->content }}</div>
+                                <div class="well">{!! $task->content !!}</div>
                                 @unless (empty($task->location))
                                     <div class="well"><i class="fa fa-map-marker"></i><strong>{{ $task->location }}</strong></div>
                                 @endunless
