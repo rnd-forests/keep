@@ -5,5 +5,9 @@
 @stop
 
 @section('content')
-    {{ var_dump($task) }}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            @include('tasks.partials.task')
+        </div>
+    </div>
 @stop

@@ -27,6 +27,7 @@
                             <th>Created Date</th>
                             <th>Author</th>
                             <th>Title</th>
+                            <th>Priority</th>
                             <th>Starting</th>
                             <th>Ending</th>
                             <th>Completed</th>
@@ -40,6 +41,7 @@
                                 <td class="text-center">{{ $task->present()->formatTime($task->created_at) }}</td>
                                 <td class="text-center">{{ $task->owner->name }}</td>
                                 <td class="text-navy">{{ $task->title }}</td>
+                                <td class="text-center">{{ $task->priority->name }}</td>
                                 <td class="text-center">{{ $task->present()->formatTime($task->starting_date) }}</td>
                                 <td class="text-center">{{ $task->present()->formatTime($task->finishing_date) }}</td>
                                 <td class="text-center">{!! $task->present()->printStatus($task->completed) !!}</td>

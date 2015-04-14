@@ -16,7 +16,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Deleted at</th>
+                            <th>Disabled at</th>
                             <th>Actions</th>
                         </tr>
                         </thead>

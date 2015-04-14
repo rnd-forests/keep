@@ -1098,45 +1098,43 @@ fieldset[disabled] .btn-violet {
   .user-avatar .user-avatar-picture {
     border-radius: 4px; }
 
-.tasks-wrapper .task-control {
-  background: 0 0; }
-.tasks-wrapper .panel {
+.task-wrapper .panel {
   background: #f9f9fa;
   border: none; }
-.tasks-wrapper .panel-heading {
+.task-wrapper .panel-heading {
   border: none;
   text-align: center; }
-  .tasks-wrapper .panel-heading .task-title {
+  .task-wrapper .panel-heading .task-title {
     font-size: 25px;
     color: #ffffff; }
-    .tasks-wrapper .panel-heading .task-title:hover {
+    .task-wrapper .panel-heading .task-title:hover {
       color: #f2f2f2; }
-  .tasks-wrapper .panel-heading .task-time-ago {
+  .task-wrapper .panel-heading .task-time-ago {
     color: #ffffff;
     margin: 5px 0; }
-.tasks-wrapper .panel-body .task-labels {
+.task-wrapper .panel-body .task-labels {
   margin-bottom: 15px;
   text-align: center; }
-  .tasks-wrapper .panel-body .task-labels .label {
+  .task-wrapper .panel-body .task-labels .label {
     margin-bottom: 5px;
     display: inline-block; }
-.tasks-wrapper .panel-body .well {
+.task-wrapper .panel-body .well {
   background: #ffffff;
   color: #7f8a94; }
-  .tasks-wrapper .panel-body .well .label {
+  .task-wrapper .panel-body .well .label {
     font-size: 12px;
     margin-right: 5px; }
-  .tasks-wrapper .panel-body .well .fa {
+  .task-wrapper .panel-body .well .fa {
     padding-right: 5px; }
-.tasks-wrapper .panel-footer {
+.task-wrapper .panel-footer {
   border-top: none; }
-  .tasks-wrapper .panel-footer form {
+  .task-wrapper .panel-footer form {
     display: inline-block; }
-  .tasks-wrapper .panel-footer .task-action {
+  .task-wrapper .panel-footer .task-action {
     margin-right: 20px;
     cursor: pointer;
     color: #7f8a94; }
-    .tasks-wrapper .panel-footer .task-action:hover {
+    .task-wrapper .panel-footer .task-action:hover {
       color: #1AB394; }
 
 .admin-panel {

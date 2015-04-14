@@ -108,7 +108,7 @@ class Task extends Model implements SluggableInterface {
 
     public function getStartingDateAttribute($date)
     {
-        return Carbon::parse($date)->format('F d, Y H:i');
+        return Carbon::parse($date)->format('m/d/Y');
     }
 
     public function setFinishingDateAttribute($date)
@@ -118,7 +118,7 @@ class Task extends Model implements SluggableInterface {
 
     public function getFinishingDateAttribute($date)
     {
-        return Carbon::parse($date)->format('F d, Y H:i');
+        return Carbon::parse($date)->format('m/d/Y');
     }
 
     public function setFinishedAtAttribute($date)

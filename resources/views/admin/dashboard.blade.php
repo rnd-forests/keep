@@ -63,32 +63,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard Radar Chart</div>
-                    <div class="panel-body">
-                        <canvas id="dashboard-radar-chart" width="310" height="310"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard Doughnut Chart</div>
-                    <div class="panel-body">
-                        <canvas id="dashboard-doughnut-chart" width="310" height="310"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard Polar Area Chart</div>
-                    <div class="panel-body">
-                        <canvas id="dashboard-polar-chart" width="310" height="310"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @stop
 

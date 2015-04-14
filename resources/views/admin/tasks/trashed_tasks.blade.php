@@ -18,6 +18,7 @@
                             <th>Deleted by</th>
                             <th>Author</th>
                             <th>Title</th>
+                            <th>Priority</th>
                             <th>Starting</th>
                             <th>Ending</th>
                             <th>Actions</th>
@@ -31,6 +32,7 @@
                                 <td class="text-center">{{ $task->destroyer->name }}</td>
                                 <td class="text-center">{{ $task->owner->name }}</td>
                                 <td class="text-navy">{{ $task->title }}</td>
+                                <td class="text-center">{{ $task->priority->name }}</td>
                                 <td class="text-center">{{ $task->present()->formatTime($task->starting_date) }}</td>
                                 <td class="text-center">{{ $task->present()->formatTime($task->finishing_date) }}</td>
                                 <td class="text-center">

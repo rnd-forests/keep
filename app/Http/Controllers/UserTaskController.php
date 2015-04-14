@@ -94,9 +94,11 @@ class UserTaskController extends Controller {
      */
 	public function show($userSlug, $taskSlug)
 	{
+        $user = $this->userRepository->findBySlug($userSlug);
+
         $task = $this->taskRepository->findCorrectTaskBySlug($userSlug, $taskSlug);
 
-        return view('tasks.show', compact('task'));
+        return view('tasks.show', compact('task', 'user'));
 	}
 
     /**

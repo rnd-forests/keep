@@ -5,11 +5,11 @@ $(function() {
     $('[data-toggle="tooltip"]').tooltip();
 
     $('.task-time-form').datetimepicker({
-        format: 'LLL'
+        format: 'L'
     });
 
     $('#tag_list').select2({
-        placeholder: 'Choose tags for this task.'
+        placeholder: 'Choose tags for this task'
     });
 
     $('#group_new_users').select2({
@@ -32,7 +32,7 @@ $(function() {
             ['layout', ['ul', 'ol']],
             ['para', ['paragraph']],
             ['height', ['height']],
-            ['insert', ['picture', 'link', 'video', 'table', 'hr']],
+            ['insert', ['picture', 'link', 'video', 'table']],
             ['misc', ['fullscreen', 'codeview']]
         ]
     });

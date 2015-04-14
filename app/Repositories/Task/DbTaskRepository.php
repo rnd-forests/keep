@@ -18,7 +18,7 @@ class DbTaskRepository implements TaskRepositoryInterface {
 
     public function getPaginatedTasks($limit)
     {
-        return Task::with('owner')->paginate($limit);
+        return Task::with('owner', 'priority')->paginate($limit);
     }
 
     public function findById($id)
@@ -91,7 +91,7 @@ class DbTaskRepository implements TaskRepositoryInterface {
 
     public function getTrashedTasks()
     {
-        return Task::with('owner', 'destroyer')->onlyTrashed()->latest('deleted_at')->paginate(50);
+        return Task::with('owner', 'destroyer', 'priority')->onlyTrashed()->latest('deleted_at')->paginate(50);
     }
 
     public function findTrashedTaskBySlug($slug)

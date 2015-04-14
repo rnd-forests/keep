@@ -18,10 +18,12 @@
 </head>
 <body class="admin-panel">
     @include('admin.partials.nav')
+
     <div class="container">
         @include('flash::message')
         @yield('content')
     </div>
+
     @include('layouts.partials.footer')
     {!! Html::script('js/all.js') !!}
 </body>
