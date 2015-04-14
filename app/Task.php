@@ -81,6 +81,16 @@ class Task extends Model implements SluggableInterface {
     }
 
     /**
+     * A task ha an associated priority level.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function priority()
+    {
+        return $this->belongsTo('Keep\Priority');
+    }
+
+    /**
      * Check if a task is completed or not.
      *
      * @return mixed

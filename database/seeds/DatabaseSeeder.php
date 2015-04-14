@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder {
         'tag_task',
         'groups',
         'group_user',
+        'priorities',
     ];
 
     /**
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder {
         'TagTaskTableSeeder',
         'GroupsTableSeeder',
         'GroupUserTableSeeder',
+        'PrioritiesTableSeeder',
     ];
 
 	/**

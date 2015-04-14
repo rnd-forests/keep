@@ -32,7 +32,7 @@ class Group extends Model implements SluggableInterface {
      * The attributes that are mass assignable.
      * @var array
      */
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'slug', 'description'];
 
     /**
      * A group may contain multiple users.

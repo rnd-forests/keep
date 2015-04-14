@@ -15,6 +15,7 @@ class TasksTableSeeder extends Seeder {
         {
             Task::create([
                 'user_id' => 1,
+                'priority_id' => rand(1, 4),
                 'title' => ucfirst(implode(" ", $faker->words(6))),
                 'content' => implode(" ", $faker->paragraphs(3)),
                 'location' => $faker->address,
@@ -29,6 +30,7 @@ class TasksTableSeeder extends Seeder {
         {
             Task::create([
                 'user_id' => rand(1, 152),
+                'priority_id' => rand(1, 4),
                 'title' => ucfirst(implode(" ", $faker->words(6))),
                 'content' => implode(" ", $faker->paragraphs(3)),
                 'location' => $faker->address,
