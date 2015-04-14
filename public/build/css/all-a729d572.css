@@ -10692,10 +10692,13 @@ button.close {
   width: 100%;
   margin-top: 30px; }
 
+.summernote-container .control-label {
+  font-weight: normal;
+  color: #8d9aa5; }
 .summernote-container .note-editor {
   border: none; }
   .summernote-container .note-editor .note-toolbar {
-    background-color: #dbd9d9;
+    background-color: #e6eef1;
     border-bottom: none;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px; }

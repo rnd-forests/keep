@@ -129,7 +129,7 @@ class UserTaskController extends Controller {
 	{
         $task = $this->taskRepository->update($userSlug, $taskSlug, $request->all());
 
-        $this->taskRepository->syncTags($task, $request->input('tag_list', []));
+        $this->setRelations($task, $request);
 
         flash()->info('Your task was successfully updated');
 
@@ -164,9 +164,22 @@ class UserTaskController extends Controller {
     {
         $task = $this->taskRepository->create($request->all());
 
-        $this->taskRepository->syncTags($task, $request->input('tag_list', []));
+        $this->setRelations($task, $request);
 
         return $task;
+    }
+
+    /**
+     * Set proper relations on task updating/creating.
+     *
+     * @param             $task
+     * @param TaskRequest $request
+     */
+    private function setRelations($task, TaskRequest $request)
+    {
+        $this->taskRepository->syncTags($task, $request->input('tag_list', []));
+
+        $this->taskRepository->associatePriority($task, $request->input('priority_level'));
     }
 
 }

@@ -2,6 +2,7 @@
 
 use Keep\Task;
 use Keep\User;
+use Keep\Priority;
 
 class DbTaskRepository implements TaskRepositoryInterface {
 
@@ -101,6 +102,13 @@ class DbTaskRepository implements TaskRepositoryInterface {
     public function syncTags($task, array $tags)
     {
         $task->tags()->sync($tags);
+    }
+
+    public function associatePriority($task, $priorityId)
+    {
+        $task->priority()->associate(Priority::findOrFail($priorityId));
+
+        return $task->save();
     }
 
 }

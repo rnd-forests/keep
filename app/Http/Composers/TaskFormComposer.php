@@ -13,8 +13,10 @@ class TaskFormComposer {
     public function compose(View $view)
     {
         $tags = App::make('Keep\Repositories\Tag\TagRepositoryInterface');
+        $priorities = App::make('Keep\Repositories\Priority\PriorityRepositoryInterface');
 
         $view->with('tags', $tags->lists());
+        $view->with('priorities', $priorities->lists());
     }
 
 }

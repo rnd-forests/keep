@@ -13,11 +13,16 @@
 }
 
 .summernote-container {
+    .control-label {
+        font-weight: normal;
+        color: #8d9aa5;
+    }
+
     .note-editor {
         border: none;
 
         .note-toolbar {
-            background-color: #dbd9d9;
+            background-color: darken(#f6f9fa, 5%);
             border-bottom: none;
             border-top-left-radius: 3px;
             border-top-right-radius: 3px;

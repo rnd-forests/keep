@@ -133,4 +133,13 @@ interface TaskRepositoryInterface {
      */
     public function syncTags($task, array $tags);
 
+    /**
+     * Associate a task with a specific priority level.
+     *
+     * @param $task
+     * @param $priorityId
+     * @return mixed
+     */
+    public function associatePriority($task, $priorityId);
+
 }

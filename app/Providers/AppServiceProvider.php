@@ -41,6 +41,11 @@ class AppServiceProvider extends ServiceProvider {
         );
 
         $this->app->bind(
+            'Keep\Repositories\Priority\PriorityRepositoryInterface',
+            'Keep\Repositories\Priority\DbPriorityRepository'
+        );
+
+        $this->app->bind(
             'Keep\Repositories\UserGroup\UserGroupRepositoryInterface',
             'Keep\Repositories\UserGroup\DbUserGroupRepository'
         );
