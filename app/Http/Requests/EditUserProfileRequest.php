@@ -21,7 +21,6 @@ class EditUserProfileRequest extends Request {
 	{
 		return [
             'name' => 'required|max:255',
-            'birthday' => 'date|before:now|before:6 years ago',
             'address' => 'max:300',
             'website' => 'url',
             'phone' => 'regex:/^([0-9\s\-\+\(\)]*)$/|max:11',

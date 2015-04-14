@@ -10720,7 +10720,7 @@ button.close {
 .panel-dangerzone .panel-body {
   border: 1px solid #efefef;
   border-top: none; }
-.panel-dangerzone .btn {
+.panel-dangerzone .form-group .btn {
   width: auto; }
 
 /** Custom Button theme **/

@@ -1,7 +1,6 @@
 <?php
 
 use Keep\User;
-use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +14,6 @@ class UsersTableSeeder extends Seeder {
             'name' => 'Vinh Nguyen',
             'email' => 'ngocvinh.nnv@gmail.com',
             'password' => '123456',
-            'birthday' => Carbon::create(1993, 12, 15),
             'address' => 'Thai Phuong - Hung Ha - Thai Binh',
             'company' => 'FPT Software',
             'website' => 'http://www.vinhnguyen-hust.com',
@@ -28,7 +26,6 @@ class UsersTableSeeder extends Seeder {
             'name' => 'Hang Dang',
             'email' => 'hangdt.aa@gmail.com',
             'password' => '123456',
-            'birthday' => Carbon::create(1993, 8, 8),
             'address' => 'Thai Phuong - Hung Ha - Thai Binh',
             'company' => 'Deloitte',
             'website' => 'http://www.hangdt-eof.com',
@@ -41,7 +38,6 @@ class UsersTableSeeder extends Seeder {
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->email,
-                'birthday' => Carbon::now()->subYears(rand(18, 60)),
                 'password' => 'secret',
                 'active' => true
             ]);

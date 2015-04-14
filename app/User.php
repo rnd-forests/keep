@@ -1,6 +1,5 @@
 <?php namespace Keep;
 
-use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -38,7 +37,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * The attributes that should be treated as Carbon instances.
      * @var array
      */
-    protected $dates = ['birthday', 'deleted_at'];
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -58,7 +57,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $fillable = [
         'name', 'email', 'address', 'company', 'website', 'password',
-        'phone', 'about', 'birthday', 'activation_code', 'active'
+        'phone', 'about', 'activation_code', 'active'
     ];
 
     /**
@@ -124,13 +123,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $notification;
     }
 
-
-    //--- ACCESSORS vs. MUTATORS ---//
-    public function setBirthdayAttribute($date)
-    {
-        $this->attributes['birthday'] = Carbon::parse($date);
-    }
-
+    /**
+     * Encrypting user password.
+     *
+     * @param $password
+     */
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);

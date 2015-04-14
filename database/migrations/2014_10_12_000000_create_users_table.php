@@ -1,6 +1,5 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -19,7 +18,6 @@ class CreateUsersTable extends Migration {
 			$table->string('name');
 			$table->string('email')->unique();
 			$table->string('password', 60);
-            $table->date('birthday')->nullable()->default(Carbon::now()->subYears(7));
             $table->text('address')->nullable();
             $table->string('company')->nullable();
             $table->string('website')->nullable();

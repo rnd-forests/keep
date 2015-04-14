@@ -957,13 +957,9 @@ return g("note-image-dialog",a.image.insert,f,h)},link:function(a,b){var c='<div
 
 $(function() {
 
-    $('div.alert').not('.alert-danger, .register-note').delay(3000).slideUp(300);
+    $('div.alert').not('.alert-danger').delay(3000).slideUp(300);
 
     $('[data-toggle="tooltip"]').tooltip();
-
-    $('#user-birthday-form').datetimepicker({
-        format: "L"
-    });
 
     $('.task-time-form').datetimepicker({
         format: 'LLL'
@@ -1002,7 +998,6 @@ $(function() {
 
 $(function() {
 
-    // Make embedded videos responsive
     $('.tasks-wrapper').find('iframe').wrap("<div class='embed-responsive embed-responsive-16by9'></div>");
 
     $('a[data-toggle = "tab"]').on('shown.bs.tab', function() {

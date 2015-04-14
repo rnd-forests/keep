@@ -1,6 +1,5 @@
 $(function() {
 
-    // Make embedded videos responsive
     $('.tasks-wrapper').find('iframe').wrap("<div class='embed-responsive embed-responsive-16by9'></div>");
 
     $('a[data-toggle = "tab"]').on('shown.bs.tab', function() {

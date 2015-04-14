@@ -12,10 +12,6 @@
             </div>
         </li>
         <li class="list-group-item">
-            <h6 class="list-group-item-heading">Date of Birth</h6>
-            {{ $user->present()->attribute($user->present()->formatTime($user->birthday)) }}
-        </li>
-        <li class="list-group-item">
             <h6 class="list-group-item-heading">E-Mail Address</h6>
             {{ $user->email }}
         </li>
