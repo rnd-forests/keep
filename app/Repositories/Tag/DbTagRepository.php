@@ -6,7 +6,7 @@ class DbTagRepository implements TagRepositoryInterface {
 
     public function lists()
     {
-        return Tag::lists('name', 'id');
+        return Tag::orderBy('name', 'asc')->lists('name', 'id');
     }
 
 }

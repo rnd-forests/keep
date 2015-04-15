@@ -1,6 +1,7 @@
 <?php  namespace Keep\Repositories\User; 
 
 use Auth;
+use Keep\Task;
 use Keep\User;
 
 class DbUserRepository implements UserRepositoryInterface {
@@ -70,14 +71,20 @@ class DbUserRepository implements UserRepositoryInterface {
     {
         $user = $this->findTrashedUserBySlug($slug);
 
-        return $user->restore() && $user->tasks()->restore();
+        $user->tasks()->restore();
+
+        return $user->restore();
     }
 
     public function delete($slug)
     {
         $user = $this->findBySlug($slug);
 
-        return $user->delete() && $user->tasks()->delete();
+        Task::whereIn('id', $user->tasks()->lists('id'))->get()->each(function($task) {
+            $task->delete();
+        });
+
+        return $user->delete();
     }
 
     public function forceDelete($slug)

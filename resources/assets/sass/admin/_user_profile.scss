@@ -1,10 +1,14 @@
 .account-profile {
+    .panel {
+        background: 0 0;
+    }
+
     .label {
         font-weight: normal;
     }
 
     .list-group-item {
-        padding: 15px 10px;
+        background: 0 0;
         border: none #edf1f2;
         text-align: center;
     }

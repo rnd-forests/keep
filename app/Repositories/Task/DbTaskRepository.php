@@ -91,7 +91,9 @@ class DbTaskRepository implements TaskRepositoryInterface {
 
     public function getTrashedTasks()
     {
-        return Task::with('owner', 'destroyer', 'priority')->onlyTrashed()->latest('deleted_at')->paginate(50);
+        return Task::with(['owner' => function($query) {
+            $query->withTrashed();
+        }, 'destroyer', 'priority'])->onlyTrashed()->latest('deleted_at')->paginate(50);
     }
 
     public function findTrashedTaskBySlug($slug)

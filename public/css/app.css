@@ -707,8 +707,7 @@ fieldset[disabled] .btn-violet {
   display: inline-block;
   position: relative;
   padding-top: 10px;
-  padding-bottom: 10px;
-  width: 320px;
+  width: 400px;
   border: 1px solid #dee5e7; }
   .tl-content.block {
     display: block;
@@ -718,6 +717,8 @@ fieldset[disabled] .btn-violet {
     .tl-content.panel .panel-body {
       font-size: 14px;
       border-top: 1px solid #edf1f2; }
+    .tl-content.panel .panel-footer {
+      border-top: none; }
   .tl-content .text-lt {
     margin-bottom: 10px;
     padding-left: 15px;
@@ -1142,13 +1143,15 @@ fieldset[disabled] .btn-violet {
 
 .admin-contents-wrapper .well {
   background-color: #ffffff; }
-.admin-contents-wrapper .table th {
-  text-align: center; }
-.admin-contents-wrapper .table td {
-  font-size: 15px;
-  vertical-align: middle; }
-  .admin-contents-wrapper .table td form {
-    display: inline-block; }
+.admin-contents-wrapper .table {
+  background: #ffffff; }
+  .admin-contents-wrapper .table th {
+    text-align: center; }
+  .admin-contents-wrapper .table td {
+    font-size: 15px;
+    vertical-align: middle; }
+    .admin-contents-wrapper .table td form {
+      display: inline-block; }
 
 .huge {
   font-size: 35px; }
@@ -1191,10 +1194,12 @@ fieldset[disabled] .btn-violet {
 .admin-dashboard .bg-yellow-dark {
   background: #f4ca06; }
 
+.account-profile .panel {
+  background: 0 0; }
 .account-profile .label {
   font-weight: normal; }
 .account-profile .list-group-item {
-  padding: 15px 10px;
+  background: 0 0;
   border: none #edf1f2;
   text-align: center; }
 

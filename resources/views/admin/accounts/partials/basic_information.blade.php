@@ -1,16 +1,18 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        @if($user->roles->contains('name', 'admin'))
-            <span class="pull-right label label-danger">Admin</span>
-        @endif
-        {{ $user->name }}
-    </div>
+<div class="panel">
     <ul class="list-group">
         <li class="list-group-item">
             <div class="text-center">
-                @include('users.partials.avatar', ['size' => 120])
+                @include('users.partials.avatar', ['size' => 180])
             </div>
         </li>
+        <div class="text-center">
+            <h2 class="username">{{ $user->name }}</h2>
+        </div>
+        @if($user->roles->contains('name', 'admin'))
+            <div class="list-group-item">
+                <span class="label label-primary">Administrator</span>
+            </div>
+        @endif
         <li class="list-group-item">
             <h6 class="list-group-item-heading">E-Mail Address</h6>
             {{ $user->email }}
