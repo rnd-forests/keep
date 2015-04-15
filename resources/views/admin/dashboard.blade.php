@@ -9,10 +9,10 @@
                 <a href="{{ route('admin.active.accounts') }}">
                     <div class="panel widget bg-purple">
                         <div class="row row-table">
-                            <div class="col-xs-4 bg-purple-dark text-center pv-lg"><i class="fa fa-users fa-3x"></i></div>
+                            <div class="col-xs-4 bg-purple-dark text-center pv-lg"><i class="fa fa-user fa-3x"></i></div>
                             <div class="col-xs-8">
                                 <div class="huge">{{ $usersCount }}</div>
-                                <span>Members</span>
+                                <span>{{ str_plural('Member', $usersCount) }}</span>
                             </div>
                         </div>
                     </div>
@@ -25,7 +25,20 @@
                             <div class="col-xs-4 bg-green-dark text-center pv-lg"><i class="fa fa-tasks fa-3x"></i></div>
                             <div class="col-xs-8">
                                 <div class="huge">{{ $tasksCount }}</div>
-                                <span>Tasks</span>
+                                <span>{{ str_plural('Task', $tasksCount) }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#">
+                    <div class="panel widget bg-red">
+                        <div class="row row-table">
+                            <div class="col-xs-4 bg-red-dark text-center pv-lg"><i class="fa fa-users fa-3x"></i></div>
+                            <div class="col-xs-8">
+                                <div class="huge">{{ $groupsCount }}</div>
+                                <span>{{ str_plural('Group', $groupsCount) }}</span>
                             </div>
                         </div>
                     </div>

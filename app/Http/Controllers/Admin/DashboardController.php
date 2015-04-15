@@ -3,22 +3,26 @@
 use Keep\Http\Controllers\Controller;
 use Keep\Repositories\Task\TaskRepositoryInterface;
 use Keep\Repositories\User\UserRepositoryInterface;
+use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
 
 class DashboardController extends Controller {
 
-    protected $userRepository, $taskRepository;
+    protected $userRepository, $taskRepository, $groupRepository;
 
     /**
      * Constructor.
      *
-     * @param UserRepositoryInterface $userRepository
-     * @param TaskRepositoryInterface $taskRepository
+     * @param UserRepositoryInterface      $userRepository
+     * @param TaskRepositoryInterface      $taskRepository
+     * @param UserGroupRepositoryInterface $groupRepository
      */
     public function __construct(UserRepositoryInterface $userRepository,
-                                TaskRepositoryInterface $taskRepository)
+                                TaskRepositoryInterface $taskRepository,
+                                UserGroupRepositoryInterface $groupRepository)
     {
         $this->userRepository = $userRepository;
         $this->taskRepository = $taskRepository;
+        $this->groupRepository = $groupRepository;
     }
 
     /**
@@ -32,7 +36,9 @@ class DashboardController extends Controller {
 
         $tasksCount = $this->taskRepository->count();
 
-        return view('admin.dashboard', compact('usersCount', 'tasksCount'));
+        $groupsCount = $this->groupRepository->count();
+
+        return view('admin.dashboard', compact('usersCount', 'tasksCount', 'groupsCount'));
     }
 
 }
