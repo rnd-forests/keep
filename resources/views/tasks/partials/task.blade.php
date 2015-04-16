@@ -19,9 +19,6 @@
             @unless (empty($task->location))
                 <div class="well"><i class="fa fa-map-marker"></i><strong>{{ $task->location }}</strong></div>
             @endunless
-            @unless (empty($task->note))
-                <div class="well"><i class="fa fa-pencil"></i><em>{{ $task->note }}</em></div>
-            @endunless
             @unless ($task->tags->isEmpty())
                 <div class="well">
                     <i class="fa fa-tags"></i>

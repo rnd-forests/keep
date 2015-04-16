@@ -15,11 +15,11 @@ class TasksTableSeeder extends Seeder {
         {
             Task::create([
                 'user_id' => 1,
+                'creator_id' => 1,
                 'priority_id' => rand(1, 4),
                 'title' => ucfirst(implode(" ", $faker->words(5))),
                 'content' => implode(" ", $faker->paragraphs(1)),
                 'location' => $faker->address,
-                'note' => $faker->text(),
                 'completed' => true,
                 'starting_date' => Carbon::now(),
                 'finishing_date' => Carbon::now()->addDays(rand(5, 20))
@@ -28,13 +28,14 @@ class TasksTableSeeder extends Seeder {
 
         for ($i = 1; $i <= 300; $i++)
         {
+            $id = rand(1, 152);
             Task::create([
-                'user_id' => rand(1, 152),
+                'user_id' => $id,
+                'creator_id' => $id,
                 'priority_id' => rand(1, 4),
                 'title' => ucfirst(implode(" ", $faker->words(5))),
                 'content' => implode(" ", $faker->paragraphs(1)),
                 'location' => $faker->address,
-                'note' => $faker->text(),
                 'starting_date' => Carbon::now(),
                 'finishing_date' => Carbon::now()->addDays(rand(5, 50))
             ]);

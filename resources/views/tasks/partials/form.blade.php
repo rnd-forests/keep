@@ -43,10 +43,6 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('note', 'Quick Note', ['class' => 'control-label']) !!}
-    {!! Form::textarea('note', null, ['class' => 'form-control', 'rows' => 3]) !!}
-</div>
-<div class="form-group">
     {!! Form::label('priority_level', 'Priority Level', ['class' => 'control-label']) !!}
     {!! Form::select('priority_level', $priorities,
         is_null($task->priority) ? null : $task->priority->id, ['class' => 'form-control input-lg']) !!}

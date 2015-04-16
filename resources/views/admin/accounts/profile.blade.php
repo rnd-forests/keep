@@ -15,6 +15,7 @@
                 @foreach($user->tasks as $task)
                     <li class="tl-item">
                         <div class="tl-wrap b-success">
+                            <span class="tl-date">{{ $task->present()->formatTime($task->created_at) }}</span>
                             <div class="tl-content panel">
                                 <span class="arrow left pull-up"></span>
                                 <div class="text-lt">{{ $task->title }}</div>

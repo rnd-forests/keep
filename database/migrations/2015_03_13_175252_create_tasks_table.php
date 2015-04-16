@@ -16,13 +16,17 @@ class CreateTasksTable extends Migration {
 		{
 			$table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('creator_id')->unsigned();
+            $table->integer('destroyer_id')->unsigned();
+            $table->integer('priority_id')->unsigned();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->text('content');
             $table->text('location')->nullable();
-            $table->text('note')->nullable();
             $table->timestamp('starting_date');
             $table->timestamp('finishing_date');
             $table->timestamp('finished_at')->nullable();
+            $table->boolean('completed')->default(false);
             $table->softDeletes();
             $table->timestamps();
 		});

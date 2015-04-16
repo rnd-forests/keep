@@ -27,14 +27,16 @@
                                 @include('users.partials.update_password_form', $user)
                             </div>
                         </div>
-                        <div class="panel panel-dangerzone">
-                            @include('users.partials.cancel_account_modal')
-                            <div class="panel-heading">Cancel your account</div>
-                            <div class="panel-body">
-                                <p>Once you delete your account, there is no going back. Please be careful.</p>
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#cancel-account-modal">Cancel account</button>
+                        @unless($user->isAdmin())
+                            <div class="panel panel-dangerzone">
+                                @include('users.partials.cancel_account_modal')
+                                <div class="panel-heading">Cancel your account</div>
+                                <div class="panel-body">
+                                    <p>Once you delete your account, there is no going back. Please be careful.</p>
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#cancel-account-modal">Cancel account</button>
+                                </div>
                             </div>
-                        </div>
+                        @endunless
                     </div>
                 </div>
             </div>

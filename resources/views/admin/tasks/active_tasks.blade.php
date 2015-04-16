@@ -42,7 +42,7 @@
                             <td class="text-center">{{ $task->priority->name }}</td>
                             <td class="text-center">{{ $task->present()->formatTime($task->starting_date) }}</td>
                             <td class="text-center">{{ $task->present()->formatTime($task->finishing_date) }}</td>
-                            <td class="text-center">{!! $task->present()->printStatus($task->completed) !!}</td>
+                            <td class="text-center">{{ $task->present()->printStatus($task->completed) }}</td>
                             <td class="text-center">
                                 <a href="{{ route('admin.task.show', $task->slug) }}" class="btn btn-primary btn-circle"
                                    data-toggle="tooltip" data-placement="bottom" title="Show Task">

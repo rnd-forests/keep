@@ -1,5 +1,6 @@
 <?php  namespace Keep\Repositories\Task; 
 
+use Auth;
 use Keep\Task;
 use Keep\User;
 use Keep\Priority;
@@ -46,9 +47,9 @@ class DbTaskRepository implements TaskRepositoryInterface {
     public function create(array $data)
     {
         return Task::create([
+            'creator_id' => Auth::user()->id,
             'title' => $data['title'],
             'content' => $data['content'],
-            'note' => $data['note'],
             'location' => $data['location'],
             'starting_date' => $data['starting_date'],
             'finishing_date' => $data['finishing_date'],

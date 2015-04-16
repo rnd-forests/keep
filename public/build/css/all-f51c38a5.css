@@ -10709,13 +10709,6 @@ button.close {
   .summernote-container .note-editor .btn-toolbar {
     margin-left: 0; }
 
-.jumbotron .jumbotron__heading {
-  margin: 0;
-  line-height: 1.2em; }
-.jumbotron .jumbotron__sub-heading {
-  font-size: 16px;
-  margin-top: 5px; }
-
 .panel-dangerzone .panel-heading {
   background: #ed5565;
   color: #ffffff;
@@ -11901,9 +11894,9 @@ fieldset[disabled] .btn-violet {
 .groups-wrapper .well {
   background-color: #ffffff; }
 
-.group-wrapper .group-wrapper--users {
+.group-wrapper .group-wrapper__users {
   margin-top: 40px; }
-  .group-wrapper .group-wrapper--users .well {
+  .group-wrapper .group-wrapper__users .well {
     background-color: #ffffff; }
 .group-wrapper form {
   display: inline-block; }

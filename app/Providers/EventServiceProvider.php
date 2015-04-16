@@ -36,13 +36,13 @@ class EventServiceProvider extends ServiceProvider {
 
         Task::deleting(function($task)
         {
-            $task->deleted_by = Auth::user()->id;
+            $task->destroyer_id = Auth::user()->id;
             $task->save();
         });
 
         Task::restoring(function($task)
         {
-            $task->deleted_by = 0;
+            $task->destroyer_id = 0;
             $task->save();
         });
 	}

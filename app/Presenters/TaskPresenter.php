@@ -30,10 +30,10 @@ class TaskPresenter extends Presenter {
     {
         if ($completed)
         {
-            return '<button class="btn btn-primary btn-circle"><i class="fa fa-check"></i></button>';
+            return 'yes';
         }
 
-        return '<button class="btn btn-warning btn-circle"><i class="fa fa-close"></i></button>';
+        return 'no';
     }
 
 }

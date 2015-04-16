@@ -46,8 +46,8 @@ class Task extends Model implements SluggableInterface {
      * @var array
      */
     protected $fillable = [
-        'title', 'slug', 'content', 'user_id', 'location', 'note',
-        'starting_date', 'finishing_date', 'finished_at', 'completed', 'deleted_by'
+        'title', 'slug', 'content', 'owner_id', 'location', 'destroyer_id', 'creator_id',
+        'starting_date', 'finishing_date', 'finished_at', 'completed', 'priority_id'
     ];
 
     /**
@@ -61,13 +61,23 @@ class Task extends Model implements SluggableInterface {
     }
 
     /**
+     * A task is created by a specific user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function creator()
+    {
+        return $this->belongsTo('Keep\User', 'creator_id');
+    }
+
+    /**
      * Get the user who deleted a specific task.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function destroyer()
     {
-        return $this->belongsTo('Keep\User', 'deleted_by');
+        return $this->belongsTo('Keep\User', 'destroyer_id');
     }
 
     /**
@@ -81,13 +91,13 @@ class Task extends Model implements SluggableInterface {
     }
 
     /**
-     * A task ha an associated priority level.
+     * A task has an associated priority level.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function priority()
     {
-        return $this->belongsTo('Keep\Priority');
+        return $this->belongsTo('Keep\Priority', 'priority_id');
     }
 
     /**
