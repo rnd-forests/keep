@@ -12,7 +12,9 @@
                 </span>
                 <span class="label label-primary">{{ $task->present()->getRemainingDays($task->finishing_date) }}</span>
                 @if ($task->completed)
-                    <button class="btn btn-info btn-circle"><i class="fa fa-check"></i></button>
+                    <span class="label label-info">Completed</span>
+                @else
+                    <span class="label label-danger">Not completed</span>
                 @endif
             </div>
             <div class="well">{{ $task->content }}</div>

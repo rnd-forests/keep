@@ -21,6 +21,7 @@ class UsersController extends Controller {
         $this->userRepository = $userRepository;
 
         $this->middleware('auth');
+        $this->middleware('auth.confirmed');
         $this->middleware('auth.correct');
     }
 

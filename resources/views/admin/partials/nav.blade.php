@@ -13,11 +13,11 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Accounts <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Members <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('admin.active.accounts') }}">Active Accounts</a></li>
+                        <li><a href="{{ route('admin.active.accounts') }}">Active Members</a></li>
                         <div class="divider"></div>
-                        <li><a href="{{ route('admin.disabled.accounts') }}">Disabled Accounts</a></li>
+                        <li><a href="{{ route('admin.disabled.accounts') }}">Disabled Members</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

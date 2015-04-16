@@ -61,16 +61,6 @@ class Task extends Model implements SluggableInterface {
     }
 
     /**
-     * A task is created by a specific user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function creator()
-    {
-        return $this->belongsTo('Keep\User', 'creator_id');
-    }
-
-    /**
      * Get the user who deleted a specific task.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

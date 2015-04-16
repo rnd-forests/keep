@@ -11805,16 +11805,11 @@ fieldset[disabled] .btn-violet {
     margin-right: 5px; }
   .task-wrapper .panel-body .well .fa {
     padding-right: 5px; }
-.task-wrapper .panel-footer {
-  border-top: none; }
-  .task-wrapper .panel-footer form {
+
+.task-controls {
+  margin: 15px 0; }
+  .task-controls form {
     display: inline-block; }
-  .task-wrapper .panel-footer .task-action {
-    margin-right: 20px;
-    cursor: pointer;
-    color: #7f8a94; }
-    .task-wrapper .panel-footer .task-action:hover {
-      color: #1AB394; }
 
 .admin-panel {
   background: #f0f3f4; }

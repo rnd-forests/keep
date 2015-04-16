@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Active Accounts')
+@section('title', 'Active Members')
 
 @section('content')
     <div class="admin-contents-wrapper">

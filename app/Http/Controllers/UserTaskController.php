@@ -1,6 +1,5 @@
 <?php namespace Keep\Http\Controllers;
 
-use Keep\Http\Requests;
 use Keep\Http\Requests\TaskRequest;
 use Keep\Events\TaskWasCreatedEvent;
 use Keep\Repositories\Task\TaskRepositoryInterface;
@@ -154,6 +153,22 @@ class UserTaskController extends Controller {
 
         return redirect()->route('users.tasks.index', $userSlug);
 	}
+
+    /**
+     * Mark a task a completed.
+     *
+     * @param $userSlug
+     * @param $taskSlug
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function complete($userSlug, $taskSlug)
+    {
+        $this->taskRepository->complete($userSlug, $taskSlug);
+
+        flash()->success('You changed the completed status of this task.');
+
+        return redirect()->back();
+    }
 
     /**
      * Create new task.

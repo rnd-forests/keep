@@ -1,6 +1,6 @@
 <?php  namespace Keep\Repositories\Task; 
 
-use Auth;
+use Request;
 use Keep\Task;
 use Keep\User;
 use Keep\Priority;
@@ -47,7 +47,6 @@ class DbTaskRepository implements TaskRepositoryInterface {
     public function create(array $data)
     {
         return Task::create([
-            'creator_id' => Auth::user()->id,
             'title' => $data['title'],
             'content' => $data['content'],
             'location' => $data['location'],
@@ -100,6 +99,15 @@ class DbTaskRepository implements TaskRepositoryInterface {
     public function findTrashedTaskBySlug($slug)
     {
         return Task::onlyTrashed()->whereSlug($slug)->firstOrFail();
+    }
+
+    public function complete($userSlug, $taskSlug)
+    {
+        $task = $this->findCorrectTaskBySlug($userSlug, $taskSlug);
+
+        $task->completed = Request::input('completed') ? Request::input('completed') : 0;
+
+        return $task->save();
     }
 
     public function syncTags($task, array $tags)

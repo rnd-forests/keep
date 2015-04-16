@@ -106,18 +106,4 @@ $(function() {
         return false;
     });
 });
-
-$(function() {
-    var modal = $('#delete-task-modal');
-
-    modal.on('show.bs.modal', function(event) {
-        var form = $(event.relatedTarget).closest('form');
-        $(this).find('.modal-footer #confirm').data('form', form);
-    });
-
-    modal.find('.modal-footer #confirm').on('click', function() {
-        $(this).data('form').submit();
-    });
-});
-
 //# sourceMappingURL=all.js.map

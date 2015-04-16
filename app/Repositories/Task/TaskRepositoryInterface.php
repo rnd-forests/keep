@@ -125,6 +125,15 @@ interface TaskRepositoryInterface {
     public function findTrashedTaskBySlug($slug);
 
     /**
+     * Mark a task as completed.
+     *
+     * @param $userSlug
+     * @param $taskSlug
+     * @return mixed
+     */
+    public function complete($userSlug, $taskSlug);
+
+    /**
      * Sync up the list of tags for the current task.
      *
      * @param       $task

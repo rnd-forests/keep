@@ -48,22 +48,12 @@
             }
         }
     }
+}
 
-    .panel-footer {
-        border-top: none;
-
-        form {
-            display: inline-block;
-        }
-
-        .task-action {
-            margin-right: 20px;
-            cursor: pointer;
-            color: #7f8a94;
-
-            &:hover {
-                color: #1AB394;
-            }
-        }
+.task-controls {
+    margin: 15px 0;
+    
+    form {
+        display: inline-block;
     }
 }

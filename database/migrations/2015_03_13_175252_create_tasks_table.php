@@ -16,7 +16,6 @@ class CreateTasksTable extends Migration {
 		{
 			$table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('creator_id')->unsigned();
             $table->integer('destroyer_id')->unsigned();
             $table->integer('priority_id')->unsigned();
             $table->string('title');
