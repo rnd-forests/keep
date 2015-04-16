@@ -30,7 +30,7 @@
                     </div>
                 {!! Form::close() !!}
                 <div class="text-center help-block form-link">
-                    Already had an account? <a href="{{ route('login_path') }}"> Login here</a>
+                    Already had an account? <a href="{{ route('login') }}"> Login here</a>
                 </div>
             </div>
         </div>

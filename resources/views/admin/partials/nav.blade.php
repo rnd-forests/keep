@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home_path') }}">@KEEP</a>
+            <a class="navbar-brand" href="{{ route('home') }}">@KEEP</a>
         </div>
         <div id="keep-navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -51,7 +51,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ route('users.show', Auth::user()->slug) }}">{{ Auth::user()->name }}</a></li>
-                <li><a href="{{ route('logout_path') }}">Logout</a></li>
+                <li><a href="{{ route('logout') }}">Logout</a></li>
             </ul>
         </div>
     </div>

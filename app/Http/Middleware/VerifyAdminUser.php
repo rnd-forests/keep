@@ -1,21 +1,9 @@
 <?php namespace Keep\Http\Middleware;
 
+use App;
 use Closure;
-use Illuminate\Contracts\Auth\Guard;
 
 class VerifyAdminUser {
-
-    protected $auth;
-
-    /**
-     * Constructor.
-     *
-     * @param Guard $auth
-     */
-    public function __construct(Guard $auth)
-    {
-        $this->auth = $auth;
-    }
 
     /**
 	 * Handle an incoming request.
@@ -26,11 +14,13 @@ class VerifyAdminUser {
 	 */
 	public function handle($request, Closure $next)
 	{
-        if (! $this->auth->user()->isAdmin())
+        $auth = App::make('Illuminate\Contracts\Auth\Guard');
+
+        if (! $auth->user()->isAdmin())
         {
             flash()->warning('This area is for administrators only. You have no right to access it.');
 
-            return redirect()->route('home_path');
+            return redirect()->route('home');
         }
 
 		return $next($request);

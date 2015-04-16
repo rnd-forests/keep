@@ -36,9 +36,9 @@ class RedirectIfNotCorrectUser {
 
         if (($user->id != $this->auth->user()->id) && ! $this->auth->user()->isAdmin())
         {
-            flash()->warning('You has no right to access this page.');
+            flash()->warning('You do not have required permissions to access this page.');
 
-            return redirect()->route('home_path');
+            return redirect()->route('home');
         }
 
 		return $next($request);

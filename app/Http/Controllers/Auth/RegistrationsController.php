@@ -36,12 +36,12 @@ class RegistrationsController extends Controller {
 	{
         if ($this->dispatchFrom(RegisterAccountCommand::class, $request))
         {
-            flash()->info('Check your email to activate your account.');
+            flash()->info('Check your email address to activate your account.');
 
-            return redirect()->route('home_path');
+            return redirect()->route('home');
         }
 
-        return redirect()->route('register_path');
+        return redirect()->route('register');
 	}
 
     /**
@@ -57,12 +57,12 @@ class RegistrationsController extends Controller {
         {
             flash()->success('Your account has been activated.');
 
-            return redirect()->route('home_path');
+            return redirect()->route('home');
         }
 
         flash()->warning('Something went wrong. Please check your activation link');
 
-        return redirect()->route('home_path');
+        return redirect()->route('home');
     }
 
 }

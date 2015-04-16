@@ -28,7 +28,7 @@
                 {!! Form::close() !!}
                 <div class="text-center help-block form-link">
                     Forgot Your Password? <a href="{{ url('auth/password/email') }}">Reset here</a><br>
-                    Don't have an account? <a href="{{ route('register_path') }}"> Create a free account</a>
+                    Don't have an account? <a href="{{ route('register') }}"> Create a free account</a>
                 </div>
             </div>
 		</div>

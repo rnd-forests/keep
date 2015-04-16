@@ -7,7 +7,7 @@
 @section('content')
     <div class="row">
         @foreach($tasks as $task)
-            {{ var_dump($task) }}
+            <li><a href="{{ route('users.tasks.show', [$user->slug, $task->slug]) }}">{{ $task->title }}</a></li>
         @endforeach
     </div>
 @stop

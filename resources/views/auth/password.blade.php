@@ -21,8 +21,8 @@
                     </div>
                 {!! Form::close() !!}
                 <div class="text-center help-block form-link">
-                    Trying to <a href="{{ route('login_path') }}"> Login</a><br>
-                    Don't have an account? <a href="{{ route('register_path') }}"> Create a free account</a>
+                    Trying to <a href="{{ route('login') }}"> Login</a><br>
+                    Don't have an account? <a href="{{ route('register') }}"> Create a free account</a>
                 </div>
 			</div>
 		</div>

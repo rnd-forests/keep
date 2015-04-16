@@ -43,7 +43,7 @@ class SessionsController extends Controller {
             return redirect()->intended('/');
         }
 
-        return redirect()->route('login_path')->withInput($request->only('email', 'remember'))
+        return redirect()->route('login')->withInput($request->only('email', 'remember'))
             ->withErrors(['Your credentials are wrong or your account has not been activated.']);
 	}
 
@@ -58,7 +58,7 @@ class SessionsController extends Controller {
 
         flash()->success('You have been logged out.');
 
-        return redirect()->route('home_path');
+        return redirect()->route('home');
 	}
 
 }

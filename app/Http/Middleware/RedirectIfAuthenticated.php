@@ -1,21 +1,9 @@
 <?php namespace Keep\Http\Middleware;
 
+use App;
 use Closure;
-use Illuminate\Contracts\Auth\Guard;
 
 class RedirectIfAuthenticated {
-
-	protected $auth;
-
-    /**
-     * Constructor.
-     *
-     * @param Guard $auth
-     */
-	public function __construct(Guard $auth)
-	{
-		$this->auth = $auth;
-	}
 
     /**
      * Handle an incoming request.
@@ -27,9 +15,11 @@ class RedirectIfAuthenticated {
      */
 	public function handle($request, Closure $next)
 	{
-		if ($this->auth->check())
+        $auth = App::make('Illuminate\Contracts\Auth\Guard');
+
+		if ($auth->check())
 		{
-			return redirect()->route('home_path');
+			return redirect()->route('home');
 		}
 
 		return $next($request);

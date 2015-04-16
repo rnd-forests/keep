@@ -21,8 +21,8 @@ class UsersController extends Controller {
         $this->userRepository = $userRepository;
 
         $this->middleware('auth');
-        $this->middleware('auth.confirmed');
         $this->middleware('auth.correct');
+        $this->middleware('auth.confirmed');
     }
 
     /**
@@ -69,7 +69,7 @@ class UsersController extends Controller {
 
         flash()->success("Your account has been deleted.");
 
-        return redirect()->route('home_path');
+        return redirect()->route('home');
 	}
 
 }

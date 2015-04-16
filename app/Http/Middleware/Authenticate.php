@@ -1,21 +1,9 @@
 <?php namespace Keep\Http\Middleware;
 
+use App;
 use Closure;
-use Illuminate\Contracts\Auth\Guard;
 
 class Authenticate {
-
-	protected $auth;
-
-    /**
-     * Constructor.
-     *
-     * @param Guard $auth
-     */
-	public function __construct(Guard $auth)
-	{
-		$this->auth = $auth;
-	}
 
     /**
      * Handle an incoming request.
@@ -27,7 +15,9 @@ class Authenticate {
      */
 	public function handle($request, Closure $next)
 	{
-		if ($this->auth->guest())
+        $auth = App::make('Illuminate\Contracts\Auth\Guard');
+
+		if ($auth->guest())
 		{
 			if ($request->ajax())
 			{
