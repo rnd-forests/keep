@@ -13,16 +13,16 @@ class RedirectIfAuthenticated {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-	public function handle($request, Closure $next)
-	{
+    public function handle($request, Closure $next)
+    {
         $auth = App::make('Illuminate\Contracts\Auth\Guard');
 
-		if ($auth->check())
-		{
-			return redirect()->route('home');
-		}
+        if ($auth->check())
+        {
+            return redirect()->route('home');
+        }
 
-		return $next($request);
-	}
+        return $next($request);
+    }
 
 }

@@ -1,4 +1,4 @@
-<?php  namespace Keep\Repositories\Task; 
+<?php namespace Keep\Repositories\Task;
 
 use Request;
 use Keep\Task;
@@ -47,12 +47,12 @@ class DbTaskRepository implements TaskRepositoryInterface {
     public function create(array $data)
     {
         return Task::create([
-            'title' => $data['title'],
-            'content' => $data['content'],
-            'location' => $data['location'],
-            'starting_date' => $data['starting_date'],
+            'title'          => $data['title'],
+            'content'        => $data['content'],
+            'location'       => $data['location'],
+            'starting_date'  => $data['starting_date'],
             'finishing_date' => $data['finishing_date'],
-            'completed' => false
+            'completed'      => false
         ]);
     }
 
@@ -89,11 +89,11 @@ class DbTaskRepository implements TaskRepositoryInterface {
         $task->forceDelete();
     }
 
-    public function getTrashedTasks()
+    public function getTrashedTasks($limit)
     {
-        return Task::with(['owner' => function($query) {
+        return Task::with(['owner' => function ($query) {
             $query->withTrashed();
-        }, 'destroyer', 'priority'])->onlyTrashed()->latest('deleted_at')->paginate(50);
+        }, 'destroyer', 'priority'])->onlyTrashed()->latest('deleted_at')->paginate($limit);
     }
 
     public function findTrashedTaskBySlug($slug)

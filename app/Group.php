@@ -12,24 +12,28 @@ class Group extends Model implements SluggableInterface {
 
     /**
      * Unique slug for group model.
+     *
      * @var array
      */
     protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
 
     /**
      * Table used by the model.
+     *
      * @var string
      */
     protected $table = 'groups';
 
     /**
      * Group presenter.
+     *
      * @var string
      */
     protected $presenter = 'Keep\Presenters\GroupPresenter';
 
     /**
      * The attributes that are mass assignable.
+     *
      * @var array
      */
     protected $fillable = ['name', 'slug', 'description'];

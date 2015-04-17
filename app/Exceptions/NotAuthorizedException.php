@@ -1,4 +1,4 @@
-<?php  namespace Keep\Exceptions; 
+<?php namespace Keep\Exceptions;
 
 class NotAuthorizedException extends \Exception {
 

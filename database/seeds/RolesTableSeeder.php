@@ -9,19 +9,19 @@ class RolesTableSeeder extends Seeder {
     {
         $roles = [
             [
-                'name' => 'admin',
+                'name'         => 'admin',
                 'display_name' => 'Application Administrator',
-                'description' => 'User is allowed to manage and edit other users/tasks'
+                'description'  => 'User is allowed to manage and edit other users/tasks'
             ],
             [
-                'name' => 'editor',
+                'name'         => 'editor',
                 'display_name' => 'Application Editor',
-                'description' => 'User is allowed to have complete control over content'
+                'description'  => 'User is allowed to have complete control over content'
             ],
             [
-                'name' => 'owner',
+                'name'         => 'owner',
                 'display_name' => 'Task Owner',
-                'description' => 'User is the owner of a given task'
+                'description'  => 'User is the owner of a given task'
             ]
         ];
 

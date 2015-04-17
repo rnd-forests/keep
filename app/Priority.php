@@ -6,12 +6,14 @@ class Priority extends Model {
 
     /**
      * Table used by the model.
+     *
      * @var string
      */
     protected $table = 'priorities';
 
     /**
      * The attributes that are mass assignable.
+     *
      * @var array
      */
     protected $fillable = ['name', 'value', 'description'];

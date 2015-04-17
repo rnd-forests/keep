@@ -11,27 +11,26 @@ class TaskPresenter extends Presenter {
      * Get task remaining days.
      *
      * @param $finish
+     *
      * @return string
      */
     public function getRemainingDays($finish)
     {
         $count = (int) Carbon::now()->diffInDays(Carbon::parse($finish), true);
 
-        return $count . " " . str_plural('day', $count) . ' remaining';
+        return $count . ' ' . str_plural('day', $count) . ' remaining';
     }
 
     /**
      * Print task status.
      *
      * @param $completed
+     *
      * @return string
      */
     public function printStatus($completed)
     {
-        if ($completed)
-        {
-            return 'yes';
-        }
+        if ($completed) return 'yes';
 
         return 'no';
     }

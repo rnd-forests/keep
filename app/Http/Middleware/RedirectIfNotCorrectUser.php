@@ -30,8 +30,8 @@ class RedirectIfNotCorrectUser {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-	public function handle($request, Closure $next)
-	{
+    public function handle($request, Closure $next)
+    {
         $user = $this->userRepository->findBySlug($request->route('users'));
 
         if (($user->id != $this->auth->user()->id) && ! $this->auth->user()->isAdmin())
@@ -41,7 +41,7 @@ class RedirectIfNotCorrectUser {
             return redirect()->route('home');
         }
 
-		return $next($request);
-	}
+        return $next($request);
+    }
 
 }

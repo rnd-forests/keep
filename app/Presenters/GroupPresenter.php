@@ -1,4 +1,4 @@
-<?php  namespace Keep\Presenters; 
+<?php namespace Keep\Presenters;
 
 use Laracasts\Presenter\Presenter;
 

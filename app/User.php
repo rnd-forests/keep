@@ -13,46 +13,53 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, SluggableInterface {
 
-	use Authenticatable, CanResetPassword, PresentableTrait, SluggableTrait, SoftDeletes, EntrustUserTrait;
+    use Authenticatable, CanResetPassword, PresentableTrait, SluggableTrait, SoftDeletes, EntrustUserTrait;
 
     /**
      * Unique slug for user model.
+     *
      * @var array
      */
     protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
 
     /**
      * Table used by the model.
+     *
      * @var string
      */
-	protected $table = 'users';
+    protected $table = 'users';
 
     /**
      * User presenter.
+     *
      * @var string
      */
     protected $presenter = 'Keep\Presenters\UserPresenter';
 
     /**
      * The attributes that should be treated as Carbon instances.
+     *
      * @var array
      */
     protected $dates = ['deleted_at'];
 
     /**
      * The attributes that should be hidden for arrays.
+     *
      * @var array
      */
-	protected $hidden = ['password', 'remember_token', 'activation_code'];
+    protected $hidden = ['password', 'remember_token', 'activation_code'];
 
     /**
      * The attributes that should be casted to native types.
+     *
      * @var array
      */
     protected $casts = ['active' => 'boolean'];
 
     /**
      * The attributes that are mass assignable.
+     *
      * @var array
      */
     protected $fillable = [

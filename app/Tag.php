@@ -6,9 +6,10 @@ class Tag extends Model {
 
     /**
      * The attributes that are mass assignable.
+     *
      * @var array
      */
-	protected $fillable = ['name'];
+    protected $fillable = ['name'];
 
     /**
      * Get the tasks associated with given tag.

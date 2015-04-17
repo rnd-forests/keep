@@ -5,7 +5,7 @@ interface UserGroupRepositoryInterface {
     /**
      * Retrieve the collection of all user groups.
      *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function all();
 
@@ -20,14 +20,16 @@ interface UserGroupRepositoryInterface {
      * Get the paginated collection of user groups.
      *
      * @param $limit
+     *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function getPaginatedGroups($limit);
 
     /**
-     * Find a group by its id.
+     * Find a group by its ID.
      *
      * @param $id
+     *
      * @return mixed
      */
     public function findById($id);
@@ -36,6 +38,7 @@ interface UserGroupRepositoryInterface {
      * Find a group by its slug.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function findBySlug($slug);
@@ -44,6 +47,7 @@ interface UserGroupRepositoryInterface {
      * Create a new group.
      *
      * @param array $data
+     *
      * @return static
      */
     public function create(array $data);
@@ -53,6 +57,7 @@ interface UserGroupRepositoryInterface {
      *
      * @param       $slug
      * @param array $data
+     *
      * @return mixed
      */
     public function update($slug, array $data);
@@ -61,6 +66,7 @@ interface UserGroupRepositoryInterface {
      * Restore a soft deleted group.
      *
      * @param $slug
+     *
      * @return bool
      */
     public function restore($slug);
@@ -69,6 +75,7 @@ interface UserGroupRepositoryInterface {
      * Soft delete a group.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function delete($slug);
@@ -77,6 +84,7 @@ interface UserGroupRepositoryInterface {
      * Permanently delete a group.
      *
      * @param $slug
+     *
      * @return void
      */
     public function forceDelete($slug);
@@ -84,14 +92,17 @@ interface UserGroupRepositoryInterface {
     /**
      * Get trashed groups.
      *
+     * @param $limit
+     *
      * @return mixed
      */
-    public function getTrashedGroups();
+    public function getTrashedGroups($limit);
 
     /**
      * Find a trashed group by its slug.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function findTrashedGroupBySlug($slug);
@@ -101,6 +112,7 @@ interface UserGroupRepositoryInterface {
      *
      * @param $group
      * @param $limit
+     *
      * @return mixed
      */
     public function getPaginatedAssociatedUsers($group, $limit);
@@ -109,6 +121,7 @@ interface UserGroupRepositoryInterface {
      * Get all users that do not belong to a specific group.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function getUsersOutsideGroup($slug);
@@ -118,6 +131,7 @@ interface UserGroupRepositoryInterface {
      *
      * @param       $group
      * @param array $users
+     *
      * @return mixed
      */
     public function attachUsers($group, array $users);

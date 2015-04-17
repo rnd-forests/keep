@@ -1,9 +1,10 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateRolePermissionTables extends Migration
-{
+class CreateRolePermissionTables extends Migration {
+
     /**
      * Run the migrations.
      *
@@ -11,7 +12,8 @@ class CreateRolePermissionTables extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table)
+        {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
@@ -19,7 +21,8 @@ class CreateRolePermissionTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('role_user', function (Blueprint $table) {
+        Schema::create('role_user', function (Blueprint $table)
+        {
             $table->integer('user_id')->unsigned();
             $table->integer('role_id')->unsigned();
 
@@ -29,7 +32,8 @@ class CreateRolePermissionTables extends Migration
             $table->primary(['user_id', 'role_id']);
         });
 
-        Schema::create('permissions', function (Blueprint $table) {
+        Schema::create('permissions', function (Blueprint $table)
+        {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
@@ -37,7 +41,8 @@ class CreateRolePermissionTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('permission_role', function (Blueprint $table) {
+        Schema::create('permission_role', function (Blueprint $table)
+        {
             $table->integer('permission_id')->unsigned();
             $table->integer('role_id')->unsigned();
 

@@ -12,12 +12,12 @@ class InitializeSessionCommandHandler {
      *
      * @return bool
      */
-	public function handle(InitializeSessionCommand $command)
-	{
+    public function handle(InitializeSessionCommand $command)
+    {
         $auth = App::make('Illuminate\Contracts\Auth\Guard');
 
         return $auth->attempt($this->getRequestData($command), $command->getRemember());
-	}
+    }
 
     /**
      * Get the request data.

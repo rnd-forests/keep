@@ -13,36 +13,42 @@ class Task extends Model implements SluggableInterface {
 
     /**
      * Unique slug for task model.
+     *
      * @var array
      */
     protected $sluggable = ['build_from' => 'title', 'save_to' => 'slug'];
 
     /**
      * Table used by the model.
+     *
      * @var string
      */
     protected $table = 'tasks';
 
     /**
      * Task presenter.
+     *
      * @var string
      */
     protected $presenter = 'Keep\Presenters\TaskPresenter';
 
     /**
      * The attributes that should be treated as Carbon instances.
+     *
      * @var array
      */
     protected $dates = ['starting_date', 'finishing_date', 'finished_at', 'deleted_at'];
 
     /**
      * The attributes that should be casted to native types.
+     *
      * @var array
      */
     protected $casts = ['completed' => 'boolean'];
 
     /**
      * The attributes that are mass assignable.
+     *
      * @var array
      */
     protected $fillable = [

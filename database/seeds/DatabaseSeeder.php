@@ -40,22 +40,22 @@ class DatabaseSeeder extends Seeder {
         'PrioritiesTableSeeder',
     ];
 
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
-		Eloquent::unguard();
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Eloquent::unguard();
 
-		$this->truncateDatabase();
+        $this->truncateDatabase();
 
         foreach ($this->seeders as $seeder)
         {
             $this->call($seeder);
         }
-	}
+    }
 
     /**
      * Truncate the database.

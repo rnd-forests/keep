@@ -1,4 +1,4 @@
-<?php  namespace Keep\Repositories\UserGroup;
+<?php namespace Keep\Repositories\UserGroup;
 
 use Keep\User;
 use Keep\Group;
@@ -34,7 +34,7 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
     public function create(array $data)
     {
         return Group::create([
-            'name' => $data['name'],
+            'name'        => $data['name'],
             'description' => $data['description']
         ]);
     }
@@ -67,9 +67,9 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
         $group->forceDelete();
     }
 
-    public function getTrashedGroups()
+    public function getTrashedGroups($limit)
     {
-        return Group::with('users')->onlyTrashed()->latest('deleted_at')->paginate(10);
+        return Group::with('users')->onlyTrashed()->latest('deleted_at')->paginate($limit);
     }
 
     public function findTrashedGroupBySlug($slug)

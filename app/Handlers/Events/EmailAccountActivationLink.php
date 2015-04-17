@@ -11,11 +11,11 @@ class EmailAccountActivationLink implements ShouldBeQueued {
      *
      * @param UserWasRegisteredEvent $event
      */
-	public function handle(UserWasRegisteredEvent $event)
-	{
+    public function handle(UserWasRegisteredEvent $event)
+    {
         $mailer = App::make('Keep\Mailers\UserMailer');
 
-		$mailer->sendAccountActivationLink($event->getUser(), $event->getUser()->activation_code);
-	}
+        $mailer->sendAccountActivationLink($event->getUser(), $event->getUser()->activation_code);
+    }
 
 }

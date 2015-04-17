@@ -2,22 +2,22 @@
 
 class ModifyPasswordCommand extends Command {
 
-    protected $old_password, $new_password;
+    protected $oldPassword, $newPassword;
 
     public function __construct($old_password, $new_password)
-	{
-		$this->old_password = $old_password;
-        $this->new_password = $new_password;
-	}
+    {
+        $this->oldPassword = $old_password;
+        $this->newPassword = $new_password;
+    }
 
     public function getOldPassword()
     {
-        return $this->old_password;
+        return $this->oldPassword;
     }
 
     public function getNewPassword()
     {
-        return $this->new_password;
+        return $this->newPassword;
     }
 
 }

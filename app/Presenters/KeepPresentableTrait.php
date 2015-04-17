@@ -8,6 +8,7 @@ trait KeepPresentableTrait {
      * Format timestamp.
      *
      * @param $timestamp
+     *
      * @return string
      */
     public function formatTime($timestamp)
@@ -19,6 +20,7 @@ trait KeepPresentableTrait {
      * Format full timestamp.
      *
      * @param $timestamp
+     *
      * @return string
      */
     public function formatFullTime($timestamp)
@@ -30,6 +32,7 @@ trait KeepPresentableTrait {
      * Time difference for humans.
      *
      * @param $timestamp
+     *
      * @return string
      */
     public function formatTimeForHumans($timestamp)

@@ -1,4 +1,4 @@
-<?php  namespace Keep\Mailers; 
+<?php namespace Keep\Mailers;
 
 use Keep\Task;
 use Keep\User;
@@ -43,13 +43,13 @@ class UserMailer extends Mailer {
     public function sendNotificationAboutNewTask(User $user, Task $task)
     {
         $subject = 'Keep - New task notification';
-        $view = 'emails.task.new_task_notification';
+        $view = 'emails.task.new_task';
         $data = [
-            'username' => $user->name,
-            'task_title' => $task->title,
-            'task_content' => $task->content,
-            'starting_date' => Carbon::parse($task->starting_date)->format('F d, Y H:i'),
-            'finishing_date' => Carbon::parse($task->finishing_date)->format('F d, Y H:i'),
+            'username'       => $user->name,
+            'task_title'     => $task->title,
+            'task_content'   => $task->content,
+            'starting_date'  => Carbon::parse($task->starting_date)->format('Y-m-d'),
+            'finishing_date' => Carbon::parse($task->finishing_date)->format('Y-m-d'),
         ];
 
         $this->sendTo($user, $subject, $view, $data);

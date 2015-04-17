@@ -1,4 +1,4 @@
-<?php  namespace Keep\Repositories\Priority; 
+<?php namespace Keep\Repositories\Priority;
 
 use Keep\Priority;
 

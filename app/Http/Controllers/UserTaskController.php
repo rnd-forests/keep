@@ -9,12 +9,14 @@ class UserTaskController extends Controller {
 
     /**
      * The user repository.
+     *
      * @var UserRepositoryInterface
      */
     protected $userRepository;
 
     /**
      * The task repository.
+     *
      * @var TaskRepositoryInterface
      */
     protected $taskRepository;
@@ -42,26 +44,26 @@ class UserTaskController extends Controller {
      *
      * @return \Illuminate\View\View
      */
-	public function index($userSlug)
-	{
-		$user = $this->userRepository->findBySlug($userSlug);
+    public function index($userSlug)
+    {
+        $user = $this->userRepository->findBySlug($userSlug);
 
         $tasks = $this->userRepository->getPaginatedAssociatedTasks($user, 10);
 
         return view('tasks.index', compact('user', 'tasks'));
-	}
+    }
 
     /**
      * Get the form to create new task.
      *
      * @return \Illuminate\View\View
      */
-	public function create()
-	{
+    public function create()
+    {
         $user = $this->userRepository->getAuthUser();
 
-		return view('tasks.create', compact('user'));
-	}
+        return view('tasks.create', compact('user'));
+    }
 
     /**
      * Persist a new task.
@@ -70,8 +72,8 @@ class UserTaskController extends Controller {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-	public function store(TaskRequest $request)
-	{
+    public function store(TaskRequest $request)
+    {
         $author = $this->userRepository->getAuthUser();
 
         $task = $author->tasks()->save($this->createTask($request));
@@ -81,93 +83,6 @@ class UserTaskController extends Controller {
         flash()->success('Your tasks has been successfully created');
 
         return redirect()->route('users.tasks.index', $author->slug);
-	}
-
-    /**
-     * Show a task of a user.
-     *
-     * @param $userSlug
-     * @param $taskSlug
-     *
-     * @return \Illuminate\View\View
-     */
-	public function show($userSlug, $taskSlug)
-	{
-        $user = $this->userRepository->findBySlug($userSlug);
-
-        $task = $this->taskRepository->findCorrectTaskBySlug($userSlug, $taskSlug);
-
-        return view('tasks.show', compact('task', 'user'));
-	}
-
-    /**
-     * Get the form to update a task.
-     *
-     * @param $userSlug
-     * @param $taskSlug
-     *
-     * @return \Illuminate\View\View
-     */
-	public function edit($userSlug, $taskSlug)
-	{
-        $user = $this->userRepository->findBySlug($userSlug);
-
-        $task = $this->taskRepository->findCorrectTaskBySlug($userSlug, $taskSlug);
-
-		return view('tasks.edit', compact('user', 'task'));
-	}
-
-    /**
-     * Update a task.
-     *
-     * @param TaskRequest $request
-     * @param             $userSlug
-     * @param             $taskSlug
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-	public function update(TaskRequest $request, $userSlug, $taskSlug)
-	{
-        $task = $this->taskRepository->update($userSlug, $taskSlug, $request->all());
-
-        $this->setRelations($task, $request);
-
-        flash()->info('Your task was successfully updated');
-
-        return redirect()->route('users.tasks.index', $this->userRepository->getAuthUser()->slug);
-	}
-
-    /**
-     * Delete a task.
-     *
-     * @param $userSlug
-     * @param $taskSlug
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-	public function destroy($userSlug, $taskSlug)
-	{
-		$this->taskRepository->deleteWithUserConstraint($userSlug, $taskSlug);
-
-        flash()->success('Your task was successfully destroyed.');
-
-        return redirect()->route('users.tasks.index', $userSlug);
-	}
-
-    /**
-     * Mark a task a completed.
-     *
-     * @param $userSlug
-     * @param $taskSlug
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function complete($userSlug, $taskSlug)
-    {
-        $this->taskRepository->complete($userSlug, $taskSlug);
-
-        flash()->success('You changed the completed status of this task.');
-
-        return redirect()->back();
     }
 
     /**
@@ -197,6 +112,94 @@ class UserTaskController extends Controller {
         $this->taskRepository->syncTags($task, $request->input('tag_list', []));
 
         $this->taskRepository->associatePriority($task, $request->input('priority_level'));
+    }
+
+    /**
+     * Show a task of a user.
+     *
+     * @param $userSlug
+     * @param $taskSlug
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show($userSlug, $taskSlug)
+    {
+        $user = $this->userRepository->findBySlug($userSlug);
+
+        $task = $this->taskRepository->findCorrectTaskBySlug($userSlug, $taskSlug);
+
+        return view('tasks.show', compact('task', 'user'));
+    }
+
+    /**
+     * Get the form to update a task.
+     *
+     * @param $userSlug
+     * @param $taskSlug
+     *
+     * @return \Illuminate\View\View
+     */
+    public function edit($userSlug, $taskSlug)
+    {
+        $user = $this->userRepository->findBySlug($userSlug);
+
+        $task = $this->taskRepository->findCorrectTaskBySlug($userSlug, $taskSlug);
+
+        return view('tasks.edit', compact('user', 'task'));
+    }
+
+    /**
+     * Update a task.
+     *
+     * @param TaskRequest $request
+     * @param             $userSlug
+     * @param             $taskSlug
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(TaskRequest $request, $userSlug, $taskSlug)
+    {
+        $task = $this->taskRepository->update($userSlug, $taskSlug, $request->all());
+
+        $this->setRelations($task, $request);
+
+        flash()->info('Your task was successfully updated');
+
+        return redirect()->route('users.tasks.index', $this->userRepository->getAuthUser()->slug);
+    }
+
+    /**
+     * Delete a task.
+     *
+     * @param $userSlug
+     * @param $taskSlug
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($userSlug, $taskSlug)
+    {
+        $this->taskRepository->deleteWithUserConstraint($userSlug, $taskSlug);
+
+        flash()->success('Your task was successfully destroyed.');
+
+        return redirect()->route('users.tasks.index', $userSlug);
+    }
+
+    /**
+     * Mark a task a completed.
+     *
+     * @param $userSlug
+     * @param $taskSlug
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function complete($userSlug, $taskSlug)
+    {
+        $this->taskRepository->complete($userSlug, $taskSlug);
+
+        flash()->success('You changed the completed status of this task.');
+
+        return redirect()->back();
     }
 
 }

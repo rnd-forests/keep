@@ -20,10 +20,10 @@ class RegistrationsController extends Controller {
      *
      * @return \Illuminate\View\View
      */
-	public function create()
-	{
-		return view('auth.register');
-	}
+    public function create()
+    {
+        return view('auth.register');
+    }
 
     /**
      * Handle a registration request to the application.
@@ -32,8 +32,8 @@ class RegistrationsController extends Controller {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-	public function store(RegisterUserRequest $request)
-	{
+    public function store(RegisterUserRequest $request)
+    {
         if ($this->dispatchFrom(RegisterAccountCommand::class, $request))
         {
             flash()->info('Check your email address to activate your account.');
@@ -42,7 +42,7 @@ class RegistrationsController extends Controller {
         }
 
         return redirect()->route('register');
-	}
+    }
 
     /**
      * Activate user account.

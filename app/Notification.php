@@ -10,31 +10,29 @@ class Notification extends Model {
     use SoftDeletes;
 
     /**
-     * Object associated with the notification.
-     * @var null
-     */
-    private $notificationObject = null;
-
-    /**
      * Table used by the model.
+     *
      * @var string
      */
     protected $table = 'notifications';
 
     /**
      * The attributes that should be treated as Carbon instances.
+     *
      * @var array
      */
     protected $dates = ['sent_at', 'deleted_at'];
 
     /**
      * The attributes that should be casted to native types.
+     *
      * @var array
      */
     protected $casts = ['is_read' => 'boolean'];
 
     /**
      * The attributes that are mass assignable.
+     *
      * @var array
      */
     protected $fillable = [
@@ -43,24 +41,11 @@ class Notification extends Model {
     ];
 
     /**
-     * A notification belongs to a user.
+     * Object associated with the notification.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @var null
      */
-    public function user()
-    {
-        return $this->belongsTo('Keep\User', 'user_id');
-    }
-
-    /**
-     * A notification belongs to a sender.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function sender()
-    {
-        return $this->belongsTo('Keep\User', 'sender_id');
-    }
+    private $notificationObject = null;
 
     /**
      * Query scope for unread notifications.
@@ -123,8 +108,7 @@ class Notification extends Model {
      */
     public function regarding($object)
     {
-        if (is_object($object))
-        {
+        if (is_object($object)) {
             $this->object_id = $object->id;
             $this->object_type = get_class($object);
         }
@@ -147,6 +131,16 @@ class Notification extends Model {
     }
 
     /**
+     * A notification belongs to a sender.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function sender()
+    {
+        return $this->belongsTo('Keep\User', 'sender_id');
+    }
+
+    /**
      * Set receiver.
      *
      * @param $user
@@ -158,6 +152,16 @@ class Notification extends Model {
         $this->user()->associate($user);
 
         return $this;
+    }
+
+    /**
+     * A notification belongs to a user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('Keep\User', 'user_id');
     }
 
     /**
@@ -175,29 +179,6 @@ class Notification extends Model {
     }
 
     /**
-     * Check if the object associated with the notification is valid or not.
-     *
-     * @return bool
-     */
-    public function hasValidObject()
-    {
-        try
-        {
-            $object = call_user_func_array(
-                $this->object_type . '::findOrFail', [$this->object_id]
-            );
-        }
-        catch (Exception $e)
-        {
-            return false;
-        }
-
-        $this->notificationObject = $object;
-
-        return true;
-    }
-
-    /**
      * Get notification object.
      *
      * @return null
@@ -205,12 +186,10 @@ class Notification extends Model {
      */
     public function getObject()
     {
-        if($this->notificationObject)
-        {
+        if ($this->notificationObject) {
             $hasObject = $this->hasValidObject();
 
-            if(!$hasObject)
-            {
+            if ( ! $hasObject) {
                 throw new Exception(sprintf(
                     "No valid object (%s with ID %s) associated with this notification.",
                     $this->object_type, $this->object_id
@@ -219,6 +198,26 @@ class Notification extends Model {
         }
 
         return $this->notificationObject;
+    }
+
+    /**
+     * Check if the object associated with the notification is valid or not.
+     *
+     * @return bool
+     */
+    public function hasValidObject()
+    {
+        try {
+            $object = call_user_func_array(
+                $this->object_type . '::findOrFail', [$this->object_id]
+            );
+        } catch (Exception $e) {
+            return false;
+        }
+
+        $this->notificationObject = $object;
+
+        return true;
     }
 
 }

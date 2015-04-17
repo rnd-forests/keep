@@ -14,7 +14,7 @@ class UserGroupsController extends Controller {
      *
      * @param UserGroupRepositoryInterface $groupRepository
      */
-	public function __construct(UserGroupRepositoryInterface $groupRepository)
+    public function __construct(UserGroupRepositoryInterface $groupRepository)
     {
         $this->groupRepository = $groupRepository;
     }
@@ -45,6 +45,7 @@ class UserGroupsController extends Controller {
      * Persist a new group.
      *
      * @param UserGroupRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(UserGroupRequest $request)
@@ -60,6 +61,7 @@ class UserGroupsController extends Controller {
      * Show a specific group.
      *
      * @param $slug
+     *
      * @return \Illuminate\View\View
      */
     public function show($slug)
@@ -75,6 +77,7 @@ class UserGroupsController extends Controller {
      * Get the form to update a group.
      *
      * @param $slug
+     *
      * @return \Illuminate\View\View
      */
     public function edit($slug)
@@ -89,6 +92,7 @@ class UserGroupsController extends Controller {
      *
      * @param UserGroupRequest $request
      * @param                  $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UserGroupRequest $request, $slug)
@@ -104,6 +108,7 @@ class UserGroupsController extends Controller {
      * Soft delete a group.
      *
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($slug)
@@ -119,6 +124,7 @@ class UserGroupsController extends Controller {
      * Restore a trashed group.
      *
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function restore($slug)
@@ -137,7 +143,7 @@ class UserGroupsController extends Controller {
      */
     public function trashedGroups()
     {
-        $trashedGroups = $this->groupRepository->getTrashedGroups();
+        $trashedGroups = $this->groupRepository->getTrashedGroups(10);
 
         return view('admin.groups.trashed_groups', compact('trashedGroups'));
     }
@@ -146,6 +152,7 @@ class UserGroupsController extends Controller {
      * Permanently delete a group.
      *
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function forceDeleteGroup($slug)
@@ -162,6 +169,7 @@ class UserGroupsController extends Controller {
      *
      * @param $groupSlug
      * @param $userId
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function removeUser($groupSlug, $userId)
@@ -177,6 +185,7 @@ class UserGroupsController extends Controller {
      * Remove all users from a specific group.
      *
      * @param $groupSlug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function flush($groupSlug)
@@ -192,6 +201,7 @@ class UserGroupsController extends Controller {
      * Load view to add new users to a group.
      *
      * @param $slug
+     *
      * @return \Illuminate\View\View
      */
     public function addUsers($slug)
@@ -210,6 +220,7 @@ class UserGroupsController extends Controller {
      *
      * @param                        $slug
      * @param AddUsersToGroupRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function storeNewUsers($slug, AddUsersToGroupRequest $request)
@@ -227,6 +238,7 @@ class UserGroupsController extends Controller {
      * Get the flash message after adding users.
      *
      * @param array $ids
+     *
      * @return string
      */
     private function getUpdateMembersMessage(array $ids)

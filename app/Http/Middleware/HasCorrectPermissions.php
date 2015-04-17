@@ -15,8 +15,8 @@ class HasCorrectPermissions {
      * @return mixed
      * @throws NotAuthorizedException
      */
-	public function handle($request, Closure $next)
-	{
+    public function handle($request, Closure $next)
+    {
         $auth = App::make('Illuminate\Contracts\Auth\Guard');
 
         $user = $auth->user();
@@ -25,13 +25,13 @@ class HasCorrectPermissions {
 
         if (array_key_exists('permissions', $action))
         {
-            if (! ($auth->check() && $user->ability([], $action['permissions'])))
+            if ( ! ($auth->check() && $user->ability([], $action['permissions'])))
             {
                 throw new NotAuthorizedException($user->name . ' does not have the required permission(s) to perform this request.');
             }
         }
 
-		return $next($request);
-	}
+        return $next($request);
+    }
 
 }

@@ -5,16 +5,16 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTasksTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('tasks', function(Blueprint $table)
-		{
-			$table->increments('id');
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('tasks', function (Blueprint $table)
+        {
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('destroyer_id')->unsigned();
             $table->integer('priority_id')->unsigned();
@@ -28,17 +28,17 @@ class CreateTasksTable extends Migration {
             $table->boolean('completed')->default(false);
             $table->softDeletes();
             $table->timestamps();
-		});
-	}
+        });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('tasks');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('tasks');
+    }
 
 }

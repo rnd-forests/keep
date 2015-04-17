@@ -5,16 +5,16 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateNotificationsTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('notifications', function(Blueprint $table)
-		{
-			$table->increments('id');
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('notifications', function (Blueprint $table)
+        {
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('sender_id')->nullable()->unsigned();
             $table->string('type', 128)->nullable();
@@ -26,17 +26,17 @@ class CreateNotificationsTable extends Migration {
             $table->dateTime('sent_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
-		});
-	}
+        });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('notifications');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('notifications');
+    }
 
 }

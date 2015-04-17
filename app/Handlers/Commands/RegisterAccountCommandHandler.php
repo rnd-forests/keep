@@ -13,10 +13,10 @@ class RegisterAccountCommandHandler {
      *
      * @return bool
      */
-	public function handle(RegisterAccountCommand $command)
-	{
+    public function handle(RegisterAccountCommand $command)
+    {
         return $this->registerAccount($command);
-	}
+    }
 
     /**
      * Get request data.

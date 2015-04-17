@@ -1,4 +1,4 @@
-<?php  namespace Keep\Http\Controllers\Admin;
+<?php namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
 use Keep\Repositories\Task\TaskRepositoryInterface;
@@ -35,6 +35,7 @@ class TasksController extends Controller {
      * View a specific task.
      *
      * @param $slug
+     *
      * @return \Illuminate\View\View
      */
     public function showTask($slug)
@@ -48,6 +49,7 @@ class TasksController extends Controller {
      * Soft delete a task.
      *
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function softDelete($slug)
@@ -66,7 +68,7 @@ class TasksController extends Controller {
      */
     public function trashedTasks()
     {
-        $trashedTasks = $this->taskRepository->getTrashedTasks();
+        $trashedTasks = $this->taskRepository->getTrashedTasks(50);
 
         return view('admin.tasks.trashed_tasks', compact('trashedTasks'));
     }
@@ -75,6 +77,7 @@ class TasksController extends Controller {
      * Restore a soft delete task.
      *
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function restoreTask($slug)
@@ -90,6 +93,7 @@ class TasksController extends Controller {
      * Permanently delete a task.
      *
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function forceDeleteTask($slug)

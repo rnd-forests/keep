@@ -14,11 +14,11 @@ class ModifyPasswordCommandHandler {
      * @param BcryptHasher            $bcrypt
      * @param UserRepositoryInterface $userRepository
      */
-	public function __construct(BcryptHasher $bcrypt, UserRepositoryInterface $userRepository)
-	{
+    public function __construct(BcryptHasher $bcrypt, UserRepositoryInterface $userRepository)
+    {
         $this->bcrypt = $bcrypt;
         $this->userRepository = $userRepository;
-	}
+    }
 
     /**
      * Handle the command.
@@ -27,10 +27,10 @@ class ModifyPasswordCommandHandler {
      *
      * @return bool
      */
-	public function handle(ModifyPasswordCommand $command)
-	{
+    public function handle(ModifyPasswordCommand $command)
+    {
         return $this->modifyPassword($command);
-	}
+    }
 
     /**
      * Check the old password.
@@ -56,10 +56,7 @@ class ModifyPasswordCommandHandler {
     {
         $user = $this->userRepository->findById($this->userRepository->getAuthUser()->id);
 
-        if ( ! $this->checkOldPassword($command, $user))
-        {
-            return false;
-        }
+        if ( ! $this->checkOldPassword($command, $user)) return false;
 
         $user->password = $command->getNewPassword();
 

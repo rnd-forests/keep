@@ -1,4 +1,4 @@
-<?php  namespace Keep\Handlers\Events;
+<?php namespace Keep\Handlers\Events;
 
 use App;
 use Keep\Events\TaskWasCreatedEvent;

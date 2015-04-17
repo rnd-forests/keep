@@ -15,11 +15,11 @@ class ConfirmAccountCommandHandler {
      * @param Guard                   $auth
      * @param UserRepositoryInterface $userRepository
      */
-	public function __construct(Guard $auth, UserRepositoryInterface $userRepository)
-	{
+    public function __construct(Guard $auth, UserRepositoryInterface $userRepository)
+    {
         $this->auth = $auth;
-		$this->userRepository = $userRepository;
-	}
+        $this->userRepository = $userRepository;
+    }
 
     /**
      * Handle the command.
@@ -28,12 +28,12 @@ class ConfirmAccountCommandHandler {
      *
      * @return bool
      */
-	public function handle(ConfirmAccountCommand $command)
-	{
+    public function handle(ConfirmAccountCommand $command)
+    {
         $user = $this->activateAccount($command);
 
         return $this->persistActivatedAccount($user);
-	}
+    }
 
     /**
      * Activate user account.
@@ -62,10 +62,7 @@ class ConfirmAccountCommandHandler {
      */
     private function persistActivatedAccount($user)
     {
-        if ( ! $user->save())
-        {
-            return false;
-        }
+        if ( ! $user->save()) return false;
 
         event(new UserWasActivatedEvent($user));
 

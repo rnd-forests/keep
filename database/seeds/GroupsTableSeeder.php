@@ -13,7 +13,7 @@ class GroupsTableSeeder extends Seeder {
         for ($i = 1; $i <= 50; $i++)
         {
             Group::create([
-                'name' => ucfirst(implode(' ', $faker->words(4))),
+                'name'        => ucfirst(implode(' ', $faker->words(4))),
                 'description' => $faker->paragraph(2)
             ]);
         }

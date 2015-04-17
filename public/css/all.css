@@ -10692,6 +10692,9 @@ button.close {
   width: 100%;
   margin-top: 30px; }
 
+.global-flash-message .close {
+  margin-left: 10px; }
+
 .summernote-container .control-label {
   font-weight: normal;
   color: #8d9aa5; }
@@ -11688,15 +11691,15 @@ fieldset[disabled] .btn-violet {
     margin-top: 5px;
     margin-right: 10px; }
   .select2-container--default .select2-selection--multiple .select2-selection__choice {
-    background-color: #4183c4;
-    border: 1px solid #4183c4;
+    background-color: #1ab394;
     color: #ffffff;
+    font-size: 14px;
     border-radius: 4px;
     cursor: default;
     float: left;
     margin-right: 5px;
     margin-top: 5px;
-    padding: 0 5px; }
+    padding: 2px 5px; }
   .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
     color: #ffffff;
     cursor: pointer;
@@ -11728,7 +11731,8 @@ fieldset[disabled] .btn-violet {
 .select2-container--default .select2-results__option[aria-disabled=true] {
   color: #999; }
 .select2-container--default .select2-results__option[aria-selected=true] {
-  background-color: #ddd; }
+  background-color: #666;
+  color: #ffffff; }
 .select2-container--default .select2-results__option .select2-results__option {
   padding-left: 1em; }
   .select2-container--default .select2-results__option .select2-results__option .select2-results__group {
@@ -11749,8 +11753,8 @@ fieldset[disabled] .btn-violet {
             margin-left: -5em;
             padding-left: 6em; }
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-  background-color: #ffffff;
-  color: #333333; }
+  background-color: #1ab394;
+  color: #ffffff; }
 .select2-container--default .select2-results__group {
   cursor: default;
   display: block;

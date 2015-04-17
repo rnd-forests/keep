@@ -1,4 +1,4 @@
-<?php  namespace Keep\Repositories\Tag; 
+<?php namespace Keep\Repositories\Tag;
 
 use Keep\Tag;
 

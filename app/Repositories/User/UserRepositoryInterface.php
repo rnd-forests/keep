@@ -7,7 +7,7 @@ interface UserRepositoryInterface {
     /**
      * Retrieve the collection of all users.
      *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function all();
 
@@ -35,9 +35,10 @@ interface UserRepositoryInterface {
     public function getAuthUser();
 
     /**
-     * Find a user by Id.
+     * Find a user by ID.
      *
      * @param $id
+     *
      * @return mixed
      */
     public function findById($id);
@@ -46,6 +47,7 @@ interface UserRepositoryInterface {
      * Find a user by slug.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function findBySlug($slug);
@@ -54,6 +56,7 @@ interface UserRepositoryInterface {
      * Find a user by slug with eager loading tasks.
      *
      * @param $slug
+     *
      * @return \Illuminate\Database\Eloquent\Model|static
      */
     public function findBySlugWithTasks($slug);
@@ -63,6 +66,7 @@ interface UserRepositoryInterface {
      *
      * @param $code
      * @param $state
+     *
      * @return mixed
      */
     public function findByCodeAndActiveState($code, $state);
@@ -71,6 +75,7 @@ interface UserRepositoryInterface {
      * Create a new user.
      *
      * @param array $credentials
+     *
      * @return static
      */
     public function create(array $credentials);
@@ -80,6 +85,7 @@ interface UserRepositoryInterface {
      *
      * @param       $slug
      * @param array $credentials
+     *
      * @return mixed
      */
     public function update($slug, array $credentials);
@@ -88,6 +94,7 @@ interface UserRepositoryInterface {
      * Restore a disabled user.
      *
      * @param $slug
+     *
      * @return bool
      */
     public function restore($slug);
@@ -96,6 +103,7 @@ interface UserRepositoryInterface {
      * Soft delete a user.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function delete($slug);
@@ -104,6 +112,7 @@ interface UserRepositoryInterface {
      * Permanently delete a user.
      *
      * @param $slug
+     *
      * @return void
      */
     public function forceDelete($slug);
@@ -111,14 +120,17 @@ interface UserRepositoryInterface {
     /**
      * Get the trashed users.
      *
+     * @param $limit
+     *
      * @return mixed
      */
-    public function getTrashedUsers();
+    public function getTrashedUsers($limit);
 
     /**
      * Find a trashed user by slug.
      *
      * @param $slug
+     *
      * @return \Illuminate\Database\Eloquent\Model|static
      */
     public function findTrashedUserBySlug($slug);
@@ -128,6 +140,7 @@ interface UserRepositoryInterface {
      *
      * @param $user
      * @param $limit
+     *
      * @return mixed
      */
     public function getPaginatedAssociatedTasks($user, $limit);

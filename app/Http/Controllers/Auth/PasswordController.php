@@ -11,6 +11,7 @@ class PasswordController extends Controller {
 
     /**
      * Redirecting path.
+     *
      * @var string
      */
     protected $redirectTo = '/';
@@ -21,13 +22,13 @@ class PasswordController extends Controller {
      * @param  Guard          $auth
      * @param  PasswordBroker $passwords
      */
-	public function __construct(Guard $auth, PasswordBroker $passwords)
-	{
-		$this->auth = $auth;
-		$this->passwords = $passwords;
+    public function __construct(Guard $auth, PasswordBroker $passwords)
+    {
+        $this->auth = $auth;
+        $this->passwords = $passwords;
         $this->subject = 'Recover your account password at Keep';
 
-		$this->middleware('guest');
-	}
+        $this->middleware('guest');
+    }
 
 }

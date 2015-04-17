@@ -39,7 +39,8 @@
         }
 
         &[aria-selected=true] {
-            background-color: #ddd;
+            background-color: #666;
+            color: #ffffff;
         }
 
         .select2-results__option {
@@ -77,8 +78,8 @@
     }
 
     .select2-results__option--highlighted[aria-selected] {
-        background-color: #ffffff;
-        color: #333333;
+        background-color: #1ab394;
+        color: #ffffff;
     }
 
     .select2-results__group {

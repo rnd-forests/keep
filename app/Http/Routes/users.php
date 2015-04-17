@@ -1,16 +1,16 @@
 <?php
 
 Route::get('{users}', [
-    'as' => 'users.show',
+    'as'   => 'users.show',
     'uses' => 'UsersController@show'
 ]);
 
 Route::match(['put', 'patch'], '{users}', [
-    'as' => 'users.update',
+    'as'   => 'users.update',
     'uses' => 'UsersController@update'
 ]);
 
 Route::delete('{users}', [
-    'as' => 'users.destroy',
+    'as'   => 'users.destroy',
     'uses' => 'UsersController@destroy'
 ]);

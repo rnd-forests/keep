@@ -13,18 +13,18 @@ class VerifyConfirmedAccount {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-	public function handle($request, Closure $next)
-	{
+    public function handle($request, Closure $next)
+    {
         $auth = App::make('Illuminate\Contracts\Auth\Guard');
 
-        if (! $auth->user()->isConfirmed())
+        if ( ! $auth->user()->isConfirmed())
         {
             flash()->warning('Confirm your email address before performing this action.');
 
             return redirect()->route('home');
         }
 
-		return $next($request);
-	}
+        return $next($request);
+    }
 
 }

@@ -1,4 +1,4 @@
-<?php  namespace Keep\Http\Controllers\Admin; 
+<?php namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
 use Keep\Repositories\User\UserRepositoryInterface;
@@ -7,6 +7,7 @@ class UsersController extends Controller {
 
     /**
      * User repository.
+     *
      * @var UserRepositoryInterface
      */
     protected $userRepository;
@@ -42,7 +43,7 @@ class UsersController extends Controller {
      */
     public function disabledAccounts()
     {
-        $disabledAccounts = $this->userRepository->getTrashedUsers();
+        $disabledAccounts = $this->userRepository->getTrashedUsers(25);
 
         return view('admin.accounts.disabled_accounts', compact('disabledAccounts'));
     }

@@ -1,10 +1,7 @@
-<?php  namespace Keep\Presenters; 
+<?php namespace Keep\Presenters;
 
 use Laracasts\Presenter\Presenter;
 
-/**
- * @property mixed email
- */
 class UserPresenter extends Presenter {
 
     use KeepPresentableTrait;
@@ -13,6 +10,7 @@ class UserPresenter extends Presenter {
      * Get user gravatar picture.
      *
      * @param int $size
+     *
      * @return string
      */
     public function gravatar($size = 35)
@@ -26,16 +24,14 @@ class UserPresenter extends Presenter {
      * Print user model attributes.
      *
      * @param $attribute
+     *
      * @return string
      */
     public function attribute($attribute)
     {
-        if (empty($attribute))
-        {
-            return '-';
-        }
+        if (empty($attribute)) return '-';
 
         return $attribute;
     }
-    
+
 }

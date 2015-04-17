@@ -1,4 +1,4 @@
-<?php  namespace Keep\Http\Composers; 
+<?php namespace Keep\Http\Composers;
 
 use App;
 use Illuminate\Contracts\View\View;
@@ -13,9 +13,9 @@ class TaskFormComposer {
     public function compose(View $view)
     {
         $tags = App::make('Keep\Repositories\Tag\TagRepositoryInterface');
-        $priorities = App::make('Keep\Repositories\Priority\PriorityRepositoryInterface');
-
         $view->with('tags', $tags->lists());
+
+        $priorities = App::make('Keep\Repositories\Priority\PriorityRepositoryInterface');
         $view->with('priorities', $priorities->lists());
     }
 

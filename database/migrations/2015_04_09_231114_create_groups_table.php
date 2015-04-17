@@ -5,14 +5,15 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateGroupsTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('groups', function(Blueprint $table) {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('groups', function (Blueprint $table)
+        {
             $table->increments('id');
             $table->string('name');
             $table->string('slug')->unique();
@@ -20,16 +21,16 @@ class CreateGroupsTable extends Migration {
             $table->softDeletes();
             $table->timestamps();
         });
-	}
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('groups');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('groups');
+    }
 
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') | Keep</title>
     <meta name="description" content="@yield('title')">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
 

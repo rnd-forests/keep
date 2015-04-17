@@ -4,7 +4,7 @@
 //    var_dump($sql);
 //});
 
-foreach(File::allFiles(__DIR__ . '/Routes') as $routePartial)
+foreach (File::allFiles(__DIR__ . '/Routes') as $routePartial)
 {
     require_once $routePartial->getPathname();
 }

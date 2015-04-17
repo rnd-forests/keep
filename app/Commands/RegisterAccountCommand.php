@@ -3,13 +3,13 @@
 class RegisterAccountCommand extends Command {
 
     protected $name, $email, $password;
-    
-	public function __construct($name, $email, $password)
-	{
-		$this->name = $name;
+
+    public function __construct($name, $email, $password)
+    {
+        $this->name = $name;
         $this->email = $email;
         $this->password = $password;
-	}
+    }
 
     public function getName()
     {

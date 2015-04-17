@@ -6,21 +6,15 @@ use Illuminate\Queue\SerializesModels;
 
 class TaskWasCreatedEvent extends Event {
 
-	use SerializesModels;
+    use SerializesModels;
 
     protected $user, $task;
 
-    /**
-     * Create new event instance.
-     *
-     * @param User $user
-     * @param Task $task
-     */
-	public function __construct(User $user, Task $task)
-	{
-		$this->user = $user;
+    public function __construct(User $user, Task $task)
+    {
+        $this->user = $user;
         $this->task = $task;
-	}
+    }
 
     public function getUser()
     {

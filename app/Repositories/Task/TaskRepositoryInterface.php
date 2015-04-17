@@ -5,12 +5,12 @@ interface TaskRepositoryInterface {
     /**
      * Retrieve the collection of all tasks.
      *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function all();
 
     /**
-     * Get the number of current tasks.
+     * Get the number of current active tasks.
      *
      * @return int
      */
@@ -20,6 +20,7 @@ interface TaskRepositoryInterface {
      * Retrieve the paginated collection of tasks.
      *
      * @param $limit
+     *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function getPaginatedTasks($limit);
@@ -28,6 +29,7 @@ interface TaskRepositoryInterface {
      * Find a task by ID.
      *
      * @param $id
+     *
      * @return mixed
      */
     public function findById($id);
@@ -36,6 +38,7 @@ interface TaskRepositoryInterface {
      * Find a task by slug.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function findBySlug($slug);
@@ -45,6 +48,7 @@ interface TaskRepositoryInterface {
      *
      * @param $userId
      * @param $taskId
+     *
      * @return mixed
      */
     public function findCorrectTaskById($userId, $taskId);
@@ -54,6 +58,7 @@ interface TaskRepositoryInterface {
      *
      * @param $userSlug
      * @param $taskSlug
+     *
      * @return mixed
      */
     public function findCorrectTaskBySlug($userSlug, $taskSlug);
@@ -62,6 +67,7 @@ interface TaskRepositoryInterface {
      * Create a new task.
      *
      * @param array $data
+     *
      * @return static
      */
     public function create(array $data);
@@ -72,6 +78,7 @@ interface TaskRepositoryInterface {
      * @param       $userSlug
      * @param       $taskSlug
      * @param array $data
+     *
      * @return mixed
      */
     public function update($userSlug, $taskSlug, array $data);
@@ -81,6 +88,7 @@ interface TaskRepositoryInterface {
      *
      * @param $userSlug
      * @param $taskSlug
+     *
      * @return mixed
      */
     public function deleteWithUserConstraint($userSlug, $taskSlug);
@@ -89,14 +97,16 @@ interface TaskRepositoryInterface {
      * Soft delete a task.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function delete($slug);
 
     /**
-     * Restore a soft delete task.
+     * Restore a soft deleted task.
      *
      * @param $slug
+     *
      * @return bool
      */
     public function restore($slug);
@@ -105,6 +115,7 @@ interface TaskRepositoryInterface {
      * Force delete a task.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function forceDelete($slug);
@@ -112,14 +123,17 @@ interface TaskRepositoryInterface {
     /**
      * Get the trashed tasks.
      *
+     * @param $limit
+     *
      * @return mixed
      */
-    public function getTrashedTasks();
+    public function getTrashedTasks($limit);
 
     /**
      * Find a trashed task by slug.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function findTrashedTaskBySlug($slug);
@@ -129,6 +143,7 @@ interface TaskRepositoryInterface {
      *
      * @param $userSlug
      * @param $taskSlug
+     *
      * @return mixed
      */
     public function complete($userSlug, $taskSlug);
@@ -138,6 +153,7 @@ interface TaskRepositoryInterface {
      *
      * @param       $task
      * @param array $tags
+     *
      * @return mixed
      */
     public function syncTags($task, array $tags);
@@ -147,6 +163,7 @@ interface TaskRepositoryInterface {
      *
      * @param $task
      * @param $priorityId
+     *
      * @return mixed
      */
     public function associatePriority($task, $priorityId);

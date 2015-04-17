@@ -10,29 +10,29 @@ class PermissionsTableSeeder extends Seeder {
     {
         $adminPermissions = [
             [
-                'name' => 'create-task',
+                'name'         => 'create-task',
                 'display_name' => 'Create tasks',
-                'description' => 'Create new tasks'
+                'description'  => 'Create new tasks'
             ],
             [
-                'name' => 'edit-user',
+                'name'         => 'edit-user',
                 'display_name' => 'Edit Users',
-                'description' => 'User is allowed to edit information of accounts in the system'
+                'description'  => 'User is allowed to edit information of accounts in the system'
             ],
             [
-                'name' => 'edit-task',
+                'name'         => 'edit-task',
                 'display_name' => 'Edit tasks',
-                'description' => 'User is allowed to modify tasks of other users in the system'
+                'description'  => 'User is allowed to modify tasks of other users in the system'
             ],
             [
-                'name' => 'send-notification',
+                'name'         => 'send-notification',
                 'display_name' => 'Send notifications',
-                'description' => 'User is allowed to send notifications to individual user or user groups in the system'
+                'description'  => 'User is allowed to send notifications to individual user or user groups in the system'
             ],
             [
-                'name' => 'manage-group',
+                'name'         => 'manage-group',
                 'display_name' => 'Manage User Groups',
-                'description' => 'User is allowed to create/edit user groups in the system'
+                'description'  => 'User is allowed to create/edit user groups in the system'
             ]
         ];
 

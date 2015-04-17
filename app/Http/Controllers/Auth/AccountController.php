@@ -22,7 +22,7 @@ class AccountController extends Controller {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-	public function changePassword(EditUserPasswordRequest $request)
+    public function changePassword(EditUserPasswordRequest $request)
     {
         if ($this->dispatchFrom(ModifyPasswordCommand::class, $request))
         {

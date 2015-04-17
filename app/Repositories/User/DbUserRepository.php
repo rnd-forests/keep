@@ -1,4 +1,4 @@
-<?php  namespace Keep\Repositories\User; 
+<?php namespace Keep\Repositories\User;
 
 use Auth;
 use Keep\Task;
@@ -51,9 +51,9 @@ class DbUserRepository implements UserRepositoryInterface {
     public function create(array $credentials)
     {
         return User::create([
-            'name' => $credentials['name'],
-            'email' => $credentials['email'],
-            'password' => $credentials['password'],
+            'name'            => $credentials['name'],
+            'email'           => $credentials['email'],
+            'password'        => $credentials['password'],
             'activation_code' => str_random(60)
         ]);
     }
@@ -80,7 +80,7 @@ class DbUserRepository implements UserRepositoryInterface {
     {
         $user = $this->findBySlug($slug);
 
-        Task::whereIn('id', $user->tasks()->lists('id'))->get()->each(function($task) {
+        Task::whereIn('id', $user->tasks()->lists('id'))->get()->each(function ($task) {
             $task->delete();
         });
 
@@ -96,9 +96,9 @@ class DbUserRepository implements UserRepositoryInterface {
         $user->forceDelete();
     }
 
-    public function getTrashedUsers()
+    public function getTrashedUsers($limit)
     {
-        return User::onlyTrashed()->latest('deleted_at')->paginate(25);
+        return User::onlyTrashed()->latest('deleted_at')->paginate($limit);
     }
 
     public function findTrashedUserBySlug($slug)
