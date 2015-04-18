@@ -16,7 +16,7 @@ class InitializeSessionCommandHandler {
     {
         $auth = App::make('Illuminate\Contracts\Auth\Guard');
 
-        return $auth->attempt($this->getRequestData($command), $command->getRemember());
+        return $auth->attempt($this->getRequestData($command), $command->remember);
     }
 
     /**
@@ -29,9 +29,9 @@ class InitializeSessionCommandHandler {
     private function getRequestData(InitializeSessionCommand $command)
     {
         $credentials = array(
-            'email'    => $command->getEmail(),
-            'password' => $command->getPassword(),
-            'active'   => $command->getActive(),
+            'email'    => $command->email,
+            'password' => $command->password,
+            'active'   => $command->active,
         );
 
         return $credentials;

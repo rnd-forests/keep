@@ -28,9 +28,9 @@ class RegisterAccountCommandHandler {
     private function getRequestData(RegisterAccountCommand $command)
     {
         $credentials = array(
-            'name'     => $command->getName(),
-            'email'    => $command->getEmail(),
-            'password' => $command->getPassword()
+            'name'     => $command->name,
+            'email'    => $command->email,
+            'password' => $command->password
         );
 
         return $credentials;

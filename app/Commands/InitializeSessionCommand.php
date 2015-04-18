@@ -2,7 +2,10 @@
 
 class InitializeSessionCommand extends Command {
 
-    protected $email, $password, $active, $remember;
+    public $email;
+    public $password;
+    public $active;
+    public $remember;
 
     public function __construct($email, $password, $active, $remember)
     {
@@ -10,26 +13,6 @@ class InitializeSessionCommand extends Command {
         $this->password = $password;
         $this->active = $active;
         $this->remember = $remember;
-    }
-
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    public function getActive()
-    {
-        return $this->active;
-    }
-
-    public function getRemember()
-    {
-        return $this->remember;
     }
 
 }

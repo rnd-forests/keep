@@ -44,7 +44,7 @@ class ConfirmAccountCommandHandler {
      */
     private function activateAccount(ConfirmAccountCommand $command)
     {
-        $user = $this->userRepository->findByCodeAndActiveState($command->getCode(), false);
+        $user = $this->userRepository->findByCodeAndActiveState($command->code, false);
 
         $user->activation_code = '';
 

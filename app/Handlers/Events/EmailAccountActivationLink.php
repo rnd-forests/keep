@@ -15,7 +15,7 @@ class EmailAccountActivationLink implements ShouldBeQueued {
     {
         $mailer = App::make('Keep\Mailers\UserMailer');
 
-        $mailer->sendAccountActivationLink($event->getUser(), $event->getUser()->activation_code);
+        $mailer->sendAccountActivationLink($event->user, $event->user->activation_code);
     }
 
 }

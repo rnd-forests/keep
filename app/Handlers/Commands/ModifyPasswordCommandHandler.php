@@ -42,7 +42,7 @@ class ModifyPasswordCommandHandler {
      */
     private function checkOldPassword(ModifyPasswordCommand $command, $user)
     {
-        return $this->bcrypt->check($command->getOldPassword(), $user->password);
+        return $this->bcrypt->check($command->oldPassword, $user->password);
     }
 
     /**
@@ -58,7 +58,7 @@ class ModifyPasswordCommandHandler {
 
         if ( ! $this->checkOldPassword($command, $user)) return false;
 
-        $user->password = $command->getNewPassword();
+        $user->password = $command->newPassword;
 
         return $user->save();
     }

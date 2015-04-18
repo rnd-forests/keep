@@ -17,7 +17,7 @@ class EmailActivatedAccount implements ShouldBeQueued {
     {
         $mailer = App::make('Keep\Mailers\UserMailer');
 
-        $mailer->sendAccountActivatedConfirmation($event->getUser());
+        $mailer->sendAccountActivatedConfirmation($event->user);
     }
 
 }

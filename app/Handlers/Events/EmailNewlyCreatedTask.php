@@ -15,7 +15,7 @@ class EmailNewlyCreatedTask implements ShouldBeQueued {
     {
         $mailer = App::make('Keep\Mailers\UserMailer');
 
-        $mailer->sendNotificationAboutNewTask($event->getUser(), $event->getTask());
+        $mailer->sendNotificationAboutNewTask($event->user, $event->task);
     }
 
 }
