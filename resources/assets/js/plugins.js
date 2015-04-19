@@ -15,6 +15,14 @@
         placeholder: 'Search and choose users to add'
     });
 
+    $('#user_list').select2({
+        placeholder: 'Choose members to assign this task to'
+    });
+
+    $('#group_list').select2({
+        placeholder: 'Select groups assign this task to'
+    });
+
     $('#summernote').summernote({
         focus: true,
         fontNames: [

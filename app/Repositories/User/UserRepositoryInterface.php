@@ -145,4 +145,13 @@ interface UserRepositoryInterface {
      */
     public function getPaginatedAssociatedTasks($user, $limit);
 
+    /**
+     * Fetch the collection of users by IDs.
+     *
+     * @param array $ids
+     *
+     * @return mixed
+     */
+    public function fetchUsersByIds(array $ids);
+
 }

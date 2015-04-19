@@ -18,7 +18,7 @@
     <![endif]-->
 </head>
 <body class="admin-panel">
-    @include('admin.partials.nav')
+    @include('admin.layouts.nav')
 
     <div class="container">
         @include('flash::message')

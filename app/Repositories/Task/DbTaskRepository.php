@@ -19,7 +19,7 @@ class DbTaskRepository implements TaskRepositoryInterface {
 
     public function getPaginatedTasks($limit)
     {
-        return Task::with('owner', 'priority')->paginate($limit);
+        return Task::with('owner', 'priority')->orderBy('created_at', 'desc')->paginate($limit);
     }
 
     public function findById($id)
@@ -52,7 +52,8 @@ class DbTaskRepository implements TaskRepositoryInterface {
             'location'       => $data['location'],
             'starting_date'  => $data['starting_date'],
             'finishing_date' => $data['finishing_date'],
-            'completed'      => false
+            'completed'      => false,
+            'isAssigned'     => false
         ]);
     }
 

@@ -38,7 +38,11 @@
                             <td>{{ $task->id }}</td>
                             <td class="text-center">{{ $task->present()->formatTime($task->deleted_at) }}</td>
                             <td class="text-center">{{ $task->destroyer->name }}</td>
-                            <td class="text-center">{{ $task->owner->name }}</td>
+                            @if(isset($task->owner))
+                                <td class="text-center">{{ $task->owner->name }}</td>
+                            @else
+                                <td class="text-center text-navy">Administrator</td>
+                            @endif
                             <td class="text-navy">{{ $task->title }}</td>
                             <td class="text-center">{{ $task->priority->name }}</td>
                             <td class="text-center">{{ $task->present()->formatTime($task->starting_date) }}</td>

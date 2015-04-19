@@ -98,6 +98,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
+     * A User can have many associated assignments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function assignments()
+    {
+        return $this->morphToMany('Keep\Assignment', 'assignable');
+    }
+
+    /**
      * Determine if the user has confirmed his email address already or not.
      *
      * @return bool

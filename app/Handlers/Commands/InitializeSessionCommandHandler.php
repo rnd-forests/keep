@@ -28,13 +28,11 @@ class InitializeSessionCommandHandler {
      */
     private function getRequestData(InitializeSessionCommand $command)
     {
-        $credentials = array(
+        return array(
             'email'    => $command->email,
             'password' => $command->password,
             'active'   => $command->active,
         );
-
-        return $credentials;
     }
 
 }

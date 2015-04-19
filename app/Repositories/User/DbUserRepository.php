@@ -111,4 +111,9 @@ class DbUserRepository implements UserRepositoryInterface {
         return $user->tasks()->latest('created_at')->paginate($limit);
     }
 
+    public function fetchUsersByIds(array $ids)
+    {
+        return User::whereIn('id', $ids)->get();
+    }
+
 }

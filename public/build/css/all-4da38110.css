@@ -11525,10 +11525,12 @@ fieldset[disabled] .btn-violet {
     box-sizing: border-box;
     cursor: pointer;
     display: block;
-    height: 28px;
-    -moz-user-select: none;
-     -ms-user-select: none;
-         user-select: none;
+    height: 46px;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    padding: 8px 7px;
     -webkit-user-select: none; }
     .select2-container .select2-selection--single .select2-selection__rendered {
       display: block;
@@ -11610,7 +11612,8 @@ fieldset[disabled] .btn-violet {
   .select2-search--dropdown .select2-search__field {
     padding: 4px;
     width: 100%;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    border: none; }
     .select2-search--dropdown .select2-search__field::-webkit-search-cancel-button {
       -webkit-appearance: none; }
   .select2-search--dropdown.select2-search--hide {
@@ -11646,7 +11649,7 @@ fieldset[disabled] .btn-violet {
   .select2-container--default .select2-selection--single .select2-selection__placeholder {
     color: #999; }
   .select2-container--default .select2-selection--single .select2-selection__arrow {
-    height: 26px;
+    height: 46px;
     position: absolute;
     top: 1px;
     right: 1px;

@@ -48,4 +48,14 @@ class Group extends Model implements SluggableInterface {
         return $this->belongsToMany('Keep\User');
     }
 
+    /**
+     * A group can have many associated assignments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function assignments()
+    {
+        return $this->morphToMany('Keep\Assignment', 'assignable');
+    }
+
 }

@@ -1,6 +1,8 @@
 <?php namespace Keep\Providers;
 
+use DB;
 use Auth;
+use Keep\Assignment;
 use Keep\Task;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -43,6 +45,11 @@ class EventServiceProvider extends ServiceProvider {
         Task::restoring(function ($task) {
             $task->destroyer_id = 0;
             $task->save();
+        });
+
+        Assignment::deleting(function ($assignment) {
+            $assignment->task()->forceDelete();
+            DB::table('assignables')->where('assignment_id', $assignment->id)->delete();
         });
     }
 

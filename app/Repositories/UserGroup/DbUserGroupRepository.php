@@ -94,4 +94,9 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
         $group->users()->attach($users);
     }
 
+    public function fetchGroupsByIds(array $ids)
+    {
+        return Group::whereIn('id', $ids)->get();
+    }
+
 }

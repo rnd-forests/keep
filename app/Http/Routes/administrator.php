@@ -138,4 +138,25 @@ Route::group(['middleware' => ['auth', 'auth.confirmed', 'valid.admin.user'], 'p
         'as'   => 'admin.force.delete.task',
         'uses' => 'TasksController@forceDeleteTask'
     ]);
+
+
+    Route::get('member/assignments/create', [
+        'as'   => 'member.assignments',
+        'uses' => 'AssignmentsController@createMemberAssignment'
+    ]);
+
+    Route::post('member/assignments', [
+        'as'   => 'store.member.assignment',
+        'uses' => 'AssignmentsController@storeMemberAssignment'
+    ]);
+
+    Route::get('group/assignments/create', [
+        'as'   => 'group.assignments',
+        'uses' => 'AssignmentsController@createGroupAssignment'
+    ]);
+
+    Route::post('group/assignments', [
+        'as'   => 'store.group.assignment',
+        'uses' => 'AssignmentsController@storeGroupAssignment'
+    ]);
 });

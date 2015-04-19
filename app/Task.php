@@ -44,7 +44,7 @@ class Task extends Model implements SluggableInterface {
      *
      * @var array
      */
-    protected $casts = ['completed' => 'boolean'];
+    protected $casts = ['completed' => 'boolean', 'isAssigned' => 'boolean'];
 
     /**
      * The attributes that are mass assignable.
@@ -52,8 +52,8 @@ class Task extends Model implements SluggableInterface {
      * @var array
      */
     protected $fillable = [
-        'title', 'slug', 'content', 'owner_id', 'location', 'destroyer_id', 'creator_id',
-        'starting_date', 'finishing_date', 'finished_at', 'completed', 'priority_id'
+        'title', 'slug', 'content', 'owner_id', 'location', 'destroyer_id', 'creator_id', 'assignment_id',
+        'starting_date', 'finishing_date', 'finished_at', 'completed', 'priority_id', 'isAssigned'
     ];
 
     /**
@@ -94,6 +94,16 @@ class Task extends Model implements SluggableInterface {
     public function priority()
     {
         return $this->belongsTo('Keep\Priority', 'priority_id');
+    }
+
+    /**
+     * A task belongs to a specific assignment.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function assignment()
+    {
+        return $this->belongsTo('Keep\Assignment');
     }
 
     /**

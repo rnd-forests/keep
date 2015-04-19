@@ -18,6 +18,7 @@ class CreateTasksTable extends Migration {
             $table->integer('user_id')->unsigned();
             $table->integer('destroyer_id')->unsigned();
             $table->integer('priority_id')->unsigned();
+            $table->integer('assignment_id')->unsigned();
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('content');
@@ -26,6 +27,7 @@ class CreateTasksTable extends Migration {
             $table->timestamp('finishing_date');
             $table->timestamp('finished_at')->nullable();
             $table->boolean('completed')->default(false);
+            $table->boolean('isAssigned')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

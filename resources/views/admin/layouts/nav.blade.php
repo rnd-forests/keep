@@ -33,11 +33,17 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tasks <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Assign Tasks</a></li>
-                        <div class="divider"></div>
                         <li><a href="{{ route('admin.manage.tasks') }}">Active Tasks</a></li>
                         <div class="divider"></div>
                         <li><a href="{{ route('admin.trashed.tasks') }}">Trashed Tasks</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" data-toggle="modal" data-target="#assignment-selection-modal">Create Assignment</a></li>
+                        <div class="divider"></div>
+                        <li><a href="#">Assignment List</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -56,3 +62,5 @@
         </div>
     </div>
 </nav>
+
+@include('admin.layouts.assignment_selection')

@@ -136,4 +136,13 @@ interface UserGroupRepositoryInterface {
      */
     public function attachUsers($group, array $users);
 
+    /**
+     * Fetch a collection of groups by their IDs.
+     *
+     * @param array $ids
+     *
+     * @return mixed
+     */
+    public function fetchGroupsByIds(array $ids);
+
 }

@@ -20,6 +20,7 @@ class TasksTableSeeder extends Seeder {
                 'content'        => implode(" ", $faker->paragraphs(1)),
                 'location'       => $faker->address,
                 'completed'      => true,
+                'isAssigned'     => false,
                 'starting_date'  => Carbon::now(),
                 'finishing_date' => Carbon::now()->addDays(rand(5, 20))
             ]);
@@ -33,6 +34,7 @@ class TasksTableSeeder extends Seeder {
                 'title'          => ucfirst(implode(" ", $faker->words(5))),
                 'content'        => implode(" ", $faker->paragraphs(1)),
                 'location'       => $faker->address,
+                'isAssigned'     => false,
                 'starting_date'  => Carbon::now(),
                 'finishing_date' => Carbon::now()->addDays(rand(5, 50))
             ]);

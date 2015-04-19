@@ -27,13 +27,11 @@ class RegisterAccountCommandHandler {
      */
     private function getRequestData(RegisterAccountCommand $command)
     {
-        $credentials = array(
+        return array(
             'name'     => $command->name,
             'email'    => $command->email,
             'password' => $command->password
         );
-
-        return $credentials;
     }
 
     /**
