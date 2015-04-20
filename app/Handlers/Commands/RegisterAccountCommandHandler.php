@@ -19,22 +19,6 @@ class RegisterAccountCommandHandler {
     }
 
     /**
-     * Get request data.
-     *
-     * @param RegisterAccountCommand $command
-     *
-     * @return array
-     */
-    private function getRequestData(RegisterAccountCommand $command)
-    {
-        return array(
-            'name'     => $command->name,
-            'email'    => $command->email,
-            'password' => $command->password
-        );
-    }
-
-    /**
      * Register new account.
      *
      * @param RegisterAccountCommand $command
@@ -52,6 +36,22 @@ class RegisterAccountCommandHandler {
         event(new UserWasRegisteredEvent($user));
 
         return true;
+    }
+
+    /**
+     * Get request data.
+     *
+     * @param RegisterAccountCommand $command
+     *
+     * @return array
+     */
+    private function getRequestData(RegisterAccountCommand $command)
+    {
+        return array(
+            'name'     => $command->name,
+            'email'    => $command->email,
+            'password' => $command->password
+        );
     }
 
 }

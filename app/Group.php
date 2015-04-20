@@ -18,13 +18,6 @@ class Group extends Model implements SluggableInterface {
     protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
 
     /**
-     * Table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'groups';
-
-    /**
      * Group presenter.
      *
      * @var string

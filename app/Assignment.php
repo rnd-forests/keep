@@ -16,13 +16,6 @@ class Assignment extends Model implements SluggableInterface {
     protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
 
     /**
-     * Table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'assignments';
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array

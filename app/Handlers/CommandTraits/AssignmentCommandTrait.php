@@ -4,7 +4,24 @@ use Keep\Task;
 use Keep\Assignment;
 use Illuminate\Support\Collection;
 
-trait AssignableTrait {
+trait AssignmentCommandTrait {
+
+    /**
+     * Set all possible relations.
+     *
+     * @param $command
+     * @param $task
+     * @param $assignment
+     * @param $taskRepo
+     * @param $entities
+     */
+    public function setRelations($command, $task, $assignment, $taskRepo, $entities)
+    {
+        $this->setTaskTagRelation($task, $command->tagList, $taskRepo);
+        $this->setTaskPriorityRelation($task, $command->priorityLevel, $taskRepo);
+        $this->setAssignmentTaskRelation($task, $assignment);
+        $this->setAssignmentPolymorphic($assignment, $entities);
+    }
 
     /**
      * Set the task-tag relation.
@@ -47,7 +64,7 @@ trait AssignableTrait {
     }
 
     /**
-     * Set the proper polymorphic association of assignment.
+     * Set the proper polymorphic associations of assignment.
      *
      * @param Assignment $assignment
      * @param Collection $entities

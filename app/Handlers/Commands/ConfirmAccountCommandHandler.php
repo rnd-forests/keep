@@ -7,18 +7,18 @@ use Keep\Repositories\User\UserRepositoryInterface;
 
 class ConfirmAccountCommandHandler {
 
-    protected $auth, $userRepository;
+    protected $auth, $userRepo;
 
     /**
      * Create the command handler.
      *
      * @param Guard                   $auth
-     * @param UserRepositoryInterface $userRepository
+     * @param UserRepositoryInterface $userRepo
      */
-    public function __construct(Guard $auth, UserRepositoryInterface $userRepository)
+    public function __construct(Guard $auth, UserRepositoryInterface $userRepo)
     {
         $this->auth = $auth;
-        $this->userRepository = $userRepository;
+        $this->userRepo = $userRepo;
     }
 
     /**
@@ -44,7 +44,7 @@ class ConfirmAccountCommandHandler {
      */
     private function activateAccount(ConfirmAccountCommand $command)
     {
-        $user = $this->userRepository->findByCodeAndActiveState($command->code, false);
+        $user = $this->userRepo->findByCodeAndActiveState($command->code, false);
 
         $user->activation_code = '';
 

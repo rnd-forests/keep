@@ -6,18 +6,18 @@ use Keep\Repositories\User\UserRepositoryInterface;
 
 class ModifyPasswordCommandHandler {
 
-    protected $bcrypt, $userRepository;
+    protected $bcrypt, $userRepo;
 
     /**
      * Create the command handler.
      *
      * @param BcryptHasher            $bcrypt
-     * @param UserRepositoryInterface $userRepository
+     * @param UserRepositoryInterface $userRepo
      */
-    public function __construct(BcryptHasher $bcrypt, UserRepositoryInterface $userRepository)
+    public function __construct(BcryptHasher $bcrypt, UserRepositoryInterface $userRepo)
     {
         $this->bcrypt = $bcrypt;
-        $this->userRepository = $userRepository;
+        $this->userRepo = $userRepo;
     }
 
     /**
@@ -33,6 +33,24 @@ class ModifyPasswordCommandHandler {
     }
 
     /**
+     * Modify the user account password.
+     *
+     * @param ModifyPasswordCommand $command
+     *
+     * @return bool
+     */
+    private function modifyPassword(ModifyPasswordCommand $command)
+    {
+        $user = $this->userRepo->findById($this->userRepo->getAuthUser()->id);
+
+        if ( ! $this->checkOldPassword($command, $user)) return false;
+
+        $user->password = $command->newPassword;
+
+        return $user->save();
+    }
+
+    /**
      * Check the old password.
      *
      * @param ModifyPasswordCommand $command
@@ -43,24 +61,6 @@ class ModifyPasswordCommandHandler {
     private function checkOldPassword(ModifyPasswordCommand $command, $user)
     {
         return $this->bcrypt->check($command->oldPassword, $user->password);
-    }
-
-    /**
-     * Modify the user account password.
-     *
-     * @param ModifyPasswordCommand $command
-     *
-     * @return bool
-     */
-    private function modifyPassword(ModifyPasswordCommand $command)
-    {
-        $user = $this->userRepository->findById($this->userRepository->getAuthUser()->id);
-
-        if ( ! $this->checkOldPassword($command, $user)) return false;
-
-        $user->password = $command->newPassword;
-
-        return $user->save();
     }
 
 }

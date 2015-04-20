@@ -5,21 +5,16 @@ use Keep\Repositories\User\UserRepositoryInterface;
 
 class UsersController extends Controller {
 
-    /**
-     * The user repository.
-     *
-     * @var UserRepositoryInterface
-     */
-    protected $userRepository;
+    protected $userRepo;
 
     /**
      * Create a new users controller instance.
      *
-     * @param UserRepositoryInterface $userRepository
+     * @param UserRepositoryInterface $userRepo
      */
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepo)
     {
-        $this->userRepository = $userRepository;
+        $this->userRepo = $userRepo;
 
         $this->middleware('auth');
         $this->middleware('auth.correct');
@@ -35,7 +30,7 @@ class UsersController extends Controller {
      */
     public function show($slug)
     {
-        $user = $this->userRepository->findBySlug($slug);
+        $user = $this->userRepo->findBySlug($slug);
 
         return view('users.show', compact('user'));
     }
@@ -50,7 +45,7 @@ class UsersController extends Controller {
      */
     public function update(EditUserProfileRequest $request, $slug)
     {
-        $user = $this->userRepository->update($slug, $request->all());
+        $user = $this->userRepo->update($slug, $request->all());
 
         flash()->info('Your profile has been successfully updated.');
 
@@ -66,7 +61,7 @@ class UsersController extends Controller {
      */
     public function destroy($slug)
     {
-        $this->userRepository->delete($slug);
+        $this->userRepo->delete($slug);
 
         flash()->success("Your account has been deleted.");
 

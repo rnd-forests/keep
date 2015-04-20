@@ -16,7 +16,7 @@ class TaskPresenter extends Presenter {
      */
     public function getRemainingDays($finish)
     {
-        $count = (int) Carbon::now()->diffInDays(Carbon::parse($finish), true);
+        $count = (int)Carbon::now()->diffInDays(Carbon::parse($finish), true);
 
         return $count . ' ' . str_plural('day', $count) . ' remaining';
     }

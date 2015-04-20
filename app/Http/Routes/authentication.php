@@ -1,6 +1,7 @@
 <?php
 
-Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function() {
+Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function ()
+{
     Route::get('register', [
         'as'   => 'register',
         'uses' => 'RegistrationsController@create'

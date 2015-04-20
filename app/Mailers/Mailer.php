@@ -18,7 +18,8 @@ abstract class Mailer {
     {
         $mailer = App::make('Illuminate\Mail\Mailer');
 
-        $mailer->queue($view, $data, function ($message) use ($user, $subject) {
+        $mailer->queue($view, $data, function ($message) use ($user, $subject)
+        {
             $message->to($user->email)->subject($subject);
         });
     }

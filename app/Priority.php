@@ -5,13 +5,6 @@ use Illuminate\Database\Eloquent\Model;
 class Priority extends Model {
 
     /**
-     * Table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'priorities';
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array

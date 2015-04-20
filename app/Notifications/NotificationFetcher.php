@@ -1,4 +1,4 @@
-<?php  namespace Keep\Notifications;
+<?php namespace Keep\Notifications;
 
 use DB;
 use Keep\User;
@@ -9,18 +9,21 @@ class NotificationFetcher implements NotifiableInterface {
 
     /**
      * User to fetch notifications for.
+     *
      * @var User
      */
     protected $user;
 
     /**
      * Number of notifications to bring back
+     *
      * @var integer
      */
     protected $limit = 10;
 
     /**
      * Fetch only unread notifications
+     *
      * @var boolean
      */
     protected $unread = false;
@@ -62,7 +65,7 @@ class NotificationFetcher implements NotifiableInterface {
             ->orderBy('ng.sent_at', 'desc')
             ->limit($this->limit);
 
-        if($this->unread)
+        if ($this->unread)
         {
             $notifications->where('ng.is_read', '=', 0);
         }
@@ -79,11 +82,11 @@ class NotificationFetcher implements NotifiableInterface {
      */
     private function toCollection($notifications)
     {
-        if(empty($notifications)) return [];
+        if (empty($notifications)) return [];
 
         $notificationModels = [];
 
-        foreach($notifications as $notification)
+        foreach ($notifications as $notification)
         {
             $notificationModels[] = new Notification((array)$notification);
         }

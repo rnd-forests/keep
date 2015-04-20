@@ -7,16 +7,16 @@ use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
 
 class UserGroupsController extends Controller {
 
-    protected $groupRepository;
+    protected $groupRepo;
 
     /**
      * Constructor.
      *
-     * @param UserGroupRepositoryInterface $groupRepository
+     * @param UserGroupRepositoryInterface $groupRepo
      */
-    public function __construct(UserGroupRepositoryInterface $groupRepository)
+    public function __construct(UserGroupRepositoryInterface $groupRepo)
     {
-        $this->groupRepository = $groupRepository;
+        $this->groupRepo = $groupRepo;
     }
 
     /**
@@ -26,7 +26,7 @@ class UserGroupsController extends Controller {
      */
     public function activeGroups()
     {
-        $groups = $this->groupRepository->getPaginatedGroups(15);
+        $groups = $this->groupRepo->getPaginatedGroups(15);
 
         return view('admin.groups.active_groups', compact('groups'));
     }
@@ -50,7 +50,7 @@ class UserGroupsController extends Controller {
      */
     public function store(UserGroupRequest $request)
     {
-        $this->groupRepository->create($request->all());
+        $this->groupRepo->create($request->all());
 
         flash()->success('The new group was successfully created.');
 
@@ -66,9 +66,9 @@ class UserGroupsController extends Controller {
      */
     public function show($slug)
     {
-        $group = $this->groupRepository->findBySlug($slug);
+        $group = $this->groupRepo->findBySlug($slug);
 
-        $users = $this->groupRepository->getPaginatedAssociatedUsers($group, 16);
+        $users = $this->groupRepo->getPaginatedAssociatedUsers($group, 16);
 
         return view('admin.groups.show', compact('group', 'users'));
     }
@@ -82,7 +82,7 @@ class UserGroupsController extends Controller {
      */
     public function edit($slug)
     {
-        $group = $this->groupRepository->findBySlug($slug);
+        $group = $this->groupRepo->findBySlug($slug);
 
         return view('admin.groups.edit', compact('group'));
     }
@@ -97,7 +97,7 @@ class UserGroupsController extends Controller {
      */
     public function update(UserGroupRequest $request, $slug)
     {
-        $this->groupRepository->update($slug, $request->all());
+        $this->groupRepo->update($slug, $request->all());
 
         flash()->info('The information of this group was updated.');
 
@@ -113,7 +113,7 @@ class UserGroupsController extends Controller {
      */
     public function destroy($slug)
     {
-        $this->groupRepository->delete($slug);
+        $this->groupRepo->delete($slug);
 
         flash()->info('This group was successfully sent to trash');
 
@@ -129,7 +129,7 @@ class UserGroupsController extends Controller {
      */
     public function restore($slug)
     {
-        $this->groupRepository->restore($slug);
+        $this->groupRepo->restore($slug);
 
         flash()->success('This group was successfully restored');
 
@@ -143,7 +143,7 @@ class UserGroupsController extends Controller {
      */
     public function trashedGroups()
     {
-        $trashedGroups = $this->groupRepository->getTrashedGroups(10);
+        $trashedGroups = $this->groupRepo->getTrashedGroups(10);
 
         return view('admin.groups.trashed_groups', compact('trashedGroups'));
     }
@@ -157,7 +157,7 @@ class UserGroupsController extends Controller {
      */
     public function forceDeleteGroup($slug)
     {
-        $this->groupRepository->forceDelete($slug);
+        $this->groupRepo->forceDelete($slug);
 
         flash()->info('This group was permanently deleted.');
 
@@ -174,7 +174,7 @@ class UserGroupsController extends Controller {
      */
     public function removeUser($groupSlug, $userId)
     {
-        $this->groupRepository->findBySlug($groupSlug)->users()->detach($userId);
+        $this->groupRepo->findBySlug($groupSlug)->users()->detach($userId);
 
         flash()->info('This user was removed form the current group');
 
@@ -190,7 +190,7 @@ class UserGroupsController extends Controller {
      */
     public function flush($groupSlug)
     {
-        $this->groupRepository->findBySlug($groupSlug)->users()->detach();
+        $this->groupRepo->findBySlug($groupSlug)->users()->detach();
 
         flash()->info('All members were removed from this group');
 
@@ -206,11 +206,11 @@ class UserGroupsController extends Controller {
      */
     public function addUsers($slug)
     {
-        $group = $this->groupRepository->findBySlug($slug);
+        $group = $this->groupRepo->findBySlug($slug);
 
-        $users = $this->groupRepository->getPaginatedAssociatedUsers($group, 30);
+        $users = $this->groupRepo->getPaginatedAssociatedUsers($group, 30);
 
-        $outsiders = $this->groupRepository->getUsersOutsideGroup($slug)->lists('name', 'id');
+        $outsiders = $this->groupRepo->getUsersOutsideGroup($slug)->lists('name', 'id');
 
         return view('admin.groups.add_users', compact('group', 'users', 'outsiders'));
     }
@@ -227,7 +227,7 @@ class UserGroupsController extends Controller {
     {
         $ids = $request->input('group_new_users');
 
-        $this->groupRepository->attachUsers($this->groupRepository->findBySlug($slug), $ids);
+        $this->groupRepo->attachUsers($this->groupRepo->findBySlug($slug), $ids);
 
         flash()->success($this->getUpdateMembersMessage($ids));
 

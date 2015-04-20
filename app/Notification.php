@@ -10,13 +10,6 @@ class Notification extends Model {
     use SoftDeletes;
 
     /**
-     * Table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'notifications';
-
-    /**
      * The attributes that should be treated as Carbon instances.
      *
      * @var array
@@ -108,7 +101,8 @@ class Notification extends Model {
      */
     public function regarding($object)
     {
-        if (is_object($object)) {
+        if (is_object($object))
+        {
             $this->object_id = $object->id;
             $this->object_type = get_class($object);
         }
@@ -186,10 +180,12 @@ class Notification extends Model {
      */
     public function getObject()
     {
-        if ($this->notificationObject) {
+        if ($this->notificationObject)
+        {
             $hasObject = $this->hasValidObject();
 
-            if ( ! $hasObject) {
+            if ( ! $hasObject)
+            {
                 throw new Exception(sprintf(
                     "No valid object (%s with ID %s) associated with this notification.",
                     $this->object_type, $this->object_id
@@ -207,11 +203,13 @@ class Notification extends Model {
      */
     public function hasValidObject()
     {
-        try {
+        try
+        {
             $object = call_user_func_array(
                 $this->object_type . '::findOrFail', [$this->object_id]
             );
-        } catch (Exception $e) {
+        } catch (Exception $e)
+        {
             return false;
         }
 

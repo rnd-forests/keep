@@ -27,7 +27,7 @@ class CreateTasksTable extends Migration {
             $table->timestamp('finishing_date');
             $table->timestamp('finished_at')->nullable();
             $table->boolean('completed')->default(false);
-            $table->boolean('isAssigned')->default(false);
+            $table->boolean('is_assigned')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

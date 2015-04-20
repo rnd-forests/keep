@@ -5,21 +5,16 @@ use Keep\Repositories\User\UserRepositoryInterface;
 
 class UsersController extends Controller {
 
-    /**
-     * User repository.
-     *
-     * @var UserRepositoryInterface
-     */
-    protected $userRepository;
+    protected $userRepo;
 
     /**
      * Constructor.
      *
-     * @param UserRepositoryInterface $userRepository
+     * @param UserRepositoryInterface $userRepo
      */
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepo)
     {
-        $this->userRepository = $userRepository;
+        $this->userRepo = $userRepo;
     }
 
     /**
@@ -29,9 +24,9 @@ class UsersController extends Controller {
      */
     public function activeAccounts()
     {
-        $usersCount = $this->userRepository->count();
+        $usersCount = $this->userRepo->count();
 
-        $activeAccounts = $this->userRepository->getPaginatedUsers(25);
+        $activeAccounts = $this->userRepo->getPaginatedUsers(25);
 
         return view('admin.accounts.active_accounts', compact('usersCount', 'activeAccounts'));
     }
@@ -43,7 +38,7 @@ class UsersController extends Controller {
      */
     public function disabledAccounts()
     {
-        $disabledAccounts = $this->userRepository->getTrashedUsers(25);
+        $disabledAccounts = $this->userRepo->getTrashedUsers(25);
 
         return view('admin.accounts.disabled_accounts', compact('disabledAccounts'));
     }
@@ -57,7 +52,7 @@ class UsersController extends Controller {
      */
     public function profile($slug)
     {
-        $user = $this->userRepository->findBySlugWithTasks($slug);
+        $user = $this->userRepo->findBySlugWithTasks($slug);
 
         return view('admin.accounts.profile', compact('user'));
     }
@@ -71,7 +66,7 @@ class UsersController extends Controller {
      */
     public function disableAccount($slug)
     {
-        $this->userRepository->delete($slug);
+        $this->userRepo->delete($slug);
 
         flash()->success("This account has been disabled.");
 
@@ -87,7 +82,7 @@ class UsersController extends Controller {
      */
     public function restoreAccount($slug)
     {
-        $this->userRepository->restore($slug);
+        $this->userRepo->restore($slug);
 
         flash()->info('This account has been restored.');
 
@@ -103,7 +98,7 @@ class UsersController extends Controller {
      */
     public function forceDeleteAccount($slug)
     {
-        $this->userRepository->forceDelete($slug);
+        $this->userRepo->forceDelete($slug);
 
         flash()->info('This account was permanently deleted.');
 

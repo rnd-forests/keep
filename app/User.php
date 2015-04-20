@@ -13,7 +13,8 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, SluggableInterface {
 
-    use Authenticatable, CanResetPassword, PresentableTrait, SluggableTrait, SoftDeletes, EntrustUserTrait;
+    use Authenticatable, CanResetPassword, PresentableTrait,
+        SluggableTrait, SoftDeletes, EntrustUserTrait;
 
     /**
      * Unique slug for user model.
@@ -21,13 +22,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
-
-    /**
-     * Table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'users';
 
     /**
      * User presenter.

@@ -13,23 +13,23 @@ class Authenticate {
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-	public function handle($request, Closure $next)
-	{
+    public function handle($request, Closure $next)
+    {
         $auth = App::make('Illuminate\Contracts\Auth\Guard');
 
-		if ($auth->guest())
-		{
-			if ($request->ajax())
-			{
-				return response('Unauthorized.', 401);
-			}
-			else
-			{
-				return redirect()->guest('auth/login');
-			}
-		}
+        if ($auth->guest())
+        {
+            if ($request->ajax())
+            {
+                return response('Unauthorized.', 401);
+            }
+            else
+            {
+                return redirect()->guest('auth/login');
+            }
+        }
 
-		return $next($request);
-	}
+        return $next($request);
+    }
 
 }

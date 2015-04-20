@@ -19,13 +19,6 @@ class Task extends Model implements SluggableInterface {
     protected $sluggable = ['build_from' => 'title', 'save_to' => 'slug'];
 
     /**
-     * Table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'tasks';
-
-    /**
      * Task presenter.
      *
      * @var string
@@ -52,8 +45,10 @@ class Task extends Model implements SluggableInterface {
      * @var array
      */
     protected $fillable = [
-        'title', 'slug', 'content', 'owner_id', 'location', 'destroyer_id', 'creator_id', 'assignment_id',
-        'starting_date', 'finishing_date', 'finished_at', 'completed', 'priority_id', 'isAssigned'
+        'user_id', 'destroyer_id', 'priority_id', 'assignment_id',
+        'title', 'slug', 'content', 'location', 'starting_date',
+        'finishing_date', 'finished_at', 'completed', 'is_assigned',
+        'deleted_at'
     ];
 
     /**

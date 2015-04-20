@@ -5,16 +5,16 @@ use Keep\Repositories\Task\TaskRepositoryInterface;
 
 class TasksController extends Controller {
 
-    protected $taskRepository;
+    protected $taskRepo;
 
     /**
      * Constructor.
      *
-     * @param TaskRepositoryInterface $taskRepository
+     * @param TaskRepositoryInterface $taskRepo
      */
-    public function __construct(TaskRepositoryInterface $taskRepository)
+    public function __construct(TaskRepositoryInterface $taskRepo)
     {
-        $this->taskRepository = $taskRepository;
+        $this->taskRepo = $taskRepo;
     }
 
     /**
@@ -24,9 +24,9 @@ class TasksController extends Controller {
      */
     public function activeTasks()
     {
-        $tasksCount = $this->taskRepository->count();
+        $tasksCount = $this->taskRepo->count();
 
-        $tasks = $this->taskRepository->getPaginatedTasks(50);
+        $tasks = $this->taskRepo->getPaginatedTasks(50);
 
         return view('admin.tasks.active_tasks', compact('tasksCount', 'tasks'));
     }
@@ -40,7 +40,7 @@ class TasksController extends Controller {
      */
     public function showTask($slug)
     {
-        $task = $this->taskRepository->findBySlug($slug);
+        $task = $this->taskRepo->findBySlug($slug);
 
         return view('admin.tasks.task_view', compact('task'));
     }
@@ -54,7 +54,7 @@ class TasksController extends Controller {
      */
     public function softDelete($slug)
     {
-        $this->taskRepository->delete($slug);
+        $this->taskRepo->delete($slug);
 
         flash()->info('This task was successfully sent to the trash.');
 
@@ -68,7 +68,7 @@ class TasksController extends Controller {
      */
     public function trashedTasks()
     {
-        $trashedTasks = $this->taskRepository->getTrashedTasks(50);
+        $trashedTasks = $this->taskRepo->getTrashedTasks(50);
 
         return view('admin.tasks.trashed_tasks', compact('trashedTasks'));
     }
@@ -82,7 +82,7 @@ class TasksController extends Controller {
      */
     public function restoreTask($slug)
     {
-        $this->taskRepository->restore($slug);
+        $this->taskRepo->restore($slug);
 
         flash()->info('This task has been restored');
 
@@ -98,7 +98,7 @@ class TasksController extends Controller {
      */
     public function forceDeleteTask($slug)
     {
-        $this->taskRepository->forceDelete($slug);
+        $this->taskRepo->forceDelete($slug);
 
         flash()->info('This task was permanently deleted.');
 

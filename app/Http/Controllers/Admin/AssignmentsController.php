@@ -10,19 +10,18 @@ use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
 
 class AssignmentsController extends Controller {
 
-    protected $userRepository, $groupRepository;
+    protected $userRepo, $groupRepo;
 
     /**
      * Constructor.
      *
-     * @param UserRepositoryInterface      $userRepository
-     * @param UserGroupRepositoryInterface $groupRepository
+     * @param UserRepositoryInterface      $userRepo
+     * @param UserGroupRepositoryInterface $groupRepo
      */
-    public function __construct(UserRepositoryInterface $userRepository,
-                                UserGroupRepositoryInterface $groupRepository)
+    public function __construct(UserRepositoryInterface $userRepo, UserGroupRepositoryInterface $groupRepo)
     {
-        $this->userRepository = $userRepository;
-        $this->groupRepository = $groupRepository;
+        $this->userRepo = $userRepo;
+        $this->groupRepo = $groupRepo;
     }
 
     /**
@@ -32,7 +31,7 @@ class AssignmentsController extends Controller {
      */
     public function createMemberAssignment()
     {
-        $users = $this->userRepository->all()->lists('name', 'id');
+        $users = $this->userRepo->all()->lists('name', 'id');
 
         return view('admin.assignments.member_assignment', compact('users'));
     }
@@ -60,7 +59,7 @@ class AssignmentsController extends Controller {
      */
     public function createGroupAssignment()
     {
-        $groups = $this->groupRepository->all()->lists('name', 'id');
+        $groups = $this->groupRepo->all()->lists('name', 'id');
 
         return view('admin.assignments.group_assignment', compact('groups'));
     }

@@ -1,4 +1,4 @@
-<?php  namespace Keep\Repositories\Assignment; 
+<?php namespace Keep\Repositories\Assignment;
 
 use Keep\Assignment;
 

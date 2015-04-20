@@ -55,7 +55,8 @@ class AppServiceProvider extends ServiceProvider {
             'Keep\Repositories\Assignment\DbAssignmentRepository'
         );
 
-        if ($this->app->environment() == 'local') {
+        if ($this->app->environment() == 'local')
+        {
             $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
         }
     }

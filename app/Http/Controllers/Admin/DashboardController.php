@@ -7,22 +7,21 @@ use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
 
 class DashboardController extends Controller {
 
-    protected $userRepository, $taskRepository, $groupRepository;
+    protected $userRepo, $taskRepo, $groupRepo;
 
     /**
      * Constructor.
      *
-     * @param UserRepositoryInterface      $userRepository
-     * @param TaskRepositoryInterface      $taskRepository
-     * @param UserGroupRepositoryInterface $groupRepository
+     * @param UserRepositoryInterface      $userRepo
+     * @param TaskRepositoryInterface      $taskRepo
+     * @param UserGroupRepositoryInterface $groupRepo
      */
-    public function __construct(UserRepositoryInterface $userRepository,
-                                TaskRepositoryInterface $taskRepository,
-                                UserGroupRepositoryInterface $groupRepository)
+    public function __construct(UserRepositoryInterface $userRepo, TaskRepositoryInterface $taskRepo,
+                                UserGroupRepositoryInterface $groupRepo)
     {
-        $this->userRepository = $userRepository;
-        $this->taskRepository = $taskRepository;
-        $this->groupRepository = $groupRepository;
+        $this->userRepo = $userRepo;
+        $this->taskRepo = $taskRepo;
+        $this->groupRepo = $groupRepo;
     }
 
     /**
@@ -32,11 +31,11 @@ class DashboardController extends Controller {
      */
     public function dashboard()
     {
-        $usersCount = $this->userRepository->count();
+        $usersCount = $this->userRepo->count();
 
-        $tasksCount = $this->taskRepository->count();
+        $tasksCount = $this->taskRepo->count();
 
-        $groupsCount = $this->groupRepository->count();
+        $groupsCount = $this->groupRepo->count();
 
         return view('admin.dashboard', compact('usersCount', 'tasksCount', 'groupsCount'));
     }
