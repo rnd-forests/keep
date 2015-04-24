@@ -13,6 +13,7 @@ class TasksTableSeeder extends Seeder {
 
         for ($i = 1; $i <= 25; $i++)
         {
+            $timestamp = Carbon::now()->subDays(rand(5, 50));
             Task::create([
                 'user_id'        => 1,
                 'priority_id'    => rand(1, 4),
@@ -21,13 +22,16 @@ class TasksTableSeeder extends Seeder {
                 'location'       => $faker->address,
                 'completed'      => true,
                 'is_assigned'    => false,
-                'starting_date'  => Carbon::now(),
-                'finishing_date' => Carbon::now()->addDays(rand(5, 20))
+                'starting_date'  => $timestamp,
+                'finishing_date' => Carbon::now()->addDays(rand(5, 20)),
+                'created_at'     => $timestamp,
+                'updated_at'     => $timestamp
             ]);
         }
 
         for ($i = 1; $i <= 300; $i++)
         {
+            $timestamp = Carbon::now()->subDays(rand(5, 50));
             Task::create([
                 'user_id'        => rand(1, 152),
                 'priority_id'    => rand(1, 4),
@@ -35,8 +39,10 @@ class TasksTableSeeder extends Seeder {
                 'content'        => implode(" ", $faker->paragraphs(1)),
                 'location'       => $faker->address,
                 'is_assigned'    => false,
-                'starting_date'  => Carbon::now(),
-                'finishing_date' => Carbon::now()->addDays(rand(5, 50))
+                'starting_date'  => $timestamp,
+                'finishing_date' => Carbon::now()->addDays(rand(5, 50)),
+                'created_at'     => $timestamp,
+                'updated_at'     => $timestamp
             ]);
         }
     }
