@@ -1,12 +1,13 @@
 <?php namespace Keep;
 
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 
 class Assignment extends Model implements SluggableInterface {
 
-    use SluggableTrait;
+    use SluggableTrait, PresentableTrait;
 
     /**
      * Unique slug for assignment model.
@@ -14,6 +15,13 @@ class Assignment extends Model implements SluggableInterface {
      * @var array
      */
     protected $sluggable = ['build_from' => 'assignment_name', 'save_to' => 'slug'];
+
+    /**
+     * Group presenter.
+     *
+     * @var string
+     */
+    protected $presenter = 'Keep\Presenters\AssignmentPresenter';
 
     /**
      * The attributes that are mass assignable.

@@ -1237,6 +1237,19 @@ fieldset[disabled] .btn-violet {
   .add-users-wrapper .panel .panel-footer {
     border-top: none; }
 
+.assignments-wrapper .well {
+  background: #ffffff; }
+.assignments-wrapper .panel-body .assignment-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-shadow: 0 0 1px #bfbfbf; }
+.assignments-wrapper .panel-body .label {
+  font-size: 12px;
+  margin-right: 5px; }
+.assignments-wrapper .panel-footer form {
+  display: inline-block; }
+
 body {
   font: normal 16px "Source Sans Pro", sans-serif;
   color: #525252;
