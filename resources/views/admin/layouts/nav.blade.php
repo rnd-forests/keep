@@ -43,7 +43,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#" data-toggle="modal" data-target="#assignment-selection-modal">Create Assignment</a></li>
                         <div class="divider"></div>
-                        <li><a href="#">Assignment List</a></li>
+                        <li><a href="{{ route('admin.assignments.all') }}">Assignment List</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

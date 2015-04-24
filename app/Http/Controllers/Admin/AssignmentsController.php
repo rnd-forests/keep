@@ -1,27 +1,99 @@
 <?php namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Http\Requests\GroupAssignmentRequest;
-use Keep\Http\Requests\MemberAssignmentRequest;
+use Keep\Http\Requests\AssignmentRequest;
+use Keep\Commands\ModifyAssignmentCommand;
 use Keep\Commands\CreateGroupAssignmentCommand;
 use Keep\Commands\CreateMemberAssignmentCommand;
-use Keep\Repositories\User\UserRepositoryInterface;
-use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
+use Keep\Repositories\Assignment\AssignmentRepositoryInterface;
 
 class AssignmentsController extends Controller {
 
-    protected $userRepo, $groupRepo;
+    protected $assignmentRepo;
 
     /**
      * Constructor.
      *
-     * @param UserRepositoryInterface      $userRepo
-     * @param UserGroupRepositoryInterface $groupRepo
+     * @param AssignmentRepositoryInterface $assignmentRepo
      */
-    public function __construct(UserRepositoryInterface $userRepo, UserGroupRepositoryInterface $groupRepo)
+    public function __construct(AssignmentRepositoryInterface $assignmentRepo)
     {
-        $this->userRepo = $userRepo;
-        $this->groupRepo = $groupRepo;
+        $this->assignmentRepo = $assignmentRepo;
+    }
+
+    /**
+     * List all available assignments.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        $assignments = $this->assignmentRepo->getPaginatedAssignments(15);
+
+        return view('admin.assignments.index', compact('assignments'));
+    }
+
+    /**
+     * Show a specific assignment.
+     *
+     * @param $slug
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show($slug)
+    {
+        $assignment = $this->assignmentRepo->findBySlug($slug);
+
+        return view('admin.assignments.show', compact('assignment'));
+    }
+
+    /**
+     * Load the form to edit a specific assignment.
+     *
+     * @param $slug
+     *
+     * @return \Illuminate\View\View
+     */
+    public function edit($slug)
+    {
+        $assignment = $this->assignmentRepo->findBySlug($slug);
+
+        $task = $assignment->task->load('tags');
+
+        return view('admin.assignments.edit', compact('assignment', 'task'));
+    }
+
+    /**
+     * Update a specific assignment.
+     *
+     * @param AssignmentRequest $request
+     * @param                   $slug
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(AssignmentRequest $request, $slug)
+    {
+        $this->dispatchFrom(ModifyAssignmentCommand::class, $request, ['assignment_slug' => $slug]);
+
+        flash()->info('The assignment was successfully updated');
+
+        return redirect()->route('admin.assignments.all');
+    }
+
+    /**
+     * Delete a specific task.
+     *
+     * @param $slug
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($slug)
+    {
+        $this->assignmentRepo->delete($slug);
+
+        flash()->info('This assignment was successfully deleted');
+
+        return redirect()->route('admin.assignments.all');
     }
 
     /**
@@ -31,19 +103,17 @@ class AssignmentsController extends Controller {
      */
     public function createMemberAssignment()
     {
-        $users = $this->userRepo->all()->lists('name', 'id');
-
-        return view('admin.assignments.member_assignment', compact('users'));
+        return view('admin.assignments.create_member_assignment');
     }
 
     /**
      * Assign tasks for members.
      *
-     * @param MemberAssignmentRequest $request
+     * @param AssignmentRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeMemberAssignment(MemberAssignmentRequest $request)
+    public function storeMemberAssignment(AssignmentRequest $request)
     {
         $this->dispatchFrom(CreateMemberAssignmentCommand::class, $request);
 
@@ -59,19 +129,17 @@ class AssignmentsController extends Controller {
      */
     public function createGroupAssignment()
     {
-        $groups = $this->groupRepo->all()->lists('name', 'id');
-
-        return view('admin.assignments.group_assignment', compact('groups'));
+        return view('admin.assignments.create_group_assignment');
     }
 
     /**
      * Assign tasks for groups.
      *
-     * @param GroupAssignmentRequest $request
+     * @param AssignmentRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeGroupAssignment(GroupAssignmentRequest $request)
+    public function storeGroupAssignment(AssignmentRequest $request)
     {
         $this->dispatchFrom(CreateGroupAssignmentCommand::class, $request);
 

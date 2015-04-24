@@ -58,7 +58,7 @@ trait AssignmentCommandTrait {
     public function setAssignmentTaskRelation(Task $task, Assignment $assignment)
     {
         $task->assignment()->associate($assignment);
-        $task->isAssigned = true;
+        $task->is_assigned = true;
 
         return $task->save();
     }
@@ -78,16 +78,45 @@ trait AssignmentCommandTrait {
     }
 
     /**
+     * Update the task associated with a given assignment.
+     *
+     * @param       $task
+     * @param       $taskRepo
+     * @param array $data
+     */
+    public function updateAssociatedTask($task, $taskRepo, array $data)
+    {
+        $taskRepo->adminUpdate($task, $data);
+
+        $taskRepo->syncTags($task, $data['tag_list']);
+
+        $taskRepo->associatePriority($task, $data['priority_level']);
+    }
+
+    /**
+     * Sync up polymorphic relations associated with a given assignment.
+     *
+     * @param $assignment
+     * @param $assignmentRepo
+     * @param $users
+     * @param $groups
+     */
+    public function updatePolymorphicRelations($assignment, $assignmentRepo, $users, $groups)
+    {
+        $assignmentRepo->syncPolymorphicRelations($assignment, $users, $groups);
+    }
+
+    /**
      * Get assignment form request data.
      *
      * @param $command
      *
      * @return array
      */
-    private function getAssignmentRequestData($command)
+    public function getAssignmentRequestData($command)
     {
         return array(
-            'name' => $command->assignmentName
+            'assignment_name' => $command->assignmentName
         );
     }
 
@@ -98,7 +127,7 @@ trait AssignmentCommandTrait {
      *
      * @return array
      */
-    private function getTaskRequestData($command)
+    public function getTaskRequestData($command)
     {
         return array(
             'title'          => $command->title,
@@ -106,6 +135,26 @@ trait AssignmentCommandTrait {
             'starting_date'  => $command->startingDate,
             'finishing_date' => $command->finishingDate,
             'location'       => $command->location
+        );
+    }
+
+    /**
+     * Get the task form request data together with relations.
+     *
+     * @param $command
+     *
+     * @return array
+     */
+    public function getTaskRequestDataWithRelations($command)
+    {
+        return array(
+            'title'          => $command->title,
+            'content'        => $command->content,
+            'starting_date'  => $command->startingDate,
+            'finishing_date' => $command->finishingDate,
+            'location'       => $command->location,
+            'tag_list'       => $command->tagList,
+            'priority_level' => $command->priorityLevel
         );
     }
 

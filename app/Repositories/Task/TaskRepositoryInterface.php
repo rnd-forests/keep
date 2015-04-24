@@ -84,6 +84,16 @@ interface TaskRepositoryInterface {
     public function update($userSlug, $taskSlug, array $data);
 
     /**
+     * Update a task (admin only).
+     *
+     * @param       $task
+     * @param array $data
+     *
+     * @return mixed
+     */
+    public function adminUpdate($task, array $data);
+
+    /**
      * Soft delete a task with user constraint.
      *
      * @param $userSlug

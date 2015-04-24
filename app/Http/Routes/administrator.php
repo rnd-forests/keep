@@ -141,6 +141,31 @@ Route::group(['middleware' => ['auth', 'auth.confirmed', 'valid.admin.user'], 'p
     ]);
 
 
+    Route::get('assignments', [
+        'as'   => 'admin.assignments.all',
+        'uses' => 'AssignmentsController@index'
+    ]);
+
+    Route::get('assignments/{assignments}', [
+        'as'   => 'admin.assignments.show',
+        'uses' => 'AssignmentsController@show'
+    ]);
+
+    Route::get('assignments/{assignments}/edit', [
+        'as'   => 'admin.assignments.edit',
+        'uses' => 'AssignmentsController@edit'
+    ]);
+
+    Route::patch('assignments/{assignments}', [
+        'as'   => 'admin.assignments.update',
+        'uses' => 'AssignmentsController@update'
+    ]);
+
+    Route::delete('assignments/{assignments}', [
+        'as'   => 'admin.assignments.delete',
+        'uses' => 'AssignmentsController@destroy'
+    ]);
+
     Route::get('member/assignments/create', [
         'as'   => 'member.assignments',
         'uses' => 'AssignmentsController@createMemberAssignment'

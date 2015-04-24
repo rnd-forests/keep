@@ -12,8 +12,8 @@ class CreateGroupAssignmentCommand extends Command {
     public $priorityLevel;
     public $assignmentName;
 
-    public function __construct($assignment_name, $title, $content, $group_list, $starting_date,
-                                $finishing_date, $location, $tag_list = array(), $priority_level)
+    public function __construct($title, $content, $tag_list = array(), $location, $group_list,
+                                $starting_date, $finishing_date, $priority_level, $assignment_name)
     {
         $this->title = $title;
         $this->content = $content;

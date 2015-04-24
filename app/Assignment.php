@@ -13,14 +13,14 @@ class Assignment extends Model implements SluggableInterface {
      *
      * @var array
      */
-    protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
+    protected $sluggable = ['build_from' => 'assignment_name', 'save_to' => 'slug'];
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['assignment_name', 'slug'];
 
     /**
      * An assignment can be assigned to many users.

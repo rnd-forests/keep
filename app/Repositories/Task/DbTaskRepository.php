@@ -54,6 +54,13 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return $task;
     }
 
+    public function adminUpdate($task, array $data)
+    {
+        $task->update($data);
+
+        return $task;
+    }
+
     public function findCorrectTaskBySlug($userSlug, $taskSlug)
     {
         $user = User::findBySlug($userSlug);

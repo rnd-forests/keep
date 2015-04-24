@@ -12,16 +12,32 @@ class ViewComposerServiceProvider extends ServiceProvider {
     public function boot()
     {
         $this->composeTaskForm();
+        $this->composeEditAssignmentForm();
+        $this->composeGroupAssignmentForm();
+        $this->composeMemberAssignmentForm();
     }
 
-    /**
-     * Composer task form view.
-     */
     private function composeTaskForm()
     {
         view()->composer('tasks.partials.form', 'Keep\Http\Composers\TaskFormComposer@compose');
-        view()->composer('admin.assignments.partials.member_assignment_form', 'Keep\Http\Composers\TaskFormComposer@compose');
-        view()->composer('admin.assignments.partials.group_assignment_form', 'Keep\Http\Composers\TaskFormComposer@compose');
+        view()->composer('admin.assignments.edit', 'Keep\Http\Composers\TaskFormComposer@compose');
+        view()->composer('admin.assignments.create_group_assignment', 'Keep\Http\Composers\TaskFormComposer@compose');
+        view()->composer('admin.assignments.create_member_assignment', 'Keep\Http\Composers\TaskFormComposer@compose');
+    }
+
+    private function composeEditAssignmentForm()
+    {
+        view()->composer('admin.assignments.edit', 'Keep\Http\Composers\EditAssignmentFormComposer@compose');
+    }
+
+    private function composeGroupAssignmentForm()
+    {
+        view()->composer('admin.assignments.create_group_assignment', 'Keep\Http\Composers\CreateGroupAssignmentFormComposer@compose');
+    }
+
+    private function composeMemberAssignmentForm()
+    {
+        view()->composer('admin.assignments.create_member_assignment', 'Keep\Http\Composers\CreateMemberAssignmentFormComposer@compose');
     }
 
     /**
