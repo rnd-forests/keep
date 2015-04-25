@@ -40,7 +40,7 @@ class CreateGroupAssignmentCommandHandler {
 
         $groups = $this->groupRepo->fetchGroupsByIds($command->groupList);
 
-        $this->setRelations($command, $task, $assignment, $this->taskRepo, $groups);
+        $this->setRelations($command, $assignment, $task, $groups);
     }
 
 }

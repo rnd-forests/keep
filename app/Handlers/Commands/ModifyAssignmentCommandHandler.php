@@ -1,9 +1,9 @@
 <?php namespace Keep\Handlers\Commands;
 
 use Keep\Commands\ModifyAssignmentCommand;
+use Keep\Repositories\Task\TaskRepositoryInterface;
 use Keep\Handlers\CommandTraits\AssignmentCommandTrait;
 use Keep\Repositories\Assignment\AssignmentRepositoryInterface;
-use Keep\Repositories\Task\TaskRepositoryInterface;
 
 class ModifyAssignmentCommandHandler {
 
@@ -34,9 +34,9 @@ class ModifyAssignmentCommandHandler {
     {
         $assignment = $this->assignmentRepo->update($command->assignmentSlug, $this->getAssignmentRequestData($command));
 
-        $this->updateAssociatedTask($assignment->task, $this->taskRepo, $this->getTaskRequestDataWithRelations($command));
+        $this->updateAssociatedTask($assignment->task, $this->getTaskRequestDataWithRelations($command));
 
-        $this->updatePolymorphicRelations($assignment, $this->assignmentRepo, $command->userList, $command->groupList);
+        $this->updatePolymorphicRelations($assignment, $command->userList, $command->groupList);
     }
 
 }

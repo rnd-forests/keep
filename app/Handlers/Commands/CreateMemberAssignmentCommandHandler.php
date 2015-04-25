@@ -40,7 +40,7 @@ class CreateMemberAssignmentCommandHandler {
 
         $users = $this->userRepo->fetchUsersByIds($command->userList);
 
-        $this->setRelations($command, $task, $assignment, $this->taskRepo, $users);
+        $this->setRelations($command, $assignment, $task, $users);
     }
 
 }

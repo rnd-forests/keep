@@ -7,20 +7,19 @@ use Illuminate\Support\Collection;
 trait AssignmentCommandTrait {
 
     /**
-     * Set all possible relations.
+     * Set all possible relations for an assignment and its associated task.
      *
      * @param $command
-     * @param $task
      * @param $assignment
-     * @param $taskRepo
+     * @param $task
      * @param $entities
      */
-    public function setRelations($command, $task, $assignment, $taskRepo, $entities)
+    public function setRelations($command, $assignment, $task, $entities)
     {
-        $this->setTaskTagRelation($task, $command->tagList, $taskRepo);
-        $this->setTaskPriorityRelation($task, $command->priorityLevel, $taskRepo);
+        $this->setTaskTagRelation($task, $command->tagList);
         $this->setAssignmentTaskRelation($task, $assignment);
         $this->setAssignmentPolymorphic($assignment, $entities);
+        $this->setTaskPriorityRelation($task, $command->priorityLevel);
     }
 
     /**
@@ -28,11 +27,10 @@ trait AssignmentCommandTrait {
      *
      * @param Task  $task
      * @param array $tagIds
-     * @param       $taskRepo
      */
-    public function setTaskTagRelation(Task $task, array $tagIds, $taskRepo)
+    public function setTaskTagRelation(Task $task, array $tagIds)
     {
-        $taskRepo->syncTags($task, $tagIds);
+        $this->taskRepo->syncTags($task, $tagIds);
     }
 
     /**
@@ -40,11 +38,10 @@ trait AssignmentCommandTrait {
      *
      * @param Task $task
      * @param      $priorityId
-     * @param      $taskRepo
      */
-    public function setTaskPriorityRelation(Task $task, $priorityId, $taskRepo)
+    public function setTaskPriorityRelation(Task $task, $priorityId)
     {
-        $taskRepo->associatePriority($task, $priorityId);
+        $this->taskRepo->associatePriority($task, $priorityId);
     }
 
     /**
@@ -64,7 +61,7 @@ trait AssignmentCommandTrait {
     }
 
     /**
-     * Set the proper polymorphic associations of assignment.
+     * Set the proper polymorphic associations of an assignment.
      *
      * @param Assignment $assignment
      * @param Collection $entities
@@ -81,29 +78,27 @@ trait AssignmentCommandTrait {
      * Update the task associated with a given assignment.
      *
      * @param       $task
-     * @param       $taskRepo
      * @param array $data
      */
-    public function updateAssociatedTask($task, $taskRepo, array $data)
+    public function updateAssociatedTask($task, array $data)
     {
-        $taskRepo->adminUpdate($task, $data);
+        $this->taskRepo->adminUpdate($task, $data);
 
-        $taskRepo->syncTags($task, $data['tag_list']);
+        $this->taskRepo->syncTags($task, $data['tag_list']);
 
-        $taskRepo->associatePriority($task, $data['priority_level']);
+        $this->taskRepo->associatePriority($task, $data['priority_level']);
     }
 
     /**
      * Sync up polymorphic relations associated with a given assignment.
      *
      * @param $assignment
-     * @param $assignmentRepo
      * @param $users
      * @param $groups
      */
-    public function updatePolymorphicRelations($assignment, $assignmentRepo, $users, $groups)
+    public function updatePolymorphicRelations($assignment, $users, $groups)
     {
-        $assignmentRepo->syncPolymorphicRelations($assignment, $users, $groups);
+        $this->assignmentRepo->syncPolymorphicRelations($assignment, $users, $groups);
     }
 
     /**
