@@ -13,45 +13,45 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Members <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Members</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('admin.active.accounts') }}">Active Members</a></li>
-                        <div class="divider"></div>
-                        <li><a href="{{ route('admin.disabled.accounts') }}">Disabled Members</a></li>
+                        <li><a href="{{ route('admin.active.accounts') }}">Active</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ route('admin.disabled.accounts') }}">Disabled</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Groups <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Groups</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('admin.groups.create') }}">Create Group</a></li>
-                        <div class="divider"></div>
-                        <li><a href="{{ route('admin.active.groups') }}">Active Groups</a></li>
-                        <div class="divider"></div>
-                        <li><a href="{{ route('admin.trashed.groups') }}">Trashed Groups</a></li>
+                        <li><a href="{{ route('admin.groups.create') }}">Create</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ route('admin.active.groups') }}">Active</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ route('admin.trashed.groups') }}">Trashed</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tasks <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tasks</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('admin.manage.tasks') }}">Active Tasks</a></li>
-                        <div class="divider"></div>
-                        <li><a href="{{ route('admin.trashed.tasks') }}">Trashed Tasks</a></li>
+                        <li><a href="{{ route('admin.manage.tasks') }}">Active</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ route('admin.trashed.tasks') }}">Trashed</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#" data-toggle="modal" data-target="#assignment-selection-modal">Create Assignment</a></li>
-                        <div class="divider"></div>
-                        <li><a href="{{ route('admin.assignments.all') }}">Assignment List</a></li>
+                        <li><a href="{{ route('admin.assignments.all') }}">Collection</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" data-toggle="modal" data-target="#assignment-selection-modal">Create</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Notifications <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Notifications</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Manage notifications</a></li>
-                        <div class="divider"></div>
-                        <li><a href="#">Create notification</a></li>
+                        <li><a href="#">Manage</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Create</a></li>
                     </ul>
                 </li>
             </ul>
