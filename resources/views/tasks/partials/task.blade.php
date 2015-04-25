@@ -16,6 +16,7 @@
                 @else
                     <span class="label label-danger">Not completed</span>
                 @endif
+                <span class="label label-info">{{ $task->priority->name }}</span>
             </div>
             <div class="well">{{ $task->content }}</div>
             @unless (empty($task->location))

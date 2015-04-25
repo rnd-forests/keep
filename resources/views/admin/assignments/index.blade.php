@@ -7,40 +7,47 @@
         @if($assignments->isEmpty())
             <div class="well text-center">Currently, there is no assignment.</div>
         @else
-            <div class="col-md-6 col-md-offset-3">
-                @foreach($assignments as $assignment)
-                    <div class="panel panel-default">
-                        <div class="panel-body text-center">
-                            <div class="assignment-name">{{ $assignment->assignment_name }}</div>
-                            <div class="text-center">
-                                <span class="label label-primary">
-                                    {{ $assignment->present()->formatTimeForHumans($assignment->created_at) }}
-                                </span>
-                                @if($assignment->groups->isEmpty())
-                                    <span class="label label-info">Member</span>
-                                @else
-                                    <span class="label label-info">Group</span>
-                                @endif
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    @foreach($assignments as $assignment)
+                        <div class="panel panel-default">
+                            <div class="panel-body text-center">
+                                <h3 class="assignment-name" style="margin-top: 0">{{ $assignment->assignment_name }}</h3>
+                                <div class="well">
+                                    <h6>Associated Task</h6>
+                                    <h4><a href="{{ route('admin.task.show', $assignment->task->slug) }}">{{ $assignment->task->title }}</a></h4>
+                                    <p>{{ $assignment->task->content }}</p>
+                                </div>
+                                <div class="text-center">
+                                    <span class="label label-primary">
+                                        {{ $assignment->present()->formatTimeForHumans($assignment->created_at) }}
+                                    </span>
+                                    @if($assignment->groups->isEmpty())
+                                        <span class="label label-info">member assignment</span>
+                                    @else
+                                        <span class="label label-warning">group assignment</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="text-center">
+                                    <a href="{{ route('admin.assignments.show', $assignment->slug) }}">
+                                        <button class="btn btn-info btn-sm"  data-toggle="tooltip" data-placement="bottom" title="View assignment details">
+                                            <i class="fa fa-arrow-right"></i>
+                                        </button>
+                                    </a>
+                                    <a href="{{ route('admin.assignments.edit', $assignment->slug) }}">
+                                        <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit assignment">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    @include('admin.assignments.partials.delete_form', $assignment)
+                                </div>
                             </div>
                         </div>
-                        <div class="panel-footer">
-                            <div class="text-center">
-                                <a href="{{ route('admin.assignments.show', $assignment->slug) }}">
-                                    <button class="btn btn-info btn-circle"  data-toggle="tooltip" data-placement="bottom" title="View assignment details">
-                                        <i class="fa fa-arrow-right"></i>
-                                    </button>
-                                </a>
-                                <a href="{{ route('admin.assignments.edit', $assignment->slug) }}">
-                                    <button class="btn btn-primary btn-circle" data-toggle="tooltip" data-placement="bottom" title="Edit assignment">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                </a>
-                                @include('admin.assignments.partials.delete_form', $assignment)
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-                <div class="text-center">{!! $assignments->render() !!}</div>
+                    @endforeach
+                    <div class="text-center">{!! $assignments->render() !!}</div>
+                </div>
             </div>
         @endif
     </div>

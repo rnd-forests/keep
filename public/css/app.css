@@ -1239,16 +1239,53 @@ fieldset[disabled] .btn-violet {
 
 .assignments-wrapper .well {
   background: #ffffff; }
-.assignments-wrapper .panel-body .assignment-name {
-  font-size: 20px;
-  font-weight: bold;
+.assignments-wrapper .panel {
+  border: none; }
+  .assignments-wrapper .panel .panel-body .well {
+    background-color: #f6f9fa;
+    padding: 10px; }
+    .assignments-wrapper .panel .panel-body .well a {
+      color: #333333; }
+      .assignments-wrapper .panel .panel-body .well a:hover, .assignments-wrapper .panel .panel-body .well a:active, .assignments-wrapper .panel .panel-body .well a:focus {
+        color: #1AB394; }
+  .assignments-wrapper .panel .panel-body .label {
+    font-size: 12px;
+    margin-right: 5px; }
+  .assignments-wrapper .panel .panel-footer {
+    border-top: none; }
+    .assignments-wrapper .panel .panel-footer form {
+      display: inline-block; }
+
+.assignment-wrapper .panel {
+  border: none; }
+.assignment-wrapper .assignment-controls {
+  margin: 15px 0; }
+  .assignment-wrapper .assignment-controls form {
+    display: inline-block; }
+.assignment-wrapper .page-header {
+  margin-top: 25px;
   margin-bottom: 10px;
-  text-shadow: 0 0 1px #bfbfbf; }
-.assignments-wrapper .panel-body .label {
-  font-size: 12px;
-  margin-right: 5px; }
-.assignments-wrapper .panel-footer form {
-  display: inline-block; }
+  padding-bottom: 5px;
+  border-bottom: 1px dashed #d3dbde; }
+  .assignment-wrapper .page-header h6 {
+    margin: 0; }
+
+.assignment-name {
+  text-shadow: 0 0 1px #555555; }
+
+.assignment-assignables {
+  padding: 0;
+  text-align: center; }
+  .assignment-assignables li {
+    list-style: none;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: #7266ba; }
+    .assignment-assignables li a {
+      font-size: 13px;
+      color: #ffffff; }
 
 body {
   font: normal 16px "Source Sans Pro", sans-serif;

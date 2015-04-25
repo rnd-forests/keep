@@ -3,23 +3,83 @@
         background: #ffffff;
     }
 
-    .panel-body {
-        .assignment-name {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-shadow: 0 0 1px lighten(#999999, 15%);
+    .panel {
+        border: none;
+
+        .panel-body {
+            .well {
+                background-color: #f6f9fa;
+                padding: 10px;
+
+                a {
+                    color: #333333;
+
+                    &:hover, &:active, &:focus {
+                        color: #1AB394;
+                    }
+                }
+            }
+
+            .label {
+                font-size: 12px;
+                margin-right: 5px;
+            }
         }
 
-        .label {
-            font-size: 12px;
-            margin-right: 5px;
+        .panel-footer {
+            border-top: none;
+
+            form {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.assignment-wrapper {
+    .panel {
+        border: none;
+    }
+
+    .assignment-controls {
+        margin: 15px 0;
+
+        form {
+            display: inline-block;
         }
     }
 
-    .panel-footer {
-        form {
-            display: inline-block;
+    .page-header {
+        margin-top: 25px;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px dashed darken(#f0f3f4, 10%);
+
+        h6 {
+            margin: 0;
+        }
+    }
+}
+
+.assignment-name {
+    text-shadow: 0 0 1px #555555;
+}
+
+.assignment-assignables {
+    padding: 0;
+    text-align: center;
+
+    li {
+        list-style: none;
+        display: inline-block;
+        border-radius: 3px;
+        padding: 5px;
+        margin-bottom: 5px;
+        background-color: #7266ba;
+
+        a {
+            font-size: 13px;
+            color: #ffffff;
         }
     }
 }

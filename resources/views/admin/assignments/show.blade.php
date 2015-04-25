@@ -5,6 +5,44 @@
 @stop
 
 @section('content')
-    @include('admin.assignments.partials.delete_form', $assignment)
-    {{ var_dump($assignment) }}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="assignment-wrapper">
+                <h2 class="assignment-name text-center">{{ $assignment->assignment_name }}</h2>
+
+                <div class="page-header"><h6>Associated Task</h6></div>
+                @include('tasks.partials.task', $task)
+
+                @if($assignment->users->isEmpty())
+                    <div class="page-header">
+                        <h6>{{ $assignment->groups->count() }} Assigned {{ str_plural('Group', $assignment->groups->count()) }}</h6>
+                    </div>
+                    <ul class="assignment-assignables">
+                        @foreach($assignment->groups as $group)
+                            <li><a href="{{ route('admin.groups.show', $group->slug) }}">{{ $group->name }}</a></li>
+                        @endforeach
+                    </ul>
+                @else
+                    <div class="page-header">
+                        <h6>{{ $assignment->users->count() }} Assigned {{ str_plural('Member', $assignment->users->count()) }}</h6>
+                    </div>
+                    <ul class="assignment-assignables">
+                        @foreach($assignment->users as $member)
+                            <li><a href="{{ route('admin.active.account.profile', $member->slug) }}">{{ $member->name }}</a></li>
+                        @endforeach
+                    </ul>
+                @endif
+
+                <div class="page-header"><h6>Assignment Controls</h6></div>
+                <div class="assignment-controls text-center">
+                    <a href="{{ route('admin.assignments.edit', $assignment->slug) }}">
+                        <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit assignment">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </a>
+                    @include('admin.assignments.partials.delete_form', $assignment)
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
