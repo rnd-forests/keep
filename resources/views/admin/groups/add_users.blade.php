@@ -7,8 +7,7 @@
         <div class="col-md-5">
             <div class="list-group">
                 <div class="list-group-item active">
-                    <strong>{{ $group->name }}</strong> |
-                    {{ $users->count() }} current {{ str_plural('member', $users->count()) }}
+                    <strong>{{ $group->name }}</strong> | {{ $users->count() }} current {{ str_plural('member', $users->count()) }}
                 </div>
                 @foreach($users as $user)
                     <div class="list-group-item">

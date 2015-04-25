@@ -10,10 +10,10 @@
             <div class="modal-body">
                 <div class="text-center">
                     <a href="{{ route('member.assignments') }}">
-                        <button type="button" class="btn btn-primary">MEMBERS</button>
+                        <button type="button" class="btn btn-primary">Members</button>
                     </a>
                     <a href="{{ route('group.assignments') }}">
-                        <button type="button" class="btn btn-primary">GROUPS</button>
+                        <button type="button" class="btn btn-primary">Groups</button>
                     </a>
                 </div>
             </div>

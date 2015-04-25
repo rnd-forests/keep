@@ -10,7 +10,7 @@ class DashboardController extends Controller {
     protected $userRepo, $taskRepo, $groupRepo;
 
     /**
-     * Constructor.
+     * Create new dashboard controller instance.
      *
      * @param UserRepositoryInterface      $userRepo
      * @param TaskRepositoryInterface      $taskRepo

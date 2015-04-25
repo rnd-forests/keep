@@ -10,7 +10,7 @@ class UserGroupsController extends Controller {
     protected $groupRepo;
 
     /**
-     * Constructor.
+     * Create new user groups controller instance.
      *
      * @param UserGroupRepositoryInterface $groupRepo
      */
@@ -32,7 +32,7 @@ class UserGroupsController extends Controller {
     }
 
     /**
-     * Get the form to create a new group.
+     * Get form to create new group.
      *
      * @return \Illuminate\View\View
      */
@@ -42,7 +42,7 @@ class UserGroupsController extends Controller {
     }
 
     /**
-     * Persist a new group.
+     * Persist new group.
      *
      * @param UserGroupRequest $request
      *
@@ -58,7 +58,7 @@ class UserGroupsController extends Controller {
     }
 
     /**
-     * Show a specific group.
+     * Display a group.
      *
      * @param $slug
      *
@@ -74,7 +74,7 @@ class UserGroupsController extends Controller {
     }
 
     /**
-     * Get the form to update a group.
+     * Get form to update a group.
      *
      * @param $slug
      *
@@ -121,7 +121,7 @@ class UserGroupsController extends Controller {
     }
 
     /**
-     * Restore a trashed group.
+     * Restore a soft deleted group.
      *
      * @param $slug
      *
@@ -198,7 +198,7 @@ class UserGroupsController extends Controller {
     }
 
     /**
-     * Load view to add new users to a group.
+     * Get view to add new users to a group.
      *
      * @param $slug
      *
@@ -216,7 +216,7 @@ class UserGroupsController extends Controller {
     }
 
     /**
-     * Add new users to current group.
+     * Add new users to a group.
      *
      * @param                        $slug
      * @param AddUsersToGroupRequest $request

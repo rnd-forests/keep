@@ -42,7 +42,7 @@ class UserTaskController extends Controller {
     }
 
     /**
-     * Get the form to create new task.
+     * Get form to create new task.
      *
      * @return \Illuminate\View\View
      */
@@ -120,7 +120,7 @@ class UserTaskController extends Controller {
     }
 
     /**
-     * Get the form to update a task.
+     * Get form to update a task.
      *
      * @param $userSlug
      * @param $taskSlug

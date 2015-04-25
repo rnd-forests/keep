@@ -1,9 +1,13 @@
 .groups-wrapper {
     .panel {
+        border: none;
+        background: #f6f9fa;
+
         .well {
-            background-color: #ffffff;
+            background-color: #f6f9fa;
             text-align: center;
             margin-bottom: 0;
+            padding: 10px 0 0;
         }
 
         .group-name {
@@ -13,6 +17,8 @@
         }
 
         .panel-footer {
+            border-top: none;
+
             form {
                 display: inline-block;
             }

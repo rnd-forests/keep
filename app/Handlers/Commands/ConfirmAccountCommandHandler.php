@@ -1,5 +1,6 @@
 <?php namespace Keep\Handlers\Commands;
 
+use Keep\User;
 use Illuminate\Contracts\Auth\Guard;
 use Keep\Events\UserWasActivatedEvent;
 use Keep\Commands\ConfirmAccountCommand;
@@ -30,9 +31,9 @@ class ConfirmAccountCommandHandler {
      */
     public function handle(ConfirmAccountCommand $command)
     {
-        $user = $this->activateAccount($command);
+        $user = $this->activate($command);
 
-        return $this->persistActivatedAccount($user);
+        return $this->persist($user);
     }
 
     /**
@@ -42,7 +43,7 @@ class ConfirmAccountCommandHandler {
      *
      * @return mixed
      */
-    private function activateAccount(ConfirmAccountCommand $command)
+    private function activate(ConfirmAccountCommand $command)
     {
         $user = $this->userRepo->findByCodeAndActiveState($command->code, false);
 
@@ -56,11 +57,11 @@ class ConfirmAccountCommandHandler {
     /**
      * Persist activated account to the database.
      *
-     * @param $user
+     * @param User $user
      *
      * @return bool
      */
-    private function persistActivatedAccount($user)
+    private function persist(User $user)
     {
         if ( ! $user->save()) return false;
 

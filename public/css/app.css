@@ -1135,15 +1135,14 @@ fieldset[disabled] .btn-violet {
 
 .admin-contents-wrapper .well {
   background-color: #ffffff; }
-.admin-contents-wrapper .table {
-  background: #ffffff; }
-  .admin-contents-wrapper .table th {
-    text-align: center; }
-  .admin-contents-wrapper .table td {
-    font-size: 15px;
-    vertical-align: middle; }
-    .admin-contents-wrapper .table td form {
-      display: inline-block; }
+.admin-contents-wrapper .table th {
+  text-align: center; }
+.admin-contents-wrapper .table td {
+  font-size: 15px;
+  vertical-align: middle;
+  text-align: center; }
+  .admin-contents-wrapper .table td form {
+    display: inline-block; }
 
 .huge {
   font-size: 35px; }
@@ -1195,16 +1194,22 @@ fieldset[disabled] .btn-violet {
   border: none #edf1f2;
   text-align: center; }
 
-.groups-wrapper .panel .well {
-  background-color: #ffffff;
-  text-align: center;
-  margin-bottom: 0; }
-.groups-wrapper .panel .group-name {
-  margin-top: 0;
-  text-align: center;
-  text-shadow: 0 0 1px #555555; }
-.groups-wrapper .panel .panel-footer form {
-  display: inline-block; }
+.groups-wrapper .panel {
+  border: none;
+  background: #f6f9fa; }
+  .groups-wrapper .panel .well {
+    background-color: #f6f9fa;
+    text-align: center;
+    margin-bottom: 0;
+    padding: 10px 0 0; }
+  .groups-wrapper .panel .group-name {
+    margin-top: 0;
+    text-align: center;
+    text-shadow: 0 0 1px #555555; }
+  .groups-wrapper .panel .panel-footer {
+    border-top: none; }
+    .groups-wrapper .panel .panel-footer form {
+      display: inline-block; }
 
 .group-wrapper .group-wrapper__users {
   margin-top: 40px; }
@@ -1221,19 +1226,25 @@ fieldset[disabled] .btn-violet {
   .add-users-wrapper .list-group-item a:hover, .add-users-wrapper .list-group-item a:active, .add-users-wrapper .list-group-item a:focus {
     color: #1ab394; }
 
-.assignments-wrapper .panel .panel-body .well {
-  background-color: #ffffff;
-  margin-bottom: 0;
-  padding: 0; }
-  .assignments-wrapper .panel .panel-body .well a {
-    color: #333333; }
-    .assignments-wrapper .panel .panel-body .well a:hover, .assignments-wrapper .panel .panel-body .well a:active, .assignments-wrapper .panel .panel-body .well a:focus {
-      color: #1AB394; }
-.assignments-wrapper .panel .panel-body .label {
-  font-size: 12px;
-  margin-right: 5px; }
-.assignments-wrapper .panel .panel-footer form {
-  display: inline-block; }
+.assignments-wrapper .panel {
+  background: #f6f9fa;
+  border: none; }
+  .assignments-wrapper .panel .panel-body .well {
+    background-color: #f6f9fa;
+    margin-bottom: 0;
+    padding: 0; }
+    .assignments-wrapper .panel .panel-body .well a {
+      color: #333333; }
+      .assignments-wrapper .panel .panel-body .well a:hover, .assignments-wrapper .panel .panel-body .well a:active, .assignments-wrapper .panel .panel-body .well a:focus {
+        color: #1AB394; }
+  .assignments-wrapper .panel .panel-body .label {
+    font-size: 12px;
+    margin-right: 5px; }
+  .assignments-wrapper .panel .panel-footer {
+    background: 0 0;
+    border-top: none; }
+    .assignments-wrapper .panel .panel-footer form {
+      display: inline-block; }
 
 .assignment-wrapper .panel {
   border: none; }
@@ -1246,7 +1257,7 @@ fieldset[disabled] .btn-violet {
   margin-bottom: 10px;
   padding-bottom: 5px;
   border-bottom: 1px dashed #d3dbde; }
-  .assignment-wrapper .page-header h6 {
+  .assignment-wrapper .page-header h5 {
     margin: 0; }
 
 .assignment-name {

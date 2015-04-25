@@ -4,17 +4,11 @@
 
 @section('content')
     <div class="admin-contents-wrapper">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="huge text-center">{{ $usersCount }} active {{ str_plural('account', $usersCount) }}</div>
-                    </div>
-                </div>
-            </div>
+        <div class="well">
+            <div class="huge text-center">{{ $usersCount }} active {{ str_plural('account', $usersCount) }}</div>
         </div>
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -30,14 +24,14 @@
                 <tbody>
                     @foreach($activeAccounts as $account)
                         <tr>
-                            <td class="text-center">{{ $account->id }}</td>
-                            <td class="text-navy">{{ $account->name }}</td>
+                            <td>{{ $account->id }}</td>
+                            <td>{{ $account->name }}</td>
                             <td>{{ $account->email }}</td>
-                            <td class="text-center">{{ $account->tasks->count() }}</td>
-                            <td class="text-center">{{ $account->groups->count() }}</td>
-                            <td class="text-center">{{ $account->assignments->count() }}</td>
-                            <td class="text-center">{{ $account->present()->formatTime($account->created_at) }}</td>
-                            <td class="text-center">
+                            <td>{{ $account->tasks->count() }}</td>
+                            <td>{{ $account->groups->count() }}</td>
+                            <td>{{ $account->assignments->count() }}</td>
+                            <td>{{ $account->present()->formatTime($account->created_at) }}</td>
+                            <td>
                                 <a href="{{ route('admin.active.account.profile', $account->slug) }}" class="btn btn-primary btn-circle"
                                    data-toggle="tooltip" data-placement="bottom" title="View Profile">
                                     <i class="fa fa-user"></i>

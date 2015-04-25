@@ -7,7 +7,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-5 account-profile">
-            @include('admin.accounts.partials.basic_information')
+            @include('admin.accounts.partials.account_info')
         </div>
         <div class="col-md-7">
             <div class="timeline">
@@ -18,13 +18,12 @@
                             <span class="tl-date">{{ $task->present()->formatTime($task->created_at) }}</span>
                             <div class="tl-content panel">
                                 <span class="arrow left pull-up"></span>
-                                <div class="text-lt">{{ $task->title }}</div>
+                                <div class="text-lt"><strong>{{ $task->title }}</strong></div>
                                 <div class="panel-body pull-in">
                                     {!! $task->content !!}
                                 </div>
                                 <div class="panel-footer">
-                                    {{ $task->present()->formatTime($task->starting_date) }} to
-                                    {{ $task->present()->formatTime($task->finishing_date) }}
+                                    {{ $task->present()->getRemainingDays($task->finishing_date) }}
                                 </div>
                             </div>
                         </div>

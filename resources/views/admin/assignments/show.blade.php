@@ -10,12 +10,12 @@
             <div class="assignment-wrapper">
                 <h2 class="assignment-name text-center">{{ $assignment->assignment_name }}</h2>
 
-                <div class="page-header"><h6>Associated Task</h6></div>
+                <div class="page-header"><h5>Associated Task</h5></div>
                 @include('tasks.partials.task', $task)
 
                 @if($assignment->users->isEmpty())
                     <div class="page-header">
-                        <h6>{{ $assignment->groups->count() }} Assigned {{ str_plural('Group', $assignment->groups->count()) }}</h6>
+                        <h5>{{ $assignment->groups->count() }} Assigned {{ str_plural('Group', $assignment->groups->count()) }}</h5>
                     </div>
                     <ul class="assignment-assignables">
                         @foreach($assignment->groups as $group)
@@ -24,7 +24,7 @@
                     </ul>
                 @else
                     <div class="page-header">
-                        <h6>{{ $assignment->users->count() }} Assigned {{ str_plural('Member', $assignment->users->count()) }}</h6>
+                        <h5>{{ $assignment->users->count() }} Assigned {{ str_plural('Member', $assignment->users->count()) }}</h5>
                     </div>
                     <ul class="assignment-assignables">
                         @foreach($assignment->users as $member)
@@ -33,7 +33,7 @@
                     </ul>
                 @endif
 
-                <div class="page-header"><h6>Assignment Controls</h6></div>
+                <div class="page-header"><h5>Assignment Controls</h5></div>
                 <div class="assignment-controls text-center">
                     <a href="{{ route('admin.assignments.edit', $assignment->slug) }}">
                         <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit assignment">

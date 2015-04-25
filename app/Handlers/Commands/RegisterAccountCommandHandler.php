@@ -15,7 +15,7 @@ class RegisterAccountCommandHandler {
      */
     public function handle(RegisterAccountCommand $command)
     {
-        return $this->registerAccount($command);
+        return $this->register($command);
     }
 
     /**
@@ -25,7 +25,7 @@ class RegisterAccountCommandHandler {
      *
      * @return bool
      */
-    private function registerAccount(RegisterAccountCommand $command)
+    private function register(RegisterAccountCommand $command)
     {
         $users = App::make('Keep\Repositories\User\UserRepositoryInterface');
 

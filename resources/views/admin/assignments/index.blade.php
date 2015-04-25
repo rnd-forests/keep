@@ -14,7 +14,6 @@
                             <div class="panel-body text-center">
                                 <h3 class="assignment-name" style="margin-top: 0">{{ $assignment->assignment_name }}</h3>
                                 <div class="well">
-                                    <h6>Associated Task</h6>
                                     <h4><a href="{{ route('admin.task.show', $assignment->task->slug) }}">{{ $assignment->task->title }}</a></h4>
                                     <p>{{ $assignment->task->content }}</p>
                                 </div>

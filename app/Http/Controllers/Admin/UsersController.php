@@ -8,7 +8,7 @@ class UsersController extends Controller {
     protected $userRepo;
 
     /**
-     * Constructor.
+     * Create new users controller instance.
      *
      * @param UserRepositoryInterface $userRepo
      */

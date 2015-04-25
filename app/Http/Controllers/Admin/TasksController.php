@@ -8,7 +8,7 @@ class TasksController extends Controller {
     protected $taskRepo;
 
     /**
-     * Constructor.
+     * Create new tasks controller instance.
      *
      * @param TaskRepositoryInterface $taskRepo
      */
@@ -32,7 +32,7 @@ class TasksController extends Controller {
     }
 
     /**
-     * View a specific task.
+     * Display a task.
      *
      * @param $slug
      *
@@ -74,7 +74,7 @@ class TasksController extends Controller {
     }
 
     /**
-     * Restore a soft delete task.
+     * Restore a soft deleted task.
      *
      * @param $slug
      *

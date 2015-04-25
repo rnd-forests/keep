@@ -1,8 +1,11 @@
 .assignments-wrapper {
     .panel {
+        background: #f6f9fa;
+        border: none;
+
         .panel-body {
             .well {
-                background-color: #ffffff;
+                background-color: #f6f9fa;
                 margin-bottom: 0;
                 padding: 0;
 
@@ -22,6 +25,9 @@
         }
 
         .panel-footer {
+            background: 0 0;
+            border-top: none;
+
             form {
                 display: inline-block;
             }
@@ -48,7 +54,7 @@
         padding-bottom: 5px;
         border-bottom: 1px dashed darken(#f0f3f4, 10%);
 
-        h6 {
+        h5 {
             margin: 0;
         }
     }

@@ -22,7 +22,7 @@ class UsersController extends Controller {
     }
 
     /**
-     * Show the user profile page.
+     * Show profile.
      *
      * @param $slug
      *
@@ -36,7 +36,7 @@ class UsersController extends Controller {
     }
 
     /**
-     * Update the user profile.
+     * Update profile.
      *
      * @param EditUserProfileRequest $request
      * @param                        $slug
@@ -53,7 +53,7 @@ class UsersController extends Controller {
     }
 
     /**
-     * Delete user account.
+     * Cancel account.
      *
      * @param $slug
      *

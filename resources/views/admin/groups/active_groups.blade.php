@@ -21,7 +21,7 @@
                                 <div class="well">{{ $group->description }}</div>
                                 <div class="text-center"><h5>{{ $group->present()->formatTimeForHumans($group->created_at) }}</h5></div>
                             </div>
-                            <div class="panel-footer">
+                            <div class="panel-footer text-center">
                                 <span class="btn btn-default btn-circle" data-toggle="tooltip" data-placement="bottom" title="Group ID">{{ $group->id }}</span>
                                 <a href="{{ route('admin.groups.show', $group->slug) }}" class="btn btn-info btn-circle"
                                    data-toggle="tooltip" data-placement="bottom" title="View group details">

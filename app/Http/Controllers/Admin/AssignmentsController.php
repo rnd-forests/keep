@@ -12,7 +12,7 @@ class AssignmentsController extends Controller {
     protected $assignmentRepo;
 
     /**
-     * Constructor.
+     * Create new assignments controller instance.
      *
      * @param AssignmentRepositoryInterface $assignmentRepo
      */
@@ -34,7 +34,7 @@ class AssignmentsController extends Controller {
     }
 
     /**
-     * Show a specific assignment.
+     * Display an assignment.
      *
      * @param $slug
      *
@@ -44,13 +44,13 @@ class AssignmentsController extends Controller {
     {
         $assignment = $this->assignmentRepo->findBySlug($slug);
 
-        $task = $assignment->task->load('tags');
+        $task = $assignment->task;
 
         return view('admin.assignments.show', compact('assignment', 'task'));
     }
 
     /**
-     * Load the form to edit a specific assignment.
+     * Get form to edit an assignment.
      *
      * @param $slug
      *
@@ -60,13 +60,13 @@ class AssignmentsController extends Controller {
     {
         $assignment = $this->assignmentRepo->findBySlug($slug);
 
-        $task = $assignment->task->load('tags');
+        $task = $assignment->task->load('tags', 'priority');
 
         return view('admin.assignments.edit', compact('assignment', 'task'));
     }
 
     /**
-     * Update a specific assignment.
+     * Update an assignment.
      *
      * @param AssignmentRequest $request
      * @param                   $slug
@@ -83,7 +83,7 @@ class AssignmentsController extends Controller {
     }
 
     /**
-     * Delete a specific task.
+     * Delete an assignment.
      *
      * @param $slug
      *
@@ -99,7 +99,7 @@ class AssignmentsController extends Controller {
     }
 
     /**
-     * Load form to assign new task to individual members.
+     * Get form to create new assignment for members.
      *
      * @return \Illuminate\View\View
      */
@@ -109,7 +109,7 @@ class AssignmentsController extends Controller {
     }
 
     /**
-     * Assign tasks for members.
+     * Persist assignment for members to database.
      *
      * @param AssignmentRequest $request
      *
@@ -125,7 +125,7 @@ class AssignmentsController extends Controller {
     }
 
     /**
-     * Load form to assign new task to groups.
+     * Get form to create new assignment for groups.
      *
      * @return \Illuminate\View\View
      */
@@ -135,7 +135,7 @@ class AssignmentsController extends Controller {
     }
 
     /**
-     * Assign tasks for groups.
+     * Persist assignment for groups to database.
      *
      * @param AssignmentRequest $request
      *
