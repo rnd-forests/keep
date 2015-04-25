@@ -7,9 +7,8 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><i class="fa fa-area-chart"></i> Current number of active accounts</div>
                     <div class="panel-body">
-                        <div class="huge text-center">{{ $usersCount }} {{ str_plural('account', $usersCount) }}</div>
+                        <div class="huge text-center">{{ $usersCount }} active {{ str_plural('account', $usersCount) }}</div>
                     </div>
                 </div>
             </div>
@@ -22,6 +21,8 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Tasks</th>
+                        <th>Groups</th>
+                        <th>Assignments</th>
                         <th>Joined Date</th>
                         <th>Actions</th>
                     </tr>
@@ -33,6 +34,8 @@
                             <td class="text-navy">{{ $account->name }}</td>
                             <td>{{ $account->email }}</td>
                             <td class="text-center">{{ $account->tasks->count() }}</td>
+                            <td class="text-center">{{ $account->groups->count() }}</td>
+                            <td class="text-center">{{ $account->assignments->count() }}</td>
                             <td class="text-center">{{ $account->present()->formatTime($account->created_at) }}</td>
                             <td class="text-center">
                                 <a href="{{ route('admin.active.account.profile', $account->slug) }}" class="btn btn-primary btn-circle"

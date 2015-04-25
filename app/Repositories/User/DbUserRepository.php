@@ -18,7 +18,7 @@ class DbUserRepository implements UserRepositoryInterface {
 
     public function getPaginatedUsers($limit)
     {
-        return User::with('tasks', 'roles')->paginate($limit);
+        return User::with('tasks', 'roles', 'groups', 'assignments')->paginate($limit);
     }
 
     public function getAuthUser()
@@ -38,7 +38,8 @@ class DbUserRepository implements UserRepositoryInterface {
 
     public function findBySlugWithTasks($slug)
     {
-        return User::with(['tasks' => function($query) {
+        return User::with(['tasks' => function ($query)
+        {
             $query->latest('created_at');
         }, 'roles'])->whereSlug($slug)->firstOrFail();
     }
@@ -80,7 +81,8 @@ class DbUserRepository implements UserRepositoryInterface {
     {
         $user = $this->findBySlug($slug);
 
-        Task::whereIn('id', $user->tasks()->lists('id'))->get()->each(function ($task) {
+        Task::whereIn('id', $user->tasks()->lists('id'))->get()->each(function ($task)
+        {
             $task->delete();
         });
 

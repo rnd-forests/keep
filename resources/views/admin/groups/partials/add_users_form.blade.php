@@ -1,7 +1,6 @@
 {!! Form::open(['route' => ['admin.groups.sync.users', $group->slug]]) !!}
     <div class="form-group">
         <div class="form-group">
-            {!! Form::label('group_new_users', 'Select Users', ['class' => 'control-label']) !!}
             {!! Form::select('group_new_users[]', $outsiders, null, ['id' => 'group_new_users', 'class' => 'form-control', 'multiple']) !!}
         </div>
     </div>

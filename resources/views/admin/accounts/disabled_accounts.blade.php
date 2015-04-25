@@ -10,9 +10,8 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><i class="fa fa-area-chart"></i> Current number of disabled accounts</div>
                         <div class="panel-body">
-                            <div class="huge text-center">{{ $disabledAccounts->count() }} {{ str_plural('account', $disabledAccounts->count()) }}</div>
+                            <div class="huge text-center">{{ $disabledAccounts->count() }} disabled {{ str_plural('account', $disabledAccounts->count()) }}</div>
                         </div>
                     </div>
                 </div>

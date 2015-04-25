@@ -11370,7 +11370,7 @@ fieldset[disabled] .btn-violet {
     border-radius: 50%;
     border-style: solid;
     background: #edf1f2;
-    box-shadow: 0 0 0 4px #ffffff; }
+    box-shadow: 0 0 0 4px #e9f0f3; }
   .tl-wrap:hover:before {
     background: transparent;
     border-color: #fff; }
@@ -11818,9 +11818,6 @@ fieldset[disabled] .btn-violet {
   .task-controls form {
     display: inline-block; }
 
-.admin-panel {
-  background: #f0f3f4; }
-
 .admin-contents-wrapper .well {
   background-color: #ffffff; }
 .admin-contents-wrapper .table {
@@ -11883,63 +11880,45 @@ fieldset[disabled] .btn-violet {
   border: none #edf1f2;
   text-align: center; }
 
-.groups-wrapper .panel .label {
-  display: inline-block;
-  margin-top: 15px; }
 .groups-wrapper .panel .well {
-  background-color: #f6f9fa; }
-.groups-wrapper .panel .panel-body h5 {
-  margin-top: 0;
+  background-color: #ffffff;
+  text-align: center;
   margin-bottom: 0; }
+.groups-wrapper .panel .group-name {
+  margin-top: 0;
+  text-align: center;
+  text-shadow: 0 0 1px #555555; }
 .groups-wrapper .panel .panel-footer form {
   display: inline-block; }
-.groups-wrapper .well {
-  background-color: #ffffff; }
 
 .group-wrapper .group-wrapper__users {
   margin-top: 40px; }
   .group-wrapper .group-wrapper__users .well {
-    background-color: #ffffff; }
+    background-color: #fafaf9; }
 .group-wrapper form {
   display: inline-block; }
 
-.add-users-wrapper .list-group-item {
-  border: none; }
-  .add-users-wrapper .list-group-item:hover {
-    background-color: #eaeaea; }
-  .add-users-wrapper .list-group-item a {
-    color: #333333;
-    vertical-align: middle; }
-    .add-users-wrapper .list-group-item a:hover, .add-users-wrapper .list-group-item a:active, .add-users-wrapper .list-group-item a:focus {
-      color: #1ab394; }
-  .add-users-wrapper .list-group-item .btn-circle {
-    width: 24px;
-    height: 24px;
-    border-radius: 12px;
-    padding: 4px 0; }
-.add-users-wrapper .panel {
-  border: none; }
-  .add-users-wrapper .panel .panel-footer {
-    border-top: none; }
+.add-users-wrapper .list-group-item:hover {
+  background-color: #eaeaea; }
+.add-users-wrapper .list-group-item a {
+  color: #333333;
+  vertical-align: middle; }
+  .add-users-wrapper .list-group-item a:hover, .add-users-wrapper .list-group-item a:active, .add-users-wrapper .list-group-item a:focus {
+    color: #1ab394; }
 
-.assignments-wrapper .well {
-  background: #ffffff; }
-.assignments-wrapper .panel {
-  border: none; }
-  .assignments-wrapper .panel .panel-body .well {
-    background-color: #f6f9fa;
-    padding: 10px; }
-    .assignments-wrapper .panel .panel-body .well a {
-      color: #333333; }
-      .assignments-wrapper .panel .panel-body .well a:hover, .assignments-wrapper .panel .panel-body .well a:active, .assignments-wrapper .panel .panel-body .well a:focus {
-        color: #1AB394; }
-  .assignments-wrapper .panel .panel-body .label {
-    font-size: 12px;
-    margin-right: 5px; }
-  .assignments-wrapper .panel .panel-footer {
-    border-top: none; }
-    .assignments-wrapper .panel .panel-footer form {
-      display: inline-block; }
+.assignments-wrapper .panel .panel-body .well {
+  background-color: #ffffff;
+  margin-bottom: 0;
+  padding: 0; }
+  .assignments-wrapper .panel .panel-body .well a {
+    color: #333333; }
+    .assignments-wrapper .panel .panel-body .well a:hover, .assignments-wrapper .panel .panel-body .well a:active, .assignments-wrapper .panel .panel-body .well a:focus {
+      color: #1AB394; }
+.assignments-wrapper .panel .panel-body .label {
+  font-size: 12px;
+  margin-right: 5px; }
+.assignments-wrapper .panel .panel-footer form {
+  display: inline-block; }
 
 .assignment-wrapper .panel {
   border: none; }

@@ -10,9 +10,8 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><i class="fa fa-area-chart"></i> Current number of tasks</div>
                         <div class="panel-body">
-                            <div class="huge text-center">{{ $tasksCount }} {{ str_plural('task', $tasksCount) }}</div>
+                            <div class="huge text-center">{{ $tasksCount }} published {{ str_plural('task', $tasksCount) }}</div>
                         </div>
                     </div>
                 </div>
@@ -35,12 +34,12 @@
                     <tbody>
                     @foreach($tasks as $task)
                         <tr>
-                            <td>{{ $task->id }}</td>
+                            <td class="text-center">{{ $task->id }}</td>
                             <td class="text-center">{{ $task->present()->formatTime($task->created_at) }}</td>
                             @if(isset($task->owner))
-                                <td class="text-center">{{ $task->owner->name }}</td>
+                                <td>{{ $task->owner->name }}</td>
                             @else
-                                <td class="text-center text-navy">Administrator</td>
+                                <td class="text-navy">Administrator</td>
                             @endif
                             <td class="text-navy">{{ $task->title }}</td>
                             <td class="text-center">{{ $task->priority->name }}</td>

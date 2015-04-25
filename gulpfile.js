@@ -18,6 +18,7 @@ elixir(function(mix) {
         'vendor/jquery.min.js',
         'vendor/moment.min.js',
         'vendor/bootstrap.min.js',
+        'vendor/chart.min.js',
         'vendor/datetimepicker.min.js',
         'vendor/select2.min.js',
         'vendor/summernote/summernote.min.js',

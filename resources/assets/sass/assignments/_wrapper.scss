@@ -1,15 +1,10 @@
 .assignments-wrapper {
-    .well {
-        background: #ffffff;
-    }
-
     .panel {
-        border: none;
-
         .panel-body {
             .well {
-                background-color: #f6f9fa;
-                padding: 10px;
+                background-color: #ffffff;
+                margin-bottom: 0;
+                padding: 0;
 
                 a {
                     color: #333333;
@@ -27,8 +22,6 @@
         }
 
         .panel-footer {
-            border-top: none;
-
             form {
                 display: inline-block;
             }

@@ -17,13 +17,15 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="admin-panel">
+<body>
     @include('admin.layouts.nav')
 
     <div class="container">
         @include('flash::message')
         @yield('content')
     </div>
+
+    @include('layouts.partials.footer')
 
     {!! Html::script('js/all.js') !!}
 </body>
