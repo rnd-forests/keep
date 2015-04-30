@@ -19,6 +19,7 @@
                 @if (Auth::check())
                     <li><a href="{{ route('users.tasks.create', Auth::user()->slug) }}">Create task</a></li>
                     <li><a href="{{ route('users.tasks.index', Auth::user()->slug) }}">All tasks</a></li>
+                    <li><a href="{{ route('users.tag.list', Auth::user()->slug) }}">Tags</a></li>
                     <li><a href="#">Notifications</a></li>
                 @endif
             </ul>
