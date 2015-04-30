@@ -22,9 +22,9 @@ class DbTagRepository implements TagRepositoryInterface {
 
         return Tag::whereIn('id', array_fetch(
             DB::table('tag_task')
-            ->whereIn('task_id', $user->tasks->lists('id'))
-            ->groupBy('tag_id')
-            ->get(), 'tag_id')
+                ->whereIn('task_id', $user->tasks->lists('id'))
+                ->groupBy('tag_id')
+                ->get(), 'tag_id')
         )->get();
     }
 

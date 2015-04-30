@@ -23,7 +23,7 @@ class TagsController extends Controller {
      *
      * @return \Illuminate\View\View
      */
-	public function index($userSlug)
+    public function index($userSlug)
     {
         $tags = $this->tagRepo->getAssociatedTags($userSlug);
 
