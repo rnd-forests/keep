@@ -111,6 +111,22 @@ class Task extends Model implements SluggableInterface {
         return $this->completed;
     }
 
+    /**
+     * Get ten most urgent tasks.
+     * 
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeUrgent($query)
+    {
+        return $query->where('priority_id', 1)
+            ->where('completed', 0)
+            ->orderBy('finishing_date', 'desc')
+            ->take(10)
+            ->get();
+    }
+
     //--- ACCESSORS vs. MUTATORS ---//
     public function setStartingDateAttribute($date)
     {
