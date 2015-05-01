@@ -14,6 +14,9 @@ class PrioritiesController extends Controller {
     public function __construct(PriorityRepositoryInterface $priorityRepo)
     {
         $this->priorityRepo = $priorityRepo;
+
+        $this->middleware('auth');
+        $this->middleware('auth.correct');
     }
 
     /**
