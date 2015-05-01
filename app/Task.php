@@ -118,6 +118,16 @@ class Task extends Model implements SluggableInterface {
         return $this->completed;
     }
 
+    /**
+     * Set the route key.
+     *
+     * @return mixed
+     */
+    public function getRouteKey()
+    {
+        return $this->slug;
+    }
+
     //--- ACCESSORS vs. MUTATORS ---//
     public function setStartingDateAttribute($date)
     {

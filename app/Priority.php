@@ -21,4 +21,14 @@ class Priority extends Model {
         return $this->hasMany('Keep\Task');
     }
 
+    /**
+     * Set the route key.
+     *
+     * @return mixed
+     */
+    public function getRouteKey()
+    {
+        return $this->name;
+    }
+
 }

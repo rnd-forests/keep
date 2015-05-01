@@ -144,4 +144,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $this->attributes['password'] = bcrypt($password);
     }
 
+    /**
+     * Set the route key.
+     *
+     * @return mixed
+     */
+    public function getRouteKey()
+    {
+        return $this->slug;
+    }
+
 }

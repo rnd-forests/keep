@@ -51,4 +51,14 @@ class Group extends Model implements SluggableInterface {
         return $this->morphToMany('Keep\Assignment', 'assignable');
     }
 
+    /**
+     * Set the route key.
+     *
+     * @return mixed
+     */
+    public function getRouteKey()
+    {
+        return $this->slug;
+    }
+
 }

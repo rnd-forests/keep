@@ -60,4 +60,14 @@ class Assignment extends Model implements SluggableInterface {
         return $this->hasOne('Keep\Task');
     }
 
+    /**
+     * Set the route key.
+     *
+     * @return mixed
+     */
+    public function getRouteKey()
+    {
+        return $this->slug;
+    }
+
 }

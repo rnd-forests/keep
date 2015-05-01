@@ -21,4 +21,14 @@ class Tag extends Model {
         return $this->belongsToMany('Keep\Task');
     }
 
+    /**
+     * Set the route key.
+     *
+     * @return mixed
+     */
+    public function getRouteKey()
+    {
+        return $this->name;
+    }
+
 }
