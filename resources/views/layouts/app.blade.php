@@ -20,6 +20,8 @@
 <body>
     @include('layouts.partials.nav')
 
+    @yield('banner')
+
     <div class="container">
         @include('flash::message')
         @yield('content')

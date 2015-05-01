@@ -1,7 +1,5 @@
 <?php namespace Keep\Http\Controllers;
 
-use Keep\Http\Requests;
-
 class HomeController extends Controller {
 
     /**

@@ -1078,6 +1078,15 @@ fieldset[disabled] .btn-violet {
   display: block;
   padding: 6px; }
 
+.home-cover {
+  margin-top: -20px; }
+  .home-cover img {
+    width: 100%;
+    height: auto; }
+
+.home-contents button {
+  margin-top: -15em; }
+
 .user-profile-wrapper textarea {
   resize: none; }
 .user-profile-wrapper .username {
