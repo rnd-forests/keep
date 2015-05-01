@@ -41,7 +41,7 @@
                                 <td>{!! $task->present()->formatTime($task->finishing_date) !!}</td>
                                 <td>{!! $task->present()->printStatus($task->completed) !!}</td>
                                 <td>
-                                    <a href="{{ route('admin.task.show', $task->slug) }}" class="btn btn-primary btn-circle"
+                                    <a href="{{ route('admin.task.show', $task) }}" class="btn btn-primary btn-circle"
                                        data-toggle="tooltip" data-placement="bottom" title="Show Task">
                                         <i class="fa fa-arrow-right"></i>
                                     </a>

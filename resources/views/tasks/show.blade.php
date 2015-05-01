@@ -12,13 +12,13 @@
                 @include('tasks.partials.complete_form')
             </div>
             <div class="task-controls text-center">
-                <a href="{{ route('users.tasks.index', $user->slug) }}">
+                <a href="{{ route('users.tasks.index', $user) }}">
                     <button class="btn btn-circle btn-info"
                         data-toggle="tooltip" data-placement="bottom" title="Back to tasks list">
                         <i class="fa fa-arrow-left"></i>
                     </button>
                 </a>
-                <a href="{{ route('users.tasks.edit', array($user->slug, $task->slug)) }}">
+                <a href="{{ route('users.tasks.edit', [$user, $task]) }}">
                     <button class="btn btn-circle btn-primary"
                         data-toggle="tooltip" data-placement="bottom" title="Edit task">
                         <i class="fa fa-pencil"></i>

@@ -14,7 +14,7 @@
                             <div class="panel-body text-center">
                                 <h3 class="assignment-name" style="margin-top: 0">{{ $assignment->assignment_name }}</h3>
                                 <div class="well">
-                                    <h4><a href="{{ route('admin.task.show', $assignment->task->slug) }}">{{ $assignment->task->title }}</a></h4>
+                                    <h4><a href="{{ route('admin.task.show', $assignment->task) }}">{{ $assignment->task->title }}</a></h4>
                                     <p>{{ $assignment->task->content }}</p>
                                 </div>
                                 <div class="text-center">
@@ -30,17 +30,17 @@
                             </div>
                             <div class="panel-footer">
                                 <div class="text-center">
-                                    <a href="{{ route('admin.assignments.show', $assignment->slug) }}">
+                                    <a href="{{ route('admin.assignments.show', $assignment) }}">
                                         <button class="btn btn-info btn-sm"  data-toggle="tooltip" data-placement="bottom" title="View assignment details">
                                             <i class="fa fa-arrow-right"></i>
                                         </button>
                                     </a>
-                                    <a href="{{ route('admin.assignments.edit', $assignment->slug) }}">
+                                    <a href="{{ route('admin.assignments.edit', $assignment) }}">
                                         <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit assignment">
                                             <i class="fa fa-pencil"></i>
                                         </button>
                                     </a>
-                                    @include('admin.assignments.partials.delete_form', $assignment)
+                                    @include('admin.assignments.partials.delete_form')
                                 </div>
                             </div>
                         </div>

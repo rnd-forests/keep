@@ -17,9 +17,9 @@
                     <li><a href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
                 @endif
                 @if (Auth::check())
-                    <li><a href="{{ route('users.tasks.create', Auth::user()->slug) }}">Create task</a></li>
-                    <li><a href="{{ route('users.tasks.index', Auth::user()->slug) }}">All tasks</a></li>
-                    <li><a href="{{ route('users.tag.list', Auth::user()->slug) }}">Tags</a></li>
+                    <li><a href="{{ route('users.tasks.create', Auth::user()) }}">Create task</a></li>
+                    <li><a href="{{ route('users.tasks.index', Auth::user()) }}">All tasks</a></li>
+                    <li><a href="{{ route('users.tag.list', Auth::user()) }}">Tags</a></li>
                     <li><a href="#">Notifications</a></li>
                 @endif
             </ul>
@@ -28,7 +28,7 @@
                     <li><a href="{{ route('register') }}">Register</a></li>
                     <li><a href="{{ route('login') }}">Login</a></li>
                 @else
-                    <li><a href="{{ route('users.show', Auth::user()->slug) }}">{{ Auth::user()->name }}</a></li>
+                    <li><a href="{{ route('users.show', Auth::user()) }}">{{ Auth::user()->name }}</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
                 @endif
             </ul>

@@ -12,6 +12,6 @@
                     @include('admin.groups.partials.form', ['groupFormSubmitButton' => 'Create Group'])
                 {!! Form::close() !!}
             </div>
-            </div>
+        </div>
     </div>
 @stop

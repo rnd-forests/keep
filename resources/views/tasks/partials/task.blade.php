@@ -26,7 +26,7 @@
                 <div class="well">
                     <i class="fa fa-tags"></i>
                     @foreach($task->tags as $tag)
-                        <a href="{{ route('users.tag.tasks', [Auth::user()->slug, $tag->name]) }}">
+                        <a href="{{ route('users.tag.tasks', [Auth::user(), $tag]) }}">
                             <span class="label label-default">{{ $tag->name }}</span>
                         </a>
                     @endforeach

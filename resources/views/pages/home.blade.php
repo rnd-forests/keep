@@ -13,10 +13,10 @@
         <div class="home-contents">
             <div class="text-center">
                 @if(Auth::check())
-                    <a href="{{ route('users.tasks.index', Auth::user()->slug) }}">
+                    <a href="{{ route('users.tasks.index', Auth::user()) }}">
                         <button class="btn btn-danger btn-lg">Browsing Your Tasks</button>
                     </a>
-                    <a href="{{ route('users.tasks.create', Auth::user()->slug) }}">
+                    <a href="{{ route('users.tasks.create', Auth::user()) }}">
                         <button class="btn btn-primary btn-lg">Schedule New Task</button>
                     </a>
                 @else

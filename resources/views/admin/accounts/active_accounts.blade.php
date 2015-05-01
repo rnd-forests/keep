@@ -32,7 +32,7 @@
                             <td>{{ $account->assignments->count() }}</td>
                             <td>{{ $account->present()->formatTime($account->created_at) }}</td>
                             <td>
-                                <a href="{{ route('admin.active.account.profile', $account->slug) }}" class="btn btn-primary btn-circle"
+                                <a href="{{ route('admin.active.account.profile', $account) }}" class="btn btn-primary btn-circle"
                                    data-toggle="tooltip" data-placement="bottom" title="View Profile">
                                     <i class="fa fa-user"></i>
                                 </a>

@@ -19,7 +19,7 @@
                     </div>
                     <ul class="assignment-assignables">
                         @foreach($assignment->groups as $group)
-                            <li><a href="{{ route('admin.groups.show', $group->slug) }}">{{ $group->name }}</a></li>
+                            <li><a href="{{ route('admin.groups.show', $group) }}">{{ $group->name }}</a></li>
                         @endforeach
                     </ul>
                 @else
@@ -28,19 +28,19 @@
                     </div>
                     <ul class="assignment-assignables">
                         @foreach($assignment->users as $member)
-                            <li><a href="{{ route('admin.active.account.profile', $member->slug) }}">{{ $member->name }}</a></li>
+                            <li><a href="{{ route('admin.active.account.profile', $member) }}">{{ $member->name }}</a></li>
                         @endforeach
                     </ul>
                 @endif
 
                 <div class="page-header"><h5>Assignment Controls</h5></div>
                 <div class="assignment-controls text-center">
-                    <a href="{{ route('admin.assignments.edit', $assignment->slug) }}">
+                    <a href="{{ route('admin.assignments.edit', $assignment) }}">
                         <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit assignment">
                             <i class="fa fa-pencil"></i>
                         </button>
                     </a>
-                    @include('admin.assignments.partials.delete_form', $assignment)
+                    @include('admin.assignments.partials.delete_form')
                 </div>
             </div>
         </div>

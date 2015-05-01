@@ -17,7 +17,7 @@
                         </button>
                     </a>
                     @include('admin.groups.partials.flush_form')
-                    <a href="{{ route('admin.groups.add.users', $group->slug) }}">
+                    <a href="{{ route('admin.groups.add.users', $group) }}">
                         <button class="btn btn-circle btn-primary"
                             data-toggle="tooltip" data-placement="bottom" title="Add new users to this group">
                             <i class="fa fa-plus"></i>

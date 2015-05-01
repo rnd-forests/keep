@@ -10,7 +10,7 @@
             <div class="form-wrapper">
                 <h2 class="form-header">{{ $task->title }}</h2>
                 @include('layouts.partials.errors')
-                {!! Form::model($task, ['method' => 'PATCH', 'route' => ['users.tasks.update', $user->slug, $task->slug]]) !!}
+                {!! Form::model($task, ['method' => 'PATCH', 'route' => ['users.tasks.update', $user, $task]]) !!}
                     @include('tasks.partials.form', ['taskFormSubmitButton' => 'Update Task'])
                 {!! Form::close() !!}
             </div>

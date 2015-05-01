@@ -1,5 +1,5 @@
 @include('layouts.partials.errors')
-{!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->slug]]) !!}
+{!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user]]) !!}
     <div class="form-group">
         {!! Form::label('name', 'Name', ['class' => 'control-label']) !!}
         {!! Form::text('name', null, ['class' => 'form-control input-lg']) !!}

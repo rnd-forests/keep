@@ -11,7 +11,7 @@
                 </div>
                 @foreach($users as $user)
                     <div class="list-group-item">
-                        <a href="{{ route('admin.active.account.profile', $user->slug) }}">{{ $user->name }}</a>
+                        <a href="{{ route('admin.active.account.profile', $user) }}">{{ $user->name }}</a>
                         <div class="pull-right">
                             @include('admin.groups.partials.remove_form')
                         </div>

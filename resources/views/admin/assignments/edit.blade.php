@@ -26,7 +26,7 @@
             <div class="form-wrapper">
                 <h2 class="form-header">Edit - {{ $assignment->assignment_name }}</h2>
                 @include('layouts.partials.errors')
-                {!! Form::model($task, ['method' => 'PATCH', 'route' => ['admin.assignments.update', $assignment->slug]]) !!}
+                {!! Form::model($task, ['method' => 'PATCH', 'route' => ['admin.assignments.update', $assignment]]) !!}
                     @include('admin.assignments.partials.form', ['assignmentButton' => 'Update Assignment'])
                 {!! Form::close() !!}
             </div>

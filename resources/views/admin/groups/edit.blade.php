@@ -11,7 +11,7 @@
                 <div class="panel-heading">Edit User Group</div>
                 <div class="panel-body">
                     @include('layouts.partials.errors')
-                    {!! Form::model($group, ['method' => 'PATCH', 'route' => ['admin.groups.update', $group->slug]]) !!}
+                    {!! Form::model($group, ['method' => 'PATCH', 'route' => ['admin.groups.update', $group]]) !!}
                         @include('admin.groups.partials.form', ['groupFormSubmitButton' => 'Update Group'])
                     {!! Form::close() !!}
                 </div>

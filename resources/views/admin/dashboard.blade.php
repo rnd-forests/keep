@@ -32,7 +32,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="#">
+                <a href="{{ route('admin.active.groups') }}">
                     <div class="panel widget bg-red">
                         <div class="row row-table">
                             <div class="col-xs-4 bg-red-dark text-center pv-lg"><i class="fa fa-users fa-3x"></i></div>
