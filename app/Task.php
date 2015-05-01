@@ -52,6 +52,13 @@ class Task extends Model implements SluggableInterface {
     ];
 
     /**
+     * Touching parent timestamps.
+     *
+     * @var array
+     */
+    protected $touches = ['owner', 'assignment'];
+
+    /**
      * A task belongs to a specific user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
