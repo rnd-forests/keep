@@ -3,6 +3,7 @@
 use Request;
 use Keep\Task;
 use Keep\User;
+use Carbon\Carbon;
 use Keep\Priority;
 
 class DbTaskRepository implements TaskRepositoryInterface {
@@ -115,6 +116,8 @@ class DbTaskRepository implements TaskRepositoryInterface {
         $task = $this->findCorrectTaskBySlug($userSlug, $taskSlug);
 
         $task->completed = Request::input('completed') ? Request::input('completed') : 0;
+        
+        $task->finished_at = Carbon::now();
 
         return $task->save();
     }

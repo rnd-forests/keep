@@ -134,7 +134,8 @@ class Task extends Model implements SluggableInterface {
 
     public function setFinishedAtAttribute($date)
     {
-        $this->attributes['finished_at'] = Carbon::parse($date);
+        if ($this->isCompleted()) $this->attributes['finished_at'] = Carbon::parse($date);
+        else $this->attributes['finished_at'] = null;
     }
 
     public function getTagListAttribute()
