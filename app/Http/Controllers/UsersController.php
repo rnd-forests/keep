@@ -49,7 +49,7 @@ class UsersController extends Controller {
 
         flash()->info('Your profile has been successfully updated.');
 
-        return redirect()->route('users.show', $user->slug);
+        return redirect()->route('users.show', $user);
     }
 
     /**

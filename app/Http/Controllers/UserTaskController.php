@@ -70,7 +70,7 @@ class UserTaskController extends Controller {
 
         flash()->success('Your tasks has been successfully created');
 
-        return redirect()->route('users.tasks.index', $author->slug);
+        return redirect()->route('users.tasks.index', $author);
     }
 
     /**
@@ -153,7 +153,7 @@ class UserTaskController extends Controller {
 
         flash()->info('Your task was successfully updated');
 
-        return redirect()->route('users.tasks.index', $this->userRepo->getAuthUser()->slug);
+        return redirect()->route('users.tasks.index', $this->userRepo->getAuthUser());
     }
 
     /**
