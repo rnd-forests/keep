@@ -14,6 +14,9 @@ class TagsController extends Controller {
     public function __construct(TagRepositoryInterface $tagRepo)
     {
         $this->tagRepo = $tagRepo;
+
+        $this->middleware('auth');
+        $this->middleware('auth.correct');
     }
 
     /**
