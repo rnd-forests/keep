@@ -42,7 +42,7 @@ class TasksController extends Controller {
     {
         $task = $this->taskRepo->findBySlug($slug);
 
-        return view('admin.tasks.task_view', compact('task'));
+        return view('admin.tasks.task', compact('task'));
     }
 
     /**
