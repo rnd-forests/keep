@@ -7,7 +7,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-4">
-            <div class="page-header"><h3>Members</h3></div>
+            <div class="page-header"><h3>Members ({{ $group->users->count() }})</h3></div>
             @foreach($group->users as $user)
                 <div class="well">
                     <div class="media">
@@ -23,7 +23,7 @@
             @endforeach
         </div>
         <div class="col-md-8">
-            <div class="page-header"><h3>Assignments</h3></div>
+            <div class="page-header"><h3>Assignments ({{ $group->assignments->count() }})</h3></div>
             @foreach($group->assignments->load('task.priority') as $assignment)
                 <div class="task-wrapper">
                     <div class="panel panel-primary">
