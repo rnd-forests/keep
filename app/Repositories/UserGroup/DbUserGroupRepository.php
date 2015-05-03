@@ -99,4 +99,11 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
         return Group::whereIn('id', $ids)->get();
     }
 
+    public function getGroupsAssociatedWithAUser($userSlug)
+    {
+        $user = User::findBySlug($userSlug);
+
+        return $user->groups()->paginate(10);
+    }
+
 }

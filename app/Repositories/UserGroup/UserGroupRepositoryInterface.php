@@ -145,4 +145,13 @@ interface UserGroupRepositoryInterface {
      */
     public function fetchGroupsByIds(array $ids);
 
+    /**
+     * Get all groups associated with a specific user.
+     *
+     * @param $userSlug
+     *
+     * @return mixed
+     */
+    public function getGroupsAssociatedWithAUser($userSlug);
+
 }

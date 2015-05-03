@@ -20,6 +20,7 @@
                     <li><a href="{{ route('users.tasks.create', Auth::user()) }}">Create task</a></li>
                     <li><a href="{{ route('users.tasks.index', Auth::user()) }}">All tasks</a></li>
                     <li><a href="{{ route('users.tag.list', Auth::user()) }}">Tags</a></li>
+                    <li><a href="{{ route('users.groups.index', Auth::user()) }}">Groups</a></li>
                     <li><a href="#">Notifications</a></li>
                 @endif
             </ul>
