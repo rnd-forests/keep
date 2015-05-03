@@ -28,7 +28,7 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
 
     public function findBySlug($slug)
     {
-        return Group::findBySlug($slug);
+        return Group::with('users', 'assignments.task')->whereSlug($slug)->firstOrFail();
     }
 
     public function create(array $data)

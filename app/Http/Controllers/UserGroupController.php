@@ -38,4 +38,21 @@ class UserGroupController extends Controller {
         return view('users.groups.index', compact('user', 'groups'));
     }
 
+    /**
+     * View a specific group that a user belongs to.
+     *
+     * @param $userSlug
+     * @param $groupSlug
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show($userSlug, $groupSlug)
+    {
+        $user = $this->userRepo->findBySlug($userSlug);
+
+        $group = $this->groupRepo->findBySlug($groupSlug);
+
+        return view('users.groups.show', compact('user', 'group'));
+    }
+
 }

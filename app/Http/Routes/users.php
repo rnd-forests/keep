@@ -19,3 +19,8 @@ Route::get('{users}/groups', [
     'as'   => 'users.groups.index',
     'uses' => 'UserGroupController@index'
 ]);
+
+Route::get('{users}/groups/{groups}', [
+    'as'   => 'users.groups.show',
+    'uses' => 'UserGroupController@show'
+]);
