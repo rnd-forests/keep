@@ -4,7 +4,7 @@
 
 @section('banner')
     <div class="home-cover">
-        {!! Html::image('img/home-cover.png', $alt = 'Keep home cover photo') !!}
+        {!! Html::image('img/home-cover.jpg', $alt = 'Keep home cover photo') !!}
     </div>
 @stop
 

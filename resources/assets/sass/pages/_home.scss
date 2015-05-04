@@ -1,5 +1,6 @@
 .home-cover {
     margin-top: -20px;
+    position: relative;
 
     img {
         width: 100%;
@@ -8,7 +9,8 @@
 }
 
 .home-contents {
-    button {
-        margin-top: -15em;
-    }
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
 }

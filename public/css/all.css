@@ -11764,13 +11764,19 @@ fieldset[disabled] .btn-violet {
   padding: 6px; }
 
 .home-cover {
-  margin-top: -20px; }
+  margin-top: -20px;
+  position: relative; }
   .home-cover img {
     width: 100%;
     height: auto; }
 
-.home-contents button {
-  margin-top: -15em; }
+.home-contents {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%); }
 
 .user-profile-wrapper textarea {
   resize: none; }
