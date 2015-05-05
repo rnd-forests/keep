@@ -154,4 +154,22 @@ interface UserGroupRepositoryInterface {
      */
     public function getGroupsAssociatedWithAUser($userSlug);
 
+    /**
+     * Get all members of a group.
+     *
+     * @param $groupSlug
+     *
+     * @return mixed
+     */
+    public function getMembersOfGroup($groupSlug);
+
+    /**
+     * Get all assignments of a group.
+     *
+     * @param $groupSlug
+     *
+     * @return mixed
+     */
+    public function getAssignmentsOfGroup($groupSlug);
+
 }

@@ -31,11 +31,9 @@ class UserGroupController extends Controller {
      */
     public function index($userSlug)
     {
-        $user = $this->userRepo->findBySlug($userSlug);
-
         $groups = $this->groupRepo->getGroupsAssociatedWithAUser($userSlug);
 
-        return view('users.groups.index', compact('user', 'groups'));
+        return view('users.groups.index', compact('groups'));
     }
 
     /**
@@ -52,7 +50,11 @@ class UserGroupController extends Controller {
 
         $group = $this->groupRepo->findBySlug($groupSlug);
 
-        return view('users.groups.show', compact('user', 'group'));
+        $members = $this->groupRepo->getMembersOfGroup($groupSlug);
+
+        $assignments = $this->groupRepo->getAssignmentsOfGroup($groupSlug);
+
+        return view('users.groups.show', compact('user', 'group', 'members', 'assignments'));
     }
 
 }

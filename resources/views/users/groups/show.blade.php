@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $user->name }} - {{ $group->name }}
+    Group - {{ $group->name }}
 @stop
 
 @section('content')
     <div class="row">
         <div class="col-md-4">
-            <div class="page-header"><h3>Members ({{ $group->users->count() }})</h3></div>
-            @foreach($group->users as $user)
+            <div class="page-header"><h4>{{ $members->count() }} {{ str_plural('Member', $members->count()) }}</h4></div>
+            @foreach($members as $user)
                 <div class="well">
                     <div class="media">
                         <div class="media-left">
@@ -23,8 +23,8 @@
             @endforeach
         </div>
         <div class="col-md-8">
-            <div class="page-header"><h3>Assignments ({{ $group->assignments->count() }})</h3></div>
-            @foreach($group->assignments->load('task.priority') as $assignment)
+            <div class="page-header"><h4>{{ $assignments->count() }} {{ str_plural('Assignment', $assignments->count()) }}</h4></div>
+            @foreach($assignments as $assignment)
                 <div class="task-wrapper">
                     <div class="panel panel-primary">
                         <div class="panel-heading">

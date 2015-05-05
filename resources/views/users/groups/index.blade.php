@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ $user->name }} - Groups
-@stop
+@section('title', 'Groups')
 
 @section('content')
     <div class="row">
@@ -10,7 +8,7 @@
             <div class="list-group">
                 <a href="#" class="list-group-item active">Your current Groups</a>
                 @foreach($groups as $group)
-                    <a href="{{ route('users.groups.show', [$user, $group]) }}" class="list-group-item">
+                    <a href="{{ route('users.groups.show', [Auth::user(), $group]) }}" class="list-group-item">
                         {{ $group->name }}
                     </a>
                 @endforeach

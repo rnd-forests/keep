@@ -106,4 +106,18 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
         return $user->groups()->paginate(10);
     }
 
+    public function getMembersOfGroup($groupSlug)
+    {
+        $group = $this->findBySlug($groupSlug);
+
+        return $group->users()->orderBy('created_at', 'desc')->get();
+    }
+
+    public function getAssignmentsOfGroup($groupSlug)
+    {
+        $group = $this->findBySlug($groupSlug);
+
+        return $group->assignments()->orderBy('created_at', 'desc')->get();
+    }
+
 }
