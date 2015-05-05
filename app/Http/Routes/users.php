@@ -24,3 +24,8 @@ Route::get('{users}/groups/{groups}', [
     'as'   => 'users.groups.show',
     'uses' => 'UserGroupController@show'
 ]);
+
+Route::get('{users}/assignments', [
+    'as'   => 'users.assignments.index',
+    'uses' => 'UserAssignmentController@index'
+]);

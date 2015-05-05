@@ -1,6 +1,9 @@
 <?php namespace Keep\Repositories\Assignment;
 
+use Keep\User;
 use Keep\Assignment;
+use Keep\Services\KeepHelper;
+use Illuminate\Support\Collection;
 
 class DbAssignmentRepository implements AssignmentRepositoryInterface {
 
@@ -40,6 +43,28 @@ class DbAssignmentRepository implements AssignmentRepositoryInterface {
         if ($assignment->users->isEmpty()) $assignment->groups()->sync($groups);
 
         if ($assignment->groups->isEmpty()) $assignment->users()->sync($users);
+    }
+
+    public function getGroupAssignmentsAssociatedWithAUser($userSlug)
+    {
+        $ids = new Collection;
+
+        $user = User::findBySlug($userSlug);
+
+        $user->groups->each(function ($group) use ($ids) {
+            Collection::make(KeepHelper::getIdsOfAssignmentsInRelationWithGroup($group))->each(function ($id) use ($ids) {
+                $ids->push($id);
+            });
+        });
+
+        return Assignment::whereIn('id', $ids->unique()->toArray())->orderBy('created_at', 'desc')->get();
+    }
+
+    public function getAssignmentsAssociatedWithAUser($userSlug)
+    {
+        $user = User::findBySlug($userSlug);
+
+        return $user->assignments()->orderBy('created_at', 'desc')->get();
     }
 
 }
