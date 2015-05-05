@@ -59,4 +59,42 @@ interface AssignmentRepositoryInterface {
      */
     public function syncPolymorphicRelations($assignment, $users, $groups);
 
+    /**
+     * Get all assignments of groups that a user belongs to.
+     *
+     * @param $userSlug
+     *
+     * @return mixed
+     */
+    public function getGroupAssignmentsAssociatedWithAUser($userSlug);
+
+    /**
+     * Get all personal assignments of a user.
+     *
+     * @param $userSlug
+     *
+     * @return mixed
+     */
+    public function getAssignmentsAssociatedWithAUser($userSlug);
+
+    /**
+     * Find a personal assignment of a user.
+     *
+     * @param $userSlug
+     * @param $assignmentSlug
+     *
+     * @return mixed
+     */
+    public function findPersonalAssignment($userSlug, $assignmentSlug);
+
+    /**
+     * Find a group assignment of a user.
+     *
+     * @param $userSlug
+     * @param $assignmentSlug
+     *
+     * @return mixed
+     */
+    public function findGroupAssignment($userSlug, $assignmentSlug);
+
 }

@@ -24,3 +24,18 @@ Route::get('{users}/groups/{groups}', [
     'as'   => 'users.groups.show',
     'uses' => 'UserGroupController@show'
 ]);
+
+Route::get('{users}/assignments', [
+    'as'   => 'users.assignments.index',
+    'uses' => 'UserAssignmentController@index'
+]);
+
+Route::get('{users}/personal-assignment/{assignments}', [
+    'as'   => 'users.personal.assignments.show',
+    'uses' => 'UserAssignmentController@showPersonalAssignment'
+]);
+
+Route::get('{users}/group-assignment/{assignments}', [
+    'as'   => 'users.group.assignments.show',
+    'uses' => 'UserAssignmentController@showGroupAssignment'
+]);

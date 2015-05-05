@@ -16,4 +16,16 @@ class KeepHelper {
         return $group->users->fetch('id')->toArray();
     }
 
+    /**
+     * Pluck all ids of assignments associated with a given group.
+     *
+     * @param Group $group
+     *
+     * @return mixed
+     */
+    public static function getIdsOfAssignmentsInRelationWithGroup(Group $group)
+    {
+        return $group->assignments->fetch('id')->toArray();
+    }
+
 }
