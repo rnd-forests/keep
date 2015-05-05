@@ -47,6 +47,37 @@ class DbAssignmentRepository implements AssignmentRepositoryInterface {
 
     public function getGroupAssignmentsAssociatedWithAUser($userSlug)
     {
+        return $this->fetchUserGroupAssignments($userSlug)->orderBy('created_at', 'desc')->get();
+    }
+
+    public function getAssignmentsAssociatedWithAUser($userSlug)
+    {
+        $user = User::findBySlug($userSlug);
+
+        return $user->assignments()->orderBy('created_at', 'desc')->get();
+    }
+
+    public function findPersonalAssignment($userSlug, $assignmentSlug)
+    {
+        $user = User::findBySlug($userSlug);
+
+        return $user->assignments()->whereSlug($assignmentSlug)->firstOrFail();
+    }
+
+    public function findGroupAssignment($userSlug, $assignmentSlug)
+    {
+        return $this->fetchUserGroupAssignments($userSlug)->whereSlug($assignmentSlug)->firstOrFail();
+    }
+
+    /**
+     * Fetching user group-assignment collection.
+     *
+     * @param $userSlug
+     *
+     * @return mixed
+     */
+    private function fetchUserGroupAssignments($userSlug)
+    {
         $ids = new Collection;
 
         $user = User::findBySlug($userSlug);
@@ -57,14 +88,7 @@ class DbAssignmentRepository implements AssignmentRepositoryInterface {
             });
         });
 
-        return Assignment::whereIn('id', $ids->unique()->toArray())->orderBy('created_at', 'desc')->get();
-    }
-
-    public function getAssignmentsAssociatedWithAUser($userSlug)
-    {
-        $user = User::findBySlug($userSlug);
-
-        return $user->assignments()->orderBy('created_at', 'desc')->get();
+        return Assignment::whereIn('id', $ids->unique()->toArray());
     }
 
 }

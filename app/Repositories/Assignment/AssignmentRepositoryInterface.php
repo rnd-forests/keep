@@ -77,4 +77,24 @@ interface AssignmentRepositoryInterface {
      */
     public function getAssignmentsAssociatedWithAUser($userSlug);
 
+    /**
+     * Find a personal assignment of a user.
+     *
+     * @param $userSlug
+     * @param $assignmentSlug
+     *
+     * @return mixed
+     */
+    public function findPersonalAssignment($userSlug, $assignmentSlug);
+
+    /**
+     * Find a group assignment of a user.
+     *
+     * @param $userSlug
+     * @param $assignmentSlug
+     *
+     * @return mixed
+     */
+    public function findGroupAssignment($userSlug, $assignmentSlug);
+
 }
