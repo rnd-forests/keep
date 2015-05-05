@@ -44,9 +44,7 @@ class AssignmentsController extends Controller {
     {
         $assignment = $this->assignmentRepo->findBySlug($slug);
 
-        $task = $assignment->task;
-
-        return view('admin.assignments.show', compact('assignment', 'task'));
+        return view('admin.assignments.show', compact('assignment'));
     }
 
     /**
