@@ -10,7 +10,11 @@
 
 .home-contents {
     position: absolute;
-    top: 35%;
+    top: 30%;
     left: 50%;
     transform: translateX(-50%);
+
+    button {
+        margin-bottom: 15px;
+    }
 }

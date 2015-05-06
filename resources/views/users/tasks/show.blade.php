@@ -7,14 +7,14 @@
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            @include('tasks.partials.task')
+            @include('users.tasks.partials.task')
             <div class="text-center">
-                @include('tasks.partials.complete_form')
+                @include('users.tasks.partials.complete_form')
             </div>
             <div class="task-controls text-center">
-                <a href="{{ route('users.tasks.index', $user) }}">
+                <a href="{{ route('users.dashboard', $user) }}">
                     <button class="btn btn-circle btn-info"
-                        data-toggle="tooltip" data-placement="bottom" title="Back to tasks list">
+                        data-toggle="tooltip" data-placement="bottom" title="Back to dashboard">
                         <i class="fa fa-arrow-left"></i>
                     </button>
                 </a>
@@ -24,7 +24,7 @@
                         <i class="fa fa-pencil"></i>
                     </button>
                 </a>
-                @include('tasks.partials.delete_form')
+                @include('users.tasks.partials.delete_form')
             </div>
         </div>
     </div>

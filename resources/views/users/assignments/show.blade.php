@@ -10,7 +10,7 @@
             <div class="assignment-wrapper">
                 <h2 class="assignment-name text-center">{{ $assignment->assignment_name }}</h2>
                 <div class="page-header"><h5>Associated Task</h5></div>
-                @include('tasks.partials.task', ['task' => $assignment->task])
+                @include('users.tasks.partials.task', ['task' => $assignment->task])
             </div>
         </div>
     </div>

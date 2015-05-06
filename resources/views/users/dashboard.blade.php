@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ $user->name }} - Tasks
-@stop
+@section('title', 'Dashboard')
 
 @section('content')
     <div class="row">

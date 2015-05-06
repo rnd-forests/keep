@@ -19,7 +19,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
 
     private function composeTaskForm()
     {
-        view()->composer('tasks.partials.form', 'Keep\Http\Composers\TaskFormComposer@compose');
+        view()->composer('users.tasks.partials.form', 'Keep\Http\Composers\TaskFormComposer@compose');
         view()->composer('admin.assignments.edit', 'Keep\Http\Composers\TaskFormComposer@compose');
         view()->composer('admin.assignments.create_group_assignment', 'Keep\Http\Composers\TaskFormComposer@compose');
         view()->composer('admin.assignments.create_member_assignment', 'Keep\Http\Composers\TaskFormComposer@compose');

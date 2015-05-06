@@ -11772,11 +11772,13 @@ fieldset[disabled] .btn-violet {
 
 .home-contents {
   position: absolute;
-  top: 35%;
+  top: 30%;
   left: 50%;
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
           transform: translateX(-50%); }
+  .home-contents button {
+    margin-bottom: 15px; }
 
 .user-profile-wrapper textarea {
   resize: none; }

@@ -17,7 +17,7 @@
                     <li><a href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
                 @endif
                 @if (Auth::check())
-                    <li><a href="{{ route('users.tasks.index', Auth::user()) }}">Dashboard</a></li>
+                    <li><a href="{{ route('users.dashboard', Auth::user()) }}">Dashboard</a></li>
                     <li><a href="{{ route('users.tasks.create', Auth::user()) }}">New Task</a></li>
                     <li><a href="{{ route('users.assignments.index', Auth::user()) }}">Assingmnets</a></li>
                     <li><a href="{{ route('users.tag.list', Auth::user()) }}">Tags</a></li>

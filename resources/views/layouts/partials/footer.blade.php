@@ -7,7 +7,7 @@
             <li>&middot;</li>
             <li><a href="#">Notifications</a></li>
             <li>&middot;</li>
-            <li><a href="{{ route('users.tasks.index', Auth::user()) }}">Tasks</a></li>
+            <li><a href="{{ route('users.dashboard', Auth::user()) }}">Dashboard</a></li>
         </ul>
     @endif
 </footer>

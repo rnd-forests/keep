@@ -24,23 +24,7 @@ class UserTaskController extends Controller {
         $this->middleware('auth');
         $this->middleware('auth.correct');
     }
-
-    /**
-     * Display all tasks of a user.
-     *
-     * @param $userSlug
-     *
-     * @return \Illuminate\View\View
-     */
-    public function index($userSlug)
-    {
-        $user = $this->userRepo->findBySlug($userSlug);
-
-        $tasks = $this->userRepo->getPaginatedAssociatedTasks($user, 10);
-
-        return view('tasks.index', compact('user', 'tasks'));
-    }
-
+    
     /**
      * Get form to create new task.
      *
@@ -50,7 +34,7 @@ class UserTaskController extends Controller {
     {
         $user = $this->userRepo->getAuthUser();
 
-        return view('tasks.create', compact('user'));
+        return view('users.tasks.create', compact('user'));
     }
 
     /**
@@ -70,7 +54,7 @@ class UserTaskController extends Controller {
 
         flash()->success('Your tasks has been successfully created');
 
-        return redirect()->route('users.tasks.index', $author);
+        return redirect()->route('users.dashboard', $author);
     }
 
     /**
@@ -116,7 +100,7 @@ class UserTaskController extends Controller {
 
         $task = $this->taskRepo->findCorrectTaskBySlug($userSlug, $taskSlug);
 
-        return view('tasks.show', compact('task', 'user'));
+        return view('users.tasks.show', compact('task', 'user'));
     }
 
     /**
@@ -133,7 +117,7 @@ class UserTaskController extends Controller {
 
         $task = $this->taskRepo->findCorrectTaskBySlug($userSlug, $taskSlug);
 
-        return view('tasks.edit', compact('user', 'task'));
+        return view('users.tasks.edit', compact('user', 'task'));
     }
 
     /**
@@ -153,7 +137,7 @@ class UserTaskController extends Controller {
 
         flash()->info('Your task was successfully updated');
 
-        return redirect()->route('users.tasks.index', $this->userRepo->getAuthUser());
+        return redirect()->route('users.dashboard', $this->userRepo->getAuthUser());
     }
 
     /**
@@ -170,7 +154,7 @@ class UserTaskController extends Controller {
 
         flash()->success('Your task was successfully destroyed.');
 
-        return redirect()->route('users.tasks.index', $userSlug);
+        return redirect()->route('users.dashboard', $userSlug);
     }
 
     /**
