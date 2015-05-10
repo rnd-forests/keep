@@ -144,4 +144,9 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return $user->tasks()->toDeadline()->get();
     }
 
+    public function fetchRecentlyCompletedTasks($user)
+    {
+        return $user->tasks()->recentlyCompleted()->get();
+    }
+
 }

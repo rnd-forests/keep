@@ -1116,9 +1116,6 @@ fieldset[disabled] .btn-violet {
   .user-avatar .user-avatar-picture {
     border-radius: 4px; }
 
-.user-dashboard .urgent-tasks .badge {
-  background: #E74C3C; }
-
 .task-wrapper .panel {
   background: #f9f9fa;
   border: none; }

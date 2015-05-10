@@ -169,6 +169,20 @@ class Task extends Model implements SluggableInterface {
             ->take(10);
     }
 
+    /**
+     * Get recently completed tasks.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeRecentlyCompleted($query)
+    {
+        return $query->where('completed', 1)
+            ->orderBy('finished_at', 'desc')
+            ->take(5);
+    }
+
     //--- ACCESSORS vs. MUTATORS ---//
     public function setStartingDateAttribute($date)
     {
