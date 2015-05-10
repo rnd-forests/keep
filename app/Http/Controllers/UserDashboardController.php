@@ -35,7 +35,9 @@ class UserDashboardController extends Controller {
 
         $urgentTasks = $this->taskRepo->fetchUserUrgentTasks($user);
 
-        return view('users.dashboard', compact('user', 'urgentTasks'));
+        $deadlineTasks = $this->taskRepo->fetchUserDeadlineTasks($user);
+
+        return view('users.dashboard', compact('user', 'urgentTasks', 'deadlineTasks'));
     }
 
 }

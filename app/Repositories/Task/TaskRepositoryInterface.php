@@ -187,4 +187,13 @@ interface TaskRepositoryInterface {
      */
     public function fetchUserUrgentTasks($user);
 
+    /**
+     * Fetch ten tasks are up to deadline.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserDeadlineTasks($user);
+
 }

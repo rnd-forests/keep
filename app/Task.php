@@ -155,6 +155,20 @@ class Task extends Model implements SluggableInterface {
         return $query->where('completed', 1);
     }
 
+    /**
+     * Get ten task up to deadline.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeToDeadline($query)
+    {
+        return $query->where('completed', 0)
+            ->orderBy('finishing_date', 'asc')
+            ->take(10);
+    }
+
     //--- ACCESSORS vs. MUTATORS ---//
     public function setStartingDateAttribute($date)
     {
