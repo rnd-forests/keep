@@ -11,7 +11,7 @@ class Kernel extends ConsoleKernel {
 	 * @var array
 	 */
 	protected $commands = [
-
+        'Keep\Console\Commands\FailedTasksCommand'
 	];
 
 	/**
@@ -22,7 +22,10 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected function schedule(Schedule $schedule)
 	{
-
+        $schedule->command('keep:failed_tasks')
+            ->everyFiveMinutes()
+            ->withoutOverlapping()
+            ->evenInMaintenanceMode();
 	}
 
 }

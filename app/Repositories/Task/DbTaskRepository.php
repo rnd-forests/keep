@@ -149,4 +149,9 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return $user->tasks()->recentlyCompleted()->get();
     }
 
+    public function findAndUpdateFailedTasks()
+    {
+        return Task::failed()->update(['is_failed' => true]);
+    }
+
 }

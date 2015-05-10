@@ -205,4 +205,11 @@ interface TaskRepositoryInterface {
      */
     public function fetchRecentlyCompletedTasks($user);
 
+    /**
+     * Find and update failed tasks in entire database.
+     *
+     * @return mixed
+     */
+    public function findAndUpdateFailedTasks();
+
 }
