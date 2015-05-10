@@ -1,19 +1,22 @@
 <?php namespace Keep\Http\Controllers;
 
+use Keep\Repositories\Task\TaskRepositoryInterface;
 use Keep\Repositories\User\UserRepositoryInterface;
 
 class UserDashboardController extends Controller {
 
-    protected $userRepo;
+    protected $userRepo, $taskRepo;
 
     /**
      * Create new user dashboard controller instance.
      *
      * @param UserRepositoryInterface $userRepo
+     * @param TaskRepositoryInterface $taskRepo
      */
-    public function __construct(UserRepositoryInterface $userRepo)
+    public function __construct(UserRepositoryInterface $userRepo, TaskRepositoryInterface $taskRepo)
     {
         $this->userRepo = $userRepo;
+        $this->taskRepo = $taskRepo;
 
         $this->middleware('auth');
         $this->middleware('auth.correct');
@@ -30,9 +33,9 @@ class UserDashboardController extends Controller {
     {
         $user = $this->userRepo->findBySlug($userSlug);
 
-        $tasks = $this->userRepo->getPaginatedAssociatedTasks($user, 10);
+        $urgentTasks = $this->taskRepo->fetchUserUrgentTasks($user);
 
-        return view('users.dashboard', compact('user', 'tasks'));
+        return view('users.dashboard', compact('user', 'urgentTasks'));
     }
 
 }

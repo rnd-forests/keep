@@ -178,4 +178,13 @@ interface TaskRepositoryInterface {
      */
     public function associatePriority($task, $priorityId);
 
+    /**
+     * Fetch ten most urgent tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserUrgentTasks($user);
+
 }
