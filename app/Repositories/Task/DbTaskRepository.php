@@ -136,7 +136,7 @@ class DbTaskRepository implements TaskRepositoryInterface {
 
     public function fetchUserUrgentTasks($user)
     {
-        return $user->tasks()->urgent();
+        return $user->tasks()->urgent()->get();
     }
 
 }
