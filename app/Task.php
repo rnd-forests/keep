@@ -139,7 +139,7 @@ class Task extends Model implements SluggableInterface {
     {
         return $query->where('priority_id', 1)
             ->where('completed', 0)
-            ->orderBy('finishing_date', 'desc')
+            ->orderBy('finishing_date', 'asc')
             ->take(10)
             ->get();
     }
