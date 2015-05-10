@@ -143,6 +143,18 @@ class Task extends Model implements SluggableInterface {
             ->take(10);
     }
 
+    /**
+     * Completed tasks query scope.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeCompleted($query)
+    {
+        return $query->where('completed', 1);
+    }
+
     //--- ACCESSORS vs. MUTATORS ---//
     public function setStartingDateAttribute($date)
     {
