@@ -40,6 +40,16 @@
                     @endforeach
                 </div>
             </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading"><i class="fa fa-times"></i> Recently Failed Tasks</div>
+                <div class="list-group">
+                    @foreach($recentlyFailedTasks as $task)
+                        <a class="list-group-item" href="{{ route('users.tasks.show', [$user, $task]) }}">
+                            <h5>{{ $task->title }}</h5>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 @stop
