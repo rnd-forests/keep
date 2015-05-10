@@ -37,7 +37,7 @@ class Task extends Model implements SluggableInterface {
      *
      * @var array
      */
-    protected $casts = ['completed' => 'boolean', 'isAssigned' => 'boolean'];
+    protected $casts = ['completed' => 'boolean', 'is_assigned' => 'boolean', 'is_failed' => 'boolean'];
 
     /**
      * The attributes that are mass assignable.
@@ -181,6 +181,19 @@ class Task extends Model implements SluggableInterface {
         return $query->where('completed', 1)
             ->orderBy('finished_at', 'desc')
             ->take(5);
+    }
+
+    /**
+     * Get failed tasks.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeFailed($query)
+    {
+        return $query->where('completed', 0)
+            ->where('finishing_date', '<', Carbon::now());
     }
 
     //--- ACCESSORS vs. MUTATORS ---//
