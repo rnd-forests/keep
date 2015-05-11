@@ -139,6 +139,7 @@ class Task extends Model implements SluggableInterface {
     {
         return $query->where('priority_id', 1)
             ->where('completed', 0)
+            ->where('is_failed', 0)
             ->orderBy('finishing_date', 'asc')
             ->take(10);
     }
@@ -165,6 +166,7 @@ class Task extends Model implements SluggableInterface {
     public function scopeToDeadline($query)
     {
         return $query->where('completed', 0)
+            ->where('is_failed', 0)
             ->orderBy('finishing_date', 'asc')
             ->take(10);
     }
@@ -184,16 +186,31 @@ class Task extends Model implements SluggableInterface {
     }
 
     /**
-     * Get failed tasks.
+     * Find failed tasks.
      *
      * @param $query
      *
      * @return mixed
      */
-    public function scopeFailed($query)
+    public function scopeAboutToFail($query)
     {
         return $query->where('completed', 0)
+            ->where('is_failed', 0)
             ->where('finishing_date', '<', Carbon::now());
+    }
+
+    /**
+     * Get recently failed tasks.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeRecentlyFailed($query)
+    {
+        return $query->where('is_failed', 1)
+            ->orderBy('created_at', 'desc')
+            ->take(5);
     }
 
     //--- ACCESSORS vs. MUTATORS ---//
