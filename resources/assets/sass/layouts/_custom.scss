@@ -13,6 +13,11 @@
 }
 
 .global-flash-message {
+    position: absolute;
+    right: 15px;
+    top: 100px;
+    display: inline-block;
+
     .close {
         margin-left: 10px;
     }
