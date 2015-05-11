@@ -213,6 +213,13 @@ interface TaskRepositoryInterface {
     public function findAndUpdateFailedTasks();
 
     /**
+     * Recover failed task after user update them.
+     *
+     * @return mixed
+     */
+    public function recoverFailedTasks();
+
+    /**
      * Fetch recently failed tasks of a user.
      *
      * @param $user

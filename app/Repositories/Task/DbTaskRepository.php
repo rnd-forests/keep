@@ -154,6 +154,13 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return Task::aboutToFail()->update(['is_failed' => true]);
     }
 
+    public function recoverFailedTasks()
+    {
+        return Task::where('is_failed', 1)
+            ->where('finishing_date', '>=', Carbon::now())
+            ->update(['is_failed' => false]);
+    }
+
     public function fetchRecentlyFailedTasks($user)
     {
         return $user->tasks()->recentlyFailed()->get();

@@ -40,9 +40,13 @@ class FailedTasksCommand extends Command {
 	 */
 	public function fire()
 	{
-        $affectedRows = $this->taskRepo->findAndUpdateFailedTasks();
+        $updatedRows = $this->taskRepo->findAndUpdateFailedTasks();
 
-        $this->info('Awesome! ' . $affectedRows . ' failed ' . str_plural('task', $affectedRows) . ' found and updated.');
+        $recoveredRows = $this->taskRepo->recoverFailedTasks();
+
+        $this->info('-> ' . $updatedRows . ' failed ' . str_plural('task', $updatedRows) . ' found and updated.');
+
+        $this->info('-> ' . $recoveredRows . ' failed ' . str_plural('task', $recoveredRows) . ' recovered.');
 	}
 
 }
