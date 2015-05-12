@@ -136,17 +136,17 @@ class DbTaskRepository implements TaskRepositoryInterface {
 
     public function fetchUserUrgentTasks($user)
     {
-        return $user->tasks()->urgent()->get();
+        return $user->tasks()->urgent()->take(10)->get();
     }
 
     public function fetchUserDeadlineTasks($user)
     {
-        return $user->tasks()->toDeadline()->get();
+        return $user->tasks()->toDeadline()->take(10)->get();
     }
 
     public function fetchRecentlyCompletedTasks($user)
     {
-        return $user->tasks()->recentlyCompleted()->get();
+        return $user->tasks()->recentlyCompleted()->take(5)->get();
     }
 
     public function findAndUpdateFailedTasks()
@@ -163,7 +163,7 @@ class DbTaskRepository implements TaskRepositoryInterface {
 
     public function fetchRecentlyFailedTasks($user)
     {
-        return $user->tasks()->recentlyFailed()->get();
+        return $user->tasks()->recentlyFailed()->take(5)->get();
     }
 
 }

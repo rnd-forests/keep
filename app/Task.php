@@ -140,8 +140,7 @@ class Task extends Model implements SluggableInterface {
         return $query->where('priority_id', 1)
             ->where('completed', 0)
             ->where('is_failed', 0)
-            ->orderBy('finishing_date', 'asc')
-            ->take(10);
+            ->orderBy('finishing_date', 'asc');
     }
 
     /**
@@ -167,8 +166,7 @@ class Task extends Model implements SluggableInterface {
     {
         return $query->where('completed', 0)
             ->where('is_failed', 0)
-            ->orderBy('finishing_date', 'asc')
-            ->take(10);
+            ->orderBy('finishing_date', 'asc');
     }
 
     /**
@@ -181,8 +179,7 @@ class Task extends Model implements SluggableInterface {
     public function scopeRecentlyCompleted($query)
     {
         return $query->where('completed', 1)
-            ->orderBy('finished_at', 'desc')
-            ->take(5);
+            ->orderBy('finished_at', 'desc');
     }
 
     /**
@@ -209,8 +206,7 @@ class Task extends Model implements SluggableInterface {
     public function scopeRecentlyFailed($query)
     {
         return $query->where('is_failed', 1)
-            ->orderBy('created_at', 'desc')
-            ->take(5);
+            ->orderBy('created_at', 'desc');
     }
 
     //--- ACCESSORS vs. MUTATORS ---//
