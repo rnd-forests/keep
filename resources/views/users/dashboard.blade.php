@@ -71,6 +71,31 @@
                     </div>
                 </div>
             </div>
+
+            <div class="panel panel-primary newest-tasks-wrapper">
+                <div class="panel-heading">
+                    <div class="text-center"><i class="fa fa-calendar"></i> Newest Tasks</div>
+                </div>
+                <div class="list-group">
+                    @foreach($newestTasks->load('priority') as $task)
+                        <a href="{{ route('users.tasks.show', [$user, $task]) }}" class="list-group-item">
+                            <h5 class="text-center">{{ $task->title }}</h5>
+                            <div class="task-labels">
+                                <span class="label label-info">{{ $task->present()->formatTimeForHumans($task->created_at) }}</span>
+                                @if ($task->completed)
+                                    <span class="label label-info">completed</span>
+                                @else
+                                    <span class="label label-danger">uncompleted</span>
+                                @endif
+                                @if($task->is_failed)
+                                    <span class="label label-danger">failed</span>
+                                @endif
+                                <span class="label label-info">{{ $task->priority->name }}</span>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
         <div class="col-md-3">
             <div class="panel panel-info">

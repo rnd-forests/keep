@@ -41,9 +41,11 @@ class UserDashboardController extends Controller {
 
         $recentlyFailedTasks = $this->taskRepo->fetchRecentlyFailedTasks($user);
 
+        $newestTasks = $this->taskRepo->fetchNewestTasks($user);
+
         return view('users.dashboard', compact(
             'user', 'urgentTasks', 'deadlineTasks', 'recentlyCompletedTasks',
-            'recentlyFailedTasks'
+            'recentlyFailedTasks', 'newestTasks'
         ));
     }
 

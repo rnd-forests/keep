@@ -228,4 +228,13 @@ interface TaskRepositoryInterface {
      */
     public function fetchRecentlyFailedTasks($user);
 
+    /**
+     * Fetch the newest tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchNewestTasks($user);
+
 }

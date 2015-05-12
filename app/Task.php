@@ -129,7 +129,7 @@ class Task extends Model implements SluggableInterface {
     }
 
     /*
-     * Get ten most urgent tasks.
+     * Urgent tasks query scope.
      * 
      * @param $query
      *
@@ -156,7 +156,19 @@ class Task extends Model implements SluggableInterface {
     }
 
     /**
-     * Get ten task up to deadline.
+     * Newest tasks query scope.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeNewest($query)
+    {
+        return $query->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * Deadline tasks query scope.
      *
      * @param $query
      *
@@ -170,7 +182,7 @@ class Task extends Model implements SluggableInterface {
     }
 
     /**
-     * Get recently completed tasks.
+     * Recently completed tasks query scope.
      *
      * @param $query
      *
@@ -183,7 +195,7 @@ class Task extends Model implements SluggableInterface {
     }
 
     /**
-     * Find failed tasks.
+     * Failed tasks query scope.
      *
      * @param $query
      *
@@ -197,7 +209,7 @@ class Task extends Model implements SluggableInterface {
     }
 
     /**
-     * Get recently failed tasks.
+     * Recently failed tasks query scope.
      *
      * @param $query
      *
