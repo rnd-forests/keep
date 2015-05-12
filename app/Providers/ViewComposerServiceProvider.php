@@ -15,6 +15,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
         $this->composeEditAssignmentForm();
         $this->composeGroupAssignmentForm();
         $this->composeMemberAssignmentForm();
+        $this->composeUserDashboard();
     }
 
     private function composeTaskForm()
@@ -38,6 +39,11 @@ class ViewComposerServiceProvider extends ServiceProvider {
     private function composeMemberAssignmentForm()
     {
         view()->composer('admin.assignments.create_member_assignment', 'Keep\Http\Composers\CreateMemberAssignmentFormComposer@compose');
+    }
+
+    private function composeUserDashboard()
+    {
+        view()->composer('users.dashboard', 'Keep\Http\Composers\UserDashboardComposer@compose');
     }
 
     /**
