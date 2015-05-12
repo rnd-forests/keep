@@ -27,7 +27,51 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="text-center"><i class="fa fa-bar-chart"></i> Task Statistics</div>
+                </div>
+                <div class="panel-body">
+                    <canvas id="user-dashboard-stats" width="520" height="320"></canvas>
+                </div>
+            </div>
+
+            <div class="row stats">
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="large">{{ $totalTasksCount }}</div>
+                            <div class="small">in total</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="large">{{ $completedTasksCount }}</div>
+                            <div class="small">completed</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="large">{{ $failedTasksCount }}</div>
+                            <div class="small">failed</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="large">{{ $dueTasksCount }}</div>
+                            <div class="small">due</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-md-3">
             <div class="panel panel-info">
                 <div class="panel-heading"><i class="fa fa-check"></i> Recently Completed Tasks</div>
@@ -52,4 +96,28 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script>
+        (function () {
+            var ctx = document.getElementById('user-dashboard-stats').getContext('2d');
+            var chart = {
+                labels: ["Completed", "Failed", "Due"],
+                datasets: [{
+                    data: [
+                        Math.round({{ json_encode($completedTasksCount / $totalTasksCount * 100) }}),
+                        Math.round({{ json_encode($failedTasksCount / $totalTasksCount) * 100 }}),
+                        Math.round({{ json_encode(($totalTasksCount - $completedTasksCount - $failedTasksCount) / $totalTasksCount) * 100 }})
+                    ],
+                    fillColor: "#16A085",
+                    highlightFill: "#138a72"
+                }]
+            };
+
+            new Chart(ctx).Bar(chart, {
+                barShowStroke : false,
+                barValueSpacing : 50
+            });
+        })();
+    </script>
 @stop
