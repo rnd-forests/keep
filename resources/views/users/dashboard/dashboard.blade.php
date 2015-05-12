@@ -39,36 +39,44 @@
 
             <div class="row stats">
                 <div class="col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="large">{{ $totalTasksCount }}</div>
-                            <div class="small">in total</div>
+                    <a href="{{ route('users.dashboard.all.tasks', $user) }}">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="large">{{ $totalTasksCount }}</div>
+                                <div class="small">in total</div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="large">{{ $completedTasksCount }}</div>
-                            <div class="small">completed</div>
+                    <a href="{{ route('users.dashboard.completed.tasks', $user) }}">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="large">{{ $completedTasksCount }}</div>
+                                <div class="small">completed</div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="large">{{ $failedTasksCount }}</div>
-                            <div class="small">failed</div>
+                    <a href="{{ route('users.dashboard.failed.tasks', $user) }}">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="large">{{ $failedTasksCount }}</div>
+                                <div class="small">failed</div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="large">{{ $dueTasksCount }}</div>
-                            <div class="small">due</div>
+                    <a href="{{ route('users.dashboard.due.tasks', $user) }}">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="large">{{ $dueTasksCount }}</div>
+                                <div class="small">due</div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
 

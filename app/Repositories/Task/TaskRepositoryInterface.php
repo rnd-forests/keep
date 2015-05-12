@@ -203,7 +203,7 @@ interface TaskRepositoryInterface {
      *
      * @return mixed
      */
-    public function fetchRecentlyCompletedTasks($user);
+    public function fetchUserRecentlyCompletedTasks($user);
 
     /**
      * Find and update failed tasks in entire database.
@@ -226,7 +226,7 @@ interface TaskRepositoryInterface {
      *
      * @return mixed
      */
-    public function fetchRecentlyFailedTasks($user);
+    public function fetchUserRecentlyFailedTasks($user);
 
     /**
      * Fetch the newest tasks of a user.
@@ -235,6 +235,42 @@ interface TaskRepositoryInterface {
      *
      * @return mixed
      */
-    public function fetchNewestTasks($user);
+    public function fetchUserNewestTasks($user);
+
+    /**
+     * Fetch the paginated collection of all tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserPaginatedTasksCollection($user);
+
+    /**
+     * Fetch the paginated collection of completed tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserPaginatedCompletedTasks($user);
+
+    /**
+     * Fetch the paginated collection of failed tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserPaginatedFailedTasks($user);
+
+    /**
+     * Fetch the paginated collection of due tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserPaginatedDueTasks($user);
 
 }

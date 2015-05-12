@@ -21,6 +21,26 @@ Route::get('{users}/dashboard', [
     'uses' => 'UserDashboardController@dashboard'
 ]);
 
+Route::get('{users}/dashboard/task/all', [
+    'as'   => 'users.dashboard.all.tasks',
+    'uses' => 'UserDashboardController@allTasks'
+]);
+
+Route::get('{users}/dashboard/task/completed', [
+    'as'   => 'users.dashboard.completed.tasks',
+    'uses' => 'UserDashboardController@completedTasks'
+]);
+
+Route::get('{users}/dashboard/task/failed', [
+    'as'   => 'users.dashboard.failed.tasks',
+    'uses' => 'UserDashboardController@failedTasks'
+]);
+
+Route::get('{users}/dashboard/task/due', [
+    'as'   => 'users.dashboard.due.tasks',
+    'uses' => 'UserDashboardController@dueTasks'
+]);
+
 
 Route::get('{users}/tasks/new', [
     'as'   => 'users.tasks.create',

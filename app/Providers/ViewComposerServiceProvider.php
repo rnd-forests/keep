@@ -43,7 +43,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
 
     private function composeUserDashboard()
     {
-        view()->composer('users.dashboard', 'Keep\Http\Composers\UserDashboardComposer@compose');
+        view()->composer('users.dashboard.dashboard', 'Keep\Http\Composers\UserDashboardComposer@compose');
     }
 
     /**

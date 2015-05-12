@@ -221,6 +221,19 @@ class Task extends Model implements SluggableInterface {
             ->orderBy('created_at', 'desc');
     }
 
+    /**
+     * Due tasks query scope.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeDue($query)
+    {
+        return $query->where('is_failed', 0)
+            ->where('completed', 0);
+    }
+
     //--- ACCESSORS vs. MUTATORS ---//
     public function setStartingDateAttribute($date)
     {

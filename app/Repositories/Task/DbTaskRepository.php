@@ -144,7 +144,7 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return $user->tasks()->toDeadline()->take(10)->get();
     }
 
-    public function fetchRecentlyCompletedTasks($user)
+    public function fetchUserRecentlyCompletedTasks($user)
     {
         return $user->tasks()->recentlyCompleted()->take(5)->get();
     }
@@ -161,14 +161,34 @@ class DbTaskRepository implements TaskRepositoryInterface {
             ->update(['is_failed' => false]);
     }
 
-    public function fetchRecentlyFailedTasks($user)
+    public function fetchUserRecentlyFailedTasks($user)
     {
         return $user->tasks()->recentlyFailed()->take(5)->get();
     }
 
-    public function fetchNewestTasks($user)
+    public function fetchUserNewestTasks($user)
     {
         return $user->tasks()->newest()->take(10)->get();
+    }
+
+    public function fetchUserPaginatedTasksCollection($user)
+    {
+        return $user->tasks()->orderBy('created_at', 'desc')->paginate(30);
+    }
+
+    public function fetchUserPaginatedCompletedTasks($user)
+    {
+        return $user->tasks()->completed()->orderBy('created_at', 'desc')->paginate(30);
+    }
+
+    public function fetchUserPaginatedFailedTasks($user)
+    {
+        return $user->tasks()->where('is_failed', 1)->orderBy('created_at', 'desc')->paginate(30);
+    }
+
+    public function fetchUserPaginatedDueTasks($user)
+    {
+        return $user->tasks()->due()->orderBy('created_at', 'desc')->paginate(30);
     }
 
 }

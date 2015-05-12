@@ -37,16 +37,80 @@ class UserDashboardController extends Controller {
 
         $deadlineTasks = $this->taskRepo->fetchUserDeadlineTasks($user);
 
-        $recentlyCompletedTasks = $this->taskRepo->fetchRecentlyCompletedTasks($user);
+        $recentlyCompletedTasks = $this->taskRepo->fetchUserRecentlyCompletedTasks($user);
 
-        $recentlyFailedTasks = $this->taskRepo->fetchRecentlyFailedTasks($user);
+        $recentlyFailedTasks = $this->taskRepo->fetchUserRecentlyFailedTasks($user);
 
-        $newestTasks = $this->taskRepo->fetchNewestTasks($user);
+        $newestTasks = $this->taskRepo->fetchUserNewestTasks($user);
 
-        return view('users.dashboard', compact(
+        return view('users.dashboard.dashboard', compact(
             'user', 'urgentTasks', 'deadlineTasks', 'recentlyCompletedTasks',
             'recentlyFailedTasks', 'newestTasks'
         ));
+    }
+
+    /**
+     * Get all tasks of a user.
+     *
+     * @param $userSlug
+     *
+     * @return \Illuminate\View\View
+     */
+    public function allTasks($userSlug)
+    {
+        $user = $this->userRepo->findBySlug($userSlug);
+
+        $tasks = $this->taskRepo->fetchUserPaginatedTasksCollection($user);
+
+        return view('users.dashboard.all_tasks', compact('user', 'tasks'));
+    }
+
+    /**
+     * Get all completed tasks of a user.
+     *
+     * @param $userSlug
+     *
+     * @return \Illuminate\View\View
+     */
+    public function completedTasks($userSlug)
+    {
+        $user = $this->userRepo->findBySlug($userSlug);
+
+        $tasks = $this->taskRepo->fetchUserPaginatedCompletedTasks($user);
+
+        return view('users.dashboard.completed_tasks', compact('user', 'tasks'));
+    }
+
+    /**
+     * Get all failed tasks of a user.
+     *
+     * @param $userSlug
+     *
+     * @return \Illuminate\View\View
+     */
+    public function failedTasks($userSlug)
+    {
+        $user = $this->userRepo->findBySlug($userSlug);
+
+        $tasks = $this->taskRepo->fetchUserPaginatedFailedTasks($user);
+
+        return view('users.dashboard.failed_tasks', compact('user', 'tasks'));
+    }
+
+    /**
+     * Get all due tasks of a user.
+     *
+     * @param $userSlug
+     *
+     * @return \Illuminate\View\View
+     */
+    public function dueTasks($userSlug)
+    {
+        $user = $this->userRepo->findBySlug($userSlug);
+
+        $tasks = $this->taskRepo->fetchUserPaginatedDueTasks($user);
+
+        return view('users.dashboard.due_tasks', compact('user', 'tasks'));
     }
 
 }

@@ -1121,6 +1121,7 @@ fieldset[disabled] .btn-violet {
   text-align: center;
   font-size: 25px; }
 .user-dashboard .stats .small {
+  color: #111111;
   text-align: center;
   font-size: 14px; }
 .user-dashboard .newest-tasks-wrapper {
