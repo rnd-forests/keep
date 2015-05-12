@@ -7,17 +7,16 @@
         <div class="panel-body">
             <div class="task-labels">
                 <span class="label label-primary">
-                    {{ $task->present()->formatTime($task->starting_date) }} to
-                    {{ $task->present()->formatTime($task->finishing_date) }}
+                    {{ $task->present()->formatTime($task->starting_date) }} to {{ $task->present()->formatTime($task->finishing_date) }}
                 </span>
                 <span class="label label-primary">{{ $task->present()->getRemainingDays($task->finishing_date) }}</span>
                 @if ($task->completed)
-                    <span class="label label-info">Completed</span>
+                    <span class="label label-info">completed</span>
                 @else
-                    <span class="label label-danger">Not completed</span>
+                    <span class="label label-danger">uncompleted</span>
                 @endif
                 @if($task->is_failed)
-                    <span class="label label-danger">Failed</span>
+                    <span class="label label-danger">failed</span>
                 @endif
                 <span class="label label-info">{{ $task->priority->name }}</span>
             </div>
