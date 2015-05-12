@@ -8,9 +8,11 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             @include('users.tasks.partials.task')
-            <div class="text-center">
-                @include('users.tasks.partials.complete_form')
-            </div>
+            @unless($task->is_failed)
+                <div class="text-center">
+                    @include('users.tasks.partials.complete_form')
+                </div>
+            @endunless
             <div class="task-controls text-center">
                 <a href="{{ route('users.dashboard', $user) }}">
                     <button class="btn btn-circle btn-info"

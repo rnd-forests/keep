@@ -37,7 +37,7 @@ class Task extends Model implements SluggableInterface {
      *
      * @var array
      */
-    protected $casts = ['completed' => 'boolean', 'isAssigned' => 'boolean'];
+    protected $casts = ['completed' => 'boolean', 'is_assigned' => 'boolean', 'is_failed' => 'boolean'];
 
     /**
      * The attributes that are mass assignable.
@@ -129,7 +129,7 @@ class Task extends Model implements SluggableInterface {
     }
 
     /*
-     * Get ten most urgent tasks.
+     * Urgent tasks query scope.
      * 
      * @param $query
      *
@@ -139,9 +139,99 @@ class Task extends Model implements SluggableInterface {
     {
         return $query->where('priority_id', 1)
             ->where('completed', 0)
-            ->orderBy('finishing_date', 'desc')
-            ->take(10)
-            ->get();
+            ->where('is_failed', 0)
+            ->orderBy('finishing_date', 'asc');
+    }
+
+    /**
+     * Completed tasks query scope.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeCompleted($query)
+    {
+        return $query->where('completed', 1);
+    }
+
+    /**
+     * Newest tasks query scope.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeNewest($query)
+    {
+        return $query->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * Deadline tasks query scope.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeToDeadline($query)
+    {
+        return $query->where('completed', 0)
+            ->where('is_failed', 0)
+            ->orderBy('finishing_date', 'asc');
+    }
+
+    /**
+     * Recently completed tasks query scope.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeRecentlyCompleted($query)
+    {
+        return $query->where('completed', 1)
+            ->orderBy('finished_at', 'desc');
+    }
+
+    /**
+     * Failed tasks query scope.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeAboutToFail($query)
+    {
+        return $query->where('completed', 0)
+            ->where('is_failed', 0)
+            ->where('finishing_date', '<', Carbon::now());
+    }
+
+    /**
+     * Recently failed tasks query scope.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeRecentlyFailed($query)
+    {
+        return $query->where('is_failed', 1)
+            ->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * Due tasks query scope.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeDue($query)
+    {
+        return $query->where('is_failed', 0)
+            ->where('completed', 0);
     }
 
     //--- ACCESSORS vs. MUTATORS ---//

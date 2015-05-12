@@ -134,4 +134,61 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return $task->save();
     }
 
+    public function fetchUserUrgentTasks($user)
+    {
+        return $user->tasks()->urgent()->take(10)->get();
+    }
+
+    public function fetchUserDeadlineTasks($user)
+    {
+        return $user->tasks()->toDeadline()->take(10)->get();
+    }
+
+    public function fetchUserRecentlyCompletedTasks($user)
+    {
+        return $user->tasks()->recentlyCompleted()->take(5)->get();
+    }
+
+    public function findAndUpdateFailedTasks()
+    {
+        return Task::aboutToFail()->update(['is_failed' => true]);
+    }
+
+    public function recoverFailedTasks()
+    {
+        return Task::where('is_failed', 1)
+            ->where('finishing_date', '>=', Carbon::now())
+            ->update(['is_failed' => false]);
+    }
+
+    public function fetchUserRecentlyFailedTasks($user)
+    {
+        return $user->tasks()->recentlyFailed()->take(5)->get();
+    }
+
+    public function fetchUserNewestTasks($user)
+    {
+        return $user->tasks()->newest()->take(10)->get();
+    }
+
+    public function fetchUserPaginatedTasksCollection($user)
+    {
+        return $user->tasks()->orderBy('created_at', 'desc')->paginate(30);
+    }
+
+    public function fetchUserPaginatedCompletedTasks($user)
+    {
+        return $user->tasks()->completed()->orderBy('created_at', 'desc')->paginate(30);
+    }
+
+    public function fetchUserPaginatedFailedTasks($user)
+    {
+        return $user->tasks()->where('is_failed', 1)->orderBy('created_at', 'desc')->paginate(30);
+    }
+
+    public function fetchUserPaginatedDueTasks($user)
+    {
+        return $user->tasks()->due()->orderBy('created_at', 'desc')->paginate(30);
+    }
+
 }

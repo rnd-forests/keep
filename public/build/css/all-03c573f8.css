@@ -10692,13 +10692,8 @@ button.close {
   width: 100%;
   margin-top: 30px; }
 
-.global-flash-message {
-  position: absolute;
-  right: 15px;
-  top: 100px;
-  display: inline-block; }
-  .global-flash-message .close {
-    margin-left: 10px; }
+.global-flash-message .close {
+  margin-left: 10px; }
 
 .summernote-container .control-label {
   font-weight: normal;
@@ -11805,6 +11800,21 @@ fieldset[disabled] .btn-violet {
   display: block; }
   .user-avatar .user-avatar-picture {
     border-radius: 4px; }
+
+.user-dashboard .stats .large {
+  color: #16A085;
+  text-align: center;
+  font-size: 25px; }
+.user-dashboard .stats .small {
+  color: #111111;
+  text-align: center;
+  font-size: 14px; }
+.user-dashboard .newest-tasks-wrapper {
+  text-align: center; }
+  .user-dashboard .newest-tasks-wrapper .label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: inline-block; }
 
 .task-wrapper .panel {
   background: #f9f9fa;

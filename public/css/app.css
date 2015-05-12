@@ -1121,6 +1121,21 @@ fieldset[disabled] .btn-violet {
   .user-avatar .user-avatar-picture {
     border-radius: 4px; }
 
+.user-dashboard .stats .large {
+  color: #16A085;
+  text-align: center;
+  font-size: 25px; }
+.user-dashboard .stats .small {
+  color: #111111;
+  text-align: center;
+  font-size: 14px; }
+.user-dashboard .newest-tasks-wrapper {
+  text-align: center; }
+  .user-dashboard .newest-tasks-wrapper .label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: inline-block; }
+
 .task-wrapper .panel {
   background: #f9f9fa;
   border: none; }

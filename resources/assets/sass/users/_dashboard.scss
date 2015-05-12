@@ -1,0 +1,25 @@
+.user-dashboard {
+    .stats {
+        .large {
+            color: #16A085;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .small {
+            color: #111111;
+            text-align: center;
+            font-size: 14px;
+        }
+    }
+
+    .newest-tasks-wrapper {
+        text-align: center;
+
+        .label {
+            font-size: 12px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+    }
+}

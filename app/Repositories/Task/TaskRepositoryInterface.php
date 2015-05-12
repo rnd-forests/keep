@@ -178,4 +178,99 @@ interface TaskRepositoryInterface {
      */
     public function associatePriority($task, $priorityId);
 
+    /**
+     * Fetch ten most urgent tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserUrgentTasks($user);
+
+    /**
+     * Fetch ten tasks are up to deadline of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserDeadlineTasks($user);
+
+    /**
+     * Fetch recently completed tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserRecentlyCompletedTasks($user);
+
+    /**
+     * Find and update failed tasks in entire database.
+     *
+     * @return mixed
+     */
+    public function findAndUpdateFailedTasks();
+
+    /**
+     * Recover failed task after user update them.
+     *
+     * @return mixed
+     */
+    public function recoverFailedTasks();
+
+    /**
+     * Fetch recently failed tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserRecentlyFailedTasks($user);
+
+    /**
+     * Fetch the newest tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserNewestTasks($user);
+
+    /**
+     * Fetch the paginated collection of all tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserPaginatedTasksCollection($user);
+
+    /**
+     * Fetch the paginated collection of completed tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserPaginatedCompletedTasks($user);
+
+    /**
+     * Fetch the paginated collection of failed tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserPaginatedFailedTasks($user);
+
+    /**
+     * Fetch the paginated collection of due tasks of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function fetchUserPaginatedDueTasks($user);
+
 }
