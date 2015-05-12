@@ -12,14 +12,14 @@ class FailedTasksCommand extends Command {
 	 *
 	 * @var string
 	 */
-	protected $name = 'keep:failed_tasks';
+	protected $name = 'keep:failed-tasks';
 
 	/**
 	 * The console command description.
 	 *
 	 * @var string
 	 */
-	protected $description = 'Find failed tasks in entire database.';
+	protected $description = 'Find failed tasks in entire database. Recover failed tasks if available.';
 
     /**
      * Create a new command instance.

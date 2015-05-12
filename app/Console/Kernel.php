@@ -22,7 +22,12 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected function schedule(Schedule $schedule)
 	{
-        $schedule->command('keep:failed_tasks')
+        $schedule->exec('composer self-update')
+            ->weekly()
+            ->withoutOverlapping()
+            ->environments('production');
+
+        $schedule->command('keep:failed-tasks')
             ->everyFiveMinutes()
             ->withoutOverlapping()
             ->evenInMaintenanceMode();
