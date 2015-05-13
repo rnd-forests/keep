@@ -10,23 +10,20 @@
 
     <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
     @include('admin.layouts.nav')
-
     <div class="container">
         @include('flash::message')
         @yield('content')
     </div>
-
     @include('layouts.partials.footer')
-
-    {!! Html::script('js/all.js') !!}
+    {!! Html::script('js/libraries.js') !!}
+    {!! Html::script('js/app.js') !!}
+    @yield('footer')
 </body>
 </html>

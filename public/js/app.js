@@ -1,4 +1,51 @@
 (function() {
+    $('div.alert').not('.alert-danger').delay(3000).slideUp(300);
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('.task-time-form').datetimepicker({
+        format: 'L'
+    });
+
+    $('#tag_list').select2({
+        placeholder: 'Choose tags for this task'
+    });
+
+    $('#group_new_users').select2({
+        placeholder: 'Search and choose users to add'
+    });
+
+    $('#user_list').select2({
+        placeholder: 'Choose members to assign this task to'
+    });
+
+    $('#group_list').select2({
+        placeholder: 'Select groups assign this task to'
+    });
+
+    $('#summernote').summernote({
+        focus: true,
+        fontNames: [
+            'Arial', 'Arial Black', 'Comic Sans MS',
+            'Courier New', 'Helvetica Neue', 'Impact', 'Lucida Grande',
+            'Tahoma', 'Times New Roman', 'Verdana', 'Futura-Medium'
+        ],
+        toolbar: [
+            ['action', ['undo', 'redo']],
+            ['fontsize', ['fontsize']],
+            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['layout', ['ul', 'ol']],
+            ['para', ['paragraph']],
+            ['height', ['height']],
+            ['insert', ['picture', 'link', 'video', 'table']],
+            ['misc', ['fullscreen', 'codeview']]
+        ]
+    });
+})();
+
+(function() {
     $('a[data-toggle = "tab"]').on('shown.bs.tab', function() {
         localStorage.setItem('lastTab', $(this).attr('href'));
     });
@@ -44,36 +91,4 @@
         e.preventDefault();
     });
 })();
-
-(function() {
-    var ctx = $('#dashboard-line-chart').get(0).getContext('2d');
-    var chart = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-            {
-                label: "My First dataset",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 80, 81, 56, 55, 40]
-            },
-            {
-                label: "My Second dataset",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [28, 48, 40, 19, 86, 27, 90]
-            }
-        ]
-    };
-
-    new Chart(ctx).Line(chart, {
-        bezierCurve : false
-    });
-})();
+//# sourceMappingURL=app.js.map

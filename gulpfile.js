@@ -23,9 +23,11 @@ elixir(function(mix) {
         'vendor/select2.min.js',
         'vendor/summernote/summernote.min.js',
         'vendor/summernote/summernote-fontstyle.js',
-        'vendor/summernote/summernote-video.js',
+        'vendor/summernote/summernote-video.js'
+    ], 'public/js/libraries.js', 'resources/assets/js')
+    .scripts([
         'plugins.js',
-        'app.js'
-    ], 'public/js', 'resources/assets/js');
+        'main.js'
+    ], 'public/js/app.js', 'resources/assets/js');
 
 });

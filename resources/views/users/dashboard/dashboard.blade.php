@@ -129,8 +129,9 @@
             </div>
         </div>
     </div>
+@stop
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+@section('footer')
     <script>
         (function () {
             var ctx = document.getElementById('user-dashboard-stats').getContext('2d');
