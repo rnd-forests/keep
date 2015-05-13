@@ -14,7 +14,10 @@
     left: 50%;
     transform: translateX(-50%);
 
-    button {
-        margin-bottom: 15px;
+    .well {
+        border-radius: 0;
+        padding: 20px 10px;
+        background: #ffffff;
+        border: 1px dashed #ed5565;
     }
 }

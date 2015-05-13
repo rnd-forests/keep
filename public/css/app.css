@@ -1097,8 +1097,11 @@ fieldset[disabled] .btn-violet {
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
           transform: translateX(-50%); }
-  .home-contents button {
-    margin-bottom: 15px; }
+  .home-contents .well {
+    border-radius: 0;
+    padding: 20px 10px;
+    background: #ffffff;
+    border: 1px dashed #ed5565; }
 
 .user-profile-wrapper textarea {
   resize: none; }
