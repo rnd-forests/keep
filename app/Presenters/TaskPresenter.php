@@ -35,4 +35,17 @@ class TaskPresenter extends Presenter {
         return '<i class="text-warning fa fa-times"></i>';
     }
 
+    /**
+     * Get the url to a task.
+     *
+     * @param $user
+     * @param $task
+     *
+     * @return string
+     */
+    public function url($user, $task)
+    {
+        return route('users.tasks.show', [$user, $task]);
+    }
+
 }

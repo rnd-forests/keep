@@ -45,11 +45,12 @@ class UserMailer extends Mailer {
         $subject = 'Keep - New task notification';
         $view = 'emails.task.new_task';
         $data = [
-            'username'       => $user->name,
-            'task_title'     => $task->title,
-            'task_content'   => $task->content,
-            'starting_date'  => Carbon::parse($task->starting_date)->format('Y-m-d'),
-            'finishing_date' => Carbon::parse($task->finishing_date)->format('Y-m-d'),
+            'username'      => $user->name,
+            'taskTitle'     => $task->title,
+            'taskContent'   => $task->content,
+            'startingDate'  => Carbon::parse($task->starting_date)->format('Y-m-d'),
+            'finishingDate' => Carbon::parse($task->finishing_date)->format('Y-m-d'),
+            'taskUrl'       => $task->present()->url($user, $task)
         ];
 
         $this->sendTo($user, $subject, $view, $data);
@@ -66,12 +67,13 @@ class UserMailer extends Mailer {
         $subject = 'Keep - Upcoming task notification';
         $view = 'emails.task.upcoming_task';
         $data = [
-            'username'       => $user->name,
-            'task_title'     => $task->title,
-            'task_content'   => $task->content,
-            'starting_date'  => Carbon::parse($task->starting_date)->format('Y-m-d'),
-            'finishing_date' => Carbon::parse($task->finishing_date)->format('Y-m-d'),
-            'remaining_days' => $task->present()->getRemainingDays($task->finishing_date)
+            'username'      => $user->name,
+            'taskTitle'     => $task->title,
+            'taskContent'   => $task->content,
+            'startingDate'  => Carbon::parse($task->starting_date)->format('Y-m-d'),
+            'finishingDate' => Carbon::parse($task->finishing_date)->format('Y-m-d'),
+            'remainingDays' => $task->present()->getRemainingDays($task->finishing_date),
+            'taskUrl'       => $task->present()->url($user, $task)
         ];
 
         $this->sendTo($user, $subject, $view, $data);
