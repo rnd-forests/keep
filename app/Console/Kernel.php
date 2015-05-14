@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel {
             ->evenInMaintenanceMode();
 
         $schedule->command('keep:notify-upcoming-tasks-using-email')
-            ->twiceDaily()
+            ->weeklyOn(5, '8:00')
             ->withoutOverlapping()
             ->evenInMaintenanceMode();
 	}
