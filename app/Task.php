@@ -234,6 +234,32 @@ class Task extends Model implements SluggableInterface {
             ->where('completed', 0);
     }
 
+    /**
+     * User created tasks query scope.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeUserCreated($query)
+    {
+        return $query->where('user_id', '<>', 0);
+    }
+
+    /**
+     * Upcoming tasks query scope.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeUpcoming($query)
+    {
+        return $query->where('completed', 0)
+            ->where('is_failed', 0)
+            ->whereBetween('finishing_date', [Carbon::now(), Carbon::now()->addDays(5)]);
+    }
+
     //--- ACCESSORS vs. MUTATORS ---//
     public function setStartingDateAttribute($date)
     {
