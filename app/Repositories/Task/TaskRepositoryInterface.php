@@ -273,4 +273,11 @@ interface TaskRepositoryInterface {
      */
     public function fetchUserPaginatedDueTasks($user);
 
+    /**
+     * Fetch the collection of upcoming tasks of a user.
+     *
+     * @return mixed
+     */
+    public function fetchUserUpcomingTasks();
+
 }

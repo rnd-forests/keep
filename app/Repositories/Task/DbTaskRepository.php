@@ -191,4 +191,9 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return $user->tasks()->due()->orderBy('created_at', 'desc')->paginate(30);
     }
 
+    public function fetchUserUpcomingTasks()
+    {
+        return Task::userCreated()->upcoming()->get();
+    }
+
 }
