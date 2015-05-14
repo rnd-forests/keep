@@ -11,7 +11,7 @@ class Kernel extends ConsoleKernel {
 	 * @var array
 	 */
 	protected $commands = [
-        'Keep\Console\Commands\FailedTasksCommand'
+        'Keep\Console\Commands\SyncFailedTasksCommand'
 	];
 
 	/**
@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel {
             ->withoutOverlapping()
             ->environments('production');
 
-        $schedule->command('keep:failed-tasks')
+        $schedule->command('keep:sync-failed-tasks')
             ->everyFiveMinutes()
             ->withoutOverlapping()
             ->evenInMaintenanceMode();

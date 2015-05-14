@@ -3,7 +3,7 @@
 use Illuminate\Console\Command;
 use Keep\Repositories\Task\TaskRepositoryInterface;
 
-class FailedTasksCommand extends Command {
+class SyncFailedTasksCommand extends Command {
 
     protected $taskRepo;
 
@@ -12,7 +12,7 @@ class FailedTasksCommand extends Command {
 	 *
 	 * @var string
 	 */
-	protected $name = 'keep:failed-tasks';
+	protected $name = 'keep:sync-failed-tasks';
 
 	/**
 	 * The console command description.
