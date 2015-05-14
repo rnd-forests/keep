@@ -55,4 +55,26 @@ class UserMailer extends Mailer {
         $this->sendTo($user, $subject, $view, $data);
     }
 
+    /**
+     * Send notification to users about their upcoming task.
+     *
+     * @param User $user
+     * @param Task $task
+     */
+    public function sendNotificationAboutUpcomingTask(User $user, Task $task)
+    {
+        $subject = 'Keep - Upcoming task notification';
+        $view = 'emails.task.upcoming_task';
+        $data = [
+            'username'       => $user->name,
+            'task_title'     => $task->title,
+            'task_content'   => $task->content,
+            'starting_date'  => Carbon::parse($task->starting_date)->format('Y-m-d'),
+            'finishing_date' => Carbon::parse($task->finishing_date)->format('Y-m-d'),
+            'remaining_days' => $task->present()->getRemainingDays($task->finishing_date)
+        ];
+
+        $this->sendTo($user, $subject, $view, $data);
+    }
+
 }

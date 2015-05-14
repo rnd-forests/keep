@@ -11,7 +11,8 @@ class Kernel extends ConsoleKernel {
 	 * @var array
 	 */
 	protected $commands = [
-        'Keep\Console\Commands\SyncFailedTasksCommand'
+        'Keep\Console\Commands\SyncFailedTasksCommand',
+        'Keep\Console\Commands\NotifyUpcomingTasksUsingEmailCommand',
 	];
 
 	/**
@@ -29,6 +30,11 @@ class Kernel extends ConsoleKernel {
 
         $schedule->command('keep:sync-failed-tasks')
             ->everyFiveMinutes()
+            ->withoutOverlapping()
+            ->evenInMaintenanceMode();
+
+        $schedule->command('keep:notify-upcoming-tasks-using-email')
+            ->twiceDaily()
             ->withoutOverlapping()
             ->evenInMaintenanceMode();
 	}
