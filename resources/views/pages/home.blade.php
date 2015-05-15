@@ -33,12 +33,14 @@
                         </div>
                     </div>
                 @else
-                    <a href="{{ route('register') }}">
-                        <button class="btn btn-danger btn-lg">Register</button>
-                    </a>
-                    <a href="{{ route('login') }}">
-                        <button class="btn btn-primary btn-lg">Login</button>
-                    </a>
+                    <div class="well">
+                        <a href="{{ route('register') }}">
+                            <button class="btn btn-danger btn-lg">Register for a Free Account</button>
+                        </a>
+                        <a href="{{ route('login') }}">
+                            <button class="btn btn-primary btn-lg">Login with Your Account</button>
+                        </a>
+                    </div>
                 @endif
             </div>
         </div>
