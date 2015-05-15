@@ -3,6 +3,13 @@
 interface NotificationRepositoryInterface {
 
     /**
+     * Count the number of available notifications.
+     *
+     * @return mixed
+     */
+    public function count();
+
+    /**
      * Create a new notification.
      *
      * @param array $data

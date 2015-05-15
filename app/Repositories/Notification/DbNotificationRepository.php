@@ -6,6 +6,11 @@ use Keep\Notification;
 
 class DbNotificationRepository implements NotificationRepositoryInterface {
 
+    public function count()
+    {
+        return Notification::count();
+    }
+
     public function create(array $data)
     {
         return Notification::create([

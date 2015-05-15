@@ -45,12 +45,12 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="#">
+                <a href="{{ route('admin.notifications.all') }}">
                     <div class="panel widget bg-yellow">
                         <div class="row row-table">
                             <div class="col-xs-4 bg-yellow-dark text-center pv-lg"><i class="fa fa-bell fa-3x"></i></div>
                             <div class="col-xs-8">
-                                <div class="huge">5689</div>
+                                <div class="huge">{{ $notificationCount }}</div>
                                 <span>Notifications</span>
                             </div>
                         </div>
