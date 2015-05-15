@@ -5,7 +5,7 @@ use Keep\User;
 use Keep\Notification;
 use Illuminate\Database\Eloquent\Collection;
 
-class NotificationFetcher implements NotifiableInterface {
+class NotificationFetcher {
 
     /**
      * User to fetch notifications for.
