@@ -2,12 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
-use Keep\Notifications\NotifiableInterface;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 
-class Group extends Model implements SluggableInterface, NotifiableInterface {
+class Group extends Model implements SluggableInterface {
 
     use SluggableTrait, SoftDeletes, PresentableTrait;
 
@@ -65,14 +64,13 @@ class Group extends Model implements SluggableInterface, NotifiableInterface {
     /**
      * Notify the group.
      *
+     * @param $notification
+     *
      * @return Notification
      */
-    public function notify()
+    public function notify($notification)
     {
-        $notification = new Notification();
-        $notification->groups()->attach($this->id);
-
-        return $notification;
+        return $this->notifications()->save($notification);
     }
 
     /**

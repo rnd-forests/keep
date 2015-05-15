@@ -3,7 +3,6 @@
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
-use Keep\Notifications\NotifiableInterface;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -12,7 +11,7 @@ use Cviebrock\EloquentSluggable\SluggableInterface;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract, SluggableInterface, NotifiableInterface {
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract, SluggableInterface {
 
     use Authenticatable, CanResetPassword, PresentableTrait,
         SluggableTrait, SoftDeletes, EntrustUserTrait;
@@ -125,14 +124,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     /**
      * Notify the user.
      *
+     * @param $notification
+     *
      * @return Notification
      */
-    public function notify()
+    public function notify($notification)
     {
-        $notification = new Notification();
-        $notification->users()->attach($this->id);
-
-        return $notification;
+        return $this->notifications()->save($notification);
     }
 
     /**

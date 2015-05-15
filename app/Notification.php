@@ -1,15 +1,14 @@
 <?php namespace Keep;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Keep\Exceptions\InvalidObjectException;
+use Laracasts\Presenter\PresentableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 
 class Notification extends Model implements SluggableInterface {
 
-    use SluggableTrait, SoftDeletes;
+    use SluggableTrait, SoftDeletes, PresentableTrait;
 
     /**
      * Unique slug for notification model.
@@ -19,11 +18,11 @@ class Notification extends Model implements SluggableInterface {
     protected $sluggable = ['build_from' => 'subject', 'save_to' => 'slug'];
 
     /**
-     * Object associated with the notification.
+     * Notification presenter.
      *
-     * @var null
+     * @var string
      */
-    private $associatedObject = null;
+    protected $presenter = 'Keep\Presenters\NotificationPresenter';
 
     /**
      * The attributes that should be treated as Carbon instances.
@@ -87,132 +86,6 @@ class Notification extends Model implements SluggableInterface {
     public function scopeUnread($query)
     {
         $query->where('is_read', 0);
-    }
-
-    /**
-     * Set notification subject.
-     *
-     * @param $subject
-     *
-     * @return $this
-     */
-    public function withSubject($subject)
-    {
-        $this->subject = $subject;
-
-        return $this;
-    }
-
-    /**
-     * Set notification content.
-     *
-     * @param $body
-     *
-     * @return $this
-     */
-    public function withBody($body)
-    {
-        $this->body = $body;
-
-        return $this;
-    }
-
-    /**
-     * Set notification type.
-     *
-     * @param $type
-     *
-     * @return $this
-     */
-    public function withType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Set notification object.
-     *
-     * @param $object
-     *
-     * @return $this
-     */
-    public function regarding($object)
-    {
-        if (is_object($object))
-        {
-            $this->object_id = $object->id;
-            $this->object_type = get_class($object);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set sender.
-     *
-     * @param $user
-     *
-     * @return $this
-     */
-    public function from($user)
-    {
-        $this->sender()->associate($user);
-
-        return $this;
-    }
-
-    /**
-     * Send the notification.
-     *
-     * @return $this
-     */
-    public function deliver()
-    {
-        $this->sent_at = Carbon::now();
-
-        $this->save();
-
-        return $this;
-    }
-
-    /**
-     * Get notification object.
-     *
-     * @return null
-     * @throws InvalidObjectException
-     */
-    public function getObject()
-    {
-        if ($this->associatedObject)
-        {
-            if (!($this->hasValidObject()))
-            {
-                throw new InvalidObjectException('No valid object ' . $this->object_type . ' with ID ' . $this->object_id .
-                    ' associated with this notification.');
-            }
-        }
-
-        return $this->associatedObject;
-    }
-
-    /**
-     * Check if the object associated with the notification is valid or not.
-     *
-     * @return bool
-     */
-    public function hasValidObject()
-    {
-        $object = call_user_func_array($this->object_type . '::findOrFail', [$this->object_id]);
-
-        if ($object != null)
-        {
-            $this->associatedObject = $object;
-            return true;
-        }
-
-        return false;
     }
 
 }
