@@ -1,14 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: vinhnguyen
- * Date: 5/15/2015
- * Time: 5:51 PM
- */
+<?php namespace Keep\Presenters;
 
-namespace Keep\Presenters;
+use Laracasts\Presenter\Presenter;
 
+class NotificationPresenter extends Presenter {
 
-class NotificationPresenter {
+    use KeepPresentableTrait;
 
 }

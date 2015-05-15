@@ -19,10 +19,10 @@
                 @if (Auth::check())
                     <li><a href="{{ route('users.dashboard', Auth::user()) }}">Dashboard</a></li>
                     <li><a href="{{ route('users.tasks.create', Auth::user()) }}">New Task</a></li>
-                    <li><a href="{{ route('users.assignments.index', Auth::user()) }}">Assingmnets</a></li>
+                    <li><a href="{{ route('users.assignments.index', Auth::user()) }}">Assignments</a></li>
                     <li><a href="{{ route('users.tag.list', Auth::user()) }}">Tags</a></li>
                     <li><a href="{{ route('users.groups.index', Auth::user()) }}">Groups</a></li>
-                    <li><a href="#">Notifications</a></li>
+                    <li><a href="{{ route('users.notifications', Auth::user()) }}">Notifications</a></li>
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
