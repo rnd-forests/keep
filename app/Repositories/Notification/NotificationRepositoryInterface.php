@@ -12,6 +12,15 @@ interface NotificationRepositoryInterface {
     public function create(array $data);
 
     /**
+     * Get the paginated collection of all notifications.
+     *
+     * @param $limit
+     *
+     * @return mixed
+     */
+    public function getPaginatedNotifications($limit);
+
+    /**
      * Fetch all notifications associated with a user.
      *
      * @param $userSlug

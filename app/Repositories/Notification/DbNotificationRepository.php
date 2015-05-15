@@ -17,6 +17,11 @@ class DbNotificationRepository implements NotificationRepositoryInterface {
         ]);
     }
 
+    public function getPaginatedNotifications($limit)
+    {
+        return Notification::orderBy('created_at', 'desc')->paginate($limit);
+    }
+
     public function fetchAll($userSlug)
     {
         $user = User::findBySlug($userSlug);

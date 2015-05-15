@@ -12,7 +12,7 @@
                     <p>{{ $notification->body }}</p>
                 </div>
             @endforeach
+            <div class="text-center">{!! $notifications->render() !!}</div>
         </div>
-        <div class="text-center">{!! $notifications->render() !!}</div>
     </div>
 @stop

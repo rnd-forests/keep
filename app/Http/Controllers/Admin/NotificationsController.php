@@ -27,8 +27,9 @@ class NotificationsController extends Controller {
      */
     public function index()
     {
+        $notifications = $this->notificationRepo->getPaginatedNotifications(20);
 
-        return view('admin.notifications.index');
+        return view('admin.notifications.index', compact('notifications'));
     }
 
     /**
