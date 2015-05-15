@@ -1,7 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['auth', 'auth.confirmed', 'valid.admin.user'], 'prefix' => 'admin', 'namespace' => 'Admin'], function ()
-{
+Route::group(['middleware' => ['auth', 'auth.confirmed', 'valid.admin.user'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('dashboard', [
         'as'   => 'admin.dashboard',
         'uses' => 'DashboardController@dashboard'
@@ -184,5 +183,31 @@ Route::group(['middleware' => ['auth', 'auth.confirmed', 'valid.admin.user'], 'p
     Route::post('group/assignments', [
         'as'   => 'store.group.assignment',
         'uses' => 'AssignmentsController@storeGroupAssignment'
+    ]);
+
+
+    Route::get('notifications', [
+        'as'   => 'admin.notifications.all',
+        'uses' => 'NotificationsController@index'
+    ]);
+
+    Route::get('member/notifications/create', [
+        'as'   => 'member.notifications',
+        'uses' => 'NotificationsController@createMemberNotification'
+    ]);
+
+    Route::post('member/notifications', [
+        'as'   => 'store.member.notification',
+        'uses' => 'NotificationsController@storeMemberNotification'
+    ]);
+
+    Route::get('group/notifications/create', [
+        'as'   => 'group.notifications',
+        'uses' => 'NotificationsController@createGroupNotification'
+    ]);
+
+    Route::post('group/notifications', [
+        'as'   => 'store.group.notification',
+        'uses' => 'NotificationsController@storeGroupNotification'
     ]);
 });

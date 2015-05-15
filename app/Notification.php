@@ -44,8 +44,8 @@ class Notification extends Model implements SluggableInterface {
      * @var array
      */
     protected $fillable = [
-        'sender_id', 'type', 'subject', 'slug', 'body',
-        'object_id', 'object_type', 'is_read', 'sent_at'
+        'type', 'subject', 'slug', 'body', 'object_id',
+        'object_type', 'is_read', 'sent_at'
     ];
 
     /**
@@ -66,16 +66,6 @@ class Notification extends Model implements SluggableInterface {
     public function groups()
     {
         return $this->morphedByMany('Keep\Group', 'notifiable');
-    }
-
-    /**
-     * A notification may have a sender.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function sender()
-    {
-        return $this->belongsTo('Keep\User', 'sender_id');
     }
 
     /**
