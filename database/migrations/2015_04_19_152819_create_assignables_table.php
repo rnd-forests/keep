@@ -12,7 +12,8 @@ class CreateAssignablesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('assignables', function(Blueprint $table) {
+		Schema::create('assignables', function(Blueprint $table)
+        {
             $table->increments('id');
             $table->integer('assignment_id')->unsigned();
             $table->integer('assignable_id')->unsigned();
