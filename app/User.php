@@ -3,6 +3,7 @@
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
+use Keep\Notifications\NotifiableInterface;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -11,7 +12,7 @@ use Cviebrock\EloquentSluggable\SluggableInterface;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract, SluggableInterface {
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract, SluggableInterface, NotifiableInterface {
 
     use Authenticatable, CanResetPassword, PresentableTrait,
         SluggableTrait, SoftDeletes, EntrustUserTrait;
@@ -74,11 +75,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     /**
      * A user can have many associated notifications.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
     public function notifications()
     {
-        return $this->hasMany('Keep\Notification');
+        return $this->morphToMany('Keep\Notification', 'notifiable');
     }
 
     /**
@@ -122,15 +123,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
-     * Create new notification.
-     *
-     * @param Notification $notification
+     * Notify the user.
      *
      * @return Notification
      */
-    public function createNotification(Notification $notification)
+    public function notify()
     {
-        $notification->user()->associate($this);
+        $notification = new Notification();
+        $notification->users()->attach($this->id);
 
         return $notification;
     }

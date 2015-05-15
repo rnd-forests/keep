@@ -2,11 +2,12 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
+use Keep\Notifications\NotifiableInterface;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 
-class Group extends Model implements SluggableInterface {
+class Group extends Model implements SluggableInterface, NotifiableInterface {
 
     use SluggableTrait, SoftDeletes, PresentableTrait;
 
@@ -49,6 +50,29 @@ class Group extends Model implements SluggableInterface {
     public function assignments()
     {
         return $this->morphToMany('Keep\Assignment', 'assignable');
+    }
+
+    /**
+     * A group can have many associated notifications.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function notifications()
+    {
+        return $this->morphToMany('Keep\Notification', 'notifiable');
+    }
+
+    /**
+     * Notify the group.
+     *
+     * @return Notification
+     */
+    public function notify()
+    {
+        $notification = new Notification();
+        $notification->groups()->attach($this->id);
+
+        return $notification;
     }
 
     /**

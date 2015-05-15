@@ -3,19 +3,27 @@
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Keep\Exceptions\InvalidObjectException;
-use Keep\Notifications\NotifiableInterface;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\SluggableTrait;
+use Cviebrock\EloquentSluggable\SluggableInterface;
 
-class Notification extends Model implements NotifiableInterface {
+class Notification extends Model implements SluggableInterface {
 
-    use SoftDeletes;
+    use SluggableTrait, SoftDeletes;
+
+    /**
+     * Unique slug for notification model.
+     *
+     * @var array
+     */
+    protected $sluggable = ['build_from' => 'subject', 'save_to' => 'slug'];
 
     /**
      * Object associated with the notification.
      *
      * @var null
      */
-    private $notificationObject = null;
+    private $associatedObject = null;
 
     /**
      * The attributes that should be treated as Carbon instances.
@@ -37,22 +45,32 @@ class Notification extends Model implements NotifiableInterface {
      * @var array
      */
     protected $fillable = [
-        'user_id', 'sender_id', 'type', 'subject', 'body',
+        'sender_id', 'type', 'subject', 'slug', 'body',
         'object_id', 'object_type', 'is_read', 'sent_at'
     ];
 
     /**
-     * A notification belongs to a user.
+     * A notification can belong to many users.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('Keep\User', 'user_id');
+        return $this->morphedByMany('Keep\User', 'notifiable');
     }
 
     /**
-     * A notification belongs to a sender.
+     * A notification can belong to many groups.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function groups()
+    {
+        return $this->morphedByMany('Keep\Group', 'notifiable');
+    }
+
+    /**
+     * A notification may have a sender.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -68,7 +86,7 @@ class Notification extends Model implements NotifiableInterface {
      */
     public function scopeUnread($query)
     {
-        $query->where('is_read', '=', false);
+        $query->where('is_read', 0);
     }
 
     /**
@@ -146,20 +164,6 @@ class Notification extends Model implements NotifiableInterface {
     }
 
     /**
-     * Set receiver.
-     *
-     * @param $user
-     *
-     * @return $this
-     */
-    public function to($user)
-    {
-        $this->user()->associate($user);
-
-        return $this;
-    }
-
-    /**
      * Send the notification.
      *
      * @return $this
@@ -181,7 +185,7 @@ class Notification extends Model implements NotifiableInterface {
      */
     public function getObject()
     {
-        if ($this->notificationObject)
+        if ($this->associatedObject)
         {
             if (!($this->hasValidObject()))
             {
@@ -190,7 +194,7 @@ class Notification extends Model implements NotifiableInterface {
             }
         }
 
-        return $this->notificationObject;
+        return $this->associatedObject;
     }
 
     /**
@@ -204,7 +208,7 @@ class Notification extends Model implements NotifiableInterface {
 
         if ($object != null)
         {
-            $this->notificationObject = $object;
+            $this->associatedObject = $object;
             return true;
         }
 
