@@ -1,15 +1,15 @@
 <?php namespace Keep;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 use Keep\Exceptions\InvalidObjectException;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 
 class Notification extends Model implements SluggableInterface {
 
-    use SluggableTrait, SoftDeletes, PresentableTrait;
+    use SluggableTrait, PresentableTrait;
 
     /**
      * The object associated with a given notification.
@@ -37,14 +37,7 @@ class Notification extends Model implements SluggableInterface {
      *
      * @var array
      */
-    protected $dates = ['sent_at', 'deleted_at'];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = ['is_read' => 'boolean'];
+    protected $dates = ['sent_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -53,7 +46,7 @@ class Notification extends Model implements SluggableInterface {
      */
     protected $fillable = [
         'sent_from', 'type', 'subject', 'slug', 'body',
-        'object_id', 'object_type', 'is_read', 'sent_at'
+        'object_id', 'object_type', 'is_read'
     ];
 
     /**
@@ -74,16 +67,6 @@ class Notification extends Model implements SluggableInterface {
     public function groups()
     {
         return $this->morphedByMany('Keep\Group', 'notifiable');
-    }
-
-    /**
-     * Query scope for unread notifications.
-     *
-     * @param $query
-     */
-    public function scopeUnread($query)
-    {
-        $query->where('is_read', 0);
     }
 
     /**
@@ -109,15 +92,18 @@ class Notification extends Model implements SluggableInterface {
      */
     public function hasValidObject()
     {
-        $object = call_user_func_array($this->object_type . '::findOrFail', [$this->object_id]);
-
-        if ($object != null)
+        try
         {
-            $this->associatedObject = $object;
-            return true;
+            $object = call_user_func_array($this->object_type . '::findOrFail', [$this->object_id]);
+        }
+        catch(Exception $e)
+        {
+            return false;
         }
 
-        return false;
+        $this->associatedObject = $object;
+
+        return true;
     }
 
 }

@@ -17,7 +17,6 @@ class DbNotificationRepository implements NotificationRepositoryInterface {
             'subject'   => $data['subject'],
             'body'      => $data['body'],
             'type'      => $data['type'],
-            'is_read'   => false,
             'sent_at'   => Carbon::now()
         ]);
     }
@@ -31,12 +30,12 @@ class DbNotificationRepository implements NotificationRepositoryInterface {
     {
         $user = User::findBySlug($userSlug);
 
-        return $user->notifications()->unread()->orderBy('created_at', 'desc')->paginate(15);
+        return $user->notifications()->orderBy('created_at', 'desc')->paginate(15);
     }
 
     public function countUserNotifications($user)
     {
-        return $user->notifications()->unread()->count();
+        return $user->notifications()->count();
     }
 
 }
