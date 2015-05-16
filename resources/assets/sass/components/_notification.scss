@@ -1,0 +1,22 @@
+.notification {
+    font-size: 14px;
+
+    .label {
+        font-size: 12px;
+    }
+
+    .well {
+        background: #ffffff;
+        margin-bottom: 0;
+    }
+}
+
+.notification-count {
+    .label {
+        line-height: 12px;
+        padding: 5px;
+        position: absolute;
+        right: -12px;
+        top: 4px;
+    }
+}

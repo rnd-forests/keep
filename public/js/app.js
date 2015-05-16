@@ -1,5 +1,5 @@
 (function() {
-    $('div.alert').not('.alert-danger').delay(3000).slideUp(300);
+    $('div.alert').not('.alert-danger').not('.notification').delay(3000).slideUp(300);
 
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -16,11 +16,11 @@
     });
 
     $('#user_list').select2({
-        placeholder: 'Choose members to assign this task to'
+        placeholder: 'Type and search for members'
     });
 
     $('#group_list').select2({
-        placeholder: 'Select groups assign this task to'
+        placeholder: 'Type and search for groups'
     });
 
     $('#summernote').summernote({

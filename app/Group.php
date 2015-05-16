@@ -52,6 +52,28 @@ class Group extends Model implements SluggableInterface {
     }
 
     /**
+     * A group can have many associated notifications.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function notifications()
+    {
+        return $this->morphToMany('Keep\Notification', 'notifiable');
+    }
+
+    /**
+     * Notify the group.
+     *
+     * @param $notification
+     *
+     * @return Notification
+     */
+    public function notify($notification)
+    {
+        return $this->notifications()->save($notification);
+    }
+
+    /**
      * Set the route key.
      *
      * @return mixed

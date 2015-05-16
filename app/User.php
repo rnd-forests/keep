@@ -74,11 +74,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     /**
      * A user can have many associated notifications.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
     public function notifications()
     {
-        return $this->hasMany('Keep\Notification');
+        return $this->morphToMany('Keep\Notification', 'notifiable');
     }
 
     /**
@@ -122,16 +122,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
-     * Create new notification.
+     * Notify the user.
+     *
+     * @param $notification
      *
      * @return Notification
      */
-    public function createNotification()
+    public function notify($notification)
     {
-        $notification = new Notification();
-        $notification->user()->associate($this);
-
-        return $notification;
+        return $this->notifications()->save($notification);
     }
 
     /**

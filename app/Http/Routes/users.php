@@ -120,3 +120,9 @@ Route::get('{users}/priorities/{priorities}/tasks', [
     'as'   => 'users.priority.tasks',
     'uses' => 'PrioritiesController@show'
 ]);
+
+
+Route::get('{users}/notifications', [
+    'as'   => 'users.notifications',
+    'uses' => 'NotificationsController@fetchAll'
+]);

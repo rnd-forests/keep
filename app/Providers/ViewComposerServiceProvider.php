@@ -11,39 +11,83 @@ class ViewComposerServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
+        $this->composeNavbar();
         $this->composeTaskForm();
-        $this->composeEditAssignmentForm();
-        $this->composeGroupAssignmentForm();
-        $this->composeMemberAssignmentForm();
+        $this->composeAssignmentForm();
         $this->composeUserDashboard();
+        $this->composeNotificationForm();
+    }
+
+    private function composeNavbar()
+    {
+        view()->composer(
+            'layouts.partials.nav',
+            'Keep\Http\Composers\NavbarComposer@compose'
+        );
     }
 
     private function composeTaskForm()
     {
-        view()->composer('users.tasks.partials.form', 'Keep\Http\Composers\TaskFormComposer@compose');
-        view()->composer('admin.assignments.edit', 'Keep\Http\Composers\TaskFormComposer@compose');
-        view()->composer('admin.assignments.create_group_assignment', 'Keep\Http\Composers\TaskFormComposer@compose');
-        view()->composer('admin.assignments.create_member_assignment', 'Keep\Http\Composers\TaskFormComposer@compose');
+        view()->composer(
+            'users.tasks.partials.form',
+            'Keep\Http\Composers\TaskFormComposer@compose'
+        );
+        view()->composer(
+            'admin.assignments.edit',
+            'Keep\Http\Composers\TaskFormComposer@compose'
+        );
+        view()->composer(
+            'admin.assignments.create_group_assignment',
+            'Keep\Http\Composers\TaskFormComposer@compose'
+        );
+        view()->composer(
+            'admin.assignments.create_member_assignment',
+            'Keep\Http\Composers\TaskFormComposer@compose'
+        );
     }
 
-    private function composeEditAssignmentForm()
+    private function composeAssignmentForm()
     {
-        view()->composer('admin.assignments.edit', 'Keep\Http\Composers\EditAssignmentFormComposer@compose');
-    }
+        view()->composer(
+            'admin.assignments.edit',
+            'Keep\Http\Composers\EditAssignmentFormComposer@compose'
+        );
 
-    private function composeGroupAssignmentForm()
-    {
-        view()->composer('admin.assignments.create_group_assignment', 'Keep\Http\Composers\CreateGroupAssignmentFormComposer@compose');
-    }
+        view()->composer(
+            'admin.assignments.create_group_assignment',
+            'Keep\Http\Composers\CreateGroupAssignmentFormComposer@compose'
+        );
 
-    private function composeMemberAssignmentForm()
-    {
-        view()->composer('admin.assignments.create_member_assignment', 'Keep\Http\Composers\CreateMemberAssignmentFormComposer@compose');
+        view()->composer(
+            'admin.assignments.create_member_assignment',
+            'Keep\Http\Composers\CreateMemberAssignmentFormComposer@compose'
+        );
     }
 
     private function composeUserDashboard()
     {
-        view()->composer('users.dashboard.dashboard', 'Keep\Http\Composers\UserDashboardComposer@compose');
+        view()->composer(
+            'users.dashboard.dashboard',
+            'Keep\Http\Composers\UserDashboardComposer@compose'
+        );
+    }
+
+    private function composeNotificationForm()
+    {
+        view()->composer(
+            'admin.notifications.partials.form',
+            'Keep\Http\Composers\NotificationFormComposer@compose'
+        );
+
+        view()->composer(
+            'admin.notifications.create_member_notification',
+            'Keep\Http\Composers\CreateMemberNotificationFormComposer'
+        );
+
+        view()->composer(
+            'admin.notifications.create_group_notification',
+            'Keep\Http\Composers\CreateGroupNotificationFormComposer'
+        );
     }
 
     /**

@@ -41,17 +41,17 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('admin.assignments.all') }}">Collection</a></li>
-                        <li class="divider"></li>
                         <li><a href="#" data-toggle="modal" data-target="#assignment-selection-modal">Create</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ route('admin.assignments.all') }}">Assignment Collection</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Notifications</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Manage</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#notification-selection-modal">Create</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Create</a></li>
+                        <li><a href="{{ route('admin.notifications.all') }}">Notification Collection</a></li>
                     </ul>
                 </li>
             </ul>
@@ -63,4 +63,5 @@
     </div>
 </nav>
 
-@include('admin.layouts.assignment_selection')
+@include('admin.layouts.assignment_modal')
+@include('admin.layouts.notification_modal')

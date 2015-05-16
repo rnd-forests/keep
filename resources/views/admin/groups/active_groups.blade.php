@@ -10,9 +10,9 @@
             @foreach($groups as $group)
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
-                        <div class="panel panel-default">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading text-center"><strong>{{ $group->name }}</strong></div>
                             <div class="panel-body">
-                                <h3 class="group-name">{{ $group->name }}</h3>
                                 <div class="text-center">
                                     <span class="label label-primary">
                                         {{ $group->users->count() }} {{ str_plural('member', $group->users->count()) }}

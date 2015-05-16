@@ -1,27 +1,44 @@
 <?php namespace Keep;
 
-use Exception;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Laracasts\Presenter\PresentableTrait;
+use Keep\Exceptions\InvalidObjectException;
+use Cviebrock\EloquentSluggable\SluggableTrait;
+use Cviebrock\EloquentSluggable\SluggableInterface;
 
-class Notification extends Model {
+class Notification extends Model implements SluggableInterface {
 
-    use SoftDeletes;
+    use SluggableTrait, PresentableTrait;
+
+    /**
+     * The object associated with a given notification.
+     *
+     * @var null
+     */
+    protected $associatedObject = null;
+
+    /**
+     * Unique slug for notification model.
+     *
+     * @var array
+     */
+    protected $sluggable = ['build_from' => 'subject', 'save_to' => 'slug'];
+
+    /**
+     * Notification presenter.
+     *
+     * @var string
+     */
+    protected $presenter = 'Keep\Presenters\NotificationPresenter';
 
     /**
      * The attributes that should be treated as Carbon instances.
      *
      * @var array
      */
-    protected $dates = ['sent_at', 'deleted_at'];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = ['is_read' => 'boolean'];
+    protected $dates = ['sent_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -29,171 +46,66 @@ class Notification extends Model {
      * @var array
      */
     protected $fillable = [
-        'user_id', 'sender_id', 'type', 'subject', 'body',
-        'object_id', 'object_type', 'is_read', 'sent_at'
+        'sent_from', 'type', 'subject', 'slug', 'body',
+        'object_id', 'object_type', 'sent_at'
     ];
 
     /**
-     * Object associated with the notification.
+     * A notification can belong to many users.
      *
-     * @var null
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
-    private $notificationObject = null;
+    public function users()
+    {
+        return $this->morphedByMany('Keep\User', 'notifiable');
+    }
 
     /**
-     * Query scope for unread notifications.
+     * A notification can belong to many groups.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
+    public function groups()
+    {
+        return $this->morphedByMany('Keep\Group', 'notifiable');
+    }
+
+    /**
+     * Old notifications query scope.
      *
      * @param $query
+     *
+     * @return mixed
      */
-    public function scopeUnread($query)
+    public function scopeOld($query)
     {
-        $query->where('is_read', '=', false);
+        return $query->where('sent_at', '<=', Carbon::now()->subDays(10));
     }
 
     /**
-     * Set notification subject.
+     * Set the route key.
      *
-     * @param $subject
-     *
-     * @return $this
+     * @return mixed
      */
-    public function setSubject($subject)
+    public function getRouteKey()
     {
-        $this->subject = $subject;
-
-        return $this;
-    }
-
-    /**
-     * Set notification content.
-     *
-     * @param $body
-     *
-     * @return $this
-     */
-    public function setBody($body)
-    {
-        $this->body = $body;
-
-        return $this;
-    }
-
-    /**
-     * Set notification type.
-     *
-     * @param $type
-     *
-     * @return $this
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Set notification object.
-     *
-     * @param $object
-     *
-     * @return $this
-     */
-    public function regarding($object)
-    {
-        if (is_object($object))
-        {
-            $this->object_id = $object->id;
-            $this->object_type = get_class($object);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set sender.
-     *
-     * @param $user
-     *
-     * @return $this
-     */
-    public function from($user)
-    {
-        $this->sender()->associate($user);
-
-        return $this;
-    }
-
-    /**
-     * A notification belongs to a sender.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function sender()
-    {
-        return $this->belongsTo('Keep\User', 'sender_id');
-    }
-
-    /**
-     * Set receiver.
-     *
-     * @param $user
-     *
-     * @return $this
-     */
-    public function to($user)
-    {
-        $this->user()->associate($user);
-
-        return $this;
-    }
-
-    /**
-     * A notification belongs to a user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo('Keep\User', 'user_id');
-    }
-
-    /**
-     * Send the notification.
-     *
-     * @return $this
-     */
-    public function deliver()
-    {
-        $this->sent_at = Carbon::now();
-
-        $this->save();
-
-        return $this;
+        return $this->slug;
     }
 
     /**
      * Get notification object.
      *
-     * @return null
-     * @throws Exception
+     * @throws InvalidObjectException
      */
     public function getObject()
     {
-        if ($this->notificationObject)
+        if (!$this->associatedObject && !$this->hasValidObject())
         {
-            $hasObject = $this->hasValidObject();
-
-            if ( ! $hasObject)
-            {
-                throw new Exception(sprintf(
-                    "No valid object (%s with ID %s) associated with this notification.",
-                    $this->object_type, $this->object_id
-                ));
-            }
+            throw new InvalidObjectException('No valid object ' . $this->object_type .
+                ' with ID ' . $this->object_id . ' associated with this notification.');
         }
 
-        return $this->notificationObject;
+        return $this->associatedObject;
     }
 
     /**
@@ -205,15 +117,14 @@ class Notification extends Model {
     {
         try
         {
-            $object = call_user_func_array(
-                $this->object_type . '::findOrFail', [$this->object_id]
-            );
-        } catch (Exception $e)
+            $object = call_user_func_array($this->object_type . '::findOrFail', [$this->object_id]);
+        }
+        catch(Exception $e)
         {
             return false;
         }
 
-        $this->notificationObject = $object;
+        $this->associatedObject = $object;
 
         return true;
     }

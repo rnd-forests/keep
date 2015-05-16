@@ -19,7 +19,7 @@ class SyncFailedTasksCommand extends Command {
 	 *
 	 * @var string
 	 */
-	protected $description = 'Find failed tasks in entire database. Recover failed tasks if available.';
+	protected $description = 'Find failed tasks in entire database. Recover failed tasks if available';
 
     /**
      * Create a new command instance.

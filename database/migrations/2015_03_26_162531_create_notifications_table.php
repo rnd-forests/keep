@@ -15,16 +15,14 @@ class CreateNotificationsTable extends Migration {
         Schema::create('notifications', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('sender_id')->nullable()->unsigned();
+            $table->string('sent_from', '25')->nullable();
             $table->string('type', 128)->nullable();
-            $table->string('subject', 128)->nullable();
+            $table->string('subject')->nullable();
+            $table->string('slug')->unique();
             $table->text('body')->nullable();
             $table->integer('object_id')->unsigned();
             $table->string('object_type', 128);
-            $table->boolean('is_read')->default(false);
             $table->dateTime('sent_at')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

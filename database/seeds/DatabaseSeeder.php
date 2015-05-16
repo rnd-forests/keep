@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder {
         'groups',
         'group_user',
         'priorities',
+        'notifications'
     ];
 
     /**
@@ -42,6 +43,7 @@ class DatabaseSeeder extends Seeder {
         'GroupsTableSeeder',
         'GroupUserTableSeeder',
         'PrioritiesTableSeeder',
+        'NotificationsTableSeeder'
     ];
 
     /**

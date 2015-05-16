@@ -1,5 +1,9 @@
 .user-dashboard {
     .stats {
+        .panel-body {
+            border-top: 1px solid #eaeaea;
+        }
+
         .large {
             color: #16A085;
             text-align: center;
@@ -17,7 +21,6 @@
         text-align: center;
 
         .label {
-            font-size: 12px;
             margin-bottom: 5px;
             display: inline-block;
         }
