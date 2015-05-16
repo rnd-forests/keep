@@ -143,13 +143,22 @@
                         Math.round({{ json_encode($failedTasksCount / $totalTasksCount) * 100 }}),
                         Math.round({{ json_encode(($totalTasksCount - $completedTasksCount - $failedTasksCount) / $totalTasksCount) * 100 }})
                     ],
-                    fillColor: "#16A085",
-                    highlightFill: "#138a72"
+                    fillColor: "rgba(26,179,148,0.5)",
+                    strokeColor: "rgba(26,179,148,0.8)",
+                    highlightFill: "rgba(26,179,148,0.75)",
+                    highlightStroke: "rgba(26,179,148,1)"
                 }]
             };
 
             new Chart(ctx).Bar(chart, {
-                barShowStroke : false,
+                scaleBeginAtZero: true,
+                scaleShowGridLines: true,
+                scaleGridLineColor: "rgba(0,0,0,.05)",
+                scaleGridLineWidth: 1,
+                barShowStroke: true,
+                barStrokeWidth: 2,
+                barDatasetSpacing: 1,
+                responsive: true,
                 barValueSpacing : 50
             });
         })();
