@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel {
         'Keep\Console\Commands\SyncFailedTasksCommand',
         'Keep\Console\Commands\NotifyUpcomingTasksCommand',
         'Keep\Console\Commands\NotifyUpcomingTasksUsingEmailCommand',
+        'Keep\Console\Commands\ClearOldNotificationsCommand'
 	];
 
 	/**
@@ -41,6 +42,11 @@ class Kernel extends ConsoleKernel {
 
         $schedule->command('keep:notify-upcoming-tasks-using-email')
             ->weeklyOn(5, '8:00')
+            ->withoutOverlapping()
+            ->evenInMaintenanceMode();
+
+        $schedule->command('keep:clear-old-notifications')
+            ->daily()
             ->withoutOverlapping()
             ->evenInMaintenanceMode();
 	}

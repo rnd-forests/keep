@@ -45,10 +45,10 @@ class NotifyUpcomingTasksCommand extends Command {
     {
         $upcomingTasks = $this->taskRepo->fetchUserUpcomingTasks();
 
-        $upcomingTasks->each(function ($task) {
-
+        $upcomingTasks->each(function ($task)
+        {
             $notification = $this->notificationRepo->create([
-                'subject' => 'You have a new upcoming task. Check it out!',
+                'subject' => 'You have a new upcoming task',
                 'body'    => '',
                 'type'    => 'warning',
             ]);

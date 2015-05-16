@@ -1,5 +1,6 @@
 <?php namespace Keep;
 
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -46,7 +47,7 @@ class Notification extends Model implements SluggableInterface {
      */
     protected $fillable = [
         'sent_from', 'type', 'subject', 'slug', 'body',
-        'object_id', 'object_type', 'is_read'
+        'object_id', 'object_type', 'sent_at'
     ];
 
     /**
@@ -67,6 +68,18 @@ class Notification extends Model implements SluggableInterface {
     public function groups()
     {
         return $this->morphedByMany('Keep\Group', 'notifiable');
+    }
+
+    /**
+     * Old notifications query scope.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeOld($query)
+    {
+        return $query->where('sent_at', '<=', Carbon::now()->subDays(10));
     }
 
     /**

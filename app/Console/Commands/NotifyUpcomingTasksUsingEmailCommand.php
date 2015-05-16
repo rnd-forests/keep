@@ -45,7 +45,8 @@ class NotifyUpcomingTasksUsingEmailCommand extends Command {
 	{
 		$upcomingTasks = $this->taskRepo->fetchUserUpcomingTasks();
 
-        $upcomingTasks->each(function($task) {
+        $upcomingTasks->each(function($task)
+        {
             $this->mailer->sendNotificationAboutUpcomingTask($task->owner, $task);
         });
 

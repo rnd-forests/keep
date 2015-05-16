@@ -48,4 +48,9 @@ class DbNotificationRepository implements NotificationRepositoryInterface {
         return $user->notifications()->count();
     }
 
+    public function fetchOldNotifications()
+    {
+        return Notification::old()->get();
+    }
+
 }

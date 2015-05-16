@@ -63,4 +63,11 @@ interface NotificationRepositoryInterface {
      */
     public function countUserNotifications($user);
 
+    /**
+     * Fetch all old notifications.
+     *
+     * @return mixed
+     */
+    public function fetchOldNotifications();
+
 }

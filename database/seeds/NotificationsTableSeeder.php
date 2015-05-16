@@ -28,7 +28,7 @@ class NotificationsTableSeeder extends Seeder {
                 'type'      => 'warning',
                 'subject'   => $faker->sentence(),
                 'body'      => $faker->paragraph(),
-                'sent_at'   => Carbon::now()
+                'sent_at'   => Carbon::now()->subDays(10)
             ]));
         }
 
@@ -38,7 +38,7 @@ class NotificationsTableSeeder extends Seeder {
                 'type'      => 'danger',
                 'subject'   => $faker->sentence(),
                 'body'      => $faker->paragraph(),
-                'sent_at'   => Carbon::now()
+                'sent_at'   => Carbon::now()->subDays(15)
             ]));
         }
     }
