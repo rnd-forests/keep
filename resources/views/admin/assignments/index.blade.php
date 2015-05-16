@@ -10,13 +10,11 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     @foreach($assignments as $assignment)
-                        <div class="panel panel-default">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading text-center"><strong>{{ $assignment->assignment_name }}</strong></div>
                             <div class="panel-body text-center">
-                                <h3 class="assignment-name" style="margin-top: 0">{{ $assignment->assignment_name }}</h3>
-                                <div class="well">
-                                    <h4><a href="{{ route('admin.task.show', $assignment->task) }}">{{ $assignment->task->title }}</a></h4>
-                                    <p>{{ $assignment->task->content }}</p>
-                                </div>
+                                <h4>{{ $assignment->task->title }}</h4>
+                                <p>{{ $assignment->task->content }}</p>
                                 <div class="text-center">
                                     <span class="label label-primary">
                                         {{ $assignment->present()->formatTimeForHumans($assignment->created_at) }}

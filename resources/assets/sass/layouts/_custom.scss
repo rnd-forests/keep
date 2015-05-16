@@ -17,6 +17,7 @@
     right: 15px;
     top: 100px;
     display: inline-block;
+    z-index: 1000;
 
     .close {
         margin-left: 10px;
@@ -597,65 +598,10 @@ fieldset[disabled] .btn-violet {
     }
 }
 
-
-/** Custom panel theme **/
-.panel {
-    box-shadow: none;
-}
-
-.panel-primary {
-    border-color: #1ab394;
-
-    > .panel-heading {
-        background-color: #1ab394;
-        border-color: #1ab394;
-    }
-}
-
-.panel-success {
-    border-color: #1c84c6;
-
-    > .panel-heading {
-        background-color: #1c84c6;
-        border-color: #1c84c6;
-        color: #ffffff;
-    }
-}
-
-.panel-info {
-    border-color: #23c6c8;
-
-    > .panel-heading {
-        background-color: #23c6c8;
-        border-color: #23c6c8;
-        color: #ffffff;
-    }
-}
-
-.panel-warning {
-    border-color: #f8ac59;
-
-    > .panel-heading {
-        background-color: #f8ac59;
-        border-color: #f8ac59;
-        color: #ffffff;
-    }
-}
-
-.panel-danger {
-    border-color: #ed5565;
-
-    > .panel-heading {
-        background-color: #ed5565;
-        border-color: #ed5565;
-        color: #ffffff;
-    }
-}
-
 /** Custom label, badge themes **/
 .label {
     background-color: #d1dade;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
     padding: 3px 8px;
     text-shadow: none;
@@ -663,7 +609,7 @@ fieldset[disabled] .btn-violet {
 
 .badge {
     background-color: #d1dade;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
     padding-bottom: 4px;
     padding-left: 6px;

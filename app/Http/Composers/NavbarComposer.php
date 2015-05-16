@@ -15,7 +15,14 @@ class NavbarComposer {
     {
         $notificationRepo = App::make('Keep\Repositories\Notification\NotificationRepositoryInterface');
 
-        $notificationCount = $notificationRepo->countUserNotifications(Auth::user());
+        if (Auth::check())
+        {
+            $notificationCount = $notificationRepo->countUserNotifications(Auth::user());
+        }
+        else
+        {
+            $notificationCount = 0;
+        }
 
         $view->with('notificationCount', $notificationCount);
     }

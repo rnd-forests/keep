@@ -1,11 +1,9 @@
 .task-wrapper {
     .panel {
         background: #f9f9fa;
-        border: none;
     }
 
     .panel-heading {
-        border: none;
         text-align: center;
 
         .task-title {
@@ -39,7 +37,6 @@
             color: #7f8a94;
 
             .label {
-                font-size: 12px;
                 margin-right: 5px;
             }
 

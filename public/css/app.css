@@ -11,7 +11,8 @@
   position: absolute;
   right: 15px;
   top: 100px;
-  display: inline-block; }
+  display: inline-block;
+  z-index: 1000; }
   .global-flash-message .close {
     margin-left: 10px; }
 
@@ -395,55 +396,17 @@ fieldset[disabled] .btn-violet {
     font-size: 24px;
     line-height: 1.33; }
 
-/** Custom panel theme **/
-.panel {
-  box-shadow: none; }
-
-.panel-primary {
-  border-color: #1ab394; }
-  .panel-primary > .panel-heading {
-    background-color: #1ab394;
-    border-color: #1ab394; }
-
-.panel-success {
-  border-color: #1c84c6; }
-  .panel-success > .panel-heading {
-    background-color: #1c84c6;
-    border-color: #1c84c6;
-    color: #ffffff; }
-
-.panel-info {
-  border-color: #23c6c8; }
-  .panel-info > .panel-heading {
-    background-color: #23c6c8;
-    border-color: #23c6c8;
-    color: #ffffff; }
-
-.panel-warning {
-  border-color: #f8ac59; }
-  .panel-warning > .panel-heading {
-    background-color: #f8ac59;
-    border-color: #f8ac59;
-    color: #ffffff; }
-
-.panel-danger {
-  border-color: #ed5565; }
-  .panel-danger > .panel-heading {
-    background-color: #ed5565;
-    border-color: #ed5565;
-    color: #ffffff; }
-
 /** Custom label, badge themes **/
 .label {
   background-color: #d1dade;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   padding: 3px 8px;
   text-shadow: none; }
 
 .badge {
   background-color: #d1dade;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   padding-bottom: 4px;
   padding-left: 6px;
@@ -1125,20 +1088,20 @@ fieldset[disabled] .btn-violet {
   text-shadow: 0 0 1px #555555; }
 .user-profile-wrapper .tab-content {
   padding-top: 25px; }
-  .user-profile-wrapper .tab-content .panel {
-    border: none; }
-    .user-profile-wrapper .tab-content .panel .list-group .list-group-item {
-      background: 0 0;
-      border: none;
-      text-align: center; }
-      .user-profile-wrapper .tab-content .panel .list-group .list-group-item .list-group-item-heading {
-        color: #6e6e6e; }
+  .user-profile-wrapper .tab-content .panel .list-group .list-group-item {
+    background: 0 0;
+    border: none;
+    text-align: center; }
+    .user-profile-wrapper .tab-content .panel .list-group .list-group-item .list-group-item-heading {
+      color: #6e6e6e; }
 
 .user-avatar {
   display: block; }
   .user-avatar .user-avatar-picture {
     border-radius: 4px; }
 
+.user-dashboard .stats .panel-body {
+  border-top: 1px solid #eaeaea; }
 .user-dashboard .stats .large {
   color: #16A085;
   text-align: center;
@@ -1150,15 +1113,12 @@ fieldset[disabled] .btn-violet {
 .user-dashboard .newest-tasks-wrapper {
   text-align: center; }
   .user-dashboard .newest-tasks-wrapper .label {
-    font-size: 12px;
     margin-bottom: 5px;
     display: inline-block; }
 
 .task-wrapper .panel {
-  background: #f9f9fa;
-  border: none; }
+  background: #f9f9fa; }
 .task-wrapper .panel-heading {
-  border: none;
   text-align: center; }
   .task-wrapper .panel-heading .task-title {
     font-size: 25px;
@@ -1178,7 +1138,6 @@ fieldset[disabled] .btn-violet {
   background: #ffffff;
   color: #7f8a94; }
   .task-wrapper .panel-body .well .label {
-    font-size: 12px;
     margin-right: 5px; }
   .task-wrapper .panel-body .well .fa {
     padding-right: 5px; }
@@ -1242,29 +1201,18 @@ fieldset[disabled] .btn-violet {
 
 .account-profile .panel {
   background: 0 0; }
-.account-profile .label {
-  font-weight: normal; }
 .account-profile .list-group-item {
   background: 0 0;
-  border: none #edf1f2;
+  border: none;
   text-align: center; }
 
-.groups-wrapper .panel {
-  border: none;
-  background: #f6f9fa; }
-  .groups-wrapper .panel .well {
-    background-color: #f6f9fa;
-    text-align: center;
-    margin-bottom: 0;
-    padding: 10px 0 0; }
-  .groups-wrapper .panel .group-name {
-    margin-top: 0;
-    text-align: center;
-    text-shadow: 0 0 1px #555555; }
-  .groups-wrapper .panel .panel-footer {
-    border-top: none; }
-    .groups-wrapper .panel .panel-footer form {
-      display: inline-block; }
+.groups-wrapper .panel .well {
+  background: 0 0;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 10px 0 0; }
+.groups-wrapper .panel .panel-footer form {
+  display: inline-block; }
 
 .group-wrapper .group-wrapper__users {
   margin-top: 40px; }
@@ -1273,50 +1221,25 @@ fieldset[disabled] .btn-violet {
 .group-wrapper form {
   display: inline-block; }
 
-.add-users-wrapper .list-group-item:hover {
-  background-color: #eaeaea; }
 .add-users-wrapper .list-group-item a {
   color: #333333;
   vertical-align: middle; }
   .add-users-wrapper .list-group-item a:hover, .add-users-wrapper .list-group-item a:active, .add-users-wrapper .list-group-item a:focus {
     color: #1ab394; }
 
-.assignments-wrapper .panel {
-  background: #f6f9fa;
-  border: none; }
-  .assignments-wrapper .panel .panel-body .well {
-    background-color: #f6f9fa;
-    margin-bottom: 0;
-    padding: 0; }
-    .assignments-wrapper .panel .panel-body .well a {
-      color: #333333; }
-      .assignments-wrapper .panel .panel-body .well a:hover, .assignments-wrapper .panel .panel-body .well a:active, .assignments-wrapper .panel .panel-body .well a:focus {
-        color: #1AB394; }
-  .assignments-wrapper .panel .panel-body .label {
-    font-size: 12px;
-    margin-right: 5px; }
-  .assignments-wrapper .panel .panel-footer {
-    background: 0 0;
-    border-top: none; }
-    .assignments-wrapper .panel .panel-footer form {
-      display: inline-block; }
+.assignments-wrapper .panel .panel-body .label {
+  margin-right: 5px; }
+.assignments-wrapper .panel .panel-footer form {
+  display: inline-block; }
 
-.assignment-wrapper .panel {
-  border: none; }
-.assignment-wrapper .assignment-controls {
-  margin: 15px 0; }
-  .assignment-wrapper .assignment-controls form {
-    display: inline-block; }
+.assignment-wrapper .assignment-controls form {
+  display: inline-block; }
 .assignment-wrapper .page-header {
   margin-top: 25px;
-  margin-bottom: 10px;
+  margin-bottom: 0;
   padding-bottom: 5px;
-  border-bottom: 1px dashed #d3dbde; }
-  .assignment-wrapper .page-header h5 {
-    margin: 0; }
-
-.assignment-name {
-  text-shadow: 0 0 1px #555555; }
+  border-bottom: none;
+  text-align: center; }
 
 .assignment-assignables {
   padding: 0;
