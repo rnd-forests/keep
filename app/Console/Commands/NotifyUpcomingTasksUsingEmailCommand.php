@@ -20,7 +20,7 @@ class NotifyUpcomingTasksUsingEmailCommand extends Command {
 	 *
 	 * @var string
 	 */
-	protected $description = 'Notify users about their upcoming tasks using their email address.';
+	protected $description = 'Notify users about their upcoming tasks using their email address';
 
     /**
      * Create a new command instance.
@@ -48,6 +48,8 @@ class NotifyUpcomingTasksUsingEmailCommand extends Command {
         $upcomingTasks->each(function($task) {
             $this->mailer->sendNotificationAboutUpcomingTask($task->owner, $task);
         });
+
+        $this->info('All emails have been sent to users to notify them about their upcoming tasks.');
 	}
 
 }

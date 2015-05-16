@@ -32,6 +32,8 @@ class CreateGroupNotificationCommandHandler {
 	{
         $notification = $this->notificationRepo->create($this->getNotificationRequestData($command));
 
+        $notification->sent_from = 'admin';
+
         $groups = $this->groupRepo->fetchGroupsByIds($command->groupList);
 
         $this->setNotificationPolymorphic($notification, $groups);

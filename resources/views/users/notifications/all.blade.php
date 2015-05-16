@@ -8,12 +8,19 @@
             @foreach($notifications as $notification)
                 <div class="alert alert-{{ $notification->type }} notification">
                     <strong>{{ $notification->subject }}</strong>
-                    <h6>
-                        <span class="label label-{{ $notification->type }}">
-                            {{ $notification->present()->formatTimeForHumans($notification->created_at) }}
-                        </span>
+                    <h6 class="notification-time">
+                        {{ $notification->present()->formatTimeForHumans($notification->created_at) }}
                     </h6>
-                    <p>{{ $notification->body }}</p>
+                    @unless($notification->body == '')
+                        <p>{{ $notification->body }}</p>
+                    @endunless
+                    @if($notification->hasValidObject() && $notification->object_type == 'Keep\Task')
+                        <div class="well">
+                            <strong class="text-navy">{{ $notification->getObject()->title }}</strong>
+                            <h6>{{ $notification->getObject()->present()->getRemainingDays($notification->getObject()->finishing_date) }}</h6>
+                            <a href="{{ route('users.tasks.show', [$notification->getObject()->owner, $notification->getObject()]) }}">Read More</a>
+                        </div>
+                    @endif
                 </div>
             @endforeach
             <div class="text-center">{!! $notifications->render() !!}</div>

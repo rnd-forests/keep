@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
+use Keep\Exceptions\InvalidObjectException;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
@@ -9,6 +10,13 @@ use Cviebrock\EloquentSluggable\SluggableInterface;
 class Notification extends Model implements SluggableInterface {
 
     use SluggableTrait, SoftDeletes, PresentableTrait;
+
+    /**
+     * The object associated with a given notification.
+     *
+     * @var null
+     */
+    protected $associatedObject = null;
 
     /**
      * Unique slug for notification model.
@@ -44,8 +52,8 @@ class Notification extends Model implements SluggableInterface {
      * @var array
      */
     protected $fillable = [
-        'type', 'subject', 'slug', 'body', 'object_id',
-        'object_type', 'is_read', 'sent_at'
+        'sent_from', 'type', 'subject', 'slug', 'body',
+        'object_id', 'object_type', 'is_read', 'sent_at'
     ];
 
     /**
@@ -76,6 +84,40 @@ class Notification extends Model implements SluggableInterface {
     public function scopeUnread($query)
     {
         $query->where('is_read', 0);
+    }
+
+    /**
+     * Get notification object.
+     *
+     * @throws InvalidObjectException
+     */
+    public function getObject()
+    {
+        if (!$this->associatedObject && !$this->hasValidObject())
+        {
+            throw new InvalidObjectException('No valid object ' . $this->object_type .
+                ' with ID ' . $this->object_id . ' associated with this notification.');
+        }
+
+        return $this->associatedObject;
+    }
+
+    /**
+     * Check if the object associated with the notification is valid or not.
+     *
+     * @return bool
+     */
+    public function hasValidObject()
+    {
+        $object = call_user_func_array($this->object_type . '::findOrFail', [$this->object_id]);
+
+        if ($object != null)
+        {
+            $this->associatedObject = $object;
+            return true;
+        }
+
+        return false;
     }
 
 }

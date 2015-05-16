@@ -32,6 +32,8 @@ class CreateMemberNotificationCommandHandler {
 	{
 		$notification = $this->notificationRepo->create($this->getNotificationRequestData($command));
 
+        $notification->sent_from = 'admin';
+
         $users = $this->userRepo->fetchUsersByIds($command->userList);
 
         $this->setNotificationPolymorphic($notification, $users);
