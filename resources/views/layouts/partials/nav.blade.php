@@ -22,7 +22,12 @@
                     <li><a href="{{ route('users.assignments.index', Auth::user()) }}">Assignments</a></li>
                     <li><a href="{{ route('users.tag.list', Auth::user()) }}">Tags</a></li>
                     <li><a href="{{ route('users.groups.index', Auth::user()) }}">Groups</a></li>
-                    <li><a href="{{ route('users.notifications', Auth::user()) }}">Notifications</a></li>
+                    <li>
+                        <a href="{{ route('users.notifications', Auth::user()) }}" class="notification-count">
+                            Notifications
+                            <span class="label label-primary">{{ $notificationCount }}</span>
+                        </a>
+                    </li>
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">

@@ -7,8 +7,12 @@
         <div class="col-md-6 col-md-offset-3">
             @foreach($notifications as $notification)
                 <div class="alert alert-{{ $notification->type }} notification">
-                    <h3>{{ $notification->subject }}</h3>
-                    <h6>{{ $notification->present()->formatTimeForHumans($notification->created_at) }}</h6>
+                    <strong>{{ $notification->subject }}</strong>
+                    <h6>
+                        <span class="label label-{{ $notification->type }}">
+                            {{ $notification->present()->formatTimeForHumans($notification->created_at) }}
+                        </span>
+                    </h6>
                     <p>{{ $notification->body }}</p>
                 </div>
             @endforeach

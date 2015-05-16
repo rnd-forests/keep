@@ -11768,6 +11768,18 @@ fieldset[disabled] .btn-violet {
   display: block;
   padding: 6px; }
 
+.notification {
+  font-size: 14px; }
+  .notification .label {
+    font-size: 12px; }
+
+.notification-count .label {
+  line-height: 12px;
+  padding: 5px;
+  position: absolute;
+  right: -12px;
+  top: 4px; }
+
 .home-cover {
   margin-top: -20px;
   position: relative; }

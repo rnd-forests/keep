@@ -11,10 +11,19 @@ class ViewComposerServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
+        $this->composeNavbar();
         $this->composeTaskForm();
         $this->composeAssignmentForm();
         $this->composeUserDashboard();
         $this->composeNotificationForm();
+    }
+
+    private function composeNavbar()
+    {
+        view()->composer(
+            'layouts.partials.nav',
+            'Keep\Http\Composers\NavbarComposer@compose'
+        );
     }
 
     private function composeTaskForm()

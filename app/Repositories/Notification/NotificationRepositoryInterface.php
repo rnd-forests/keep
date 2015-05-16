@@ -36,4 +36,13 @@ interface NotificationRepositoryInterface {
      */
     public function fetchAll($userSlug);
 
+    /**
+     * Count the number of available notifications of a user.
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function countUserNotifications($user);
+
 }

@@ -31,7 +31,12 @@ class DbNotificationRepository implements NotificationRepositoryInterface {
     {
         $user = User::findBySlug($userSlug);
 
-        return $user->notifications()->unread()->orderBy('created_at', 'desc')->paginate(50);
+        return $user->notifications()->unread()->orderBy('created_at', 'desc')->paginate(15);
+    }
+
+    public function countUserNotifications($user)
+    {
+        return $user->notifications()->unread()->count();
     }
 
 }

@@ -158,7 +158,6 @@
                 barShowStroke: true,
                 barStrokeWidth: 2,
                 barDatasetSpacing: 1,
-                responsive: true,
                 barValueSpacing : 50
             });
         })();
