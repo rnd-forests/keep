@@ -70,6 +70,16 @@ class Notification extends Model implements SluggableInterface {
     }
 
     /**
+     * Set the route key.
+     *
+     * @return mixed
+     */
+    public function getRouteKey()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Get notification object.
      *
      * @throws InvalidObjectException

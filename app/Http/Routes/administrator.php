@@ -191,6 +191,11 @@ Route::group(['middleware' => ['auth', 'auth.confirmed', 'valid.admin.user'], 'p
         'uses' => 'NotificationsController@index'
     ]);
 
+    Route::delete('notifications/{notifications}', [
+        'as'   => 'admin.notifications.delete',
+        'uses' => 'NotificationsController@destroy'
+    ]);
+
     Route::get('member/notifications/create', [
         'as'   => 'member.notifications',
         'uses' => 'NotificationsController@createMemberNotification'

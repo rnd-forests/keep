@@ -11,6 +11,11 @@ class DbNotificationRepository implements NotificationRepositoryInterface {
         return Notification::count();
     }
 
+    public function findBySlug($slug)
+    {
+        return Notification::whereSlug($slug)->firstOrFail();
+    }
+
     public function create(array $data)
     {
         return Notification::create([
@@ -19,6 +24,11 @@ class DbNotificationRepository implements NotificationRepositoryInterface {
             'type'      => $data['type'],
             'sent_at'   => Carbon::now()
         ]);
+    }
+
+    public function delete($slug)
+    {
+        return $this->findBySlug($slug)->delete();
     }
 
     public function getPaginatedNotifications($limit)

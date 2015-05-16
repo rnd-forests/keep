@@ -4,6 +4,7 @@ use DB;
 use Auth;
 use Keep\Task;
 use Keep\Assignment;
+use Keep\Notification;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -53,6 +54,11 @@ class EventServiceProvider extends ServiceProvider {
         {
             $assignment->task()->forceDelete();
             DB::table('assignables')->where('assignment_id', $assignment->id)->delete();
+        });
+
+        Notification::deleting(function ($notification)
+        {
+            DB::table('notifiables')->where('notification_id', $notification->id)->delete();
         });
     }
 

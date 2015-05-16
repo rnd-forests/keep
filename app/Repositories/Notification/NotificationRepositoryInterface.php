@@ -10,6 +10,15 @@ interface NotificationRepositoryInterface {
     public function count();
 
     /**
+     * Find a notification by its slug.
+     *
+     * @param $slug
+     *
+     * @return mixed
+     */
+    public function findBySlug($slug);
+
+    /**
      * Create a new notification.
      *
      * @param array $data
@@ -17,6 +26,15 @@ interface NotificationRepositoryInterface {
      * @return mixed
      */
     public function create(array $data);
+
+    /**
+     * Delete a notification.
+     *
+     * @param $slug
+     *
+     * @return mixed
+     */
+    public function delete($slug);
 
     /**
      * Get the paginated collection of all notifications.

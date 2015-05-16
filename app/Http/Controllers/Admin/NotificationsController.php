@@ -33,6 +33,22 @@ class NotificationsController extends Controller {
     }
 
     /**
+     * Delete a specific notification.
+     *
+     * @param $slug
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($slug)
+    {
+        $this->notificationRepo->delete($slug);
+
+        flash()->info('This notification was successfully deleted');
+
+        return redirect()->route('admin.notifications.all');
+    }
+
+    /**
      * Get form to create new notification for members.
      *
      * @return \Illuminate\View\View
