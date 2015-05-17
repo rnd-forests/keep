@@ -57,8 +57,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'address', 'company', 'website', 'password',
-        'phone', 'about', 'activation_code', 'active'
+        'name', 'email', 'password', 'activation_code', 'active'
     ];
 
     /**
@@ -99,6 +98,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function assignments()
     {
         return $this->morphToMany('Keep\Assignment', 'assignable');
+    }
+
+    /**
+     * A user has one associated profile.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function profile()
+    {
+        return $this->hasOne('Keep\Profile');
     }
 
     /**
