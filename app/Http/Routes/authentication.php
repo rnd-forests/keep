@@ -32,6 +32,11 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function ()
         'uses' => 'AccountController@changePassword'
     ]);
 
+    Route::post('change-username', [
+        'as'   => 'change.account.username',
+        'uses' => 'AccountController@changeUsername'
+    ]);
+
     Route::get('activate-account/{code}', [
         'as'   => 'account.activation',
         'uses' => 'RegistrationsController@activate'

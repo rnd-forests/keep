@@ -1,9 +1,12 @@
 <?php namespace Keep\Http\Controllers\Auth;
 
+use Auth;
 use Session;
 use Keep\Http\Controllers\Controller;
 use Keep\Commands\ModifyPasswordCommand;
+use Keep\Commands\ModifyUsernameCommand;
 use Keep\Http\Requests\EditUserPasswordRequest;
+use Keep\Http\Requests\EditUserUsernameRequest;
 
 class AccountController extends Controller {
 
@@ -32,6 +35,27 @@ class AccountController extends Controller {
         }
 
         Session::flash('update_password_error', 'Uh-oh! Your password could not be changed.');
+
+        return redirect()->back();
+    }
+
+    /**
+     * Perform the process of changing user username.
+     *
+     * @param EditUserUsernameRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function changeUsername(EditUserUsernameRequest $request)
+    {
+        if ($this->dispatchFrom(ModifyUsernameCommand::class, $request))
+        {
+            Session::flash('update_username_success', 'Your username has been successfully updated.');
+
+            return redirect()->route('users.show', Auth::user());
+        }
+
+        Session::flash('update_username_error', 'Uh-oh! Your username could not be changed.');
 
         return redirect()->back();
     }

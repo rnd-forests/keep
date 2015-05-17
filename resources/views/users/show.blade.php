@@ -22,6 +22,12 @@
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="account">
                         <div class="panel panel-dangerzone">
+                            <div class="panel-heading">Update current username</div>
+                            <div class="panel-body">
+                                @include('users.partials.update_username_form', $user)
+                            </div>
+                        </div>
+                        <div class="panel panel-dangerzone">
                             <div class="panel-heading">Update current password</div>
                             <div class="panel-body">
                                 @include('users.partials.update_password_form', $user)
