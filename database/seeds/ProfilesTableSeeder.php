@@ -17,7 +17,7 @@ class ProfilesTableSeeder extends Seeder
             'company'    => 'FPT Software',
             'website'    => 'http://www.vinhnguyen-hust.com',
             'phone'      => '01649000000',
-            'twitter_username' => 'vinhnguyenhust',
+            'twitter_username' => 'vinhnguyen',
             'github_username' => 'vinhnguyentb'
         ]);
 
