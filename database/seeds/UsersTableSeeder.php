@@ -15,11 +15,6 @@ class UsersTableSeeder extends Seeder {
             'name'       => 'Vinh Nguyen',
             'email'      => 'ngocvinh.nnv@gmail.com',
             'password'   => '123456',
-            'address'    => 'Thai Phuong - Hung Ha - Thai Binh',
-            'company'    => 'FPT Software',
-            'website'    => 'http://www.vinhnguyen-hust.com',
-            'phone'      => '01649000000',
-            'about'      => 'I am a very simple person!',
             'active'     => true,
             'created_at' => $timestamp,
             'updated_at' => $timestamp
@@ -29,10 +24,6 @@ class UsersTableSeeder extends Seeder {
             'name'       => 'Hang Dang',
             'email'      => 'hangdt.aa@gmail.com',
             'password'   => '123456',
-            'address'    => 'Thai Phuong - Hung Ha - Thai Binh',
-            'company'    => 'Deloitte',
-            'website'    => 'http://www.hangdt-eof.com',
-            'phone'      => '01697000000',
             'active'     => true,
             'created_at' => $timestamp,
             'updated_at' => $timestamp

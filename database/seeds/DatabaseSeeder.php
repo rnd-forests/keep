@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder {
      */
     protected $tables = [
         'users',
+        'profiles',
         'tasks',
         'roles',
         'role_user',
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder {
      */
     protected $seeders = [
         'UsersTableSeeder',
+        'ProfilesTableSeeder',
         'TasksTableSeeder',
         'RolesTableSeeder',
         'RoleUserTableSeeder',
