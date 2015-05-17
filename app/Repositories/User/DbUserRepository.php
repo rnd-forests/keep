@@ -59,11 +59,11 @@ class DbUserRepository implements UserRepositoryInterface {
         ]);
     }
 
-    public function update($slug, array $credentials)
+    public function updateProfile($slug, array $credentials)
     {
         $user = $this->findBySlug($slug);
 
-        $user->update($credentials);
+        $user->profile()->update($credentials);
 
         return $user;
     }

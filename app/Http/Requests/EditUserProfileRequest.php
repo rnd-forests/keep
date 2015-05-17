@@ -10,11 +10,12 @@ class EditUserProfileRequest extends Request {
     public function rules()
     {
         return [
-            'name'    => 'required|max:255',
-            'address' => 'max:300',
-            'website' => 'url',
-            'phone'   => 'regex:/^([0-9\s\-\+\(\)]*)$/|max:11',
-            'about'   => 'max:2500',
+            'location'         => 'max:300',
+            'bio'              => 'max:2500',
+            'website'          => 'url',
+            'phone'            => 'regex:/^([0-9\s\-\+\(\)]*)$/|max:11',
+            'twitter_username' => 'max:255',
+            'github_username'  => 'max:255'
         ];
     }
 

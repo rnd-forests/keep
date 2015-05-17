@@ -88,7 +88,7 @@ interface UserRepositoryInterface {
      *
      * @return mixed
      */
-    public function update($slug, array $credentials);
+    public function updateProfile($slug, array $credentials);
 
     /**
      * Restore a disabled user.
