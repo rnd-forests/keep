@@ -34,4 +34,28 @@ class UserPresenter extends Presenter {
         return $attribute;
     }
 
+    /**
+     * Link to user twitter profile.
+     *
+     * @param $user
+     *
+     * @return string
+     */
+    public function twitterProfile($user)
+    {
+        return 'http://www.twitter.com/' . $user->profile->twitter_username;
+    }
+
+    /**
+     * Link to user github profile.
+     *
+     * @param $user
+     *
+     * @return string
+     */
+    public function githubProfile($user)
+    {
+        return 'http://www.github.com/' . $user->profile->github_username;
+    }
+
 }
