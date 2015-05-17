@@ -1,8 +1,18 @@
 <?php namespace Keep;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Profile extends Model {
+
+    use SoftDeletes;
+
+    /**
+     * The attributes that should be treated as Carbon instances.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
