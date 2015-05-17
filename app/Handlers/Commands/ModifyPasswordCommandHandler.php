@@ -41,7 +41,7 @@ class ModifyPasswordCommandHandler {
      */
     private function modifyPassword(ModifyPasswordCommand $command)
     {
-        $user = $this->userRepo->findById($this->userRepo->getAuthUser()->id);
+        $user = $this->userRepo->getAuthUser();
 
         if ( ! $this->checkOldPassword($command, $user)) return false;
 
