@@ -5,7 +5,7 @@
 //});
 //
 //Route::get('/console', function() {
-//    Artisan::call('keep:notify-upcoming-tasks-using-email');
+//    Artisan::call('keep:email-upcoming-tasks');
 //});
 
 foreach (File::allFiles(__DIR__ . '/Routes') as $routePartial)
