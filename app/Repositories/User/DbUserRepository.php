@@ -1,7 +1,6 @@
 <?php namespace Keep\Repositories\User;
 
 use Auth;
-use Keep\Task;
 use Keep\User;
 
 class DbUserRepository implements UserRepositoryInterface {
@@ -72,7 +71,14 @@ class DbUserRepository implements UserRepositoryInterface {
     {
         $user = $this->findTrashedUserBySlug($slug);
 
-        $user->tasks()->restore();
+        // Model events are not fired when applied to a collection
+        // We need to perform actions on individual model instance.
+        $user->tasks()->withTrashed()->get()->each(function ($task)
+        {
+            $task->restore();
+        });
+
+        $user->profile()->withTrashed()->restore();
 
         return $user->restore();
     }
@@ -81,10 +87,12 @@ class DbUserRepository implements UserRepositoryInterface {
     {
         $user = $this->findBySlug($slug);
 
-        Task::whereIn('id', $user->tasks()->lists('id'))->get()->each(function ($task)
+        $user->tasks()->get()->each(function ($task)
         {
             $task->delete();
         });
+
+        $user->profile()->delete();
 
         return $user->delete();
     }
@@ -93,9 +101,11 @@ class DbUserRepository implements UserRepositoryInterface {
     {
         $user = $this->findTrashedUserBySlug($slug);
 
-        $user->tasks()->forceDelete();
+        $user->tasks()->withTrashed()->forceDelete();
 
-        $user->forceDelete();
+        $user->profile()->withTrashed()->forceDelete();
+
+        return $user->forceDelete();
     }
 
     public function getTrashedUsers($limit)
