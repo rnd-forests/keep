@@ -13,7 +13,7 @@ class NotifyUpcomingTasksUsingEmailCommand extends Command {
 	 *
 	 * @var string
 	 */
-	protected $name = 'keep:notify-upcoming-tasks-using-email';
+	protected $name = 'keep:email-upcoming-tasks';
 
 	/**
 	 * The console command description.
