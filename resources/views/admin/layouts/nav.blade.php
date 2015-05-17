@@ -43,7 +43,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#" data-toggle="modal" data-target="#assignment-selection-modal">Create</a></li>
                         <li class="divider"></li>
-                        <li><a href="{{ route('admin.assignments.all') }}">Assignment Collection</a></li>
+                        <li><a href="{{ route('admin.assignments.all') }}">Collection</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -51,7 +51,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#" data-toggle="modal" data-target="#notification-selection-modal">Create</a></li>
                         <li class="divider"></li>
-                        <li><a href="{{ route('admin.notifications.all') }}">Notification Collection</a></li>
+                        <li><a href="{{ route('admin.notifications.all') }}">Collection</a></li>
                     </ul>
                 </li>
             </ul>

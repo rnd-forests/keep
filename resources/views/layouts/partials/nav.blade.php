@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ route('home') }}">Home</a></li>
                 @if (Auth::check() && Auth::user()->isAdmin())
-                    <li><a href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
+                    <li><a href="{{ route('admin.dashboard') }}">Administrator</a></li>
                 @endif
                 @if (Auth::check())
                     <li><a href="{{ route('users.dashboard', Auth::user()) }}">Dashboard</a></li>
