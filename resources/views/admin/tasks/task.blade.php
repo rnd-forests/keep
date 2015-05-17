@@ -21,7 +21,7 @@
                             <span class="label label-primary">{{ $task->present()->getRemainingDays($task->finishing_date) }}</span>
                             <span class="label label-info">{{ $task->priority->name }}</span>
                         </div>
-                        <div class="well">{{ $task->content }}</div>
+                        <div class="well">{!! $task->content !!}</div>
                         @unless (empty($task->location))
                             <div class="well"><i class="fa fa-map-marker"></i><strong>{{ $task->location }}</strong></div>
                         @endunless
