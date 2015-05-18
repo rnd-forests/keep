@@ -12,9 +12,9 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected $commands = [
         'Keep\Console\Commands\SyncFailedTasksCommand',
+        'Keep\Console\Commands\EmailUpcomingTasksCommand',
         'Keep\Console\Commands\NotifyUpcomingTasksCommand',
         'Keep\Console\Commands\ClearOldNotificationsCommand',
-        'Keep\Console\Commands\NotifyUpcomingTasksUsingEmailCommand',
 	];
 
 	/**

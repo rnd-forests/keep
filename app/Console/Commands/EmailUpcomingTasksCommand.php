@@ -4,7 +4,7 @@ use Keep\Mailers\UserMailer;
 use Illuminate\Console\Command;
 use Keep\Repositories\Task\TaskRepositoryInterface;
 
-class NotifyUpcomingTasksUsingEmailCommand extends Command {
+class EmailUpcomingTasksCommand extends Command {
 
     protected $taskRepo, $mailer;
 
