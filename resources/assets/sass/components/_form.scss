@@ -1,19 +1,13 @@
 .form-wrapper {
-    .form-header {
-        margin-top: 0;
-        text-align: center;
-        text-shadow: 0 0 1px #555555;
-    }
+    .form-link{
+        font-size: 14px;
 
-    .form-link a {
-        color: #444444;
-
-        &:hover, &:focus, &:active {
+        a {
             color: #1ab394;
-        }
-    }
 
-    textarea {
-        resize: none;
+            &:hover, &:focus, &:active {
+                text-decoration: underline;
+            }
+        }
     }
 }

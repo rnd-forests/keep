@@ -23,12 +23,14 @@
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="form-wrapper">
-                <h2 class="form-header">Edit - {{ $assignment->assignment_name }}</h2>
-                @include('layouts.partials.errors')
-                {!! Form::model($task, ['method' => 'PATCH', 'route' => ['admin.assignments.update', $assignment]]) !!}
-                    @include('admin.assignments.partials.form', ['assignmentButton' => 'Update Assignment'])
-                {!! Form::close() !!}
+            <div class="panel panel-primary form-wrapper">
+                <div class="panel-heading"><strong>Edit - {{ $assignment->assignment_name }}</strong></div>
+                <div class="panel-body">
+                    @include('layouts.partials.errors')
+                    {!! Form::model($task, ['method' => 'PATCH', 'route' => ['admin.assignments.update', $assignment]]) !!}
+                        @include('admin.assignments.partials.form', ['assignmentButton' => 'Update Assignment'])
+                    {!! Form::close() !!}
+                </div>
             </div>
         </div>
     </div>

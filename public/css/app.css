@@ -44,9 +44,6 @@
   width: auto; }
 
 /** Custom Button theme **/
-.btn {
-  border-radius: 3px; }
-
 .btn-primary {
   background-color: #1ab394;
   border-color: #1ab394;
@@ -292,42 +289,6 @@ fieldset[disabled] .btn-danger {
 fieldset[disabled] .btn-link {
   color: #cacaca; }
   fieldset[disabled] .btn-link:hover, fieldset[disabled] .btn-link:focus, fieldset[disabled] .btn-link:active, fieldset[disabled] .btn-link.active {
-    color: #cacaca; }
-
-.btn-white {
-  color: inherit;
-  background: white;
-  border: 1px solid #e7eaec; }
-  .btn-white:hover, .btn-white:focus, .btn-white:active, .btn-white.active {
-    color: inherit;
-    border: 1px solid #d2d2d2; }
-
-.open .dropdown-toggle.btn-white {
-  color: inherit;
-  border: 1px solid #d2d2d2; }
-
-.btn-white:active, .btn-white.active {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset; }
-.btn-white:active, .btn-white.active {
-  background-image: none; }
-
-.open .dropdown-toggle.btn-white {
-  background-image: none; }
-
-.btn-white.disabled {
-  color: #cacaca; }
-  .btn-white.disabled:hover, .btn-white.disabled:focus, .btn-white.disabled:active, .btn-white.disabled.active {
-    color: #cacaca; }
-.btn-white[disabled] {
-  color: #cacaca; }
-  .btn-white[disabled]:hover, .btn-white[disabled]:focus, .btn-white[disabled]:active {
-    color: #cacaca; }
-.btn-white.active[disabled] {
-  color: #cacaca; }
-
-fieldset[disabled] .btn-white {
-  color: #cacaca; }
-  fieldset[disabled] .btn-white:hover, fieldset[disabled] .btn-white:focus, fieldset[disabled] .btn-white:active, fieldset[disabled] .btn-white.active {
     color: #cacaca; }
 
 .btn-violet {
@@ -767,16 +728,12 @@ fieldset[disabled] .btn-violet {
       .footer .footer-links a:hover, .footer .footer-links a:active, .footer .footer-links a:focus {
         color: #4bc970; }
 
-.form-wrapper .form-header {
-  margin-top: 0;
-  text-align: center;
-  text-shadow: 0 0 1px #555555; }
-.form-wrapper .form-link a {
-  color: #444444; }
-  .form-wrapper .form-link a:hover, .form-wrapper .form-link a:focus, .form-wrapper .form-link a:active {
+.form-wrapper .form-link {
+  font-size: 14px; }
+  .form-wrapper .form-link a {
     color: #1ab394; }
-.form-wrapper textarea {
-  resize: none; }
+    .form-wrapper .form-link a:hover, .form-wrapper .form-link a:focus, .form-wrapper .form-link a:active {
+      text-decoration: underline; }
 
 #scroll-top {
   display: block;
@@ -1128,12 +1085,6 @@ fieldset[disabled] .btn-violet {
   .task-wrapper .panel-heading .task-time-ago {
     color: #ffffff;
     margin: 5px 0; }
-.task-wrapper .panel-body .task-labels {
-  margin-bottom: 15px;
-  text-align: center; }
-  .task-wrapper .panel-body .task-labels .label {
-    margin-bottom: 5px;
-    display: inline-block; }
 .task-wrapper .panel-body .well {
   background: #ffffff;
   color: #7f8a94; }

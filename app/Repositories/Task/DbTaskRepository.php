@@ -168,7 +168,7 @@ class DbTaskRepository implements TaskRepositoryInterface {
 
     public function fetchUserNewestTasks($user)
     {
-        return $user->tasks()->newest()->take(10)->get();
+        return $user->tasks()->newest()->take(5)->get();
     }
 
     public function fetchUserPaginatedTasksCollection($user)

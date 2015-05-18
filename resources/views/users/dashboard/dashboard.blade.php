@@ -15,13 +15,13 @@
                     @endforeach
                 </div>
             </div>
-            <div class="panel panel-warning">
-                <div class="panel-heading"><i class="fa fa-bomb"></i> Deadline Tasks</div>
+            <div class="panel panel-info">
+                <div class="panel-heading"><i class="fa fa-check"></i> Recently Completed Tasks</div>
                 <div class="list-group">
-                    @foreach($deadlineTasks as $task)
+                    @foreach($recentlyCompletedTasks as $task)
                         <a class="list-group-item" href="{{ route('users.tasks.show', [$user, $task]) }}">
                             <h5>{{ $task->title }}</h5>
-                            <h6 class="text-warning">{{ $task->present()->getRemainingDays($task->finishing_date) }}</h6>
+                            <h6 class="text-info">completed {{ $task->present()->formatTimeForHumans($task->finished_at) }}</h6>
                         </a>
                     @endforeach
                 </div>
@@ -85,7 +85,7 @@
                     <div class="text-center"><i class="fa fa-calendar"></i> Newest Tasks</div>
                 </div>
                 <div class="list-group">
-                    @foreach($newestTasks->load('priority') as $task)
+                    @foreach($newestTasks as $task)
                         <a href="{{ route('users.tasks.show', [$user, $task]) }}" class="list-group-item">
                             <h5 class="text-center">{{ $task->title }}</h5>
                             <div class="task-labels">
@@ -98,7 +98,6 @@
                                 @if($task->is_failed)
                                     <span class="label label-danger">failed</span>
                                 @endif
-                                <span class="label label-info">{{ $task->priority->name }}</span>
                             </div>
                         </a>
                     @endforeach
@@ -106,13 +105,13 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="panel panel-info">
-                <div class="panel-heading"><i class="fa fa-check"></i> Recently Completed Tasks</div>
+            <div class="panel panel-warning">
+                <div class="panel-heading"><i class="fa fa-bomb"></i> Deadline Tasks</div>
                 <div class="list-group">
-                    @foreach($recentlyCompletedTasks as $task)
+                    @foreach($deadlineTasks as $task)
                         <a class="list-group-item" href="{{ route('users.tasks.show', [$user, $task]) }}">
                             <h5>{{ $task->title }}</h5>
-                            <h6 class="text-info">completed {{ $task->present()->formatTimeForHumans($task->finished_at) }}</h6>
+                            <h6 class="text-warning">{{ $task->present()->getRemainingDays($task->finishing_date) }}</h6>
                         </a>
                     @endforeach
                 </div>

@@ -70,10 +70,6 @@
 }
 
 /** Custom Button theme **/
-.btn {
-    border-radius: 3px;
-}
-
 .btn-primary {
     background-color: #1ab394;
     border-color: #1ab394;
@@ -441,63 +437,6 @@ fieldset[disabled] .btn-danger {
 }
 
 fieldset[disabled] .btn-link {
-    color: #cacaca;
-    &:hover, &:focus, &:active, &.active {
-        color: #cacaca;
-    }
-}
-
-.btn-white {
-    color: inherit;
-    background: white;
-    border: 1px solid #e7eaec;
-
-    &:hover, &:focus, &:active, &.active {
-        color: inherit;
-        border: 1px solid #d2d2d2;
-    }
-}
-
-.open .dropdown-toggle.btn-white {
-    color: inherit;
-    border: 1px solid #d2d2d2;
-}
-
-.btn-white {
-    &:active, &.active {
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) inset;
-    }
-
-    &:active, &.active {
-        background-image: none;
-    }
-}
-
-.open .dropdown-toggle.btn-white {
-    background-image: none;
-}
-
-.btn-white {
-    &.disabled {
-        color: #cacaca;
-        &:hover, &:focus, &:active, &.active {
-            color: #cacaca;
-        }
-    }
-
-    &[disabled] {
-        color: #cacaca;
-        &:hover, &:focus, &:active {
-            color: #cacaca;
-        }
-    }
-
-    &.active[disabled] {
-        color: #cacaca;
-    }
-}
-
-fieldset[disabled] .btn-white {
     color: #cacaca;
     &:hover, &:focus, &:active, &.active {
         color: #cacaca;

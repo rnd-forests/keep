@@ -45,7 +45,7 @@
 <div class="form-group">
     {!! Form::label('priority_level', 'Priority Level', ['class' => 'control-label']) !!}
     {!! Form::select('priority_level', $priorities,
-        is_null($task->priority) ? null : $task->priority->id, ['class' => 'form-control input-lg']) !!}
+        is_null($task->priority) ? null : $task->priority->id, ['id' => 'priority_list', 'class' => 'form-control input-lg']) !!}
 </div>
 <div class="form-group">
     {!! Form::submit($taskFormSubmitButton, ['class' => 'btn btn-lg btn-primary']) !!}
