@@ -24,7 +24,7 @@
         </div>
         <div class="col-md-8">
             <div class="page-header"><h4>{{ $assignments->count() }} {{ str_plural('Assignment', $assignments->count()) }}</h4></div>
-            @foreach($assignments as $assignment)
+            @foreach($assignments->load('task.priority') as $assignment)
                 <div class="task-wrapper">
                     <div class="panel panel-primary">
                         <div class="panel-heading">

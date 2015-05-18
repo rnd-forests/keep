@@ -12,13 +12,12 @@
 
         <div class="collapse navbar-collapse" id="keep-nav">
             <ul class="nav navbar-nav">
-                <li><a href="{{ route('home') }}">Home</a></li>
                 @if (Auth::check() && Auth::user()->isAdmin())
-                    <li><a href="{{ route('admin.dashboard') }}">Administrator</a></li>
+                    <li  class="active"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
                 @endif
                 @if (Auth::check())
                     <li><a href="{{ route('users.dashboard', Auth::user()) }}">Dashboard</a></li>
-                    <li><a href="{{ route('users.tasks.create', Auth::user()) }}">New Task</a></li>
+                    <li><a href="{{ route('users.tasks.create', Auth::user()) }}">Schedule Task</a></li>
                     <li><a href="{{ route('users.assignments.index', Auth::user()) }}">Assignments</a></li>
                     <li><a href="{{ route('users.tag.list', Auth::user()) }}">Tags</a></li>
                     <li><a href="{{ route('users.groups.index', Auth::user()) }}">Groups</a></li>
