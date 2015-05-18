@@ -38,6 +38,27 @@ class Handler extends ExceptionHandler {
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof InvalidUserException)
+        {
+            flash()->warning($e->getMessage());
+
+            return redirect()->home();
+        }
+
+        if ($e instanceof InvalidAdminUserException)
+        {
+            flash()->warning($e->getMessage());
+
+            return redirect()->home();
+        }
+
+        if ($e instanceof UnconfirmedAccountException)
+        {
+            flash()->warning($e->getMessage());
+
+            return redirect()->route('login');
+        }
+
         return parent::render($request, $e);
     }
 

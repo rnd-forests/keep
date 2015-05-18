@@ -2,6 +2,7 @@
 
 use App;
 use Closure;
+use Keep\Exceptions\UnconfirmedAccountException;
 
 class VerifyConfirmedAccount {
 
@@ -12,6 +13,7 @@ class VerifyConfirmedAccount {
      * @param callable $next
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws UnconfirmedAccountException
      */
     public function handle($request, Closure $next)
     {
@@ -19,9 +21,7 @@ class VerifyConfirmedAccount {
 
         if ( ! $auth->user()->isConfirmed())
         {
-            flash()->warning('Confirm your email address before performing this action.');
-
-            return redirect()->route('home');
+            throw new UnconfirmedAccountException('Confirm your account before taking this action.');
         }
 
         return $next($request);

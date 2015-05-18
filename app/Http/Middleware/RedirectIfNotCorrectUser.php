@@ -2,6 +2,7 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Keep\Exceptions\InvalidUserException;
 use Keep\Repositories\User\UserRepositoryInterface;
 
 class RedirectIfNotCorrectUser {
@@ -29,6 +30,7 @@ class RedirectIfNotCorrectUser {
      * @param callable $next
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws InvalidUserException
      */
     public function handle($request, Closure $next)
     {
@@ -36,9 +38,7 @@ class RedirectIfNotCorrectUser {
 
         if (($user->id != $this->auth->user()->id) && ! $this->auth->user()->isAdmin())
         {
-            flash()->warning('You do not have required permissions to access this page.');
-
-            return redirect()->route('home');
+            throw new InvalidUserException('You do not have required rights to access this page.');
         }
 
         return $next($request);

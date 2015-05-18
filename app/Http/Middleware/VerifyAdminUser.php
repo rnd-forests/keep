@@ -2,6 +2,7 @@
 
 use App;
 use Closure;
+use Keep\Exceptions\InvalidAdminUserException;
 
 class VerifyAdminUser {
 
@@ -12,6 +13,7 @@ class VerifyAdminUser {
      * @param  \Closure                 $next
      *
      * @return mixed
+     * @throws InvalidAdminUserException
      */
     public function handle($request, Closure $next)
     {
@@ -19,9 +21,7 @@ class VerifyAdminUser {
 
         if ( ! $auth->user()->isAdmin())
         {
-            flash()->warning('This area is for administrators only. You have no right to access it.');
-
-            return redirect()->route('home');
+            throw new InvalidAdminUserException('This area is for administrators only.');
         }
 
         return $next($request);
