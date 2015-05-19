@@ -18,8 +18,16 @@
                 @if (Auth::check())
                     <li><a href="{{ route('users.dashboard', Auth::user()) }}">Dashboard</a></li>
                     <li><a href="{{ route('users.tasks.create', Auth::user()) }}">Schedule Task</a></li>
-                    <li><a href="{{ route('users.assignments.index', Auth::user()) }}">Assignments</a></li>
-                    <li><a href="{{ route('users.tag.list', Auth::user()) }}">Tags</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Task Filter <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ route('users.tag.list', Auth::user()) }}">Tags</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ route('users.priorities', Auth::user()) }}">Priority Levels</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ route('users.assignments.index', Auth::user()) }}">Assignments</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{{ route('users.groups.index', Auth::user()) }}">Groups</a></li>
                     <li>
                         <a href="{{ route('users.notifications', Auth::user()) }}" class="notification-count">

@@ -3,6 +3,13 @@
 interface PriorityRepositoryInterface {
 
     /**
+     * Get all priority levels.
+     *
+     * @return mixed
+     */
+    public function all();
+
+    /**
      * List all priority levels.
      *
      * @return mixed
@@ -28,5 +35,14 @@ interface PriorityRepositoryInterface {
      * @return mixed
      */
     public function getTasksOfUserAssociatedWithAPriority($userSlug, $priorityName, $limit);
+
+    /**
+     * Get all task priority levels associated with user's tasks.
+     *
+     * @param $userSlug
+     *
+     * @return mixed
+     */
+    public function getAssociatedPriorities($userSlug);
 
 }

@@ -20,6 +20,20 @@ class PrioritiesController extends Controller {
     }
 
     /**
+     * Get all priority levels associated with a user's tasks.
+     *
+     * @param $userSlug
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index($userSlug)
+    {
+        $priorities = $this->priorityRepo->getAssociatedPriorities($userSlug);
+
+        return view('users.priorities.index', compact('priorities'));
+    }
+
+    /**
      * Show all tasks of a user that associated with a priority level.
      *
      * @param $userSlug
@@ -33,7 +47,7 @@ class PrioritiesController extends Controller {
 
         $tasks = $this->priorityRepo->getTasksOfUserAssociatedWithAPriority($userSlug, $priorityName, 10);
 
-        return view('priorities.show', compact('priority', 'tasks'));
+        return view('users.priorities.show', compact('priority', 'tasks'));
     }
 
 }

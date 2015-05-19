@@ -115,6 +115,10 @@ Route::get('{users}/tags/{tags}', [
     'uses' => 'TagsController@show'
 ]);
 
+Route::get('{users}/priorities', [
+    'as'   => 'users.priorities',
+    'uses' => 'PrioritiesController@index'
+]);
 
 Route::get('{users}/priorities/{priorities}/tasks', [
     'as'   => 'users.priority.tasks',
