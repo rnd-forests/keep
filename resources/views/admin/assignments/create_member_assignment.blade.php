@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Member Assignment')
+@section('title', 'Schedule Member Assignment')
 
 @section('assignable-objects')
     <div class="form-group">

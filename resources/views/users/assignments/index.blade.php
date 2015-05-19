@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('meta-description', 'All assignments (personal & group) associated with ' . Auth::user()->name)
+
 @section('title', 'Assignments')
 
 @section('content')

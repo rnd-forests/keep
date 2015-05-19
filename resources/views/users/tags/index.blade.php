@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('meta-description', 'All tags associated with tasks of ' . Auth::user()->name)
+
 @section('title', 'Tags')
 
 @section('content')

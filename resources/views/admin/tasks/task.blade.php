@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-    {{ $task->title }}
-@stop
+@section('title', $task->title)
 
 @section('content')
     <div class="row">

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ $assignment->assignment_name }}
-@stop
+@section('meta-description', $assignment->assignment_name)
+
+@section('title', $assignment->assignment_name)
 
 @section('content')
     <div class="row">

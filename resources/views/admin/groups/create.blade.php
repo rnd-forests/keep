@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Add New User Group')
+@section('title', 'Create New Group')
 
 @section('content')
     <div class="row">

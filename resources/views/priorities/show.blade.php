@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ ucfirst($priority->name) }} Tasks
-@stop
+@section('title', ucfirst($priority->name) . ' tasks')
 
 @section('content')
     <div class="row">

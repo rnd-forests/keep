@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-    {{ $group->name }}
-@stop
+@section('title', 'Edit - ' . $group->name)
 
 @section('content')
     <div class="row">

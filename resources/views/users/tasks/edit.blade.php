@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ $task->title }}
-@stop
+@section('meta-description', str_limit($task->content, 250))
+
+@section('title', 'Edit - ' . $task->title)
 
 @section('content')
     <div class="row">

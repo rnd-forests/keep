@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ $user->name }}
-@stop
+@section('meta-description', $user->name . ' profile')
+
+@section('title', $user->name)
 
 @section('content')
     <div class="user-profile-wrapper">

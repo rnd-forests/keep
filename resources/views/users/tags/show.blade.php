@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title')
-    Tags - {{ $tag->name }}
-@stop
+@section('meta-description', 'All tasks of ' . Auth::user()->name . ' associated with ' . ucfirst($tag->name) . ' tag')
+
+@section('title', 'Tag - ' . $tag->name)
 
 @section('content')
     <div class="row">

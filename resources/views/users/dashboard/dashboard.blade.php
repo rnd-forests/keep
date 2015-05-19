@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('meta-description', Auth::user()->name . ' personal dashboard')
+
 @section('title', 'Dashboard')
 
 @section('content')

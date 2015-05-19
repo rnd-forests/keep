@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Group Notification')
+@section('title', 'Create Group Notification')
 
 @section('notifiable-objects')
     <div class="form-group">

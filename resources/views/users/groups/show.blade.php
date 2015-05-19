@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title')
-    Group - {{ $group->name }}
-@stop
+@section('meta-description', $group->name . ' (' . $group->description . ')')
+
+@section('title', 'Group - ' . $group->name)
 
 @section('content')
     <div class="row">

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('meta-description', 'All groups associated with ' . Auth::user()->name)
+
 @section('title', 'Groups')
 
 @section('content')

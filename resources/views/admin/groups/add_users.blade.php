@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Group - Add Users')
+@section('title', 'Add Members - ' . $group->name)
 
 @section('content')
     <div class="row add-users-wrapper">

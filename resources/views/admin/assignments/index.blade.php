@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Assignments')
+@section('title', 'Assignments Collection')
 
 @section('content')
     <div class="assignments-wrapper">

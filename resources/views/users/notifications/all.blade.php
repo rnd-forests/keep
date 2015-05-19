@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('meta-description', 'All notifications associated with ' . Auth::user()->name)
+
 @section('title', 'Notifications')
 
 @section('content')

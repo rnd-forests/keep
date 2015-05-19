@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Notifications')
+@section('title', 'Notifications Collection')
 
 @section('content')
     <div class="row">

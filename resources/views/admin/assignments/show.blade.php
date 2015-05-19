@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-    {{ $assignment->assignment_name }}
-@stop
+@section('title', $assignment->assignment_name)
 
 @section('content')
     <div class="row">

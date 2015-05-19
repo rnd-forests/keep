@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('meta-description', 'Keep - Login')
+
 @section('title', 'Login')
 
 @section('content')

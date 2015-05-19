@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('meta-description', 'Keep - Register new account')
+
 @section('title', 'Register')
 
 @section('content')

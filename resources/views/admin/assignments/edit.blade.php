@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', $assignment->assignment_name)
+@section('title', 'Edit - ' . $assignment->assignment_name)
 
 @section('assignable-objects')
     @if($assignment->groups->isEmpty())

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('meta-description', 'Keep - Reset account password')
+
 @section('title', 'Password Reset')
 
 @section('content')
