@@ -1,19 +1,22 @@
 <?php namespace Keep\Http\Controllers;
 
+use Keep\Repositories\User\UserRepositoryInterface;
 use Keep\Repositories\Priority\PriorityRepositoryInterface;
 
 class PrioritiesController extends Controller {
 
-    protected $priorityRepo;
+    protected $priorityRepo, $userRepo;
 
     /**
      * Create new priorities controller instance.
      *
      * @param PriorityRepositoryInterface $priorityRepo
+     * @param UserRepositoryInterface     $userRepo
      */
-    public function __construct(PriorityRepositoryInterface $priorityRepo)
+    public function __construct(PriorityRepositoryInterface $priorityRepo, UserRepositoryInterface $userRepo)
     {
         $this->priorityRepo = $priorityRepo;
+        $this->userRepo = $userRepo;
 
         $this->middleware('auth');
         $this->middleware('auth.correct');
@@ -28,9 +31,10 @@ class PrioritiesController extends Controller {
      */
     public function index($userSlug)
     {
-        $priorities = $this->priorityRepo->getAssociatedPriorities($userSlug);
+        $user = $this->userRepo->findBySlug($userSlug);
+        $priorities = $this->priorityRepo->all();
 
-        return view('users.priorities.index', compact('priorities'));
+        return view('users.priorities.index', compact('user', 'priorities'));
     }
 
     /**

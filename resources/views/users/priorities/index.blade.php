@@ -12,8 +12,8 @@
                 @foreach($priorities as $priority)
                     <a class="list-group-item" href="{{ route('users.priority.tasks', [Auth::user(), $priority]) }}">
                         <span class="badge">
-                            {{ $priority->tasks->where('user_id', Auth::user()->id)->count() }}
-                            {{ str_plural('task', $priority->tasks->where('user_id', Auth::user()->id)->count()) }}
+                            {{--*/ $counter = $priority->tasks()->where('user_id', $user->id)->count() /*--}}
+                            {{ $counter }} {{ str_plural('task', $counter) }}
                         </span>
                         {{ $priority->name }}
                     </a>

@@ -36,13 +36,4 @@ interface PriorityRepositoryInterface {
      */
     public function getTasksOfUserAssociatedWithAPriority($userSlug, $priorityName, $limit);
 
-    /**
-     * Get all task priority levels associated with user's tasks.
-     *
-     * @param $userSlug
-     *
-     * @return mixed
-     */
-    public function getAssociatedPriorities($userSlug);
-
 }

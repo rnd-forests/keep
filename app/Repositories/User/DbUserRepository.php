@@ -32,7 +32,7 @@ class DbUserRepository implements UserRepositoryInterface {
 
     public function findBySlug($slug)
     {
-        return User::with('profile')->whereSlug($slug)->firstOrFail();
+        return User::whereSlug($slug)->firstOrFail();
     }
 
     public function findBySlugWithTasks($slug)
