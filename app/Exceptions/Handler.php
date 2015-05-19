@@ -1,6 +1,7 @@
 <?php namespace Keep\Exceptions;
 
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler {
@@ -57,6 +58,13 @@ class Handler extends ExceptionHandler {
             flash()->warning($e->getMessage());
 
             return redirect()->route('login');
+        }
+
+        if ($e instanceof ModelNotFoundException)
+        {
+            flash()->warning('The ' . substr($e->getModel(), 5) . ' you are looking for, cannot be found.');
+
+            return redirect()->home();
         }
 
         return parent::render($request, $e);
