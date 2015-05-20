@@ -13,7 +13,8 @@
 
                 @if($assignment->users->isEmpty())
                     <div class="page-header">
-                        <h5>{{ $assignment->groups->count() }} Assigned {{ str_plural('Group', $assignment->groups->count()) }}</h5>
+                        {{--*/ $groupCount = $assignment->groups->count() /*--}}
+                        <h5>{{ $groupCount }} Assigned {{ str_plural('Group', $groupCount) }}</h5>
                     </div>
                     <ul class="assignment-assignables">
                         @foreach($assignment->groups as $group)
@@ -22,7 +23,8 @@
                     </ul>
                 @else
                     <div class="page-header">
-                        <h5>{{ $assignment->users->count() }} Assigned {{ str_plural('Member', $assignment->users->count()) }}</h5>
+                        {{--*/ $memberCount = $assignment->users->count() /*--}}
+                        <h5>{{ $memberCount }} Assigned {{ str_plural('Member', $memberCount) }}</h5>
                     </div>
                     <ul class="assignment-assignables">
                         @foreach($assignment->users as $member)

@@ -8,8 +8,8 @@
     <div class="row">
         <div class="col-md-6">
             <div class="list-group">
-                <a href="#" class="list-group-item active">{{ $memberAssignments->count() }} Personal
-                    {{ str_plural('Assignment', $memberAssignments->count()) }}</a>
+                {{--*/ $countOne = $memberAssignments->count() /*--}}
+                <a href="#" class="list-group-item active">{{ $countOne }} Personal {{ str_plural('Assignment', $countOne) }}</a>
                 @foreach($memberAssignments as $assignment)
                     <a href="{{ route('users.personal.assignments.show', [Auth::user(), $assignment]) }}" class="list-group-item">
                         <span class="badge">{{ $assignment->present()->formatTimeForHumans($assignment->created_at) }}</span>
@@ -20,8 +20,8 @@
         </div>
         <div class="col-md-6">
             <div class="list-group">
-                <a href="#" class="list-group-item active">{{ $groupAssignments->count() }} Group
-                    {{ str_plural('Assignment', $groupAssignments->count()) }}</a>
+                {{--*/ $countTwo = $groupAssignments->count() /*--}}
+                <a href="#" class="list-group-item active">{{ $countTwo }} Group {{ str_plural('Assignment', $countTwo) }}</a>
                 @foreach($groupAssignments as $assignment)
                     <a href="{{ route('users.group.assignments.show', [Auth::user(), $assignment]) }}" class="list-group-item">
                         <span class="badge">{{ $assignment->present()->formatTimeForHumans($assignment->created_at) }}</span>
