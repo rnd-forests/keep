@@ -1,5 +1,3 @@
-@include('layouts.partials.errors')
-
 @if (session('update_username_error'))
     <div class="alert alert-warning">{{ session('update_username_error') }}</div>
 @endif

@@ -21,6 +21,7 @@
                         @include('users.partials.update_profile_form', $user)
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="account">
+                        @include('layouts.partials.errors')
                         <div class="panel panel-dangerzone">
                             <div class="panel-heading">Update current username</div>
                             <div class="panel-body">
