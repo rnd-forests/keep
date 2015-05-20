@@ -56,7 +56,7 @@ class NotifyUpcomingTasksCommand extends Command {
             $notification->update([
                 'sent_from'   => 'system',
                 'object_id'   => $task->id,
-                'object_type' => 'Keep\Task'
+                'object_type' => 'Keep\Entities\Task'
             ]);
 
             $task->owner->notify($notification);
