@@ -1,21 +1,8 @@
 <?php namespace Keep\Handlers\Commands;
 
 use Keep\Commands\ModifyUsernameCommand;
-use Keep\Repositories\User\UserRepositoryInterface;
 
 class ModifyUsernameCommandHandler {
-
-    protected $userRepo;
-
-    /**
-     * Create the command handler.
-     *
-     * @param UserRepositoryInterface $userRepo
-     */
-	public function __construct(UserRepositoryInterface $userRepo)
-	{
-		$this->userRepo = $userRepo;
-	}
 
     /**
      * Handle the command.
@@ -38,26 +25,23 @@ class ModifyUsernameCommandHandler {
      */
     public function modifyUsername(ModifyUsernameCommand $command)
     {
-        $user = $this->userRepo->getAuthUser();
+        if (! $this->checkOldUsername($command)) return false;
 
-        if (! $this->checkOldUsername($command, $user)) return false;
+        $command->user->name = $command->newUsername;
 
-        $user->name = $command->newUsername;
-
-        return $user->save();
+        return $command->user->save();
     }
 
     /**
      * Check old username.
      *
      * @param ModifyUsernameCommand $command
-     * @param                       $user
      *
      * @return bool
      */
-    public function checkOldUsername(ModifyUsernameCommand $command, $user)
+    public function checkOldUsername(ModifyUsernameCommand $command)
     {
-        return strcasecmp($command->oldUsername, $user->name) == 0;
+        return strcasecmp($command->oldUsername, $command->user->name) == 0;
     }
 
 }

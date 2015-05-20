@@ -1,6 +1,5 @@
 <?php namespace Keep\Http\Controllers\Auth;
 
-use Auth;
 use Session;
 use Keep\Http\Controllers\Controller;
 use Keep\Commands\ModifyPasswordCommand;
@@ -52,17 +51,20 @@ class AccountController extends Controller {
     /**
      * Perform the process of changing user username.
      *
+     * @param                         $userSlug
      * @param EditUserUsernameRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function changeUsername(EditUserUsernameRequest $request)
+    public function changeUsername($userSlug, EditUserUsernameRequest $request)
     {
-        if ($this->dispatchFrom(ModifyUsernameCommand::class, $request))
+        $user = $this->userRepo->findBySlug($userSlug);
+
+        if ($this->dispatchFrom(ModifyUsernameCommand::class, $request, ['user' => $user]))
         {
             Session::flash('update_username_success', 'Your username has been successfully updated.');
 
-            return redirect()->route('users.show', Auth::user());
+            return redirect()->route('users.show', $user);
         }
 
         Session::flash('update_username_error', 'Uh-oh! Your username could not be changed.');
