@@ -30,14 +30,16 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <div class="text-center"><i class="fa fa-bar-chart"></i> Task Statistics</div>
+            @unless($totalTasksCount == 0)
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="text-center"><i class="fa fa-bar-chart"></i> Task Statistics</div>
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="user-dashboard-stats" width="520" height="320"></canvas>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <canvas id="user-dashboard-stats" width="520" height="320"></canvas>
-                </div>
-            </div>
+            @endunless
 
             <div class="row stats">
                 <div class="col-md-3">
@@ -133,34 +135,36 @@
 @stop
 
 @section('footer')
-    <script>
-        (function () {
-            var ctx = document.getElementById('user-dashboard-stats').getContext('2d');
-            var chart = {
-                labels: ["Completed", "Failed", "Due"],
-                datasets: [{
-                    data: [
-                        Math.round({{ json_encode($completedTasksCount / $totalTasksCount * 100) }}),
-                        Math.round({{ json_encode($failedTasksCount / $totalTasksCount) * 100 }}),
-                        Math.round({{ json_encode(($totalTasksCount - $completedTasksCount - $failedTasksCount) / $totalTasksCount) * 100 }})
-                    ],
-                    fillColor: "rgba(26,179,148,0.5)",
-                    strokeColor: "rgba(26,179,148,0.8)",
-                    highlightFill: "rgba(26,179,148,0.75)",
-                    highlightStroke: "rgba(26,179,148,1)"
-                }]
-            };
+    @unless($totalTasksCount == 0)
+        <script>
+            (function () {
+                var ctx = document.getElementById('user-dashboard-stats').getContext('2d');
+                var chart = {
+                    labels: ["Completed", "Failed", "Due"],
+                    datasets: [{
+                        data: [
+                            Math.round({{ json_encode($completedTasksCount / $totalTasksCount * 100) }}),
+                            Math.round({{ json_encode($failedTasksCount / $totalTasksCount) * 100 }}),
+                            Math.round({{ json_encode(($totalTasksCount - $completedTasksCount - $failedTasksCount) / $totalTasksCount) * 100 }})
+                        ],
+                        fillColor: "rgba(26,179,148,0.5)",
+                        strokeColor: "rgba(26,179,148,0.8)",
+                        highlightFill: "rgba(26,179,148,0.75)",
+                        highlightStroke: "rgba(26,179,148,1)"
+                    }]
+                };
 
-            new Chart(ctx).Bar(chart, {
-                scaleBeginAtZero: true,
-                scaleShowGridLines: true,
-                scaleGridLineColor: "rgba(0,0,0,.05)",
-                scaleGridLineWidth: 1,
-                barShowStroke: true,
-                barStrokeWidth: 2,
-                barDatasetSpacing: 1,
-                barValueSpacing : 50
-            });
-        })();
-    </script>
+                new Chart(ctx).Bar(chart, {
+                    scaleBeginAtZero: true,
+                    scaleShowGridLines: true,
+                    scaleGridLineColor: "rgba(0,0,0,.05)",
+                    scaleGridLineWidth: 1,
+                    barShowStroke: true,
+                    barStrokeWidth: 2,
+                    barDatasetSpacing: 1,
+                    barValueSpacing : 50
+                });
+            })();
+        </script>
+    @endunless
 @stop
