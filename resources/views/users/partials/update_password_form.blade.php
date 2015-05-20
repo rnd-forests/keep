@@ -8,7 +8,7 @@
     <div class="alert alert-success">{{ session('update_password_success') }}</div>
 @endif
 
-{!! Form::open(['route' => 'change.account.password']) !!}
+{!! Form::open(['method' => 'PATCH', 'route' => ['change.account.password', $user]]) !!}
     <div class="form-group">
         {!! Form::label('old_password', 'Old Password', ['class' => 'control-label']) !!}
         {!! Form::password('old_password', ['class' => 'form-control input-lg']) !!}

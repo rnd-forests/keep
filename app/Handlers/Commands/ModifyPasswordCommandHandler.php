@@ -2,7 +2,6 @@
 
 use Illuminate\Hashing\BcryptHasher;
 use Keep\Commands\ModifyPasswordCommand;
-use Keep\Repositories\User\UserRepositoryInterface;
 
 class ModifyPasswordCommandHandler {
 
@@ -12,12 +11,10 @@ class ModifyPasswordCommandHandler {
      * Create the command handler.
      *
      * @param BcryptHasher            $bcrypt
-     * @param UserRepositoryInterface $userRepo
      */
-    public function __construct(BcryptHasher $bcrypt, UserRepositoryInterface $userRepo)
+    public function __construct(BcryptHasher $bcrypt)
     {
         $this->bcrypt = $bcrypt;
-        $this->userRepo = $userRepo;
     }
 
     /**
@@ -41,13 +38,11 @@ class ModifyPasswordCommandHandler {
      */
     private function modifyPassword(ModifyPasswordCommand $command)
     {
-        $user = $this->userRepo->getAuthUser();
+        if ( ! $this->checkOldPassword($command, $command->user)) return false;
 
-        if ( ! $this->checkOldPassword($command, $user)) return false;
+        $command->user->password = $command->newPassword;
 
-        $user->password = $command->newPassword;
-
-        return $user->save();
+        return $command->user->save();
     }
 
     /**

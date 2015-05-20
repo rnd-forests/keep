@@ -7,27 +7,37 @@ use Keep\Commands\ModifyPasswordCommand;
 use Keep\Commands\ModifyUsernameCommand;
 use Keep\Http\Requests\EditUserPasswordRequest;
 use Keep\Http\Requests\EditUserUsernameRequest;
+use Keep\Repositories\User\UserRepositoryInterface;
 
 class AccountController extends Controller {
 
+    protected $userRepo;
+
     /**
      * Create new account controller instance.
+     *
+     * @param UserRepositoryInterface $userRepo
      */
-    public function __construct()
+    public function __construct(UserRepositoryInterface $userRepo)
     {
+        $this->userRepo = $userRepo;
+
         $this->middleware('auth');
     }
 
     /**
      * Perform the process of changing user password.
      *
+     * @param                         $userSlug
      * @param EditUserPasswordRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function changePassword(EditUserPasswordRequest $request)
+    public function changePassword($userSlug, EditUserPasswordRequest $request)
     {
-        if ($this->dispatchFrom(ModifyPasswordCommand::class, $request))
+        $user = $this->userRepo->findBySlug($userSlug);
+
+        if ($this->dispatchFrom(ModifyPasswordCommand::class, $request, ['user' => $user]))
         {
             Session::flash('update_password_success', 'Your password has been successfully updated.');
 

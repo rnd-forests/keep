@@ -27,12 +27,12 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function ()
         'uses' => 'SessionsController@destroy'
     ]);
 
-    Route::post('change-password', [
+    Route::patch('{users}/change-password', [
         'as'   => 'change.account.password',
         'uses' => 'AccountController@changePassword'
     ]);
 
-    Route::post('change-username', [
+    Route::patch('{users}/change-username', [
         'as'   => 'change.account.username',
         'uses' => 'AccountController@changeUsername'
     ]);
