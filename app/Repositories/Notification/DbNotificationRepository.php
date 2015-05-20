@@ -19,6 +19,7 @@ class DbNotificationRepository implements NotificationRepositoryInterface {
     public function create(array $data)
     {
         return Notification::create([
+            'sent_from' => 'admin',
             'subject'   => $data['subject'],
             'body'      => $data['body'],
             'type'      => $data['type'],
