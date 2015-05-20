@@ -2,7 +2,9 @@
 
 use DB;
 use Auth;
+use Keep\Entities\User;
 use Keep\Entities\Task;
+use Keep\Entities\Profile;
 use Keep\Entities\Assignment;
 use Keep\Entities\Notification;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
@@ -36,7 +38,10 @@ class EventServiceProvider extends ServiceProvider {
      */
     public function boot(DispatcherContract $events)
     {
-        parent::boot($events);
+        User::created(function ($user)
+        {
+            $user->profile()->save(new Profile());
+        });
 
         Task::deleting(function ($task)
         {
@@ -60,6 +65,8 @@ class EventServiceProvider extends ServiceProvider {
         {
             DB::table('notifiables')->where('notification_id', $notification->id)->delete();
         });
+
+        parent::boot($events);
     }
 
 }
