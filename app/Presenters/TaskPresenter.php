@@ -24,13 +24,13 @@ class TaskPresenter extends Presenter {
     /**
      * Print task status.
      *
-     * @param $completed
+     * @param $status
      *
      * @return string
      */
-    public function printStatus($completed)
+    public function printStatus($status)
     {
-        if ($completed) return '<i class="text-navy fa fa-check"></i>';
+        if ($status) return '<i class="text-navy fa fa-check"></i>';
 
         return '<i class="text-warning fa fa-times"></i>';
     }

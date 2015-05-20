@@ -21,7 +21,10 @@
                         <th>Priority</th>
                         <th>Starting</th>
                         <th>Ending</th>
-                        <th>Completed</th>
+                        <th data-original-title="999" data-container="body"
+                            data-toggle="tooltip" data-placement="top" title="Is this task associated with an assignment?">A?</th>
+                        <th data-original-title="999" data-container="body"
+                            data-toggle="tooltip" data-placement="top" title="Is this task completed?">C?</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -39,6 +42,7 @@
                                 <td>{{ $task->priority->name }}</td>
                                 <td>{{ $task->present()->formatTime($task->starting_date) }}</td>
                                 <td>{!! $task->present()->formatTime($task->finishing_date) !!}</td>
+                                <td>{!! $task->present()->printStatus($task->is_assigned) !!}</td>
                                 <td>{!! $task->present()->printStatus($task->completed) !!}</td>
                                 <td>
                                     <a href="{{ route('admin.task.show', $task) }}" class="btn btn-primary btn-circle"
