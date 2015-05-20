@@ -1,9 +1,9 @@
 <?php
 
-use Keep\Task;
 use Carbon\Carbon;
-use Keep\Assignment;
+use Keep\Entities\Task;
 use Faker\Factory as Faker;
+use Keep\Entities\Assignment;
 use Illuminate\Database\Seeder;
 
 class AssignmentsTableSeeder extends Seeder {

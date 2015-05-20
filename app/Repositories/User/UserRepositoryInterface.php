@@ -1,7 +1,5 @@
 <?php namespace Keep\Repositories\User;
 
-use Keep\User;
-
 interface UserRepositoryInterface {
 
     /**
@@ -30,7 +28,7 @@ interface UserRepositoryInterface {
     /**
      * Get the current authenticated user.
      *
-     * @return User|null
+     * @return mixed
      */
     public function getAuthUser();
 

@@ -1,24 +1,24 @@
-<?php namespace Keep;
+<?php namespace Keep\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model {
+class Priority extends Model {
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'value', 'description'];
 
     /**
-     * Get the tasks associated with given tag.
+     * A priority level can have many associated tasks.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function tasks()
     {
-        return $this->belongsToMany('Keep\Task');
+        return $this->hasMany('Keep\Entities\Task');
     }
 
     /**

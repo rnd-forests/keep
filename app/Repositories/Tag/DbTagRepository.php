@@ -1,8 +1,8 @@
 <?php namespace Keep\Repositories\Tag;
 
 use DB;
-use Keep\Tag;
-use Keep\User;
+use Keep\Entities\Tag;
+use Keep\Entities\User;
 
 class DbTagRepository implements TagRepositoryInterface {
 

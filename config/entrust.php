@@ -19,7 +19,7 @@ return array(
     | the role if it is in a different namespace.
     |
     */
-    'role' => 'Keep\Role',
+    'role' => 'Keep\Entities\Role',
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return array(
     | Update the permission if it is in a different namespace.
     |
     */
-    'permission' => 'Keep\Permission',
+    'permission' => 'Keep\Entities\Permission',
 
     /*
     |--------------------------------------------------------------------------

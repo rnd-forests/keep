@@ -1,7 +1,7 @@
 <?php
 
-use Keep\Role;
-use Keep\User;
+use Keep\Entities\Role;
+use Keep\Entities\User;
 use Illuminate\Database\Seeder;
 
 class RoleUserTableSeeder extends Seeder {

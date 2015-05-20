@@ -1,7 +1,7 @@
 <?php namespace Keep\Repositories\User;
 
 use Auth;
-use Keep\User;
+use Keep\Entities\User;
 
 class DbUserRepository implements UserRepositoryInterface {
 

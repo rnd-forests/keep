@@ -1,7 +1,7 @@
-<?php namespace Keep;
+<?php namespace Keep\Entities;
 
-use Carbon\Carbon;
 use Exception;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 use Keep\Exceptions\InvalidObjectException;
@@ -57,7 +57,7 @@ class Notification extends Model implements SluggableInterface {
      */
     public function users()
     {
-        return $this->morphedByMany('Keep\User', 'notifiable');
+        return $this->morphedByMany('Keep\Entities\User', 'notifiable');
     }
 
     /**
@@ -67,7 +67,7 @@ class Notification extends Model implements SluggableInterface {
      */
     public function groups()
     {
-        return $this->morphedByMany('Keep\Group', 'notifiable');
+        return $this->morphedByMany('Keep\Entities\Group', 'notifiable');
     }
 
     /**

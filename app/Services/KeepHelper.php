@@ -1,6 +1,6 @@
 <?php namespace Keep\Services;
 
-use Keep\Group;
+use Keep\Entities\Group;
 
 class KeepHelper {
 

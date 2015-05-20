@@ -11,7 +11,7 @@ class AssignablesTableSeeder extends Seeder {
             DB::table('assignables')->insert([
                 'assignment_id'   => rand(1, 25),
                 'assignable_id'   => rand(1, 152),
-                'assignable_type' => 'Keep\User'
+                'assignable_type' => 'Keep\Entities\User'
             ]);
         }
 
@@ -20,7 +20,7 @@ class AssignablesTableSeeder extends Seeder {
             DB::table('assignables')->insert([
                 'assignment_id'   => rand(26, 50),
                 'assignable_id'   => rand(1, 50),
-                'assignable_type' => 'Keep\Group'
+                'assignable_type' => 'Keep\Entities\Group'
             ]);
         }
     }

@@ -1,9 +1,9 @@
 <?php
 
-use Keep\User;
 use Carbon\Carbon;
-use Keep\Notification;
+use Keep\Entities\User;
 use Faker\Factory as Faker;
+use Keep\Entities\Notification;
 use Illuminate\Database\Seeder;
 
 class NotificationsTableSeeder extends Seeder {

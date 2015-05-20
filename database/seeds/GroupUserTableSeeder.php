@@ -1,6 +1,6 @@
 <?php
 
-use Keep\Group;
+use Keep\Entities\Group;
 use Illuminate\Database\Seeder;
 
 class GroupUserTableSeeder extends Seeder {

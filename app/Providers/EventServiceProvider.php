@@ -2,9 +2,9 @@
 
 use DB;
 use Auth;
-use Keep\Task;
-use Keep\Assignment;
-use Keep\Notification;
+use Keep\Entities\Task;
+use Keep\Entities\Assignment;
+use Keep\Entities\Notification;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 

@@ -1,6 +1,6 @@
 <?php namespace Keep\Handlers\Commands;
 
-use Keep\User;
+use Keep\Entities\User;
 use Illuminate\Contracts\Auth\Guard;
 use Keep\Events\UserWasActivatedEvent;
 use Keep\Commands\ConfirmAccountCommand;

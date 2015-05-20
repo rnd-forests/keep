@@ -1,4 +1,4 @@
-<?php namespace Keep;
+<?php namespace Keep\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -38,7 +38,7 @@ class Group extends Model implements SluggableInterface {
      */
     public function users()
     {
-        return $this->belongsToMany('Keep\User');
+        return $this->belongsToMany('Keep\Entities\User');
     }
 
     /**
@@ -48,7 +48,7 @@ class Group extends Model implements SluggableInterface {
      */
     public function assignments()
     {
-        return $this->morphToMany('Keep\Assignment', 'assignable');
+        return $this->morphToMany('Keep\Entities\Assignment', 'assignable');
     }
 
     /**
@@ -58,7 +58,7 @@ class Group extends Model implements SluggableInterface {
      */
     public function notifications()
     {
-        return $this->morphToMany('Keep\Notification', 'notifiable');
+        return $this->morphToMany('Keep\Entities\Notification', 'notifiable');
     }
 
     /**

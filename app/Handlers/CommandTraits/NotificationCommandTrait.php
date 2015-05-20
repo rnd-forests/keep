@@ -1,6 +1,6 @@
 <?php namespace Keep\Handlers\CommandTraits;
 
-use Keep\Notification;
+use Keep\Entities\Notification;
 use Illuminate\Support\Collection;
 
 trait NotificationCommandTrait {

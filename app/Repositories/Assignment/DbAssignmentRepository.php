@@ -1,7 +1,7 @@
 <?php namespace Keep\Repositories\Assignment;
 
-use Keep\User;
-use Keep\Assignment;
+use Keep\Entities\User;
+use Keep\Entities\Assignment;
 use Keep\Services\KeepHelper;
 use Illuminate\Support\Collection;
 

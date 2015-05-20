@@ -1,4 +1,4 @@
-<?php namespace Keep;
+<?php namespace Keep\Entities;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -65,7 +65,7 @@ class Task extends Model implements SluggableInterface {
      */
     public function owner()
     {
-        return $this->belongsTo('Keep\User', 'user_id');
+        return $this->belongsTo('Keep\Entities\User', 'user_id');
     }
 
     /**
@@ -75,7 +75,7 @@ class Task extends Model implements SluggableInterface {
      */
     public function destroyer()
     {
-        return $this->belongsTo('Keep\User', 'destroyer_id');
+        return $this->belongsTo('Keep\Entities\User', 'destroyer_id');
     }
 
     /**
@@ -85,7 +85,7 @@ class Task extends Model implements SluggableInterface {
      */
     public function tags()
     {
-        return $this->belongsToMany('Keep\Tag');
+        return $this->belongsToMany('Keep\Entities\Tag');
     }
 
     /**
@@ -95,7 +95,7 @@ class Task extends Model implements SluggableInterface {
      */
     public function priority()
     {
-        return $this->belongsTo('Keep\Priority', 'priority_id');
+        return $this->belongsTo('Keep\Entities\Priority', 'priority_id');
     }
 
     /**
@@ -105,7 +105,7 @@ class Task extends Model implements SluggableInterface {
      */
     public function assignment()
     {
-        return $this->belongsTo('Keep\Assignment');
+        return $this->belongsTo('Keep\Entities\Assignment');
     }
 
     /**

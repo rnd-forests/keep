@@ -1,6 +1,6 @@
 <?php namespace Keep\Events;
 
-use Keep\User;
+use Keep\Entities\User;
 use Illuminate\Queue\SerializesModels;
 
 class UserWasActivatedEvent extends Event {

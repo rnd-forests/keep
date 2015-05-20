@@ -1,7 +1,7 @@
 <?php namespace Keep\Repositories\Priority;
 
-use Keep\User;
-use Keep\Priority;
+use Keep\Entities\User;
+use Keep\Entities\Priority;
 
 class DbPriorityRepository implements PriorityRepositoryInterface {
 

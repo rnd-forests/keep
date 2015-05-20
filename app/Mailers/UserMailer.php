@@ -1,8 +1,8 @@
 <?php namespace Keep\Mailers;
 
-use Keep\Task;
-use Keep\User;
 use Carbon\Carbon;
+use Keep\Entities\Task;
+use Keep\Entities\User;
 
 class UserMailer extends Mailer {
 

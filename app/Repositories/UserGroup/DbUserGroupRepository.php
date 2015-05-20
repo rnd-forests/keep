@@ -1,7 +1,7 @@
 <?php namespace Keep\Repositories\UserGroup;
 
-use Keep\User;
-use Keep\Group;
+use Keep\Entities\User;
+use Keep\Entities\Group;
 use Keep\Services\KeepHelper;
 
 class DbUserGroupRepository implements UserGroupRepositoryInterface {

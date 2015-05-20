@@ -1,7 +1,7 @@
 <?php namespace Keep\Events;
 
-use Keep\Task;
-use Keep\User;
+use Keep\Entities\Task;
+use Keep\Entities\User;
 use Illuminate\Queue\SerializesModels;
 
 class TaskWasCreatedEvent extends Event {

@@ -1,8 +1,8 @@
 <?php namespace Keep\Repositories\Notification;
 
 use Carbon\Carbon;
-use Keep\User;
-use Keep\Notification;
+use Keep\Entities\User;
+use Keep\Entities\Notification;
 
 class DbNotificationRepository implements NotificationRepositoryInterface {
 

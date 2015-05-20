@@ -1,4 +1,4 @@
-<?php namespace Keep;
+<?php namespace Keep\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -37,7 +37,7 @@ class Assignment extends Model implements SluggableInterface {
      */
     public function users()
     {
-        return $this->morphedByMany('Keep\User', 'assignable');
+        return $this->morphedByMany('Keep\Entities\User', 'assignable');
     }
 
     /**
@@ -47,7 +47,7 @@ class Assignment extends Model implements SluggableInterface {
      */
     public function groups()
     {
-        return $this->morphedByMany('Keep\Group', 'assignable');
+        return $this->morphedByMany('Keep\Entities\Group', 'assignable');
     }
 
     /**
@@ -57,7 +57,7 @@ class Assignment extends Model implements SluggableInterface {
      */
     public function task()
     {
-        return $this->hasOne('Keep\Task');
+        return $this->hasOne('Keep\Entities\Task');
     }
 
     /**

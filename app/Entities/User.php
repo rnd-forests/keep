@@ -1,4 +1,4 @@
-<?php namespace Keep;
+<?php namespace Keep\Entities;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -67,7 +67,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function tasks()
     {
-        return $this->hasMany('Keep\Task');
+        return $this->hasMany('Keep\Entities\Task');
     }
 
     /**
@@ -77,7 +77,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function notifications()
     {
-        return $this->morphToMany('Keep\Notification', 'notifiable');
+        return $this->morphToMany('Keep\Entities\Notification', 'notifiable');
     }
 
     /**
@@ -87,7 +87,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function groups()
     {
-        return $this->belongsToMany('Keep\Group');
+        return $this->belongsToMany('Keep\Entities\Group');
     }
 
     /**
@@ -97,7 +97,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function assignments()
     {
-        return $this->morphToMany('Keep\Assignment', 'assignable');
+        return $this->morphToMany('Keep\Entities\Assignment', 'assignable');
     }
 
     /**
@@ -107,7 +107,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function profile()
     {
-        return $this->hasOne('Keep\Profile');
+        return $this->hasOne('Keep\Entities\Profile');
     }
 
     /**

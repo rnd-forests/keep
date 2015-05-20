@@ -1,6 +1,6 @@
 <?php
 
-use Keep\Task;
+use Keep\Entities\Task;
 use Illuminate\Database\Seeder;
 
 class TagTaskTableSeeder extends Seeder {

@@ -1,6 +1,6 @@
 <?php
 
-use Keep\Profile;
+use Keep\Entities\Profile;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 

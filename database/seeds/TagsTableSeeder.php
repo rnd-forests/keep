@@ -1,6 +1,6 @@
 <?php
 
-use Keep\Tag;
+use Keep\Entities\Tag;
 use Illuminate\Database\Seeder;
 
 class TagsTableSeeder extends Seeder {

@@ -1,4 +1,4 @@
-<?php namespace Keep;
+<?php namespace Keep\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -28,7 +28,7 @@ class Profile extends Model {
      */
     public function user()
     {
-        return $this->belongsTo('Keep\User');
+        return $this->belongsTo('Keep\Entities\User');
     }
 
 }

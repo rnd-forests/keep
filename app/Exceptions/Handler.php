@@ -62,7 +62,7 @@ class Handler extends ExceptionHandler {
 
         if ($e instanceof ModelNotFoundException)
         {
-            flash()->warning('The ' . substr($e->getModel(), 5) . ' you are looking for, cannot be found.');
+            flash()->warning('The ' . substr($e->getModel(), 14) . ' you are looking for, cannot be found.');
 
             return redirect()->home();
         }

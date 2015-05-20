@@ -1,7 +1,7 @@
 <?php
 
-use Keep\Group;
 use Carbon\Carbon;
+use Keep\Entities\Group;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 

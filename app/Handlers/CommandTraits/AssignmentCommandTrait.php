@@ -1,7 +1,7 @@
 <?php namespace Keep\Handlers\CommandTraits;
 
-use Keep\Task;
-use Keep\Assignment;
+use Keep\Entities\Task;
+use Keep\Entities\Assignment;
 use Illuminate\Support\Collection;
 
 trait AssignmentCommandTrait {

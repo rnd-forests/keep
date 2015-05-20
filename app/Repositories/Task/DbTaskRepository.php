@@ -1,10 +1,10 @@
 <?php namespace Keep\Repositories\Task;
 
 use Request;
-use Keep\Task;
-use Keep\User;
 use Carbon\Carbon;
-use Keep\Priority;
+use Keep\Entities\Task;
+use Keep\Entities\User;
+use Keep\Entities\Priority;
 
 class DbTaskRepository implements TaskRepositoryInterface {
 

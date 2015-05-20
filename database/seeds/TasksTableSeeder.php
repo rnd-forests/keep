@@ -1,7 +1,7 @@
 <?php
 
-use Keep\Task;
 use Carbon\Carbon;
+use Keep\Entities\Task;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
