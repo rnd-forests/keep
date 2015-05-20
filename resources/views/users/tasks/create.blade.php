@@ -9,7 +9,7 @@
                 <div class="panel-heading"><strong>Schedule New Task</strong></div>
                 <div class="panel-body">
                     @include('layouts.partials.errors')
-                    {!! Form::model($task = new \Keep\Task, ['route' => ['users.tasks.store', $user]]) !!}
+                    {!! Form::model($task = new \Keep\Entities\Task, ['route' => ['users.tasks.store', $user]]) !!}
                         @include('users.tasks.partials.form', ['taskFormSubmitButton' => 'Create Task'])
                     {!! Form::close() !!}
                 </div>

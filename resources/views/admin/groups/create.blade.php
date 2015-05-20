@@ -9,7 +9,7 @@
                 <div class="panel-heading"><strong>Create New Group</strong></div>
                 <div class="panel-body">
                     @include('layouts.partials.errors')
-                    {!! Form::model($group = new \Keep\Group, ['route' => 'admin.groups.store']) !!}
+                    {!! Form::model($group = new \Keep\Entities\Group, ['route' => 'admin.groups.store']) !!}
                         @include('admin.groups.partials.form', ['groupFormSubmitButton' => 'Create Group'])
                     {!! Form::close() !!}
                 </div>

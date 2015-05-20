@@ -18,7 +18,8 @@
                 <div class="panel-heading"><strong>Create Group Assignment</strong></div>
                 <div class="panel-body">
                     @include('layouts.partials.errors')
-                    {!! Form::model([$task = new \Keep\Task, $assignment = new \Keep\Assignment], ['route' => ['store.group.assignment']]) !!}
+                    {!! Form::model([$task = new \Keep\Entities\Task, $assignment = new \Keep\Entities\Assignment],
+                        ['route' => ['store.group.assignment']]) !!}
                         @include('admin.assignments.partials.form', ['assignmentButton' => 'Create Assignment'])
                     {!! Form::close() !!}
                 </div>
