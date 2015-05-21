@@ -24,15 +24,17 @@ class UserTaskController extends Controller {
         $this->middleware('auth');
         $this->middleware('auth.correct');
     }
-    
+
     /**
      * Get form to create new task.
      *
+     * @param $userSlug
+     *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create($userSlug)
     {
-        $user = $this->userRepo->getAuthUser();
+        $user = $this->userRepo->findBySlug($userSlug);
 
         return view('users.tasks.create', compact('user'));
     }
@@ -40,13 +42,14 @@ class UserTaskController extends Controller {
     /**
      * Persist a new task.
      *
+     * @param             $userSlug
      * @param TaskRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(TaskRequest $request)
+    public function store($userSlug, TaskRequest $request)
     {
-        $author = $this->userRepo->getAuthUser();
+        $author = $this->userRepo->findBySlug($userSlug);
 
         $task = $author->tasks()->save($this->createTask($request));
 
@@ -137,7 +140,7 @@ class UserTaskController extends Controller {
 
         flash()->info('Your task was successfully updated');
 
-        return redirect()->route('users.dashboard', $this->userRepo->getAuthUser());
+        return redirect()->route('users.dashboard', $this->userRepo->findBySlug($userSlug));
     }
 
     /**

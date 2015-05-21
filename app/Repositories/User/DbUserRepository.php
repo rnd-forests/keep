@@ -1,6 +1,5 @@
 <?php namespace Keep\Repositories\User;
 
-use Auth;
 use Keep\Entities\User;
 
 class DbUserRepository implements UserRepositoryInterface {
@@ -18,11 +17,6 @@ class DbUserRepository implements UserRepositoryInterface {
     public function getPaginatedUsers($limit)
     {
         return User::with('tasks', 'roles', 'groups', 'assignments')->paginate($limit);
-    }
-
-    public function getAuthUser()
-    {
-        return Auth::user();
     }
 
     public function findById($id)

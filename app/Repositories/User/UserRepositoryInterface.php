@@ -26,13 +26,6 @@ interface UserRepositoryInterface {
     public function getPaginatedUsers($limit);
 
     /**
-     * Get the current authenticated user.
-     *
-     * @return mixed
-     */
-    public function getAuthUser();
-
-    /**
      * Find a user by ID.
      *
      * @param $id
