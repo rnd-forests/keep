@@ -2,12 +2,13 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 
 class Assignment extends Model implements SluggableInterface {
 
-    use SluggableTrait, PresentableTrait;
+    use SoftDeletes, SluggableTrait, PresentableTrait;
 
     /**
      * Unique slug for assignment model.

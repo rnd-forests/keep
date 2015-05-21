@@ -57,8 +57,7 @@ class EventServiceProvider extends ServiceProvider {
 
         Assignment::deleting(function ($assignment)
         {
-            $assignment->task()->forceDelete();
-            DB::table('assignables')->where('assignment_id', $assignment->id)->delete();
+            $assignment->task()->delete();
         });
 
         Notification::deleting(function ($notification)

@@ -17,6 +17,7 @@ class CreateAssignmentsTable extends Migration {
             $table->increments('id');
             $table->string('assignment_name');
             $table->string('slug')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
