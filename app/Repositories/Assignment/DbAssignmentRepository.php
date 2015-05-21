@@ -1,5 +1,6 @@
 <?php namespace Keep\Repositories\Assignment;
 
+use DB;
 use Keep\Entities\User;
 use Keep\Entities\Assignment;
 use Keep\Services\KeepHelper;
@@ -28,7 +29,11 @@ class DbAssignmentRepository implements AssignmentRepositoryInterface {
 
     public function delete($slug)
     {
-        return $this->findBySlug($slug)->delete();
+        $assignment = $this->findBySlug($slug);
+
+        $assignment->task()->delete();
+
+        return $assignment->delete();
     }
 
     public function create(array $data)
@@ -89,6 +94,36 @@ class DbAssignmentRepository implements AssignmentRepositoryInterface {
         });
 
         return Assignment::whereIn('id', $ids->unique()->toArray());
+    }
+
+    public function getTrashedAssignments($limit)
+    {
+        return Assignment::onlyTrashed()->latest('deleted_at')->paginate($limit);
+    }
+
+    public function findTrashedAssignmentBySlug($slug)
+    {
+        return Assignment::onlyTrashed()->whereSlug($slug)->firstOrFail();
+    }
+
+    public function restore($slug)
+    {
+        $assignment = $this->findTrashedAssignmentBySlug($slug);
+
+        $assignment->task()->withTrashed()->restore();
+
+        return $assignment->restore();
+    }
+
+    public function forceDelete($slug)
+    {
+        $assignment = $this->findTrashedAssignmentBySlug($slug);
+
+        $assignment->task()->withTrashed()->forceDelete();
+
+        DB::table('assignables')->where('assignment_id', $assignment->id)->delete();
+
+        $assignment->forceDelete();
     }
 
 }

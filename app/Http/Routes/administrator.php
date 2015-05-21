@@ -140,27 +140,27 @@ Route::group(['middleware' => ['auth', 'auth.confirmed', 'valid.admin.user'], 'p
     ]);
 
 
-    Route::get('assignments', [
+    Route::get('active-assignments', [
         'as'   => 'admin.assignments.all',
         'uses' => 'AssignmentsController@index'
     ]);
 
-    Route::get('assignments/{assignments}', [
+    Route::get('active-assignments/{assignments}', [
         'as'   => 'admin.assignments.show',
         'uses' => 'AssignmentsController@show'
     ]);
 
-    Route::get('assignments/{assignments}/edit', [
+    Route::get('active-assignments/{assignments}/edit', [
         'as'   => 'admin.assignments.edit',
         'uses' => 'AssignmentsController@edit'
     ]);
 
-    Route::patch('assignments/{assignments}', [
+    Route::patch('active-assignments/{assignments}', [
         'as'   => 'admin.assignments.update',
         'uses' => 'AssignmentsController@update'
     ]);
 
-    Route::delete('assignments/{assignments}', [
+    Route::delete('active-assignments/{assignments}', [
         'as'   => 'admin.assignments.delete',
         'uses' => 'AssignmentsController@destroy'
     ]);
@@ -183,6 +183,21 @@ Route::group(['middleware' => ['auth', 'auth.confirmed', 'valid.admin.user'], 'p
     Route::post('group/assignments', [
         'as'   => 'store.group.assignment',
         'uses' => 'AssignmentsController@storeGroupAssignment'
+    ]);
+
+    Route::get('trashed-assignments', [
+        'as'   => 'admin.trashed.assignments',
+        'uses' => 'AssignmentsController@trashedAssignments'
+    ]);
+
+    Route::put('trashed-assignments/{assignments}', [
+        'as'   => 'admin.assignments.restore',
+        'uses' => 'AssignmentsController@restore'
+    ]);
+
+    Route::delete('trashed-assignments/{assignments}', [
+        'as'   => 'admin.force.delete.assignment',
+        'uses' => 'AssignmentsController@forceDeleteAssignment'
     ]);
 
 

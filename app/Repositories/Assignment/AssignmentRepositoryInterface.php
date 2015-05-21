@@ -97,4 +97,40 @@ interface AssignmentRepositoryInterface {
      */
     public function findGroupAssignment($userSlug, $assignmentSlug);
 
+    /**
+     * Fetch trashed assignments.
+     *
+     * @param $limit
+     *
+     * @return mixed
+     */
+    public function getTrashedAssignments($limit);
+
+    /**
+     * Find a trashed assignment by its slug.
+     *
+     * @param $slug
+     *
+     * @return mixed
+     */
+    public function findTrashedAssignmentBySlug($slug);
+
+    /**
+     * Restore a trashed assignment.
+     *
+     * @param $slug
+     *
+     * @return mixed
+     */
+    public function restore($slug);
+
+    /**
+     * Force delete an assignment.
+     *
+     * @param $slug
+     *
+     * @return mixed
+     */
+    public function forceDelete($slug);
+
 }

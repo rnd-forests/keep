@@ -5,7 +5,6 @@ use Auth;
 use Keep\Entities\User;
 use Keep\Entities\Task;
 use Keep\Entities\Profile;
-use Keep\Entities\Assignment;
 use Keep\Entities\Notification;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -53,11 +52,6 @@ class EventServiceProvider extends ServiceProvider {
         {
             $task->destroyer_id = 0;
             $task->save();
-        });
-
-        Assignment::deleting(function ($assignment)
-        {
-            $assignment->task()->delete();
         });
 
         Notification::deleting(function ($notification)

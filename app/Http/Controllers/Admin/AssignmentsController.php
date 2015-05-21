@@ -148,4 +148,48 @@ class AssignmentsController extends Controller {
         return redirect()->back();
     }
 
+    /**
+     * Get all trashed assignments.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function trashedAssignments()
+    {
+        $trashedAssignments = $this->assignmentRepo->getTrashedAssignments(10);
+
+        return view('admin.assignments.trashed_assignments', compact('trashedAssignments'));
+    }
+
+    /**
+     * Restore a trashed assignment.
+     *
+     * @param $slug
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function restore($slug)
+    {
+        $this->assignmentRepo->restore($slug);
+
+        flash()->success('This assignment was successfully restored');
+
+        return redirect()->back();
+    }
+
+    /**
+     * Force delete a trashed assignment.
+     *
+     * @param $slug
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function forceDeleteAssignment($slug)
+    {
+        $this->assignmentRepo->forceDelete($slug);
+
+        flash()->info('This assignment was permanently deleted.');
+
+        return redirect()->back();
+    }
+
 }

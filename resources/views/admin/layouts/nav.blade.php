@@ -44,6 +44,8 @@
                         <li><a href="#" data-toggle="modal" data-target="#assignment-selection-modal">Create</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ route('admin.assignments.all') }}">Collection</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ route('admin.trashed.assignments') }}">Trashed</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
