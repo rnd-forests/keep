@@ -29,11 +29,7 @@ class DbAssignmentRepository implements AssignmentRepositoryInterface {
 
     public function delete($slug)
     {
-        $assignment = $this->findBySlug($slug);
-
-        $assignment->task()->delete();
-
-        return $assignment->delete();
+        return $this->findBySlug($slug)->delete();
     }
 
     public function create(array $data)
