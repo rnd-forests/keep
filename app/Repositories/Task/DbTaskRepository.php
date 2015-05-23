@@ -200,13 +200,16 @@ class DbTaskRepository implements TaskRepositoryInterface {
     {
         $user = User::findBySlug($userSlug);
 
-        return Task::where(['user_id' => $user->id, 'completed' => 0])->get(['title', 'starting_date', 'finishing_date'])->map(function ($task)
+        return Task::where(['user_id' => $user->id, 'completed' => 0])->get([
+            'title', 'starting_date', 'finishing_date', 'priority_id'
+        ])->map(function ($task)
         {
-            return array(
+            return [
                 'content' => $task->title,
                 'endDate' => Carbon::parse($task->finishing_date)->toDayDateTimeString(),
-                'startDate' => Carbon::parse($task->starting_date)->toDayDateTimeString()
-            );
+                'startDate' => Carbon::parse($task->starting_date)->toDayDateTimeString(),
+                'color' => $task->priority_id
+            ];
         })->toArray();
     }
 
