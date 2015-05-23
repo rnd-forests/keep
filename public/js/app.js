@@ -1,7 +1,7 @@
 (function() {
     $('div.alert').not('.alert-danger').not('.notification').delay(3000).slideUp(300);
     $('[data-toggle="tooltip"]').tooltip();
-    $('.task-time-form').datetimepicker({ format: 'L' });
+    $('.task-time-form').datetimepicker();
     $('#tag_list').select2({ placeholder: 'Choose tags for this task' });
     $('#priority_list').select2();
     $('#notification_types').select2();
