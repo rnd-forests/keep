@@ -280,4 +280,13 @@ interface TaskRepositoryInterface {
      */
     public function fetchUserUpcomingTasks();
 
+    /**
+     * Fetch all tasks of a user.
+     *
+     * @param $userSlug
+     *
+     * @return mixed
+     */
+    public function fetchAllTasksOfAUser($userSlug);
+
 }

@@ -17,6 +17,7 @@
                 @endif
                 @if (Auth::check())
                     <li><a href="{{ route('users.dashboard', Auth::user()) }}">Dashboard</a></li>
+                    <li><a href="{{ route('users.scheduler', Auth::user()) }}">Scheduler</a></li>
                     <li><a href="{{ route('users.tasks.create', Auth::user()) }}">Schedule Task</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Task Filter <span class="caret"></span></a>

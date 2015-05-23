@@ -21,6 +21,12 @@ Route::get('{users}/dashboard', [
     'uses' => 'UserDashboardController@dashboard'
 ]);
 
+
+Route::get('{users}/scheduler', [
+    'as'   => 'users.scheduler',
+    'uses' => 'SchedulerController@schedule'
+]);
+
 Route::get('{users}/tasks/all', [
     'as'   => 'users.dashboard.all.tasks',
     'uses' => 'UserDashboardController@allTasks'

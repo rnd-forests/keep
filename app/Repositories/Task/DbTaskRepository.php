@@ -196,4 +196,11 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return Task::userCreated()->upcoming()->get();
     }
 
+    public function fetchAllTasksOfAUser($userSlug)
+    {
+        $user = User::findBySlug($userSlug);
+
+        return Task::where('user_id', $user->id)->get();
+    }
+
 }
