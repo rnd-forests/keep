@@ -23,7 +23,8 @@ elixir(function(mix) {
         'vendor/select2.min.js',
         'vendor/summernote/summernote.min.js',
         'vendor/summernote/summernote-fontstyle.js',
-        'vendor/summernote/summernote-video.js'
+        'vendor/summernote/summernote-video.js',
+        'vendor/aui-min.js'
     ], 'public/js/libraries.js', 'resources/assets/js')
     .scripts([
         'plugins.js',
