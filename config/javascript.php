@@ -11,7 +11,7 @@ return [
     | you want to prepend all JavaScript variables to.
     |
     */
-    'bind_js_vars_to_this_view' => 'footer',
+    'bind_js_vars_to_this_view' => 'layouts.partials.footer',
 
     /*
     |--------------------------------------------------------------------------
@@ -23,6 +23,6 @@ return [
     | That way, you can access vars, like "SomeNamespace.someVariable."
     |
     */
-    'js_namespace' => 'window'
+    'js_namespace' => 'Keep'
 
 ];

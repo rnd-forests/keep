@@ -30,7 +30,9 @@ class SchedulerController extends Controller {
     {
         $tasks = $this->taskRepo->fetchAllTasksOfAUser($userSlug);
 
-        return view('users.scheduler', compact('tasks'));
+        \JavaScript::put(['scheduler' => $tasks]);
+
+        return view('users.scheduler');
     }
 
 }
