@@ -2,7 +2,7 @@
 
 @section('meta-description', 'Task scheduler of ' . Auth::user()->name)
 
-@section('title', 'Task Scheduler')
+@section('title', 'Tasks Scheduler')
 
 @section('content')
     <div id="wrapper">
@@ -35,6 +35,7 @@
             'aui-scheduler',
             function(Y) {
                 var events = Keep.scheduler;
+                var agendaView = new Y.SchedulerAgendaView();
                 var dayView = new Y.SchedulerDayView();
                 var monthView = new Y.SchedulerMonthView();
                 var weekView = new Y.SchedulerWeekView();
@@ -44,7 +45,7 @@
                     boundingBox: '#user-task-scheduler',
                     items: events,
                     render: true,
-                    views: [dayView, weekView, monthView]
+                    views: [dayView, weekView, monthView, agendaView]
                 });
             }
         );
