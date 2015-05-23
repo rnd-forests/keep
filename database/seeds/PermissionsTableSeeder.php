@@ -8,7 +8,7 @@ class PermissionsTableSeeder extends Seeder {
 
     public function run()
     {
-        $adminPermissions = [
+        $permissions = [
             [
                 'name'         => 'create-task',
                 'display_name' => 'Create tasks',
@@ -36,11 +36,14 @@ class PermissionsTableSeeder extends Seeder {
             ]
         ];
 
-        $admin = Role::where('name', '=', 'admin')->firstOrFail();
+        $owner = Role::where('name', 'owner')->firstOrFail();
+        $admin = Role::where('name', 'admin')->firstOrFail();
 
-        foreach ($adminPermissions as $permission)
+        foreach ($permissions as $permission)
         {
-            $admin->attachPermission(Permission::create($permission));
+            $dbPermission = Permission::create($permission);
+            $owner->attachPermission($dbPermission);
+            $admin->attachPermission($dbPermission);
         }
     }
 

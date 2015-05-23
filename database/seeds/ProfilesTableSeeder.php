@@ -13,9 +13,9 @@ class ProfilesTableSeeder extends Seeder {
             'user_id'          => 1,
             'location'         => 'Thai Phuong - Hung Ha - Thai Binh',
             'bio'              => $faker->paragraph(10),
-            'company'          => 'FPT Software',
-            'website'          => 'http://www.vinhnguyen-hust.com',
-            'phone'            => '01649000000',
+            'company'          => 'Ha Noi University of Science and Technology',
+            'website'          => $faker->url,
+            'phone'            => $faker->phoneNumber,
             'twitter_username' => 'vinhnguyen',
             'github_username'  => 'vinhnguyentb'
         ]);
@@ -25,19 +25,22 @@ class ProfilesTableSeeder extends Seeder {
             'location'         => 'Thai Phuong - Hung Ha - Thai Binh',
             'bio'              => $faker->paragraph(10),
             'company'          => 'Deloitte',
-            'website'          => 'http://www.hangdt-eof.com',
-            'phone'            => '01697000000',
-            'twitter_username' => 'hangdangaof'
+            'website'          => $faker->url,
+            'phone'            => $faker->phoneNumber,
+            'twitter_username' => $faker->userName,
+            'github_username'  => $faker->userName
         ]);
 
         for ($i = 3; $i <= 152; $i++) {
             Profile::create([
-                'user_id'  => $i,
-                'location' => $faker->address,
-                'bio'      => $faker->paragraph(4),
-                'company'  => $faker->company,
-                'website'  => $faker->url,
-                'phone'    => $faker->phoneNumber
+                'user_id'          => $i,
+                'location'         => $faker->address,
+                'bio'              => $faker->paragraph(5),
+                'company'          => $faker->company,
+                'website'          => $faker->url,
+                'phone'            => $faker->phoneNumber,
+                'twitter_username' => $faker->userName,
+                'github_username'  => $faker->userName
             ]);
         }
     }

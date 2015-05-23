@@ -10,23 +10,22 @@ class UsersTableSeeder extends Seeder {
     public function run()
     {
         $faker = Faker::create();
-        $timestamp = Carbon::now()->subYears(3);
         User::create([
             'name'       => 'Vinh Nguyen',
             'email'      => 'ngocvinh.nnv@gmail.com',
-            'password'   => '123456',
+            'password'   => '123456789',
             'active'     => true,
-            'created_at' => $timestamp,
-            'updated_at' => $timestamp
+            'created_at' => Carbon::now()->subYears(3),
+            'updated_at' => Carbon::now()->subYears(3)
         ]);
 
         User::create([
             'name'       => 'Hang Dang',
             'email'      => 'hangdt.aa@gmail.com',
-            'password'   => '123456',
+            'password'   => '123456789',
             'active'     => true,
-            'created_at' => $timestamp,
-            'updated_at' => $timestamp
+            'created_at' => Carbon::now()->subYears(2),
+            'updated_at' => Carbon::now()->subYears(2)
         ]);
 
         for ($i = 1; $i <= 150; $i++)

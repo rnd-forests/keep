@@ -13,10 +13,10 @@ class TasksTableSeeder extends Seeder {
 
         for ($i = 1; $i <= 25; $i++)
         {
-            $timestamp = Carbon::now()->subDays(rand(5, 50));
+            $timestamp = Carbon::now()->subDays(rand(0, 15))->subHours(rand(1, 20));
             Task::create([
                 'user_id'        => 1,
-                'priority_id'    => rand(2, 4),
+                'priority_id'    => rand(1, 4),
                 'title'          => ucfirst(implode(" ", $faker->words(5))),
                 'content'        => implode(" ", $faker->paragraphs(1)),
                 'location'       => $faker->address,
@@ -24,7 +24,7 @@ class TasksTableSeeder extends Seeder {
                 'finished_at'    => Carbon::now(),
                 'is_assigned'    => false,
                 'starting_date'  => $timestamp,
-                'finishing_date' => Carbon::now()->addDays(rand(5, 20)),
+                'finishing_date' => $timestamp->addDays(rand(0, 15))->addHours(rand(1, 20)),
                 'created_at'     => $timestamp,
                 'updated_at'     => $timestamp
             ]);
@@ -32,7 +32,7 @@ class TasksTableSeeder extends Seeder {
 
         for ($i = 1; $i <= 15; $i++)
         {
-            $timestamp = Carbon::now()->subDays(rand(5, 50));
+            $timestamp = Carbon::now()->subDays(rand(0, 15))->subHours(rand(1, 20));
             Task::create([
                 'user_id'        => 1,
                 'priority_id'    => 1,
@@ -41,7 +41,7 @@ class TasksTableSeeder extends Seeder {
                 'location'       => $faker->address,
                 'is_assigned'    => false,
                 'starting_date'  => $timestamp,
-                'finishing_date' => Carbon::now()->addDays(rand(5, 20)),
+                'finishing_date' => $timestamp->addDays(rand(0, 15))->addHours(rand(1, 20)),
                 'created_at'     => $timestamp,
                 'updated_at'     => $timestamp
             ]);
@@ -49,7 +49,7 @@ class TasksTableSeeder extends Seeder {
 
         for ($i = 1; $i <= 10; $i++)
         {
-            $timestamp = Carbon::now()->subDays(rand(5, 50));
+            $timestamp = Carbon::now()->subDays(rand(0, 15))->subHours(rand(1, 20));
             Task::create([
                 'user_id'        => 1,
                 'priority_id'    => rand(2, 4),
@@ -58,7 +58,7 @@ class TasksTableSeeder extends Seeder {
                 'location'       => $faker->address,
                 'is_assigned'    => false,
                 'starting_date'  => $timestamp,
-                'finishing_date' => Carbon::now()->addDays(rand(2, 6)),
+                'finishing_date' => $timestamp->addDays(rand(0, 15))->addHours(rand(1, 20)),
                 'created_at'     => $timestamp,
                 'updated_at'     => $timestamp
             ]);
@@ -66,7 +66,7 @@ class TasksTableSeeder extends Seeder {
 
         for ($i = 1; $i <= 10; $i++)
         {
-            $timestamp = Carbon::now()->subDays(rand(10, 25));
+            $timestamp = Carbon::now()->subDays(rand(0, 15))->subHours(rand(1, 20));
             Task::create([
                 'user_id'        => 1,
                 'priority_id'    => rand(2, 4),
@@ -75,7 +75,7 @@ class TasksTableSeeder extends Seeder {
                 'location'       => $faker->address,
                 'is_assigned'    => false,
                 'starting_date'  => $timestamp,
-                'finishing_date' => Carbon::now()->subDays(rand(1, 9)),
+                'finishing_date' => $timestamp->addDays(rand(0, 15))->addHours(rand(1, 20)),
                 'created_at'     => $timestamp,
                 'updated_at'     => $timestamp
             ]);
@@ -83,7 +83,7 @@ class TasksTableSeeder extends Seeder {
 
         for ($i = 1; $i <= 300; $i++)
         {
-            $timestamp = Carbon::now()->subDays(rand(5, 50));
+            $timestamp = Carbon::now()->subDays(rand(0, 15))->subHours(rand(1, 20));
             Task::create([
                 'user_id'        => rand(1, 152),
                 'priority_id'    => rand(1, 4),
@@ -92,7 +92,7 @@ class TasksTableSeeder extends Seeder {
                 'location'       => $faker->address,
                 'is_assigned'    => false,
                 'starting_date'  => $timestamp,
-                'finishing_date' => Carbon::now()->addDays(rand(5, 50)),
+                'finishing_date' => $timestamp->addDays(rand(0, 15))->addHours(rand(1, 20)),
                 'created_at'     => $timestamp,
                 'updated_at'     => $timestamp
             ]);

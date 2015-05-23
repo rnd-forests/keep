@@ -12,7 +12,7 @@ class GroupUserTableSeeder extends Seeder {
             $group = Group::find($i);
             for ($j = 1; $j <= rand(5, 25); $j++)
             {
-                $group->users()->attach(rand(1, 150));
+                $group->users()->attach(rand(3, 152));
             }
         }
     }

@@ -6,7 +6,7 @@ class AssignablesTableSeeder extends Seeder {
 
     public function run()
     {
-        for ($i = 1; $i <= 500; $i++)
+        for ($i = 1; $i <= 350; $i++)
         {
             DB::table('assignables')->insert([
                 'assignment_id'   => rand(1, 25),
@@ -15,7 +15,7 @@ class AssignablesTableSeeder extends Seeder {
             ]);
         }
 
-        for ($i = 1; $i <= 400; $i++)
+        for ($i = 1; $i <= 350; $i++)
         {
             DB::table('assignables')->insert([
                 'assignment_id'   => rand(26, 50),

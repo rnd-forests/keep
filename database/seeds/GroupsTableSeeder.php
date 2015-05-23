@@ -14,8 +14,8 @@ class GroupsTableSeeder extends Seeder {
         {
             $timestamp = Carbon::now()->subMonths(rand(1, 20));
             Group::create([
-                'name'        => ucfirst(implode(' ', $faker->words(4))),
-                'description' => $faker->paragraph(2),
+                'name'        => ucfirst(implode(' ', $faker->words(5))),
+                'description' => $faker->paragraph(4),
                 'created_at'  => $timestamp,
                 'updated_at'  => $timestamp
             ]);
