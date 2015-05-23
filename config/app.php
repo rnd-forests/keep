@@ -152,6 +152,7 @@ return [
          * Third-party service providers...
          */
         'Laracasts\Flash\FlashServiceProvider',
+        'Laracasts\Utilities\JavaScript\JavascriptServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
         'Intervention\Image\ImageServiceProvider',

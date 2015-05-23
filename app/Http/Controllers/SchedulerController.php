@@ -26,7 +26,7 @@ class SchedulerController extends Controller {
      *
      * @return \Illuminate\View\View
      */
-	public function schedule($userSlug)
+    public function schedule($userSlug)
     {
         $tasks = $this->taskRepo->fetchAllTasksOfAUser($userSlug);
 
