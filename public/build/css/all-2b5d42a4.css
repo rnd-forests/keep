@@ -11269,6 +11269,8 @@ fieldset[disabled] .btn-violet {
   background: #ffffff;
   color: #7f8a94; }
   .task-wrapper .panel-body .well .label {
+    display: inline-block;
+    margin-bottom: 5px;
     margin-right: 5px; }
   .task-wrapper .panel-body .well .fa {
     padding-right: 5px; }
