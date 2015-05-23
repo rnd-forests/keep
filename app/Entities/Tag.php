@@ -1,8 +1,19 @@
 <?php namespace Keep\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\SluggableTrait;
+use Cviebrock\EloquentSluggable\SluggableInterface;
 
-class Tag extends Model {
+class Tag extends Model implements SluggableInterface {
+
+    use SluggableTrait;
+
+    /**
+     * Unique slug for tag model.
+     *
+     * @var array
+     */
+    protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +39,7 @@ class Tag extends Model {
      */
     public function getRouteKey()
     {
-        return $this->name;
+        return $this->slug;
     }
 
 }

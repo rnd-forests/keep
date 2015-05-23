@@ -6,9 +6,9 @@ use Keep\Entities\User;
 
 class DbTagRepository implements TagRepositoryInterface {
 
-    public function findByName($tagName)
+    public function findBySlug($tagSlug)
     {
-        return Tag::whereName($tagName)->firstOrFail();
+        return Tag::whereSlug($tagSlug)->firstOrFail();
     }
 
     public function lists()
@@ -28,11 +28,11 @@ class DbTagRepository implements TagRepositoryInterface {
         )->get();
     }
 
-    public function getTasksOfUserAssociatedWithATag($userSlug, $tagName, $limit)
+    public function getTasksOfUserAssociatedWithATag($userSlug, $tagSlug, $limit)
     {
         $user = User::findBySlug($userSlug);
 
-        $tag = $this->findByName($tagName);
+        $tag = $this->findBySlug($tagSlug);
 
         return $tag->tasks()->orderBy('created_at', 'desc')->where('user_id', $user->id)->paginate($limit);
     }

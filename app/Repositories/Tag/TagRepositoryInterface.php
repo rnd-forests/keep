@@ -5,11 +5,11 @@ interface TagRepositoryInterface {
     /**
      * Find a tag by its name.
      *
-     * @param $tagName
+     * @param $tagSlug
      *
      * @return mixed
      */
-    public function findByName($tagName);
+    public function findBySlug($tagSlug);
 
     /**
      * List all the tags.
@@ -31,11 +31,11 @@ interface TagRepositoryInterface {
      * Get all tasks of a user that is associated with a given tag.
      *
      * @param $userSlug
-     * @param $tagName
+     * @param $tagSlug
      * @param $limit
      *
      * @return mixed
      */
-    public function getTasksOfUserAssociatedWithATag($userSlug, $tagName, $limit);
+    public function getTasksOfUserAssociatedWithATag($userSlug, $tagSlug, $limit);
 
 }

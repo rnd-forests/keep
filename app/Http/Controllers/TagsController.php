@@ -43,7 +43,7 @@ class TagsController extends Controller {
      */
     public function show($userSlug, $tagName)
     {
-        $tag = $this->tagRepo->findByName($tagName);
+        $tag = $this->tagRepo->findBySlug($tagName);
 
         $tasks = $this->tagRepo->getTasksOfUserAssociatedWithATag($userSlug, $tagName, 10);
 
