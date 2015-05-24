@@ -7,6 +7,11 @@
 @section('content')
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
+            <div class="text-center" style="margin-bottom: 20px">
+                <a href="{{ route('users.groups.notifications', Auth::user()) }}">
+                    <button class="btn btn-primary">Show group notifications</button>
+                </a>
+            </div>
             @foreach($notifications as $notification)
                 <div class="alert alert-{{ $notification->type }} notification">
                     <strong>{{ $notification->subject }}</strong>

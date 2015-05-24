@@ -33,4 +33,18 @@ class NotificationsController extends Controller {
         return view('users.notifications.all', compact('notifications'));
     }
 
+    /**
+     * Fetch all group notifications of a user.
+     *
+     * @param $userSlug
+     *
+     * @return \Illuminate\View\View
+     */
+    public function fetchGroupNotifications($userSlug)
+    {
+        $notifications = $this->notificationRepo->fetchGroupNotifications($userSlug);
+
+        return view('users.notifications.group_notifications', compact('notifications'));
+    }
+
 }

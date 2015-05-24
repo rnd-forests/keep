@@ -136,3 +136,8 @@ Route::get('{users}/notifications', [
     'as'   => 'users.notifications',
     'uses' => 'NotificationsController@fetchAll'
 ]);
+
+Route::get('{users}/notifications/group', [
+    'as'   => 'users.groups.notifications',
+    'uses' => 'NotificationsController@fetchGroupNotifications'
+]);

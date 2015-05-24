@@ -1,7 +1,9 @@
 <?php namespace Keep\Repositories\Notification;
 
+use DB;
 use Carbon\Carbon;
 use Keep\Entities\User;
+use Keep\Services\KeepHelper;
 use Keep\Entities\Notification;
 
 class DbNotificationRepository implements NotificationRepositoryInterface {
@@ -52,6 +54,15 @@ class DbNotificationRepository implements NotificationRepositoryInterface {
     public function fetchOldNotifications()
     {
         return Notification::old()->get();
+    }
+
+    public function fetchGroupNotifications($userSlug)
+    {
+        return Notification::with('groups')->whereIn('id', DB::table('notifiables')
+            ->where('notifiable_type', 'Keep\Entities\Group')
+            ->whereIn('notifiable_id', KeepHelper::getIdsOfGroupsInRelationWithUser(User::findBySlug($userSlug)))->lists('notification_id'))
+            ->orderBy('created_at', 'desc')
+            ->paginate(15);
     }
 
 }

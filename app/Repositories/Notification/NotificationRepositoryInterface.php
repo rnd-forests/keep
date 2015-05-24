@@ -70,4 +70,13 @@ interface NotificationRepositoryInterface {
      */
     public function fetchOldNotifications();
 
+    /**
+     * Fetch all group notifications associated with a user.
+     *
+     * @param $userSlug
+     *
+     * @return mixed
+     */
+    public function fetchGroupNotifications($userSlug);
+
 }

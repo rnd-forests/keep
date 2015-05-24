@@ -1214,6 +1214,10 @@ fieldset[disabled] .btn-violet {
       font-size: 13px;
       color: #ffffff; }
 
+.notification-groups {
+  margin-bottom: 0;
+  background: #ffffff; }
+
 body {
   font: normal 16px "Source Sans Pro", sans-serif;
   color: #525252;

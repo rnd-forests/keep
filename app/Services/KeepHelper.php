@@ -1,5 +1,6 @@
 <?php namespace Keep\Services;
 
+use Keep\Entities\User;
 use Keep\Entities\Group;
 
 class KeepHelper {
@@ -26,6 +27,18 @@ class KeepHelper {
     public static function getIdsOfAssignmentsInRelationWithGroup(Group $group)
     {
         return $group->assignments->fetch('id')->toArray();
+    }
+
+    /**
+     * Pluck all ids of groups associated with a given user.
+     *
+     * @param User $user
+     *
+     * @return mixed
+     */
+    public static function getIdsOfGroupsInRelationWithUser(User $user)
+    {
+        return $user->groups->fetch('id')->toArray();
     }
 
 }
