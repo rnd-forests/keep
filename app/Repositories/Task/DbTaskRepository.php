@@ -5,8 +5,9 @@ use Carbon\Carbon;
 use Keep\Entities\Task;
 use Keep\Entities\User;
 use Keep\Entities\Priority;
+use Keep\Repositories\DbRepository;
 
-class DbTaskRepository implements TaskRepositoryInterface {
+class DbTaskRepository extends DbRepository implements TaskRepositoryInterface {
 
     public function all()
     {
@@ -18,9 +19,16 @@ class DbTaskRepository implements TaskRepositoryInterface {
         return Task::count();
     }
 
-    public function getPaginatedTasks($limit)
+    public function getPaginatedTasks($limit, array $params)
     {
-        return Task::with('owner', 'priority')->orderBy('created_at', 'desc')->paginate($limit);
+        if ($this->isSortable($params))
+        {
+            return Task::with('owner', 'priority')
+                ->orderBy($params['sortBy'], $params['direction'])
+                ->paginate($limit);
+        }
+
+        return Task::with('owner', 'priority')->paginate($limit);
     }
 
     public function findById($id)

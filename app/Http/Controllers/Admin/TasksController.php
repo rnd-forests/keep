@@ -1,5 +1,6 @@
 <?php namespace Keep\Http\Controllers\Admin;
 
+use Request;
 use Keep\Http\Controllers\Controller;
 use Keep\Repositories\Task\TaskRepositoryInterface;
 
@@ -26,7 +27,11 @@ class TasksController extends Controller {
     {
         $tasksCount = $this->taskRepo->count();
 
-        $tasks = $this->taskRepo->getPaginatedTasks(50);
+        $sortBy = Request::get('sortBy');
+
+        $direction = Request::get('direction');
+
+        $tasks = $this->taskRepo->getPaginatedTasks(150, compact('sortBy', 'direction'));
 
         return view('admin.tasks.active_tasks', compact('tasksCount', 'tasks'));
     }

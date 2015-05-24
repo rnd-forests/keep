@@ -1,8 +1,9 @@
 <?php namespace Keep\Repositories\User;
 
 use Keep\Entities\User;
+use Keep\Repositories\DbRepository;
 
-class DbUserRepository implements UserRepositoryInterface {
+class DbUserRepository extends DbRepository implements UserRepositoryInterface {
 
     public function all()
     {
@@ -14,8 +15,15 @@ class DbUserRepository implements UserRepositoryInterface {
         return User::count();
     }
 
-    public function getPaginatedUsers($limit)
+    public function getPaginatedUsers($limit, array $params)
     {
+        if ($this->isSortable($params))
+        {
+            return User::with('tasks', 'roles', 'groups', 'assignments')
+                ->orderBy($params['sortBy'], $params['direction'])
+                ->paginate($limit);
+        }
+
         return User::with('tasks', 'roles', 'groups', 'assignments')->paginate($limit);
     }
 

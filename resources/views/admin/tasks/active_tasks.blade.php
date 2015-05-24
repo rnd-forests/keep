@@ -14,17 +14,21 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Created</th>
+                        <th>{!! sort_tasks_by('id', 'ID') !!}</th>
+                        <th>{!! sort_tasks_by('created_at', 'Created') !!}</th>
                         <th>Author</th>
-                        <th>Title</th>
+                        <th>{!! sort_tasks_by('title', 'Title') !!}</th>
                         <th>Priority</th>
-                        <th>Starting</th>
-                        <th>Ending</th>
+                        <th>{!! sort_tasks_by('starting_date', 'Starting') !!}</th>
+                        <th>{!! sort_tasks_by('finishing_date', 'Ending') !!}</th>
                         <th data-original-title="999" data-container="body"
-                            data-toggle="tooltip" data-placement="top" title="Is this task associated with an assignment?">A?</th>
+                            data-toggle="tooltip" data-placement="top" title="Is this task associated with an assignment?">
+                            {!! sort_tasks_by('is_assigned', 'A?') !!}
+                        </th>
                         <th data-original-title="999" data-container="body"
-                            data-toggle="tooltip" data-placement="top" title="Is this task completed?">C?</th>
+                            data-toggle="tooltip" data-placement="top" title="Is this task completed?">
+                            {!! sort_tasks_by('completed', 'C?') !!}
+                        </th>
                         <th>Actions</th>
                     </tr>
                     </thead>

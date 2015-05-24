@@ -19,11 +19,13 @@ interface UserRepositoryInterface {
     /**
      * Retrieve a paginated collection of users.
      *
-     * @param $limit
+     * @param       $limit
+     *
+     * @param array $params
      *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginatedUsers($limit);
+    public function getPaginatedUsers($limit, array $params);
 
     /**
      * Find a user by ID.

@@ -11,13 +11,13 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th>{!! sort_accounts_by('id', 'ID') !!}</th>
+                        <th>{!! sort_accounts_by('name', 'Name') !!}</th>
+                        <th>{!! sort_accounts_by('email', 'Email') !!}</th>
                         <th>Tasks</th>
                         <th>Groups</th>
                         <th>Assignments</th>
-                        <th>Joined Date</th>
+                        <th>{!! sort_accounts_by('created_at', 'Joined Date') !!}</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

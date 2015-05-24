@@ -1,5 +1,6 @@
 <?php namespace Keep\Http\Controllers\Admin;
 
+use Request;
 use Keep\Http\Controllers\Controller;
 use Keep\Repositories\User\UserRepositoryInterface;
 
@@ -26,7 +27,11 @@ class UsersController extends Controller {
     {
         $usersCount = $this->userRepo->count();
 
-        $activeAccounts = $this->userRepo->getPaginatedUsers(25);
+        $sortBy = Request::get('sortBy');
+
+        $direction = Request::get('direction');
+
+        $activeAccounts = $this->userRepo->getPaginatedUsers(100, compact('sortBy', 'direction'));
 
         return view('admin.accounts.active_accounts', compact('usersCount', 'activeAccounts'));
     }
