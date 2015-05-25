@@ -12,9 +12,6 @@
 
         <div class="collapse navbar-collapse" id="keep-nav">
             <ul class="nav navbar-nav">
-                @if (Auth::check() && Auth::user()->isAdmin())
-                    <li class="active"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
-                @endif
                 @if (Auth::check())
                     <li><a href="{{ route('users.dashboard', Auth::user()) }}">Dashboard</a></li>
                     <li><a href="{{ route('users.scheduler', Auth::user()) }}">Scheduler</a></li>
@@ -43,6 +40,9 @@
                     <li><a href="{{ route('register') }}">Register</a></li>
                     <li><a href="{{ route('login') }}">Login</a></li>
                 @else
+                    @if (Auth::user()->isAdmin())
+                        <li><a href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
+                    @endif
                     <li><a href="{{ route('users.show', Auth::user()) }}">{{ Auth::user()->name }}</a></li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
                 @endif
