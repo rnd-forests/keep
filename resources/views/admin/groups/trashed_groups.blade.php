@@ -8,7 +8,7 @@
             <div class="well text-center">Currently, there is no trashed group.</div>
         @else
             <div class="well">
-                <div class="huge text-center">{{ $trashedGroups->count() }} trashed {{ str_plural('group', $trashedGroups->count()) }}</div>
+                <div class="huge text-center">{{ $trashedGroups->total() }} trashed {{ str_plural('group', $trashedGroups->total()) }}</div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered">

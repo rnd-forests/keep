@@ -25,15 +25,13 @@ class UsersController extends Controller {
      */
     public function activeAccounts()
     {
-        $usersCount = $this->userRepo->count();
-
         $sortBy = Request::get('sortBy');
 
         $direction = Request::get('direction');
 
         $activeAccounts = $this->userRepo->getPaginatedUsers(100, compact('sortBy', 'direction'));
 
-        return view('admin.accounts.active_accounts', compact('usersCount', 'activeAccounts'));
+        return view('admin.accounts.active_accounts', compact('activeAccounts'));
     }
 
     /**

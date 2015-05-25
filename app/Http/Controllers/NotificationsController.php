@@ -26,9 +26,9 @@ class NotificationsController extends Controller {
      *
      * @return \Illuminate\View\View
      */
-	public function fetchAll($userSlug)
+	public function fetchPersonalNotifications($userSlug)
     {
-        $notifications = $this->notificationRepo->fetchAll($userSlug);
+        $notifications = $this->notificationRepo->fetchPersonalNotifications($userSlug);
 
         return view('users.notifications.all', compact('notifications'));
     }

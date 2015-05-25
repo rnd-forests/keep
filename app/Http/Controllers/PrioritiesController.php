@@ -32,6 +32,7 @@ class PrioritiesController extends Controller {
     public function index($userSlug)
     {
         $user = $this->userRepo->findBySlug($userSlug);
+
         $priorities = $this->priorityRepo->all();
 
         return view('users.priorities.index', compact('user', 'priorities'));

@@ -52,7 +52,7 @@ interface NotificationRepositoryInterface {
      *
      * @return mixed
      */
-    public function fetchAll($userSlug);
+    public function fetchPersonalNotifications($userSlug);
 
     /**
      * Count the number of available notifications of a user.

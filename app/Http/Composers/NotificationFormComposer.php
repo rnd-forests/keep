@@ -12,11 +12,11 @@ class NotificationFormComposer {
     public function compose(View $view)
     {
         $types = [
-            'default' => 'General notification',
-            'info' => 'Informative notification',
-            'success' => 'Successful notification',
-            'warning' => 'Warning notification',
-            'danger' => 'Danger notification'
+            'default' => 'General',
+            'info' => 'Informative',
+            'success' => 'Successful',
+            'warning' => 'Warning',
+            'danger' => 'Danger'
         ];
 
         $view->with('types', $types);

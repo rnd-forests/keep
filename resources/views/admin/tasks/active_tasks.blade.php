@@ -8,7 +8,7 @@
             <div class="well text-center">Currently, there is no published task available.</div>
         @else
             <div class="well">
-                <div class="huge text-center">{{ $tasksCount }} published {{ str_plural('task', $tasksCount) }}</div>
+                <div class="huge text-center">{{ $tasks->total() }} published {{ str_plural('task', $tasks->total()) }}</div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered">

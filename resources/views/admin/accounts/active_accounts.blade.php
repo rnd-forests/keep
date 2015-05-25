@@ -5,7 +5,7 @@
 @section('content')
     <div class="admin-contents-wrapper">
         <div class="well">
-            <div class="huge text-center">{{ $usersCount }} active {{ str_plural('account', $usersCount) }}</div>
+            <div class="huge text-center">{{ $activeAccounts->total() }} active {{ str_plural('account', $activeAccounts->total()) }}</div>
         </div>
         <div class="table-responsive">
             <table class="table table-bordered">

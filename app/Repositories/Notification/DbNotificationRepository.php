@@ -39,7 +39,7 @@ class DbNotificationRepository implements NotificationRepositoryInterface {
         return Notification::where('sent_from', 'admin')->orderBy('created_at', 'desc')->paginate($limit);
     }
 
-    public function fetchAll($userSlug)
+    public function fetchPersonalNotifications($userSlug)
     {
         $user = User::findBySlug($userSlug);
 

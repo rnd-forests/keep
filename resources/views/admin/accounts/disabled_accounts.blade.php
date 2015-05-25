@@ -8,7 +8,7 @@
             <div class="well text-center">Currently, there is no disabled account.</div>
         @else
             <div class="well">
-                <div class="huge text-center">{{ $disabledAccounts->count() }} disabled {{ str_plural('account', $disabledAccounts->count()) }}</div>
+                <div class="huge text-center">{{ $disabledAccounts->total() }} disabled {{ str_plural('account', $disabledAccounts->total()) }}</div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered">

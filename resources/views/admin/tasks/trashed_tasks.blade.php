@@ -8,7 +8,7 @@
             <div class="well text-center">Currently, there is no trashed task.</div>
         @else
             <div class="well">
-                <div class="huge text-center">{{ $trashedTasks->count() }} trashed {{ str_plural('task', $trashedTasks->count()) }}</div>
+                <div class="huge text-center">{{ $trashedTasks->total() }} trashed {{ str_plural('task', $trashedTasks->total()) }}</div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered">

@@ -134,7 +134,7 @@ Route::get('{users}/priorities/{priorities}/tasks', [
 
 Route::get('{users}/notifications', [
     'as'   => 'users.notifications',
-    'uses' => 'NotificationsController@fetchAll'
+    'uses' => 'NotificationsController@fetchPersonalNotifications'
 ]);
 
 Route::get('{users}/notifications/group', [
