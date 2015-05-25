@@ -5,6 +5,7 @@ use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
 class ProfilesTableSeeder extends Seeder {
+
     public function run()
     {
         $faker = Faker::create();

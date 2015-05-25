@@ -1,5 +1,6 @@
 <?php
 
+use Keep\Entities\User;
 use Illuminate\Database\Seeder as Seeder;
 
 class DatabaseSeeder extends Seeder {
@@ -56,6 +57,11 @@ class DatabaseSeeder extends Seeder {
     public function run()
     {
         Eloquent::unguard();
+
+        // Flush event listeners for User model to prevent
+        // creating null records when seeding the profiles
+        // table.
+        User::flushEventListeners();
 
         $this->truncateDatabase();
 
