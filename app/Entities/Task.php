@@ -260,6 +260,19 @@ class Task extends Model implements SluggableInterface {
             ->whereBetween('finishing_date', [Carbon::now(), Carbon::now()->addDays(5)]);
     }
 
+    /**
+     * Search tasks by title query scope.
+     *
+     * @param $query
+     * @param $pattern
+     *
+     * @return mixed
+     */
+    public function scopeSearch($query, $pattern)
+    {
+        return $query->where('title', 'LIKE', "%$pattern%");
+    }
+
     //--- ACCESSORS vs. MUTATORS ---//
     public function setStartingDateAttribute($date)
     {

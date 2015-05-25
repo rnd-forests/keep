@@ -221,4 +221,9 @@ class DbTaskRepository extends DbRepository implements TaskRepositoryInterface {
         })->toArray();
     }
 
+    public function searchByTitle($user, $pattern)
+    {
+        return $user->tasks()->search($pattern)->orderBy('created_at', 'desc')->paginate(15);
+    }
+
 }

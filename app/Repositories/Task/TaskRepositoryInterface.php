@@ -291,4 +291,14 @@ interface TaskRepositoryInterface {
      */
     public function fetchAllTasksOfAUser($userSlug);
 
+    /**
+     * Search for tasks by their titles.
+     *
+     * @param $user
+     * @param $pattern
+     *
+     * @return mixed
+     */
+    public function searchByTitle($user, $pattern);
+
 }

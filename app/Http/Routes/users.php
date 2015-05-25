@@ -141,3 +141,8 @@ Route::get('{users}/notifications/group', [
     'as'   => 'users.groups.notifications',
     'uses' => 'NotificationsController@fetchGroupNotifications'
 ]);
+
+Route::get('{users}/search', [
+    'as'   => 'users.search.task',
+    'uses' => 'SearchController@searchTasks'
+]);

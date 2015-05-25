@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="keep-nav">
             <ul class="nav navbar-nav">
                 @if (Auth::check() && Auth::user()->isAdmin())
-                    <li  class="active"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
+                    <li class="active"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
                 @endif
                 @if (Auth::check())
                     <li><a href="{{ route('users.dashboard', Auth::user()) }}">Dashboard</a></li>

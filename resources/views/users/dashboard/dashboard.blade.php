@@ -5,6 +5,33 @@
 @section('title', 'Dashboard')
 
 @section('content')
+    <div class="row">
+        <div id="search-keyword-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header text-center text-warning">Wrong searching pattern</div>
+                    <div class="modal-body text-center">Your searching keyword cannot be blank. Try another keyword.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+            {!! Form::open(['method' => 'GET', 'route' => ['users.search.task', Auth::user()], 'id' => 'search-form']) !!}
+                <div class="form-group has-feedback">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                        {!! Form::input('search', 'q', null, [
+                            'id' => 'keyword',
+                            'data-toggle' => 'popover',
+                            'data-placement' => 'bottom',
+                            'data-content' => 'Searching pattern cannot be blank.',
+                            'class' => 'form-control input-lg',
+                            'placeholder' => 'Search tasks...'
+                        ]) !!}
+                    </div>
+                </div>
+            {!! Form::close() !!}
+        </div>
+    </div>
     <div class="row user-dashboard">
         <div class="col-md-3">
             <div class="panel panel-danger">
@@ -167,4 +194,30 @@
             })();
         </script>
     @endunless
+    <script>
+        (function() {
+            var search_box, search_form;
+            search_form = $('#search-form');
+            search_box = $('#keyword');
+            search_box.on("input", function() {
+                var input;
+                input = $.trim($(this).val());
+                if (!input || input.length === 0) {
+                    return $(this).popover('toggle');
+                } else {
+                    return $(this).popover('hide');
+                }
+            });
+
+            search_form.on("submit", function() {
+                var input;
+                input = $.trim(search_box.val());
+                if (!input || input.length === 0) {
+                    $('#search-keyword-modal').modal("show");
+                    search_box.popover('hide');
+                    return false;
+                }
+            });
+        })();
+    </script>
 @stop
