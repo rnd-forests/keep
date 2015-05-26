@@ -40,7 +40,15 @@ class SessionsController extends Controller {
         {
             flash()->success('You have been logged in.');
 
-            return redirect()->intended('/');
+            if (Auth::user()->isAdmin())
+            {
+                return redirect()->route('admin.dashboard');
+            }
+            else
+            {
+                return redirect()->intended('/');
+            }
+
         }
 
         return redirect()->route('login')->withInput($request->only('email', 'remember'))

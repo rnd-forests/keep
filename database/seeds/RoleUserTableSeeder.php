@@ -9,13 +9,13 @@ class RoleUserTableSeeder extends Seeder {
     public function run()
     {
         $admin = Role::where('name', 'admin')->firstOrFail();
-        $owner = Role::where('name', 'owner')->firstOrFail();
+//        $owner = Role::where('name', 'owner')->firstOrFail();
 
-        $fly = User::find(1);
+//        $fly = User::find(1);
         $moon = User::find(2);
 
-        $fly->attachRole($admin);
-        $fly->attachRole($owner);
+//        $fly->attachRole($admin);
+//        $fly->attachRole($owner);
 
         $moon->attachRole($admin);
     }

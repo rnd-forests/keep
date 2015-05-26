@@ -24,6 +24,11 @@
         <div class="col-md-7">
             @include('layouts.partials.errors')
             @include('admin.groups.partials.add_users_form')
+            <div class="text-center">
+                <a href="{{ route('admin.active.groups') }}" class="btn btn-primary">
+                    Back
+                </a>
+            </div>
         </div>
     </div>
 @stop
