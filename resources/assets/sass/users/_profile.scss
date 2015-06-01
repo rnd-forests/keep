@@ -1,11 +1,6 @@
 .user-profile-wrapper {
-    textarea {
-        resize: none;
-    }
-
     .username {
         margin: 25px 0;
-        text-shadow: 0 0 1px #555555;
     }
 
     .tab-content {
@@ -14,13 +9,8 @@
         .panel {
             .list-group {
                 .list-group-item {
-                    background: 0 0;
-                    border: none;
+                    border: 0;
                     text-align: center;
-
-                    .list-group-item-heading {
-                        color: #6e6e6e;
-                    }
                 }
             }
         }

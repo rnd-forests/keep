@@ -1,10 +1,9 @@
 .groups-wrapper {
     .panel {
         .well {
+            border: 0;
             background: 0 0;
             text-align: center;
-            margin-bottom: 0;
-            padding: 10px 0 0;
         }
 
         .panel-footer {
@@ -18,10 +17,6 @@
 .group-wrapper {
     .group-wrapper__users {
         margin-top: 40px;
-
-        .well {
-            background-color: #fafaf9;
-        }
     }
 
     form {

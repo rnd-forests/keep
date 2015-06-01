@@ -38,32 +38,26 @@ class EventServiceProvider extends ServiceProvider {
      */
     public function boot(DispatcherContract $events)
     {
-        User::created(function ($user)
-        {
-            $user->profile()->save(new Profile());
+        User::created(function ($user) { 
+            $user->profile()->save(new Profile()); 
         });
 
-        Task::deleting(function ($task)
-        {
+        Task::deleting(function ($task) {
             $task->destroyer_id = Auth::user()->id;
             $task->save();
         });
 
-        Task::restoring(function ($task)
-        {
+        Task::restoring(function ($task) {
             $task->destroyer_id = 0;
             $task->save();
         });
 
-        Assignment::deleting(function ($assignment)
-        {
+        Assignment::deleting(function ($assignment) {
             $assignment->task()->update(['destroyer_id' => Auth::user()->id]);
-
             $assignment->task()->delete();
         });
 
-        Notification::deleting(function ($notification)
-        {
+        Notification::deleting(function ($notification) {
             DB::table('notifiables')->where('notification_id', $notification->id)->delete();
         });
 

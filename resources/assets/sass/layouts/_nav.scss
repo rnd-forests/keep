@@ -2,26 +2,7 @@
     background: #f6f9fa;
     border-bottom-color: #e9f0f3;
 
-    .navbar-brand {
-        color: #1ab394;
-
-        &:hover, &:active, &:focus {
-            color: darken(#1ab394, 10%);
-        }
-    }
-
-    .navbar-nav > li a {
-        &:hover, &:active, &:focus {
-            color: #1ab394;
-        }
-    }
-
-    .navbar-toggle {
-        border: none;
-    }
-
     .dropdown-menu {
-        border: none;
         background-color: #f6f9fa;
 
         a:hover, a:active, a:focus {

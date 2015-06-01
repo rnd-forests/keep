@@ -71,7 +71,7 @@ class UsersController extends Controller {
     {
         $this->userRepo->delete($slug);
 
-        flash()->success("This account has been disabled.");
+        flash()->info("This account has been disabled.");
 
         return redirect()->route('admin.active.accounts');
     }

@@ -8,11 +8,7 @@
             @foreach($notifications as $notification)
                 <div class="alert alert-{{ $notification->type }} notification">
                     <strong>{{ $notification->subject }}</strong>
-                    <h6>
-                        <span class="label label-{{ $notification->type }}">
-                            {{ $notification->present()->formatTimeForHumans($notification->created_at) }}
-                        </span>
-                    </h6>
+                    <h6>{{ $notification->present()->formatTimeForHumans($notification->created_at) }}</h6>
                     <p>{{ $notification->body }}</p>
                     <div class="text-center" style="margin-top: 10px">@include('admin.notifications.partials.delete_form')</div>
                 </div>

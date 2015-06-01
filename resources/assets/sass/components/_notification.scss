@@ -1,22 +1,20 @@
 .notification {
     font-size: 14px;
 
-    .label {
-        font-size: 12px;
-    }
-
     .well {
         background: #ffffff;
-        margin-bottom: 0;
+        border: none;
+        color: #333;
     }
 }
 
 .notification-count {
     .label {
+        background: 0 0;
+        color: #ff0000;
         line-height: 12px;
-        padding: 5px;
         position: absolute;
-        right: -12px;
-        top: 4px;
+        right: -8px;
+        top: 8px;
     }
 }

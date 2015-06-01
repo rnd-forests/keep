@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home') }}">@KEEP</a>
+            <a class="navbar-brand" href="{{ route('home') }}">KEEP</a>
         </div>
 
         <div class="collapse navbar-collapse" id="keep-nav">
@@ -30,7 +30,7 @@
                     <li>
                         <a href="{{ route('users.notifications', Auth::user()) }}" class="notification-count">
                             Notifications
-                            <span class="label label-primary">{{ $notificationCount }}</span>
+                            <span class="label">{{ $notificationCount }}</span>
                         </a>
                     </li>
                 @endif

@@ -1,0 +1,13 @@
+// Panels
+
+.panel-variant(@heading-text-color; @heading-bg-color) {
+  & > .panel-heading {
+    color: #fff;
+    background-color: @heading-bg-color;
+
+    .badge {
+      color: @heading-bg-color;
+      background-color: @heading-text-color;
+    }
+  }
+}

@@ -23,9 +23,11 @@
                     @endunless
                     @if($notification->hasValidObject() && $notification->object_type == 'Keep\Entities\Task')
                         <div class="well">
-                            <strong class="text-navy">{{ $notification->getObject()->title }}</strong>
+                            <strong>{{ $notification->getObject()->title }}</strong>
                             <h6>{{ $notification->getObject()->present()->getRemainingDays($notification->getObject()->finishing_date) }}</h6>
-                            <a href="{{ route('users.tasks.show', [$notification->getObject()->owner, $notification->getObject()]) }}">Read More</a>
+                            <a href="{{ route('users.tasks.show', [
+                                $notification->getObject()->owner,
+                                $notification->getObject()]) }}"><i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     @endif
                 </div>

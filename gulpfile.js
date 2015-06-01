@@ -4,9 +4,11 @@ elixir(function(mix) {
 
     mix.sass('app.scss');
 
+    mix.less('bootstrap/bootstrap.less');
+
     mix.styles([
+        'bootstrap.css',
         'vendor/font-awesome.css',
-        'vendor/bootstrap.css',
         'vendor/datetimepicker.css',
         'vendor/summernote.css',
         'app.css'

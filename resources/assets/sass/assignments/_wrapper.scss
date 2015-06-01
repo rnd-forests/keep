@@ -1,9 +1,7 @@
 .assignments-wrapper {
     .panel {
-        .panel-body {
-            .label {
-                margin-right: 5px;
-            }
+        .label {
+            margin-right: 5px;
         }
 
         .panel-footer {
@@ -19,14 +17,6 @@
         form {
             display: inline-block;
         }
-    }
-
-    .page-header {
-        margin-top: 25px;
-        margin-bottom: 0;
-        padding-bottom: 5px;
-        border-bottom: none;
-        text-align: center;
     }
 }
 

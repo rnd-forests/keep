@@ -16,6 +16,10 @@
             {{ $user->email }}
         </li>
         <li class="list-group-item">
+            <h6 class="list-group-item-heading">Tasks Count</h6>
+            {{ $user->tasks->count() }}
+        </li>
+        <li class="list-group-item">
             <h6 class="list-group-item-heading">Biography</h6>
             {{ $user->present()->attribute($user->profile->bio) }}
         </li>

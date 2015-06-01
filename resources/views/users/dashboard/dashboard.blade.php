@@ -18,7 +18,7 @@
             {!! Form::open(['method' => 'GET', 'route' => ['users.search.task', Auth::user()], 'id' => 'search-form']) !!}
                 <div class="form-group has-feedback">
                     <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                        <span class="input-group-addon"><span class="fa fa-search"></span></span>
                         {!! Form::input('search', 'q', null, [
                             'id' => 'keyword',
                             'data-toggle' => 'popover',

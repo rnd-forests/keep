@@ -4,7 +4,6 @@
     margin: 0;
     position: relative;
     vertical-align: middle;
-
     @import "single";
     @import "multiple";
 }
@@ -29,4 +28,15 @@
     filter: alpha(opacity=0);
 }
 
-@import "theme/layout";
+.select2-hidden-accessible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+@import "theme/default/layout";

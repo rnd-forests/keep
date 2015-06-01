@@ -22,20 +22,20 @@
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="account">
                         @include('layouts.partials.errors')
-                        <div class="panel panel-dangerzone">
+                        <div class="panel panel-danger panel-profile">
                             <div class="panel-heading">Update current username</div>
                             <div class="panel-body">
                                 @include('users.partials.update_username_form')
                             </div>
                         </div>
-                        <div class="panel panel-dangerzone">
+                        <div class="panel panel-danger panel-profile">
                             <div class="panel-heading">Update current password</div>
                             <div class="panel-body">
                                 @include('users.partials.update_password_form')
                             </div>
                         </div>
                         @unless($user->isAdmin())
-                            <div class="panel panel-dangerzone">
+                            <div class="panel panel-danger">
                                 @include('users.partials.cancel_account_modal')
                                 <div class="panel-heading">Cancel your account</div>
                                 <div class="panel-body">

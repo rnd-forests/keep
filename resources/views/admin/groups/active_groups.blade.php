@@ -31,7 +31,7 @@
                                    data-toggle="tooltip" data-placement="bottom" title="Edit group information">
                                     <i class="fa fa-pencil"></i>
                                 </a>
-                                <a href="{{ route('admin.groups.add.users', $group) }}" class="btn btn-violet btn-circle"
+                                <a href="{{ route('admin.groups.add.users', $group) }}" class="btn btn-default btn-circle"
                                    data-toggle="tooltip" data-placement="bottom" title="Add more users">
                                     <i class="fa fa-plus"></i>
                                 </a>

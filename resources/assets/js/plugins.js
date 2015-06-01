@@ -3,7 +3,6 @@
     $('[data-toggle="tooltip"]').tooltip();
     $('.task-time-form').datetimepicker();
     $('#tag_list').select2({ placeholder: 'Choose tags for this task' });
-    $('#priority_list').select2();
     $('#notification_types').select2();
     $('#group_new_users').select2({ placeholder: 'Search and choose users to add' });
     $('#user_list').select2({ placeholder: 'Type and search for members' });

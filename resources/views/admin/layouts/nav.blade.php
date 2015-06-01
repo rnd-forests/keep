@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home') }}">@KEEP</a>
+            <a class="navbar-brand" href="{{ route('home') }}">KEEP</a>
         </div>
         <div id="keep-navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">

@@ -30,9 +30,9 @@ class TaskPresenter extends Presenter {
      */
     public function printStatus($status)
     {
-        if ($status) return '<i class="text-navy fa fa-check"></i>';
+        if ($status) return '<i class="text-primary fa fa-check"></i>';
 
-        return '<i class="text-warning fa fa-times"></i>';
+        return '<i class="text-danger fa fa-times"></i>';
     }
 
     /**

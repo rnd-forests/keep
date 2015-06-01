@@ -2,6 +2,7 @@
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler {
@@ -63,6 +64,13 @@ class Handler extends ExceptionHandler {
         if ($e instanceof ModelNotFoundException)
         {
             flash()->warning('The ' . substr($e->getModel(), 14) . ' you are looking for, cannot be found.');
+
+            return redirect()->home();
+        }
+
+        if ($e instanceof NotFoundHttpException)
+        {
+            flash()->warning('The URL you are looking for cannot be found.');
 
             return redirect()->home();
         }

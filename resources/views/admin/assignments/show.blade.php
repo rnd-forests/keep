@@ -8,7 +8,6 @@
             <div class="assignment-wrapper">
                 <h2 class="text-center">{{ $assignment->assignment_name }}</h2>
 
-                <div class="page-header"><h5>Associated Task</h5></div>
                 @include('users.tasks.partials.task', ['task' => $assignment->task])
 
                 @if($assignment->users->isEmpty())
@@ -33,7 +32,6 @@
                     </ul>
                 @endif
 
-                <div class="page-header"><h5>Assignment Controls</h5></div>
                 <div class="assignment-controls text-center">
                     <a href="{{ route('admin.assignments.edit', $assignment) }}">
                         <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit assignment">

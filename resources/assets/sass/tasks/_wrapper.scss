@@ -9,10 +9,6 @@
         .task-title {
             font-size: 25px;
             color: #ffffff;
-
-            &:hover {
-                color: darken(#ffffff, 5%);
-            }
         }
 
         .task-time-ago {
@@ -25,6 +21,7 @@
         .task-labels {
             margin-bottom: 15px;
             text-align: center;
+
             .label {
                 margin-bottom: 5px;
                 display: inline-block;
@@ -33,12 +30,11 @@
         
         .well {
             background: #ffffff;
-            color: #7f8a94;
 
             .label {
                 display: inline-block;
-                margin-bottom: 5px;
-                margin-right: 5px;
+                margin-bottom: 3px;
+                margin-right: 3px;
             }
 
             .fa {
