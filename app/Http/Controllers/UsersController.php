@@ -65,7 +65,7 @@ class UsersController extends Controller {
 
         flash()->success("Your account has been deleted.");
 
-        return redirect()->route('home');
+        return redirect()->home();
     }
 
 }

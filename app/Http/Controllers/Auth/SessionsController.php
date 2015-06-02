@@ -58,7 +58,7 @@ class SessionsController extends Controller {
 
         flash()->success('You have been logged out.');
 
-        return redirect()->route('home');
+        return redirect()->home();
     }
 
 }

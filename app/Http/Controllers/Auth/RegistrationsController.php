@@ -38,7 +38,7 @@ class RegistrationsController extends Controller {
         {
             flash()->info('Check your email address to activate your account.');
 
-            return redirect()->route('home');
+            return redirect()->home();
         }
 
         return redirect()->route('register');
@@ -57,12 +57,12 @@ class RegistrationsController extends Controller {
         {
             flash()->success('Your account has been activated.');
 
-            return redirect()->route('home');
+            return redirect()->home();
         }
 
         flash()->warning('Something went wrong. Please check your activation link');
 
-        return redirect()->route('home');
+        return redirect()->home();
     }
 
 }

@@ -19,7 +19,7 @@ class RedirectIfAuthenticated {
 
         if ($auth->check())
         {
-            return redirect()->route('home');
+            return redirect()->home();
         }
 
         return $next($request);
