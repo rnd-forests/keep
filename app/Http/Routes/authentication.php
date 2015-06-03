@@ -1,7 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function ()
-{
+Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     Route::get('register', [
         'as'   => 'register',
         'uses' => 'RegistrationsController@create'
@@ -43,4 +42,11 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function ()
     ]);
 
     Route::controllers(['password' => 'PasswordController']);
+});
+
+Route::group(['prefix' => 'oauth', 'namespace' => 'Auth'], function () {
+    Route::get('github', [
+        'as'   => 'github.authentication',
+        'uses' => 'OAuthController@loginWithGithub'
+    ]);
 });

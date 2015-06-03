@@ -7,6 +7,12 @@
 @section('content')
 	<div class="row">
         <div class="col-md-6 col-md-offset-3">
+            <p class="text-center">
+                <a href="{{ route('github.authentication') }}" class="btn btn-default"
+                   data-toggle="tooltip" data-placement="bottom" title="Register using GitHub">
+                    <i class="fa fa-github"></i>
+                </a>
+            </p>
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Register</strong></div>
                 <div class="panel-body">

@@ -147,4 +147,12 @@ interface UserRepositoryInterface {
      */
     public function fetchUsersByIds(array $ids);
 
+    /**
+     * @param array $userData
+     * @param       $provider
+     *
+     * @return mixed
+     */
+    public function findByUsernameOrCreate(array $userData, $provider);
+
 }
