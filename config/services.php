@@ -25,19 +25,19 @@ return [
     'github' => [
         'client_id'     => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect'      => 'http://keep.dev.com/oauth/github',
+        'redirect'      => 'http://keep.app/oauth/github',
     ],
 
     'twitter' => [
         'client_id'     => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect'      => 'http://keep.dev.com/oauth/twitter',
+        'redirect'      => 'http://keep.app/oauth/twitter',
     ],
 
     'facebook' => [
         'client_id'     => env('FACEBOOK_APP_ID'),
         'client_secret' => env('FACEBOOK_APP_SECRET'),
-        'redirect'      => 'http://keep.dev.com/oauth/facebook',
+        'redirect'      => 'http://keep.app/oauth/facebook',
     ],
 
 ];
