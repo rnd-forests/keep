@@ -4,15 +4,30 @@
 
 @section('title', 'Register')
 
+@section('header')
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '491350914355734',
+                xfbml      : true,
+                version    : 'v2.3'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+@stop
+
 @section('content')
 	<div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <p class="text-center">
-                <a href="{{ route('github.authentication') }}" class="btn btn-default"
-                   data-toggle="tooltip" data-placement="bottom" title="Register using GitHub">
-                    <i class="fa fa-github"></i>
-                </a>
-            </p>
+            @include('auth.partials.social_auth')
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Register</strong></div>
                 <div class="panel-body">

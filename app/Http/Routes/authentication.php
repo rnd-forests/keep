@@ -49,4 +49,9 @@ Route::group(['prefix' => 'oauth', 'namespace' => 'Auth'], function () {
         'as'   => 'github.authentication',
         'uses' => 'OAuthController@loginWithGithub'
     ]);
+
+    Route::get('facebook', [
+        'as'   => 'facebook.authentication',
+        'uses' => 'OAuthController@loginWithFacebook'
+    ]);
 });

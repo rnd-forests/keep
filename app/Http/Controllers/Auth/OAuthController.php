@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Keep\OAuth\GithubAuthentication;
 use Keep\Http\Controllers\Controller;
+use Keep\OAuth\FacebookAuthentication;
 use Keep\OAuth\Contracts\OAuthUserListener;
 
 class OAuthController extends Controller implements OAuthUserListener {
@@ -13,11 +14,26 @@ class OAuthController extends Controller implements OAuthUserListener {
      * @param GithubAuthentication $githubAuthentication
      * @param Request              $request
      *
-     * @return mixed
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Keep\Exceptions\InvalidUserException
      */
     public function loginWithGithub(GithubAuthentication $githubAuthentication, Request $request)
     {
-        return $githubAuthentication->execute($request->has('code'), $this);
+        return $githubAuthentication->authenticate($request->has('code'), $this, 'github');
+    }
+
+    /**
+     * Authenticate user using Facebook provider.
+     *
+     * @param FacebookAuthentication $facebookAuthentication
+     * @param Request                $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Keep\Exceptions\InvalidUserException
+     */
+    public function loginWithFacebook(FacebookAuthentication $facebookAuthentication, Request $request)
+    {
+        return $facebookAuthentication->authenticate($request->has('code'), $this, 'facebook');
     }
 
     /**

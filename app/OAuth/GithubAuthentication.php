@@ -1,38 +1,8 @@
 <?php namespace Keep\OAuth;
 
 use Keep\Entities\User;
-use Keep\Exceptions\InvalidUserException;
-use Keep\OAuth\Contracts\OAuthUserListener;
 
 class GithubAuthentication extends AuthenticationProvider {
-
-    /**
-     * Authenticate user.
-     *
-     * @param                   $hasCode
-     * @param OAuthUserListener $listener
-     *
-     * @return mixed
-     * @throws InvalidUserException
-     */
-    public function execute($hasCode, OAuthUserListener $listener)
-    {
-        $provider = 'github';
-
-        if (!$hasCode) return $this->getAuthorizationUrl($provider);
-
-        $postBackData = $this->handleProviderCallback($provider);
-
-        $user = $this->userRepo->findByUsernameOrCreate($this->getUserProviderData($postBackData), $provider);
-
-        if (!$user) throw new InvalidUserException('Something went wrong with your GitHub authentication process.');
-
-        $this->updateAuthenticatedUser($user, $postBackData);
-
-        $this->auth->login($user, true);
-
-        return $listener->userHasLoggedIn($user);
-    }
 
     /**
      * Update authenticated user profile.
@@ -52,6 +22,16 @@ class GithubAuthentication extends AuthenticationProvider {
         ]);
 
         return $user->save();
+    }
+
+    /**
+     * Get authentication exception message.
+     *
+     * @return string
+     */
+    function getExceptionMessage()
+    {
+        return 'Something went wrong with your GitHub authentication process.';
     }
 
 }

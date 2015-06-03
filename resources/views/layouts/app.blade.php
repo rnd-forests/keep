@@ -16,6 +16,7 @@
 	<![endif]-->
 </head>
 <body>
+    @yield('header')
     @include('layouts.partials.nav')
     @yield('banner')
     <div class="container">
