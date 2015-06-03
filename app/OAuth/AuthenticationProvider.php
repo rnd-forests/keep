@@ -1,8 +1,10 @@
 <?php namespace Keep\OAuth;
 
+use Keep\Entities\User;
 use Illuminate\Contracts\Auth\Guard;
 use Keep\Repositories\User\UserRepositoryInterface;
 use Laravel\Socialite\Contracts\Factory as Socialite;
+use Laravel\Socialite\Contracts\User as SocialiteUser;
 
 abstract class AuthenticationProvider {
 
@@ -49,8 +51,27 @@ abstract class AuthenticationProvider {
     /**
      * Get data from provider returned information.
      *
+     * @param $postBackData
+     *
      * @return array
      */
-    abstract public function getProviderData();
+    public function getUserProviderData(SocialiteUser $postBackData)
+    {
+        return [
+            'auth_provider_id' => $postBackData->getId(),
+            'name'             => $postBackData->getName(),
+            'email'            => $postBackData->getEmail(),
+        ];
+    }
+
+    /**
+     * Update authenticated user profile.
+     *
+     * @param User $user
+     * @param      $userData
+     *
+     * @return mixed
+     */
+    abstract function updateAuthenticatedUser(User $user, $userData);
 
 }

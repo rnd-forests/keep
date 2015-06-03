@@ -1,5 +1,6 @@
 <?php namespace Keep\OAuth;
 
+use Keep\Entities\User;
 use Keep\Exceptions\InvalidUserException;
 use Keep\OAuth\Contracts\OAuthUserListener;
 
@@ -16,11 +17,17 @@ class GithubAuthentication extends AuthenticationProvider {
      */
     public function execute($hasCode, OAuthUserListener $listener)
     {
-        if (! $hasCode) return $this->getAuthorizationUrl('github');
+        $provider = 'github';
 
-        $user = $this->userRepo->findByUsernameOrCreate($this->getProviderData(), 'github');
+        if (!$hasCode) return $this->getAuthorizationUrl($provider);
 
-        if (! $user) throw new InvalidUserException('Something went wrong with your GitHub authentication process.');
+        $postBackData = $this->handleProviderCallback($provider);
+
+        $user = $this->userRepo->findByUsernameOrCreate($this->getUserProviderData($postBackData), $provider);
+
+        if (!$user) throw new InvalidUserException('Something went wrong with your GitHub authentication process.');
+
+        $this->updateAuthenticatedUser($user, $postBackData);
 
         $this->auth->login($user, true);
 
@@ -28,19 +35,23 @@ class GithubAuthentication extends AuthenticationProvider {
     }
 
     /**
-     * Get data from provider returned information.
+     * Update authenticated user profile.
      *
-     * @return array
+     * @param User $user
+     * @param      $userData
+     *
+     * @return bool
      */
-    public function getProviderData()
+    function updateAuthenticatedUser(User $user, $userData)
     {
-        $user = $this->handleProviderCallback('github');
+        $user->profile()->update([
+            'location'        => $userData->user['location'],
+            'bio'             => $userData->user['bio'],
+            'company'         => $userData->user['company'],
+            'github_username' => str_replace('https://github.com/', '', $userData->user['html_url'])
+        ]);
 
-        return [
-            'auth_provider_id' => $user->getId(),
-            'name' => $user->getName(),
-            'email' => $user->getEmail(),
-        ];
+        return $user->save();
     }
 
 }
