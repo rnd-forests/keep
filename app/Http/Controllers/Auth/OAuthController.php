@@ -9,6 +9,14 @@ use Keep\OAuth\Contracts\OAuthUserListener;
 class OAuthController extends Controller implements OAuthUserListener {
 
     /**
+     * Create new oauth controller instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+    /**
      * Authenticate user using GitHub provider.
      *
      * @param GithubAuthentication $githubAuthentication
