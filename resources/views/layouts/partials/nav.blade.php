@@ -14,16 +14,22 @@
             <ul class="nav navbar-nav">
                 @if (Auth::check())
                     <li><a href="{{ route('users.dashboard', Auth::user()) }}">Dashboard</a></li>
-                    <li><a href="{{ route('users.scheduler', Auth::user()) }}">Scheduler</a></li>
-                    <li><a href="{{ route('users.tasks.create', Auth::user()) }}">Schedule Task</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Task Filter <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tasks <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ route('users.tasks.create', Auth::user()) }}">Schedule New Task</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ route('users.scheduler', Auth::user()) }}">Tasks Scheduler</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ route('users.assignments.index', Auth::user()) }}">Assignments</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filters <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('users.tag.list', Auth::user()) }}">Tags</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ route('users.priorities', Auth::user()) }}">Priority Levels</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{{ route('users.assignments.index', Auth::user()) }}">Assignments</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ route('users.groups.index', Auth::user()) }}">Groups</a></li>
@@ -40,11 +46,18 @@
                     <li><a href="{{ route('register') }}">Register</a></li>
                     <li><a href="{{ route('login') }}">Login</a></li>
                 @else
-                    @if (Auth::user()->isAdmin())
-                        <li><a href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
-                    @endif
-                    <li><a href="{{ route('users.show', Auth::user()) }}">{{ Auth::user()->name }}</a></li>
-                    <li><a href="{{ route('logout') }}">Logout</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ route('users.show', Auth::user()) }}">Profile</a></li>
+                            <li class="divider"></li>
+                            @if (Auth::user()->isAdmin())
+                                <li><a href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
+                                <li class="divider"></li>
+                            @endif
+                            <li><a href="{{ route('logout') }}">Logout</a></li>
+                        </ul>
+                    </li>
                 @endif
             </ul>
         </div>
