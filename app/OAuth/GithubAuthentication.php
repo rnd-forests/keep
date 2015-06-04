@@ -1,8 +1,9 @@
 <?php namespace Keep\OAuth;
 
 use Keep\Entities\User;
+use Keep\OAuth\Contracts\ProviderInterface;
 
-class GithubAuthentication extends AuthenticationProvider {
+class GithubAuthentication extends AuthenticationProvider implements ProviderInterface {
 
     /**
      * Update authenticated user profile.
@@ -32,6 +33,16 @@ class GithubAuthentication extends AuthenticationProvider {
     function getExceptionMessage()
     {
         return 'Something went wrong with your GitHub authentication process.';
+    }
+
+    /**
+     * Get authentication provider name.
+     *
+     * @return string
+     */
+    protected function getAuthProvider()
+    {
+        return 'github';
     }
 
 }

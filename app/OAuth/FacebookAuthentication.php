@@ -1,8 +1,9 @@
 <?php namespace Keep\OAuth;
 
 use Keep\Entities\User;
+use Keep\OAuth\Contracts\ProviderInterface;
 
-class FacebookAuthentication extends AuthenticationProvider {
+class FacebookAuthentication extends AuthenticationProvider implements ProviderInterface {
 
     /**
      * Update authenticated user profile.
@@ -25,6 +26,16 @@ class FacebookAuthentication extends AuthenticationProvider {
     function getExceptionMessage()
     {
         return 'Something went wrong with your Facebook authentication process.';
+    }
+
+    /**
+     * Get authentication provider name.
+     *
+     * @return string
+     */
+    protected function getAuthProvider()
+    {
+        return 'facebook';
     }
 
 }

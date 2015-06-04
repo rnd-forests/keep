@@ -27,7 +27,7 @@ class OAuthController extends Controller implements OAuthUserListener {
      */
     public function loginWithGithub(GithubAuthentication $githubAuthentication, Request $request)
     {
-        return $githubAuthentication->authenticate($request->has('code'), $this, 'github');
+        return $githubAuthentication->authenticate($request->has('code'), $this);
     }
 
     /**
@@ -41,7 +41,7 @@ class OAuthController extends Controller implements OAuthUserListener {
      */
     public function loginWithFacebook(FacebookAuthentication $facebookAuthentication, Request $request)
     {
-        return $facebookAuthentication->authenticate($request->has('code'), $this, 'facebook');
+        return $facebookAuthentication->authenticate($request->has('code'), $this);
     }
 
     /**

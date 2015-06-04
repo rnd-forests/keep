@@ -7,7 +7,7 @@ use Keep\OAuth\Contracts\OAuthUserListener;
 use Keep\Repositories\User\UserRepositoryInterface;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 use Laravel\Socialite\Contracts\User as SocialiteUser;
-
+// Template pattern
 abstract class AuthenticationProvider {
 
     protected $userRepo, $socialite, $auth;
@@ -31,20 +31,19 @@ abstract class AuthenticationProvider {
      *
      * @param                   $hasCode
      * @param OAuthUserListener $listener
-     * @param                   $provider
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws InvalidUserException
      */
-    public function authenticate($hasCode, OAuthUserListener $listener, $provider)
+    public final function authenticate($hasCode, OAuthUserListener $listener)
     {
-        if (!$hasCode) return $this->getAuthorizationUrl($provider);
+        if ( ! $hasCode) return $this->getAuthorizationUrl($this->getAuthProvider());
 
-        $providerData = $this->handleProviderCallback($provider);
+        $providerData = $this->handleProviderCallback($this->getAuthProvider());
 
-        $user = $this->userRepo->findByUsernameOrCreate($this->getUserProviderData($providerData), $provider);
+        $user = $this->userRepo->findByUsernameOrCreate($this->getUserProviderData($providerData), $this->getAuthProvider());
 
-        if (!$user) throw new InvalidUserException($this->getExceptionMessage());
+        if ( ! $user) throw new InvalidUserException($this->getExceptionMessage());
 
         $this->updateAuthenticatedUser($user, $providerData);
 
@@ -56,42 +55,45 @@ abstract class AuthenticationProvider {
     /**
      * Get the provider authorization URL.
      *
-     * @param $provider
-     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function getAuthorizationUrl($provider)
+    protected final function getAuthorizationUrl()
     {
-        return $this->socialite->driver($provider)->redirect();
+        return $this->socialite->driver($this->getAuthProvider())->redirect();
     }
 
     /**
      * Handler provider callback.
      *
-     * @param $provider
-     *
      * @return \Laravel\Socialite\Contracts\User
      */
-    public function handleProviderCallback($provider)
+    protected final function handleProviderCallback()
     {
-        return $this->socialite->driver($provider)->user();
+        return $this->socialite->driver($this->getAuthProvider())->user();
     }
 
     /**
      * Get data from provider returned information.
      *
-     * @param $postBackData
+     * @param $providerData
      *
      * @return array
      */
-    public function getUserProviderData(SocialiteUser $postBackData)
+    protected final function getUserProviderData(SocialiteUser $providerData)
     {
         return [
-            'auth_provider_id' => $postBackData->getId(),
-            'name'             => $postBackData->getName(),
-            'email'            => $postBackData->getEmail(),
+            'auth_provider_id' => $providerData->getId(),
+            'name'             => $providerData->getName(),
+            'email'            => $providerData->getEmail(),
         ];
     }
+
+    /**
+     * Get authentication provider name.
+     *
+     * @return string
+     */
+    protected abstract function getAuthProvider();
 
     /**
      * Update authenticated user profile.
@@ -101,13 +103,13 @@ abstract class AuthenticationProvider {
      *
      * @return mixed
      */
-    abstract function updateAuthenticatedUser(User $user, $userData);
+    protected abstract function updateAuthenticatedUser(User $user, $userData);
 
     /**
      * Get authentication exception message.
      *
      * @return string
      */
-    abstract function getExceptionMessage();
+    protected abstract function getExceptionMessage();
 
 }
