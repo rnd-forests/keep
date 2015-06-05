@@ -27,37 +27,37 @@ class AppServiceProvider extends ServiceProvider {
     {
         $this->app->bind(
             'Keep\Repositories\User\UserRepositoryInterface',
-            'Keep\Repositories\User\DbUserRepository'
+            'Keep\Repositories\User\EloquentUserRepository'
         );
 
         $this->app->bind(
             'Keep\Repositories\Tag\TagRepositoryInterface',
-            'Keep\Repositories\Tag\DbTagRepository'
+            'Keep\Repositories\Tag\EloquentTagRepository'
         );
 
         $this->app->bind(
             'Keep\Repositories\Task\TaskRepositoryInterface',
-            'Keep\Repositories\Task\DbTaskRepository'
+            'Keep\Repositories\Task\EloquentTaskRepository'
         );
 
         $this->app->bind(
             'Keep\Repositories\Priority\PriorityRepositoryInterface',
-            'Keep\Repositories\Priority\DbPriorityRepository'
+            'Keep\Repositories\Priority\EloquentPriorityRepository'
         );
 
         $this->app->bind(
             'Keep\Repositories\UserGroup\UserGroupRepositoryInterface',
-            'Keep\Repositories\UserGroup\DbUserGroupRepository'
+            'Keep\Repositories\UserGroup\EloquentUserGroupRepository'
         );
 
         $this->app->bind(
             'Keep\Repositories\Assignment\AssignmentRepositoryInterface',
-            'Keep\Repositories\Assignment\DbAssignmentRepository'
+            'Keep\Repositories\Assignment\EloquentAssignmentRepository'
         );
 
         $this->app->bind(
             'Keep\Repositories\Notification\NotificationRepositoryInterface',
-            'Keep\Repositories\Notification\DbNotificationRepository'
+            'Keep\Repositories\Notification\EloquentNotificationRepository'
         );
 
         if ($this->app->environment() == 'local') {

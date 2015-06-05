@@ -33,7 +33,7 @@ class PrioritiesController extends Controller {
     {
         $user = $this->userRepo->findBySlug($userSlug);
 
-        $priorities = $this->priorityRepo->all();
+        $priorities = $this->priorityRepo->getAll();
 
         return view('users.priorities.index', compact('user', 'priorities'));
     }

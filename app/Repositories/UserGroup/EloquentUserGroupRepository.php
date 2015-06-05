@@ -3,37 +3,36 @@
 use Keep\Entities\User;
 use Keep\Entities\Group;
 use Keep\Services\KeepHelper;
+use Keep\Repositories\DbRepository;
 
-class DbUserGroupRepository implements UserGroupRepositoryInterface {
+class EloquentUserGroupRepository extends DbRepository implements UserGroupRepositoryInterface {
 
-    public function all()
+    protected $model;
+
+    public function __construct(Group $model)
     {
-        return Group::all();
-    }
-
-    public function count()
-    {
-        return Group::count();
+        $this->model = $model;
     }
 
     public function getPaginatedGroups($limit)
     {
-        return Group::with('users')->latest('created_at')->paginate($limit);
-    }
-
-    public function findById($id)
-    {
-        return Group::findOrFail($id);
+        return $this->model
+            ->with('users')
+            ->latest('created_at')
+            ->paginate($limit);
     }
 
     public function findBySlug($slug)
     {
-        return Group::with('users', 'assignments.task')->whereSlug($slug)->firstOrFail();
+        return $this->model
+            ->with('users', 'assignments.task')
+            ->where('slug', $slug)
+            ->firstOrFail();
     }
 
     public function create(array $data)
     {
-        return Group::create([
+        return $this->model->create([
             'name'        => $data['name'],
             'description' => $data['description']
         ]);
@@ -42,20 +41,17 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
     public function update($slug, array $data)
     {
         $group = $this->findBySlug($slug);
-
         $group->update($data);
-
         return $group;
     }
 
     public function restore($slug)
     {
         $group = $this->findTrashedGroupBySlug($slug);
-
         return $group->restore();
     }
 
-    public function delete($slug)
+    public function softDelete($slug)
     {
         return $this->findBySlug($slug)->delete();
     }
@@ -63,61 +59,66 @@ class DbUserGroupRepository implements UserGroupRepositoryInterface {
     public function forceDelete($slug)
     {
         $group = $this->findTrashedGroupBySlug($slug);
-
         $group->forceDelete();
     }
 
     public function getTrashedGroups($limit)
     {
-        return Group::with('users')->onlyTrashed()->latest('deleted_at')->paginate($limit);
+        return $this->model
+            ->with('users')
+            ->onlyTrashed()
+            ->latest('deleted_at')
+            ->paginate($limit);
     }
 
     public function findTrashedGroupBySlug($slug)
     {
-        return Group::onlyTrashed()->whereSlug($slug)->firstOrFail();
+        return $this->model
+            ->onlyTrashed()
+            ->where('slug', $slug)
+            ->firstOrFail();
     }
 
-    public function getPaginatedAssociatedUsers($group, $limit)
+    public function getPaginatedAssociatedUsers(Group $group, $limit)
     {
-        return $group->users()->orderBy('name', 'asc')->paginate($limit);
+        return $group->users()
+            ->oldest('name')
+            ->paginate($limit);
     }
 
     public function getUsersOutsideGroup($slug)
     {
         return User::whereNotIn(
-            'id', KeepHelper::getIdsOfUsersInRelationWithGroup($this->findBySlug($slug))
-        )->orderBy('name', 'asc')->get();
+            'id', KeepHelper::getUserIdsRelatedToGroup($this->findBySlug($slug))
+        )->oldest('name')->get();
     }
 
-    public function attachUsers($group, array $users)
+    public function attachUsers(Group $group, array $users)
     {
         $group->users()->attach($users);
     }
 
     public function fetchGroupsByIds(array $ids)
     {
-        return Group::whereIn('id', $ids)->get();
+        return $this->model->whereIn('id', $ids)->get();
     }
 
     public function getGroupsAssociatedWithAUser($userSlug)
     {
         $user = User::findBySlug($userSlug);
-
         return $user->groups()->paginate(10);
     }
 
     public function getMembersOfGroup($groupSlug)
     {
         $group = $this->findBySlug($groupSlug);
-
-        return $group->users()->orderBy('created_at', 'desc')->get();
+        return $group->users()->latest('created_at')->get();
     }
 
     public function getAssignmentsOfGroup($groupSlug)
     {
         $group = $this->findBySlug($groupSlug);
-
-        return $group->assignments()->orderBy('created_at', 'desc')->get();
+        return $group->assignments()->latest('created_at')->get();
     }
 
 }

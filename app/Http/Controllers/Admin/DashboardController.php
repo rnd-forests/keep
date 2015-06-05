@@ -34,13 +34,13 @@ class DashboardController extends Controller {
      */
     public function dashboard()
     {
-        $usersCount = $this->userRepo->count();
+        $usersCount = $this->userRepo->countAll();
 
-        $tasksCount = $this->taskRepo->count();
+        $tasksCount = $this->taskRepo->countAll();
 
-        $groupsCount = $this->groupRepo->count();
+        $groupsCount = $this->groupRepo->countAll();
 
-        $notificationCount = $this->notificationRepo->count();
+        $notificationCount = $this->notificationRepo->countAll();
 
         return view('admin.dashboard', compact('usersCount', 'tasksCount', 'groupsCount', 'notificationCount'));
     }

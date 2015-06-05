@@ -12,7 +12,7 @@ class KeepHelper {
      *
      * @return array
      */
-    public static function getIdsOfUsersInRelationWithGroup(Group $group)
+    public static function getUserIdsRelatedToGroup(Group $group)
     {
         return $group->users->fetch('id')->toArray();
     }
@@ -24,7 +24,7 @@ class KeepHelper {
      *
      * @return mixed
      */
-    public static function getIdsOfAssignmentsInRelationWithGroup(Group $group)
+    public static function getAssignmentIdsRelatedToGroup(Group $group)
     {
         return $group->assignments->fetch('id')->toArray();
     }
@@ -36,7 +36,7 @@ class KeepHelper {
      *
      * @return mixed
      */
-    public static function getIdsOfGroupsInRelationWithUser(User $user)
+    public static function getGroupIdsRelatedToUser(User $user)
     {
         return $user->groups->fetch('id')->toArray();
     }

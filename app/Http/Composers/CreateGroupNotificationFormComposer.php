@@ -13,7 +13,7 @@ class CreateGroupNotificationFormComposer {
     public function compose(View $view)
     {
         $groupRepo = App::make('Keep\Repositories\UserGroup\UserGroupRepositoryInterface');
-        $view->with('groups', $groupRepo->all()->lists('name', 'id'));
+        $view->with('groups', $groupRepo->getAll()->lists('name', 'id'));
     }
 
 }

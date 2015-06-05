@@ -113,7 +113,7 @@ class UserGroupsController extends Controller {
      */
     public function destroy($slug)
     {
-        $this->groupRepo->delete($slug);
+        $this->groupRepo->softDelete($slug);
 
         flash()->info('This group was successfully sent to trash');
 

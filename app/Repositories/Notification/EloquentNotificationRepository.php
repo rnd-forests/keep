@@ -5,22 +5,20 @@ use Carbon\Carbon;
 use Keep\Entities\User;
 use Keep\Services\KeepHelper;
 use Keep\Entities\Notification;
+use Keep\Repositories\DbRepository;
 
-class DbNotificationRepository implements NotificationRepositoryInterface {
+class EloquentNotificationRepository extends DbRepository implements NotificationRepositoryInterface {
 
-    public function count()
+    protected $model;
+
+    public function __construct(Notification $model)
     {
-        return Notification::count();
-    }
-
-    public function findBySlug($slug)
-    {
-        return Notification::whereSlug($slug)->firstOrFail();
+        $this->model = $model;
     }
 
     public function create(array $data)
     {
-        return Notification::create([
+        return $this->model->create([
             'sent_from' => 'admin',
             'subject'   => $data['subject'],
             'body'      => $data['body'],
@@ -36,32 +34,41 @@ class DbNotificationRepository implements NotificationRepositoryInterface {
 
     public function getPaginatedNotifications($limit)
     {
-        return Notification::where('sent_from', 'admin')->orderBy('created_at', 'desc')->paginate($limit);
+        return $this->model
+            ->where('sent_from', 'admin')
+            ->latest('created_at')
+            ->paginate($limit);
     }
 
     public function fetchPersonalNotifications($userSlug)
     {
         $user = User::findBySlug($userSlug);
-
-        return $user->notifications()->orderBy('created_at', 'desc')->paginate(15);
+        return $user->notifications()
+            ->latest('created_at')
+            ->paginate(15);
     }
 
-    public function countUserNotifications($user)
+    public function countUserNotifications(User $user)
     {
         return $user->notifications()->count();
     }
 
     public function fetchOldNotifications()
     {
-        return Notification::old()->get();
+        return $this->model
+            ->old()
+            ->get();
     }
 
     public function fetchGroupNotifications($userSlug)
     {
-        return Notification::with('groups')->whereIn('id', DB::table('notifiables')
+        return $this->model->with('groups')->whereIn('id', DB::table('notifiables')
             ->where('notifiable_type', 'Keep\Entities\Group')
-            ->whereIn('notifiable_id', KeepHelper::getIdsOfGroupsInRelationWithUser(User::findBySlug($userSlug)))->lists('notification_id'))
-            ->orderBy('created_at', 'desc')
+            ->whereIn(
+                'notifiable_id',
+                KeepHelper::getGroupIdsRelatedToUser(User::findBySlug($userSlug))
+            )->lists('notification_id'))
+            ->latest('created_at')
             ->paginate(15);
     }
 

@@ -57,7 +57,7 @@ class TasksController extends Controller {
      */
     public function softDelete($slug)
     {
-        $this->taskRepo->delete($slug);
+        $this->taskRepo->softDelete($slug);
 
         flash()->info('This task was successfully sent to the trash.');
 

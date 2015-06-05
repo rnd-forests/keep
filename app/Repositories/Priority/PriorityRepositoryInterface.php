@@ -2,38 +2,12 @@
 
 interface PriorityRepositoryInterface {
 
-    /**
-     * Get all priority levels.
-     *
-     * @return mixed
-     */
-    public function all();
+    public function getAll();
 
-    /**
-     * List all priority levels.
-     *
-     * @return mixed
-     */
     public function lists();
 
-    /**
-     * Find a priority level by its name.
-     *
-     * @param $priorityName
-     *
-     * @return mixed
-     */
-    public function findByName($priorityName);
+    public function findByName($name);
 
-    /**
-     * Get tasks of a user associated with a priority level.
-     *
-     * @param $userSlug
-     * @param $priorityName
-     * @param $limit
-     *
-     * @return mixed
-     */
     public function getTasksOfUserAssociatedWithAPriority($userSlug, $priorityName, $limit);
 
 }

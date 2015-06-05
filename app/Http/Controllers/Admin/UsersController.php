@@ -69,7 +69,7 @@ class UsersController extends Controller {
      */
     public function disableAccount($slug)
     {
-        $this->userRepo->delete($slug);
+        $this->userRepo->softDelete($slug);
 
         flash()->info("This account has been disabled.");
 

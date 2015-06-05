@@ -3,24 +3,28 @@
 use DB;
 use Keep\Entities\Tag;
 use Keep\Entities\User;
+use Keep\Repositories\DbRepository;
 
-class DbTagRepository implements TagRepositoryInterface {
+class EloquentTagRepository extends DbRepository implements TagRepositoryInterface {
 
-    public function findBySlug($tagSlug)
+    protected $model;
+
+    public function __construct(Tag $model)
     {
-        return Tag::whereSlug($tagSlug)->firstOrFail();
+        $this->model = $model;
     }
 
     public function lists()
     {
-        return Tag::orderBy('name', 'asc')->lists('name', 'id');
+        return $this->model
+            ->oldest('name')
+            ->lists('name', 'id');
     }
 
     public function getAssociatedTags($userSlug)
     {
         $user = User::findBySlug($userSlug);
-
-        return Tag::whereIn('id', array_fetch(
+        return $this->model->whereIn('id', array_fetch(
             DB::table('tag_task')
                 ->whereIn('task_id', $user->tasks->lists('id'))
                 ->groupBy('tag_id')
@@ -31,10 +35,11 @@ class DbTagRepository implements TagRepositoryInterface {
     public function getTasksOfUserAssociatedWithATag($userSlug, $tagSlug, $limit)
     {
         $user = User::findBySlug($userSlug);
-
         $tag = $this->findBySlug($tagSlug);
-
-        return $tag->tasks()->orderBy('created_at', 'desc')->where('user_id', $user->id)->paginate($limit);
+        return $tag->tasks()
+            ->latest('created_at')
+            ->where('user_id', $user->id)
+            ->paginate($limit);
     }
 
 }

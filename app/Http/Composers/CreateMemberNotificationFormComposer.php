@@ -13,7 +13,7 @@ class CreateMemberNotificationFormComposer {
     public function compose(View $view)
     {
         $userRepo = App::make('Keep\Repositories\User\UserRepositoryInterface');
-        $view->with('users', $userRepo->all()->lists('name', 'id'));
+        $view->with('users', $userRepo->getAll()->lists('name', 'id'));
     }
 
 }

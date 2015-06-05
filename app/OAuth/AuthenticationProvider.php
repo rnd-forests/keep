@@ -7,7 +7,7 @@ use Keep\OAuth\Contracts\OAuthUserListener;
 use Keep\Repositories\User\UserRepositoryInterface;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 use Laravel\Socialite\Contracts\User as SocialiteUser;
-// Template pattern
+
 abstract class AuthenticationProvider {
 
     protected $userRepo, $socialite, $auth;
@@ -41,7 +41,7 @@ abstract class AuthenticationProvider {
 
         $providerData = $this->handleProviderCallback($this->getAuthProvider());
 
-        $user = $this->userRepo->findByUsernameOrCreate($this->getUserProviderData($providerData), $this->getAuthProvider());
+        $user = $this->userRepo->findOrCreateNew($this->getUserProviderData($providerData), $this->getAuthProvider());
 
         if ( ! $user) throw new InvalidUserException($this->getExceptionMessage());
 

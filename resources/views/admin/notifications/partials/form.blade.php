@@ -10,7 +10,7 @@
 <div class="form-group">
     {!! Form::label('type', 'Notification Type', ['class' => 'control-label']) !!}
     {!! Form::select('type', $types, is_null($notification->type) ? null : $notification->type,
-        ['id' => 'notification_types', 'class' => 'form-control input-lg']) !!}
+        ['class' => 'form-control input-lg']) !!}
 </div>
 <div class="form-group">
     {!! Form::submit($notificationButton, ['class' => 'btn btn-lg btn-primary']) !!}

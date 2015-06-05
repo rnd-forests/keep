@@ -13,10 +13,10 @@ class EditAssignmentFormComposer {
     public function compose(View $view)
     {
         $userRepo = App::make('Keep\Repositories\User\UserRepositoryInterface');
-        $view->with('users', $userRepo->all()->lists('name', 'id'));
+        $view->with('users', $userRepo->getAll()->lists('name', 'id'));
 
         $groupRepo = App::make('Keep\Repositories\UserGroup\UserGroupRepositoryInterface');
-        $view->with('groups', $groupRepo->all()->lists('name', 'id'));
+        $view->with('groups', $groupRepo->getAll()->lists('name', 'id'));
     }
 
 }
