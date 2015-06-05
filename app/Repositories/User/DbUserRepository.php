@@ -130,4 +130,24 @@ class DbUserRepository extends DbRepository implements UserRepositoryInterface {
         return User::whereIn('id', $ids)->get();
     }
 
+    public function findByUsernameOrCreate(array $userData, $provider)
+    {
+        $user = User::where('auth_provider_id', $userData['auth_provider_id'])->first();
+        $isAccountExisting = User::where('email', $userData['email'])->first();
+
+        if (! $user && $isAccountExisting) return false;
+
+        if (! $user)
+        {
+            $user = User::create($userData);
+            $user->update([
+                'auth_provider' => $provider,
+                'active' => true,
+                'activation_code' => ''
+            ]);
+        }
+
+        return $user;
+    }
+
 }

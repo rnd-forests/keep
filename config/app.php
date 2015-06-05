@@ -209,7 +209,7 @@ return [
         'Form'      => 'Illuminate\Html\FormFacade',
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'Flash'     => 'Laracasts\Flash\Flash',
-        'Socialize' => 'Laravel\Socialite\Facades\Socialite',
+        'Socialite' => 'Laravel\Socialite\Facades\Socialite',
         'Entrust'   => 'Zizaco\Entrust\EntrustFacade',
         'Image'     => 'Intervention\Image\Facades\Image',
         'Clockwork' => 'Clockwork\Support\Laravel\Facade',

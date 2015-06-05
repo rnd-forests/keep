@@ -47,7 +47,7 @@ class UserPresenter extends Presenter {
     }
 
     /**
-     * Link to user github profile.
+     * Link to user GitHub profile.
      *
      * @param $user
      *
@@ -56,6 +56,30 @@ class UserPresenter extends Presenter {
     public function githubProfile($user)
     {
         return 'http://www.github.com/' . $user->profile->github_username;
+    }
+
+    /**
+     * Link to user Google Plus profile.
+     *
+     * @param $user
+     *
+     * @return string
+     */
+    public function googlePlusProfile($user)
+    {
+        return 'https://plus.google.com/' . $user->profile->google_username;
+    }
+
+    /**
+     * Link to user Facebook profile.
+     *
+     * @param $user
+     *
+     * @return string
+     */
+    public function facebookProfile($user)
+    {
+        return 'https://www.facebook.com/' . $user->profile->facebook_username;
     }
 
 }

@@ -7,6 +7,7 @@
 @section('content')
     <div class="row">
 		<div class="col-md-6 col-md-offset-3">
+            @include('auth.partials.social_auth')
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Login</strong></div>
                 <div class="panel-body">

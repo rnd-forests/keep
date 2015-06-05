@@ -19,7 +19,10 @@ class Profile extends Model {
      *
      * @var array
      */
-	protected $fillable = ['location', 'bio', 'company', 'website', 'phone', 'twitter_username', 'github_username'];
+    protected $fillable = [
+        'location', 'bio', 'company', 'website', 'phone', 'twitter_username',
+        'github_username', 'google_username', 'facebook_username'
+    ];
 
     /**
      * A profile belongs to one specific user.
