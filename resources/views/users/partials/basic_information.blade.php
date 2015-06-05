@@ -34,10 +34,17 @@
         </li>
         <li class="list-group-item">
             <h6 class="list-group-item-heading">Social Network Profile</h6>
-            @unless(empty($user->profile->google_plus_username))
+            @unless(empty($user->profile->google_username))
                 <a href="{{ $user->present()->googlePlusProfile($user) }}">
                     <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Google Plus Profile">
                         <i class="fa fa-google"></i>
+                    </button>
+                </a>
+            @endunless
+            @unless(empty($user->profile->facebook_username))
+                <a href="{{ $user->present()->facebookProfile($user) }}">
+                    <button class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Facebook Profile">
+                        <i class="fa fa-facebook"></i>
                     </button>
                 </a>
             @endunless

@@ -6,16 +6,6 @@ use Keep\OAuth\Contracts\ProviderInterface;
 class FacebookAuthentication extends AuthenticationProvider implements ProviderInterface {
 
     /**
-     * Get authentication provider name.
-     *
-     * @return string
-     */
-    protected function getAuthProvider()
-    {
-        return 'facebook';
-    }
-    
-    /**
      * Update authenticated user profile.
      *
      * @param User $user
@@ -36,6 +26,16 @@ class FacebookAuthentication extends AuthenticationProvider implements ProviderI
     function getExceptionMessage()
     {
         return 'Something went wrong with your Facebook authentication process.';
+    }
+
+    /**
+     * Get authentication provider name.
+     *
+     * @return string
+     */
+    protected function getAuthProvider()
+    {
+        return 'facebook';
     }
 
 }

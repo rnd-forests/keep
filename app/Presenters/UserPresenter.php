@@ -67,7 +67,19 @@ class UserPresenter extends Presenter {
      */
     public function googlePlusProfile($user)
     {
-        return 'https://plus.google.com/' . $user->profile->google_plus_username;
+        return 'https://plus.google.com/' . $user->profile->google_username;
+    }
+
+    /**
+     * Link to user Facebook profile.
+     *
+     * @param $user
+     *
+     * @return string
+     */
+    public function facebookProfile($user)
+    {
+        return 'https://www.facebook.com/' . $user->profile->facebook_username;
     }
 
 }
