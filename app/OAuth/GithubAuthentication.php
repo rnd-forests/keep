@@ -6,6 +6,16 @@ use Keep\OAuth\Contracts\ProviderInterface;
 class GithubAuthentication extends AuthenticationProvider implements ProviderInterface {
 
     /**
+     * Get authentication provider name.
+     *
+     * @return string
+     */
+    protected function getAuthProvider()
+    {
+        return 'github';
+    }
+
+    /**
      * Update authenticated user profile.
      *
      * @param User $user
@@ -16,9 +26,9 @@ class GithubAuthentication extends AuthenticationProvider implements ProviderInt
     function updateAuthenticatedUser(User $user, $userData)
     {
         $user->profile()->update([
-            'location'        => $userData->user['location'],
             'bio'             => $userData->user['bio'],
             'company'         => $userData->user['company'],
+            'location'        => $userData->user['location'],
             'github_username' => str_replace('https://github.com/', '', $userData->user['html_url'])
         ]);
 
@@ -33,16 +43,6 @@ class GithubAuthentication extends AuthenticationProvider implements ProviderInt
     function getExceptionMessage()
     {
         return 'Something went wrong with your GitHub authentication process.';
-    }
-
-    /**
-     * Get authentication provider name.
-     *
-     * @return string
-     */
-    protected function getAuthProvider()
-    {
-        return 'github';
     }
 
 }

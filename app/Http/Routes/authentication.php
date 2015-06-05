@@ -54,4 +54,9 @@ Route::group(['prefix' => 'oauth', 'namespace' => 'Auth'], function () {
         'as'   => 'facebook.authentication',
         'uses' => 'OAuthController@loginWithFacebook'
     ]);
+
+    Route::get('google', [
+        'as'   => 'google.authentication',
+        'uses' => 'OAuthController@loginWithGoogle'
+    ]);
 });
