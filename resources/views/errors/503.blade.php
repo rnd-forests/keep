@@ -1,42 +1,41 @@
 <!DOCTYPE html>
 <html>
-	<head>
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+<head>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro" rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
 
-		<style>
-			body {
-				margin: 0;
-				padding: 0;
-				width: 100%;
-				height: 100%;
-				color: #B0BEC5;
-				display: table;
-				font-weight: 100;
-                font-family: 'Source Sans Pro', sans-serif;
-			}
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
 
-			.container {
-				text-align: center;
-				display: table-cell;
-				vertical-align: middle;
-			}
+        .container {
+            margin-top: 100px;
+        }
 
-			.content {
-				text-align: center;
-				display: inline-block;
-			}
+        .title {
+            text-align: center;
+            color: #f4645f;
+            font-size: 60px;
+        }
 
-			.title {
-				font-size: 72px;
-				margin-bottom: 40px;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<div class="content">
-				<div class="title">Be right back.</div>
-			</div>
-		</div>
-	</body>
+        .panel-heading {
+            text-align: center;
+        }
+
+        .logo {
+            color: #f4645f;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="logo">KEEP</span> is currently in the maintenance mode.</div>
+        <div class="panel-body">
+            <div class="title">Be right back.</div>
+        </div>
+    </div>
+</div>
+</body>
 </html>

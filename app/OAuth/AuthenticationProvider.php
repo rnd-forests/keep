@@ -38,13 +38,14 @@ abstract class AuthenticationProvider
      */
     public final function authenticate($hasCode, OAuthUserListener $listener)
     {
+        $provider = $this->getAuthProvider();
         if ( ! $hasCode) {
-            return $this->getAuthorizationUrl($this->getAuthProvider());
+            return $this->getAuthorizationUrl($provider);
         }
-        $providerData = $this->handleProviderCallback($this->getAuthProvider());
+        $providerData = $this->handleProviderCallback($provider);
         $user = $this->userRepo->findOrCreateNew(
             $this->getUserProviderData($providerData),
-            $this->getAuthProvider()
+            $provider
         );
         if ( ! $user) {
             throw new InvalidUserException($this->getExceptionMessage());
