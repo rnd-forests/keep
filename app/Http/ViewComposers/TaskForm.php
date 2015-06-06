@@ -1,12 +1,12 @@
 <?php
-namespace Keep\Http\Composers;
+namespace Keep\Http\ViewComposers;
 
 use App;
 use Illuminate\Contracts\View\View;
 use Keep\Repositories\Tag\TagRepositoryInterface;
 use Keep\Repositories\Priority\PriorityRepositoryInterface;
 
-class TaskFormComposer
+class TaskForm
 {
     public function compose(View $view)
     {

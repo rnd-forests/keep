@@ -1,11 +1,11 @@
 <?php
-namespace Keep\Http\Composers;
+namespace Keep\Http\ViewComposers;
 
 use App;
 use Illuminate\Contracts\View\View;
 use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
 
-class CreateGroupAssignmentFormComposer
+class GroupAssignmentForm
 {
     public function compose(View $view)
     {

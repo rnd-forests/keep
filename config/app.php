@@ -146,7 +146,7 @@ return [
         'Keep\Providers\ConfigServiceProvider',
         'Keep\Providers\EventServiceProvider',
         'Keep\Providers\RouteServiceProvider',
-        'Keep\Providers\ViewComposerServiceProvider',
+        'Keep\Providers\ComposerServiceProvider',
 
         /**
          * Third-party service providers...

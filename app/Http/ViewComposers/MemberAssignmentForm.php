@@ -1,11 +1,11 @@
 <?php
-namespace Keep\Http\Composers;
+namespace Keep\Http\ViewComposers;
 
 use App;
 use Illuminate\Contracts\View\View;
 use Keep\Repositories\User\UserRepositoryInterface;
 
-class CreateMemberAssignmentFormComposer
+class MemberAssignmentForm
 {
     public function compose(View $view)
     {

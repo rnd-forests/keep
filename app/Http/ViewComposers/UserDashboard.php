@@ -1,10 +1,10 @@
 <?php
-namespace Keep\Http\Composers;
+namespace Keep\Http\ViewComposers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Auth\Guard;
 
-class UserDashboardComposer
+class UserDashboard
 {
     protected $auth;
 
