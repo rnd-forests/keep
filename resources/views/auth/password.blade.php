@@ -10,9 +10,6 @@
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Forgot your password?</strong></div>
                 <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">{{ session('status') }}</div>
-                    @endif
                     @include('layouts.partials.errors')
                     {!! Form::open() !!}
                         <div class="form-group">
