@@ -3,27 +3,30 @@
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     Route::get('register', [
         'as'   => 'register',
-        'uses' => 'RegistrationsController@create'
+        'uses' => 'AuthController@getRegister'
     ]);
-
     Route::post('register', [
         'as'   => 'register',
-        'uses' => 'RegistrationsController@store'
+        'uses' => 'AuthController@postRegister'
+    ]);
+
+    Route::get('activate-account/{code}', [
+        'as'   => 'account.activation',
+        'uses' => 'AuthController@activate'
     ]);
 
     Route::get('login', [
         'as'   => 'login',
-        'uses' => 'SessionsController@create'
+        'uses' => 'AuthController@getLogin'
     ]);
-
     Route::post('login', [
         'as'   => 'login',
-        'uses' => 'SessionsController@store'
+        'uses' => 'AuthController@postLogin'
     ]);
 
     Route::get('logout', [
         'as'   => 'logout',
-        'uses' => 'SessionsController@destroy'
+        'uses' => 'AuthController@logout'
     ]);
 
     Route::patch('{users}/change-password', [
@@ -34,11 +37,6 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     Route::patch('{users}/change-username', [
         'as'   => 'change.account.username',
         'uses' => 'AccountController@changeUsername'
-    ]);
-
-    Route::get('activate-account/{code}', [
-        'as'   => 'account.activation',
-        'uses' => 'RegistrationsController@activate'
     ]);
 
     Route::controllers(['password' => 'PasswordController']);
