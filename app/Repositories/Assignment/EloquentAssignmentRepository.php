@@ -1,4 +1,5 @@
-<?php namespace Keep\Repositories\Assignment;
+<?php
+namespace Keep\Repositories\Assignment;
 
 use DB;
 use Keep\Entities\User;
@@ -7,8 +8,8 @@ use Keep\Services\KeepHelper;
 use Illuminate\Support\Collection;
 use Keep\Repositories\DbRepository;
 
-class EloquentAssignmentRepository extends DbRepository implements AssignmentRepositoryInterface {
-
+class EloquentAssignmentRepository extends DbRepository implements AssignmentRepositoryInterface
+{
     protected $model;
 
     public function __construct(Assignment $model)
@@ -36,6 +37,7 @@ class EloquentAssignmentRepository extends DbRepository implements AssignmentRep
     {
         $assignment = $this->findBySlug($slug);
         $assignment->update($data);
+
         return $assignment;
     }
 
@@ -53,8 +55,12 @@ class EloquentAssignmentRepository extends DbRepository implements AssignmentRep
 
     public function syncPolymorphicRelations($assignment, $users, $groups)
     {
-        if ($assignment->users->isEmpty()) $assignment->groups()->sync($groups);
-        if ($assignment->groups->isEmpty()) $assignment->users()->sync($users);
+        if ($assignment->users->isEmpty()) {
+            $assignment->groups()->sync($groups);
+        }
+        if ($assignment->groups->isEmpty()) {
+            $assignment->users()->sync($users);
+        }
     }
 
     public function getGroupAssignmentsAssociatedWithAUser($userSlug)
@@ -67,6 +73,7 @@ class EloquentAssignmentRepository extends DbRepository implements AssignmentRep
     public function getAssignmentsAssociatedWithAUser($userSlug)
     {
         $user = User::findBySlug($userSlug);
+
         return $user->assignments()
             ->latest('created_at')
             ->get();
@@ -75,6 +82,7 @@ class EloquentAssignmentRepository extends DbRepository implements AssignmentRep
     public function findPersonalAssignment($userSlug, $assignmentSlug)
     {
         $user = User::findBySlug($userSlug);
+
         return $user->assignments()
             ->where('slug', $assignmentSlug)
             ->firstOrFail();
@@ -98,6 +106,7 @@ class EloquentAssignmentRepository extends DbRepository implements AssignmentRep
                 $ids->push($id);
             });
         });
+
         return $this->model->whereIn('id', $ids->unique()->toArray());
     }
 
@@ -121,6 +130,7 @@ class EloquentAssignmentRepository extends DbRepository implements AssignmentRep
     {
         $assignment = $this->findTrashedAssignmentBySlug($slug);
         $assignment->task()->withTrashed()->restore();
+
         return $assignment->restore();
     }
 
@@ -131,5 +141,4 @@ class EloquentAssignmentRepository extends DbRepository implements AssignmentRep
         DB::table('assignables')->where('assignment_id', $assignment->id)->delete();
         $assignment->forceDelete();
     }
-
 }

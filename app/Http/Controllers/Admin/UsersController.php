@@ -1,11 +1,12 @@
-<?php namespace Keep\Http\Controllers\Admin;
+<?php
+namespace Keep\Http\Controllers\Admin;
 
 use Request;
 use Keep\Http\Controllers\Controller;
 use Keep\Repositories\User\UserRepositoryInterface;
 
-class UsersController extends Controller {
-
+class UsersController extends Controller
+{
     protected $userRepo;
 
     /**
@@ -26,9 +27,7 @@ class UsersController extends Controller {
     public function activeAccounts()
     {
         $sortBy = Request::get('sortBy');
-
         $direction = Request::get('direction');
-
         $activeAccounts = $this->userRepo->getPaginatedUsers(100, compact('sortBy', 'direction'));
 
         return view('admin.accounts.active_accounts', compact('activeAccounts'));
@@ -70,7 +69,6 @@ class UsersController extends Controller {
     public function disableAccount($slug)
     {
         $this->userRepo->softDelete($slug);
-
         flash()->info("This account has been disabled.");
 
         return redirect()->route('admin.active.accounts');
@@ -86,7 +84,6 @@ class UsersController extends Controller {
     public function restoreAccount($slug)
     {
         $this->userRepo->restore($slug);
-
         flash()->info('This account has been restored.');
 
         return redirect()->back();
@@ -102,10 +99,8 @@ class UsersController extends Controller {
     public function forceDeleteAccount($slug)
     {
         $this->userRepo->forceDelete($slug);
-
         flash()->info('This account was permanently deleted.');
 
         return redirect()->back();
     }
-
 }

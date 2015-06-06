@@ -1,9 +1,10 @@
-<?php namespace Keep\Repositories\Notification;
+<?php
+namespace Keep\Repositories\Notification;
 
 use Keep\Entities\User;
 
-interface NotificationRepositoryInterface {
-
+interface NotificationRepositoryInterface
+{
     public function create(array $data);
 
     public function delete($slug);
@@ -17,5 +18,4 @@ interface NotificationRepositoryInterface {
     public function fetchOldNotifications();
 
     public function fetchGroupNotifications($userSlug);
-
 }

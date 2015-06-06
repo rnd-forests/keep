@@ -1,25 +1,19 @@
-<?php namespace Keep\Http\Composers;
+<?php
+namespace Keep\Http\Composers;
 
 use Illuminate\Contracts\View\View;
 
-class NotificationFormComposer {
-
-    /**
-     * Composer notification form view.
-     *
-     * @param View $view
-     */
+class NotificationFormComposer
+{
     public function compose(View $view)
     {
         $types = [
             'default' => 'General',
-            'info' => 'Informative',
+            'info'    => 'Informative',
             'success' => 'Successful',
             'warning' => 'Warning',
-            'danger' => 'Danger'
+            'danger'  => 'Danger'
         ];
-
         $view->with('types', $types);
     }
-
 }

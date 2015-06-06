@@ -1,5 +1,7 @@
-<?php namespace Keep\Exceptions;
+<?php
+namespace Keep\Exceptions;
 
-class InvalidAdminUserException extends \Exception {
+class InvalidAdminUserException extends \Exception
+{
 
 }

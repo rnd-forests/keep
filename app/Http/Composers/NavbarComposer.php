@@ -1,30 +1,21 @@
-<?php namespace Keep\Http\Composers;
+<?php
+namespace Keep\Http\Composers;
 
 use App;
 use Auth;
 use Illuminate\Contracts\View\View;
+use Keep\Repositories\Notification\NotificationRepositoryInterface;
 
-class NavbarComposer {
-
-    /**
-     * Compose main navigation view.
-     *
-     * @param View $view
-     */
+class NavbarComposer
+{
     public function compose(View $view)
     {
-        $notificationRepo = App::make('Keep\Repositories\Notification\NotificationRepositoryInterface');
-
-        if (Auth::check())
-        {
+        $notificationRepo = App::make(NotificationRepositoryInterface::class);
+        if (Auth::check()) {
             $notificationCount = $notificationRepo->countUserNotifications(Auth::user());
-        }
-        else
-        {
+        } else {
             $notificationCount = 0;
         }
-
         $view->with('notificationCount', $notificationCount);
     }
-
 }

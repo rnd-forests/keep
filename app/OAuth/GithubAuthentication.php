@@ -1,10 +1,11 @@
-<?php namespace Keep\OAuth;
+<?php
+namespace Keep\OAuth;
 
 use Keep\Entities\User;
 use Keep\OAuth\Contracts\ProviderInterface;
 
-class GithubAuthentication extends AuthenticationProvider implements ProviderInterface {
-
+class GithubAuthentication extends AuthenticationProvider implements ProviderInterface
+{
     /**
      * Get authentication provider name.
      *
@@ -44,5 +45,4 @@ class GithubAuthentication extends AuthenticationProvider implements ProviderInt
     {
         return 'Something went wrong with your GitHub authentication process.';
     }
-
 }

@@ -1,10 +1,11 @@
-<?php namespace Keep\Http\Controllers;
+<?php
+namespace Keep\Http\Controllers;
 
 use Keep\Repositories\User\UserRepositoryInterface;
 use Keep\Repositories\Assignment\AssignmentRepositoryInterface;
 
-class UserAssignmentController extends Controller {
-
+class UserAssignmentController extends Controller
+{
     protected $assignmentRepo, $userRepo;
 
     /**
@@ -17,7 +18,6 @@ class UserAssignmentController extends Controller {
     {
         $this->userRepo = $userRepo;
         $this->assignmentRepo = $assignmentRepo;
-
         $this->middleware('auth');
         $this->middleware('auth.correct');
     }
@@ -32,7 +32,6 @@ class UserAssignmentController extends Controller {
     public function index($userSlug)
     {
         $memberAssignments = $this->assignmentRepo->getAssignmentsAssociatedWithAUser($userSlug);
-
         $groupAssignments = $this->assignmentRepo->getGroupAssignmentsAssociatedWithAUser($userSlug);
 
         return view('users.assignments.index', compact('memberAssignments', 'groupAssignments'));
@@ -67,5 +66,4 @@ class UserAssignmentController extends Controller {
 
         return view('users.assignments.show', compact('assignment'));
     }
-
 }

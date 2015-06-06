@@ -6,14 +6,14 @@ use Faker\Factory as Faker;
 use Keep\Entities\Notification;
 use Illuminate\Database\Seeder;
 
-class NotificationsTableSeeder extends Seeder {
+class NotificationsTableSeeder extends Seeder
+{
     public function run()
     {
         $faker = Faker::create();
         $users = User::all();
 
-        foreach ($users as $user)
-        {
+        foreach ($users as $user) {
             for ($i = 1; $i <= 5; $i++) {
                 $user->notifications()->save(Notification::create([
                     'sent_from' => 'admin',

@@ -1,9 +1,10 @@
-<?php namespace Keep\Http\Controllers;
+<?php
+namespace Keep\Http\Controllers;
 
 use Keep\Repositories\Task\TaskRepositoryInterface;
 
-class SchedulerController extends Controller {
-
+class SchedulerController extends Controller
+{
     protected $taskRepo;
 
     /**
@@ -14,7 +15,6 @@ class SchedulerController extends Controller {
     public function __construct(TaskRepositoryInterface $taskRepo)
     {
         $this->taskRepo = $taskRepo;
-
         $this->middleware('auth');
         $this->middleware('auth.correct');
     }
@@ -29,10 +29,8 @@ class SchedulerController extends Controller {
     public function schedule($userSlug)
     {
         $tasks = $this->taskRepo->fetchAllTasksOfAUser($userSlug);
-
         \JavaScript::put(['scheduler' => $tasks]);
 
         return view('users.scheduler');
     }
-
 }

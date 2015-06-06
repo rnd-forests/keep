@@ -1,11 +1,12 @@
-<?php namespace Keep\Events;
+<?php
+namespace Keep\Events;
 
 use Keep\Entities\Task;
 use Keep\Entities\User;
 use Illuminate\Queue\SerializesModels;
 
-class TaskWasCreatedEvent extends Event {
-
+class TaskWasCreatedEvent extends Event
+{
     use SerializesModels;
 
     public $user;
@@ -16,5 +17,4 @@ class TaskWasCreatedEvent extends Event {
         $this->user = $user;
         $this->task = $task;
     }
-
 }

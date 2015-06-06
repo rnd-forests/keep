@@ -1,10 +1,11 @@
-<?php namespace Keep\Http\Middleware;
+<?php
+namespace Keep\Http\Middleware;
 
 use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
-class VerifyCsrfToken extends BaseVerifier {
-
+class VerifyCsrfToken extends BaseVerifier
+{
     /**
      * Handle an incoming request.
      *
@@ -18,5 +19,4 @@ class VerifyCsrfToken extends BaseVerifier {
     {
         return parent::handle($request, $next);
     }
-
 }

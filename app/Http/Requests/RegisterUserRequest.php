@@ -1,7 +1,8 @@
-<?php namespace Keep\Http\Requests;
+<?php
+namespace Keep\Http\Requests;
 
-class RegisterUserRequest extends Request {
-
+class RegisterUserRequest extends Request
+{
     public function authorize()
     {
         return true;
@@ -15,5 +16,4 @@ class RegisterUserRequest extends Request {
             'password' => 'required|confirmed|min:6',
         ];
     }
-
 }

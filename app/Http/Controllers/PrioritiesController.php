@@ -1,10 +1,11 @@
-<?php namespace Keep\Http\Controllers;
+<?php
+namespace Keep\Http\Controllers;
 
 use Keep\Repositories\User\UserRepositoryInterface;
 use Keep\Repositories\Priority\PriorityRepositoryInterface;
 
-class PrioritiesController extends Controller {
-
+class PrioritiesController extends Controller
+{
     protected $priorityRepo, $userRepo;
 
     /**
@@ -17,7 +18,6 @@ class PrioritiesController extends Controller {
     {
         $this->priorityRepo = $priorityRepo;
         $this->userRepo = $userRepo;
-
         $this->middleware('auth');
         $this->middleware('auth.correct');
     }
@@ -32,7 +32,6 @@ class PrioritiesController extends Controller {
     public function index($userSlug)
     {
         $user = $this->userRepo->findBySlug($userSlug);
-
         $priorities = $this->priorityRepo->getAll();
 
         return view('users.priorities.index', compact('user', 'priorities'));
@@ -49,10 +48,8 @@ class PrioritiesController extends Controller {
     public function show($userSlug, $priorityName)
     {
         $priority = $this->priorityRepo->findByName($priorityName);
-
         $tasks = $this->priorityRepo->getTasksOfUserAssociatedWithAPriority($userSlug, $priorityName, 10);
 
         return view('users.priorities.show', compact('priority', 'tasks'));
     }
-
 }

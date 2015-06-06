@@ -1,9 +1,10 @@
-<?php namespace Keep\Handlers\Commands;
+<?php
+namespace Keep\Handlers\Commands;
 
 use Keep\Commands\ModifyUsernameCommand;
 
-class ModifyUsernameCommandHandler {
-
+class ModifyUsernameCommandHandler
+{
     /**
      * Handle the command.
      *
@@ -11,10 +12,10 @@ class ModifyUsernameCommandHandler {
      *
      * @return bool
      */
-	public function handle(ModifyUsernameCommand $command)
-	{
-		return $this->modifyUsername($command);
-	}
+    public function handle(ModifyUsernameCommand $command)
+    {
+        return $this->modifyUsername($command);
+    }
 
     /**
      * Modify username.
@@ -25,8 +26,9 @@ class ModifyUsernameCommandHandler {
      */
     public function modifyUsername(ModifyUsernameCommand $command)
     {
-        if (! $this->checkOldUsername($command)) return false;
-
+        if ( ! $this->checkOldUsername($command)) {
+            return false;
+        }
         $command->user->name = $command->newUsername;
 
         return $command->user->save();
@@ -43,5 +45,4 @@ class ModifyUsernameCommandHandler {
     {
         return strcasecmp($command->oldUsername, $command->user->name) == 0;
     }
-
 }

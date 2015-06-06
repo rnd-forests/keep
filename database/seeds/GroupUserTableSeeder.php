@@ -3,18 +3,15 @@
 use Keep\Entities\Group;
 use Illuminate\Database\Seeder;
 
-class GroupUserTableSeeder extends Seeder {
-
+class GroupUserTableSeeder extends Seeder
+{
     public function run()
     {
-        for ($i = 1; $i <= 50; $i++)
-        {
+        for ($i = 1; $i <= 50; $i++) {
             $group = Group::find($i);
-            for ($j = 1; $j <= rand(5, 25); $j++)
-            {
+            for ($j = 1; $j <= rand(5, 25); $j++) {
                 $group->users()->attach(rand(3, 152));
             }
         }
     }
-
 }

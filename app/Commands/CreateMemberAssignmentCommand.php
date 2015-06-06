@@ -1,7 +1,8 @@
-<?php namespace Keep\Commands;
+<?php
+namespace Keep\Commands;
 
-class CreateMemberAssignmentCommand extends Command {
-
+class CreateMemberAssignmentCommand extends Command
+{
     public $title;
     public $content;
     public $tagList;
@@ -12,7 +13,7 @@ class CreateMemberAssignmentCommand extends Command {
     public $priorityLevel;
     public $assignmentName;
 
-    public function __construct($title, $content, $tag_list = array(), $location, $user_list,
+    public function __construct($title, $content, $tag_list = [], $location, $user_list,
                                 $starting_date, $finishing_date, $priority_level, $assignment_name)
     {
         $this->title = $title;
@@ -25,5 +26,4 @@ class CreateMemberAssignmentCommand extends Command {
         $this->priorityLevel = $priority_level;
         $this->assignmentName = $assignment_name;
     }
-
 }

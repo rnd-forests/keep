@@ -8,7 +8,7 @@
  * @package Zizaco\Entrust
  */
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -19,7 +19,7 @@ return array(
     | the role if it is in a different namespace.
     |
     */
-    'role' => 'Keep\Entities\Role',
+    'role'                  => 'Keep\Entities\Role',
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return array(
     | This is the roles table used by Entrust to save roles to the database.
     |
     */
-    'roles_table' => 'roles',
+    'roles_table'           => 'roles',
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return array(
     | Update the permission if it is in a different namespace.
     |
     */
-    'permission' => 'Keep\Entities\Permission',
+    'permission'            => 'Keep\Entities\Permission',
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return array(
     | database.
     |
     */
-    'permissions_table' => 'permissions',
+    'permissions_table'     => 'permissions',
 
     /*
     |--------------------------------------------------------------------------
@@ -73,6 +73,6 @@ return array(
     | database.
     |
     */
-    'role_user_table' => 'role_user',
+    'role_user_table'       => 'role_user',
 
-);
+];

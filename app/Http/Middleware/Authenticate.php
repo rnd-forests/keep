@@ -1,10 +1,11 @@
-<?php namespace Keep\Http\Middleware;
+<?php
+namespace Keep\Http\Middleware;
 
 use App;
 use Closure;
 
-class Authenticate {
-
+class Authenticate
+{
     /**
      * Handle an incoming request.
      *
@@ -16,20 +17,14 @@ class Authenticate {
     public function handle($request, Closure $next)
     {
         $auth = App::make('Illuminate\Contracts\Auth\Guard');
-
-        if ($auth->guest())
-        {
-            if ($request->ajax())
-            {
+        if ($auth->guest()) {
+            if ($request->ajax()) {
                 return response('Unauthorized.', 401);
-            }
-            else
-            {
+            } else {
                 return redirect()->guest('auth/login');
             }
         }
 
         return $next($request);
     }
-
 }

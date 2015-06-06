@@ -3,8 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddProviderToUsersTable extends Migration {
-
+class AddProviderToUsersTable extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -30,5 +30,4 @@ class AddProviderToUsersTable extends Migration {
             $table->dropColumn('auth_provider');
         });
     }
-
 }

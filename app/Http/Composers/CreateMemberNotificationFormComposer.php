@@ -1,19 +1,15 @@
-<?php namespace Keep\Http\Composers;
+<?php
+namespace Keep\Http\Composers;
 
 use App;
 use Illuminate\Contracts\View\View;
+use Keep\Repositories\User\UserRepositoryInterface;
 
-class CreateMemberNotificationFormComposer {
-
-    /**
-     * Composer member notification creation form view.
-     *
-     * @param View $view
-     */
+class CreateMemberNotificationFormComposer
+{
     public function compose(View $view)
     {
-        $userRepo = App::make('Keep\Repositories\User\UserRepositoryInterface');
+        $userRepo = App::make(UserRepositoryInterface::class);
         $view->with('users', $userRepo->getAll()->lists('name', 'id'));
     }
-
 }

@@ -1,26 +1,27 @@
-<?php namespace Keep\Console\Commands;
+<?php
+namespace Keep\Console\Commands;
 
 use Keep\Mailers\UserMailer;
 use Illuminate\Console\Command;
 use Keep\Repositories\Task\TaskRepositoryInterface;
 
-class EmailUpcomingTasksCommand extends Command {
-
+class EmailUpcomingTasksCommand extends Command
+{
     protected $taskRepo, $mailer;
 
-	/**
-	 * The console command name.
-	 *
-	 * @var string
-	 */
-	protected $name = 'keep:email-upcoming-tasks';
+    /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $name = 'keep:email-upcoming-tasks';
 
-	/**
-	 * The console command description.
-	 *
-	 * @var string
-	 */
-	protected $description = 'Notify users about their upcoming tasks using their email address';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Notify users about their upcoming tasks using their email address';
 
     /**
      * Create a new command instance.
@@ -28,29 +29,27 @@ class EmailUpcomingTasksCommand extends Command {
      * @param TaskRepositoryInterface $taskRepo
      * @param UserMailer              $mailer
      */
-	public function __construct(TaskRepositoryInterface $taskRepo, UserMailer $mailer)
-	{
-		parent::__construct();
+    public function __construct(TaskRepositoryInterface $taskRepo, UserMailer $mailer)
+    {
+        parent::__construct();
 
         $this->taskRepo = $taskRepo;
         $this->mailer = $mailer;
-	}
+    }
 
-	/**
-	 * Execute the console command.
-	 *
-	 * @return mixed
-	 */
-	public function fire()
-	{
-		$upcomingTasks = $this->taskRepo->fetchUserUpcomingTasks();
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function fire()
+    {
+        $upcomingTasks = $this->taskRepo->fetchUserUpcomingTasks();
 
-        $upcomingTasks->each(function($task)
-        {
+        $upcomingTasks->each(function ($task) {
             $this->mailer->sendNotificationAboutUpcomingTask($task->owner, $task);
         });
 
         $this->info('All emails have been sent to users to notify them about their upcoming tasks.');
-	}
-
+    }
 }

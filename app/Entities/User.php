@@ -1,4 +1,5 @@
-<?php namespace Keep\Entities;
+<?php
+namespace Keep\Entities;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -11,51 +12,16 @@ use Cviebrock\EloquentSluggable\SluggableInterface;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract, SluggableInterface {
-
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract, SluggableInterface
+{
     use Authenticatable, CanResetPassword, PresentableTrait,
         SluggableTrait, SoftDeletes, EntrustUserTrait;
 
-    /**
-     * Unique slug for user model.
-     *
-     * @var array
-     */
-    protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
-
-    /**
-     * User presenter.
-     *
-     * @var string
-     */
-    protected $presenter = 'Keep\Presenters\UserPresenter';
-
-    /**
-     * The attributes that should be treated as Carbon instances.
-     *
-     * @var array
-     */
     protected $dates = ['deleted_at'];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = ['password', 'remember_token', 'activation_code'];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = ['active' => 'boolean'];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $presenter = 'Keep\Presenters\UserPresenter';
+    protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
+    protected $hidden = ['password', 'remember_token', 'activation_code'];
     protected $fillable = [
         'name', 'email', 'password', 'activation_code',
         'active', 'auth_provider_id', 'auth_provider'
@@ -162,5 +128,4 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->slug;
     }
-
 }

@@ -1,7 +1,8 @@
-<?php namespace Keep\Http\Requests;
+<?php
+namespace Keep\Http\Requests;
 
-class EditUserProfileRequest extends Request {
-
+class EditUserProfileRequest extends Request
+{
     public function authorize()
     {
         return true;
@@ -18,5 +19,4 @@ class EditUserProfileRequest extends Request {
             'github_username'  => 'max:255'
         ];
     }
-
 }

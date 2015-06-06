@@ -1,7 +1,8 @@
-<?php namespace Keep\Commands;
+<?php
+namespace Keep\Commands;
 
-class ModifyUsernameCommand extends Command {
-
+class ModifyUsernameCommand extends Command
+{
     public $user;
     public $oldUsername;
     public $newUsername;
@@ -12,5 +13,4 @@ class ModifyUsernameCommand extends Command {
         $this->oldUsername = $old_username;
         $this->newUsername = $new_username;
     }
-
 }

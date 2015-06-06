@@ -1,4 +1,5 @@
-<?php namespace Keep\Http\Controllers\Admin;
+<?php
+namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\AssignmentRequest;
@@ -7,8 +8,8 @@ use Keep\Commands\CreateGroupAssignmentCommand;
 use Keep\Commands\CreateMemberAssignmentCommand;
 use Keep\Repositories\Assignment\AssignmentRepositoryInterface;
 
-class AssignmentsController extends Controller {
-
+class AssignmentsController extends Controller
+{
     protected $assignmentRepo;
 
     /**
@@ -57,7 +58,6 @@ class AssignmentsController extends Controller {
     public function edit($slug)
     {
         $assignment = $this->assignmentRepo->findBySlug($slug);
-
         $task = $assignment->task->load('tags', 'priority');
 
         return view('admin.assignments.edit', compact('assignment', 'task'));
@@ -74,7 +74,6 @@ class AssignmentsController extends Controller {
     public function update(AssignmentRequest $request, $slug)
     {
         $this->dispatchFrom(ModifyAssignmentCommand::class, $request, ['assignment_slug' => $slug]);
-
         flash()->info('The assignment was successfully updated');
 
         return redirect()->route('admin.assignments.all');
@@ -90,7 +89,6 @@ class AssignmentsController extends Controller {
     public function destroy($slug)
     {
         $this->assignmentRepo->delete($slug);
-
         flash()->info('This assignment was successfully deleted');
 
         return redirect()->route('admin.assignments.all');
@@ -116,7 +114,6 @@ class AssignmentsController extends Controller {
     public function storeMemberAssignment(AssignmentRequest $request)
     {
         $this->dispatchFrom(CreateMemberAssignmentCommand::class, $request);
-
         flash()->success('The assignment was assigned to selected members');
 
         return redirect()->back();
@@ -142,7 +139,6 @@ class AssignmentsController extends Controller {
     public function storeGroupAssignment(AssignmentRequest $request)
     {
         $this->dispatchFrom(CreateGroupAssignmentCommand::class, $request);
-
         flash()->success('The assignment was assigned to selected groups');
 
         return redirect()->back();
@@ -170,7 +166,6 @@ class AssignmentsController extends Controller {
     public function restore($slug)
     {
         $this->assignmentRepo->restore($slug);
-
         flash()->success('This assignment was successfully restored');
 
         return redirect()->back();
@@ -186,10 +181,8 @@ class AssignmentsController extends Controller {
     public function forceDeleteAssignment($slug)
     {
         $this->assignmentRepo->forceDelete($slug);
-
         flash()->info('This assignment was permanently deleted.');
 
         return redirect()->back();
     }
-
 }

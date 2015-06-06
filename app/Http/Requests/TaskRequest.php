@@ -1,7 +1,8 @@
-<?php namespace Keep\Http\Requests;
+<?php
+namespace Keep\Http\Requests;
 
-class TaskRequest extends Request {
-
+class TaskRequest extends Request
+{
     public function authorize()
     {
         return true;
@@ -17,5 +18,4 @@ class TaskRequest extends Request {
             'finishing_date' => 'required|date|after:starting_date'
         ];
     }
-
 }

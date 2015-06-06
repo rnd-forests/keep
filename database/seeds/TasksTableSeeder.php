@@ -5,14 +5,12 @@ use Keep\Entities\Task;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
-class TasksTableSeeder extends Seeder {
-
+class TasksTableSeeder extends Seeder
+{
     public function run()
     {
         $faker = Faker::create();
-
-        for ($i = 1; $i <= 25; $i++)
-        {
+        for ($i = 1; $i <= 25; $i++) {
             $timestamp = Carbon::now()->subDays(rand(0, 15))->subHours(rand(1, 20));
             Task::create([
                 'user_id'        => 1,
@@ -30,8 +28,7 @@ class TasksTableSeeder extends Seeder {
             ]);
         }
 
-        for ($i = 1; $i <= 15; $i++)
-        {
+        for ($i = 1; $i <= 15; $i++) {
             $timestamp = Carbon::now()->subDays(rand(0, 15))->subHours(rand(1, 20));
             Task::create([
                 'user_id'        => 1,
@@ -47,8 +44,7 @@ class TasksTableSeeder extends Seeder {
             ]);
         }
 
-        for ($i = 1; $i <= 10; $i++)
-        {
+        for ($i = 1; $i <= 10; $i++) {
             $timestamp = Carbon::now()->subDays(rand(0, 15))->subHours(rand(1, 20));
             Task::create([
                 'user_id'        => 1,
@@ -64,8 +60,7 @@ class TasksTableSeeder extends Seeder {
             ]);
         }
 
-        for ($i = 1; $i <= 10; $i++)
-        {
+        for ($i = 1; $i <= 10; $i++) {
             $timestamp = Carbon::now()->subDays(rand(0, 15))->subHours(rand(1, 20));
             Task::create([
                 'user_id'        => 1,
@@ -81,8 +76,7 @@ class TasksTableSeeder extends Seeder {
             ]);
         }
 
-        for ($i = 1; $i <= 300; $i++)
-        {
+        for ($i = 1; $i <= 300; $i++) {
             $timestamp = Carbon::now()->subDays(rand(0, 15))->subHours(rand(1, 20));
             Task::create([
                 'user_id'        => rand(1, 152),
@@ -98,5 +92,4 @@ class TasksTableSeeder extends Seeder {
             ]);
         }
     }
-
 }

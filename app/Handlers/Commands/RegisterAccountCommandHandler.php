@@ -1,11 +1,13 @@
-<?php namespace Keep\Handlers\Commands;
+<?php
+namespace Keep\Handlers\Commands;
 
 use App;
 use Keep\Events\UserWasRegisteredEvent;
 use Keep\Commands\RegisterAccountCommand;
+use Keep\Repositories\User\UserRepositoryInterface;
 
-class RegisterAccountCommandHandler {
-
+class RegisterAccountCommandHandler
+{
     /**
      * Handle the command.
      *
@@ -27,12 +29,11 @@ class RegisterAccountCommandHandler {
      */
     private function register(RegisterAccountCommand $command)
     {
-        $users = App::make('Keep\Repositories\User\UserRepositoryInterface');
-
+        $users = App::make(UserRepositoryInterface::class);
         $user = $users->create($this->getRequestData($command));
-
-        if ( ! $user) return false;
-
+        if ( ! $user) {
+            return false;
+        }
         event(new UserWasRegisteredEvent($user));
 
         return true;
@@ -47,11 +48,10 @@ class RegisterAccountCommandHandler {
      */
     private function getRequestData(RegisterAccountCommand $command)
     {
-        return array(
+        return [
             'name'     => $command->name,
             'email'    => $command->email,
             'password' => $command->password
-        );
+        ];
     }
-
 }

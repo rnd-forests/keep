@@ -1,4 +1,5 @@
-<?php namespace Keep\Http\Controllers\Admin;
+<?php
+namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\NotificationRequest;
@@ -6,8 +7,8 @@ use Keep\Commands\CreateGroupNotificationCommand;
 use Keep\Commands\CreateMemberNotificationCommand;
 use Keep\Repositories\Notification\NotificationRepositoryInterface;
 
-class NotificationsController extends Controller {
-
+class NotificationsController extends Controller
+{
     protected $notificationRepo;
 
     /**
@@ -42,7 +43,6 @@ class NotificationsController extends Controller {
     public function destroy($slug)
     {
         $this->notificationRepo->delete($slug);
-
         flash()->info('This notification was successfully deleted');
 
         return redirect()->route('admin.notifications.all');
@@ -68,7 +68,6 @@ class NotificationsController extends Controller {
     public function storeMemberNotification(NotificationRequest $request)
     {
         $this->dispatchFrom(CreateMemberNotificationCommand::class, $request);
-
         flash()->success('The notification was sent to selected members');
 
         return redirect()->back();
@@ -94,10 +93,8 @@ class NotificationsController extends Controller {
     public function storeGroupNotification(NotificationRequest $request)
     {
         $this->dispatchFrom(CreateGroupNotificationCommand::class, $request);
-
         flash()->success('The notification was sent to selected groups');
 
         return redirect()->back();
     }
-
 }

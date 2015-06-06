@@ -1,11 +1,13 @@
-<?php namespace Keep\Handlers\Events;
+<?php
+namespace Keep\Handlers\Events;
 
 use App;
+use Keep\Mailers\UserMailer;
 use Keep\Events\UserWasActivatedEvent;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 
-class EmailActivatedAccount implements ShouldBeQueued {
-
+class EmailActivatedAccount implements ShouldBeQueued
+{
     /**
      * Handle the event.
      *
@@ -15,9 +17,7 @@ class EmailActivatedAccount implements ShouldBeQueued {
      */
     public function handle(UserWasActivatedEvent $event)
     {
-        $mailer = App::make('Keep\Mailers\UserMailer');
-
+        $mailer = App::make(UserMailer::class);
         $mailer->sendAccountActivatedConfirmation($event->user);
     }
-
 }

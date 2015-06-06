@@ -1,4 +1,5 @@
-<?php namespace Keep\OAuth;
+<?php
+namespace Keep\OAuth;
 
 use Keep\Entities\User;
 use Illuminate\Contracts\Auth\Guard;
@@ -8,8 +9,8 @@ use Keep\Repositories\User\UserRepositoryInterface;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 use Laravel\Socialite\Contracts\User as SocialiteUser;
 
-abstract class AuthenticationProvider {
-
+abstract class AuthenticationProvider
+{
     protected $userRepo, $socialite, $auth;
 
     /**
@@ -37,16 +38,18 @@ abstract class AuthenticationProvider {
      */
     public final function authenticate($hasCode, OAuthUserListener $listener)
     {
-        if ( ! $hasCode) return $this->getAuthorizationUrl($this->getAuthProvider());
-
+        if ( ! $hasCode) {
+            return $this->getAuthorizationUrl($this->getAuthProvider());
+        }
         $providerData = $this->handleProviderCallback($this->getAuthProvider());
-
-        $user = $this->userRepo->findOrCreateNew($this->getUserProviderData($providerData), $this->getAuthProvider());
-
-        if ( ! $user) throw new InvalidUserException($this->getExceptionMessage());
-
+        $user = $this->userRepo->findOrCreateNew(
+            $this->getUserProviderData($providerData),
+            $this->getAuthProvider()
+        );
+        if ( ! $user) {
+            throw new InvalidUserException($this->getExceptionMessage());
+        }
         $this->updateAuthenticatedUser($user, $providerData);
-
         $this->auth->login($user, true);
 
         return $listener->userHasLoggedIn($user);
@@ -111,5 +114,4 @@ abstract class AuthenticationProvider {
      * @return string
      */
     protected abstract function getExceptionMessage();
-
 }

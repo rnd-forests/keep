@@ -1,9 +1,10 @@
-<?php namespace Keep\Providers;
+<?php
+namespace Keep\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider {
-
+class AppServiceProvider extends ServiceProvider
+{
     /**
      * Bootstrap any application services.
      *
@@ -64,5 +65,4 @@ class AppServiceProvider extends ServiceProvider {
             $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
         }
     }
-
 }

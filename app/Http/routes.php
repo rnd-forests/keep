@@ -8,7 +8,6 @@
 //    Artisan::call('keep:email-upcoming-tasks');
 //});
 
-foreach (File::allFiles(__DIR__ . '/Routes') as $routePartial)
-{
+foreach (File::allFiles(__DIR__ . '/Routes') as $routePartial) {
     require_once $routePartial->getPathname();
 }

@@ -1,14 +1,9 @@
-<?php namespace Keep\Entities;
+<?php
+namespace Keep\Entities;
 
 use Zizaco\Entrust\EntrustPermission;
 
-class Permission extends EntrustPermission {
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+class Permission extends EntrustPermission
+{
     protected $fillable = ['name', 'display_name', 'description'];
-
 }

@@ -1,4 +1,5 @@
-<?php namespace Keep\Handlers\Commands;
+<?php
+namespace Keep\Handlers\Commands;
 
 use Keep\Commands\CreateMemberAssignmentCommand;
 use Keep\Repositories\Task\TaskRepositoryInterface;
@@ -6,8 +7,8 @@ use Keep\Repositories\User\UserRepositoryInterface;
 use Keep\Handlers\CommandTraits\AssignmentCommandTrait;
 use Keep\Repositories\Assignment\AssignmentRepositoryInterface;
 
-class CreateMemberAssignmentCommandHandler {
-
+class CreateMemberAssignmentCommandHandler
+{
     use AssignmentCommandTrait;
 
     protected $userRepo, $taskRepo, $assignmentRepo;
@@ -35,12 +36,8 @@ class CreateMemberAssignmentCommandHandler {
     public function handle(CreateMemberAssignmentCommand $command)
     {
         $assignment = $this->assignmentRepo->create($this->getAssignmentRequestData($command));
-
         $task = $this->taskRepo->create($this->getTaskRequestData($command));
-
         $users = $this->userRepo->fetchUsersByIds($command->userList);
-
         $this->setRelations($command, $assignment, $task, $users);
     }
-
 }

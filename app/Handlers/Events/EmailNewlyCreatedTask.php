@@ -1,11 +1,13 @@
-<?php namespace Keep\Handlers\Events;
+<?php
+namespace Keep\Handlers\Events;
 
 use App;
+use Keep\Mailers\UserMailer;
 use Keep\Events\TaskWasCreatedEvent;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 
-class EmailNewlyCreatedTask implements ShouldBeQueued {
-
+class EmailNewlyCreatedTask implements ShouldBeQueued
+{
     /**
      * Handle the event.
      *
@@ -13,9 +15,7 @@ class EmailNewlyCreatedTask implements ShouldBeQueued {
      */
     public function handle(TaskWasCreatedEvent $event)
     {
-        $mailer = App::make('Keep\Mailers\UserMailer');
-
+        $mailer = App::make(UserMailer::class);
         $mailer->sendNotificationAboutNewTask($event->user, $event->task);
     }
-
 }

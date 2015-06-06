@@ -1,11 +1,12 @@
-<?php namespace Keep\Repositories\Priority;
+<?php
+namespace Keep\Repositories\Priority;
 
 use Keep\Entities\User;
 use Keep\Entities\Priority;
 use Keep\Repositories\DbRepository;
 
-class EloquentPriorityRepository extends DbRepository implements PriorityRepositoryInterface {
-
+class EloquentPriorityRepository extends DbRepository implements PriorityRepositoryInterface
+{
     protected $model;
 
     public function __construct(Priority $model)
@@ -38,10 +39,10 @@ class EloquentPriorityRepository extends DbRepository implements PriorityReposit
     {
         $user = User::findBySlug($userSlug);
         $priority = $this->findByName($priorityName);
+
         return $user->tasks()
             ->latest('created_at')
             ->where('priority_id', $priority->id)
             ->paginate($limit);
     }
-
 }

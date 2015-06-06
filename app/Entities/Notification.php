@@ -1,4 +1,5 @@
-<?php namespace Keep\Entities;
+<?php
+namespace Keep\Entities;
 
 use Exception;
 use Carbon\Carbon;
@@ -8,43 +9,14 @@ use Keep\Exceptions\InvalidObjectException;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 
-class Notification extends Model implements SluggableInterface {
-
+class Notification extends Model implements SluggableInterface
+{
     use SluggableTrait, PresentableTrait;
 
-    /**
-     * The object associated with a given notification.
-     *
-     * @var null
-     */
-    protected $associatedObject = null;
-
-    /**
-     * Unique slug for notification model.
-     *
-     * @var array
-     */
-    protected $sluggable = ['build_from' => 'subject', 'save_to' => 'slug'];
-
-    /**
-     * Notification presenter.
-     *
-     * @var string
-     */
-    protected $presenter = 'Keep\Presenters\NotificationPresenter';
-
-    /**
-     * The attributes that should be treated as Carbon instances.
-     *
-     * @var array
-     */
     protected $dates = ['sent_at'];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $associatedObject = null;
+    protected $presenter = 'Keep\Presenters\NotificationPresenter';
+    protected $sluggable = ['build_from' => 'subject', 'save_to' => 'slug'];
     protected $fillable = [
         'sent_from', 'type', 'subject', 'slug', 'body',
         'object_id', 'object_type', 'sent_at'
@@ -99,8 +71,7 @@ class Notification extends Model implements SluggableInterface {
      */
     public function getObject()
     {
-        if (!$this->associatedObject && !$this->hasValidObject())
-        {
+        if ( ! $this->associatedObject && ! $this->hasValidObject()) {
             throw new InvalidObjectException('No valid object ' . $this->object_type .
                 ' with ID ' . $this->object_id . ' associated with this notification.');
         }
@@ -115,12 +86,9 @@ class Notification extends Model implements SluggableInterface {
      */
     public function hasValidObject()
     {
-        try
-        {
+        try {
             $object = call_user_func_array($this->object_type . '::findOrFail', [$this->object_id]);
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             return false;
         }
 
@@ -128,5 +96,4 @@ class Notification extends Model implements SluggableInterface {
 
         return true;
     }
-
 }

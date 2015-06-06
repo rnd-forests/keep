@@ -5,8 +5,8 @@ use Keep\Entities\User;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
-class UsersTableSeeder extends Seeder {
-
+class UsersTableSeeder extends Seeder
+{
     public function run()
     {
         $faker = Faker::create();
@@ -28,8 +28,7 @@ class UsersTableSeeder extends Seeder {
             'updated_at' => Carbon::now()->subYears(2)
         ]);
 
-        for ($i = 1; $i <= 150; $i++)
-        {
+        for ($i = 1; $i <= 150; $i++) {
             $timestamp = Carbon::now()->subMonths(rand(1, 20));
             User::create([
                 'name'       => $faker->name,
@@ -41,5 +40,4 @@ class UsersTableSeeder extends Seeder {
             ]);
         }
     }
-
 }

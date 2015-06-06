@@ -3,8 +3,8 @@
 use Keep\Entities\Priority;
 use Illuminate\Database\Seeder;
 
-class PrioritiesTableSeeder extends Seeder {
-
+class PrioritiesTableSeeder extends Seeder
+{
     public function run()
     {
         $priorities = [
@@ -30,10 +30,8 @@ class PrioritiesTableSeeder extends Seeder {
             ]
         ];
 
-        foreach ($priorities as $priority)
-        {
+        foreach ($priorities as $priority) {
             Priority::create($priority);
         }
     }
-
 }

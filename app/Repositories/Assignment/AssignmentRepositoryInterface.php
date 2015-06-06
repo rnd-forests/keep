@@ -1,7 +1,8 @@
-<?php namespace Keep\Repositories\Assignment;
+<?php
+namespace Keep\Repositories\Assignment;
 
-interface AssignmentRepositoryInterface {
-
+interface AssignmentRepositoryInterface
+{
     public function getPaginatedAssignments($limit);
 
     public function findBySlug($slug);
@@ -29,5 +30,4 @@ interface AssignmentRepositoryInterface {
     public function restore($slug);
 
     public function forceDelete($slug);
-
 }

@@ -1,7 +1,8 @@
-<?php namespace Keep\Commands;
+<?php
+namespace Keep\Commands;
 
-class ModifyAssignmentCommand extends Command {
-
+class ModifyAssignmentCommand extends Command
+{
     public $title;
     public $content;
     public $tagList;
@@ -14,8 +15,8 @@ class ModifyAssignmentCommand extends Command {
     public $assignmentSlug;
     public $assignmentName;
 
-    public function __construct($title, $content, $tag_list = array(), $location, $user_list = array(),
-                                $group_list = array(), $starting_date, $finishing_date, $priority_level,
+    public function __construct($title, $content, $tag_list = [], $location, $user_list = [],
+                                $group_list = [], $starting_date, $finishing_date, $priority_level,
                                 $assignment_slug, $assignment_name)
     {
         $this->title = $title;
@@ -30,5 +31,4 @@ class ModifyAssignmentCommand extends Command {
         $this->assignmentSlug = $assignment_slug;
         $this->assignmentName = $assignment_name;
     }
-
 }

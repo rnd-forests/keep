@@ -1,22 +1,19 @@
-<?php namespace Keep\Http\Composers;
+<?php
+namespace Keep\Http\Composers;
 
 use App;
 use Illuminate\Contracts\View\View;
+use Keep\Repositories\User\UserRepositoryInterface;
+use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
 
-class EditAssignmentFormComposer {
-
-    /**
-     * Composer assignment form view.
-     *
-     * @param View $view
-     */
+class EditAssignmentFormComposer
+{
     public function compose(View $view)
     {
-        $userRepo = App::make('Keep\Repositories\User\UserRepositoryInterface');
+        $userRepo = App::make(UserRepositoryInterface::class);
         $view->with('users', $userRepo->getAll()->lists('name', 'id'));
 
-        $groupRepo = App::make('Keep\Repositories\UserGroup\UserGroupRepositoryInterface');
+        $groupRepo = App::make(UserGroupRepositoryInterface::class);
         $view->with('groups', $groupRepo->getAll()->lists('name', 'id'));
     }
-
 }

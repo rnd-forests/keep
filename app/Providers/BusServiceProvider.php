@@ -1,10 +1,11 @@
-<?php namespace Keep\Providers;
+<?php
+namespace Keep\Providers;
 
 use Illuminate\Bus\Dispatcher;
 use Illuminate\Support\ServiceProvider;
 
-class BusServiceProvider extends ServiceProvider {
-
+class BusServiceProvider extends ServiceProvider
+{
     /**
      * Bootstrap any application services.
      *
@@ -14,8 +15,7 @@ class BusServiceProvider extends ServiceProvider {
      */
     public function boot(Dispatcher $dispatcher)
     {
-        $dispatcher->mapUsing(function ($command)
-        {
+        $dispatcher->mapUsing(function ($command) {
             return Dispatcher::simpleMapping(
                 $command, 'Keep\Commands', 'Keep\Handlers\Commands'
             );
@@ -31,5 +31,4 @@ class BusServiceProvider extends ServiceProvider {
     {
         //
     }
-
 }

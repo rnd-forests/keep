@@ -1,4 +1,5 @@
-<?php namespace Keep\Repositories\Task;
+<?php
+namespace Keep\Repositories\Task;
 
 use Request;
 use Carbon\Carbon;
@@ -7,8 +8,8 @@ use Keep\Entities\User;
 use Keep\Entities\Priority;
 use Keep\Repositories\DbRepository;
 
-class EloquentTaskRepository extends DbRepository implements TaskRepositoryInterface {
-
+class EloquentTaskRepository extends DbRepository implements TaskRepositoryInterface
+{
     protected $model;
 
     public function __construct(Task $model)
@@ -46,18 +47,21 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
     {
         $task = $this->findCorrectTaskBySlug($userSlug, $taskSlug);
         $task->update($data);
+
         return $task;
     }
 
     public function adminUpdate($task, array $data)
     {
         $task->update($data);
+
         return $task;
     }
 
     public function findCorrectTaskBySlug($userSlug, $taskSlug)
     {
         $user = User::findBySlug($userSlug);
+
         return $this->model
             ->where('user_id', $user->id)
             ->where('slug', $taskSlug)
@@ -85,6 +89,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
     public function restore($slug)
     {
         $task = $this->findTrashedTaskBySlug($slug);
+
         return $task->restore();
     }
 
@@ -117,6 +122,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
         $task = $this->findCorrectTaskBySlug($userSlug, $taskSlug);
         $task->completed = Request::input('completed') ? Request::input('completed') : 0;
         $task->finished_at = Carbon::now();
+
         return $task->save();
     }
 
@@ -128,6 +134,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
     public function associatePriority($task, $priorityId)
     {
         $task->priority()->associate(Priority::findOrFail($priorityId));
+
         return $task->save();
     }
 
@@ -227,6 +234,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
     public function fetchAllTasksOfAUser($userSlug)
     {
         $user = User::findBySlug($userSlug);
+
         return $this->model->where(['user_id' => $user->id, 'completed' => 0])->get([
             'title', 'starting_date', 'finishing_date', 'priority_id'
         ])->map(function ($task) {
@@ -246,5 +254,4 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
             ->latest('created_at')
             ->paginate(15);
     }
-
 }

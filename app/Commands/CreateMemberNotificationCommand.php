@@ -1,7 +1,8 @@
-<?php namespace Keep\Commands;
+<?php
+namespace Keep\Commands;
 
-class CreateMemberNotificationCommand extends Command {
-
+class CreateMemberNotificationCommand extends Command
+{
     public $type;
     public $body;
     public $subject;
@@ -14,5 +15,4 @@ class CreateMemberNotificationCommand extends Command {
         $this->subject = $subject;
         $this->userList = $user_list;
     }
-
 }

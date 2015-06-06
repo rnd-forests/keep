@@ -1,14 +1,10 @@
-<?php namespace Keep\Entities;
+<?php
+namespace Keep\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Priority extends Model {
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+class Priority extends Model
+{
     protected $fillable = ['name', 'value', 'description'];
 
     /**
@@ -30,5 +26,4 @@ class Priority extends Model {
     {
         return $this->name;
     }
-
 }

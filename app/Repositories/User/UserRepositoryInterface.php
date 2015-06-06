@@ -1,11 +1,12 @@
-<?php namespace Keep\Repositories\User;
+<?php
+namespace Keep\Repositories\User;
 
 use Keep\Entities\User;
 
-interface UserRepositoryInterface {
-
+interface UserRepositoryInterface
+{
     public function getPaginatedUsers($limit, array $params);
-    
+
     public function findBySlugWithTasks($slug);
 
     public function findByCodeAndActiveState($code, $state);
@@ -29,5 +30,4 @@ interface UserRepositoryInterface {
     public function fetchUsersByIds(array $ids);
 
     public function findOrCreateNew(array $userData, $provider);
-
 }

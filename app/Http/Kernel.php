@@ -1,9 +1,10 @@
-<?php namespace Keep\Http;
+<?php
+namespace Keep\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
-class Kernel extends HttpKernel {
-
+class Kernel extends HttpKernel
+{
     /**
      * The application's global HTTP middleware stack.
      *
@@ -33,5 +34,4 @@ class Kernel extends HttpKernel {
         'valid.permissions' => 'Keep\Http\Middleware\HasCorrectPermissions',
         'valid.admin.user'  => 'Keep\Http\Middleware\VerifyAdminUser',
     ];
-
 }

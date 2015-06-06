@@ -1,12 +1,12 @@
-<?php namespace Keep\Commands;
+<?php
+namespace Keep\Commands;
 
-class ConfirmAccountCommand extends Command {
-
+class ConfirmAccountCommand extends Command
+{
     public $code;
 
     public function __construct($code)
     {
         $this->code = $code;
     }
-
 }

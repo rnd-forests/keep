@@ -2,12 +2,11 @@
 
 use Illuminate\Database\Seeder;
 
-class AssignablesTableSeeder extends Seeder {
-
+class AssignablesTableSeeder extends Seeder
+{
     public function run()
     {
-        for ($i = 1; $i <= 350; $i++)
-        {
+        for ($i = 1; $i <= 350; $i++) {
             DB::table('assignables')->insert([
                 'assignment_id'   => rand(1, 25),
                 'assignable_id'   => rand(1, 152),
@@ -15,8 +14,7 @@ class AssignablesTableSeeder extends Seeder {
             ]);
         }
 
-        for ($i = 1; $i <= 350; $i++)
-        {
+        for ($i = 1; $i <= 350; $i++) {
             DB::table('assignables')->insert([
                 'assignment_id'   => rand(26, 50),
                 'assignable_id'   => rand(1, 50),
@@ -24,5 +22,4 @@ class AssignablesTableSeeder extends Seeder {
             ]);
         }
     }
-
 }

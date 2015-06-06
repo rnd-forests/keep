@@ -1,10 +1,11 @@
-<?php namespace Keep\OAuth;
+<?php
+namespace Keep\OAuth;
 
 use Keep\Entities\User;
 use Keep\OAuth\Contracts\ProviderInterface;
 
-class FacebookAuthentication extends AuthenticationProvider implements ProviderInterface {
-
+class FacebookAuthentication extends AuthenticationProvider implements ProviderInterface
+{
     /**
      * Update authenticated user profile.
      *
@@ -37,5 +38,4 @@ class FacebookAuthentication extends AuthenticationProvider implements ProviderI
     {
         return 'facebook';
     }
-
 }

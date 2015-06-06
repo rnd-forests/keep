@@ -1,7 +1,8 @@
-<?php namespace Keep\Repositories\Priority;
+<?php
+namespace Keep\Repositories\Priority;
 
-interface PriorityRepositoryInterface {
-
+interface PriorityRepositoryInterface
+{
     public function getAll();
 
     public function lists();
@@ -9,5 +10,4 @@ interface PriorityRepositoryInterface {
     public function findByName($name);
 
     public function getTasksOfUserAssociatedWithAPriority($userSlug, $priorityName, $limit);
-
 }

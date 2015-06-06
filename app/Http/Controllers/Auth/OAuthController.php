@@ -1,14 +1,15 @@
-<?php namespace Keep\Http\Controllers\Auth;
+<?php
+namespace Keep\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use Keep\OAuth\GoogleAuthentication;
 use Keep\OAuth\GithubAuthentication;
 use Keep\Http\Controllers\Controller;
 use Keep\OAuth\FacebookAuthentication;
 use Keep\OAuth\Contracts\OAuthUserListener;
-use Keep\OAuth\GoogleAuthentication;
 
-class OAuthController extends Controller implements OAuthUserListener {
-
+class OAuthController extends Controller implements OAuthUserListener
+{
     /**
      * Create new oauth controller instance.
      */
@@ -72,5 +73,4 @@ class OAuthController extends Controller implements OAuthUserListener {
 
         return redirect()->route('users.show', $user);
     }
-
 }

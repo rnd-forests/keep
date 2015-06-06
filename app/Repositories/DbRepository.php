@@ -1,7 +1,8 @@
-<?php namespace Keep\Repositories;
+<?php
+namespace Keep\Repositories;
 
-abstract class DbRepository {
-
+abstract class DbRepository
+{
     public function getAll()
     {
         return $this->model->all();
@@ -26,5 +27,4 @@ abstract class DbRepository {
     {
         return $params['sortBy'] and $params['direction'];
     }
-
 }

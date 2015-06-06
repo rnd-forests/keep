@@ -1,16 +1,17 @@
-<?php namespace Keep\Handlers\Commands;
+<?php
+namespace Keep\Handlers\Commands;
 
 use Illuminate\Hashing\BcryptHasher;
 use Keep\Commands\ModifyPasswordCommand;
 
-class ModifyPasswordCommandHandler {
-
+class ModifyPasswordCommandHandler
+{
     protected $bcrypt;
 
     /**
      * Create the command handler.
      *
-     * @param BcryptHasher            $bcrypt
+     * @param BcryptHasher $bcrypt
      */
     public function __construct(BcryptHasher $bcrypt)
     {
@@ -38,8 +39,9 @@ class ModifyPasswordCommandHandler {
      */
     private function modifyPassword(ModifyPasswordCommand $command)
     {
-        if ( ! $this->checkOldPassword($command)) return false;
-
+        if ( ! $this->checkOldPassword($command)) {
+            return false;
+        }
         $command->user->password = $command->newPassword;
 
         return $command->user->save();
@@ -56,5 +58,4 @@ class ModifyPasswordCommandHandler {
     {
         return $this->bcrypt->check($command->oldPassword, $command->user->password);
     }
-
 }

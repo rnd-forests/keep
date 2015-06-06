@@ -1,4 +1,5 @@
-<?php namespace Keep\Entities;
+<?php
+namespace Keep\Entities;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -7,56 +8,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 
-class Task extends Model implements SluggableInterface {
-
+class Task extends Model implements SluggableInterface
+{
     use PresentableTrait, SluggableTrait, SoftDeletes;
 
-    /**
-     * Unique slug for task model.
-     *
-     * @var array
-     */
-    protected $sluggable = ['build_from' => 'title', 'save_to' => 'slug'];
-
-    /**
-     * Task presenter.
-     *
-     * @var string
-     */
+    protected $touches = ['owner', 'assignment'];
     protected $presenter = 'Keep\Presenters\TaskPresenter';
-
-    /**
-     * The attributes that should be treated as Carbon instances.
-     *
-     * @var array
-     */
+    protected $sluggable = ['build_from' => 'title', 'save_to' => 'slug'];
     protected $dates = ['starting_date', 'finishing_date', 'finished_at', 'deleted_at'];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = ['completed' => 'boolean', 'is_assigned' => 'boolean', 'is_failed' => 'boolean'];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'user_id', 'destroyer_id', 'priority_id', 'assignment_id',
         'title', 'slug', 'content', 'location', 'starting_date',
         'finishing_date', 'finished_at', 'completed', 'is_assigned',
         'deleted_at'
     ];
-
-    /**
-     * Touching parent timestamps.
-     *
-     * @var array
-     */
-    protected $touches = ['owner', 'assignment'];
 
     /**
      * A task belongs to a specific user.
@@ -296,13 +262,15 @@ class Task extends Model implements SluggableInterface {
 
     public function setFinishedAtAttribute($date)
     {
-        if ($this->isCompleted()) $this->attributes['finished_at'] = Carbon::parse($date);
-        else $this->attributes['finished_at'] = null;
+        if ($this->isCompleted()) {
+            $this->attributes['finished_at'] = Carbon::parse($date);
+        } else {
+            $this->attributes['finished_at'] = null;
+        }
     }
 
     public function getTagListAttribute()
     {
         return $this->tags->lists('id');
     }
-
 }

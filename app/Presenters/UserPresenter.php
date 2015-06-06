@@ -1,9 +1,10 @@
-<?php namespace Keep\Presenters;
+<?php
+namespace Keep\Presenters;
 
 use Laracasts\Presenter\Presenter;
 
-class UserPresenter extends Presenter {
-
+class UserPresenter extends Presenter
+{
     use KeepPresentableTrait;
 
     /**
@@ -29,7 +30,9 @@ class UserPresenter extends Presenter {
      */
     public function attribute($attribute)
     {
-        if (empty($attribute)) return '-';
+        if (empty($attribute)) {
+            return '-';
+        }
 
         return $attribute;
     }
@@ -81,5 +84,4 @@ class UserPresenter extends Presenter {
     {
         return 'https://www.facebook.com/' . $user->profile->facebook_username;
     }
-
 }

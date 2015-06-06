@@ -1,10 +1,11 @@
-<?php namespace Keep\Http\Controllers;
+<?php
+namespace Keep\Http\Controllers;
 
 use Keep\Http\Requests\EditUserProfileRequest;
 use Keep\Repositories\User\UserRepositoryInterface;
 
-class UsersController extends Controller {
-
+class UsersController extends Controller
+{
     protected $userRepo;
 
     /**
@@ -15,7 +16,6 @@ class UsersController extends Controller {
     public function __construct(UserRepositoryInterface $userRepo)
     {
         $this->userRepo = $userRepo;
-
         $this->middleware('auth');
         $this->middleware('auth.correct');
         $this->middleware('auth.confirmed');
@@ -46,7 +46,6 @@ class UsersController extends Controller {
     public function update(EditUserProfileRequest $request, $slug)
     {
         $user = $this->userRepo->updateProfile($slug, $request->except(['_method', '_token']));
-
         flash()->info('Your profile has been successfully updated.');
 
         return redirect()->route('users.show', $user);
@@ -62,10 +61,8 @@ class UsersController extends Controller {
     public function destroy($slug)
     {
         $this->userRepo->softDelete($slug);
-
         flash()->success("Your account has been deleted.");
 
         return redirect()->home();
     }
-
 }

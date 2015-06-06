@@ -1,7 +1,8 @@
-<?php namespace Keep\Commands;
+<?php
+namespace Keep\Commands;
 
-class CreateGroupAssignmentCommand extends Command {
-
+class CreateGroupAssignmentCommand extends Command
+{
     public $title;
     public $content;
     public $tagList;
@@ -12,7 +13,7 @@ class CreateGroupAssignmentCommand extends Command {
     public $priorityLevel;
     public $assignmentName;
 
-    public function __construct($title, $content, $tag_list = array(), $location, $group_list,
+    public function __construct($title, $content, $tag_list = [], $location, $group_list,
                                 $starting_date, $finishing_date, $priority_level, $assignment_name)
     {
         $this->title = $title;
@@ -25,5 +26,4 @@ class CreateGroupAssignmentCommand extends Command {
         $this->finishingDate = $finishing_date;
         $this->assignmentName = $assignment_name;
     }
-
 }

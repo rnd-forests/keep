@@ -4,8 +4,8 @@ use Keep\Entities\Role;
 use Keep\Entities\User;
 use Illuminate\Database\Seeder;
 
-class RoleUserTableSeeder extends Seeder {
-
+class RoleUserTableSeeder extends Seeder
+{
     public function run()
     {
         $admin = Role::where('name', 'admin')->firstOrFail();
@@ -19,5 +19,4 @@ class RoleUserTableSeeder extends Seeder {
 
         $moon->attachRole($admin);
     }
-
 }

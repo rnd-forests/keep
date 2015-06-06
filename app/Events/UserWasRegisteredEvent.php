@@ -1,10 +1,11 @@
-<?php namespace Keep\Events;
+<?php
+namespace Keep\Events;
 
 use Keep\Entities\User;
 use Illuminate\Queue\SerializesModels;
 
-class UserWasRegisteredEvent extends Event {
-
+class UserWasRegisteredEvent extends Event
+{
     use SerializesModels;
 
     public $user;
@@ -13,5 +14,4 @@ class UserWasRegisteredEvent extends Event {
     {
         $this->user = $user;
     }
-
 }

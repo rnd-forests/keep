@@ -1,9 +1,10 @@
-<?php namespace Keep\Http\Controllers;
+<?php
+namespace Keep\Http\Controllers;
 
 use Keep\Repositories\Tag\TagRepositoryInterface;
 
-class TagsController extends Controller {
-
+class TagsController extends Controller
+{
     protected $tagRepo;
 
     /**
@@ -14,7 +15,6 @@ class TagsController extends Controller {
     public function __construct(TagRepositoryInterface $tagRepo)
     {
         $this->tagRepo = $tagRepo;
-
         $this->middleware('auth');
         $this->middleware('auth.correct');
     }
@@ -44,10 +44,8 @@ class TagsController extends Controller {
     public function show($userSlug, $tagName)
     {
         $tag = $this->tagRepo->findBySlug($tagName);
-
         $tasks = $this->tagRepo->getTasksOfUserAssociatedWithATag($userSlug, $tagName, 10);
 
         return view('users.tags.show', compact('tag', 'tasks'));
     }
-
 }

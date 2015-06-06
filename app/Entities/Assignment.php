@@ -1,4 +1,5 @@
-<?php namespace Keep\Entities;
+<?php
+namespace Keep\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -6,30 +7,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 
-class Assignment extends Model implements SluggableInterface {
-
+class Assignment extends Model implements SluggableInterface
+{
     use SoftDeletes, SluggableTrait, PresentableTrait;
 
-    /**
-     * Unique slug for assignment model.
-     *
-     * @var array
-     */
-    protected $sluggable = ['build_from' => 'assignment_name', 'save_to' => 'slug'];
-
-    /**
-     * Group presenter.
-     *
-     * @var string
-     */
-    protected $presenter = 'Keep\Presenters\AssignmentPresenter';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = ['assignment_name', 'slug'];
+    protected $presenter = 'Keep\Presenters\AssignmentPresenter';
+    protected $sluggable = ['build_from' => 'assignment_name', 'save_to' => 'slug'];
 
     /**
      * An assignment can be assigned to many users.
@@ -70,5 +54,4 @@ class Assignment extends Model implements SluggableInterface {
     {
         return $this->slug;
     }
-
 }

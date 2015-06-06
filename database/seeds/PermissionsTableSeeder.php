@@ -4,8 +4,8 @@ use Keep\Entities\Role;
 use Keep\Entities\Permission;
 use Illuminate\Database\Seeder;
 
-class PermissionsTableSeeder extends Seeder {
-
+class PermissionsTableSeeder extends Seeder
+{
     public function run()
     {
         $permissions = [
@@ -39,12 +39,10 @@ class PermissionsTableSeeder extends Seeder {
         $owner = Role::where('name', 'owner')->firstOrFail();
         $admin = Role::where('name', 'admin')->firstOrFail();
 
-        foreach ($permissions as $permission)
-        {
+        foreach ($permissions as $permission) {
             $dbPermission = Permission::create($permission);
             $owner->attachPermission($dbPermission);
             $admin->attachPermission($dbPermission);
         }
     }
-
 }

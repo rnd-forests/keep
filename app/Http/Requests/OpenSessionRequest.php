@@ -1,7 +1,8 @@
-<?php namespace Keep\Http\Requests;
+<?php
+namespace Keep\Http\Requests;
 
-class OpenSessionRequest extends Request {
-
+class OpenSessionRequest extends Request
+{
     public function authorize()
     {
         return true;
@@ -14,5 +15,4 @@ class OpenSessionRequest extends Request {
             'password' => 'required',
         ];
     }
-
 }

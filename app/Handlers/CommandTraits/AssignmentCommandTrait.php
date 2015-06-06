@@ -1,11 +1,12 @@
-<?php namespace Keep\Handlers\CommandTraits;
+<?php
+namespace Keep\Handlers\CommandTraits;
 
 use Keep\Entities\Task;
 use Keep\Entities\Assignment;
 use Illuminate\Support\Collection;
 
-trait AssignmentCommandTrait {
-
+trait AssignmentCommandTrait
+{
     /**
      * Set all possible relations for an assignment and its associated task.
      *
@@ -68,8 +69,7 @@ trait AssignmentCommandTrait {
      */
     public function setAssignmentPolymorphic(Assignment $assignment, Collection $entities)
     {
-        $entities->each(function ($entity) use ($assignment)
-        {
+        $entities->each(function ($entity) use ($assignment) {
             $entity->assignments()->attach($assignment->id);
         });
     }
@@ -83,9 +83,7 @@ trait AssignmentCommandTrait {
     public function updateAssociatedTask($task, array $data)
     {
         $this->taskRepo->adminUpdate($task, $data);
-
         $this->taskRepo->syncTags($task, $data['tag_list']);
-
         $this->taskRepo->associatePriority($task, $data['priority_level']);
     }
 
@@ -110,9 +108,9 @@ trait AssignmentCommandTrait {
      */
     public function getAssignmentRequestData($command)
     {
-        return array(
+        return [
             'assignment_name' => $command->assignmentName
-        );
+        ];
     }
 
     /**
@@ -124,13 +122,13 @@ trait AssignmentCommandTrait {
      */
     public function getTaskRequestData($command)
     {
-        return array(
+        return [
             'title'          => $command->title,
             'content'        => $command->content,
             'starting_date'  => $command->startingDate,
             'finishing_date' => $command->finishingDate,
             'location'       => $command->location
-        );
+        ];
     }
 
     /**
@@ -142,7 +140,7 @@ trait AssignmentCommandTrait {
      */
     public function getTaskRequestDataWithRelations($command)
     {
-        return array(
+        return [
             'title'          => $command->title,
             'content'        => $command->content,
             'starting_date'  => $command->startingDate,
@@ -150,7 +148,6 @@ trait AssignmentCommandTrait {
             'location'       => $command->location,
             'tag_list'       => $command->tagList,
             'priority_level' => $command->priorityLevel
-        );
+        ];
     }
-
 }

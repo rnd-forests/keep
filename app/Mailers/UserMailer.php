@@ -1,11 +1,12 @@
-<?php namespace Keep\Mailers;
+<?php
+namespace Keep\Mailers;
 
 use Carbon\Carbon;
 use Keep\Entities\Task;
 use Keep\Entities\User;
 
-class UserMailer extends Mailer {
-
+class UserMailer extends Mailer
+{
     /**
      * Send account activation link.
      *
@@ -17,7 +18,6 @@ class UserMailer extends Mailer {
         $subject = 'Account Activation';
         $view = 'emails.auth.account_activation';
         $data = ['activationLink' => route('account.activation', $activationCode)];
-
         $this->sendTo($user, $subject, $view, $data);
     }
 
@@ -30,7 +30,6 @@ class UserMailer extends Mailer {
     {
         $subject = 'Activated Account Confirmation';
         $view = 'emails.auth.account_activated';
-
         $this->sendTo($user, $subject, $view);
     }
 
@@ -52,7 +51,6 @@ class UserMailer extends Mailer {
             'finishingDate' => Carbon::parse($task->finishing_date)->format('Y-m-d'),
             'taskUrl'       => $task->present()->url($user, $task)
         ];
-
         $this->sendTo($user, $subject, $view, $data);
     }
 
@@ -75,8 +73,6 @@ class UserMailer extends Mailer {
             'remainingDays' => $task->present()->getRemainingDays($task->finishing_date),
             'taskUrl'       => $task->present()->url($user, $task)
         ];
-
         $this->sendTo($user, $subject, $view, $data);
     }
-
 }

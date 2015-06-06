@@ -1,12 +1,13 @@
-<?php namespace Keep\Http\Controllers\Auth;
+<?php
+namespace Keep\Http\Controllers\Auth;
 
 use Auth;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\OpenSessionRequest;
 use Keep\Commands\InitializeSessionCommand;
 
-class SessionsController extends Controller {
-
+class SessionsController extends Controller
+{
     /**
      * Create new sessions controller instance.
      */
@@ -35,9 +36,7 @@ class SessionsController extends Controller {
     public function store(OpenSessionRequest $request)
     {
         $additionalAttributes = ['active' => 1, 'remember' => $request->has('remember')];
-
-        if ($this->dispatchFrom(InitializeSessionCommand::class, $request, $additionalAttributes))
-        {
+        if ($this->dispatchFrom(InitializeSessionCommand::class, $request, $additionalAttributes)) {
             flash()->success('You have been logged in.');
 
             return redirect()->intended('/');
@@ -55,10 +54,8 @@ class SessionsController extends Controller {
     public function destroy()
     {
         Auth::logout();
-
         flash()->success('You have been logged out.');
 
         return redirect()->home();
     }
-
 }

@@ -1,10 +1,11 @@
-<?php namespace Keep\Handlers\Commands;
+<?php
+namespace Keep\Handlers\Commands;
 
 use App;
 use Keep\Commands\InitializeSessionCommand;
 
-class InitializeSessionCommandHandler {
-
+class InitializeSessionCommandHandler
+{
     /**
      * Handle the command.
      *
@@ -28,11 +29,10 @@ class InitializeSessionCommandHandler {
      */
     private function getRequestData(InitializeSessionCommand $command)
     {
-        return array(
+        return [
             'email'    => $command->email,
             'password' => $command->password,
             'active'   => $command->active,
-        );
+        ];
     }
-
 }

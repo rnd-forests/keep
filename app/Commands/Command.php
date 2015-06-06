@@ -1,5 +1,7 @@
-<?php namespace Keep\Commands;
+<?php
+namespace Keep\Commands;
 
-abstract class Command {
+abstract class Command
+{
 
 }

@@ -3,8 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTagTaskPivotTable extends Migration {
-
+class CreateTagTaskPivotTable extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,8 +12,7 @@ class CreateTagTaskPivotTable extends Migration {
      */
     public function up()
     {
-        Schema::create('tag_task', function (Blueprint $table)
-        {
+        Schema::create('tag_task', function (Blueprint $table) {
             $table->integer('tag_id')->unsigned()->index();
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->integer('task_id')->unsigned()->index();
@@ -30,5 +29,4 @@ class CreateTagTaskPivotTable extends Migration {
     {
         Schema::drop('tag_task');
     }
-
 }

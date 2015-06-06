@@ -1,7 +1,8 @@
-<?php namespace Keep\Commands;
+<?php
+namespace Keep\Commands;
 
-class CreateGroupNotificationCommand extends Command {
-
+class CreateGroupNotificationCommand extends Command
+{
     public $type;
     public $body;
     public $subject;
@@ -14,5 +15,4 @@ class CreateGroupNotificationCommand extends Command {
         $this->subject = $subject;
         $this->groupList = $group_list;
     }
-
 }

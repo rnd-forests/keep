@@ -1,12 +1,13 @@
-<?php namespace Keep\Http\Controllers\Auth;
+<?php
+namespace Keep\Http\Controllers\Auth;
 
 use Keep\Http\Controllers\Controller;
 use Keep\Commands\ConfirmAccountCommand;
 use Keep\Commands\RegisterAccountCommand;
 use Keep\Http\Requests\RegisterUserRequest;
 
-class RegistrationsController extends Controller {
-
+class RegistrationsController extends Controller
+{
     /**
      * Create new registrations controller instance.
      */
@@ -34,8 +35,7 @@ class RegistrationsController extends Controller {
      */
     public function store(RegisterUserRequest $request)
     {
-        if ($this->dispatchFrom(RegisterAccountCommand::class, $request))
-        {
+        if ($this->dispatchFrom(RegisterAccountCommand::class, $request)) {
             flash()->info('Check your email address to activate your account.');
 
             return redirect()->home();
@@ -53,16 +53,13 @@ class RegistrationsController extends Controller {
      */
     public function activate($code)
     {
-        if ($this->dispatch(new ConfirmAccountCommand($code)))
-        {
+        if ($this->dispatch(new ConfirmAccountCommand($code))) {
             flash()->success('Your account has been activated.');
 
             return redirect()->home();
         }
-
         flash()->warning('Something went wrong. Please check your activation link');
 
         return redirect()->home();
     }
-
 }

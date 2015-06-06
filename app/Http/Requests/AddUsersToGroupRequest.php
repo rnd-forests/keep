@@ -1,7 +1,8 @@
-<?php namespace Keep\Http\Requests;
+<?php
+namespace Keep\Http\Requests;
 
-class AddUsersToGroupRequest extends Request {
-
+class AddUsersToGroupRequest extends Request
+{
     public function authorize()
     {
         return true;
@@ -13,5 +14,4 @@ class AddUsersToGroupRequest extends Request {
             'group_new_users' => 'required'
         ];
     }
-
 }

@@ -1,7 +1,7 @@
-<?php namespace Keep\OAuth\Contracts;
+<?php
+namespace Keep\OAuth\Contracts;
 
-interface OAuthUserListener {
-
+interface OAuthUserListener
+{
     public function userHasLoggedIn($user);
-
 }

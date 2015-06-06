@@ -6,13 +6,12 @@ use Faker\Factory as Faker;
 use Keep\Entities\Assignment;
 use Illuminate\Database\Seeder;
 
-class AssignmentsTableSeeder extends Seeder {
-
+class AssignmentsTableSeeder extends Seeder
+{
     public function run()
     {
         $faker = Faker::create();
-        for ($i = 1; $i <= 50; $i++)
-        {
+        for ($i = 1; $i <= 50; $i++) {
             $timestamp = Carbon::now()->subDays(rand(5, 60));
             Assignment::create([
                 'assignment_name' => ucfirst(implode(' ', $faker->words(6))),
@@ -21,8 +20,7 @@ class AssignmentsTableSeeder extends Seeder {
             ]);
         }
 
-        for ($i = 1; $i <= 50; $i++)
-        {
+        for ($i = 1; $i <= 50; $i++) {
             $timestamp = Carbon::now()->subDays(rand(5, 50));
             Task::create([
                 'assignment_id'  => $i,
@@ -38,5 +36,4 @@ class AssignmentsTableSeeder extends Seeder {
             ]);
         }
     }
-
 }

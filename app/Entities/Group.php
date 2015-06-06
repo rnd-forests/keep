@@ -1,4 +1,5 @@
-<?php namespace Keep\Entities;
+<?php
+namespace Keep\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -6,30 +7,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 
-class Group extends Model implements SluggableInterface {
-
+class Group extends Model implements SluggableInterface
+{
     use SluggableTrait, SoftDeletes, PresentableTrait;
 
-    /**
-     * Unique slug for group model.
-     *
-     * @var array
-     */
-    protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
-
-    /**
-     * Group presenter.
-     *
-     * @var string
-     */
-    protected $presenter = 'Keep\Presenters\GroupPresenter';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = ['name', 'slug', 'description'];
+    protected $presenter = 'Keep\Presenters\GroupPresenter';
+    protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
 
     /**
      * A group may contain multiple users.
@@ -82,5 +66,4 @@ class Group extends Model implements SluggableInterface {
     {
         return $this->slug;
     }
-
 }

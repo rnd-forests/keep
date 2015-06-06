@@ -1,11 +1,12 @@
-<?php namespace Keep\Console\Commands;
+<?php
+namespace Keep\Console\Commands;
 
 use Illuminate\Console\Command;
 use Keep\Repositories\Notification\NotificationRepositoryInterface;
 use Keep\Repositories\Task\TaskRepositoryInterface;
 
-class NotifyUpcomingTasksCommand extends Command {
-
+class NotifyUpcomingTasksCommand extends Command
+{
     protected $taskRepo, $notificationRepo;
 
     /**
@@ -45,8 +46,7 @@ class NotifyUpcomingTasksCommand extends Command {
     {
         $upcomingTasks = $this->taskRepo->fetchUserUpcomingTasks();
 
-        $upcomingTasks->each(function ($task)
-        {
+        $upcomingTasks->each(function ($task) {
             $notification = $this->notificationRepo->create([
                 'subject' => 'You have a new upcoming task',
                 'body'    => '',
@@ -64,5 +64,4 @@ class NotifyUpcomingTasksCommand extends Command {
 
         $this->info('All possible users have been notified about their upcoming tasks.');
     }
-
 }

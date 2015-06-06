@@ -1,11 +1,12 @@
-<?php namespace Keep\Repositories\UserGroup;
+<?php
+namespace Keep\Repositories\UserGroup;
 
 use Keep\Entities\Group;
 
-interface UserGroupRepositoryInterface {
-
+interface UserGroupRepositoryInterface
+{
     public function getPaginatedGroups($limit);
-    
+
     public function findBySlug($slug);
 
     public function create(array $data);
@@ -35,5 +36,4 @@ interface UserGroupRepositoryInterface {
     public function getMembersOfGroup($groupSlug);
 
     public function getAssignmentsOfGroup($groupSlug);
-
 }

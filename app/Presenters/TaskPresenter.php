@@ -1,10 +1,11 @@
-<?php namespace Keep\Presenters;
+<?php
+namespace Keep\Presenters;
 
 use Carbon\Carbon;
 use Laracasts\Presenter\Presenter;
 
-class TaskPresenter extends Presenter {
-
+class TaskPresenter extends Presenter
+{
     use KeepPresentableTrait;
 
     /**
@@ -16,7 +17,7 @@ class TaskPresenter extends Presenter {
      */
     public function getRemainingDays($finish)
     {
-        $count = (int)Carbon::now()->diffInDays(Carbon::parse($finish), true);
+        $count = (int) Carbon::now()->diffInDays(Carbon::parse($finish), true);
 
         return $count . ' ' . str_plural('day', $count) . ' remaining';
     }
@@ -30,7 +31,9 @@ class TaskPresenter extends Presenter {
      */
     public function printStatus($status)
     {
-        if ($status) return '<i class="text-primary fa fa-check"></i>';
+        if ($status) {
+            return '<i class="text-primary fa fa-check"></i>';
+        }
 
         return '<i class="text-danger fa fa-times"></i>';
     }
@@ -47,5 +50,4 @@ class TaskPresenter extends Presenter {
     {
         return route('users.tasks.show', [$user, $task]);
     }
-
 }

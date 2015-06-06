@@ -1,11 +1,12 @@
-<?php namespace Keep\Http\Middleware;
+<?php
+namespace Keep\Http\Middleware;
 
 use App;
 use Closure;
 use Keep\Exceptions\NotAuthorizedException;
 
-class HasCorrectPermissions {
-
+class HasCorrectPermissions
+{
     /**
      * Handle an incoming request.
      *
@@ -18,20 +19,14 @@ class HasCorrectPermissions {
     public function handle($request, Closure $next)
     {
         $auth = App::make('Illuminate\Contracts\Auth\Guard');
-
         $user = $auth->user();
-
         $action = $request->route()->getAction();
-
-        if (array_key_exists('permissions', $action))
-        {
-            if ( ! ($auth->check() && $user->ability([], $action['permissions'])))
-            {
+        if (array_key_exists('permissions', $action)) {
+            if ( ! ($auth->check() && $user->ability([], $action['permissions']))) {
                 throw new NotAuthorizedException($user->name . ' does not have the required permission(s) to perform this request.');
             }
         }
 
         return $next($request);
     }
-
 }

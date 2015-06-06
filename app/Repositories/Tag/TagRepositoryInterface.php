@@ -1,11 +1,11 @@
-<?php namespace Keep\Repositories\Tag;
+<?php
+namespace Keep\Repositories\Tag;
 
-interface TagRepositoryInterface {
-
+interface TagRepositoryInterface
+{
     public function lists();
 
     public function getAssociatedTags($userSlug);
 
     public function getTasksOfUserAssociatedWithATag($userSlug, $tagSlug, $limit);
-
 }

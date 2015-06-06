@@ -1,7 +1,8 @@
-<?php namespace Keep\Http\Controllers;
+<?php
+namespace Keep\Http\Controllers;
 
-class HomeController extends Controller {
-
+class HomeController extends Controller
+{
     /**
      * The homepage.
      *
@@ -11,5 +12,4 @@ class HomeController extends Controller {
     {
         return view('pages.home');
     }
-
 }

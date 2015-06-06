@@ -1,12 +1,13 @@
-<?php namespace Keep\Repositories\UserGroup;
+<?php
+namespace Keep\Repositories\UserGroup;
 
 use Keep\Entities\User;
 use Keep\Entities\Group;
 use Keep\Services\KeepHelper;
 use Keep\Repositories\DbRepository;
 
-class EloquentUserGroupRepository extends DbRepository implements UserGroupRepositoryInterface {
-
+class EloquentUserGroupRepository extends DbRepository implements UserGroupRepositoryInterface
+{
     protected $model;
 
     public function __construct(Group $model)
@@ -42,12 +43,14 @@ class EloquentUserGroupRepository extends DbRepository implements UserGroupRepos
     {
         $group = $this->findBySlug($slug);
         $group->update($data);
+
         return $group;
     }
 
     public function restore($slug)
     {
         $group = $this->findTrashedGroupBySlug($slug);
+
         return $group->restore();
     }
 
@@ -106,19 +109,21 @@ class EloquentUserGroupRepository extends DbRepository implements UserGroupRepos
     public function getGroupsAssociatedWithAUser($userSlug)
     {
         $user = User::findBySlug($userSlug);
+
         return $user->groups()->paginate(10);
     }
 
     public function getMembersOfGroup($groupSlug)
     {
         $group = $this->findBySlug($groupSlug);
+
         return $group->users()->latest('created_at')->get();
     }
 
     public function getAssignmentsOfGroup($groupSlug)
     {
         $group = $this->findBySlug($groupSlug);
+
         return $group->assignments()->latest('created_at')->get();
     }
-
 }

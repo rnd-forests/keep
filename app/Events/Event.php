@@ -1,5 +1,7 @@
-<?php namespace Keep\Events;
+<?php
+namespace Keep\Events;
 
-abstract class Event {
+abstract class Event
+{
 
 }

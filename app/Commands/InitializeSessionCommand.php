@@ -1,7 +1,8 @@
-<?php namespace Keep\Commands;
+<?php
+namespace Keep\Commands;
 
-class InitializeSessionCommand extends Command {
-
+class InitializeSessionCommand extends Command
+{
     public $email;
     public $password;
     public $active;
@@ -14,5 +15,4 @@ class InitializeSessionCommand extends Command {
         $this->active = $active;
         $this->remember = $remember;
     }
-
 }

@@ -1,11 +1,12 @@
-<?php namespace Keep\Http\Middleware;
+<?php
+namespace Keep\Http\Middleware;
 
 use App;
 use Closure;
 use Keep\Exceptions\UnconfirmedAccountException;
 
-class VerifyConfirmedAccount {
-
+class VerifyConfirmedAccount
+{
     /**
      * Handle an incoming request.
      *
@@ -18,13 +19,10 @@ class VerifyConfirmedAccount {
     public function handle($request, Closure $next)
     {
         $auth = App::make('Illuminate\Contracts\Auth\Guard');
-
-        if ( ! $auth->user()->isConfirmed())
-        {
+        if ( ! $auth->user()->isConfirmed()) {
             throw new UnconfirmedAccountException('Confirm your account before taking this action.');
         }
 
         return $next($request);
     }
-
 }

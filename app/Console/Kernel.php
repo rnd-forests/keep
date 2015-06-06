@@ -1,30 +1,36 @@
-<?php namespace Keep\Console;
+<?php
+namespace Keep\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
+use Keep\Console\Commands\SyncFailedTasksCommand;
+use Keep\Console\Commands\EmailUpcomingTasksCommand;
+use Keep\Console\Commands\NotifyUpcomingTasksCommand;
+use Keep\Console\Commands\ClearOldNotificationsCommand;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
-class Kernel extends ConsoleKernel {
+class Kernel extends ConsoleKernel
+{
+    /**
+     * The Artisan commands provided by your application.
+     *
+     * @var array
+     */
+    protected $commands = [
+        SyncFailedTasksCommand::class,
+        EmailUpcomingTasksCommand::class,
+        NotifyUpcomingTasksCommand::class,
+        ClearOldNotificationsCommand::class,
+    ];
 
-	/**
-	 * The Artisan commands provided by your application.
-	 *
-	 * @var array
-	 */
-	protected $commands = [
-        'Keep\Console\Commands\SyncFailedTasksCommand',
-        'Keep\Console\Commands\EmailUpcomingTasksCommand',
-        'Keep\Console\Commands\NotifyUpcomingTasksCommand',
-        'Keep\Console\Commands\ClearOldNotificationsCommand',
-	];
-
-	/**
-	 * Define the application's command schedule.
-	 *
-	 * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-	 * @return void
-	 */
-	protected function schedule(Schedule $schedule)
-	{
+    /**
+     * Define the application's command schedule.
+     *
+     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
+     *
+     * @return void
+     */
+    protected function schedule(Schedule $schedule)
+    {
         $schedule->exec('composer self-update')
             ->monthly()
             ->withoutOverlapping()
@@ -49,6 +55,5 @@ class Kernel extends ConsoleKernel {
             ->dailyAt('1:00')
             ->withoutOverlapping()
             ->evenInMaintenanceMode();
-	}
-
+    }
 }

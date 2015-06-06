@@ -5,13 +5,12 @@ use Keep\Entities\Group;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
-class GroupsTableSeeder extends Seeder {
-
+class GroupsTableSeeder extends Seeder
+{
     public function run()
     {
         $faker = Faker::create();
-        for ($i = 1; $i <= 50; $i++)
-        {
+        for ($i = 1; $i <= 50; $i++) {
             $timestamp = Carbon::now()->subMonths(rand(1, 20));
             Group::create([
                 'name'        => ucfirst(implode(' ', $faker->words(5))),
@@ -21,5 +20,4 @@ class GroupsTableSeeder extends Seeder {
             ]);
         }
     }
-
 }

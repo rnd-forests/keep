@@ -1,5 +1,7 @@
-<?php namespace Keep\Exceptions;
+<?php
+namespace Keep\Exceptions;
 
-class UnconfirmedAccountException extends \Exception {
+class UnconfirmedAccountException extends \Exception
+{
 
 }

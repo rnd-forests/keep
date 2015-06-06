@@ -1,11 +1,12 @@
-<?php namespace Keep\Http\Controllers\Admin;
+<?php
+namespace Keep\Http\Controllers\Admin;
 
 use Request;
 use Keep\Http\Controllers\Controller;
 use Keep\Repositories\Task\TaskRepositoryInterface;
 
-class TasksController extends Controller {
-
+class TasksController extends Controller
+{
     protected $taskRepo;
 
     /**
@@ -26,9 +27,7 @@ class TasksController extends Controller {
     public function activeTasks()
     {
         $sortBy = Request::get('sortBy');
-
         $direction = Request::get('direction');
-
         $tasks = $this->taskRepo->getPaginatedTasks(150, compact('sortBy', 'direction'));
 
         return view('admin.tasks.active_tasks', compact('tasks'));
@@ -58,7 +57,6 @@ class TasksController extends Controller {
     public function softDelete($slug)
     {
         $this->taskRepo->softDelete($slug);
-
         flash()->info('This task was successfully sent to the trash.');
 
         return redirect()->back();
@@ -86,7 +84,6 @@ class TasksController extends Controller {
     public function restoreTask($slug)
     {
         $this->taskRepo->restore($slug);
-
         flash()->info('This task has been restored');
 
         return redirect()->back();
@@ -102,10 +99,8 @@ class TasksController extends Controller {
     public function forceDeleteTask($slug)
     {
         $this->taskRepo->forceDelete($slug);
-
         flash()->info('This task was permanently deleted.');
 
         return redirect()->back();
     }
-
 }

@@ -1,5 +1,7 @@
-<?php namespace Keep\Exceptions;
+<?php
+namespace Keep\Exceptions;
 
-class InvalidObjectException extends \Exception {
+class InvalidObjectException extends \Exception
+{
 
 }

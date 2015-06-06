@@ -1,7 +1,8 @@
-<?php namespace Keep\Http\Requests;
+<?php
+namespace Keep\Http\Requests;
 
-class UserGroupRequest extends Request {
-
+class UserGroupRequest extends Request
+{
     public function authorize()
     {
         return true;
@@ -13,5 +14,4 @@ class UserGroupRequest extends Request {
             'name' => 'required|max:255|min:4'
         ];
     }
-
 }

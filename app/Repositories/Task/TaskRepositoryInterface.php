@@ -1,9 +1,10 @@
-<?php namespace Keep\Repositories\Task;
+<?php
+namespace Keep\Repositories\Task;
 
 use Keep\Entities\User;
 
-interface TaskRepositoryInterface {
-
+interface TaskRepositoryInterface
+{
     public function getPaginatedTasks($limit, array $params);
 
     public function findBySlug($slug);
@@ -61,5 +62,4 @@ interface TaskRepositoryInterface {
     public function fetchAllTasksOfAUser($userSlug);
 
     public function searchByTitle(User $user, $pattern);
-
 }

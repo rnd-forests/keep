@@ -1,10 +1,11 @@
-<?php namespace Keep\Repositories\User;
+<?php
+namespace Keep\Repositories\User;
 
 use Keep\Entities\User;
 use Keep\Repositories\DbRepository;
 
-class EloquentUserRepository extends DbRepository implements UserRepositoryInterface {
-
+class EloquentUserRepository extends DbRepository implements UserRepositoryInterface
+{
     protected $model;
 
     public function __construct(User $model)
@@ -54,6 +55,7 @@ class EloquentUserRepository extends DbRepository implements UserRepositoryInter
     {
         $user = $this->findBySlug($slug);
         $user->profile()->update($credentials);
+
         return $user;
     }
 
@@ -64,6 +66,7 @@ class EloquentUserRepository extends DbRepository implements UserRepositoryInter
             $task->restore();
         });
         $user->profile()->withTrashed()->restore();
+
         return $user->restore();
     }
 
@@ -74,6 +77,7 @@ class EloquentUserRepository extends DbRepository implements UserRepositoryInter
             $task->delete();
         });
         $user->profile()->delete();
+
         return $user->delete();
     }
 
@@ -82,6 +86,7 @@ class EloquentUserRepository extends DbRepository implements UserRepositoryInter
         $user = $this->findTrashedUserBySlug($slug);
         $user->tasks()->withTrashed()->forceDelete();
         $user->profile()->withTrashed()->forceDelete();
+
         return $user->forceDelete();
     }
 
@@ -117,10 +122,10 @@ class EloquentUserRepository extends DbRepository implements UserRepositoryInter
     {
         $user = $this->model->where('auth_provider_id', $userData['auth_provider_id'])->first();
         $existed = $this->model->where('email', $userData['email'])->first();
-
-        if (!$user && $existed) return false;
-
-        if (!$user) {
+        if ( ! $user && $existed) {
+            return false;
+        }
+        if ( ! $user) {
             $user = $this->model->create($userData);
             $user->update([
                 'auth_provider'   => $provider,
@@ -131,5 +136,4 @@ class EloquentUserRepository extends DbRepository implements UserRepositoryInter
 
         return $user;
     }
-
 }

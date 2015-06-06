@@ -1,4 +1,5 @@
-<?php namespace Keep\Providers;
+<?php
+namespace Keep\Providers;
 
 use DB;
 use Auth;
@@ -7,25 +8,31 @@ use Keep\Entities\Task;
 use Keep\Entities\Profile;
 use Keep\Entities\Assignment;
 use Keep\Entities\Notification;
+use Keep\Events\TaskWasCreatedEvent;
+use Keep\Events\UserWasActivatedEvent;
+use Keep\Events\UserWasRegisteredEvent;
+use Keep\Handlers\Events\EmailActivatedAccount;
+use Keep\Handlers\Events\EmailNewlyCreatedTask;
+use Keep\Handlers\Events\EmailAccountActivationLink;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
-class EventServiceProvider extends ServiceProvider {
-
+class EventServiceProvider extends ServiceProvider
+{
     /**
      * The event handler mappings for the application.
      *
      * @var array
      */
     protected $listen = [
-        'Keep\Events\UserWasRegisteredEvent' => [
-            'Keep\Handlers\Events\EmailAccountActivationLink',
+        UserWasRegisteredEvent::class => [
+            EmailAccountActivationLink::class,
         ],
-        'Keep\Events\UserWasActivatedEvent'  => [
-            'Keep\Handlers\Events\EmailActivatedAccount',
+        UserWasActivatedEvent::class  => [
+            EmailActivatedAccount::class,
         ],
-        'Keep\Events\TaskWasCreatedEvent'    => [
-            'Keep\Handlers\Events\EmailNewlyCreatedTask',
+        TaskWasCreatedEvent::class    => [
+            EmailNewlyCreatedTask::class,
         ],
     ];
 
@@ -38,8 +45,8 @@ class EventServiceProvider extends ServiceProvider {
      */
     public function boot(DispatcherContract $events)
     {
-        User::created(function ($user) { 
-            $user->profile()->save(new Profile()); 
+        User::created(function ($user) {
+            $user->profile()->save(new Profile());
         });
 
         Task::deleting(function ($task) {
@@ -63,5 +70,4 @@ class EventServiceProvider extends ServiceProvider {
 
         parent::boot($events);
     }
-
 }

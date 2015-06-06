@@ -1,11 +1,12 @@
-<?php namespace Keep\Http\Middleware;
+<?php
+namespace Keep\Http\Middleware;
 
 use App;
 use Closure;
 use Keep\Exceptions\InvalidAdminUserException;
 
-class VerifyAdminUser {
-
+class VerifyAdminUser
+{
     /**
      * Handle an incoming request.
      *
@@ -18,13 +19,10 @@ class VerifyAdminUser {
     public function handle($request, Closure $next)
     {
         $auth = App::make('Illuminate\Contracts\Auth\Guard');
-
-        if ( ! $auth->user()->isAdmin())
-        {
+        if ( ! $auth->user()->isAdmin()) {
             throw new InvalidAdminUserException('This area is for administrators only.');
         }
 
         return $next($request);
     }
-
 }

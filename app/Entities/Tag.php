@@ -1,26 +1,16 @@
-<?php namespace Keep\Entities;
+<?php
+namespace Keep\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 
-class Tag extends Model implements SluggableInterface {
-
+class Tag extends Model implements SluggableInterface
+{
     use SluggableTrait;
 
-    /**
-     * Unique slug for tag model.
-     *
-     * @var array
-     */
-    protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = ['name'];
+    protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
 
     /**
      * Get the tasks associated with given tag.
@@ -41,5 +31,4 @@ class Tag extends Model implements SluggableInterface {
     {
         return $this->slug;
     }
-
 }

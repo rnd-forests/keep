@@ -1,10 +1,11 @@
-<?php namespace Keep\OAuth;
+<?php
+namespace Keep\OAuth;
 
 use Keep\Entities\User;
 use Keep\OAuth\Contracts\ProviderInterface;
 
-class GoogleAuthentication extends AuthenticationProvider implements ProviderInterface {
-
+class GoogleAuthentication extends AuthenticationProvider implements ProviderInterface
+{
     /**
      * Get authentication provider name.
      *
@@ -43,5 +44,4 @@ class GoogleAuthentication extends AuthenticationProvider implements ProviderInt
     {
         return 'Something went wrong with your Google authentication process.';
     }
-
 }

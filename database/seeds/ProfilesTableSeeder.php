@@ -4,12 +4,11 @@ use Keep\Entities\Profile;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
-class ProfilesTableSeeder extends Seeder {
-
+class ProfilesTableSeeder extends Seeder
+{
     public function run()
     {
         $faker = Faker::create();
-
         Profile::create([
             'user_id'          => 1,
             'location'         => 'Thai Phuong - Hung Ha - Thai Binh',
@@ -45,5 +44,4 @@ class ProfilesTableSeeder extends Seeder {
             ]);
         }
     }
-
 }

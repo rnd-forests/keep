@@ -1,22 +1,19 @@
-<?php namespace Keep\Http\Composers;
+<?php
+namespace Keep\Http\Composers;
 
 use App;
 use Illuminate\Contracts\View\View;
+use Keep\Repositories\Tag\TagRepositoryInterface;
+use Keep\Repositories\Priority\PriorityRepositoryInterface;
 
-class TaskFormComposer {
-
-    /**
-     * Composer task form view partial.
-     *
-     * @param View $view
-     */
+class TaskFormComposer
+{
     public function compose(View $view)
     {
-        $tags = App::make('Keep\Repositories\Tag\TagRepositoryInterface');
+        $tags = App::make(TagRepositoryInterface::class);
         $view->with('tags', $tags->lists());
 
-        $priorities = App::make('Keep\Repositories\Priority\PriorityRepositoryInterface');
+        $priorities = App::make(PriorityRepositoryInterface::class);
         $view->with('priorities', $priorities->lists());
     }
-
 }

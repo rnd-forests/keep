@@ -1,7 +1,8 @@
-<?php namespace Keep\Http\Requests;
+<?php
+namespace Keep\Http\Requests;
 
-class AssignmentRequest extends Request {
-
+class AssignmentRequest extends Request
+{
     public function authorize()
     {
         return true;
@@ -20,5 +21,4 @@ class AssignmentRequest extends Request {
             'finishing_date'  => 'required|date|after:starting_date'
         ];
     }
-
 }

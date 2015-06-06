@@ -1,27 +1,18 @@
-<?php namespace Keep\Http\Composers;
+<?php
+namespace Keep\Http\Composers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Auth\Guard;
 
-class UserDashboardComposer {
-
+class UserDashboardComposer
+{
     protected $auth;
 
-    /**
-     * Create new user dashboard composer.
-     *
-     * @param Guard $auth
-     */
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
     }
 
-    /**
-     * Compose user dashboard view.
-     *
-     * @param View $view
-     */
     public function compose(View $view)
     {
         $totalTasksCount = $this->auth->user()->tasks()->count();
@@ -36,5 +27,4 @@ class UserDashboardComposer {
         $dueTasksCount = $totalTasksCount - $completedTasksCount - $failedTasksCount;
         $view->with('dueTasksCount', $dueTasksCount);
     }
-
 }

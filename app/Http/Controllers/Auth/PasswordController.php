@@ -1,12 +1,13 @@
-<?php namespace Keep\Http\Controllers\Auth;
+<?php
+namespace Keep\Http\Controllers\Auth;
 
 use Illuminate\Contracts\Auth\Guard;
 use Keep\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
-class PasswordController extends Controller {
-
+class PasswordController extends Controller
+{
     use ResetsPasswords;
 
     /**
@@ -27,8 +28,6 @@ class PasswordController extends Controller {
         $this->auth = $auth;
         $this->passwords = $passwords;
         $this->subject = 'Recover your account password at Keep';
-
         $this->middleware('guest');
     }
-
 }

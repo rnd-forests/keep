@@ -1,7 +1,8 @@
-<?php namespace Keep\Http\Requests;
+<?php
+namespace Keep\Http\Requests;
 
-class NotificationRequest extends Request {
-
+class NotificationRequest extends Request
+{
     public function authorize()
     {
         return true;
@@ -15,5 +16,4 @@ class NotificationRequest extends Request {
             'type'    => 'required'
         ];
     }
-
 }

@@ -3,8 +3,8 @@
 use Keep\Entities\User;
 use Illuminate\Database\Seeder as Seeder;
 
-class DatabaseSeeder extends Seeder {
-
+class DatabaseSeeder extends Seeder
+{
     /**
      * Tables for seeding data.
      *
@@ -57,16 +57,9 @@ class DatabaseSeeder extends Seeder {
     public function run()
     {
         Eloquent::unguard();
-
-        // Flush event listeners for User model to prevent
-        // creating null records when seeding the profiles
-        // table.
         User::flushEventListeners();
-
         $this->truncateDatabase();
-
-        foreach ($this->seeders as $seeder)
-        {
+        foreach ($this->seeders as $seeder) {
             $this->call($seeder);
         }
     }
@@ -77,13 +70,9 @@ class DatabaseSeeder extends Seeder {
     private function truncateDatabase()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-
-        foreach ($this->tables as $table)
-        {
+        foreach ($this->tables as $table) {
             DB::table($table)->truncate();
         }
-
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
-
 }

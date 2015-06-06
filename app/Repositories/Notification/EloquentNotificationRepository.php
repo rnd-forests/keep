@@ -1,4 +1,5 @@
-<?php namespace Keep\Repositories\Notification;
+<?php
+namespace Keep\Repositories\Notification;
 
 use DB;
 use Carbon\Carbon;
@@ -7,8 +8,8 @@ use Keep\Services\KeepHelper;
 use Keep\Entities\Notification;
 use Keep\Repositories\DbRepository;
 
-class EloquentNotificationRepository extends DbRepository implements NotificationRepositoryInterface {
-
+class EloquentNotificationRepository extends DbRepository implements NotificationRepositoryInterface
+{
     protected $model;
 
     public function __construct(Notification $model)
@@ -43,6 +44,7 @@ class EloquentNotificationRepository extends DbRepository implements Notificatio
     public function fetchPersonalNotifications($userSlug)
     {
         $user = User::findBySlug($userSlug);
+
         return $user->notifications()
             ->latest('created_at')
             ->paginate(15);
@@ -71,5 +73,4 @@ class EloquentNotificationRepository extends DbRepository implements Notificatio
             ->latest('created_at')
             ->paginate(15);
     }
-
 }

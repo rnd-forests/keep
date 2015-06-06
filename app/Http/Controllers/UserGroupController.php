@@ -1,10 +1,11 @@
-<?php namespace Keep\Http\Controllers;
+<?php
+namespace Keep\Http\Controllers;
 
 use Keep\Repositories\User\UserRepositoryInterface;
 use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
 
-class UserGroupController extends Controller {
-
+class UserGroupController extends Controller
+{
     protected $userRepo, $groupRepo;
 
     /**
@@ -13,11 +14,10 @@ class UserGroupController extends Controller {
      * @param UserRepositoryInterface      $userRepo
      * @param UserGroupRepositoryInterface $groupRepo
      */
-	public function __construct(UserRepositoryInterface $userRepo, UserGroupRepositoryInterface $groupRepo)
+    public function __construct(UserRepositoryInterface $userRepo, UserGroupRepositoryInterface $groupRepo)
     {
         $this->userRepo = $userRepo;
         $this->groupRepo = $groupRepo;
-
         $this->middleware('auth');
         $this->middleware('auth.correct');
     }
@@ -47,14 +47,10 @@ class UserGroupController extends Controller {
     public function show($userSlug, $groupSlug)
     {
         $user = $this->userRepo->findBySlug($userSlug);
-
         $group = $this->groupRepo->findBySlug($groupSlug);
-
         $members = $this->groupRepo->getMembersOfGroup($groupSlug);
-
         $assignments = $this->groupRepo->getAssignmentsOfGroup($groupSlug);
 
         return view('users.groups.show', compact('user', 'group', 'members', 'assignments'));
     }
-
 }

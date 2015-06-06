@@ -1,7 +1,8 @@
-<?php namespace Keep\Http\Requests;
+<?php
+namespace Keep\Http\Requests;
 
-class EditUserUsernameRequest extends Request {
-
+class EditUserUsernameRequest extends Request
+{
     public function authorize()
     {
         return true;
@@ -14,5 +15,4 @@ class EditUserUsernameRequest extends Request {
             'new_username' => 'required|different:old_username|max:255'
         ];
     }
-
 }

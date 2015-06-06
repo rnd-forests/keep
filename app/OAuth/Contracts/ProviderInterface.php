@@ -1,7 +1,7 @@
-<?php namespace Keep\OAuth\Contracts;
+<?php
+namespace Keep\OAuth\Contracts;
 
-interface ProviderInterface {
-    
+interface ProviderInterface
+{
     public function authenticate($hasCode, OAuthUserListener $listener);
-
 }

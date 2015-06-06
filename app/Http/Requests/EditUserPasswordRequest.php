@@ -1,7 +1,8 @@
-<?php namespace Keep\Http\Requests;
+<?php
+namespace Keep\Http\Requests;
 
-class EditUserPasswordRequest extends Request {
-
+class EditUserPasswordRequest extends Request
+{
     public function authorize()
     {
         return true;
@@ -15,5 +16,4 @@ class EditUserPasswordRequest extends Request {
             'new_password_confirmation' => 'required|same:new_password'
         ];
     }
-
 }

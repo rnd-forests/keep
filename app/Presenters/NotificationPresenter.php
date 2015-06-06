@@ -1,9 +1,9 @@
-<?php namespace Keep\Presenters;
+<?php
+namespace Keep\Presenters;
 
 use Laracasts\Presenter\Presenter;
 
-class NotificationPresenter extends Presenter {
-
+class NotificationPresenter extends Presenter
+{
     use KeepPresentableTrait;
-
 }

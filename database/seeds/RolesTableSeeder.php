@@ -3,8 +3,8 @@
 use Keep\Entities\Role;
 use Illuminate\Database\Seeder;
 
-class RolesTableSeeder extends Seeder {
-
+class RolesTableSeeder extends Seeder
+{
     public function run()
     {
         $roles = [
@@ -25,10 +25,8 @@ class RolesTableSeeder extends Seeder {
             ]
         ];
 
-        foreach ($roles as $role)
-        {
+        foreach ($roles as $role) {
             Role::create($role);
         }
     }
-
 }
