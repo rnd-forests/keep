@@ -7,19 +7,7 @@ use Keep\Repositories\Task\TaskRepositoryInterface;
 class SyncFailedTasksCommand extends Command
 {
     protected $taskRepo;
-
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
     protected $name = 'keep:sync-failed-tasks';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Find failed tasks in entire database. Recover failed tasks if available';
 
     /**
@@ -29,9 +17,8 @@ class SyncFailedTasksCommand extends Command
      */
     public function __construct(TaskRepositoryInterface $taskRepo)
     {
-        parent::__construct();
-
         $this->taskRepo = $taskRepo;
+        parent::__construct();
     }
 
     /**

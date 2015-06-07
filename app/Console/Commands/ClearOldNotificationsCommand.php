@@ -7,19 +7,7 @@ use Keep\Repositories\Notification\NotificationRepositoryInterface;
 class ClearOldNotificationsCommand extends Command
 {
     protected $notificationRepo;
-
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
     protected $name = 'keep:clear-old-notifications';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Clear old notifications from the application.';
 
     /**
@@ -29,9 +17,8 @@ class ClearOldNotificationsCommand extends Command
      */
     public function __construct(NotificationRepositoryInterface $notificationRepo)
     {
-        parent::__construct();
-
         $this->notificationRepo = $notificationRepo;
+        parent::__construct();
     }
 
     /**

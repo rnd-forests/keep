@@ -8,19 +8,7 @@ use Keep\Repositories\Task\TaskRepositoryInterface;
 class NotifyUpcomingTasksCommand extends Command
 {
     protected $taskRepo, $notificationRepo;
-
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
     protected $name = 'keep:notify-upcoming-tasks';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Notify users about their upcoming tasks using application notification system';
 
     /**
@@ -31,10 +19,9 @@ class NotifyUpcomingTasksCommand extends Command
      */
     public function __construct(TaskRepositoryInterface $taskRepo, NotificationRepositoryInterface $notificationRepo)
     {
-        parent::__construct();
-
         $this->taskRepo = $taskRepo;
         $this->notificationRepo = $notificationRepo;
+        parent::__construct();
     }
 
     /**

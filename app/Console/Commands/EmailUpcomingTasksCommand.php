@@ -8,19 +8,7 @@ use Keep\Repositories\Task\TaskRepositoryInterface;
 class EmailUpcomingTasksCommand extends Command
 {
     protected $taskRepo, $mailer;
-
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
     protected $name = 'keep:email-upcoming-tasks';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Notify users about their upcoming tasks using their email address';
 
     /**
@@ -31,10 +19,9 @@ class EmailUpcomingTasksCommand extends Command
      */
     public function __construct(TaskRepositoryInterface $taskRepo, UserMailer $mailer)
     {
-        parent::__construct();
-
         $this->taskRepo = $taskRepo;
         $this->mailer = $mailer;
+        parent::__construct();
     }
 
     /**

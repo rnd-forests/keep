@@ -2,10 +2,6 @@
 namespace Keep\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
-use Keep\Console\Commands\SyncFailedTasksCommand;
-use Keep\Console\Commands\EmailUpcomingTasksCommand;
-use Keep\Console\Commands\NotifyUpcomingTasksCommand;
-use Keep\Console\Commands\ClearOldNotificationsCommand;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -16,10 +12,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        SyncFailedTasksCommand::class,
-        EmailUpcomingTasksCommand::class,
-        NotifyUpcomingTasksCommand::class,
-        ClearOldNotificationsCommand::class,
+        'Keep\Console\Commands\SyncFailedTasksCommand',
+        'Keep\Console\Commands\EmailUpcomingTasksCommand',
+        'Keep\Console\Commands\NotifyUpcomingTasksCommand',
+        'Keep\Console\Commands\ClearOldNotificationsCommand',
     ];
 
     /**
