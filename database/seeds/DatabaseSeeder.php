@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
     {
         Eloquent::unguard();
         User::flushEventListeners();
-        $this->truncateDatabase();
+        // $this->truncateDatabase();
         foreach ($this->seeders as $seeder) {
             $this->call($seeder);
         }
