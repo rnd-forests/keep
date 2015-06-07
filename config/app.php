@@ -156,7 +156,6 @@ return [
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
         'Intervention\Image\ImageServiceProvider',
-        'Clockwork\Support\Laravel\ClockworkServiceProvider',
         'Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider',
 
     ],
@@ -212,7 +211,6 @@ return [
         'Socialite' => 'Laravel\Socialite\Facades\Socialite',
         'Entrust'   => 'Zizaco\Entrust\EntrustFacade',
         'Image'     => 'Intervention\Image\Facades\Image',
-        'Clockwork' => 'Clockwork\Support\Laravel\Facade',
         'Bugsnag'   => 'Bugsnag\BugsnagLaravel\BugsnagFacade',
 
     ],

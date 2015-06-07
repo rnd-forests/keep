@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6ef16cac1f8df3c5b1915d51b2ec7fbd",
+    "hash": "ea1d36b4b805daac5b2db512433d754f",
     "packages": [
         {
             "name": "bugsnag/bugsnag",
@@ -3366,51 +3366,6 @@
                 "webtest"
             ],
             "time": "2015-04-05 19:52:55"
-        },
-        {
-            "name": "itsgoingd/clockwork",
-            "version": "v1.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/itsgoingd/clockwork.git",
-                "reference": "c483e72515039a1a2b00a7d63ea6426bb676e2ea"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/c483e72515039a1a2b00a7d63ea6426bb676e2ea",
-                "reference": "c483e72515039a1a2b00a7d63ea6426bb676e2ea",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.9",
-                "psr/log": "1.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Clockwork": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "itsgoingd",
-                    "email": "itsgoingd@luzer.sk",
-                    "homepage": "http://twitter.com/itsgoingd"
-                }
-            ],
-            "description": "Server-side component of Clockwork, a Chrome extension for PHP development",
-            "homepage": "http://github.com/itsgoingd/clockwork",
-            "keywords": [
-                "debugging",
-                "laravel",
-                "logging",
-                "profiling"
-            ],
-            "time": "2015-02-04 22:35:57"
         },
         {
             "name": "laracasts/generators",

@@ -27,8 +27,7 @@
         "phpspec/phpspec": "~2.1",
         "laracasts/generators": "~1.1",
         "fzaninotto/faker": "~1.4",
-        "laracasts/integrated": "0.11.*",
-        "itsgoingd/clockwork": "~1.7"
+        "laracasts/integrated": "0.11.*"
     },
     "autoload": {
         "classmap": [
