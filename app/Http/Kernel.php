@@ -16,8 +16,7 @@ class Kernel extends HttpKernel
         'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
         'Illuminate\Session\Middleware\StartSession',
         'Illuminate\View\Middleware\ShareErrorsFromSession',
-        'Keep\Http\Middleware\VerifyCsrfToken',
-        'Clockwork\Support\Laravel\ClockworkMiddleware',
+        'Keep\Http\Middleware\VerifyCsrfToken'
     ];
 
     /**
