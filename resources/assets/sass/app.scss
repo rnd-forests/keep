@@ -1,12 +1,19 @@
-@import "layouts/layouts";
-@import "components/components";
-@import "pages/pages";
-@import "users/users";
-@import "tasks/tasks";
-@import "admin/admin";
-@import "groups/groups";
-@import "assignments/assignments";
-@import "notifications/notifications";
+@import "components/nav";
+@import "components/form";
+@import "components/button";
+@import "components/footer";
+@import "components/flash";
+@import "components/top_button";
+@import "components/select2/core";
+@import "components/summernote";
+
+@import "contents/home";
+@import "contents/user";
+@import "contents/task";
+@import "contents/admin";
+@import "contents/group";
+@import "contents/assignment";
+@import "contents/notification";
 
 body {
     font: normal 16px "Source Sans Pro", sans-serif;

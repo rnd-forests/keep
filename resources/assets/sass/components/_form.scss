@@ -11,3 +11,17 @@
         }
     }
 }
+
+.form-group:not(.summernote-container) {
+    .btn {
+        display: block;
+        width: 100%;
+        margin-top: 30px;
+    }
+}
+
+.panel-profile {
+    .form-group .btn {
+        width: auto;
+    }
+}
