@@ -1,18 +1,18 @@
 <?php
 namespace Keep\Commands;
 
-class CreateMemberNotificationCommand extends Command
+class CreateGroupNotification extends Command
 {
     public $type;
     public $body;
     public $subject;
-    public $userList;
+    public $groupList;
 
-    public function __construct($type, $body, $subject, $user_list)
+    public function __construct($type, $body, $subject, $group_list)
     {
         $this->type = $type;
         $this->body = $body;
         $this->subject = $subject;
-        $this->userList = $user_list;
+        $this->groupList = $group_list;
     }
 }

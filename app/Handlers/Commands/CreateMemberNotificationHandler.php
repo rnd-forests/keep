@@ -1,12 +1,12 @@
 <?php
 namespace Keep\Handlers\Commands;
 
-use Keep\Commands\CreateMemberNotificationCommand;
+use Keep\Commands\CreateMemberNotification;
 use Keep\Repositories\User\UserRepositoryInterface;
-use Keep\Handlers\CommandTraits\NotificationCommandTrait;
+use Keep\Handlers\Commands\Traits\NotificationCommandTrait;
 use Keep\Repositories\Notification\NotificationRepositoryInterface;
 
-class CreateMemberNotificationCommandHandler
+class CreateMemberNotificationHandler
 {
     use NotificationCommandTrait;
 
@@ -28,9 +28,9 @@ class CreateMemberNotificationCommandHandler
     /**
      * Handle the command.
      *
-     * @param  CreateMemberNotificationCommand $command
+     * @param  CreateMemberNotification $command
      */
-    public function handle(CreateMemberNotificationCommand $command)
+    public function handle(CreateMemberNotification $command)
     {
         $notification = $this->notificationRepo->create($this->getNotificationRequestData($command));
         $users = $this->userRepo->fetchUsersByIds($command->userList);

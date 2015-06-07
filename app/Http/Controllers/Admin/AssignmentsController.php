@@ -1,11 +1,11 @@
 <?php
 namespace Keep\Http\Controllers\Admin;
 
+use Keep\Commands\ModifyAssignment;
 use Keep\Http\Controllers\Controller;
+use Keep\Commands\CreateGroupAssignment;
+use Keep\Commands\CreateMemberAssignment;
 use Keep\Http\Requests\AssignmentRequest;
-use Keep\Commands\ModifyAssignmentCommand;
-use Keep\Commands\CreateGroupAssignmentCommand;
-use Keep\Commands\CreateMemberAssignmentCommand;
 use Keep\Repositories\Assignment\AssignmentRepositoryInterface;
 
 class AssignmentsController extends Controller
@@ -73,7 +73,7 @@ class AssignmentsController extends Controller
      */
     public function update(AssignmentRequest $request, $slug)
     {
-        $this->dispatchFrom(ModifyAssignmentCommand::class, $request, ['assignment_slug' => $slug]);
+        $this->dispatchFrom(ModifyAssignment::class, $request, ['assignment_slug' => $slug]);
         flash()->info('The assignment was successfully updated');
 
         return redirect()->route('admin.assignments.all');
@@ -113,7 +113,7 @@ class AssignmentsController extends Controller
      */
     public function storeMemberAssignment(AssignmentRequest $request)
     {
-        $this->dispatchFrom(CreateMemberAssignmentCommand::class, $request);
+        $this->dispatchFrom(CreateMemberAssignment::class, $request);
         flash()->success('The assignment was assigned to selected members');
 
         return redirect()->back();
@@ -138,7 +138,7 @@ class AssignmentsController extends Controller
      */
     public function storeGroupAssignment(AssignmentRequest $request)
     {
-        $this->dispatchFrom(CreateGroupAssignmentCommand::class, $request);
+        $this->dispatchFrom(CreateGroupAssignment::class, $request);
         flash()->success('The assignment was assigned to selected groups');
 
         return redirect()->back();

@@ -1,7 +1,7 @@
 <?php
 namespace Keep\Commands;
 
-class ConfirmAccountCommand extends Command
+class ConfirmAccount extends Command
 {
     public $code;
 

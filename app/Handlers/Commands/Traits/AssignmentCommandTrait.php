@@ -1,5 +1,5 @@
 <?php
-namespace Keep\Handlers\CommandTraits;
+namespace Keep\Handlers\Commands\Traits;
 
 use Keep\Entities\Task;
 use Keep\Entities\Assignment;

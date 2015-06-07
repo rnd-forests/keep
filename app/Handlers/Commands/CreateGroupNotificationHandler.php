@@ -1,12 +1,12 @@
 <?php
 namespace Keep\Handlers\Commands;
 
-use Keep\Commands\CreateGroupNotificationCommand;
-use Keep\Handlers\CommandTraits\NotificationCommandTrait;
-use Keep\Repositories\Notification\NotificationRepositoryInterface;
+use Keep\Commands\CreateGroupNotification;
+use Keep\Handlers\Commands\Traits\NotificationCommandTrait;
 use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
+use Keep\Repositories\Notification\NotificationRepositoryInterface;
 
-class CreateGroupNotificationCommandHandler
+class CreateGroupNotificationHandler
 {
     use NotificationCommandTrait;
 
@@ -28,9 +28,9 @@ class CreateGroupNotificationCommandHandler
     /**
      * Handle the command.
      *
-     * @param  CreateGroupNotificationCommand $command
+     * @param  CreateGroupNotification $command
      */
-    public function handle(CreateGroupNotificationCommand $command)
+    public function handle(CreateGroupNotification $command)
     {
         $notification = $this->notificationRepo->create($this->getNotificationRequestData($command));
         $groups = $this->groupRepo->fetchGroupsByIds($command->groupList);

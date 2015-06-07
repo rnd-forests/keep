@@ -1,7 +1,7 @@
 <?php
 namespace Keep\Commands;
 
-class ModifyUsernameCommand extends Command
+class ModifyUsername extends Command
 {
     public $user;
     public $oldUsername;

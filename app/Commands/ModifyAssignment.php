@@ -1,7 +1,7 @@
 <?php
 namespace Keep\Commands;
 
-class ModifyAssignmentCommand extends Command
+class ModifyAssignment extends Command
 {
     public $title;
     public $content;

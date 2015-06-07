@@ -1,7 +1,7 @@
 <?php
 namespace Keep\Commands;
 
-class CreateGroupAssignmentCommand extends Command
+class CreateGroupAssignment extends Command
 {
     public $title;
     public $content;

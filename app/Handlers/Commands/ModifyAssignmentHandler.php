@@ -1,12 +1,12 @@
 <?php
 namespace Keep\Handlers\Commands;
 
-use Keep\Commands\ModifyAssignmentCommand;
+use Keep\Commands\ModifyAssignment;
 use Keep\Repositories\Task\TaskRepositoryInterface;
-use Keep\Handlers\CommandTraits\AssignmentCommandTrait;
+use Keep\Handlers\Commands\Traits\AssignmentCommandTrait;
 use Keep\Repositories\Assignment\AssignmentRepositoryInterface;
 
-class ModifyAssignmentCommandHandler
+class ModifyAssignmentHandler
 {
     use AssignmentCommandTrait;
 
@@ -27,11 +27,11 @@ class ModifyAssignmentCommandHandler
     /**
      * Handle the command.
      *
-     * @param  ModifyAssignmentCommand $command
+     * @param  ModifyAssignment $command
      *
      * @return void
      */
-    public function handle(ModifyAssignmentCommand $command)
+    public function handle(ModifyAssignment $command)
     {
         $assignment = $this->assignmentRepo->update($command->assignmentSlug, $this->getAssignmentRequestData($command));
         $this->updateAssociatedTask($assignment->task, $this->getTaskRequestDataWithRelations($command));

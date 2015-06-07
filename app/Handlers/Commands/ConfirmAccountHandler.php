@@ -4,10 +4,10 @@ namespace Keep\Handlers\Commands;
 use Keep\Entities\User;
 use Illuminate\Contracts\Auth\Guard;
 use Keep\Events\UserWasActivatedEvent;
-use Keep\Commands\ConfirmAccountCommand;
+use Keep\Commands\ConfirmAccount;
 use Keep\Repositories\User\UserRepositoryInterface;
 
-class ConfirmAccountCommandHandler
+class ConfirmAccountHandler
 {
     protected $auth, $userRepo;
 
@@ -26,11 +26,11 @@ class ConfirmAccountCommandHandler
     /**
      * Handle the command.
      *
-     * @param ConfirmAccountCommand $command
+     * @param ConfirmAccount $command
      *
      * @return bool
      */
-    public function handle(ConfirmAccountCommand $command)
+    public function handle(ConfirmAccount $command)
     {
         $user = $this->activate($command);
 
@@ -40,11 +40,11 @@ class ConfirmAccountCommandHandler
     /**
      * Activate user account.
      *
-     * @param ConfirmAccountCommand $command
+     * @param ConfirmAccount $command
      *
      * @return mixed
      */
-    private function activate(ConfirmAccountCommand $command)
+    private function activate(ConfirmAccount $command)
     {
         $user = $this->userRepo->findByCodeAndActiveState($command->code, false);
         $user->activation_code = '';

@@ -2,9 +2,9 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
+use Keep\Commands\CreateGroupNotification;
+use Keep\Commands\CreateMemberNotification;
 use Keep\Http\Requests\NotificationRequest;
-use Keep\Commands\CreateGroupNotificationCommand;
-use Keep\Commands\CreateMemberNotificationCommand;
 use Keep\Repositories\Notification\NotificationRepositoryInterface;
 
 class NotificationsController extends Controller
@@ -67,7 +67,7 @@ class NotificationsController extends Controller
      */
     public function storeMemberNotification(NotificationRequest $request)
     {
-        $this->dispatchFrom(CreateMemberNotificationCommand::class, $request);
+        $this->dispatchFrom(CreateMemberNotification::class, $request);
         flash()->success('The notification was sent to selected members');
 
         return redirect()->back();
@@ -92,7 +92,7 @@ class NotificationsController extends Controller
      */
     public function storeGroupNotification(NotificationRequest $request)
     {
-        $this->dispatchFrom(CreateGroupNotificationCommand::class, $request);
+        $this->dispatchFrom(CreateGroupNotification::class, $request);
         flash()->success('The notification was sent to selected groups');
 
         return redirect()->back();

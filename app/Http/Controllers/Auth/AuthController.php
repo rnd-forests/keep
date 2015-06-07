@@ -2,12 +2,12 @@
 namespace Keep\Http\Controllers\Auth;
 
 use Auth;
+use Keep\Commands\ConfirmAccount;
+use Keep\Commands\RegisterAccount;
 use Keep\Http\Controllers\Controller;
-use Keep\Commands\ConfirmAccountCommand;
-use Keep\Commands\RegisterAccountCommand;
+use Keep\Commands\InitializeUserSession;
 use Keep\Http\Requests\OpenSessionRequest;
 use Keep\Http\Requests\RegisterUserRequest;
-use Keep\Commands\InitializeSessionCommand;
 
 class AuthController extends Controller
 {
@@ -38,7 +38,7 @@ class AuthController extends Controller
      */
     public function postRegister(RegisterUserRequest $request)
     {
-        if ($this->dispatchFrom(RegisterAccountCommand::class, $request)) {
+        if ($this->dispatchFrom(RegisterAccount::class, $request)) {
             flash()->info('Check your email address to activate your account.');
 
             return redirect()->home();
@@ -67,7 +67,7 @@ class AuthController extends Controller
     public function postLogin(OpenSessionRequest $request)
     {
         $additionalAttributes = ['active' => 1, 'remember' => $request->has('remember')];
-        if ($this->dispatchFrom(InitializeSessionCommand::class, $request, $additionalAttributes)) {
+        if ($this->dispatchFrom(InitializeUserSession::class, $request, $additionalAttributes)) {
             flash()->success('You have been logged in.');
 
             return redirect()->intended('/');
@@ -99,7 +99,7 @@ class AuthController extends Controller
      */
     public function activate($code)
     {
-        if ($this->dispatch(new ConfirmAccountCommand($code))) {
+        if ($this->dispatch(new ConfirmAccount($code))) {
             flash()->success('Your account has been activated.');
 
             return redirect()->home();

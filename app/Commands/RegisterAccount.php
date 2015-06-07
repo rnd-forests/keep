@@ -1,7 +1,7 @@
 <?php
 namespace Keep\Commands;
 
-class RegisterAccountCommand extends Command
+class RegisterAccount extends Command
 {
     public $name;
     public $email;

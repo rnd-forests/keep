@@ -1,7 +1,7 @@
 <?php
 namespace Keep\Commands;
 
-class ModifyPasswordCommand extends Command
+class ModifyPassword extends Command
 {
     public $user;
     public $oldPassword;

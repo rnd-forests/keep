@@ -3,19 +3,19 @@ namespace Keep\Handlers\Commands;
 
 use App;
 use Keep\Events\UserWasRegisteredEvent;
-use Keep\Commands\RegisterAccountCommand;
+use Keep\Commands\RegisterAccount;
 use Keep\Repositories\User\UserRepositoryInterface;
 
-class RegisterAccountCommandHandler
+class RegisterAccountHandler
 {
     /**
      * Handle the command.
      *
-     * @param  RegisterAccountCommand $command
+     * @param  RegisterAccount $command
      *
      * @return bool
      */
-    public function handle(RegisterAccountCommand $command)
+    public function handle(RegisterAccount $command)
     {
         return $this->register($command);
     }
@@ -23,11 +23,11 @@ class RegisterAccountCommandHandler
     /**
      * Register new account.
      *
-     * @param RegisterAccountCommand $command
+     * @param RegisterAccount $command
      *
      * @return bool
      */
-    private function register(RegisterAccountCommand $command)
+    private function register(RegisterAccount $command)
     {
         $users = App::make(UserRepositoryInterface::class);
         $user = $users->create($this->getRequestData($command));
@@ -42,11 +42,11 @@ class RegisterAccountCommandHandler
     /**
      * Get request data.
      *
-     * @param RegisterAccountCommand $command
+     * @param RegisterAccount $command
      *
      * @return array
      */
-    private function getRequestData(RegisterAccountCommand $command)
+    private function getRequestData(RegisterAccount $command)
     {
         return [
             'name'     => $command->name,

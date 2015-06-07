@@ -1,7 +1,7 @@
 <?php
 namespace Keep\Commands;
 
-class CreateMemberAssignmentCommand extends Command
+class CreateMemberAssignment extends Command
 {
     public $title;
     public $content;

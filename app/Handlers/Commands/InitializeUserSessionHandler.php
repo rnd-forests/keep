@@ -2,18 +2,18 @@
 namespace Keep\Handlers\Commands;
 
 use App;
-use Keep\Commands\InitializeSessionCommand;
+use Keep\Commands\InitializeUserSession;
 
-class InitializeSessionCommandHandler
+class InitializeUserSessionHandler
 {
     /**
      * Handle the command.
      *
-     * @param InitializeSessionCommand $command
+     * @param InitializeUserSession $command
      *
      * @return bool
      */
-    public function handle(InitializeSessionCommand $command)
+    public function handle(InitializeUserSession $command)
     {
         $auth = App::make('Illuminate\Contracts\Auth\Guard');
 
@@ -23,11 +23,11 @@ class InitializeSessionCommandHandler
     /**
      * Get the request data.
      *
-     * @param InitializeSessionCommand $command
+     * @param InitializeUserSession $command
      *
      * @return array
      */
-    private function getRequestData(InitializeSessionCommand $command)
+    private function getRequestData(InitializeUserSession $command)
     {
         return [
             'email'    => $command->email,

@@ -1,13 +1,13 @@
 <?php
 namespace Keep\Handlers\Commands;
 
-use Keep\Commands\CreateGroupAssignmentCommand;
+use Keep\Commands\CreateGroupAssignment;
 use Keep\Repositories\Task\TaskRepositoryInterface;
-use Keep\Handlers\CommandTraits\AssignmentCommandTrait;
+use Keep\Handlers\Commands\Traits\AssignmentCommandTrait;
 use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
 use Keep\Repositories\Assignment\AssignmentRepositoryInterface;
 
-class CreateGroupAssignmentCommandHandler
+class CreateGroupAssignmentHandler
 {
     use AssignmentCommandTrait;
 
@@ -32,9 +32,9 @@ class CreateGroupAssignmentCommandHandler
     /**
      * Handle the command.
      *
-     * @param CreateGroupAssignmentCommand $command
+     * @param CreateGroupAssignment $command
      */
-    public function handle(CreateGroupAssignmentCommand $command)
+    public function handle(CreateGroupAssignment $command)
     {
         $assignment = $this->assignmentRepo->create($this->getAssignmentRequestData($command));
         $task = $this->taskRepo->create($this->getTaskRequestData($command));

@@ -1,7 +1,7 @@
 <?php
 namespace Keep\Commands;
 
-class InitializeSessionCommand extends Command
+class InitializeUserSession extends Command
 {
     public $email;
     public $password;
