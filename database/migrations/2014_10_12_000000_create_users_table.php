@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('slug')->unique();
             $table->string('email')->unique();
             $table->string('password', 60);
-            $table->string('activation_code')->index();
+            $table->string('activation_code')->nullable();
             $table->boolean('active')->default(false);
             $table->rememberToken();
             $table->softDeletes();
