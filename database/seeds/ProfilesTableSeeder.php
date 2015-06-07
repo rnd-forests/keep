@@ -12,7 +12,7 @@ class ProfilesTableSeeder extends Seeder
         Profile::create([
             'user_id'          => 1,
             'location'         => 'Thai Phuong - Hung Ha - Thai Binh',
-            'bio'              => $faker->paragraph(10),
+            'bio'              => $faker->paragraph(3),
             'company'          => 'Ha Noi University of Science and Technology',
             'website'          => $faker->url,
             'phone'            => $faker->phoneNumber,
@@ -23,7 +23,7 @@ class ProfilesTableSeeder extends Seeder
         Profile::create([
             'user_id'          => 2,
             'location'         => 'Thai Phuong - Hung Ha - Thai Binh',
-            'bio'              => $faker->paragraph(10),
+            'bio'              => $faker->paragraph(3),
             'company'          => 'Deloitte',
             'website'          => $faker->url,
             'phone'            => $faker->phoneNumber,
@@ -35,7 +35,7 @@ class ProfilesTableSeeder extends Seeder
             Profile::create([
                 'user_id'          => $i,
                 'location'         => $faker->address,
-                'bio'              => $faker->paragraph(5),
+                'bio'              => $faker->paragraph(3),
                 'company'          => $faker->company,
                 'website'          => $faker->url,
                 'phone'            => $faker->phoneNumber,
