@@ -19,7 +19,7 @@ class CreateUserProfilesTable extends Migration
             $table->text('bio')->nullable();
             $table->string('company')->nullable();
             $table->string('website')->nullable();
-            $table->string('phone', 11)->nullable();
+            $table->string('phone', 20)->nullable();
             $table->string('facebook_username')->nullable();
             $table->string('twitter_username')->nullable();
             $table->string('github_username')->nullable();
