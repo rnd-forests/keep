@@ -27,10 +27,10 @@ class EloquentTagRepository extends DbRepository implements TagRepositoryInterfa
         $user = User::findBySlug($userSlug);
 
         return $this->model->whereIn('id', array_fetch(
-                DB::table('tag_task')
-                    ->whereIn('task_id', $user->tasks->lists('id'))
-                    ->groupBy('tag_id')
-                    ->get(), 'tag_id')
+            DB::table('tag_task')
+                ->whereIn('task_id', $user->tasks->lists('id'))
+                ->groupBy(['tag_id', 'task_id'])
+                ->get(), 'tag_id')
         )->get();
     }
 
