@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateNotifiablesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('notifiables', function (Blueprint $table) {
@@ -20,11 +15,6 @@ class CreateNotifiablesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('notifiables');

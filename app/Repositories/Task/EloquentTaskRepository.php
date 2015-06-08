@@ -37,9 +37,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
             'content'        => $data['content'],
             'location'       => $data['location'],
             'starting_date'  => $data['starting_date'],
-            'finishing_date' => $data['finishing_date'],
-            'completed'      => false,
-            'is_assigned'    => false
+            'finishing_date' => $data['finishing_date']
         ]);
     }
 

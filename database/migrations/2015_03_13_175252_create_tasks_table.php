@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTasksTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
@@ -24,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->text('location')->nullable();
             $table->timestamp('starting_date');
             $table->timestamp('finishing_date');
+            $table->boolean('is_failed')->default(false);
             $table->timestamp('finished_at')->nullable();
             $table->boolean('completed')->default(false);
             $table->boolean('is_assigned')->default(false);
@@ -32,11 +28,6 @@ class CreateTasksTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('tasks');

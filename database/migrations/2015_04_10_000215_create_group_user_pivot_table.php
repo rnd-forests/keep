@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateGroupUserPivotTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('group_user', function (Blueprint $table) {
@@ -20,11 +15,6 @@ class CreateGroupUserPivotTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('group_user');

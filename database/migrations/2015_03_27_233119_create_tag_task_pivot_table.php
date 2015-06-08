@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTagTaskPivotTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('tag_task', function (Blueprint $table) {
@@ -19,12 +14,7 @@ class CreateTagTaskPivotTable extends Migration
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    
     public function down()
     {
         Schema::drop('tag_task');
