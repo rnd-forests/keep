@@ -1,8 +1,7 @@
 <?php
 
-require_once __DIR__ . '/Routes/authentication.php';
-require_once __DIR__ . '/Routes/pages.php';
-require_once __DIR__ . '/Routes/users.php';
-require_once __DIR__ . '/Routes/administrator.php';
+foreach (File::allFiles(__DIR__ . '/Routes') as $file) {
+    require_once $file->getPathname();
+}
 
 Route::post('queue/receive', 'QueuesController@receive');
