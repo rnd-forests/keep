@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from'       => ['address' => 'postmaster@keep-laravel.herokuapp.com', 'name' => 'Keep'],
+    'from'       => ['address' => 'ngocvinh.nnv@gmail.com', 'name' => 'Keep - Tasks Management'],
 
     /*
     |--------------------------------------------------------------------------
