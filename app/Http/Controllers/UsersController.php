@@ -18,7 +18,6 @@ class UsersController extends Controller
         $this->userRepo = $userRepo;
         $this->middleware('auth');
         $this->middleware('auth.correct');
-        $this->middleware('auth.confirmed');
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['auth', 'auth.confirmed', 'valid.admin.user'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
+Route::group(['middleware' => ['auth', 'valid.admin.user'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('dashboard', [
         'as'   => 'admin.dashboard',
         'uses' => 'DashboardController@dashboard'

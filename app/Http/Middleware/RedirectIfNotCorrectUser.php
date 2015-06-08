@@ -8,18 +8,18 @@ use Keep\Repositories\User\UserRepositoryInterface;
 
 class RedirectIfNotCorrectUser
 {
-    protected $auth, $userRepository;
+    protected $auth, $userRepo;
 
     /**
      * Constructor.
      *
      * @param Guard                   $auth
-     * @param UserRepositoryInterface $userRepository
+     * @param UserRepositoryInterface $userRepo
      */
-    public function __construct(Guard $auth, UserRepositoryInterface $userRepository)
+    public function __construct(Guard $auth, UserRepositoryInterface $userRepo)
     {
         $this->auth = $auth;
-        $this->userRepository = $userRepository;
+        $this->userRepo = $userRepo;
     }
 
     /**
@@ -35,7 +35,7 @@ class RedirectIfNotCorrectUser
      */
     public function handle($request, Closure $next)
     {
-        $user = $this->userRepository->findBySlug($request->route('users'));
+        $user = $this->userRepo->findBySlug($request->route('users'));
         if (($user->id != $this->auth->user()->id) && ! $this->auth->user()->isAdmin()) {
             throw new InvalidUserException('You do not have required rights to access this page.');
         }

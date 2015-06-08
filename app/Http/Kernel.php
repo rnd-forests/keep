@@ -29,7 +29,6 @@ class Kernel extends HttpKernel
         'auth.basic'        => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
         'guest'             => 'Keep\Http\Middleware\RedirectIfAuthenticated',
         'auth.correct'      => 'Keep\Http\Middleware\RedirectIfNotCorrectUser',
-        'auth.confirmed'    => 'Keep\Http\Middleware\VerifyConfirmedAccount',
         'valid.permissions' => 'Keep\Http\Middleware\HasCorrectPermissions',
         'valid.admin.user'  => 'Keep\Http\Middleware\VerifyAdminUser',
     ];
