@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 class VerifyCsrfToken extends BaseVerifier
 {
     protected $excludedPaths = [
-        'queue/receive',
+        'queue/subscribe',
     ];
 
     /**

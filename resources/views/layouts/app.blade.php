@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>@yield('title')</title>
     <meta name="description" content="@yield('meta-description', 'A simple tasks management application.')">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<link href="{{ elixir('css/all.css') }}" rel="stylesheet">
 

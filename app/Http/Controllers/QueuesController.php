@@ -5,7 +5,7 @@ use Queue;
 
 class QueuesController extends Controller
 {
-    public function receive()
+    public function subscribe()
     {
         return Queue::marshal();
     }
