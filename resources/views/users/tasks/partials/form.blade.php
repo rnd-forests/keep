@@ -11,7 +11,7 @@
         <div class="form-group">
             {!! Form::label('starting_date', 'Starting Date', ['class' => 'control-label']) !!}
             <div class="input-group date task-time-form">
-                {!! Form::text('starting_date', $task->starting_date, ['class' => 'form-control input-lg']) !!}
+                {!! Form::text('starting_date', null, ['class' => 'form-control input-lg']) !!}
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>
@@ -20,7 +20,7 @@
         <div class="form-group">
             {!! Form::label('finishing_date', 'Finishing Date', ['class' => 'control-label']) !!}
             <div class="input-group date task-time-form">
-                {!! Form::text('finishing_date', $task->finishing_date, ['class' => 'form-control input-lg']) !!}
+                {!! Form::text('finishing_date', null, ['class' => 'form-control input-lg']) !!}
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
         </div>

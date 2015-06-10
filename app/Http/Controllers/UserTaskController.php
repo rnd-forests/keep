@@ -1,8 +1,8 @@
 <?php
 namespace Keep\Http\Controllers;
 
+use Keep\Events\TaskHasPublished;
 use Keep\Http\Requests\TaskRequest;
-use Keep\Events\TaskWasCreatedEvent;
 use Keep\Repositories\Task\TaskRepositoryInterface;
 use Keep\Repositories\User\UserRepositoryInterface;
 
@@ -51,7 +51,7 @@ class UserTaskController extends Controller
     {
         $author = $this->userRepo->findBySlug($userSlug);
         $task = $author->tasks()->save($this->createTask($request));
-        event(new TaskWasCreatedEvent($author, $task));
+        event(new TaskHasPublished($author, $task));
         flash()->success('Your tasks has been successfully created');
 
         return redirect()->route('users.dashboard', $author);

@@ -7,14 +7,24 @@
         <div class="form-group">
             <div class="form-group">
                 {!! Form::label('user_list', 'Choose Members', ['class' => 'control-label']) !!}
-                {!! Form::select('user_list[]', $users, $assignment->users->lists('id'), ['id' => 'user_list', 'class' => 'form-control', 'multiple']) !!}
+                {!! Form::select(
+                    'user_list[]',
+                    $users,
+                    $assignment->users->lists('id')->all(),
+                    ['id' => 'user_list', 'class' => 'form-control', 'multiple'])
+                !!}
             </div>
         </div>
     @else
         <div class="form-group">
             <div class="form-group">
                 {!! Form::label('group_list', 'Choose Groups', ['class' => 'control-label']) !!}
-                {!! Form::select('group_list[]', $groups, $assignment->groups->lists('id'), ['id' => 'group_list', 'class' => 'form-control', 'multiple']) !!}
+                {!! Form::select(
+                    'group_list[]',
+                    $groups,
+                    $assignment->groups->lists('id')->all(),
+                    ['id' => 'group_list', 'class' => 'form-control', 'multiple'])
+                !!}
             </div>
         </div>
     @endif

@@ -271,7 +271,7 @@ class Task extends Model implements SluggableInterface
 
     public function getTagListAttribute()
     {
-        return $this->tags->lists('id')->toArray();
+        return $this->tags->lists('id')->all();
     }
 
     public function getPriorityLevelAttribute()
