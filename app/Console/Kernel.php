@@ -12,10 +12,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'Keep\Console\Commands\SyncFailedTasksCommand',
-        'Keep\Console\Commands\EmailUpcomingTasksCommand',
-        'Keep\Console\Commands\NotifyUpcomingTasksCommand',
-        'Keep\Console\Commands\ClearOldNotificationsCommand',
+        'Keep\Console\Commands\SyncFailedTasks',
+        'Keep\Console\Commands\EmailUpcomingTasks',
+        'Keep\Console\Commands\NotifyUpcomingTasks',
+        'Keep\Console\Commands\ClearOldNotifications',
     ];
 
     /**
@@ -29,6 +29,11 @@ class Kernel extends ConsoleKernel
     {
         $schedule->exec('composer self-update')
             ->monthly()
+            ->withoutOverlapping()
+            ->environments('production');
+
+        $schedule->exec('auth:clear-resets')
+            ->weekly()
             ->withoutOverlapping()
             ->environments('production');
 
