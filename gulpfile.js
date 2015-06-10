@@ -26,11 +26,9 @@ elixir(function(mix) {
         'vendor/summernote/summernote.min.js',
         'vendor/summernote/summernote-fontstyle.js',
         'vendor/summernote/summernote-video.js',
-        'vendor/aui-min.js'
-    ], 'public/js/libraries.js', 'resources/assets/js')
-    .scripts([
+        'vendor/aui-min.js',
         'plugins.js',
         'main.js'
-    ], 'public/js/app.js', 'resources/assets/js');
+    ], 'public/js/all.js', 'resources/assets/js');
 
 });

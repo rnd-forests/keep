@@ -21,8 +21,7 @@
         @yield('content')
     </div>
     @include('layouts.partials.footer')
-    {!! Html::script('js/libraries.js') !!}
-    {!! Html::script('js/app.js') !!}
+    {!! Html::script('js/all.js') !!}
     @yield('footer')
 </body>
 </html>
