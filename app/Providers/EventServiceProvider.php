@@ -8,12 +8,6 @@ use Keep\Entities\Task;
 use Keep\Entities\Profile;
 use Keep\Entities\Assignment;
 use Keep\Entities\Notification;
-use Keep\Events\TaskWasCreatedEvent;
-use Keep\Events\UserWasActivatedEvent;
-use Keep\Events\UserWasRegisteredEvent;
-use Keep\Handlers\Events\EmailActivatedAccount;
-use Keep\Handlers\Events\EmailNewlyCreatedTask;
-use Keep\Handlers\Events\EmailAccountActivationLink;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -25,14 +19,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        UserWasRegisteredEvent::class => [
-            EmailAccountActivationLink::class,
+        \Keep\Events\UserHasRegistered::class => [
+            \Keep\Listeners\EmailAccountActivationLink::class,
         ],
-        UserWasActivatedEvent::class  => [
-            EmailActivatedAccount::class,
-        ],
-        TaskWasCreatedEvent::class    => [
-            EmailNewlyCreatedTask::class,
+        \Keep\Events\TaskHasPublished::class    => [
+            \Keep\Listeners\EmailNewlyCreatedTask::class,
         ],
     ];
 

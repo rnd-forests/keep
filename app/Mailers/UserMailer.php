@@ -20,19 +20,7 @@ class UserMailer extends Mailer
         $data = ['activationLink' => route('account.activation', $activationCode)];
         $this->sendTo($user, $subject, $view, $data);
     }
-
-    /**
-     * Send activated account confirmation.
-     *
-     * @param User $user
-     */
-    public function sendAccountActivatedConfirmation(User $user)
-    {
-        $subject = 'Activated Account Confirmation';
-        $view = 'emails.auth.account_activated';
-        $this->sendTo($user, $subject, $view);
-    }
-
+    
     /**
      * Send notification about newly created task.
      *

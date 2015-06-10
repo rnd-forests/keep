@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver'     => env('MAILGUN_DRIVER', 'smtp'),
+    'driver' => env('MAILGUN_DRIVER', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host'       => env('MAILGUN_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAILGUN_HOST', 'smtp.mailgun.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'port'       => env('MAILGUN_PORT', 587),
+    'port' => env('MAILGUN_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from'       => ['address' => 'ngocvinh.nnv@gmail.com', 'name' => 'Keep - Tasks Management'],
+    'from' => ['address' => 'keep@hust.com', 'name' => 'Keep'],
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'encryption' => env('MAILGUN_ENCRYPTION'),
+    'encryption' => env('MAILGUN_ENCRYPTION', 'tls'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'username'   => env('MAILGUN_USERNAME'),
+    'username' => env('MAILGUN_USERNAME'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'password'   => env('MAILGUN_PASSWORD'),
+    'password' => env('MAILGUN_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +106,7 @@ return [
     |
     */
 
-    'sendmail'   => '/usr/sbin/sendmail -bs',
+    'sendmail' => '/usr/sbin/sendmail -bs',
 
     /*
     |--------------------------------------------------------------------------
@@ -119,6 +119,6 @@ return [
     |
     */
 
-    'pretend'    => false,
+    'pretend' => false,
 
 ];

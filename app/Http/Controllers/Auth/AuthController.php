@@ -2,10 +2,10 @@
 namespace Keep\Http\Controllers\Auth;
 
 use Auth;
-use Keep\Commands\ConfirmAccount;
-use Keep\Commands\RegisterAccount;
+use Keep\Jobs\RegisterAccount;
+use Keep\Jobs\ActivateAccount;
+use Keep\Jobs\AuthenticateAccount;
 use Keep\Http\Controllers\Controller;
-use Keep\Commands\InitializeUserSession;
 use Keep\Http\Requests\OpenSessionRequest;
 use Keep\Http\Requests\RegisterUserRequest;
 
@@ -66,8 +66,10 @@ class AuthController extends Controller
      */
     public function postLogin(OpenSessionRequest $request)
     {
-        $additionalAttributes = ['active' => 1, 'remember' => $request->has('remember')];
-        if ($this->dispatchFrom(InitializeUserSession::class, $request, $additionalAttributes)) {
+        if ($this->dispatchFrom(AuthenticateAccount::class, $request, [
+            'active'   => 1,
+            'remember' => $request->has('remember')])
+        ) {
             flash()->success('You have been logged in.');
 
             return redirect()->intended('/');
@@ -99,7 +101,7 @@ class AuthController extends Controller
      */
     public function activate($code)
     {
-        if ($this->dispatch(new ConfirmAccount($code))) {
+        if ($this->dispatch(new ActivateAccount($code))) {
             flash()->success('Your account has been activated.');
 
             return redirect()->home();

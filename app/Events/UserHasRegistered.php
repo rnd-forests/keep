@@ -4,7 +4,7 @@ namespace Keep\Events;
 use Keep\Entities\User;
 use Illuminate\Queue\SerializesModels;
 
-class UserWasActivatedEvent extends Event
+class UserHasRegistered extends Event
 {
     use SerializesModels;
 

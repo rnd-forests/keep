@@ -11,12 +11,12 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        'Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode',
-        'Illuminate\Cookie\Middleware\EncryptCookies',
-        'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
-        'Illuminate\Session\Middleware\StartSession',
-        'Illuminate\View\Middleware\ShareErrorsFromSession',
-        'Keep\Http\Middleware\VerifyCsrfToken'
+        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        \Keep\Http\Middleware\EncryptCookies::class,
+        \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \Keep\Http\Middleware\VerifyCsrfToken::class
     ];
 
     /**
@@ -25,11 +25,11 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth'              => 'Keep\Http\Middleware\Authenticate',
-        'auth.basic'        => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-        'guest'             => 'Keep\Http\Middleware\RedirectIfAuthenticated',
-        'auth.correct'      => 'Keep\Http\Middleware\RedirectIfNotCorrectUser',
-        'valid.permissions' => 'Keep\Http\Middleware\HasCorrectPermissions',
-        'valid.admin.user'  => 'Keep\Http\Middleware\VerifyAdminUser',
+        'auth'              => \Keep\Http\Middleware\Authenticate::class,
+        'auth.basic'        => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'guest'             => \Keep\Http\Middleware\RedirectIfAuthenticated::class,
+        'auth.correct'      => \Keep\Http\Middleware\RedirectIfNotCorrectUser::class,
+        'valid.permissions' => \Keep\Http\Middleware\HasCorrectPermissions::class,
+        'valid.admin.user'  => \Keep\Http\Middleware\VerifyAdminUser::class,
     ];
 }

@@ -2,8 +2,8 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Commands\CreateGroupNotification;
-use Keep\Commands\CreateMemberNotification;
+use Keep\Jobs\CreateGroupNotification;
+use Keep\Jobs\CreateMemberNotification;
 use Keep\Http\Requests\NotificationRequest;
 use Keep\Repositories\Notification\NotificationRepositoryInterface;
 

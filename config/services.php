@@ -2,7 +2,7 @@
 
 return [
 
-    'mailgun'  => [
+    'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET_KEY'),
     ],
@@ -11,24 +11,24 @@ return [
         'secret' => '',
     ],
 
-    'ses'      => [
+    'ses' => [
         'key'    => '',
         'secret' => '',
         'region' => 'us-east-1',
     ],
 
-    'stripe'   => [
-        'model'  => 'User',
+    'stripe' => [
+        'model'  => Keep\Entities\User::class,
         'secret' => '',
     ],
 
-    'github'   => [
+    'github' => [
         'client_id'     => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
         'redirect'      => env('GITHUB_CALLBACK_URL'),
     ],
 
-    'google'   => [
+    'google' => [
         'client_id'     => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect'      => env('GOOGLE_CALLBACK_URL'),

@@ -1,10 +1,10 @@
 <?php
-namespace Keep\Handlers\Commands\Traits;
+namespace Keep\Jobs\Traits;
 
 use Keep\Entities\Notification;
 use Illuminate\Support\Collection;
 
-trait NotificationCommandTrait
+trait NotificationTrait
 {
     /**
      * Set the proper polymorphic associations of a notification.
@@ -34,16 +34,14 @@ trait NotificationCommandTrait
     /**
      * Get notification form request data.
      *
-     * @param $command
-     *
      * @return array
      */
-    public function getNotificationRequestData($command)
+    public function getNotificationRequestData()
     {
         return [
-            'subject' => $command->subject,
-            'body'    => $command->body,
-            'type'    => $command->type
+            'subject' => $this->subject,
+            'body'    => $this->body,
+            'type'    => $this->type
         ];
     }
 }
