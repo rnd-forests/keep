@@ -2,7 +2,7 @@
 
 @section('meta-description', str_limit($task->content, 250))
 
-@section('title', 'Edit - ' . $task->title)
+@section('title', $task->title)
 
 @section('content')
     <div class="row">

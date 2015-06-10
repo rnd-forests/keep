@@ -10,7 +10,7 @@
                 <div class="panel-body">
                     @include('layouts.partials.errors')
                     {!! Form::model($task = new \Keep\Entities\Task, ['route' => ['users.tasks.store', $user]]) !!}
-                        @include('users.tasks.partials.form', ['taskFormSubmitButton' => 'Create Task'])
+                        @include('users.tasks.partials.form', ['taskFormSubmitButton' => 'Schedule Task'])
                     {!! Form::close() !!}
                 </div>
             </div>
