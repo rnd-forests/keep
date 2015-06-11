@@ -1,233 +1,251 @@
 <?php
 
-Route::group(['middleware' => ['auth', 'valid.admin.user'], 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
+Route::group([
+    'middleware' => ['auth', 'valid.admin.user'],
+    'prefix'     => 'admin',
+    'as'         => 'admin::',
+    'namespace'  => 'Admin'], function () {
+
     Route::get('dashboard', [
-        'as'   => 'admin.dashboard',
+        'as'   => 'dashboard',
         'uses' => 'DashboardController@dashboard'
     ]);
 
+    Route::group(['prefix' => 'members', 'as' => 'members.'], function () {
+        Route::get('active', [
+            'as'   => 'active',
+            'uses' => 'UsersController@activeAccounts'
+        ]);
 
-    Route::get('active-members', [
-        'as'   => 'admin.active.accounts',
-        'uses' => 'UsersController@activeAccounts'
-    ]);
+        Route::get('active/{users}', [
+            'as'   => 'active.profile',
+            'uses' => 'UsersController@profile'
+        ]);
 
-    Route::get('active-members/{users}', [
-        'as'   => 'admin.active.account.profile',
-        'uses' => 'UsersController@profile'
-    ]);
+        Route::delete('active/{users}', [
+            'as'   => 'active.disable',
+            'uses' => 'UsersController@disableAccount'
+        ]);
 
-    Route::delete('active-members/{users}', [
-        'as'   => 'admin.active.account.disable',
-        'uses' => 'UsersController@disableAccount'
-    ]);
+        Route::get('disabled', [
+            'as'   => 'disabled',
+            'uses' => 'UsersController@disabledAccounts'
+        ]);
 
-    Route::get('disabled-members', [
-        'as'   => 'admin.disabled.accounts',
-        'uses' => 'UsersController@disabledAccounts'
-    ]);
+        Route::put('disabled/{users}', [
+            'as'   => 'disabled.restore',
+            'uses' => 'UsersController@restoreAccount'
+        ]);
 
-    Route::put('disabled-members/{users}', [
-        'as'   => 'admin.restore.account',
-        'uses' => 'UsersController@restoreAccount'
-    ]);
+        Route::delete('disabled/{users}', [
+            'as'   => 'disabled.force.delete',
+            'uses' => 'UsersController@forceDeleteAccount'
+        ]);
+    });
 
-    Route::delete('disabled-members/{users}', [
-        'as'   => 'admin.force.delete.account',
-        'uses' => 'UsersController@forceDeleteAccount'
-    ]);
+    Route::group(['prefix' => 'groups/active', 'as' => 'groups.active'], function () {
+        Route::get('', [
+            'as'   => '',
+            'uses' => 'UserGroupsController@activeGroups'
+        ]);
 
+        Route::get('create', [
+            'as'   => '.create',
+            'uses' => 'UserGroupsController@create'
+        ]);
 
-    Route::get('active-groups', [
-        'as'   => 'admin.active.groups',
-        'uses' => 'UserGroupsController@activeGroups'
-    ]);
+        Route::post('', [
+            'as'   => '.store',
+            'uses' => 'UserGroupsController@store'
+        ]);
 
-    Route::get('active-groups/create', [
-        'as'   => 'admin.groups.create',
-        'uses' => 'UserGroupsController@create'
-    ]);
+        Route::get('{groups}', [
+            'as'   => '.show',
+            'uses' => 'UserGroupsController@show'
+        ]);
 
-    Route::post('active-groups', [
-        'as'   => 'admin.groups.store',
-        'uses' => 'UserGroupsController@store'
-    ]);
+        Route::get('{groups}/add', [
+            'as'   => '.add.users',
+            'uses' => 'UserGroupsController@addUsers'
+        ]);
 
-    Route::get('active-groups/{groups}', [
-        'as'   => 'admin.groups.show',
-        'uses' => 'UserGroupsController@show'
-    ]);
+        Route::post('{groups}/add', [
+            'as'   => '.sync.users',
+            'uses' => 'UserGroupsController@storeNewUsers'
+        ]);
 
-    Route::get('active-groups/{groups}/add', [
-        'as'   => 'admin.groups.add.users',
-        'uses' => 'UserGroupsController@addUsers'
-    ]);
+        Route::post('{groups}/{users}', [
+            'as'   => '.remove.users',
+            'uses' => 'UserGroupsController@removeUser'
+        ]);
 
-    Route::post('active-groups/{groups}/add', [
-        'as'   => 'admin.groups.sync.users',
-        'uses' => 'UserGroupsController@storeNewUsers'
-    ]);
+        Route::get('{groups}/edit', [
+            'as'   => '.edit',
+            'uses' => 'UserGroupsController@edit'
+        ]);
 
-    Route::post('active-groups/{groups}/{users}', [
-        'as'   => 'admin.groups.remove.user',
-        'uses' => 'UserGroupsController@removeUser'
-    ]);
+        Route::post('{groups}', [
+            'as'   => '.flush',
+            'uses' => 'UserGroupsController@flush'
+        ]);
 
-    Route::get('active-groups/{groups}/edit', [
-        'as'   => 'admin.groups.edit',
-        'uses' => 'UserGroupsController@edit'
-    ]);
+        Route::patch('{groups}', [
+            'as'   => '.update',
+            'uses' => 'UserGroupsController@update'
+        ]);
 
-    Route::post('active-groups/{groups}', [
-        'as'   => 'admin.groups.flush',
-        'uses' => 'UserGroupsController@flush'
-    ]);
+        Route::delete('{groups}', [
+            'as'   => '.delete',
+            'uses' => 'UserGroupsController@destroy'
+        ]);
+    });
 
-    Route::patch('active-groups/{groups}', [
-        'as'   => 'admin.groups.update',
-        'uses' => 'UserGroupsController@update'
-    ]);
+    Route::group(['prefix' => 'groups/trashed', 'as' => 'groups.trashed'], function () {
+        Route::get('', [
+            'as'   => '',
+            'uses' => 'UserGroupsController@trashedGroups'
+        ]);
 
-    Route::delete('active-groups/{groups}', [
-        'as'   => 'admin.groups.delete',
-        'uses' => 'UserGroupsController@destroy'
-    ]);
+        Route::put('{groups}', [
+            'as'   => '.restore',
+            'uses' => 'UserGroupsController@restore'
+        ]);
 
-    Route::get('trashed-groups', [
-        'as'   => 'admin.trashed.groups',
-        'uses' => 'UserGroupsController@trashedGroups'
-    ]);
+        Route::delete('{groups}', [
+            'as'   => '.force.delete',
+            'uses' => 'UserGroupsController@forceDeleteGroup'
+        ]);
+    });
 
-    Route::put('trashed-groups/{groups}', [
-        'as'   => 'admin.groups.restore',
-        'uses' => 'UserGroupsController@restore'
-    ]);
+    Route::group(['prefix' => 'tasks/published', 'as' => 'tasks.published'], function () {
+        Route::get('', [
+            'as'   => '',
+            'uses' => 'TasksController@activeTasks'
+        ]);
 
-    Route::delete('trashed-groups/{groups}', [
-        'as'   => 'admin.force.delete.group',
-        'uses' => 'UserGroupsController@forceDeleteGroup'
-    ]);
+        Route::get('{tasks}', [
+            'as'   => '.show',
+            'uses' => 'TasksController@showTask'
+        ]);
 
+        Route::delete('{tasks}', [
+            'as'   => '.delete',
+            'uses' => 'TasksController@softDelete'
+        ]);
+    });
 
-    Route::get('active-tasks', [
-        'as'   => 'admin.manage.tasks',
-        'uses' => 'TasksController@activeTasks'
-    ]);
+    Route::group(['prefix' => 'tasks/trashed', 'as' => 'tasks.trashed'], function () {
+        Route::get('', [
+            'as'   => '',
+            'uses' => 'TasksController@trashedTasks'
+        ]);
 
-    Route::get('active-tasks/{tasks}', [
-        'as'   => 'admin.task.show',
-        'uses' => 'TasksController@showTask'
-    ]);
+        Route::put('{tasks}', [
+            'as'   => '.restore',
+            'uses' => 'TasksController@restoreTask'
+        ]);
 
-    Route::delete('active-tasks/{tasks}', [
-        'as'   => 'admin.task.soft.delete',
-        'uses' => 'TasksController@softDelete'
-    ]);
+        Route::delete('{tasks}', [
+            'as'   => '.force.delete',
+            'uses' => 'TasksController@forceDeleteTask'
+        ]);
+    });
 
-    Route::get('trashed-tasks', [
-        'as'   => 'admin.trashed.tasks',
-        'uses' => 'TasksController@trashedTasks'
-    ]);
+    Route::group(['prefix' => 'assignments/published', 'as' => 'assignments.published'], function () {
+        Route::get('', [
+            'as'   => '',
+            'uses' => 'AssignmentsController@index'
+        ]);
 
-    Route::put('trashed-tasks/{tasks}', [
-        'as'   => 'admin.restore.task',
-        'uses' => 'TasksController@restoreTask'
-    ]);
+        Route::get('{assignments}', [
+            'as'   => '.show',
+            'uses' => 'AssignmentsController@show'
+        ]);
 
-    Route::delete('trashed-tasks/{tasks}', [
-        'as'   => 'admin.force.delete.task',
-        'uses' => 'TasksController@forceDeleteTask'
-    ]);
+        Route::get('{assignments}/edit', [
+            'as'   => '.edit',
+            'uses' => 'AssignmentsController@edit'
+        ]);
 
+        Route::patch('{assignments}', [
+            'as'   => '.update',
+            'uses' => 'AssignmentsController@update'
+        ]);
 
-    Route::get('active-assignments', [
-        'as'   => 'admin.assignments.all',
-        'uses' => 'AssignmentsController@index'
-    ]);
+        Route::delete('{assignments}', [
+            'as'   => '.delete',
+            'uses' => 'AssignmentsController@destroy'
+        ]);
+    });
 
-    Route::get('active-assignments/{assignments}', [
-        'as'   => 'admin.assignments.show',
-        'uses' => 'AssignmentsController@show'
-    ]);
+    Route::group(['prefix' => 'assignments/member', 'as' => 'assignments.member'], function () {
+        Route::get('create', [
+            'as'   => '.create',
+            'uses' => 'AssignmentsController@createMemberAssignment'
+        ]);
 
-    Route::get('active-assignments/{assignments}/edit', [
-        'as'   => 'admin.assignments.edit',
-        'uses' => 'AssignmentsController@edit'
-    ]);
+        Route::post('', [
+            'as'   => '.store',
+            'uses' => 'AssignmentsController@storeMemberAssignment'
+        ]);
+    });
 
-    Route::patch('active-assignments/{assignments}', [
-        'as'   => 'admin.assignments.update',
-        'uses' => 'AssignmentsController@update'
-    ]);
+    Route::group(['prefix' => 'assignments/group', 'as' => 'assignments.group'], function () {
+        Route::get('create', [
+            'as'   => '.create',
+            'uses' => 'AssignmentsController@createGroupAssignment'
+        ]);
 
-    Route::delete('active-assignments/{assignments}', [
-        'as'   => 'admin.assignments.delete',
-        'uses' => 'AssignmentsController@destroy'
-    ]);
+        Route::post('', [
+            'as'   => '.store',
+            'uses' => 'AssignmentsController@storeGroupAssignment'
+        ]);
+    });
 
-    Route::get('member/assignments/create', [
-        'as'   => 'member.assignments',
-        'uses' => 'AssignmentsController@createMemberAssignment'
-    ]);
+    Route::group(['prefix' => 'assignments/trashed', 'as' => 'assignments.trashed'], function () {
+        Route::get('', [
+            'as'   => '',
+            'uses' => 'AssignmentsController@trashedAssignments'
+        ]);
 
-    Route::post('member/assignments', [
-        'as'   => 'store.member.assignment',
-        'uses' => 'AssignmentsController@storeMemberAssignment'
-    ]);
+        Route::put('{assignments}', [
+            'as'   => '.restore',
+            'uses' => 'AssignmentsController@restore'
+        ]);
 
-    Route::get('group/assignments/create', [
-        'as'   => 'group.assignments',
-        'uses' => 'AssignmentsController@createGroupAssignment'
-    ]);
-
-    Route::post('group/assignments', [
-        'as'   => 'store.group.assignment',
-        'uses' => 'AssignmentsController@storeGroupAssignment'
-    ]);
-
-    Route::get('trashed-assignments', [
-        'as'   => 'admin.trashed.assignments',
-        'uses' => 'AssignmentsController@trashedAssignments'
-    ]);
-
-    Route::put('trashed-assignments/{assignments}', [
-        'as'   => 'admin.assignments.restore',
-        'uses' => 'AssignmentsController@restore'
-    ]);
-
-    Route::delete('trashed-assignments/{assignments}', [
-        'as'   => 'admin.force.delete.assignment',
-        'uses' => 'AssignmentsController@forceDeleteAssignment'
-    ]);
-
+        Route::delete('{assignments}', [
+            'as'   => '.force.delete',
+            'uses' => 'AssignmentsController@forceDeleteAssignment'
+        ]);
+    });
 
     Route::get('notifications', [
-        'as'   => 'admin.notifications.all',
+        'as'   => 'notifications.all',
         'uses' => 'NotificationsController@index'
     ]);
 
     Route::delete('notifications/{notifications}', [
-        'as'   => 'admin.notifications.delete',
+        'as'   => 'notifications.delete',
         'uses' => 'NotificationsController@destroy'
     ]);
 
-    Route::get('member/notifications/create', [
-        'as'   => 'member.notifications',
+    Route::get('notifications/member/create', [
+        'as'   => 'notifications.member.create',
         'uses' => 'NotificationsController@createMemberNotification'
     ]);
 
-    Route::post('member/notifications', [
-        'as'   => 'store.member.notification',
+    Route::post('notifications/member', [
+        'as'   => 'notifications.member.store',
         'uses' => 'NotificationsController@storeMemberNotification'
     ]);
 
-    Route::get('group/notifications/create', [
-        'as'   => 'group.notifications',
+    Route::get('notifications/group/create', [
+        'as'   => 'notifications.group.create',
         'uses' => 'NotificationsController@createGroupNotification'
     ]);
 
-    Route::post('group/notifications', [
-        'as'   => 'store.group.notification',
+    Route::post('notifications/group', [
+        'as'   => 'notifications.group.store',
         'uses' => 'NotificationsController@storeGroupNotification'
     ]);
 });

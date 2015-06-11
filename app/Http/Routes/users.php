@@ -1,148 +1,125 @@
 <?php
 
-Route::get('{users}', [
-    'as'   => 'users.show',
-    'uses' => 'UsersController@show'
-]);
+Route::group(['prefix' => '{users}', 'as' => 'member::'], function () {
+    Route::get('profile', [
+        'as'   => 'profile',
+        'uses' => 'UsersController@show'
+    ]);
 
-Route::match(['put', 'patch'], '{users}', [
-    'as'   => 'users.update',
-    'uses' => 'UsersController@update'
-]);
+    Route::match(['put', 'patch'], '', [
+        'as'   => 'update',
+        'uses' => 'UsersController@update'
+    ]);
 
-Route::delete('{users}', [
-    'as'   => 'users.destroy',
-    'uses' => 'UsersController@destroy'
-]);
+    Route::delete('', [
+        'as'   => 'destroy',
+        'uses' => 'UsersController@destroy'
+    ]);
 
+    Route::get('dashboard', [
+        'as'   => 'dashboard',
+        'uses' => 'UserDashboardController@dashboard'
+    ]);
 
-Route::get('{users}/dashboard', [
-    'as'   => 'users.dashboard',
-    'uses' => 'UserDashboardController@dashboard'
-]);
+    Route::get('scheduler', [
+        'as'   => 'scheduler',
+        'uses' => 'SchedulerController@schedule'
+    ]);
 
+    Route::get('tasks/all', [
+        'as'   => 'tasks.all',
+        'uses' => 'UserDashboardController@allTasks'
+    ]);
 
-Route::get('{users}/scheduler', [
-    'as'   => 'users.scheduler',
-    'uses' => 'SchedulerController@schedule'
-]);
+    Route::get('tasks/completed', [
+        'as'   => 'tasks.completed',
+        'uses' => 'UserDashboardController@completedTasks'
+    ]);
 
-Route::get('{users}/tasks/all', [
-    'as'   => 'users.dashboard.all.tasks',
-    'uses' => 'UserDashboardController@allTasks'
-]);
+    Route::get('tasks/failed', [
+        'as'   => 'tasks.failed',
+        'uses' => 'UserDashboardController@failedTasks'
+    ]);
 
-Route::get('{users}/tasks/completed', [
-    'as'   => 'users.dashboard.completed.tasks',
-    'uses' => 'UserDashboardController@completedTasks'
-]);
+    Route::get('tasks/due', [
+        'as'   => 'tasks.due',
+        'uses' => 'UserDashboardController@dueTasks'
+    ]);
 
-Route::get('{users}/tasks/failed', [
-    'as'   => 'users.dashboard.failed.tasks',
-    'uses' => 'UserDashboardController@failedTasks'
-]);
+    Route::patch('tasks/{tasks}/complete', [
+        'as'   => 'tasks.complete',
+        'uses' => 'UserTaskController@complete'
+    ]);
 
-Route::get('{users}/tasks/due', [
-    'as'   => 'users.dashboard.due.tasks',
-    'uses' => 'UserDashboardController@dueTasks'
-]);
+    Route::get('groups', [
+        'as'   => 'groups.all',
+        'uses' => 'UserGroupController@index'
+    ]);
 
+    Route::get('groups/{groups}', [
+        'as'   => 'groups.show',
+        'uses' => 'UserGroupController@show'
+    ]);
 
-Route::get('{users}/tasks/schedule', [
-    'as'   => 'users.tasks.create',
-    'uses' => 'UserTaskController@create'
-]);
+    Route::get('assignments', [
+        'as'   => 'assignments.all',
+        'uses' => 'UserAssignmentController@index'
+    ]);
 
-Route::post('{users}/tasks', [
-    'as'   => 'users.tasks.store',
-    'uses' => 'UserTaskController@store'
-]);
+    Route::get('personal-assignment/{assignments}', [
+        'as'   => 'assignments.personal.show',
+        'uses' => 'UserAssignmentController@showPersonalAssignment'
+    ]);
 
-Route::get('{users}/tasks/{tasks}', [
-    'as'   => 'users.tasks.show',
-    'uses' => 'UserTaskController@show'
-]);
+    Route::get('group-assignment/{assignments}', [
+        'as'   => 'assignments.group.show',
+        'uses' => 'UserAssignmentController@showGroupAssignment'
+    ]);
 
-Route::get('{users}/tasks/{tasks}/edit', [
-    'as'   => 'users.tasks.edit',
-    'uses' => 'UserTaskController@edit'
-]);
+    Route::get('tags', [
+        'as'   => 'tags.all',
+        'uses' => 'TagsController@index'
+    ]);
 
-Route::match(['put', 'patch'], '{users}/tasks/{tasks}', [
-    'as'   => 'users.tasks.update',
-    'uses' => 'UserTaskController@update'
-]);
+    Route::get('tags/{tags}', [
+        'as'   => 'tags.task',
+        'uses' => 'TagsController@show'
+    ]);
 
-Route::patch('{users}/tasks/{tasks}/complete', [
-    'as'   => 'users.tasks.complete',
-    'uses' => 'UserTaskController@complete'
-]);
+    Route::get('priorities', [
+        'as'   => 'priorities.all',
+        'uses' => 'PrioritiesController@index'
+    ]);
 
-Route::delete('{users}/tasks/{tasks}', [
-    'as'   => 'users.tasks.destroy',
-    'uses' => 'UserTaskController@destroy'
-]);
+    Route::get('priorities/{priorities}/tasks', [
+        'as'   => 'priorities.task',
+        'uses' => 'PrioritiesController@show'
+    ]);
 
+    Route::get('notifications', [
+        'as'   => 'notifications.personal',
+        'uses' => 'NotificationsController@fetchPersonalNotifications'
+    ]);
 
-Route::get('{users}/groups', [
-    'as'   => 'users.groups.index',
-    'uses' => 'UserGroupController@index'
-]);
+    Route::get('group-notifications', [
+        'as'   => 'notifications.group',
+        'uses' => 'NotificationsController@fetchGroupNotifications'
+    ]);
 
-Route::get('{users}/groups/{groups}', [
-    'as'   => 'users.groups.show',
-    'uses' => 'UserGroupController@show'
-]);
+    Route::get('search', [
+        'as'   => 'tasks.search',
+        'uses' => 'SearchController@searchTasks'
+    ]);
+});
 
-
-Route::get('{users}/assignments', [
-    'as'   => 'users.assignments.index',
-    'uses' => 'UserAssignmentController@index'
-]);
-
-Route::get('{users}/personal-assignment/{assignments}', [
-    'as'   => 'users.personal.assignments.show',
-    'uses' => 'UserAssignmentController@showPersonalAssignment'
-]);
-
-Route::get('{users}/group-assignment/{assignments}', [
-    'as'   => 'users.group.assignments.show',
-    'uses' => 'UserAssignmentController@showGroupAssignment'
-]);
-
-
-Route::get('{users}/tags', [
-    'as'   => 'users.tag.list',
-    'uses' => 'TagsController@index'
-]);
-
-Route::get('{users}/tags/{tags}', [
-    'as'   => 'users.tag.tasks',
-    'uses' => 'TagsController@show'
-]);
-
-Route::get('{users}/priorities', [
-    'as'   => 'users.priorities',
-    'uses' => 'PrioritiesController@index'
-]);
-
-Route::get('{users}/priorities/{priorities}/tasks', [
-    'as'   => 'users.priority.tasks',
-    'uses' => 'PrioritiesController@show'
-]);
-
-
-Route::get('{users}/notifications', [
-    'as'   => 'users.notifications',
-    'uses' => 'NotificationsController@fetchPersonalNotifications'
-]);
-
-Route::get('{users}/notifications/group', [
-    'as'   => 'users.groups.notifications',
-    'uses' => 'NotificationsController@fetchGroupNotifications'
-]);
-
-Route::get('{users}/search', [
-    'as'   => 'users.search.task',
-    'uses' => 'SearchController@searchTasks'
+Route::resource('users.tasks', 'UserTaskController', [
+    'except' => ['index'],
+    'names'  => [
+        'create'  => 'member::tasks.create',
+        'store'   => 'member::tasks.store',
+        'show'    => 'member::tasks.show',
+        'edit'    => 'member::tasks.edit',
+        'update'  => 'member::tasks.update',
+        'destroy' => 'member::tasks.destroy',
+    ]
 ]);

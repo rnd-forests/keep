@@ -1,17 +1,18 @@
 <?php
 
-Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
+Route::group(['prefix' => 'auth', 'as' => 'auth::', 'namespace' => 'Auth'], function () {
     Route::get('register', [
         'as'   => 'register',
         'uses' => 'AuthController@getRegister'
     ]);
+
     Route::post('register', [
         'as'   => 'register',
         'uses' => 'AuthController@postRegister'
     ]);
 
-    Route::get('activate-account/{code}', [
-        'as'   => 'account.activation',
+    Route::get('activate/{code}', [
+        'as'   => 'activate',
         'uses' => 'AuthController@activate'
     ]);
 
@@ -30,31 +31,31 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     ]);
 
     Route::patch('{users}/change-password', [
-        'as'   => 'change.account.password',
+        'as'   => 'change.password',
         'uses' => 'AccountController@changePassword'
     ]);
 
     Route::patch('{users}/change-username', [
-        'as'   => 'change.account.username',
+        'as'   => 'change.username',
         'uses' => 'AccountController@changeUsername'
     ]);
 
     Route::controllers(['password' => 'PasswordController']);
 });
 
-Route::group(['prefix' => 'oauth', 'namespace' => 'Auth'], function () {
+Route::group(['prefix' => 'oauth', 'as' => 'oauth::', 'namespace' => 'Auth'], function () {
     Route::get('github', [
-        'as'   => 'github.authentication',
+        'as'   => 'github',
         'uses' => 'OAuthController@loginWithGithub'
     ]);
 
     Route::get('facebook', [
-        'as'   => 'facebook.authentication',
+        'as'   => 'facebook',
         'uses' => 'OAuthController@loginWithFacebook'
     ]);
 
     Route::get('google', [
-        'as'   => 'google.authentication',
+        'as'   => 'google',
         'uses' => 'OAuthController@loginWithGoogle'
     ]);
 });
