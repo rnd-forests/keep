@@ -1,1 +1,1 @@
-The cviebrock/eloquent-sluggable package is currently not compatible with Laravel 5.1
+![alt tag](http://www.firmadani.com/sites/default/files/article_thumbnails/laravel5.png)
