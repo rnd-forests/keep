@@ -1,5 +1,5 @@
 @include('layouts.partials.errors')
-{!! Form::model($user->profile, ['method' => 'PATCH', 'route' => ['users.update', $user]]) !!}
+{!! Form::model($user->profile, ['method' => 'PATCH', 'route' => ['member::update', $user]]) !!}
     <div class="form-group">
         {!! Form::label('location', 'Current Location', ['class' => 'control-label']) !!}
         {!! Form::textarea('location', null, ['class' => 'form-control', 'rows' => 3]) !!}

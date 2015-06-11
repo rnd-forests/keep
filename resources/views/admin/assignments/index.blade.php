@@ -28,12 +28,12 @@
                             </div>
                             <div class="panel-footer">
                                 <div class="text-center">
-                                    <a href="{{ route('admin.assignments.show', $assignment) }}">
+                                    <a href="{{ route('admin::assignments.published.show', $assignment) }}">
                                         <button class="btn btn-info btn-sm"  data-toggle="tooltip" data-placement="bottom" title="View assignment details">
                                             <i class="fa fa-arrow-right"></i>
                                         </button>
                                     </a>
-                                    <a href="{{ route('admin.assignments.edit', $assignment) }}">
+                                    <a href="{{ route('admin::assignments.published.edit', $assignment) }}">
                                         <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit assignment">
                                             <i class="fa fa-pencil"></i>
                                         </button>

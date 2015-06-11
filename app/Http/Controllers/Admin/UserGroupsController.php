@@ -54,7 +54,7 @@ class UserGroupsController extends Controller
         $this->groupRepo->create($request->all());
         flash()->success('The new group was successfully created.');
 
-        return redirect()->route('admin.active.groups');
+        return redirect()->route('admin::groups.active');
     }
 
     /**
@@ -99,7 +99,7 @@ class UserGroupsController extends Controller
         $this->groupRepo->update($slug, $request->all());
         flash()->info('The information of this group was updated.');
 
-        return redirect()->route('admin.active.groups');
+        return redirect()->route('admin::groups.active');
     }
 
     /**
@@ -187,7 +187,7 @@ class UserGroupsController extends Controller
         $this->groupRepo->findBySlug($groupSlug)->users()->detach();
         flash()->info('All members were removed from this group');
 
-        return redirect()->route('admin.groups.show', $groupSlug);
+        return redirect()->route('admin::groups.active.show', $groupSlug);
     }
 
     /**

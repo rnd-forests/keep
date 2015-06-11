@@ -45,7 +45,7 @@ class NotificationsController extends Controller
         $this->notificationRepo->delete($slug);
         flash()->info('This notification was successfully deleted');
 
-        return redirect()->route('admin.notifications.all');
+        return redirect()->route('admin::notifications.all');
     }
 
     /**

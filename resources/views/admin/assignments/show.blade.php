@@ -17,7 +17,7 @@
                     </div>
                     <ul class="assignment-assignables">
                         @foreach($assignment->groups as $group)
-                            <li><a href="{{ route('admin.groups.show', $group) }}">{{ $group->name }}</a></li>
+                            <li><a href="{{ route('admin::groups.active.show', $group) }}">{{ $group->name }}</a></li>
                         @endforeach
                     </ul>
                 @else
@@ -27,13 +27,13 @@
                     </div>
                     <ul class="assignment-assignables">
                         @foreach($assignment->users as $member)
-                            <li><a href="{{ route('admin.active.account.profile', $member) }}">{{ $member->name }}</a></li>
+                            <li><a href="{{ route('admin::members.active.profile', $member) }}">{{ $member->name }}</a></li>
                         @endforeach
                     </ul>
                 @endif
 
                 <div class="assignment-controls text-center">
-                    <a href="{{ route('admin.assignments.edit', $assignment) }}">
+                    <a href="{{ route('admin::assignments.published.edit', $assignment) }}">
                         <button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit assignment">
                             <i class="fa fa-pencil"></i>
                         </button>

@@ -36,6 +36,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(DispatcherContract $events)
     {
+        parent::boot($events);
+
         User::created(function ($user) {
             $user->profile()->save(new Profile());
         });
@@ -58,7 +60,5 @@ class EventServiceProvider extends ServiceProvider
         Notification::deleting(function ($notification) {
             DB::table('notifiables')->where('notification_id', $notification->id)->delete();
         });
-
-        parent::boot($events);
     }
 }

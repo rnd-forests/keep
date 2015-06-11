@@ -15,29 +15,29 @@
                 @if(Auth::check())
                     <div class="well">
                         <div class="btn-group" role="group">
-                            <a href="{{ route('users.tasks.create', Auth::user()) }}">
+                            <a href="{{ route('member::tasks.create', Auth::user()) }}">
                                 <button class="btn btn-primary btn-lg">Schedule Task</button>
                             </a>
-                            <a href="{{ route('users.dashboard', Auth::user()) }}">
+                            <a href="{{ route('member::dashboard', Auth::user()) }}">
                                 <button class="btn btn-danger btn-lg">Dashboard</button>
                             </a>
-                            <a href="{{ route('users.show', Auth::user()) }}">
+                            <a href="{{ route('member::profile', Auth::user()) }}">
                                 <button class="btn btn-info btn-lg">Personal Profile</button>
                             </a>
-                            <a href="{{ route('users.assignments.index', Auth::user()) }}">
+                            <a href="{{ route('member::assignments.all', Auth::user()) }}">
                                 <button class="btn btn-warning btn-lg">Assignments</button>
                             </a>
-                            <a href="{{ route('users.groups.index', Auth::user()) }}">
+                            <a href="{{ route('member::groups.all', Auth::user()) }}">
                                 <button class="btn btn-success btn-lg">Groups</button>
                             </a>
                         </div>
                     </div>
                 @else
                     <div class="well">
-                        <a href="{{ route('register') }}">
+                        <a href="{{ route('auth::register') }}">
                             <button class="btn btn-danger btn-lg">Register for a Free Account</button>
                         </a>
-                        <a href="{{ route('login') }}">
+                        <a href="{{ route('auth::login') }}">
                             <button class="btn btn-primary btn-lg">Login with Your Account</button>
                         </a>
                     </div>

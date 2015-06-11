@@ -18,7 +18,7 @@
                     <h6>
                         <div class="breadcrumb notification-groups">
                             @foreach($notification->groups as $group)
-                                <li><a href="{{ route('users.groups.show', [Auth::user(), $group]) }}">{{ $group->name }}</a></li>
+                                <li><a href="{{ route('member::groups.show', [Auth::user(), $group]) }}">{{ $group->name }}</a></li>
                             @endforeach
                         </div>
                     </h6>

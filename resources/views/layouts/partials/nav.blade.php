@@ -13,28 +13,28 @@
         <div class="collapse navbar-collapse" id="keep-nav">
             <ul class="nav navbar-nav">
                 @if (Auth::check())
-                    <li><a href="{{ route('users.dashboard', Auth::user()) }}">Dashboard</a></li>
+                    <li><a href="{{ route('member::dashboard', Auth::user()) }}">Dashboard</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tasks <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('users.tasks.create', Auth::user()) }}">Schedule New Task</a></li>
+                            <li><a href="{{ route('member::tasks.create', Auth::user()) }}">Schedule New Task</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ route('users.scheduler', Auth::user()) }}">Tasks Scheduler</a></li>
+                            <li><a href="{{ route('member::scheduler', Auth::user()) }}">Tasks Scheduler</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ route('users.assignments.index', Auth::user()) }}">Assignments</a></li>
+                            <li><a href="{{ route('member::assignments.all', Auth::user()) }}">Assignments</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filters <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('users.tag.list', Auth::user()) }}">Tags</a></li>
+                            <li><a href="{{ route('member::tags.all', Auth::user()) }}">Tags</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ route('users.priorities', Auth::user()) }}">Priority Levels</a></li>
+                            <li><a href="{{ route('member::priorities.all', Auth::user()) }}">Priority Levels</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ route('users.groups.index', Auth::user()) }}">Groups</a></li>
+                    <li><a href="{{ route('member::groups.all', Auth::user()) }}">Groups</a></li>
                     <li>
-                        <a href="{{ route('users.notifications', Auth::user()) }}" class="notification-count">
+                        <a href="{{ route('member::notifications.personal', Auth::user()) }}" class="notification-count">
                             Notifications
                             <span class="label">{{ $notificationCount }}</span>
                         </a>
@@ -43,19 +43,19 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
-                    <li><a href="{{ route('register') }}">Register</a></li>
-                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('auth::register') }}">Register</a></li>
+                    <li><a href="{{ route('auth::login') }}">Login</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('users.show', Auth::user()) }}">Profile</a></li>
+                            <li><a href="{{ route('member::profile', Auth::user()) }}">Profile</a></li>
                             <li class="divider"></li>
                             @if (Auth::user()->isAdmin())
-                                <li><a href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
+                                <li><a href="{{ route('admin::dashboard') }}">Admin Panel</a></li>
                                 <li class="divider"></li>
                             @endif
-                            <li><a href="{{ route('logout') }}">Logout</a></li>
+                            <li><a href="{{ route('auth::logout') }}">Logout</a></li>
                         </ul>
                     </li>
                 @endif

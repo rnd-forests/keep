@@ -54,7 +54,7 @@ class UserTaskController extends Controller
         event(new TaskHasPublished($author, $task));
         flash()->success('Your tasks has been successfully created');
 
-        return redirect()->route('users.dashboard', $author);
+        return redirect()->route('member::dashboard', $author);
     }
 
     /**
@@ -131,7 +131,7 @@ class UserTaskController extends Controller
         $this->setRelations($task, $request);
         flash()->info('Your task was successfully updated');
 
-        return redirect()->route('users.dashboard', $this->userRepo->findBySlug($userSlug));
+        return redirect()->route('member::dashboard', $this->userRepo->findBySlug($userSlug));
     }
 
     /**
@@ -147,7 +147,7 @@ class UserTaskController extends Controller
         $this->taskRepo->deleteWithUserConstraint($userSlug, $taskSlug);
         flash()->success('Your task was successfully destroyed.');
 
-        return redirect()->route('users.dashboard', $userSlug);
+        return redirect()->route('member::dashboard', $userSlug);
     }
 
     /**

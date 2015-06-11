@@ -17,7 +17,7 @@ class UserMailer extends Mailer
     {
         $subject = 'Account Activation';
         $view = 'emails.auth.account_activation';
-        $data = ['activationLink' => route('account.activation', $activationCode)];
+        $data = ['activationLink' => route('auth::activate', $activationCode)];
         $this->sendTo($user, $subject, $view, $data);
     }
     

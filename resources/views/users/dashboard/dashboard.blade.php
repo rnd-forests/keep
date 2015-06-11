@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="col-md-6 col-md-offset-3">
-            {!! Form::open(['method' => 'GET', 'route' => ['users.search.task', Auth::user()], 'id' => 'search-form']) !!}
+            {!! Form::open(['method' => 'GET', 'route' => ['member::tasks.search', Auth::user()], 'id' => 'search-form']) !!}
                 <div class="form-group has-feedback">
                     <div class="input-group">
                         <span class="input-group-addon"><span class="fa fa-search"></span></span>
@@ -38,7 +38,7 @@
                 <div class="panel-heading"><i class="fa fa-bookmark"></i> Urgent Tasks</div>
                 <div class="list-group">
                     @foreach($urgentTasks as $task)
-                        <a class="list-group-item" href="{{ route('users.tasks.show', [$user, $task]) }}">
+                        <a class="list-group-item" href="{{ route('member::tasks.show', [$user, $task]) }}">
                             <h5>{{ $task->title }}</h5>
                         </a>
                     @endforeach
@@ -48,7 +48,7 @@
                 <div class="panel-heading"><i class="fa fa-check"></i> Recently Completed Tasks</div>
                 <div class="list-group">
                     @foreach($recentlyCompletedTasks as $task)
-                        <a class="list-group-item" href="{{ route('users.tasks.show', [$user, $task]) }}">
+                        <a class="list-group-item" href="{{ route('member::tasks.show', [$user, $task]) }}">
                             <h5>{{ $task->title }}</h5>
                             <h6 class="text-info">completed {{ $task->present()->formatTimeForHumans($task->finished_at) }}</h6>
                         </a>
@@ -70,7 +70,7 @@
 
             <div class="row stats">
                 <div class="col-md-3">
-                    <a href="{{ route('users.dashboard.all.tasks', $user) }}">
+                    <a href="{{ route('member::tasks.all', $user) }}">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="large">{{ $totalTasksCount }}</div>
@@ -80,7 +80,7 @@
                     </a>
                 </div>
                 <div class="col-md-3">
-                    <a href="{{ route('users.dashboard.completed.tasks', $user) }}">
+                    <a href="{{ route('member::tasks.completed', $user) }}">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="large">{{ $completedTasksCount }}</div>
@@ -90,7 +90,7 @@
                     </a>
                 </div>
                 <div class="col-md-3">
-                    <a href="{{ route('users.dashboard.failed.tasks', $user) }}">
+                    <a href="{{ route('member::tasks.failed', $user) }}">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="large">{{ $failedTasksCount }}</div>
@@ -100,7 +100,7 @@
                     </a>
                 </div>
                 <div class="col-md-3">
-                    <a href="{{ route('users.dashboard.due.tasks', $user) }}">
+                    <a href="{{ route('member::tasks.due', $user) }}">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="large">{{ $dueTasksCount }}</div>
@@ -117,7 +117,7 @@
                 </div>
                 <div class="list-group">
                     @foreach($newestTasks as $task)
-                        <a href="{{ route('users.tasks.show', [$user, $task]) }}" class="list-group-item">
+                        <a href="{{ route('member::tasks.show', [$user, $task]) }}" class="list-group-item">
                             <h5 class="text-center">{{ $task->title }}</h5>
                             <div class="task-labels">
                                 <span class="label label-info">{{ $task->present()->formatTimeForHumans($task->created_at) }}</span>
@@ -140,7 +140,7 @@
                 <div class="panel-heading"><i class="fa fa-bomb"></i> Deadline Tasks</div>
                 <div class="list-group">
                     @foreach($deadlineTasks as $task)
-                        <a class="list-group-item" href="{{ route('users.tasks.show', [$user, $task]) }}">
+                        <a class="list-group-item" href="{{ route('member::tasks.show', [$user, $task]) }}">
                             <h5>{{ $task->title }}</h5>
                             <h6 class="text-warning">{{ $task->present()->getRemainingDays($task->finishing_date) }}</h6>
                         </a>
@@ -151,7 +151,7 @@
                 <div class="panel-heading"><i class="fa fa-times"></i> Recently Failed Tasks</div>
                 <div class="list-group">
                     @foreach($recentlyFailedTasks as $task)
-                        <a class="list-group-item" href="{{ route('users.tasks.show', [$user, $task]) }}">
+                        <a class="list-group-item" href="{{ route('member::tasks.show', [$user, $task]) }}">
                             <h5>{{ $task->title }}</h5>
                         </a>
                     @endforeach

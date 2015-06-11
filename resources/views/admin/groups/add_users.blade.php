@@ -11,7 +11,7 @@
                 </div>
                 @foreach($users as $user)
                     <div class="list-group-item">
-                        <a href="{{ route('admin.active.account.profile', $user) }}">{{ $user->name }}</a>
+                        <a href="{{ route('admin::members.active.profile', $user) }}">{{ $user->name }}</a>
                         <div class="pull-right">
                             @include('admin.groups.partials.remove_form')
                         </div>
@@ -25,7 +25,7 @@
             @include('layouts.partials.errors')
             @include('admin.groups.partials.add_users_form')
             <div class="text-center">
-                <a href="{{ route('admin.active.groups') }}" class="btn btn-primary">
+                <a href="{{ route('admin::groups.active') }}" class="btn btn-primary">
                     Back
                 </a>
             </div>

@@ -60,7 +60,7 @@ class AccountController extends Controller
         if ($this->dispatchFrom(ModifyAccountName::class, $request, ['user' => $user])) {
             Session::flash('update_username_success', 'Your username has been successfully updated.');
 
-            return redirect()->route('users.show', $user);
+            return redirect()->route('member::profile', $user);
         }
         Session::flash('update_username_error', 'Uh-oh! Your username could not be changed.');
 

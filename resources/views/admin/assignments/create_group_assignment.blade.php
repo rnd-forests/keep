@@ -19,7 +19,7 @@
                 <div class="panel-body">
                     @include('layouts.partials.errors')
                     {!! Form::model([$task = new \Keep\Entities\Task, $assignment = new \Keep\Entities\Assignment],
-                        ['route' => ['store.group.assignment']]) !!}
+                        ['route' => ['admin::assignments.group.store']]) !!}
                         @include('admin.assignments.partials.form', ['assignmentButton' => 'Create Assignment'])
                     {!! Form::close() !!}
                 </div>

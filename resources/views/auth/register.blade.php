@@ -35,7 +35,7 @@
                     {!! Form::close() !!}
                 </div>
                 <div class="panel-footer form-link">
-                    Already had an account? <a href="{{ route('login') }}"> Login here</a>
+                    Already had an account? <a href="{{ route('auth::login') }}"> Login here</a>
                 </div>
             </div>
         </div>

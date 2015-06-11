@@ -71,6 +71,6 @@ class OAuthController extends Controller implements OAuthUserListener
     {
         flash()->success('Your social authentication process was successful.');
 
-        return redirect()->route('users.show', $user);
+        return redirect()->route('member::profile', $user);
     }
 }

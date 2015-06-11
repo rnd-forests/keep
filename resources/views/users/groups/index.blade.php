@@ -10,7 +10,7 @@
             <div class="list-group">
                 <a href="#" class="list-group-item active">Your current Groups</a>
                 @foreach($groups as $group)
-                    <a href="{{ route('users.groups.show', [Auth::user(), $group]) }}" class="list-group-item">
+                    <a href="{{ route('member::groups.show', [Auth::user(), $group]) }}" class="list-group-item">
                         {{ $group->name }}
                     </a>
                 @endforeach

@@ -14,13 +14,13 @@
                 </div>
             @endunless
             <div class="task-controls text-center">
-                <a href="{{ route('users.dashboard', $user) }}">
+                <a href="{{ route('member::dashboard', $user) }}">
                     <button class="btn btn-circle btn-info"
                         data-toggle="tooltip" data-placement="bottom" title="Back to dashboard">
                         <i class="fa fa-arrow-left"></i>
                     </button>
                 </a>
-                <a href="{{ route('users.tasks.edit', [$user, $task]) }}">
+                <a href="{{ route('member::tasks.edit', [$user, $task]) }}">
                     <button class="btn btn-circle btn-primary"
                         data-toggle="tooltip" data-placement="bottom" title="Edit task">
                         <i class="fa fa-pencil"></i>

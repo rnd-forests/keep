@@ -9,7 +9,7 @@
                 <div class="panel-heading"><strong>Edit User Group</strong></div>
                 <div class="panel-body">
                     @include('layouts.partials.errors')
-                    {!! Form::model($group, ['method' => 'PATCH', 'route' => ['admin.groups.update', $group]]) !!}
+                    {!! Form::model($group, ['method' => 'PATCH', 'route' => ['admin::groups.active.update', $group]]) !!}
                         @include('admin.groups.partials.form', ['groupFormSubmitButton' => 'Update Group'])
                     {!! Form::close() !!}
                 </div>

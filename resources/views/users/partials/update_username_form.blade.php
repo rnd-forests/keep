@@ -6,7 +6,7 @@
     <div class="alert alert-success">{{ session('update_username_success') }}</div>
 @endif
 
-{!! Form::open(['method' => 'PATCH', 'route' => ['change.account.username', $user]]) !!}
+{!! Form::open(['method' => 'PATCH', 'route' => ['auth::change.username', $user]]) !!}
     <div class="form-group">
         {!! Form::label('old_username', 'Old Username', ['class' => 'control-label']) !!}
         {!! Form::text('old_username', null, ['class' => 'form-control input-lg']) !!}

@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="text-center" style="margin-bottom: 20px">
-                <a href="{{ route('users.groups.notifications', Auth::user()) }}">
+                <a href="{{ route('member::notifications.group', Auth::user()) }}">
                     <button class="btn btn-primary">Show group notifications</button>
                 </a>
             </div>
@@ -25,7 +25,7 @@
                         <div class="well">
                             <strong>{{ $notification->getObject()->title }}</strong>
                             <h6>{{ $notification->getObject()->present()->getRemainingDays($notification->getObject()->finishing_date) }}</h6>
-                            <a href="{{ route('users.tasks.show', [
+                            <a href="{{ route('member::tasks.show', [
                                 $notification->getObject()->owner,
                                 $notification->getObject()]) }}"><i class="fa fa-arrow-circle-right"></i></a>
                         </div>

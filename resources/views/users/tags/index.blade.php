@@ -10,7 +10,7 @@
             <div class="list-group">
                 <a class="list-group-item active"><i class="fa fa-tags"></i> Task Tags</a>
                 @foreach($tags->load('tasks') as $tag)
-                    <a class="list-group-item" href="{{ route('users.tag.tasks', [Auth::user(), $tag]) }}">
+                    <a class="list-group-item" href="{{ route('member::tags.task', [Auth::user(), $tag]) }}">
                         <span class="badge">
                             {{--*/ $counter = $tag->tasks->where('user_id', Auth::user()->id)->count() /*--}}
                             {{ $counter }} {{ str_plural('task', $counter) }}

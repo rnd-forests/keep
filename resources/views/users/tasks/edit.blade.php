@@ -11,7 +11,7 @@
                 <div class="panel-heading"><strong>Edit - {{ $task->title }}</strong></div>
                 <div class="panel-body">
                     @include('layouts.partials.errors')
-                    {!! Form::model($task, ['method' => 'PATCH', 'route' => ['users.tasks.update', $user, $task]]) !!}
+                    {!! Form::model($task, ['method' => 'PATCH', 'route' => ['member::tasks.update', $user, $task]]) !!}
                         @include('users.tasks.partials.form', ['taskFormSubmitButton' => 'Update Task'])
                     {!! Form::close() !!}
                 </div>

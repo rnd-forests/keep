@@ -33,7 +33,7 @@
                 </div>
                 <div class="panel-footer form-link">
                     Forgot Your Password? <a href="{{ url('auth/password/email') }}">Reset here</a><br>
-                    Don't have an account? <a href="{{ route('register') }}"> Create a free account</a>
+                    Don't have an account? <a href="{{ route('auth::register') }}"> Create a free account</a>
                 </div>
             </div>
 		</div>

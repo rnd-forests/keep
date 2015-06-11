@@ -44,7 +44,7 @@ class AuthController extends Controller
             return redirect()->home();
         }
 
-        return redirect()->route('register');
+        return redirect()->route('auth::register');
     }
 
     /**
@@ -75,7 +75,7 @@ class AuthController extends Controller
             return redirect()->intended('/');
         }
 
-        return redirect()->route('login')->withInput($request->only('email', 'remember'))
+        return redirect()->route('auth::login')->withInput($request->only('email', 'remember'))
             ->withErrors(['Your credentials are wrong or your account has not been activated.']);
     }
 

@@ -71,7 +71,7 @@ class UsersController extends Controller
         $this->userRepo->softDelete($slug);
         flash()->info("This account has been disabled.");
 
-        return redirect()->route('admin.active.accounts');
+        return redirect()->route('admin::members.active');
     }
 
     /**

@@ -8,14 +8,14 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="text-center">
                     <h3>{{ $group->name }}</h3>
-                    <a href="{{ route('admin.active.groups') }}">
+                    <a href="{{ route('admin::groups.active') }}">
                         <button class="btn btn-circle btn-primary"
                                 data-toggle="tooltip" data-placement="bottom" title="Back to active groups collection">
                             <i class="fa fa-arrow-left"></i>
                         </button>
                     </a>
                     @include('admin.groups.partials.flush_form')
-                    <a href="{{ route('admin.groups.add.users', $group) }}">
+                    <a href="{{ route('admin::groups.active.add.users', $group) }}">
                         <button class="btn btn-circle btn-primary"
                             data-toggle="tooltip" data-placement="bottom" title="Add new users to this group">
                             <i class="fa fa-plus"></i>

@@ -76,7 +76,7 @@ class AssignmentsController extends Controller
         $this->dispatch(new ModifyAssignment(array_add($request->all(), 'assignment_slug', $slug)));
         flash()->info('The assignment was successfully updated');
 
-        return redirect()->route('admin.assignments.all');
+        return redirect()->route('admin::assignments.published');
     }
 
     /**
@@ -91,7 +91,7 @@ class AssignmentsController extends Controller
         $this->assignmentRepo->delete($slug);
         flash()->info('This assignment was successfully deleted');
 
-        return redirect()->route('admin.assignments.all');
+        return redirect()->route('admin::assignments.published');
     }
 
     /**

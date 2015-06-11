@@ -42,7 +42,7 @@ class Handler extends ExceptionHandler
         if ($e instanceof UnconfirmedAccountException) {
             flash()->warning($e->getMessage());
 
-            return redirect()->route('login');
+            return redirect()->route('auth::login');
         }
 
         if ($e instanceof ModelNotFoundException) {

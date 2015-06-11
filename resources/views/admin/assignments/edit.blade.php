@@ -37,7 +37,7 @@
                 <div class="panel-heading"><strong>Edit - {{ $assignment->assignment_name }}</strong></div>
                 <div class="panel-body">
                     @include('layouts.partials.errors')
-                    {!! Form::model($task, ['method' => 'PATCH', 'route' => ['admin.assignments.update', $assignment]]) !!}
+                    {!! Form::model($task, ['method' => 'PATCH', 'route' => ['admin::assignments.published.update', $assignment]]) !!}
                         @include('admin.assignments.partials.form', ['assignmentButton' => 'Update Assignment'])
                     {!! Form::close() !!}
                 </div>

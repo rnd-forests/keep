@@ -23,15 +23,15 @@
                             </div>
                             <div class="panel-footer text-center">
                                 <span class="btn btn-default btn-circle" data-toggle="tooltip" data-placement="bottom" title="Group ID">{{ $group->id }}</span>
-                                <a href="{{ route('admin.groups.show', $group) }}" class="btn btn-info btn-circle"
+                                <a href="{{ route('admin::groups.active.show', $group) }}" class="btn btn-info btn-circle"
                                    data-toggle="tooltip" data-placement="bottom" title="View group details">
                                     <i class="fa fa-arrow-right"></i>
                                 </a>
-                                <a href="{{ route('admin.groups.edit', $group) }}" class="btn btn-primary btn-circle"
+                                <a href="{{ route('admin::groups.active.edit', $group) }}" class="btn btn-primary btn-circle"
                                    data-toggle="tooltip" data-placement="bottom" title="Edit group information">
                                     <i class="fa fa-pencil"></i>
                                 </a>
-                                <a href="{{ route('admin.groups.add.users', $group) }}" class="btn btn-default btn-circle"
+                                <a href="{{ route('admin::groups.active.add.users', $group) }}" class="btn btn-default btn-circle"
                                    data-toggle="tooltip" data-placement="bottom" title="Add more users">
                                     <i class="fa fa-plus"></i>
                                 </a>

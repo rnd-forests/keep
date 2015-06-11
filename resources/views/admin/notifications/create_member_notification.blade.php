@@ -18,7 +18,7 @@
                 <div class="panel-heading"><strong>Create Member Notification</strong></div>
                 <div class="panel-body">
                     @include('layouts.partials.errors')
-                    {!! Form::model($notification = new \Keep\Entities\Notification, ['route' => ['store.member.notification']]) !!}
+                    {!! Form::model($notification = new \Keep\Entities\Notification, ['route' => ['admin::notifications.member.store']]) !!}
                         @include('admin.notifications.partials.form', ['notificationButton' => 'Create Notification'])
                     {!! Form::close() !!}
                 </div>

@@ -22,8 +22,8 @@
                     {!! Form::close() !!}
                 </div>
                 <div class="panel-footer form-link">
-                    Trying to <a href="{{ route('login') }}"> Login</a><br>
-                    Don't have an account? <a href="{{ route('register') }}"> Create a free account</a>
+                    Trying to <a href="{{ route('auth::login') }}"> Login</a><br>
+                    Don't have an account? <a href="{{ route('auth::register') }}"> Create a free account</a>
                 </div>
             </div>
 		</div>
