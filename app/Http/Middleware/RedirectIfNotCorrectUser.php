@@ -38,10 +38,10 @@ class RedirectIfNotCorrectUser
         if ($request->route('users')) {
             $user = $this->userRepo->findBySlug($request->route('users'));
             if (($user->id != $this->auth->user()->id) && ! $this->auth->user()->isAdmin()) {
-                throw new InvalidUserException('You do not have required rights to access this page.');
+                throw new InvalidUserException('You cannot access this page.');
             }
         }
-        
+
         return $next($request);
     }
 }

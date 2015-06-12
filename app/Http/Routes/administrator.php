@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-    'middleware' => ['auth', 'valid.admin.user'],
+    'middleware' => ['auth', 'valid.roles:admin'],
     'prefix'     => 'admin',
     'as'         => 'admin::',
     'namespace'  => 'Admin'], function () {

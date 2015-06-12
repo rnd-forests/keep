@@ -29,7 +29,7 @@ class Kernel extends HttpKernel
         'auth.basic'        => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest'             => \Keep\Http\Middleware\RedirectIfAuthenticated::class,
         'auth.correct'      => \Keep\Http\Middleware\RedirectIfNotCorrectUser::class,
-        'valid.permissions' => \Keep\Http\Middleware\HasCorrectPermissions::class,
-        'valid.admin.user'  => \Keep\Http\Middleware\VerifyAdminUser::class,
+        'valid.permissions' => \Keep\Http\Middleware\VerifyUserPermissions::class,
+        'valid.roles'       => \Keep\Http\Middleware\VerifyUserRoles::class,
     ];
 }

@@ -33,18 +33,12 @@ class Handler extends ExceptionHandler
             return redirect()->home();
         }
 
-        if ($e instanceof InvalidAdminUserException) {
+        if ($e instanceof InvalidRolesException) {
             flash()->warning($e->getMessage());
 
             return redirect()->home();
         }
-
-        if ($e instanceof UnconfirmedAccountException) {
-            flash()->warning($e->getMessage());
-
-            return redirect()->route('auth::login');
-        }
-
+        
         if ($e instanceof ModelNotFoundException) {
             flash()->warning('The ' . substr($e->getModel(), 14) . ' you are looking for, cannot be found.');
 

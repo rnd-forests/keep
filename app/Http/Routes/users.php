@@ -112,14 +112,16 @@ Route::group(['prefix' => '{users}', 'as' => 'member::'], function () {
     ]);
 });
 
-Route::resource('members.tasks', 'UserTaskController', [
-    'except' => ['index'],
-    'names'  => [
-        'create'  => 'member::tasks.create',
-        'store'   => 'member::tasks.store',
-        'show'    => 'member::tasks.show',
-        'edit'    => 'member::tasks.edit',
-        'update'  => 'member::tasks.update',
-        'destroy' => 'member::tasks.destroy',
-    ]
-]);
+Route::group(['prefix' => '{users}'], function () {
+    Route::resource('tasks', 'UserTaskController', [
+        'except' => ['index'],
+        'names'  => [
+            'create'  => 'member::tasks.create',
+            'store'   => 'member::tasks.store',
+            'show'    => 'member::tasks.show',
+            'edit'    => 'member::tasks.edit',
+            'update'  => 'member::tasks.update',
+            'destroy' => 'member::tasks.destroy',
+        ]
+    ]);
+});
