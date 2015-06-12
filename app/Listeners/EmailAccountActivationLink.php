@@ -1,7 +1,6 @@
 <?php
 namespace Keep\Listeners;
 
-use App;
 use Keep\Mailers\UserMailer;
 use Keep\Events\UserHasRegistered;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -17,7 +16,7 @@ class EmailAccountActivationLink implements ShouldQueue
      */
     public function handle(UserHasRegistered $event)
     {
-        $mailer = App::make(UserMailer::class);
+        $mailer = app()->make(UserMailer::class);
         $mailer->sendAccountActivationLink($event->user, $event->user->activation_code);
     }
 }

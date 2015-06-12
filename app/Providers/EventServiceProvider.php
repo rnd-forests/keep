@@ -2,7 +2,6 @@
 namespace Keep\Providers;
 
 use DB;
-use Auth;
 use Keep\Entities\User;
 use Keep\Entities\Task;
 use Keep\Entities\Profile;
@@ -22,7 +21,7 @@ class EventServiceProvider extends ServiceProvider
         \Keep\Events\UserHasRegistered::class => [
             \Keep\Listeners\EmailAccountActivationLink::class,
         ],
-        \Keep\Events\TaskHasPublished::class    => [
+        \Keep\Events\TaskHasPublished::class  => [
             \Keep\Listeners\EmailNewlyCreatedTask::class,
         ],
     ];
@@ -43,7 +42,7 @@ class EventServiceProvider extends ServiceProvider
         });
 
         Task::deleting(function ($task) {
-            $task->destroyer_id = Auth::user()->id;
+            $task->destroyer_id = auth()->user()->id;
             $task->save();
         });
 
@@ -53,7 +52,7 @@ class EventServiceProvider extends ServiceProvider
         });
 
         Assignment::deleting(function ($assignment) {
-            $assignment->task()->update(['destroyer_id' => Auth::user()->id]);
+            $assignment->task()->update(['destroyer_id' => auth()->user()->id]);
             $assignment->task()->delete();
         });
 

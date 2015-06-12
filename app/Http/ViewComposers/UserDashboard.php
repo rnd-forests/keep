@@ -2,26 +2,18 @@
 namespace Keep\Http\ViewComposers;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Contracts\Auth\Guard;
 
 class UserDashboard
 {
-    protected $auth;
-
-    public function __construct(Guard $auth)
-    {
-        $this->auth = $auth;
-    }
-
     public function compose(View $view)
     {
-        $totalTasksCount = $this->auth->user()->tasks()->count();
+        $totalTasksCount = auth()->user()->tasks()->count();
         $view->with('totalTasksCount', $totalTasksCount);
 
-        $completedTasksCount = $this->auth->user()->tasks()->completed()->count();
+        $completedTasksCount = auth()->user()->tasks()->completed()->count();
         $view->with('completedTasksCount', $completedTasksCount);
 
-        $failedTasksCount = $this->auth->user()->tasks()->where('is_failed', 1)->count();
+        $failedTasksCount = auth()->user()->tasks()->where('is_failed', 1)->count();
         $view->with('failedTasksCount', $failedTasksCount);
 
         $dueTasksCount = $totalTasksCount - $completedTasksCount - $failedTasksCount;

@@ -1,7 +1,6 @@
 <?php
 namespace Keep\Http\Controllers\Auth;
 
-use Session;
 use Keep\Jobs\ModifyAccountName;
 use Keep\Jobs\ModifyAccountPassword;
 use Keep\Http\Controllers\Controller;
@@ -37,11 +36,11 @@ class AccountController extends Controller
         if ($this->dispatchFrom(ModifyAccountPassword::class, $request, [
             'user' => $this->userRepo->findBySlug($userSlug)])
         ) {
-            Session::flash('update_password_success', 'Your password has been successfully updated.');
+            session()->flash('update_password_success', 'Your password has been successfully updated.');
 
             return redirect()->back();
         }
-        Session::flash('update_password_error', 'Uh-oh! Your password could not be changed.');
+        session()->flash('update_password_error', 'Uh-oh! Your password could not be changed.');
 
         return redirect()->back();
     }
@@ -58,11 +57,11 @@ class AccountController extends Controller
     {
         $user = $this->userRepo->findBySlug($userSlug);
         if ($this->dispatchFrom(ModifyAccountName::class, $request, ['user' => $user])) {
-            Session::flash('update_username_success', 'Your username has been successfully updated.');
+            session()->flash('update_username_success', 'Your username has been successfully updated.');
 
             return redirect()->route('member::profile', $user);
         }
-        Session::flash('update_username_error', 'Uh-oh! Your username could not be changed.');
+        session()->flash('update_username_error', 'Uh-oh! Your username could not be changed.');
 
         return redirect()->back();
     }

@@ -2,7 +2,6 @@
 namespace Keep\OAuth;
 
 use Keep\Entities\User;
-use Illuminate\Contracts\Auth\Guard;
 use Keep\Exceptions\InvalidUserException;
 use Keep\OAuth\Contracts\OAuthUserListener;
 use Keep\Repositories\User\UserRepositoryInterface;
@@ -11,20 +10,18 @@ use Laravel\Socialite\Contracts\User as SocialiteUser;
 
 abstract class AuthenticationProvider
 {
-    protected $userRepo, $socialite, $auth;
+    protected $userRepo, $socialite;
 
     /**
      * Constructor.
      *
      * @param UserRepositoryInterface $userRepo
      * @param Socialite               $socialite
-     * @param Guard                   $auth
      */
-    public function __construct(UserRepositoryInterface $userRepo, Socialite $socialite, Guard $auth)
+    public function __construct(UserRepositoryInterface $userRepo, Socialite $socialite)
     {
         $this->userRepo = $userRepo;
         $this->socialite = $socialite;
-        $this->auth = $auth;
     }
 
     /**
@@ -51,7 +48,7 @@ abstract class AuthenticationProvider
             throw new InvalidUserException($this->getExceptionMessage());
         }
         $this->updateAuthenticatedUser($user, $providerData);
-        $this->auth->login($user, true);
+        auth()->login($user, true);
 
         return $listener->userHasLoggedIn($user);
     }

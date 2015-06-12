@@ -20,7 +20,8 @@ class VerifyUserPermissions
     {
         $user = auth()->user();
         if ( ! (auth()->check() && $user->can($permissions, true))) {
-            throw new InvalidPermissionsException($user->name . ' does not have the required permissions to perform this request.');
+            throw new InvalidPermissionsException($user->name .
+                ' does not have the required permissions to perform this request.');
         }
 
         return $next($request);

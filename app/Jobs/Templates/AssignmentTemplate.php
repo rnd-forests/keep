@@ -1,7 +1,6 @@
 <?php
 namespace Keep\Jobs\Templates;
 
-use App;
 use Keep\Jobs\Job;
 use Keep\Entities\Task;
 use Keep\Entities\Assignment;
@@ -22,10 +21,10 @@ abstract class AssignmentTemplate extends Job
     public function __construct(array $data)
     {
         $this->data = $data;
-        self::$userRepo = App::make(UserRepositoryInterface::class);
-        self::$taskRepo = App::make(TaskRepositoryInterface::class);
-        self::$groupRepo = App::make(UserGroupRepositoryInterface::class);
-        self::$assignmentRepo = App::make(AssignmentRepositoryInterface::class);
+        self::$userRepo = app()->make(UserRepositoryInterface::class);
+        self::$taskRepo = app()->make(TaskRepositoryInterface::class);
+        self::$groupRepo = app()->make(UserGroupRepositoryInterface::class);
+        self::$assignmentRepo = app()->make(AssignmentRepositoryInterface::class);
     }
 
     /**

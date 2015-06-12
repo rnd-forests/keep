@@ -1,7 +1,6 @@
 <?php
 namespace Keep\Jobs;
 
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class AuthenticateAccount extends Job implements SelfHandling
@@ -27,13 +26,11 @@ class AuthenticateAccount extends Job implements SelfHandling
     /**
      * Authenticate user into application.
      *
-     * @param Guard $auth
-     *
      * @return bool
      */
-    public function handle(Guard $auth)
+    public function handle()
     {
-        return $auth->attempt($this->getCredentials(), $this->remember);
+        return auth()->attempt($this->getCredentials(), $this->remember);
     }
 
     /**

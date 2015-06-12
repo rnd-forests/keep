@@ -1,7 +1,6 @@
 <?php
 namespace Keep\Jobs;
 
-use Illuminate\Hashing\BcryptHasher;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class ModifyAccountPassword extends Job implements SelfHandling
@@ -25,13 +24,11 @@ class ModifyAccountPassword extends Job implements SelfHandling
     /**
      * Change account password.
      *
-     * @param BcryptHasher $bcrypt
-     *
      * @return bool
      */
-    public function handle(BcryptHasher $bcrypt)
+    public function handle()
     {
-        if ( ! $bcrypt->check($this->oldPassword, $this->user->password)) {
+        if ( ! bcrypt()->check($this->oldPassword, $this->user->password)) {
             return false;
         }
         $this->user->password = $this->newPassword;

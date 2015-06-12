@@ -3,8 +3,8 @@ namespace Keep\Jobs;
 
 use Keep\Jobs\Traits\NotificationTrait;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Keep\Repositories\Notification\NotificationRepositoryInterface;
 use Keep\Repositories\User\UserRepositoryInterface;
+use Keep\Repositories\Notification\NotificationRepositoryInterface;
 
 class CreateMemberNotification extends Job implements SelfHandling
 {

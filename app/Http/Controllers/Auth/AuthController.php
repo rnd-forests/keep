@@ -1,7 +1,6 @@
 <?php
 namespace Keep\Http\Controllers\Auth;
 
-use Auth;
 use Keep\Jobs\RegisterAccount;
 use Keep\Jobs\ActivateAccount;
 use Keep\Jobs\AuthenticateAccount;
@@ -86,7 +85,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        Auth::logout();
+        auth()->logout();
         flash()->success('You have been logged out.');
 
         return redirect()->home();
