@@ -112,7 +112,7 @@ Route::group(['prefix' => '{users}', 'as' => 'member::'], function () {
     ]);
 });
 
-Route::resource('users.tasks', 'UserTaskController', [
+Route::resource('members.tasks', 'UserTaskController', [
     'except' => ['index'],
     'names'  => [
         'create'  => 'member::tasks.create',
