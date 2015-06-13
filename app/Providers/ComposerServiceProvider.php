@@ -1,8 +1,6 @@
 <?php
 namespace Keep\Providers;
 
-use Blade;
-use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
@@ -38,7 +36,7 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer(
             [
                 'admin.assignments.edit',
-                'users.tasks.partials._form',
+                'users.tasks.partials._main_form',
                 'admin.assignments.create_group_assignment',
                 'admin.assignments.create_member_assignment',
             ],
