@@ -1,7 +1,5 @@
 @extends('layouts.admin')
-
 @section('title', 'Create Member Notification')
-
 @section('notifiable-objects')
     <div class="form-group">
         <div class="form-group">
@@ -10,16 +8,15 @@
         </div>
     </div>
 @stop
-
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Create Member Notification</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials.errors')
+                    @include('layouts.partials._form_errors')
                     {!! Form::model($notification = new \Keep\Entities\Notification, ['route' => ['admin::notifications.member.store']]) !!}
-                        @include('admin.notifications.partials.form', ['notificationButton' => 'Create Notification'])
+                        @include('admin.notifications.partials._main_form', ['notificationButton' => 'Create Notification'])
                     {!! Form::close() !!}
                 </div>
             </div>

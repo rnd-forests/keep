@@ -2,17 +2,15 @@
 namespace Keep\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Laracasts\Presenter\PresentableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 
 class Assignment extends Model implements SluggableInterface
 {
-    use SoftDeletes, SluggableTrait, PresentableTrait;
+    use SoftDeletes, SluggableTrait;
 
     protected $fillable = ['assignment_name', 'slug'];
-    protected $presenter = 'Keep\Presenters\AssignmentPresenter';
     protected $sluggable = ['build_from' => 'assignment_name', 'save_to' => 'slug'];
 
     /**

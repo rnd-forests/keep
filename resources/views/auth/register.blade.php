@@ -1,17 +1,14 @@
 @extends('layouts.app')
-
 @section('meta-description', 'Keep - Register new account')
-
-@section('title', 'Register')
-
+@section('title', 'Registration')
 @section('content')
 	<div class="row">
         <div class="col-md-6 col-md-offset-3">
-            @include('auth.partials.social_auth')
+            @include('auth.partials._social_auth')
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Register</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials.errors')
+                    @include('layouts.partials._form_errors')
                     {!! Form::open() !!}
                         <div class="form-group">
                             {!! Form::label('name', 'Name', ['class' => 'control-label']) !!}

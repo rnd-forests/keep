@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
-@section('meta-description', $user->name . ' profile')
-
-@section('title', $user->name)
-
+@section('meta-description', $user->name . ' Profile')
+@section('title', $user->name . ' Profile')
 @section('content')
     <div class="user-profile-wrapper">
         <div class="row">
@@ -15,28 +12,28 @@
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active in fade" id="profile">
-                        @include('users.partials.basic_information')
+                        @include('users.partials._basic_info')
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="update-profile">
-                        @include('users.partials.update_profile_form', $user)
+                        @include('users.partials._update_profile_form', $user)
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="account">
-                        @include('layouts.partials.errors')
+                        @include('layouts.partials._form_errors')
                         <div class="panel panel-danger panel-profile">
                             <div class="panel-heading">Update current username</div>
                             <div class="panel-body">
-                                @include('users.partials.update_username_form')
+                                @include('users.partials._update_username_form')
                             </div>
                         </div>
                         <div class="panel panel-danger panel-profile">
                             <div class="panel-heading">Update current password</div>
                             <div class="panel-body">
-                                @include('users.partials.update_password_form')
+                                @include('users.partials._update_password_form')
                             </div>
                         </div>
                         @unless($user->isAdmin())
                             <div class="panel panel-danger">
-                                @include('users.partials.cancel_account_modal')
+                                @include('users.partials._cancel_account_modal')
                                 <div class="panel-heading">Cancel your account</div>
                                 <div class="panel-body">
                                     <p>Once you delete your account, there is no going back. Please be careful.</p>

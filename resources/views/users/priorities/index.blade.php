@@ -1,19 +1,14 @@
 @extends('layouts.app')
-
-@section('meta-description', 'All priority levels associated with tasks of ' . Auth::user()->name)
-
-@section('title', 'Priority Levels')
-
+@section('title', 'Priorities')
 @section('content')
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="list-group">
                 <a class="list-group-item active"><i class="fa fa-tags"></i> Priority Levels</a>
                 @foreach($priorities as $priority)
-                    <a class="list-group-item" href="{{ route('member::priorities.task', [Auth::user(), $priority]) }}">
+                    <a class="list-group-item" href="{{ route('member::priorities.task', [$user, $priority]) }}">
                         <span class="badge">
-                            {{--*/ $counter = $priority->tasks()->where('user_id', $user->id)->count() /*--}}
-                            {{ $counter }} {{ str_plural('task', $counter) }}
+                            {{ plural('task', counting($priority->tasks()->where('user_id', $user->id))) }}
                         </span>
                         {{ $priority->name }}
                     </a>

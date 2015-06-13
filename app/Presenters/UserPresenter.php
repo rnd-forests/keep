@@ -5,8 +5,6 @@ use Laracasts\Presenter\Presenter;
 
 class UserPresenter extends Presenter
 {
-    use KeepPresentableTrait;
-
     /**
      * Get user gravatar picture.
      *
@@ -20,23 +18,7 @@ class UserPresenter extends Presenter
 
         return "//www.gravatar.com/avatar/$email?s=$size";
     }
-
-    /**
-     * Print user model attributes.
-     *
-     * @param $attribute
-     *
-     * @return string
-     */
-    public function attribute($attribute)
-    {
-        if (empty($attribute)) {
-            return '-';
-        }
-
-        return $attribute;
-    }
-
+    
     /**
      * Link to user twitter profile.
      *

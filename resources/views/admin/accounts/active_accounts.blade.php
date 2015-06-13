@@ -1,11 +1,9 @@
 @extends('layouts.admin')
-
 @section('title', 'Active Members')
-
 @section('content')
     <div class="admin-contents-wrapper">
         <div class="well">
-            <div class="huge text-center">{{ $activeAccounts->total() }} active {{ str_plural('account', $activeAccounts->total()) }}</div>
+            <div class="huge text-center">{{ plural2('account', 'active', $activeAccounts->total()) }}</div>
         </div>
         <div class="table-responsive">
             <table class="table table-bordered">
@@ -27,10 +25,10 @@
                             <td>{{ $account->id }}</td>
                             <td>{{ $account->name }}</td>
                             <td>{{ $account->email }}</td>
-                            <td>{{ $account->tasks->count() }}</td>
-                            <td>{{ $account->groups->count() }}</td>
-                            <td>{{ $account->assignments->count() }}</td>
-                            <td>{{ $account->present()->formatTime($account->created_at) }}</td>
+                            <td>{{ counting($account->tasks) }}</td>
+                            <td>{{ counting($account->groups) }}</td>
+                            <td>{{ counting($account->assignments) }}</td>
+                            <td>{{ short_time($account->created_at) }}</td>
                             <td>
                                 <a href="{{ route('admin::members.active.profile', $account) }}" class="btn btn-primary btn-circle"
                                    data-toggle="tooltip" data-placement="bottom" title="View Profile">
@@ -40,8 +38,8 @@
                                    data-toggle="tooltip" data-placement="bottom" title="Send notification">
                                     <i class="fa fa-bell-o"></i>
                                 </a>
-                                @unless($account->roles->contains('name', 'admin'))
-                                    @include('admin.accounts.partials.delete_form')
+                                @unless($account->hasRole('admin'))
+                                    @include('admin.accounts.partials._delete_form')
                                 @endunless
                             </td>
                         </tr>
@@ -49,6 +47,6 @@
                 </tbody>
             </table>
         </div>
-        <div class="text-center">{!! $activeAccounts->render() !!}</div>
+        {!! render_pagination($activeAccounts) !!}
     </div>
 @stop

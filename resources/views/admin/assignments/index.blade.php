@@ -1,10 +1,8 @@
 @extends('layouts.admin')
-
 @section('title', 'Assignments Collection')
-
 @section('content')
     <div class="assignments-wrapper">
-        @if($assignments->isEmpty())
+        @if(blank($assignments))
             <div class="well text-center">Currently, there is no assignment.</div>
         @else
             <div class="row">
@@ -17,9 +15,9 @@
                                 <p>{{ $assignment->task->content }}</p>
                                 <div class="text-center">
                                     <span class="label label-primary">
-                                        {{ $assignment->present()->formatTimeForHumans($assignment->created_at) }}
+                                        {{ humans_time($assignment->created_at) }}
                                     </span>
-                                    @if($assignment->groups->isEmpty())
+                                    @if(blank($assignment->groups))
                                         <span class="label label-info">member assignment</span>
                                     @else
                                         <span class="label label-warning">group assignment</span>
@@ -38,12 +36,12 @@
                                             <i class="fa fa-pencil"></i>
                                         </button>
                                     </a>
-                                    @include('admin.assignments.partials.delete_form')
+                                    @include('admin.assignments.partials._delete_form')
                                 </div>
                             </div>
                         </div>
                     @endforeach
-                    <div class="text-center">{!! $assignments->render() !!}</div>
+                    {!! render_pagination($assignments) !!}
                 </div>
             </div>
         @endif

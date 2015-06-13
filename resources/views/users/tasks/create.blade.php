@@ -1,16 +1,14 @@
 @extends('layouts.app')
-
 @section('title', 'Schedule New Task')
-
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Schedule New Task</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials.errors')
+                    @include('layouts.partials._form_errors')
                     {!! Form::model($task = new \Keep\Entities\Task, ['route' => ['member::tasks.store', $user]]) !!}
-                        @include('users.tasks.partials.form', ['taskFormSubmitButton' => 'Schedule Task'])
+                        @include('users.tasks.partials._main_form', ['taskFormSubmitButton' => 'Schedule Task'])
                     {!! Form::close() !!}
                 </div>
             </div>

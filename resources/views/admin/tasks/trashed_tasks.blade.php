@@ -1,14 +1,12 @@
 @extends('layouts.admin')
-
 @section('title', 'Trashed Tasks')
-
 @section('content')
     <div class="admin-contents-wrapper">
-        @if ($trashedTasks->isEmpty())
+        @if (blank($trashedTasks))
             <div class="well text-center">Currently, there is no trashed task.</div>
         @else
             <div class="well">
-                <div class="huge text-center">{{ $trashedTasks->total() }} trashed {{ str_plural('task', $trashedTasks->total()) }}</div>
+                <div class="huge text-center">{{ plural2('task', 'trashed', $trashedTasks->total()) }}</div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -29,7 +27,7 @@
                         @foreach($trashedTasks as $task)
                             <tr>
                                 <td>{{ $task->id }}</td>
-                                <td>{{ $task->present()->formatTime($task->deleted_at) }}</td>
+                                <td>{{ short_time($task->deleted_at) }}</td>
                                 <td>{{ $task->destroyer->name }}</td>
                                 @if(isset($task->owner))
                                     <td>{{ $task->owner->name }}</td>
@@ -38,11 +36,11 @@
                                 @endif
                                 <td>{{ $task->title }}</td>
                                 <td>{{ $task->priority->name }}</td>
-                                <td>{{ $task->present()->formatTime($task->starting_date) }}</td>
-                                <td>{{ $task->present()->formatTime($task->finishing_date) }}</td>
+                                <td>{{ short_time($task->starting_date) }}</td>
+                                <td>{{ short_time($task->finishing_date) }}</td>
                                 <td>
-                                    @include('admin.tasks.partials.restore_form')
-                                    @include('admin.tasks.partials.force_delete_form')
+                                    @include('admin.tasks.partials._restore_form')
+                                    @include('admin.tasks.partials._force_delete_form')
                                 </td>
                             </tr>
                         @endforeach
@@ -50,6 +48,6 @@
                 </table>
             </div>
         @endif
-        <div class="text-center">{!! $trashedTasks->render() !!}</div>
+        {!! render_pagination($trashedTasks) !!}
     </div>
 @stop

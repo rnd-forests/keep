@@ -1,16 +1,13 @@
 @extends('layouts.app')
-
 @section('meta-description', 'Keep - Reset account password')
-
 @section('title', 'Password Reset')
-
 @section('content')
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Reset your password</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials.errors')
+                    @include('layouts.partials._form_errors')
                     {!! Form::open() !!}
                         {!! Form::hidden('token', $token) !!}
                         <div class="form-group">

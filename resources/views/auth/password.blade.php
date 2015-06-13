@@ -1,16 +1,13 @@
 @extends('layouts.app')
-
 @section('meta-description', 'Keep - Recover user password')
-
 @section('title', 'Password Recovery')
-
 @section('content')
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Forgot your password?</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials.errors')
+                    @include('layouts.partials._form_errors')
                     {!! Form::open() !!}
                         <div class="form-group">
                             {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}

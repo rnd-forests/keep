@@ -1,15 +1,11 @@
 @extends('layouts.app')
-
-@section('meta-description', 'Task scheduler of ' . Auth::user()->name)
-
+@section('meta-description', 'Tasks scheduler of ' . $authUser->name)
 @section('title', 'Tasks Scheduler')
-
 @section('content')
     <div id="wrapper">
         <div id="user-task-scheduler"></div>
     </div>
 @stop
-
 @section('footer')
     <script>
         Keep.scheduler.forEach(function(task) {

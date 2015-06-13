@@ -1,4 +1,4 @@
-@include('layouts.partials.errors')
+@include('layouts.partials._form_errors')
 {!! Form::model($user->profile, ['method' => 'PATCH', 'route' => ['member::update', $user]]) !!}
     <div class="form-group">
         {!! Form::label('location', 'Current Location', ['class' => 'control-label']) !!}

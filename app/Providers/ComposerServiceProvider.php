@@ -1,6 +1,8 @@
 <?php
 namespace Keep\Providers;
 
+use Blade;
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
@@ -12,6 +14,10 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        view()->composer('*', function ($view) {
+            return $view->with('authUser', auth()->user());
+        });
+        
         $this->composeNavbar();
         $this->composeTaskForm();
         $this->composeUserDashboard();
@@ -22,7 +28,7 @@ class ComposerServiceProvider extends ServiceProvider
     private function composeNavbar()
     {
         view()->composer(
-            'layouts.partials.nav',
+            'layouts.partials._main_navbar',
             'Keep\Http\ViewComposers\MainNavigationBar'
         );
     }
@@ -32,7 +38,7 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer(
             [
                 'admin.assignments.edit',
-                'users.tasks.partials.form',
+                'users.tasks.partials._form',
                 'admin.assignments.create_group_assignment',
                 'admin.assignments.create_member_assignment',
             ],

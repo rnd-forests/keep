@@ -1,18 +1,14 @@
 @extends('layouts.app')
-
-@section('meta-description', $group->name . ' (' . $group->description . ')')
-
 @section('title', 'Group - ' . $group->name)
-
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="text-center" style="margin-bottom: 15px">
                 <button class="btn btn-lg btn-info" type="button">
-                    {{ $members->count() }} {{ str_plural('Member', $members->count()) }}
+                    {{ plural('Member', counting($members)) }}
                 </button>
                 <button class="btn btn-lg btn-info" type="button">
-                    {{ $assignments->count() }} {{ str_plural('Assignment', $assignments->count()) }}
+                    {{ plural('Assignment', counting($assignments)) }}
                 </button>
             </div>
             <div class="col-md-4">
@@ -20,7 +16,7 @@
                     <div class="well">
                         <div class="media">
                             <div class="media-left">
-                                @include('users.partials.avatar')
+                                @include('users.partials._avatar')
                             </div>
                             <div class="media-body">
                                 <h5 class="media-heading">{{ $user->name  }}</h5>
@@ -36,7 +32,7 @@
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <a class="task-title">{{ $assignment->assignment_name }}</a>
-                                <h6 class="task-time-ago">{{ $assignment->present()->formatTimeForHumans($assignment->created_at) }}</h6>
+                                <h6 class="task-time-ago">{{ humans_time($assignment->created_at) }}</h6>
                             </div>
                             <div class="panel-body">
                                 <div class="well">
@@ -45,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="panel-footer">
-                                <span class="label label-primary">{{ $assignment->task->present()->getRemainingDays($assignment->task->finishing_date) }}</span>
+                                <span class="label label-primary">{{ remaining_days($assignment->task->finishing_date) }}</span>
                                 <span class="label label-info">{{ $assignment->task->priority->name }}</span>
                             </div>
                         </div>

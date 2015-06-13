@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
-@section('meta-description', Auth::user()->name . ' personal dashboard')
-
+@section('meta-description', $authUser->name . ' personal dashboard')
 @section('title', 'Dashboard')
-
 @section('content')
     <div class="row">
         <div id="search-keyword-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -15,7 +12,7 @@
             </div>
         </div>
         <div class="col-md-6 col-md-offset-3">
-            {!! Form::open(['method' => 'GET', 'route' => ['member::tasks.search', Auth::user()], 'id' => 'search-form']) !!}
+            {!! Form::open(['method' => 'GET', 'route' => ['member::tasks.search', $authUser], 'id' => 'search-form']) !!}
                 <div class="form-group has-feedback">
                     <div class="input-group">
                         <span class="input-group-addon"><span class="fa fa-search"></span></span>
@@ -50,7 +47,7 @@
                     @foreach($recentlyCompletedTasks as $task)
                         <a class="list-group-item" href="{{ route('member::tasks.show', [$user, $task]) }}">
                             <h5>{{ $task->title }}</h5>
-                            <h6 class="text-info">completed {{ $task->present()->formatTimeForHumans($task->finished_at) }}</h6>
+                            <h6 class="text-info">completed {{ humans_time($task->finished_at) }}</h6>
                         </a>
                     @endforeach
                 </div>
@@ -120,7 +117,7 @@
                         <a href="{{ route('member::tasks.show', [$user, $task]) }}" class="list-group-item">
                             <h5 class="text-center">{{ $task->title }}</h5>
                             <div class="task-labels">
-                                <span class="label label-info">{{ $task->present()->formatTimeForHumans($task->created_at) }}</span>
+                                <span class="label label-info">{{ humans_time($task->created_at) }}</span>
                                 @if ($task->completed)
                                     <span class="label label-info">completed</span>
                                 @else
@@ -142,7 +139,7 @@
                     @foreach($deadlineTasks as $task)
                         <a class="list-group-item" href="{{ route('member::tasks.show', [$user, $task]) }}">
                             <h5>{{ $task->title }}</h5>
-                            <h6 class="text-warning">{{ $task->present()->getRemainingDays($task->finishing_date) }}</h6>
+                            <h6 class="text-warning">{{ remaining_days($task->finishing_date) }}</h6>
                         </a>
                     @endforeach
                 </div>

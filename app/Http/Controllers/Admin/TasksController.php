@@ -28,7 +28,7 @@ class TasksController extends Controller
     {
         $sortBy = Request::get('sortBy');
         $direction = Request::get('direction');
-        $tasks = $this->taskRepo->getPaginatedTasks(150, compact('sortBy', 'direction'));
+        $tasks = $this->taskRepo->getPaginatedTasks(50, compact('sortBy', 'direction'));
 
         return view('admin.tasks.active_tasks', compact('tasks'));
     }

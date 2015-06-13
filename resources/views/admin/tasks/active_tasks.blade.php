@@ -1,14 +1,12 @@
 @extends('layouts.admin')
-
 @section('title', 'Published Tasks')
-
 @section('content')
     <div class="admin-contents-wrapper">
-        @if($tasks->isEmpty())
+        @if(blank($tasks))
             <div class="well text-center">Currently, there is no published task available.</div>
         @else
             <div class="well">
-                <div class="huge text-center">{{ $tasks->total() }} published {{ str_plural('task', $tasks->total()) }}</div>
+                <div class="huge text-center">{{ plural2('task', 'published', $tasks->total()) }}</div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -36,7 +34,7 @@
                         @foreach($tasks as $task)
                             <tr>
                                 <td>{{ $task->id }}</td>
-                                <td>{{ $task->present()->formatTime($task->created_at) }}</td>
+                                <td>{{ short_time($task->created_at) }}</td>
                                 @if(isset($task->owner))
                                     <td>{{ $task->owner->name }}</td>
                                 @else
@@ -44,8 +42,8 @@
                                 @endif
                                 <td>{{ $task->title }}</td>
                                 <td>{{ $task->priority->name }}</td>
-                                <td>{{ $task->present()->formatTime($task->starting_date) }}</td>
-                                <td>{!! $task->present()->formatTime($task->finishing_date) !!}</td>
+                                <td>{{ short_time($task->starting_date) }}</td>
+                                <td>{!! short_time($task->finishing_date) !!}</td>
                                 <td>{!! $task->present()->printStatus($task->is_assigned) !!}</td>
                                 <td>{!! $task->present()->printStatus($task->completed) !!}</td>
                                 <td>
@@ -53,14 +51,14 @@
                                        data-toggle="tooltip" data-placement="bottom" title="Show Task">
                                         <i class="fa fa-arrow-right"></i>
                                     </a>
-                                    @include('admin.tasks.partials.delete_form')
+                                    @include('admin.tasks.partials._delete_form')
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            <div class="text-center">{!! $tasks->render() !!}</div>
+            {!! render_pagination($tasks) !!}
         @endif
     </div>
 @stop

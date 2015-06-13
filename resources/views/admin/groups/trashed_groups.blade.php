@@ -1,14 +1,12 @@
 @extends('layouts.admin')
-
 @section('title', 'Trashed Groups')
-
 @section('content')
     <div class="admin-contents-wrapper">
-        @if ($trashedGroups->isEmpty())
+        @if(blank($trashedGroups))
             <div class="well text-center">Currently, there is no trashed group.</div>
         @else
             <div class="well">
-                <div class="huge text-center">{{ $trashedGroups->total() }} trashed {{ str_plural('group', $trashedGroups->total()) }}</div>
+                <div class="huge text-center">{{ plural2('group', 'trashed', $trashedGroups->total()) }}</div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -26,11 +24,11 @@
                             <tr>
                                 <td>{{ $group->id }}</td>
                                 <td>{{ $group->name }}</td>
-                                <td>{{ $group->users->count() }}</td>
-                                <td>{{ $group->present()->formatFullTime($group->deleted_at) }}</td>
+                                <td>{{ count($group->users) }}</td>
+                                <td>{{ full_time($group->deleted_at) }}</td>
                                 <td>
-                                    @include('admin.groups.partials.restore_form')
-                                    @include('admin.groups.partials.force_delete_form')
+                                    @include('admin.groups.partials._restore_form')
+                                    @include('admin.groups.partials._force_delete_form')
                                 </td>
                             </tr>
                         @endforeach
@@ -38,6 +36,6 @@
                 </table>
             </div>
         @endif
-        <div class="text-center">{!! $trashedGroups->render() !!}</div>
+        {!! render_pagination($trashedGroups) !!}
     </div>
 @stop

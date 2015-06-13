@@ -1,9 +1,7 @@
 @extends('layouts.admin')
-
 @section('title', 'Edit - ' . $assignment->assignment_name)
-
 @section('assignable-objects')
-    @if($assignment->groups->isEmpty())
+    @if(blank($assignment->groups))
         <div class="form-group">
             <div class="form-group">
                 {!! Form::label('user_list', 'Choose Members', ['class' => 'control-label']) !!}
@@ -29,16 +27,15 @@
         </div>
     @endif
 @stop
-
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Edit - {{ $assignment->assignment_name }}</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials.errors')
+                    @include('layouts.partials._form_errors')
                     {!! Form::model($task, ['method' => 'PATCH', 'route' => ['admin::assignments.published.update', $assignment]]) !!}
-                        @include('admin.assignments.partials.form', ['assignmentButton' => 'Update Assignment'])
+                        @include('admin.assignments.partials._main_form', ['assignmentButton' => 'Update Assignment'])
                     {!! Form::close() !!}
                 </div>
             </div>

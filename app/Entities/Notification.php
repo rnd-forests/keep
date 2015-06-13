@@ -4,18 +4,16 @@ namespace Keep\Entities;
 use Exception;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Laracasts\Presenter\PresentableTrait;
 use Keep\Exceptions\InvalidObjectException;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 
 class Notification extends Model implements SluggableInterface
 {
-    use SluggableTrait, PresentableTrait;
+    use SluggableTrait;
 
     protected $dates = ['sent_at'];
     protected $associatedObject = null;
-    protected $presenter = 'Keep\Presenters\NotificationPresenter';
     protected $sluggable = ['build_from' => 'subject', 'save_to' => 'slug'];
     protected $fillable = [
         'sent_from', 'type', 'subject', 'slug', 'body',

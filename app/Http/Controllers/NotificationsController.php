@@ -44,6 +44,6 @@ class NotificationsController extends Controller
     {
         $notifications = $this->notificationRepo->fetchGroupNotifications($userSlug);
 
-        return view('users.notifications.group_notifications', compact('notifications'));
+        return view('users.notifications.groups', compact('notifications'));
     }
 }

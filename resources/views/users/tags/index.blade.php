@@ -1,19 +1,14 @@
 @extends('layouts.app')
-
-@section('meta-description', 'All tags associated with tasks of ' . Auth::user()->name)
-
 @section('title', 'Tags')
-
 @section('content')
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="list-group">
                 <a class="list-group-item active"><i class="fa fa-tags"></i> Task Tags</a>
                 @foreach($tags->load('tasks') as $tag)
-                    <a class="list-group-item" href="{{ route('member::tags.task', [Auth::user(), $tag]) }}">
+                    <a class="list-group-item" href="{{ route('member::tags.task', [$authUser, $tag]) }}">
                         <span class="badge">
-                            {{--*/ $counter = $tag->tasks->where('user_id', Auth::user()->id)->count() /*--}}
-                            {{ $counter }} {{ str_plural('task', $counter) }}
+                            {{ plural('task', counting($tag->tasks->where('user_id', $authUser->id))) }}
                         </span>
                         {{ $tag->name }}
                     </a>

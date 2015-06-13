@@ -1,10 +1,8 @@
 @extends('layouts.admin')
-
 @section('title', 'Active Groups')
-
 @section('content')
     <div class="groups-wrapper">
-        @if($groups->isEmpty())
+        @if(blank($groups))
             <div class="well text-center">Currently, there is no active group.</div>
         @else
             @foreach($groups as $group)
@@ -15,14 +13,13 @@
                             <div class="panel-body">
                                 <div class="text-center">
                                     <span class="label label-primary">
-                                        {{ $group->users->count() }} {{ str_plural('member', $group->users->count()) }}
+                                        {{ plural('member', counting($group->users)) }}
                                     </span>
                                 </div>
                                 <div class="well">{{ $group->description }}</div>
-                                <div class="text-center"><h5>{{ $group->present()->formatTimeForHumans($group->created_at) }}</h5></div>
+                                <div class="text-center"><h5>{{ humans_time($group->created_at) }}</h5></div>
                             </div>
                             <div class="panel-footer text-center">
-                                <span class="btn btn-default btn-circle" data-toggle="tooltip" data-placement="bottom" title="Group ID">{{ $group->id }}</span>
                                 <a href="{{ route('admin::groups.active.show', $group) }}" class="btn btn-info btn-circle"
                                    data-toggle="tooltip" data-placement="bottom" title="View group details">
                                     <i class="fa fa-arrow-right"></i>
@@ -39,13 +36,13 @@
                                    data-toggle="tooltip" data-placement="bottom" title="Send notification">
                                     <i class="fa fa-bell-o"></i>
                                 </a>
-                                @include('admin.groups.partials.delete_form')
+                                @include('admin.groups.partials._delete_form')
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
-            <div class="text-center">{!! $groups->render() !!}</div>
+            {!! render_pagination($groups) !!}
         @endif
     </div>
 @stop

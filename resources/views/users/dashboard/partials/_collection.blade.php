@@ -8,11 +8,11 @@
             </div>
             @foreach($tasks as $task)
                 <a href="{{ route('member::tasks.show', [$user, $task]) }}" class="list-group-item">
+                    <span class="badge">{{ humans_time($task->created_at) }}</span>
                     {{ $task->title }}
-                    <span class="badge">{{ $task->present()->formatTimeForHumans($task->created_at) }}</span>
                 </a>
             @endforeach
         </div>
-        <div class="text-center">{!! $tasks->render() !!}</div>
+        {!! render_pagination($tasks) !!}
     </div>
 </div>

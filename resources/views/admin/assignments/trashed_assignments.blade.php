@@ -1,14 +1,12 @@
 @extends('layouts.admin')
-
 @section('title', 'Trashed Assignments')
-
 @section('content')
     <div class="admin-contents-wrapper">
-        @if ($trashedAssignments->isEmpty())
+        @if (blank($trashedAssignments))
             <div class="well text-center">Currently, there is no trashed assignment.</div>
         @else
             <div class="well">
-                <div class="huge text-center">{{ $trashedAssignments->total() }} trashed {{ str_plural('assignment', $trashedAssignments->total()) }}</div>
+                <div class="huge text-center">{{ plural2('assignment', 'trashed', $trashedAssignments->total()) }}</div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -25,10 +23,10 @@
                         <tr>
                             <td>{{ $assignment->id }}</td>
                             <td>{{ $assignment->assignment_name }}</td>
-                            <td>{{ $assignment->present()->formatFullTime($assignment->deleted_at) }}</td>
+                            <td>{{ full_time($assignment->deleted_at) }}</td>
                             <td>
-                                @include('admin.assignments.partials.restore_form')
-                                @include('admin.assignments.partials.force_delete_form')
+                                @include('admin.assignments.partials._restore_form')
+                                @include('admin.assignments.partials._force_delete_form')
                             </td>
                         </tr>
                     @endforeach
@@ -36,6 +34,6 @@
                 </table>
             </div>
         @endif
-        <div class="text-center">{!! $trashedAssignments->render() !!}</div>
+        {!! render_pagination($trashedAssignments) !!}
     </div>
 @stop

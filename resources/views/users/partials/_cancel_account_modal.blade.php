@@ -6,7 +6,7 @@
                     all other things related to your account.</p>
             </div>
             <div class="modal-footer">
-                @include('users.partials.delete_account_form')
+                @include('users.partials._cancel_account_form')
             </div>
         </div>
     </div>

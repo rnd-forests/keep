@@ -1,7 +1,5 @@
 @extends('layouts.admin')
-
 @section('title', $group->name)
-
 @section('content')
     <div class="group-wrapper">
         <div class="row">
@@ -14,7 +12,7 @@
                             <i class="fa fa-arrow-left"></i>
                         </button>
                     </a>
-                    @include('admin.groups.partials.flush_form')
+                    @include('admin.groups.partials._flush_form')
                     <a href="{{ route('admin::groups.active.add.users', $group) }}">
                         <button class="btn btn-circle btn-primary"
                             data-toggle="tooltip" data-placement="bottom" title="Add new users to this group">
@@ -31,7 +29,7 @@
             </div>
         </div>
         <div class="group-wrapper__users">
-            @if($users->isEmpty())
+            @if(blank($users))
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
                         <div class="well text-center">Currently, this group has no associated member.</div>
@@ -45,11 +43,11 @@
                                 <div class="well">
                                     <div class="media">
                                         <div class="media-left">
-                                            @include('users.partials.avatar')
+                                            @include('users.partials._avatar')
                                         </div>
                                         <div class="media-body">
                                             <h5 class="media-heading">{{ $user->name  }}</h5>
-                                            @include('admin.groups.partials.remove_form')
+                                            @include('admin.groups.partials._remove_users_form')
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +55,7 @@
                         @endforeach
                     </div>
                 @endforeach
-                <div class="text-center">{!! $users->render() !!}</div>
+                {!! render_pagination($users) !!}
             @endif
         </div>
     </div>
