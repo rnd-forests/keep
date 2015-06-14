@@ -1,7 +1,7 @@
 <?php
 namespace Keep\Repositories;
 
-abstract class DbRepository
+abstract class EloquentRepository
 {
     public function getAll()
     {

@@ -16,7 +16,7 @@
         "laracasts/presenter": "0.2.*",
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "laravel/socialite": "~2.0",
-        "cviebrock/eloquent-sluggable": "dev-master",
+        "cviebrock/eloquent-sluggable": ">=3.0.0-beta",
         "zizaco/entrust": "dev-laravel-5",
         "intervention/image": "^2.2",
         "iron-io/iron_mq": "~2.0",
