@@ -1,6 +1,8 @@
 <?php
 namespace Keep\Providers;
 
+use DB;
+use Log;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -12,7 +14,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if ($this->app->environment() == 'local') {
+            DB::listen(function ($sql, $bindings, $time) {
+                Log::info($time);
+                Log::info($sql);
+                Log::info($bindings);
+            });
+        }
     }
 
     /**

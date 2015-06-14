@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
             $table->boolean('active')->default(false);
             $table->string('auth_provider')->default('eloquent')->nullable();
             $table->string('auth_provider_id')->unique()->nullable();
-            $table->string('activation_code')->nullable();
+            $table->string('activation_code', 100)->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
