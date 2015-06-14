@@ -28,7 +28,7 @@ class TagsController extends Controller
      */
     public function index($userSlug)
     {
-        $tags = $this->tagRepo->getAssociatedTags($userSlug);
+        $tags = $this->tagRepo->fetchAttachedTags($userSlug);
 
         return view('users.tags.index', compact('tags'));
     }
@@ -44,7 +44,7 @@ class TagsController extends Controller
     public function show($userSlug, $tagName)
     {
         $tag = $this->tagRepo->findBySlug($tagName);
-        $tasks = $this->tagRepo->getTasksOfUserAssociatedWithATag($userSlug, $tagName, 10);
+        $tasks = $this->tagRepo->fetchTasksAssociatedWithTag($userSlug, $tagName, 10);
 
         return view('users.tags.show', compact('tag', 'tasks'));
     }

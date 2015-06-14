@@ -1,19 +1,17 @@
 <?php
 namespace Keep\Repositories\User;
 
-use Keep\Entities\User;
-
 interface UserRepositoryInterface
 {
-    public function getPaginatedUsers($limit, array $params);
+    public function fetchPaginatedUsers(array $params, $limit);
 
-    public function findBySlugWithTasks($slug);
+    public function findBySlugEagerLoadTasks($slug);
 
-    public function findByCodeAndActiveState($code, $state);
+    public function findByActivationCode($code, $active = false);
 
     public function create(array $credentials);
 
-    public function updateProfile($slug, array $credentials);
+    public function updateProfile(array $credentials, $slug);
 
     public function restore($slug);
 
@@ -21,13 +19,11 @@ interface UserRepositoryInterface
 
     public function forceDelete($slug);
 
-    public function getTrashedUsers($limit);
+    public function fetchDisabledUsers($limit);
 
-    public function findTrashedUserBySlug($slug);
-
-    public function getPaginatedAssociatedTasks(User $user, $limit);
+    public function findDisabledUserBySlug($slug);
 
     public function fetchUsersByIds(array $ids);
 
-    public function findOrCreateNew(array $userData, $provider);
+    public function findOrCreateNew(array $userData, $authProvider);
 }

@@ -1,14 +1,12 @@
 <?php
 namespace Keep\Repositories\Notification;
 
-use DB;
 use Carbon\Carbon;
 use Keep\Entities\User;
-use Keep\Services\KeepHelper;
 use Keep\Entities\Notification;
-use Keep\Repositories\DbRepository;
+use Keep\Repositories\EloquentRepository;
 
-class EloquentNotificationRepository extends DbRepository implements NotificationRepositoryInterface
+class EloquentNotificationRepository extends EloquentRepository implements NotificationRepositoryInterface
 {
     protected $model;
 
@@ -33,7 +31,7 @@ class EloquentNotificationRepository extends DbRepository implements Notificatio
         return $this->findBySlug($slug)->delete();
     }
 
-    public function getPaginatedNotifications($limit)
+    public function fetchPaginatedNotifications($limit)
     {
         return $this->model
             ->where('sent_from', 'admin')
@@ -50,7 +48,7 @@ class EloquentNotificationRepository extends DbRepository implements Notificatio
             ->paginate(15);
     }
 
-    public function countUserNotifications(User $user)
+    public function countUserNotifications($user)
     {
         return $user->notifications()->count();
     }
@@ -64,12 +62,17 @@ class EloquentNotificationRepository extends DbRepository implements Notificatio
 
     public function fetchGroupNotifications($userSlug)
     {
-        return $this->model->with('groups')->whereIn('id', DB::table('notifiables')
-            ->where('notifiable_type', 'Keep\Entities\Group')
-            ->whereIn(
-                'notifiable_id',
-                KeepHelper::getGroupIdsRelatedToUser(User::findBySlug($userSlug))
-            )->lists('notification_id'))
+        $ids = collect();
+        $user = User::findBySlug($userSlug);
+        $user->groups->each(function ($group) use ($ids) {
+            $group->notifications->lists('id')->each(function ($id) use ($ids) {
+                $ids->push($id);
+            });
+        });
+
+        return $this->model
+            ->with('groups')
+            ->whereIn('id', $ids->unique()->toArray())
             ->latest('created_at')
             ->paginate(15);
     }

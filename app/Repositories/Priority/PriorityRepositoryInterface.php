@@ -3,11 +3,11 @@ namespace Keep\Repositories\Priority;
 
 interface PriorityRepositoryInterface
 {
-    public function getAll();
+    public function fetchAll();
 
     public function lists();
 
     public function findByName($name);
 
-    public function getTasksOfUserAssociatedWithAPriority($userSlug, $priorityName, $limit);
+    public function fetchTasksAssociatedWithPriority($userSlug, $priorityName, $limit);
 }

@@ -29,7 +29,7 @@ class AssignmentsController extends Controller
      */
     public function index()
     {
-        $assignments = $this->assignmentRepo->getPaginatedAssignments(15);
+        $assignments = $this->assignmentRepo->fetchPaginatedAssignments(15);
 
         return view('admin.assignments.index', compact('assignments'));
     }
@@ -88,7 +88,7 @@ class AssignmentsController extends Controller
      */
     public function destroy($slug)
     {
-        $this->assignmentRepo->delete($slug);
+        $this->assignmentRepo->softDelete($slug);
         flash()->info('This assignment was successfully deleted');
 
         return redirect()->route('admin::assignments.published');
@@ -151,7 +151,7 @@ class AssignmentsController extends Controller
      */
     public function trashedAssignments()
     {
-        $trashedAssignments = $this->assignmentRepo->getTrashedAssignments(10);
+        $trashedAssignments = $this->assignmentRepo->fetchTrashedAssignments(10);
 
         return view('admin.assignments.trashed_assignments', compact('trashedAssignments'));
     }

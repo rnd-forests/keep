@@ -27,7 +27,7 @@ class UserGroupsController extends Controller
      */
     public function activeGroups()
     {
-        $groups = $this->groupRepo->getPaginatedGroups(15);
+        $groups = $this->groupRepo->fetchPaginatedGroups(15);
 
         return view('admin.groups.active_groups', compact('groups'));
     }
@@ -67,7 +67,7 @@ class UserGroupsController extends Controller
     public function show($slug)
     {
         $group = $this->groupRepo->findBySlug($slug);
-        $users = $this->groupRepo->getPaginatedAssociatedUsers($group, 16);
+        $users = $this->groupRepo->fetchPaginatedAssociatedUsers($group, 16);
 
         return view('admin.groups.show', compact('group', 'users'));
     }
@@ -139,7 +139,7 @@ class UserGroupsController extends Controller
      */
     public function trashedGroups()
     {
-        $trashedGroups = $this->groupRepo->getTrashedGroups(10);
+        $trashedGroups = $this->groupRepo->fetchTrashedGroups(10);
 
         return view('admin.groups.trashed_groups', compact('trashedGroups'));
     }
@@ -200,8 +200,8 @@ class UserGroupsController extends Controller
     public function addUsers($slug)
     {
         $group = $this->groupRepo->findBySlug($slug);
-        $users = $this->groupRepo->getPaginatedAssociatedUsers($group, 30);
-        $outsiders = $this->groupRepo->getUsersOutsideGroup($slug)->lists('name', 'id');
+        $users = $this->groupRepo->fetchPaginatedAssociatedUsers($group, 30);
+        $outsiders = $this->groupRepo->fetchOutsiders($slug)->lists('name', 'id');
 
         return view('admin.groups.add_users', compact('group', 'users', 'outsiders'));
     }

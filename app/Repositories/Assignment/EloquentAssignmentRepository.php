@@ -4,11 +4,9 @@ namespace Keep\Repositories\Assignment;
 use DB;
 use Keep\Entities\User;
 use Keep\Entities\Assignment;
-use Keep\Services\KeepHelper;
-use Illuminate\Support\Collection;
-use Keep\Repositories\DbRepository;
+use Keep\Repositories\EloquentRepository;
 
-class EloquentAssignmentRepository extends DbRepository implements AssignmentRepositoryInterface
+class EloquentAssignmentRepository extends EloquentRepository implements AssignmentRepositoryInterface
 {
     protected $model;
 
@@ -17,7 +15,7 @@ class EloquentAssignmentRepository extends DbRepository implements AssignmentRep
         $this->model = $model;
     }
 
-    public function getPaginatedAssignments($limit)
+    public function fetchPaginatedAssignments($limit)
     {
         return $this->model
             ->with('task', 'users', 'groups')
@@ -41,7 +39,7 @@ class EloquentAssignmentRepository extends DbRepository implements AssignmentRep
         return $assignment;
     }
 
-    public function delete($slug)
+    public function softDelete($slug)
     {
         return $this->findBySlug($slug)->delete();
     }
@@ -63,14 +61,14 @@ class EloquentAssignmentRepository extends DbRepository implements AssignmentRep
         }
     }
 
-    public function getGroupAssignmentsAssociatedWithAUser($userSlug)
+    public function fetchGroupAssignmentsOfAUser($userSlug)
     {
         return $this->fetchUserGroupAssignments($userSlug)
             ->latest('created_at')
             ->get();
     }
 
-    public function getAssignmentsAssociatedWithAUser($userSlug)
+    public function fetchAssignmentsOfAUser($userSlug)
     {
         $user = User::findBySlug($userSlug);
 
@@ -97,12 +95,10 @@ class EloquentAssignmentRepository extends DbRepository implements AssignmentRep
 
     private function fetchUserGroupAssignments($userSlug)
     {
-        $ids = new Collection;
+        $ids = collect();
         $user = User::findBySlug($userSlug);
         $user->groups->each(function ($group) use ($ids) {
-            Collection::make(
-                KeepHelper::getAssignmentIdsRelatedToGroup($group)
-            )->each(function ($id) use ($ids) {
+            $group->assignments->lists('id')->each(function ($id) use ($ids) {
                 $ids->push($id);
             });
         });
@@ -110,7 +106,7 @@ class EloquentAssignmentRepository extends DbRepository implements AssignmentRep
         return $this->model->whereIn('id', $ids->unique()->toArray());
     }
 
-    public function getTrashedAssignments($limit)
+    public function fetchTrashedAssignments($limit)
     {
         return $this->model
             ->onlyTrashed()

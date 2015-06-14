@@ -31,8 +31,8 @@ class UserAssignmentController extends Controller
      */
     public function index($userSlug)
     {
-        $memberAssignments = $this->assignmentRepo->getAssignmentsAssociatedWithAUser($userSlug);
-        $groupAssignments = $this->assignmentRepo->getGroupAssignmentsAssociatedWithAUser($userSlug);
+        $memberAssignments = $this->assignmentRepo->fetchAssignmentsOfAUser($userSlug);
+        $groupAssignments = $this->assignmentRepo->fetchGroupAssignmentsOfAUser($userSlug);
 
         return view('users.assignments.index', compact('memberAssignments', 'groupAssignments'));
     }

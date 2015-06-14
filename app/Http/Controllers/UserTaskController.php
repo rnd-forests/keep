@@ -127,7 +127,7 @@ class UserTaskController extends Controller
      */
     public function update(TaskRequest $request, $userSlug, $taskSlug)
     {
-        $task = $this->taskRepo->update($userSlug, $taskSlug, $request->all());
+        $task = $this->taskRepo->update($request->all(), $userSlug, $taskSlug);
         $this->setRelations($task, $request);
         flash()->info('Your task was successfully updated');
 

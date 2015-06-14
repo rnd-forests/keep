@@ -27,7 +27,7 @@ class ActivateAccount extends Job implements SelfHandling
      */
     public function handle(UserRepositoryInterface $users)
     {
-        $user = $users->findByCodeAndActiveState($this->code, false);
+        $user = $users->findByActivationCode($this->code);
         $user->update(['activation_code' => '', 'active' => true]);
         if ( ! $user->save()) {
             return false;

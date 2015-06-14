@@ -44,7 +44,7 @@ class UsersController extends Controller
      */
     public function update(EditUserProfileRequest $request, $slug)
     {
-        $user = $this->userRepo->updateProfile($slug, $request->except(['_method', '_token']));
+        $user = $this->userRepo->updateProfile($request->except(['_method', '_token']), $slug);
         flash()->info('Your profile has been successfully updated.');
 
         return redirect()->route('member::profile', $user);

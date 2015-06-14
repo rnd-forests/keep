@@ -28,7 +28,7 @@ class TasksController extends Controller
     {
         $sortBy = Request::get('sortBy');
         $direction = Request::get('direction');
-        $tasks = $this->taskRepo->getPaginatedTasks(50, compact('sortBy', 'direction'));
+        $tasks = $this->taskRepo->fetchPaginatedTasks(compact('sortBy', 'direction'), 50);
 
         return view('admin.tasks.active_tasks', compact('tasks'));
     }
@@ -69,7 +69,7 @@ class TasksController extends Controller
      */
     public function trashedTasks()
     {
-        $trashedTasks = $this->taskRepo->getTrashedTasks(50);
+        $trashedTasks = $this->taskRepo->fetchTrashedTasks(50);
 
         return view('admin.tasks.trashed_tasks', compact('trashedTasks'));
     }

@@ -1,11 +1,9 @@
 <?php
 namespace Keep\Repositories\Task;
 
-use Keep\Entities\User;
-
 interface TaskRepositoryInterface
 {
-    public function getPaginatedTasks($limit, array $params);
+    public function fetchPaginatedTasks(array $params, $limit);
 
     public function findBySlug($slug);
 
@@ -13,9 +11,9 @@ interface TaskRepositoryInterface
 
     public function create(array $data);
 
-    public function update($userSlug, $taskSlug, array $data);
+    public function update(array $data, $userSlug, $taskSlug);
 
-    public function adminUpdate($task, array $data);
+    public function adminUpdate(array $data, $task);
 
     public function deleteWithUserConstraint($userSlug, $taskSlug);
 
@@ -25,7 +23,7 @@ interface TaskRepositoryInterface
 
     public function forceDelete($slug);
 
-    public function getTrashedTasks($limit);
+    public function fetchTrashedTasks($limit);
 
     public function findTrashedTaskBySlug($slug);
 
@@ -35,31 +33,31 @@ interface TaskRepositoryInterface
 
     public function associatePriority($task, $priorityId);
 
-    public function fetchUserUrgentTasks(User $user);
+    public function fetchUserUrgentTasks($user);
 
-    public function fetchUserDeadlineTasks(User $user);
+    public function fetchUserDeadlineTasks($user);
 
-    public function fetchUserRecentlyCompletedTasks(User $user);
+    public function fetchUserRecentlyCompletedTasks($user);
 
     public function findAndUpdateFailedTasks();
 
     public function recoverFailedTasks();
 
-    public function fetchUserRecentlyFailedTasks(User $user);
+    public function fetchUserRecentlyFailedTasks($user);
 
-    public function fetchUserNewestTasks(User $user);
+    public function fetchUserNewestTasks($user);
 
-    public function fetchUserPaginatedTasksCollection(User $user);
+    public function fetchUserPaginatedTasksCollection($user);
 
-    public function fetchUserPaginatedCompletedTasks(User $user);
+    public function fetchUserPaginatedCompletedTasks($user);
 
-    public function fetchUserPaginatedFailedTasks(User $user);
+    public function fetchUserPaginatedFailedTasks($user);
 
-    public function fetchUserPaginatedDueTasks(User $user);
+    public function fetchUserPaginatedDueTasks($user);
 
     public function fetchUserUpcomingTasks();
 
     public function fetchAllTasksOfAUser($userSlug);
 
-    public function searchByTitle(User $user, $pattern);
+    public function searchByTitle($user, $pattern);
 }

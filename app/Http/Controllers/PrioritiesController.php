@@ -32,7 +32,7 @@ class PrioritiesController extends Controller
     public function index($userSlug)
     {
         $user = $this->userRepo->findBySlug($userSlug);
-        $priorities = $this->priorityRepo->getAll();
+        $priorities = $this->priorityRepo->fetchAll();
 
         return view('users.priorities.index', compact('user', 'priorities'));
     }
@@ -48,7 +48,7 @@ class PrioritiesController extends Controller
     public function show($userSlug, $priorityName)
     {
         $priority = $this->priorityRepo->findByName($priorityName);
-        $tasks = $this->priorityRepo->getTasksOfUserAssociatedWithAPriority($userSlug, $priorityName, 10);
+        $tasks = $this->priorityRepo->fetchTasksAssociatedWithPriority($userSlug, $priorityName, 10);
 
         return view('users.priorities.show', compact('priority', 'tasks'));
     }

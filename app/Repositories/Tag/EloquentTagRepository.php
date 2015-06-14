@@ -1,12 +1,11 @@
 <?php
 namespace Keep\Repositories\Tag;
 
-use DB;
 use Keep\Entities\Tag;
 use Keep\Entities\User;
-use Keep\Repositories\DbRepository;
+use Keep\Repositories\EloquentRepository;
 
-class EloquentTagRepository extends DbRepository implements TagRepositoryInterface
+class EloquentTagRepository extends EloquentRepository implements TagRepositoryInterface
 {
     protected $model;
 
@@ -22,19 +21,17 @@ class EloquentTagRepository extends DbRepository implements TagRepositoryInterfa
             ->lists('name', 'id');
     }
 
-    public function getAssociatedTags($userSlug)
+    public function fetchAttachedTags($userSlug)
     {
         $user = User::findBySlug($userSlug);
 
-        return $this->model->whereIn('id', array_fetch(
-            DB::table('tag_task')
-                ->whereIn('task_id', $user->tasks->lists('id'))
-                ->groupBy(['tag_id', 'task_id'])
-                ->get(), 'tag_id')
-        )->get();
+        return $this->model
+            ->with('tasks')->whereHas('tasks', function ($query) use ($user) {
+                $query->user_id = $user->id;
+            })->get();
     }
 
-    public function getTasksOfUserAssociatedWithATag($userSlug, $tagSlug, $limit)
+    public function fetchTasksAssociatedWithTag($userSlug, $tagSlug, $limit)
     {
         $user = User::findBySlug($userSlug);
         $tag = $this->findBySlug($tagSlug);

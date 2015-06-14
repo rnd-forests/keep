@@ -3,31 +3,31 @@ namespace Keep\Repositories\Assignment;
 
 interface AssignmentRepositoryInterface
 {
-    public function getPaginatedAssignments($limit);
+    public function fetchPaginatedAssignments($limit);
 
     public function findBySlug($slug);
 
-    public function update($slug, array $data);
-
-    public function delete($slug);
-
     public function create(array $data);
 
+    public function update($slug, array $data);
+
+    public function softDelete($slug);
+
+    public function restore($slug);
+
+    public function forceDelete($slug);
+    
     public function syncPolymorphicRelations($assignment, $users, $groups);
 
-    public function getGroupAssignmentsAssociatedWithAUser($userSlug);
+    public function fetchGroupAssignmentsOfAUser($userSlug);
 
-    public function getAssignmentsAssociatedWithAUser($userSlug);
+    public function fetchAssignmentsOfAUser($userSlug);
 
     public function findPersonalAssignment($userSlug, $assignmentSlug);
 
     public function findGroupAssignment($userSlug, $assignmentSlug);
 
-    public function getTrashedAssignments($limit);
+    public function fetchTrashedAssignments($limit);
 
     public function findTrashedAssignmentBySlug($slug);
-
-    public function restore($slug);
-
-    public function forceDelete($slug);
 }

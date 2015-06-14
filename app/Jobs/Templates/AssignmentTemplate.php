@@ -98,7 +98,7 @@ abstract class AssignmentTemplate extends Job
      */
     public function updateAssociatedTask($task)
     {
-        self::$taskRepo->adminUpdate($task, $this->data);
+        self::$taskRepo->adminUpdate($this->data, $task);
         self::$taskRepo->syncTags($task, $this->getTagListRequestData());
         self::$taskRepo->associatePriority($task, $this->getPriorityRequestData());
     }

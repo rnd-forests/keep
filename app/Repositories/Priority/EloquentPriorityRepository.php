@@ -3,9 +3,9 @@ namespace Keep\Repositories\Priority;
 
 use Keep\Entities\User;
 use Keep\Entities\Priority;
-use Keep\Repositories\DbRepository;
+use Keep\Repositories\EloquentRepository;
 
-class EloquentPriorityRepository extends DbRepository implements PriorityRepositoryInterface
+class EloquentPriorityRepository extends EloquentRepository implements PriorityRepositoryInterface
 {
     protected $model;
 
@@ -14,7 +14,7 @@ class EloquentPriorityRepository extends DbRepository implements PriorityReposit
         $this->model = $model;
     }
 
-    public function getAll()
+    public function fetchAll()
     {
         return $this->model
             ->latest('value')
@@ -35,7 +35,7 @@ class EloquentPriorityRepository extends DbRepository implements PriorityReposit
             ->firstOrFail();
     }
 
-    public function getTasksOfUserAssociatedWithAPriority($userSlug, $priorityName, $limit)
+    public function fetchTasksAssociatedWithPriority($userSlug, $priorityName, $limit)
     {
         $user = User::findBySlug($userSlug);
         $priority = $this->findByName($priorityName);

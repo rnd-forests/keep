@@ -3,10 +3,9 @@ namespace Keep\Repositories\UserGroup;
 
 use Keep\Entities\User;
 use Keep\Entities\Group;
-use Keep\Services\KeepHelper;
-use Keep\Repositories\DbRepository;
+use Keep\Repositories\EloquentRepository;
 
-class EloquentUserGroupRepository extends DbRepository implements UserGroupRepositoryInterface
+class EloquentUserGroupRepository extends EloquentRepository implements UserGroupRepositoryInterface
 {
     protected $model;
 
@@ -15,7 +14,7 @@ class EloquentUserGroupRepository extends DbRepository implements UserGroupRepos
         $this->model = $model;
     }
 
-    public function getPaginatedGroups($limit)
+    public function fetchPaginatedGroups($limit)
     {
         return $this->model
             ->with('users')
@@ -65,7 +64,7 @@ class EloquentUserGroupRepository extends DbRepository implements UserGroupRepos
         $group->forceDelete();
     }
 
-    public function getTrashedGroups($limit)
+    public function fetchTrashedGroups($limit)
     {
         return $this->model
             ->with('users')
@@ -82,21 +81,23 @@ class EloquentUserGroupRepository extends DbRepository implements UserGroupRepos
             ->firstOrFail();
     }
 
-    public function getPaginatedAssociatedUsers(Group $group, $limit)
+    public function fetchPaginatedAssociatedUsers($group, $limit)
     {
         return $group->users()
             ->oldest('name')
             ->paginate($limit);
     }
 
-    public function getUsersOutsideGroup($slug)
+    public function fetchOutsiders($slug)
     {
-        return User::whereNotIn(
-            'id', KeepHelper::getUserIdsRelatedToGroup($this->findBySlug($slug))
-        )->oldest('name')->get();
+        $group = $this->findBySlug($slug);
+        $ids = $group->users->lists('id')->toArray();
+
+        return User::whereNotIn('id', $ids)
+            ->oldest('name')->get();
     }
 
-    public function attachUsers(Group $group, array $users)
+    public function attachUsers($group, array $users)
     {
         $group->users()->attach($users);
     }
@@ -106,21 +107,21 @@ class EloquentUserGroupRepository extends DbRepository implements UserGroupRepos
         return $this->model->whereIn('id', $ids)->get();
     }
 
-    public function getGroupsAssociatedWithAUser($userSlug)
+    public function fetchGroupsOfUser($userSlug)
     {
         $user = User::findBySlug($userSlug);
 
         return $user->groups()->paginate(10);
     }
 
-    public function getMembersOfGroup($groupSlug)
+    public function fetchMembersOfGroup($groupSlug)
     {
         $group = $this->findBySlug($groupSlug);
 
         return $group->users()->latest('created_at')->get();
     }
 
-    public function getAssignmentsOfGroup($groupSlug)
+    public function fetchAssignmentsOfGroup($groupSlug)
     {
         $group = $this->findBySlug($groupSlug);
 

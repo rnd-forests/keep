@@ -5,7 +5,7 @@ interface TagRepositoryInterface
 {
     public function lists();
 
-    public function getAssociatedTags($userSlug);
+    public function fetchAttachedTags($userSlug);
 
-    public function getTasksOfUserAssociatedWithATag($userSlug, $tagSlug, $limit);
+    public function fetchTasksAssociatedWithTag($userSlug, $tagSlug, $limit);
 }

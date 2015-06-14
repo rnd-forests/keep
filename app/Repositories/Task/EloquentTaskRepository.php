@@ -6,9 +6,9 @@ use Carbon\Carbon;
 use Keep\Entities\Task;
 use Keep\Entities\User;
 use Keep\Entities\Priority;
-use Keep\Repositories\DbRepository;
+use Keep\Repositories\EloquentRepository;
 
-class EloquentTaskRepository extends DbRepository implements TaskRepositoryInterface
+class EloquentTaskRepository extends EloquentRepository implements TaskRepositoryInterface
 {
     protected $model;
 
@@ -17,10 +17,11 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
         $this->model = $model;
     }
 
-    public function getPaginatedTasks($limit, array $params)
+    public function fetchPaginatedTasks(array $params, $limit)
     {
         if ($this->isSortable($params)) {
-            return $this->model->with('owner', 'priority')
+            return $this->model
+                ->with('owner', 'priority')
                 ->orderBy($params['sortBy'], $params['direction'])
                 ->paginate($limit);
         }
@@ -41,7 +42,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
         ]);
     }
 
-    public function update($userSlug, $taskSlug, array $data)
+    public function update(array $data, $userSlug, $taskSlug)
     {
         $task = $this->findCorrectTaskBySlug($userSlug, $taskSlug);
         $task->update($data);
@@ -49,7 +50,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
         return $task;
     }
 
-    public function adminUpdate($task, array $data)
+    public function adminUpdate(array $data, $task)
     {
         $task->update($data);
 
@@ -105,7 +106,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
         $task->forceDelete();
     }
 
-    public function getTrashedTasks($limit)
+    public function fetchTrashedTasks($limit)
     {
         return $this->model->with(['owner' => function ($query) {
             $query->withTrashed();
@@ -136,7 +137,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
         return $task->save();
     }
 
-    public function fetchUserUrgentTasks(User $user)
+    public function fetchUserUrgentTasks($user)
     {
         return $user->tasks()
             ->urgent()
@@ -144,7 +145,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
             ->get();
     }
 
-    public function fetchUserDeadlineTasks(User $user)
+    public function fetchUserDeadlineTasks($user)
     {
         return $user->tasks()
             ->toDeadline()
@@ -152,7 +153,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
             ->get();
     }
 
-    public function fetchUserRecentlyCompletedTasks(User $user)
+    public function fetchUserRecentlyCompletedTasks($user)
     {
         return $user->tasks()
             ->recentlyCompleted()
@@ -169,12 +170,13 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
 
     public function recoverFailedTasks()
     {
-        return $this->model->where('is_failed', 1)
+        return $this->model
+            ->where('is_failed', 1)
             ->where('finishing_date', '>=', Carbon::now())
             ->update(['is_failed' => false]);
     }
 
-    public function fetchUserRecentlyFailedTasks(User $user)
+    public function fetchUserRecentlyFailedTasks($user)
     {
         return $user->tasks()
             ->recentlyFailed()
@@ -182,7 +184,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
             ->get();
     }
 
-    public function fetchUserNewestTasks(User $user)
+    public function fetchUserNewestTasks($user)
     {
         return $user->tasks()
             ->newest()
@@ -190,14 +192,14 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
             ->get();
     }
 
-    public function fetchUserPaginatedTasksCollection(User $user)
+    public function fetchUserPaginatedTasksCollection($user)
     {
         return $user->tasks()
             ->latest('created_at')
             ->paginate(30);
     }
 
-    public function fetchUserPaginatedCompletedTasks(User $user)
+    public function fetchUserPaginatedCompletedTasks($user)
     {
         return $user->tasks()
             ->completed()
@@ -205,7 +207,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
             ->paginate(30);
     }
 
-    public function fetchUserPaginatedFailedTasks(User $user)
+    public function fetchUserPaginatedFailedTasks($user)
     {
         return $user->tasks()
             ->where('is_failed', 1)
@@ -213,7 +215,7 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
             ->paginate(30);
     }
 
-    public function fetchUserPaginatedDueTasks(User $user)
+    public function fetchUserPaginatedDueTasks($user)
     {
         return $user->tasks()
             ->due()
@@ -233,19 +235,26 @@ class EloquentTaskRepository extends DbRepository implements TaskRepositoryInter
     {
         $user = User::findBySlug($userSlug);
 
-        return $this->model->where(['user_id' => $user->id, 'completed' => 0])->get([
-            'title', 'starting_date', 'finishing_date', 'priority_id'
-        ])->map(function ($task) {
-            return [
-                'content'   => $task->title,
-                'endDate'   => Carbon::parse($task->finishing_date)->toDayDateTimeString(),
-                'startDate' => Carbon::parse($task->starting_date)->toDayDateTimeString(),
-                'color'     => $task->priority_id
-            ];
-        })->toArray();
+        return $this->model
+            ->where([
+                'user_id'   => $user->id,
+                'completed' => 0
+            ])
+            ->get([
+                'title', 'starting_date',
+                'finishing_date', 'priority_id'
+            ])
+            ->transform(function ($task) {
+                return [
+                    'content'   => $task->title,
+                    'endDate'   => Carbon::parse($task->finishing_date)->toDayDateTimeString(),
+                    'startDate' => Carbon::parse($task->starting_date)->toDayDateTimeString(),
+                    'color'     => $task->priority_id
+                ];
+            })->toArray();
     }
 
-    public function searchByTitle(User $user, $pattern)
+    public function searchByTitle($user, $pattern)
     {
         return $user->tasks()
             ->search($pattern)

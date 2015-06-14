@@ -2,9 +2,9 @@
 namespace Keep\Repositories\User;
 
 use Keep\Entities\User;
-use Keep\Repositories\DbRepository;
+use Keep\Repositories\EloquentRepository;
 
-class EloquentUserRepository extends DbRepository implements UserRepositoryInterface
+class EloquentUserRepository extends EloquentRepository implements UserRepositoryInterface
 {
     protected $model;
 
@@ -13,10 +13,11 @@ class EloquentUserRepository extends DbRepository implements UserRepositoryInter
         $this->model = $model;
     }
 
-    public function getPaginatedUsers($limit, array $params)
+    public function fetchPaginatedUsers(array $params, $limit)
     {
         if ($this->isSortable($params)) {
-            return $this->model->with('tasks', 'roles', 'groups', 'assignments')
+            return $this->model
+                ->with('tasks', 'roles', 'groups', 'assignments')
                 ->orderBy($params['sortBy'], $params['direction'])
                 ->paginate($limit);
         }
@@ -26,18 +27,18 @@ class EloquentUserRepository extends DbRepository implements UserRepositoryInter
             ->paginate($limit);
     }
 
-    public function findBySlugWithTasks($slug)
+    public function findBySlugEagerLoadTasks($slug)
     {
         return $this->model->with(['tasks' => function ($query) {
             $query->latest('created_at');
         }, 'roles'])->where('slug', $slug)->firstOrFail();
     }
 
-    public function findByCodeAndActiveState($code, $state)
+    public function findByActivationCode($code, $active = false)
     {
         return $this->model
             ->where('activation_code', $code)
-            ->where('active', $state)
+            ->where('active', $active)
             ->firstOrFail();
     }
 
@@ -51,7 +52,7 @@ class EloquentUserRepository extends DbRepository implements UserRepositoryInter
         ]);
     }
 
-    public function updateProfile($slug, array $credentials)
+    public function updateProfile(array $credentials, $slug)
     {
         $user = $this->findBySlug($slug);
         $user->profile()->update($credentials);
@@ -61,7 +62,7 @@ class EloquentUserRepository extends DbRepository implements UserRepositoryInter
 
     public function restore($slug)
     {
-        $user = $this->findTrashedUserBySlug($slug);
+        $user = $this->findDisabledUserBySlug($slug);
         $user->tasks()->withTrashed()->get()->each(function ($task) {
             $task->restore();
         });
@@ -83,14 +84,13 @@ class EloquentUserRepository extends DbRepository implements UserRepositoryInter
 
     public function forceDelete($slug)
     {
-        $user = $this->findTrashedUserBySlug($slug);
+        $user = $this->findDisabledUserBySlug($slug);
         $user->tasks()->withTrashed()->forceDelete();
         $user->profile()->withTrashed()->forceDelete();
-
-        return $user->forceDelete();
+        $user->forceDelete();
     }
 
-    public function getTrashedUsers($limit)
+    public function fetchDisabledUsers($limit)
     {
         return $this->model
             ->onlyTrashed()
@@ -98,7 +98,7 @@ class EloquentUserRepository extends DbRepository implements UserRepositoryInter
             ->paginate($limit);
     }
 
-    public function findTrashedUserBySlug($slug)
+    public function findDisabledUserBySlug($slug)
     {
         return $this->model
             ->onlyTrashed()
@@ -106,31 +106,29 @@ class EloquentUserRepository extends DbRepository implements UserRepositoryInter
             ->firstOrFail();
     }
 
-    public function getPaginatedAssociatedTasks(User $user, $limit)
-    {
-        return $user->tasks()
-            ->latest('created_at')
-            ->paginate($limit);
-    }
-
     public function fetchUsersByIds(array $ids)
     {
         return $this->model->whereIn('id', $ids)->get();
     }
 
-    public function findOrCreateNew(array $userData, $provider)
+    public function findOrCreateNew(array $userData, $authProvider)
     {
-        $user = $this->model->where('auth_provider_id', $userData['auth_provider_id'])->first();
-        $existed = $this->model->where('email', $userData['email'])->first();
-        if ( ! $user && $existed) {
+        $user = $this->model
+            ->where('auth_provider_id', $userData['auth_provider_id'])
+            ->first();
+        $userExisted = $this->model
+            ->where('email', $userData['email'])
+            ->first();
+        if ( ! $user && $userExisted) {
             return false;
         }
         if ( ! $user) {
             $user = $this->model->create($userData);
             $user->update([
-                'auth_provider'   => $provider,
+                'auth_provider'   => $authProvider,
                 'active'          => true,
-                'activation_code' => ''
+                'activation_code' => '',
+                'password'        => env('OAUTH_PASSWORD')
             ]);
         }
 
