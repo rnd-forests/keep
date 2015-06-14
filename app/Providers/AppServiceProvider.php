@@ -26,37 +26,37 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
+        $this->app->singleton(
             \Keep\Repositories\User\UserRepositoryInterface::class,
             \Keep\Repositories\User\EloquentUserRepository::class
         );
 
-        $this->app->bind(
+        $this->app->singleton(
             \Keep\Repositories\Tag\TagRepositoryInterface::class,
             \Keep\Repositories\Tag\EloquentTagRepository::class
         );
 
-        $this->app->bind(
+        $this->app->singleton(
             \Keep\Repositories\Task\TaskRepositoryInterface::class,
             \Keep\Repositories\Task\EloquentTaskRepository::class
         );
 
-        $this->app->bind(
+        $this->app->singleton(
             \Keep\Repositories\Priority\PriorityRepositoryInterface::class,
             \Keep\Repositories\Priority\EloquentPriorityRepository::class
         );
 
-        $this->app->bind(
+        $this->app->singleton(
             \Keep\Repositories\UserGroup\UserGroupRepositoryInterface::class,
             \Keep\Repositories\UserGroup\EloquentUserGroupRepository::class
         );
 
-        $this->app->bind(
+        $this->app->singleton(
             \Keep\Repositories\Assignment\AssignmentRepositoryInterface::class,
             \Keep\Repositories\Assignment\EloquentAssignmentRepository::class
         );
 
-        $this->app->bind(
+        $this->app->singleton(
             \Keep\Repositories\Notification\NotificationRepositoryInterface::class,
             \Keep\Repositories\Notification\EloquentNotificationRepository::class
         );
