@@ -127,8 +127,7 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
             $user->update([
                 'auth_provider'   => $authProvider,
                 'active'          => true,
-                'activation_code' => '',
-                'password'        => env('OAUTH_PASSWORD')
+                'activation_code' => ''
             ]);
         }
 

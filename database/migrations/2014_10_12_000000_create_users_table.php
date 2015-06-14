@@ -12,7 +12,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('email')->unique();
-            $table->string('password', 60);
+            $table->string('password', 60)->nullable();
             $table->boolean('active')->default(false);
             $table->string('auth_provider')->default('eloquent')->nullable();
             $table->string('auth_provider_id')->unique()->nullable();
