@@ -18,12 +18,16 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        \Keep\Events\UserHasRegistered::class => [
-            \Keep\Listeners\EmailAccountActivationLink::class,
-        ],
-        \Keep\Events\TaskHasPublished::class  => [
-            \Keep\Listeners\EmailNewlyCreatedTask::class,
-        ],
+        //
+    ];
+
+    /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        \Keep\Listeners\UserEventListener::class
     ];
 
     /**
