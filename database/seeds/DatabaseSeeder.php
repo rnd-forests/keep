@@ -11,20 +11,13 @@ class DatabaseSeeder extends Seeder
      * @var array
      */
     protected $tables = [
-        'users',
-        'profiles',
-        'tasks',
         'roles',
-        'role_user',
-        'permissions',
-        'assignments',
-        'assignables',
-        'tags',
-        'tag_task',
-        'groups',
-        'group_user',
         'priorities',
-        'notifications'
+        'permissions',
+        'tags',
+        'users',
+        'groups',
+        'assignments',
     ];
 
     /**
@@ -33,20 +26,13 @@ class DatabaseSeeder extends Seeder
      * @var array
      */
     protected $seeders = [
-        'UsersTableSeeder',
-        'ProfilesTableSeeder',
-        'TasksTableSeeder',
         'RolesTableSeeder',
-        'RoleUserTableSeeder',
-        'PermissionsTableSeeder',
-        'AssignmentsTableSeeder',
-        'AssignablesTableSeeder',
-        'TagsTableSeeder',
-        'TagTaskTableSeeder',
-        'GroupsTableSeeder',
-        'GroupUserTableSeeder',
         'PrioritiesTableSeeder',
-        'NotificationsTableSeeder'
+        'PermissionsTableSeeder',
+        'TagsTableSeeder',
+        'UsersTableSeeder',
+        'GroupsTableSeeder',
+        'AssignmentsTableSeeder',
     ];
 
     /**

@@ -1,43 +1,54 @@
 <?php
 
-use Carbon\Carbon;
-use Keep\Entities\User;
-use Faker\Factory as Faker;
+use Keep\Entities\Tag;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
     public function run()
     {
-        $faker = Faker::create();
-        User::create([
-            'name'       => 'Vinh Nguyen',
-            'email'      => 'ngocvinh.nnv@gmail.com',
-            'password'   => '123456789',
-            'active'     => true,
-            'created_at' => Carbon::now()->subYears(3),
-            'updated_at' => Carbon::now()->subYears(3)
-        ]);
+        $tagIds = Tag::lists('id')->all();
 
-        User::create([
-            'name'       => 'Hang Dang',
-            'email'      => 'hangdt.aa@gmail.com',
-            'password'   => '123456789',
-            'active'     => true,
-            'created_at' => Carbon::now()->subYears(2),
-            'updated_at' => Carbon::now()->subYears(2)
+        // Application owner
+        $owner = factory(Keep\Entities\User::class)->create([
+            'name'  => 'Keep Owner',
+            'email' => 'anonymous@keep.com'
         ]);
+        $owner->roles()->attach(1);
+        $owner->profile()->save(factory(Keep\Entities\Profile::class)->make());
 
-        for ($i = 1; $i <= 150; $i++) {
-            $timestamp = Carbon::now()->subMonths(rand(1, 20));
-            User::create([
-                'name'       => $faker->name,
-                'email'      => $faker->email,
-                'password'   => 'secret',
-                'active'     => true,
-                'created_at' => $timestamp,
-                'updated_at' => $timestamp
-            ]);
-        }
+        // Application administrator
+        $admin = factory(Keep\Entities\User::class, 1)->create([
+            'name'  => 'Vinh Nguyen',
+            'email' => 'ngocvinh.nnv@gmail.com'
+        ]);
+        $admin->roles()->attach(2);
+        $admin->profile()->save(factory(Keep\Entities\Profile::class)->make());
+        $admin->tasks()->saveMany(factory(Keep\Entities\Task::class, 35)
+            ->create()
+            ->each(function ($task) use ($tagIds) {
+                shuffle($tagIds);
+                $task->tags()->sync(array_slice($tagIds, rand(1, count($tagIds))));
+            }));
+        factory(Keep\Entities\Notification::class, 15)
+            ->create()
+            ->each(function ($noti) use ($admin) {
+                $admin->notifications()->attach($noti->id);
+            });
+
+        // Regular users
+        factory(Keep\Entities\User::class, 100)->create()->each(function ($user) use ($tagIds) {
+            $user->profile()->save(factory(Keep\Entities\Profile::class)->make());
+            factory(Keep\Entities\Notification::class, 3)
+                ->create()
+                ->each(function ($noti) use ($user) {
+                    $user->notifications()->attach($noti->id);
+                });
+            $user->tasks()->saveMany(factory(Keep\Entities\Task::class, 3)
+                ->create()->each(function ($task) use ($tagIds) {
+                    shuffle($tagIds);
+                    $task->tags()->sync(array_slice($tagIds, rand(1, count($tagIds))));
+                }));
+        });
     }
 }

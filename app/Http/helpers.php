@@ -76,3 +76,8 @@ function zero($count)
 {
     return $count == 0;
 }
+
+function array_random_val(array $arr)
+{
+    return $arr[array_rand($arr)];
+}

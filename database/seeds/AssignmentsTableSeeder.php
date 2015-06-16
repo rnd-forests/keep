@@ -1,39 +1,48 @@
 <?php
 
-use Carbon\Carbon;
-use Keep\Entities\Task;
-use Faker\Factory as Faker;
-use Keep\Entities\Assignment;
+use Keep\Entities\User;
+use Keep\Entities\Group;
 use Illuminate\Database\Seeder;
 
 class AssignmentsTableSeeder extends Seeder
 {
     public function run()
     {
-        $faker = Faker::create();
-        for ($i = 1; $i <= 50; $i++) {
-            $timestamp = Carbon::now()->subDays(rand(5, 60));
-            Assignment::create([
-                'assignment_name' => ucfirst(implode(' ', $faker->words(6))),
-                'created_at'      => $timestamp,
-                'updated_at'      => $timestamp
-            ]);
-        }
+        $userIds = User::lists('id')->toArray();
+        $groupIds = Group::lists('id')->toArray();
 
-        for ($i = 1; $i <= 50; $i++) {
-            $timestamp = Carbon::now()->subDays(rand(5, 50));
-            Task::create([
-                'assignment_id'  => $i,
-                'priority_id'    => rand(1, 4),
-                'title'          => ucfirst(implode(" ", $faker->words(5))),
-                'content'        => implode(" ", $faker->paragraphs(1)),
-                'location'       => $faker->address,
-                'is_assigned'    => true,
-                'starting_date'  => $timestamp,
-                'finishing_date' => Carbon::now()->addDays(rand(5, 50)),
-                'created_at'     => $timestamp,
-                'updated_at'     => $timestamp
-            ]);
-        }
+        factory(Keep\Entities\Assignment::class, 20)
+            ->create()
+            ->each(function ($assignment) use ($userIds) {
+                $assignment->task()->save(
+                    factory(Keep\Entities\Task::class)->make([
+                        'is_assigned' => true
+                    ])
+                );
+                shuffle($userIds);
+                $assignment->users()->sync(
+                    array_slice(
+                        $userIds,
+                        rand(count($userIds) / 2, count($userIds))
+                    )
+                );
+            });
+
+        factory(Keep\Entities\Assignment::class, 20)
+            ->create()
+            ->each(function ($assignment) use ($groupIds) {
+                $assignment->task()->save(
+                    factory(Keep\Entities\Task::class)->make([
+                        'is_assigned' => true
+                    ])
+                );
+                shuffle($groupIds);
+                $assignment->groups()->sync(
+                    array_slice(
+                        $groupIds,
+                        rand(count($groupIds) / 2, count($groupIds))
+                    )
+                );
+            });
     }
 }

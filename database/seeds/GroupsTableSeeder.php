@@ -1,23 +1,29 @@
 <?php
 
-use Carbon\Carbon;
-use Keep\Entities\Group;
-use Faker\Factory as Faker;
+use Keep\Entities\User;
 use Illuminate\Database\Seeder;
 
 class GroupsTableSeeder extends Seeder
 {
     public function run()
     {
-        $faker = Faker::create();
-        for ($i = 1; $i <= 50; $i++) {
-            $timestamp = Carbon::now()->subMonths(rand(1, 20));
-            Group::create([
-                'name'        => ucfirst(implode(' ', $faker->words(5))),
-                'description' => $faker->paragraph(4),
-                'created_at'  => $timestamp,
-                'updated_at'  => $timestamp
-            ]);
-        }
+        $userIds = User::lists('id')->all();
+
+        factory(Keep\Entities\Group::class, 25)
+            ->create()->each(function ($group) use ($userIds) {
+                shuffle($userIds);
+                $group->users()->sync(
+                    array_slice(
+                        $userIds,
+                        rand(count($userIds) / 2, count($userIds))
+                    )
+                );
+
+                factory(Keep\Entities\Notification::class, 10)
+                    ->create()
+                    ->each(function ($noti) use ($group) {
+                        $group->notifications()->attach($noti->id);
+                    });
+            });
     }
 }

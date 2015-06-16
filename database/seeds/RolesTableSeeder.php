@@ -17,11 +17,6 @@ class RolesTableSeeder extends Seeder
                 'name'         => 'admin',
                 'display_name' => 'Keep Administrator',
                 'description'  => 'User is allowed to manage and edit other users/tasks/assignments/notifications'
-            ],
-            [
-                'name'         => 'editor',
-                'display_name' => 'Keep Editor',
-                'description'  => 'User is allowed to have complete control over content'
             ]
         ];
 
