@@ -15,10 +15,9 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             return $view->with('authUser', auth()->user());
         });
-        
+
         $this->composeNavbar();
         $this->composeTaskForm();
-        $this->composeUserDashboard();
         $this->composeAssignmentForm();
         $this->composeNotificationForm();
     }
@@ -60,14 +59,6 @@ class ComposerServiceProvider extends ServiceProvider
                 'admin.assignments.create_member_assignment'
             ],
             'Keep\Http\ViewComposers\MemberAssignmentForm'
-        );
-    }
-
-    private function composeUserDashboard()
-    {
-        view()->composer(
-            'users.dashboard.dashboard',
-            'Keep\Http\ViewComposers\UserDashboard'
         );
     }
 

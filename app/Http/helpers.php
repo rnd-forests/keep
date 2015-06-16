@@ -71,3 +71,8 @@ function render_pagination($collection)
 {
     return '<div class="text-center">' . $collection->render() . '</div>';
 }
+
+function zero($count)
+{
+    return $count == 0;
+}

@@ -2,6 +2,7 @@
 @section('meta-description', $authUser->name . ' personal dashboard')
 @section('title', 'Dashboard')
 @section('content')
+    @inject('counter', 'Keep\Services\UserDashboardService')
     <div class="row">
         <div id="search-keyword-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-sm">
@@ -54,7 +55,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            @unless($totalTasksCount == 0)
+            @unless(zero($counter->totalTasks()))
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="text-center"><i class="fa fa-bar-chart"></i> Task Statistics</div>
@@ -70,7 +71,7 @@
                     <a href="{{ route('member::tasks.all', $user) }}">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <div class="large">{{ $totalTasksCount }}</div>
+                                <div class="large">{{ $counter->totalTasks() }}</div>
                                 <div class="small">in total</div>
                             </div>
                         </div>
@@ -80,7 +81,7 @@
                     <a href="{{ route('member::tasks.completed', $user) }}">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <div class="large">{{ $completedTasksCount }}</div>
+                                <div class="large">{{ $counter->countCompletedTasks() }}</div>
                                 <div class="small">completed</div>
                             </div>
                         </div>
@@ -90,7 +91,7 @@
                     <a href="{{ route('member::tasks.failed', $user) }}">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <div class="large">{{ $failedTasksCount }}</div>
+                                <div class="large">{{ $counter->countFailedTasks() }}</div>
                                 <div class="small">failed</div>
                             </div>
                         </div>
@@ -100,7 +101,7 @@
                     <a href="{{ route('member::tasks.due', $user) }}">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <div class="large">{{ $dueTasksCount }}</div>
+                                <div class="large">{{ $counter->countDueTasks() }}</div>
                                 <div class="small">due</div>
                             </div>
                         </div>
@@ -159,7 +160,7 @@
 @stop
 
 @section('footer')
-    @unless($totalTasksCount == 0)
+    @unless(zero($counter->totalTasks()))
         <script>
             (function () {
                 var ctx = document.getElementById('user-dashboard-stats').getContext('2d');
@@ -167,9 +168,15 @@
                     labels: ["Completed", "Failed", "Due"],
                     datasets: [{
                         data: [
-                            Math.round({{ json_encode($completedTasksCount / $totalTasksCount * 100) }}),
-                            Math.round({{ json_encode($failedTasksCount / $totalTasksCount) * 100 }}),
-                            Math.round({{ json_encode(($totalTasksCount - $completedTasksCount - $failedTasksCount) / $totalTasksCount) * 100 }})
+                            Math.round({{ json_encode(
+                                $counter->countCompletedTasks() / $counter->totalTasks() * 100
+                            ) }}),
+                            Math.round({{ json_encode(
+                                $counter->countFailedTasks() / $counter->totalTasks() * 100
+                            ) }}),
+                            Math.round({{ json_encode(
+                                $counter->countDueTasks() / $counter->totalTasks() * 100
+                            ) }})
                         ],
                         fillColor: "rgba(26,179,148,0.5)",
                         strokeColor: "rgba(26,179,148,0.8)",
