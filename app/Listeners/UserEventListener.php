@@ -27,7 +27,10 @@ class UserEventListener
      */
     public function onUserRegister(UserHasRegistered $event)
     {
-        $this->mailer->sendAccountActivationLink($event->user, $event->user->activation_code);
+        $this->mailer->sendAccountActivationLink(
+            $event->user,
+            $event->user->activation_code
+        );
     }
 
     /**
@@ -35,9 +38,12 @@ class UserEventListener
      *
      * @param TaskHasPublished $event
      */
-    public function onUserCreatesTask(TaskHasPublished $event)
+    public function onUserScheduleTask(TaskHasPublished $event)
     {
-        $this->mailer->sendNotificationAboutNewTask($event->user, $event->task);
+        $this->mailer->sendNotificationAboutNewTask(
+            $event->user,
+            $event->task
+        );
     }
 
     /**
@@ -54,7 +60,7 @@ class UserEventListener
 
         $events->listen(
             'Keep\Events\TaskHasPublished',
-            'Keep\Listeners\UserEventListener@onUserCreatesTask'
+            'Keep\Listeners\UserEventListener@onUserScheduleTask'
         );
     }
 }
