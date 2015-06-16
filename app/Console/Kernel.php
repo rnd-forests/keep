@@ -12,10 +12,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'Keep\Console\Commands\SyncFailedTasks',
-        'Keep\Console\Commands\EmailUpcomingTasks',
-        'Keep\Console\Commands\NotifyUpcomingTasks',
-        'Keep\Console\Commands\ClearOldNotifications',
+        \Keep\Console\Commands\SyncFailedTasks::class,
+        \Keep\Console\Commands\EmailUpcomingTasks::class,
+        \Keep\Console\Commands\NotifyUpcomingTasks::class,
+        \Keep\Console\Commands\ClearOldNotifications::class,
     ];
 
     /**
@@ -27,25 +27,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->exec('composer self-update')
-            ->monthly()
-            ->withoutOverlapping()
-            ->environments('production');
-
         $schedule->exec('auth:clear-resets')
             ->weekly()
             ->withoutOverlapping()
             ->environments('production');
 
         $schedule->command('keep:sync-failed-tasks')
-            ->everyFiveMinutes()
-            ->withoutOverlapping()
-            ->evenInMaintenanceMode();
+            ->everyMinute()
+            ->withoutOverlapping();
 
         $schedule->command('keep:notify-upcoming-tasks')
             ->weeklyOn(5, '10:00')
-            ->withoutOverlapping()
-            ->evenInMaintenanceMode();
+            ->withoutOverlapping();
 
         $schedule->command('keep:email-upcoming-tasks')
             ->weeklyOn(5, '8:00')
@@ -54,7 +47,6 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('keep:clear-old-notifications')
             ->dailyAt('1:00')
-            ->withoutOverlapping()
-            ->evenInMaintenanceMode();
+            ->withoutOverlapping();
     }
 }
