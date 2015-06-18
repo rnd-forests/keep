@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
-
 use Carbon\Carbon;
 
 $factory->define(Keep\Entities\User::class, function ($faker) {
@@ -18,7 +7,7 @@ $factory->define(Keep\Entities\User::class, function ($faker) {
         'name'     => $faker->name,
         'email'    => $faker->email,
         'password' => '123456',
-        'active'   => true,
+        'active'   => true
     ];
 });
 
@@ -37,7 +26,9 @@ $factory->define(Keep\Entities\Profile::class, function ($faker) {
 });
 
 $factory->define(Keep\Entities\Task::class, function ($faker) {
-    $timestamp = Carbon::now()->subDays(rand(0, 15))->subHours(rand(1, 20));
+    $timestamp = Carbon::now()
+        ->subDays(rand(0, 15))
+        ->subHours(rand(1, 20));
 
     return [
         'priority_id'    => rand(1, 4),

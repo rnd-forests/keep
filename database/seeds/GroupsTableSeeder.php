@@ -10,7 +10,8 @@ class GroupsTableSeeder extends Seeder
         $userIds = User::lists('id')->all();
 
         factory(Keep\Entities\Group::class, 25)
-            ->create()->each(function ($group) use ($userIds) {
+            ->create()
+            ->each(function ($group) use ($userIds) {
                 shuffle($userIds);
                 $group->users()->sync(
                     array_slice(

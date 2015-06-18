@@ -8,8 +8,8 @@ class AssignmentsTableSeeder extends Seeder
 {
     public function run()
     {
-        $userIds = User::lists('id')->toArray();
-        $groupIds = Group::lists('id')->toArray();
+        $userIds = User::lists('id')->all();
+        $groupIds = Group::lists('id')->all();
 
         factory(Keep\Entities\Assignment::class, 20)
             ->create()
