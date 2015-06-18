@@ -1,12 +1,10 @@
 <?php
 namespace Keep\Providers;
 
-use DB;
-use Keep\Entities\User;
-use Keep\Entities\Task;
-use Keep\Entities\Profile;
-use Keep\Entities\Assignment;
-use Keep\Entities\Notification;
+use Keep\Observers\TaskObserver;
+use Keep\Observers\UserObserver;
+use Keep\Observers\AssignmentObserver;
+use Keep\Observers\NotificationObserver;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -41,27 +39,9 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
-        User::created(function ($user) {
-            $user->profile()->save(new Profile());
-        });
-
-        Task::deleting(function ($task) {
-            $task->destroyer_id = auth()->user()->id;
-            $task->save();
-        });
-
-        Task::restoring(function ($task) {
-            $task->destroyer_id = 0;
-            $task->save();
-        });
-
-        Assignment::deleting(function ($assignment) {
-            $assignment->task()->update(['destroyer_id' => auth()->user()->id]);
-            $assignment->task()->delete();
-        });
-
-        Notification::deleting(function ($notification) {
-            DB::table('notifiables')->where('notification_id', $notification->id)->delete();
-        });
+        \Keep\Entities\User::observe(new UserObserver);
+        \Keep\Entities\Task::observe(new TaskObserver);
+        \Keep\Entities\Assignment::observe(new AssignmentObserver);
+        \Keep\Entities\Notification::observe(new NotificationObserver);
     }
 }

@@ -20,56 +20,27 @@ class Notification extends Model implements SluggableInterface
         'object_id', 'object_type', 'sent_at'
     ];
 
-    /**
-     * A notification can belong to many users.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
-     */
+
     public function users()
     {
         return $this->morphedByMany('Keep\Entities\User', 'notifiable');
     }
 
-    /**
-     * A notification can belong to many groups.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
-     */
     public function groups()
     {
         return $this->morphedByMany('Keep\Entities\Group', 'notifiable');
     }
 
-    /**
-     * Old notifications query scope.
-     *
-     * @param $query
-     *
-     * @return mixed
-     */
+
     public function scopeOld($query)
     {
         return $query->where('sent_at', '<=', Carbon::now()->subDays(10));
     }
 
-    /**
-     * Set the route key.
-     *
-     * @return mixed
-     */
-    public function getRouteKey()
-    {
-        return $this->slug;
-    }
 
-    /**
-     * Get notification object.
-     *
-     * @throws InvalidObjectException
-     */
     public function getObject()
     {
-        if ( ! $this->associatedObject && ! $this->hasValidObject()) {
+        if (!$this->associatedObject && !$this->hasValidObject()) {
             throw new InvalidObjectException('No valid object ' . $this->object_type .
                 ' with ID ' . $this->object_id . ' associated with this notification.');
         }
@@ -77,11 +48,6 @@ class Notification extends Model implements SluggableInterface
         return $this->associatedObject;
     }
 
-    /**
-     * Check if the object associated with the notification is valid or not.
-     *
-     * @return bool
-     */
     public function hasValidObject()
     {
         try {
@@ -93,5 +59,10 @@ class Notification extends Model implements SluggableInterface
         $this->associatedObject = $object;
 
         return true;
+    }
+
+    public function getRouteKey()
+    {
+        return $this->slug;
     }
 }
