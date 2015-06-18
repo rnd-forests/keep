@@ -1,5 +1,6 @@
 <?php
 
+use Keep\Entities\User;
 use Illuminate\Database\Seeder as Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -42,7 +43,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Eloquent::unguard();
-        Eloquent::flushEventListeners();
+        User::flushEventListeners();
         $this->truncateDatabase();
         foreach ($this->seeders as $seeder) {
             $this->call($seeder);

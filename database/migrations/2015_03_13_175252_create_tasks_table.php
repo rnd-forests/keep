@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTasksTable extends Migration
 {
@@ -14,7 +15,7 @@ class CreateTasksTable extends Migration
             $table->integer('priority_id')->unsigned()->nullable();
             $table->integer('assignment_id')->unsigned()->nullable();
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->text('content');
             $table->text('location')->nullable();
             $table->timestamp('starting_date');
@@ -25,6 +26,8 @@ class CreateTasksTable extends Migration
             $table->boolean('is_assigned')->default(false);
             $table->softDeletes();
             $table->timestamps();
+
+            $table->unique('slug');
         });
     }
 

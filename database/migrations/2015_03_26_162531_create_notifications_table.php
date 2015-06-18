@@ -9,8 +9,8 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sent_from', '25')->nullable();
-            $table->string('type', 128)->nullable();
+            $table->string('sent_from', '20')->nullable();
+            $table->string('type', 20)->nullable();
             $table->string('subject')->nullable();
             $table->string('slug')->unique();
             $table->text('body')->nullable();

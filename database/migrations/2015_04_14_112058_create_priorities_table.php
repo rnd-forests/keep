@@ -9,10 +9,12 @@ class CreatePrioritiesTable extends Migration
     {
         Schema::create('priorities', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->index();
+            $table->string('name');
             $table->smallInteger('value')->unsigned();
             $table->text('description');
             $table->timestamps();
+
+            $table->index('name');
         });
     }
 

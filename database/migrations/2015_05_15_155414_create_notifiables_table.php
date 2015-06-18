@@ -10,8 +10,7 @@ class CreateNotifiablesTable extends Migration
         Schema::create('notifiables', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('notification_id')->unsigned();
-            $table->integer('notifiable_id')->unsigned();
-            $table->string('notifiable_type');
+            $table->morphs('notifiable');
         });
     }
 
