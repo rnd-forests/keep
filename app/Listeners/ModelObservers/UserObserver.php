@@ -1,5 +1,5 @@
 <?php
-namespace Keep\Observers;
+namespace Keep\Listeners\ModelObservers;
 
 use Keep\Entities\User;
 use Keep\Entities\Profile;

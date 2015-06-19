@@ -31,7 +31,7 @@ class SyncFailedTasks extends Command
         $updatedRows = $this->tasks->findAndUpdateFailedTasks();
         $recoveredRows = $this->tasks->recoverFailedTasks();
 
-        $this->info('-> ' . $updatedRows . ' failed ' . str_plural('task', $updatedRows) . ' found and updated.');
-        $this->info('-> ' . $recoveredRows . ' failed ' . str_plural('task', $recoveredRows) . ' recovered.');
+        $this->info('-> ' . plural2('task', 'failed', $updatedRows) . ' found and updated.');
+        $this->info('-> ' . plural2('task', 'failed', $recoveredRows) . ' recovered.');
     }
 }
