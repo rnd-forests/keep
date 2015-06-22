@@ -16,7 +16,7 @@ class Group extends Model implements SluggableInterface
 
     public function users()
     {
-        return $this->belongsToMany('Keep\Entities\User');
+        return $this->belongsToMany('Keep\Entities\User')->withTimestamps();
     }
 
     public function assignments()

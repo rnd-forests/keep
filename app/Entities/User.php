@@ -45,7 +45,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function groups()
     {
-        return $this->belongsToMany('Keep\Entities\Group');
+        return $this->belongsToMany('Keep\Entities\Group')->withTimestamps();
     }
 
     public function assignments()

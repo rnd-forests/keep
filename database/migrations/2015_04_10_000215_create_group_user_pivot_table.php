@@ -12,6 +12,7 @@ class CreateGroupUserPivotTable extends Migration
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
 
             $table->index('group_id');
             $table->index('user_id');
