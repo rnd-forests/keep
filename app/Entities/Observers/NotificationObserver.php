@@ -1,5 +1,5 @@
 <?php
-namespace Keep\Listeners\ModelObservers;
+namespace Keep\Entities\Observers;
 
 use DB;
 use Keep\Entities\Notification;

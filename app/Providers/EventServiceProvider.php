@@ -1,10 +1,10 @@
 <?php
 namespace Keep\Providers;
 
-use Keep\Listeners\ModelObservers\TaskObserver;
-use Keep\Listeners\ModelObservers\UserObserver;
-use Keep\Listeners\ModelObservers\AssignmentObserver;
-use Keep\Listeners\ModelObservers\NotificationObserver;
+use Keep\Entities\Observers\TaskObserver;
+use Keep\Entities\Observers\UserObserver;
+use Keep\Entities\Observers\AssignmentObserver;
+use Keep\Entities\Observers\NotificationObserver;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
