@@ -24,7 +24,7 @@ class GithubAuthentication extends AuthenticationProvider implements ProviderInt
      *
      * @return bool
      */
-    function updateAuthenticatedUser(User $user, $userData)
+    public function updateAuthenticatedUser(User $user, $userData)
     {
         $user->profile()->update([
             'bio'             => $userData->user['bio'],
@@ -41,7 +41,7 @@ class GithubAuthentication extends AuthenticationProvider implements ProviderInt
      *
      * @return string
      */
-    function getExceptionMessage()
+    public function getExceptionMessage()
     {
         return 'Something went wrong with your GitHub authentication process.';
     }

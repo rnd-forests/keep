@@ -33,10 +33,10 @@ abstract class AuthenticationProvider
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws InvalidUserException
      */
-    public final function authenticate($hasCode, OAuthUserListener $listener)
+    final public function authenticate($hasCode, OAuthUserListener $listener)
     {
         $provider = $this->getAuthProvider();
-        if ( ! $hasCode) {
+        if (! $hasCode) {
             return $this->getAuthorizationUrl($provider);
         }
         $providerData = $this->handleProviderCallback($provider);
@@ -44,7 +44,7 @@ abstract class AuthenticationProvider
             $this->getUserProviderData($providerData),
             $provider
         );
-        if ( ! $user) {
+        if (! $user) {
             throw new InvalidUserException($this->getExceptionMessage());
         }
         $this->updateAuthenticatedUser($user, $providerData);
@@ -58,7 +58,7 @@ abstract class AuthenticationProvider
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    protected final function getAuthorizationUrl()
+    final protected function getAuthorizationUrl()
     {
         return $this->socialite->driver($this->getAuthProvider())->redirect();
     }
@@ -68,7 +68,7 @@ abstract class AuthenticationProvider
      *
      * @return \Laravel\Socialite\Contracts\User
      */
-    protected final function handleProviderCallback()
+    final protected function handleProviderCallback()
     {
         return $this->socialite->driver($this->getAuthProvider())->user();
     }
@@ -80,7 +80,7 @@ abstract class AuthenticationProvider
      *
      * @return array
      */
-    protected final function getUserProviderData(SocialiteUser $providerData)
+    final protected function getUserProviderData(SocialiteUser $providerData)
     {
         return [
             'auth_provider_id' => $providerData->getId(),
@@ -94,7 +94,7 @@ abstract class AuthenticationProvider
      *
      * @return string
      */
-    protected abstract function getAuthProvider();
+    abstract protected function getAuthProvider();
 
     /**
      * Update authenticated user profile.
@@ -104,12 +104,12 @@ abstract class AuthenticationProvider
      *
      * @return mixed
      */
-    protected abstract function updateAuthenticatedUser(User $user, $userData);
+    abstract protected function updateAuthenticatedUser(User $user, $userData);
 
     /**
      * Get authentication exception message.
      *
      * @return string
      */
-    protected abstract function getExceptionMessage();
+    abstract protected function getExceptionMessage();
 }

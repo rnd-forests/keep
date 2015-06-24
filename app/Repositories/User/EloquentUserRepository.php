@@ -119,10 +119,10 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
         $userExisted = $this->model
             ->where('email', $userData['email'])
             ->first();
-        if ( ! $user && $userExisted) {
+        if (! $user && $userExisted) {
             return false;
         }
-        if ( ! $user) {
+        if (! $user) {
             $user = $this->model->create($userData);
             $user->update([
                 'auth_provider'   => $authProvider,

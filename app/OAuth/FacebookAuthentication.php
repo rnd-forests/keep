@@ -14,7 +14,7 @@ class FacebookAuthentication extends AuthenticationProvider implements ProviderI
      *
      * @return mixed
      */
-    function updateAuthenticatedUser(User $user, $userData)
+    public function updateAuthenticatedUser(User $user, $userData)
     {
         return true;
     }
@@ -24,7 +24,7 @@ class FacebookAuthentication extends AuthenticationProvider implements ProviderI
      *
      * @return string
      */
-    function getExceptionMessage()
+    public function getExceptionMessage()
     {
         return 'Something went wrong with your Facebook authentication process.';
     }

@@ -18,7 +18,7 @@ class VerifyUserRoles
      */
     public function handle($request, Closure $next, $roles)
     {
-        if ( ! auth()->user()->hasRole($roles, true)) {
+        if (! auth()->user()->hasRole($roles, true)) {
             throw new InvalidRolesException('Not enough roles to perform this action.');
         }
 

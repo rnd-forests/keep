@@ -33,7 +33,7 @@ class RegisterAccount extends Job implements SelfHandling
     public function handle(UserRepositoryInterface $users)
     {
         $user = $users->create($this->getCredentials());
-        if ( ! $user) {
+        if (! $user) {
             return false;
         }
         event(new UserHasRegistered($user));
