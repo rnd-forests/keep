@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Entities;
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,9 +12,8 @@ class Profile extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'location', 'bio', 'company', 'website', 'phone', 'twitter_username',
-        'github_username', 'google_username', 'facebook_username'
+        'github_username', 'google_username', 'facebook_username',
     ];
-
 
     public function user()
     {

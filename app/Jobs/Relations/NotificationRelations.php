@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Jobs\Relations;
 
 use Keep\Jobs\Job;
@@ -51,13 +52,12 @@ abstract class NotificationRelations extends Job
         $this->notificationRepo->syncPolymorphicRelations($notification, $users, $groups);
     }
 
-
     public function getNotificationRequestData()
     {
         return [
             'subject' => $this->data['subject'],
-            'body'    => $this->data['body'],
-            'type'    => $this->data['type']
+            'body' => $this->data['body'],
+            'type' => $this->data['type'],
         ];
     }
 

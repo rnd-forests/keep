@@ -8,19 +8,21 @@
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Register</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials._form_errors')
                     {!! Form::open() !!}
                         <div class="form-group">
                             {!! Form::label('name', 'Name', ['class' => 'control-label']) !!}
                             {!! Form::text('name', null, ['class' => 'form-control input-lg']) !!}
+                            {!! error_text($errors, 'name') !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
                             {!! Form::email('email', null, ['class' => 'form-control input-lg', 'placeholder' => 'username@example.com']) !!}
+                            {!! error_text($errors, 'email') !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('password', 'Password', ['class' => 'control-label']) !!}
                             {!! Form::password('password', ['class' => 'form-control input-lg']) !!}
+                            {!! error_text($errors, 'password') !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('password_confirmation', 'Password Confirmation', ['class' => 'control-label']) !!}

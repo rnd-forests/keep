@@ -20,7 +20,6 @@
             {!! render_pagination($users) !!}
         </div>
         <div class="col-md-7">
-            @include('layouts.partials._form_errors')
             @include('admin.groups.partials._add_users_form')
             <div class="text-center">
                 <a href="{{ route('admin::groups.active') }}" class="btn btn-primary">Back</a>

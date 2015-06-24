@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\OAuth;
 
 use Keep\Entities\User;
@@ -27,9 +28,9 @@ class GoogleAuthentication extends AuthenticationProvider implements ProviderInt
     protected function updateAuthenticatedUser(User $user, $userData)
     {
         $user->profile()->update([
-            'bio'             => strip_tags($userData->user['aboutMe']),
-            'location'        => $userData->user['placesLived'][0]['value'],
-            'google_username' => str_replace('https://plus.google.com/', '', $userData->user['url'])
+            'bio' => strip_tags($userData->user['aboutMe']),
+            'location' => $userData->user['placesLived'][0]['value'],
+            'google_username' => str_replace('https://plus.google.com/', '', $userData->user['url']),
         ]);
 
         return $user->save();

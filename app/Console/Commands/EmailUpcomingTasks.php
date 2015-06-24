@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Console\Commands;
 
 use Keep\Mailers\UserMailer;

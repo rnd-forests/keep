@@ -8,15 +8,19 @@
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Login</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials._form_errors')
+                    @if(session()->has('login_error'))
+                        <div class="alert alert-danger text-center">{!! session()->get('login_error') !!}</div>
+                    @endif
                     {!! Form::open() !!}
                         <div class="form-group">
                             {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
                             {!! Form::email('email', null, ['class' => 'form-control input-lg']) !!}
+                            {!! error_text($errors, 'email') !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('password', 'Password', ['class' => 'control-label']) !!}
                             {!! Form::password('password', ['class' => 'form-control input-lg']) !!}
+                            {!! error_text($errors, 'password') !!}
                         </div>
                         <div class="form-group">
                             <div class="checkbox">

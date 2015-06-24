@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Repositories\UserGroup;
 
 use Keep\Entities\User;
@@ -33,8 +34,8 @@ class EloquentUserGroupRepository extends EloquentRepository implements UserGrou
     public function create(array $data)
     {
         return $this->model->create([
-            'name'        => $data['name'],
-            'description' => $data['description']
+            'name' => $data['name'],
+            'description' => $data['description'],
         ]);
     }
 

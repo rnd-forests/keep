@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\Controllers\Auth;
 
 use Keep\Jobs\ModifyAccountName;
@@ -34,7 +35,7 @@ class AccountController extends Controller
     public function changePassword($userSlug, EditUserPasswordRequest $request)
     {
         if ($this->dispatchFrom(ModifyAccountPassword::class, $request, [
-            'user' => $this->userRepo->findBySlug($userSlug)])
+            'user' => $this->userRepo->findBySlug($userSlug), ])
         ) {
             session()->flash('update_password_success', 'Your password has been successfully updated.');
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
@@ -41,9 +42,9 @@ class AuthenticateAccount extends Job implements SelfHandling
     private function getCredentials()
     {
         return [
-            'email'    => $this->email,
+            'email' => $this->email,
             'password' => $this->password,
-            'active'   => $this->active,
+            'active' => $this->active,
         ];
     }
 }

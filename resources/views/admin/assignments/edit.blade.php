@@ -11,6 +11,7 @@
                     $assignment->users->lists('id')->all(),
                     ['id' => 'user_list', 'class' => 'form-control', 'multiple'])
                 !!}
+                {!! error_text($errors, 'user_list') !!}
             </div>
         </div>
     @else
@@ -23,6 +24,7 @@
                     $assignment->groups->lists('id')->all(),
                     ['id' => 'group_list', 'class' => 'form-control', 'multiple'])
                 !!}
+                {!! error_text($errors, 'group_list') !!}
             </div>
         </div>
     @endif
@@ -33,7 +35,6 @@
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Edit - {{ $assignment->assignment_name }}</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials._form_errors')
                     {!! Form::model($task, ['method' => 'PATCH', 'route' => ['admin::assignments.published.update', $assignment]]) !!}
                         @include('admin.assignments.partials._main_form', ['assignmentButton' => 'Update Assignment'])
                     {!! Form::close() !!}

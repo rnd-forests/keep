@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\Requests;
 
 class EditUserPasswordRequest extends Request
@@ -11,9 +12,8 @@ class EditUserPasswordRequest extends Request
     public function rules()
     {
         return [
-            'old_password'              => 'required',
-            'new_password'              => 'required|min:6',
-            'new_password_confirmation' => 'required|same:new_password'
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed|min:6',
         ];
     }
 }

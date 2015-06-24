@@ -1,10 +1,12 @@
 <div class="form-group">
     {!! Form::label('title', 'Task Header', ['class' => 'control-label']) !!}
     {!! Form::text('title', null, ['class' => 'form-control input-lg']) !!}
+    {!! error_text($errors, 'title') !!}
 </div>
 <div class="form-group summernote-container">
     {!! Form::label('content', 'Task Details', ['class' => 'control-label']) !!}
     {!! Form::textarea('content', null, ['id' => 'summernote']) !!}
+    {!! error_text($errors, 'content') !!}
 </div>
 <div class="row">
     <div class="col-md-6">
@@ -14,6 +16,7 @@
                 {!! Form::text('starting_date', null, ['class' => 'form-control input-lg']) !!}
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
+            {!! error_text($errors, 'starting_date') !!}
         </div>
     </div>
     <div class="col-md-6">
@@ -23,6 +26,7 @@
                 {!! Form::text('finishing_date', null, ['class' => 'form-control input-lg']) !!}
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
             </div>
+            {!! error_text($errors, 'finishing_date') !!}
         </div>
     </div>
 </div>
@@ -45,6 +49,7 @@
 <div class="form-group">
     {!! Form::label('priority_level', 'Priority Level', ['class' => 'control-label']) !!}
     {!! Form::select('priority_level', $priorities, null, ['class' => 'form-control input-lg']) !!}
+    {!! error_text($errors, 'priority_level') !!}
 </div>
 <div class="form-group">
     {!! Form::submit($taskFormSubmitButton, ['class' => 'btn btn-lg btn-primary']) !!}

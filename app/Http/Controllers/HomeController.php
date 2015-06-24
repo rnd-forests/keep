@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\Controllers;
 
 class HomeController extends Controller

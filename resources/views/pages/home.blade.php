@@ -18,15 +18,6 @@
                             <a href="{{ route('member::dashboard', $authUser) }}">
                                 <button class="btn btn-danger btn-lg">Dashboard</button>
                             </a>
-                            <a href="{{ route('member::profile', $authUser) }}">
-                                <button class="btn btn-info btn-lg">Personal Profile</button>
-                            </a>
-                            <a href="{{ route('member::assignments.all', $authUser) }}">
-                                <button class="btn btn-warning btn-lg">Assignments</button>
-                            </a>
-                            <a href="{{ route('member::groups.all', $authUser) }}">
-                                <button class="btn btn-success btn-lg">Groups</button>
-                            </a>
                         </div>
                     </div>
                 @else

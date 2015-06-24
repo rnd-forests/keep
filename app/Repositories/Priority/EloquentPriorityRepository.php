@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Repositories\Priority;
 
 use Keep\Entities\User;

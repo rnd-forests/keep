@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Entities;
 
 use Carbon\Carbon;
@@ -21,9 +22,8 @@ class Task extends Model implements SluggableInterface
         'user_id', 'destroyer_id', 'priority_id', 'assignment_id',
         'title', 'slug', 'content', 'location', 'starting_date',
         'finishing_date', 'finished_at', 'completed', 'is_assigned',
-        'deleted_at'
+        'deleted_at',
     ];
-
 
     public function owner()
     {
@@ -49,7 +49,6 @@ class Task extends Model implements SluggableInterface
     {
         return $this->belongsTo('Keep\Entities\Assignment');
     }
-
 
     public function scopeUrgent($query)
     {
@@ -117,7 +116,6 @@ class Task extends Model implements SluggableInterface
     {
         return $query->where('title', 'LIKE', "%$pattern%");
     }
-
 
     public function isCompleted()
     {

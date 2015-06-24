@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\ViewComposers;
 
 use Illuminate\Contracts\View\View;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Entities\Observers;
 
 use DB;

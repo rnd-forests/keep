@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\OAuth;
 
 use Keep\Entities\User;

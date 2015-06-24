@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
@@ -8,8 +9,6 @@ class ModifyAssignment extends AssignmentRelations implements SelfHandling
 {
     /**
      * Modify assignment.
-     *
-     * @return void
      */
     public function handle()
     {

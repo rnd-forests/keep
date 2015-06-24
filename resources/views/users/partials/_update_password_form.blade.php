@@ -10,10 +10,12 @@
     <div class="form-group">
         {!! Form::label('old_password', 'Old Password', ['class' => 'control-label']) !!}
         {!! Form::password('old_password', ['class' => 'form-control input-lg']) !!}
+        {!! error_text($errors, 'old_password') !!}
     </div>
     <div class="form-group">
         {!! Form::label('new_password', 'New Password', ['class' => 'control-label']) !!}
         {!! Form::password('new_password', ['class' => 'form-control input-lg']) !!}
+        {!! error_text($errors, 'new_password') !!}
     </div>
     <div class="form-group">
         {!! Form::label('new_password_confirmation', 'New Password Confirmation', ['class' => 'control-label']) !!}

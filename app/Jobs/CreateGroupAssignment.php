@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
@@ -8,8 +9,6 @@ class CreateGroupAssignment extends AssignmentRelations implements SelfHandling
 {
     /**
      * Create assignment for groups.
-     *
-     * @return void
      */
     public function handle()
     {

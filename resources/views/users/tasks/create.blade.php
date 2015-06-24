@@ -6,7 +6,6 @@
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Schedule New Task</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials._form_errors')
                     {!! Form::model($task = new \Keep\Entities\Task, ['route' => ['member::tasks.store', $user]]) !!}
                         @include('users.tasks.partials._main_form', ['taskFormSubmitButton' => 'Schedule Task'])
                     {!! Form::close() !!}

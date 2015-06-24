@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -37,13 +38,13 @@ class NotifyUpcomingTasks extends Command
         $upcomingTasks->each(function ($task) {
             $notification = $this->notifications->create([
                 'subject' => 'You have a new upcoming task',
-                'body'    => '',
-                'type'    => 'warning',
+                'body' => '',
+                'type' => 'warning',
             ]);
             $notification->update([
-                'sent_from'   => 'application',
-                'object_id'   => $task->id,
-                'object_type' => 'Keep\Entities\Task'
+                'sent_from' => 'application',
+                'object_id' => $task->id,
+                'object_type' => 'Keep\Entities\Task',
             ]);
             $notification->save();
             $task->owner->notify($notification);

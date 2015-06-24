@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Mailers;
 
 abstract class Mailer

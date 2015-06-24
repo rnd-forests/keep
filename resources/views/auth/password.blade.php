@@ -7,11 +7,11 @@
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Forgot your password?</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials._form_errors')
                     {!! Form::open() !!}
                         <div class="form-group">
                             {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
                             {!! Form::email('email', null, ['class' => 'form-control input-lg', 'placeholder' => 'username@example.com']) !!}
+                            {!! error_text($errors, 'email') !!}
                         </div>
                         <div class="form-group">
                             {!! Form::submit('Send Password Reset Link', ['class' => 'btn btn-lg btn-primary']) !!}

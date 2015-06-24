@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\Requests;
 
 class UserGroupRequest extends Request
@@ -11,7 +12,7 @@ class UserGroupRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|max:255|min:4'
+            'name' => 'required|max:255|min:4',
         ];
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
@@ -232,6 +233,6 @@ class UserGroupsController extends Controller
      */
     private function getUpdateMembersMessage(array $ids)
     {
-        return count($ids) . ' new ' . str_plural('member', count($ids)) . ' added to this group';
+        return count($ids).' new '.str_plural('member', count($ids)).' added to this group';
     }
 }

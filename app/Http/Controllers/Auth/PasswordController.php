@@ -1,8 +1,8 @@
 <?php
+
 namespace Keep\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Guard;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\ResetPasswordRequest;
 use Illuminate\Contracts\Auth\PasswordBroker;
@@ -10,19 +10,17 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PasswordController extends Controller
 {
-    protected $auth, $passwords, $emailSubject;
+    protected $passwords, $subject;
 
     /**
      * Create a new password controller instance.
      *
-     * @param  Guard          $auth
-     * @param  PasswordBroker $passwords
+     * @param PasswordBroker $passwords
      */
-    public function __construct(Guard $auth, PasswordBroker $passwords)
+    public function __construct(PasswordBroker $passwords)
     {
-        $this->auth = $auth;
         $this->passwords = $passwords;
-        $this->emailSubject = 'Recover your account password at Keep';
+        $this->subject = 'Recover your account password at Keep';
         $this->middleware('guest');
     }
 
@@ -48,7 +46,7 @@ class PasswordController extends Controller
         $this->validate($request, ['email' => 'required|email']);
 
         $response = $this->passwords->sendResetLink($request->only('email'), function ($message) {
-            $message->subject($this->emailSubject);
+            $message->subject($this->subject);
         });
 
         if ($response == PasswordBroker::RESET_LINK_SENT) {
@@ -70,7 +68,7 @@ class PasswordController extends Controller
     public function getReset($token = null)
     {
         if (is_null($token)) {
-            throw new NotFoundHttpException;
+            throw new NotFoundHttpException();
         }
 
         return view('auth.reset')->with('token', $token);
@@ -92,7 +90,7 @@ class PasswordController extends Controller
         $response = $this->passwords->reset($credentials, function ($user, $password) {
             $user->password = $password;
             $user->save();
-            $this->auth->login($user);
+            auth()->login($user);
         });
 
         if ($response == PasswordBroker::PASSWORD_RESET) {

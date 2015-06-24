@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\Middleware;
 
 use Closure;
@@ -16,6 +17,7 @@ class RedirectIfNotCorrectUser
      * @param callable $next
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws InvalidUserException
      */
     public function handle($request, Closure $next)
@@ -23,7 +25,7 @@ class RedirectIfNotCorrectUser
         $userRepo = app()->make(UserRepositoryInterface::class);
         if ($request->route('users')) {
             $user = $userRepo->findBySlug($request->route('users'));
-            if (($user->id != auth()->user()->id) && ! auth()->user()->isAdmin()) {
+            if (($user->id != auth()->user()->id) && !auth()->user()->isAdmin()) {
                 throw new InvalidUserException('You cannot access this page.');
             }
         }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Repositories\Notification;
 
 use Carbon\Carbon;
@@ -19,10 +20,10 @@ class EloquentNotificationRepository extends EloquentRepository implements Notif
     {
         return $this->model->create([
             'sent_from' => 'admin',
-            'subject'   => $data['subject'],
-            'body'      => $data['body'],
-            'type'      => $data['type'],
-            'sent_at'   => Carbon::now()
+            'subject' => $data['subject'],
+            'body' => $data['body'],
+            'type' => $data['type'],
+            'sent_at' => Carbon::now(),
         ]);
     }
 

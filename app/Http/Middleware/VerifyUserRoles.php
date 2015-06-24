@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\Middleware;
 
 use Closure;
@@ -9,16 +10,17 @@ class VerifyUserRoles
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure                 $next
-     * @param                           $roles
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     * @param                          $roles
      *
      * @return mixed
+     *
      * @throws InvalidRolesException
      */
     public function handle($request, Closure $next, $roles)
     {
-        if (! auth()->user()->hasRole($roles, true)) {
+        if (!auth()->user()->hasRole($roles, true)) {
             throw new InvalidRolesException('Not enough roles to perform this action.');
         }
 

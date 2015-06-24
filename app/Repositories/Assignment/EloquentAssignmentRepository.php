@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Repositories\Assignment;
 
 use DB;
@@ -47,7 +48,7 @@ class EloquentAssignmentRepository extends EloquentRepository implements Assignm
     public function create(array $data)
     {
         return $this->model->create([
-            'assignment_name' => $data['assignment_name']
+            'assignment_name' => $data['assignment_name'],
         ]);
     }
 

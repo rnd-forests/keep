@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\Controllers\Admin;
 
 use Request;
@@ -69,7 +70,7 @@ class UsersController extends Controller
     public function disableAccount($slug)
     {
         $this->userRepo->softDelete($slug);
-        flash()->info("This account has been disabled.");
+        flash()->info('This account has been disabled.');
 
         return redirect()->route('admin::members.active');
     }

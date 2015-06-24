@@ -10,10 +10,12 @@
     <div class="form-group">
         {!! Form::label('old_username', 'Old Username', ['class' => 'control-label']) !!}
         {!! Form::text('old_username', null, ['class' => 'form-control input-lg']) !!}
+        {!! error_text($errors, 'old_username') !!}
     </div>
     <div class="form-group">
         {!! Form::label('new_username', 'New Username', ['class' => 'control-label']) !!}
         {!! Form::text('new_username', null, ['class' => 'form-control input-lg']) !!}
+        {!! error_text($errors, 'new_username') !!}
     </div>
     <div class="form-group">
         {!! Form::submit('Update username', ['class' => 'btn btn-danger']) !!}

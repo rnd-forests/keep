@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\Controllers;
 
 use Keep\Http\Requests\EditUserProfileRequest;
@@ -60,7 +61,7 @@ class UsersController extends Controller
     public function destroy($slug)
     {
         $this->userRepo->softDelete($slug);
-        flash()->success("Your account has been deleted.");
+        flash()->success('Your account has been deleted.');
 
         return redirect()->home();
     }

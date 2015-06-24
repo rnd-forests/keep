@@ -5,6 +5,7 @@
         <div class="form-group">
             {!! Form::label('group_list', 'Choose Groups', ['class' => 'control-label']) !!}
             {!! Form::select('group_list[]', $groups, null, ['id' => 'group_list', 'class' => 'form-control', 'multiple']) !!}
+            {!! error_text($errors, 'group_list') !!}
         </div>
     </div>
 @stop
@@ -14,7 +15,6 @@
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Create Group Assignment</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials._form_errors')
                     {!! Form::model([$task = new \Keep\Entities\Task, $assignment = new \Keep\Entities\Assignment],
                         ['route' => ['admin::assignments.group.store']]) !!}
                         @include('admin.assignments.partials._main_form', ['assignmentButton' => 'Create Assignment'])

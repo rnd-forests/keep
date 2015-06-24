@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Presenters;
 
 use Laracasts\Presenter\Presenter;
@@ -18,7 +19,7 @@ class UserPresenter extends Presenter
 
         return "//www.gravatar.com/avatar/$email?s=$size";
     }
-    
+
     /**
      * Link to user twitter profile.
      *
@@ -28,7 +29,7 @@ class UserPresenter extends Presenter
      */
     public function twitterProfile($user)
     {
-        return 'http://www.twitter.com/' . $user->profile->twitter_username;
+        return 'http://www.twitter.com/'.$user->profile->twitter_username;
     }
 
     /**
@@ -40,7 +41,7 @@ class UserPresenter extends Presenter
      */
     public function githubProfile($user)
     {
-        return 'http://www.github.com/' . $user->profile->github_username;
+        return 'http://www.github.com/'.$user->profile->github_username;
     }
 
     /**
@@ -52,7 +53,7 @@ class UserPresenter extends Presenter
      */
     public function googlePlusProfile($user)
     {
-        return 'https://plus.google.com/' . $user->profile->google_username;
+        return 'https://plus.google.com/'.$user->profile->google_username;
     }
 
     /**
@@ -64,6 +65,6 @@ class UserPresenter extends Presenter
      */
     public function facebookProfile($user)
     {
-        return 'https://www.facebook.com/' . $user->profile->facebook_username;
+        return 'https://www.facebook.com/'.$user->profile->facebook_username;
     }
 }

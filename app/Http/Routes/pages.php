@@ -1,6 +1,6 @@
 <?php
 
 Route::get('/', [
-    'as'   => 'home',
-    'uses' => 'HomeController@home'
+    'as' => 'home',
+    'uses' => 'HomeController@home',
 ]);

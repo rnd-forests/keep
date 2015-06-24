@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\Controllers;
 
 use Keep\Events\TaskHasPublished;
@@ -112,7 +113,7 @@ class UserTaskController extends Controller
     {
         $user = $this->userRepo->findBySlug($userSlug);
         $task = $this->taskRepo->findCorrectTaskBySlug($userSlug, $taskSlug);
-        
+
         return view('users.tasks.edit', compact('user', 'task'));
     }
 

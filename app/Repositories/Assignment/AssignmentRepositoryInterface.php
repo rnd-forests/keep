@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Repositories\Assignment;
 
 interface AssignmentRepositoryInterface
@@ -16,7 +17,7 @@ interface AssignmentRepositoryInterface
     public function restore($slug);
 
     public function forceDelete($slug);
-    
+
     public function syncPolymorphicRelations($assignment, $users, $groups);
 
     public function fetchGroupAssignmentsOfAUser($userSlug);

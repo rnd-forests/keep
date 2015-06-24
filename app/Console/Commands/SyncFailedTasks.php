@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -31,7 +32,7 @@ class SyncFailedTasks extends Command
         $updatedRows = $this->tasks->findAndUpdateFailedTasks();
         $recoveredRows = $this->tasks->recoverFailedTasks();
 
-        $this->info('-> ' . plural2('task', 'failed', $updatedRows) . ' found and updated.');
-        $this->info('-> ' . plural2('task', 'failed', $recoveredRows) . ' recovered.');
+        $this->info('-> '.plural2('task', 'failed', $updatedRows).' found and updated.');
+        $this->info('-> '.plural2('task', 'failed', $recoveredRows).' recovered.');
     }
 }

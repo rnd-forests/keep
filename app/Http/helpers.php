@@ -33,19 +33,19 @@ function humans_time($timestamp)
 
 function plural($pattern, $counter)
 {
-    return $counter . ' ' . str_plural($pattern, $counter);
+    return $counter.' '.str_plural($pattern, $counter);
 }
 
 function plural2($pattern, $middle, $counter)
 {
-    return $counter . ' ' . $middle . ' ' . str_plural($pattern, $counter);
+    return $counter.' '.$middle.' '.str_plural($pattern, $counter);
 }
 
 function remaining_days($finish)
 {
     $count = (int) Carbon::now()->diffInDays(Carbon::parse($finish), true);
 
-    return $count . ' ' . str_plural('day', $count) . ' remaining';
+    return $count.' '.str_plural('day', $count).' remaining';
 }
 
 function counting($object)
@@ -69,7 +69,7 @@ function blank($object)
 
 function render_pagination($collection)
 {
-    return '<div class="text-center">' . $collection->render() . '</div>';
+    return '<div class="text-center">'.$collection->render().'</div>';
 }
 
 function zero($count)
@@ -80,4 +80,16 @@ function zero($count)
 function array_random_val(array $arr)
 {
     return $arr[array_rand($arr)];
+}
+
+function error_text($errors, $field)
+{
+    if ($errors->has($field)) {
+        return '<span class="help-block form-error-text">'.$errors->first($field).'</span>';
+    }
+}
+
+function bcrypt_hasher()
+{
+    return app()->make('Illuminate\Hashing\BcryptHasher');
 }

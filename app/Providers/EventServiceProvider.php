@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Providers;
 
 use Keep\Entities\Observers\TaskObserver;
@@ -25,23 +26,21 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $subscribe = [
-        \Keep\Listeners\UserEventListener::class
+        \Keep\Listeners\UserEventListener::class,
     ];
 
     /**
      * Register any other events for your application.
      *
-     * @param  \Illuminate\Contracts\Events\Dispatcher $events
-     *
-     * @return void
+     * @param \Illuminate\Contracts\Events\Dispatcher $events
      */
     public function boot(DispatcherContract $events)
     {
         parent::boot($events);
 
-        \Keep\Entities\User::observe(new UserObserver);
-        \Keep\Entities\Task::observe(new TaskObserver);
-        \Keep\Entities\Assignment::observe(new AssignmentObserver);
-        \Keep\Entities\Notification::observe(new NotificationObserver);
+        \Keep\Entities\User::observe(new UserObserver());
+        \Keep\Entities\Task::observe(new TaskObserver());
+        \Keep\Entities\Assignment::observe(new AssignmentObserver());
+        \Keep\Entities\Notification::observe(new NotificationObserver());
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Entities;
 
 use Illuminate\Auth\Authenticatable;
@@ -24,9 +25,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $hidden = ['password', 'remember_token', 'activation_code'];
     protected $fillable = [
         'name', 'email', 'password', 'activation_code',
-        'active', 'auth_provider_id', 'auth_provider'
+        'active', 'auth_provider_id', 'auth_provider',
     ];
-
 
     public function profile()
     {
@@ -52,7 +52,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->morphToMany('Keep\Entities\Assignment', 'assignable');
     }
-
 
     public function isActive()
     {

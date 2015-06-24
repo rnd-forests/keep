@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Repositories\Task;
 
 use Request;
@@ -34,11 +35,11 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
     public function create(array $data)
     {
         return $this->model->create([
-            'title'          => $data['title'],
-            'content'        => $data['content'],
-            'location'       => $data['location'],
-            'starting_date'  => $data['starting_date'],
-            'finishing_date' => $data['finishing_date']
+            'title' => $data['title'],
+            'content' => $data['content'],
+            'location' => $data['location'],
+            'starting_date' => $data['starting_date'],
+            'finishing_date' => $data['finishing_date'],
         ]);
     }
 
@@ -237,19 +238,19 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
 
         return $this->model
             ->where([
-                'user_id'   => $user->id,
-                'completed' => 0
+                'user_id' => $user->id,
+                'completed' => 0,
             ])
             ->get([
                 'title', 'starting_date',
-                'finishing_date', 'priority_id'
+                'finishing_date', 'priority_id',
             ])
             ->transform(function ($task) {
                 return [
-                    'content'   => $task->title,
-                    'endDate'   => Carbon::parse($task->finishing_date)->toDayDateTimeString(),
+                    'content' => $task->title,
+                    'endDate' => Carbon::parse($task->finishing_date)->toDayDateTimeString(),
                     'startDate' => Carbon::parse($task->starting_date)->toDayDateTimeString(),
-                    'color'     => $task->priority_id
+                    'color' => $task->priority_id,
                 ];
             })->toArray();
     }

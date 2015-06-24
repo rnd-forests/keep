@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Entities;
 
 use Zizaco\Entrust\EntrustPermission;

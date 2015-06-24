@@ -8606,6 +8606,10 @@ a {
   a:hover, a:active, a:focus {
     text-decoration: none; }
 
+.form-error-text {
+  font-size: 11px;
+  color: #c7254e; }
+
 
 /*# sourceMappingURL=app.css.map */
 /*# sourceMappingURL=all.css.map */

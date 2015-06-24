@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\OAuth;
 
 use Keep\Entities\User;
@@ -31,12 +32,13 @@ abstract class AuthenticationProvider
      * @param OAuthUserListener $listener
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
      * @throws InvalidUserException
      */
     final public function authenticate($hasCode, OAuthUserListener $listener)
     {
         $provider = $this->getAuthProvider();
-        if (! $hasCode) {
+        if (!$hasCode) {
             return $this->getAuthorizationUrl($provider);
         }
         $providerData = $this->handleProviderCallback($provider);
@@ -44,7 +46,7 @@ abstract class AuthenticationProvider
             $this->getUserProviderData($providerData),
             $provider
         );
-        if (! $user) {
+        if (!$user) {
             throw new InvalidUserException($this->getExceptionMessage());
         }
         $this->updateAuthenticatedUser($user, $providerData);
@@ -84,8 +86,8 @@ abstract class AuthenticationProvider
     {
         return [
             'auth_provider_id' => $providerData->getId(),
-            'name'             => $providerData->getName(),
-            'email'            => $providerData->getEmail(),
+            'name' => $providerData->getName(),
+            'email' => $providerData->getEmail(),
         ];
     }
 

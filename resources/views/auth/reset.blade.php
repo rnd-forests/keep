@@ -7,16 +7,17 @@
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Reset your password</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials._form_errors')
                     {!! Form::open() !!}
                         {!! Form::hidden('token', $token) !!}
                         <div class="form-group">
                             {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
                             {!! Form::email('email', null, ['class' => 'form-control input-lg', 'placeholder' => 'username@example.com']) !!}
+                            {!! error_text($errors, 'email') !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('password', 'Password', ['class' => 'control-label']) !!}
                             {!! Form::password('password', ['class' => 'form-control input-lg']) !!}
+                            {!! error_text($errors, 'password') !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('password_confirmation', 'Password Confirmation', ['class' => 'control-label']) !!}

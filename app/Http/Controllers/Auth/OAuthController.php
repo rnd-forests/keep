@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class OAuthController extends Controller implements OAuthUserListener
      * @param Request              $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
      * @throws \Keep\Exceptions\InvalidUserException
      */
     public function loginWithGithub(GithubAuthentication $github, Request $request)
@@ -39,6 +41,7 @@ class OAuthController extends Controller implements OAuthUserListener
      * @param Request                $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
      * @throws \Keep\Exceptions\InvalidUserException
      */
     public function loginWithFacebook(FacebookAuthentication $facebook, Request $request)
@@ -53,6 +56,7 @@ class OAuthController extends Controller implements OAuthUserListener
      * @param Request              $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
      * @throws \Keep\Exceptions\InvalidUserException
      */
     public function loginWithGoogle(GoogleAuthentication $google, Request $request)

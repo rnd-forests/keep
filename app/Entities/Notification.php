@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Entities;
 
 use Exception;
@@ -17,9 +18,8 @@ class Notification extends Model implements SluggableInterface
     protected $sluggable = ['build_from' => 'subject', 'save_to' => 'slug'];
     protected $fillable = [
         'sent_from', 'type', 'subject', 'slug', 'body',
-        'object_id', 'object_type', 'sent_at'
+        'object_id', 'object_type', 'sent_at',
     ];
-
 
     public function users()
     {
@@ -31,18 +31,16 @@ class Notification extends Model implements SluggableInterface
         return $this->morphedByMany('Keep\Entities\Group', 'notifiable');
     }
 
-
     public function scopeOld($query)
     {
         return $query->where('sent_at', '<=', Carbon::now()->subDays(10));
     }
 
-
     public function getObject()
     {
         if (!$this->associatedObject && !$this->hasValidObject()) {
-            throw new InvalidObjectException('No valid object ' . $this->object_type .
-                ' with ID ' . $this->object_id . ' associated with this notification.');
+            throw new InvalidObjectException('No valid object '.$this->object_type.
+                ' with ID '.$this->object_id.' associated with this notification.');
         }
 
         return $this->associatedObject;
@@ -51,7 +49,7 @@ class Notification extends Model implements SluggableInterface
     public function hasValidObject()
     {
         try {
-            $object = call_user_func_array($this->object_type . '::findOrFail', [$this->object_id]);
+            $object = call_user_func_array($this->object_type.'::findOrFail', [$this->object_id]);
         } catch (Exception $e) {
             return false;
         }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Repositories\User;
 
 use Keep\Entities\User;
@@ -45,10 +46,10 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
     public function create(array $credentials)
     {
         return $this->model->create([
-            'name'            => $credentials['name'],
-            'email'           => $credentials['email'],
-            'password'        => $credentials['password'],
-            'activation_code' => str_random(100)
+            'name' => $credentials['name'],
+            'email' => $credentials['email'],
+            'password' => $credentials['password'],
+            'activation_code' => str_random(100),
         ]);
     }
 
@@ -119,15 +120,15 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
         $userExisted = $this->model
             ->where('email', $userData['email'])
             ->first();
-        if (! $user && $userExisted) {
+        if (!$user && $userExisted) {
             return false;
         }
-        if (! $user) {
+        if (!$user) {
             $user = $this->model->create($userData);
             $user->update([
-                'auth_provider'   => $authProvider,
-                'active'          => true,
-                'activation_code' => ''
+                'auth_provider' => $authProvider,
+                'active' => true,
+                'activation_code' => '',
             ]);
         }
 

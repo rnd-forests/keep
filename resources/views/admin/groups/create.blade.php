@@ -6,7 +6,6 @@
             <div class="panel panel-primary form-wrapper">
                 <div class="panel-heading"><strong>Create New Group</strong></div>
                 <div class="panel-body">
-                    @include('layouts.partials._form_errors')
                     {!! Form::model($group = new \Keep\Entities\Group, ['route' => 'admin::groups.active.store']) !!}
                         @include('admin.groups.partials._main_form', ['groupFormSubmitButton' => 'Create Group'])
                     {!! Form::close() !!}

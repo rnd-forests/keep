@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Listeners;
 
 use Keep\Mailers\UserMailer;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Exceptions;
 
 use Exception;
@@ -14,14 +15,14 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        'Symfony\Component\HttpKernel\Exception\HttpException'
+        'Symfony\Component\HttpKernel\Exception\HttpException',
     ];
 
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Exception               $e
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception               $e
      *
      * @return \Illuminate\Http\Response
      */
@@ -38,9 +39,9 @@ class Handler extends ExceptionHandler
 
             return redirect()->home();
         }
-        
+
         if ($e instanceof ModelNotFoundException) {
-            flash()->warning('The ' . substr($e->getModel(), 14) . ' you are looking for, cannot be found.');
+            flash()->warning('The '.substr($e->getModel(), 14).' you are looking for, cannot be found.');
 
             return redirect()->home();
         }

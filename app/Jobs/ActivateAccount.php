@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
@@ -29,7 +30,7 @@ class ActivateAccount extends Job implements SelfHandling
     {
         $user = $users->findByActivationCode($this->code);
         $user->update(['activation_code' => '', 'active' => true]);
-        if (! $user->save()) {
+        if (!$user->save()) {
             return false;
         }
         auth()->login($user);

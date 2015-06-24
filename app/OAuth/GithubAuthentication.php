@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\OAuth;
 
 use Keep\Entities\User;
@@ -27,10 +28,10 @@ class GithubAuthentication extends AuthenticationProvider implements ProviderInt
     public function updateAuthenticatedUser(User $user, $userData)
     {
         $user->profile()->update([
-            'bio'             => $userData->user['bio'],
-            'company'         => $userData->user['company'],
-            'location'        => $userData->user['location'],
-            'github_username' => str_replace('https://github.com/', '', $userData->user['html_url'])
+            'bio' => $userData->user['bio'],
+            'company' => $userData->user['company'],
+            'location' => $userData->user['location'],
+            'github_username' => str_replace('https://github.com/', '', $userData->user['html_url']),
         ]);
 
         return $user->save();

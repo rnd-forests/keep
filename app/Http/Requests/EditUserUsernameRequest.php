@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\Requests;
 
 class EditUserUsernameRequest extends Request
@@ -12,7 +13,7 @@ class EditUserUsernameRequest extends Request
     {
         return [
             'old_username' => 'required',
-            'new_username' => 'required|different:old_username|max:255'
+            'new_username' => 'required|different:old_username|max:255',
         ];
     }
 }

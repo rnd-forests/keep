@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Entities;
 
 use Illuminate\Database\Eloquent\Model;
@@ -12,12 +13,10 @@ class Tag extends Model implements SluggableInterface
     protected $fillable = ['name'];
     protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
 
-
     public function tasks()
     {
         return $this->belongsToMany('Keep\Entities\Task')->withTimestamps();
     }
-
 
     public function getRouteKey()
     {

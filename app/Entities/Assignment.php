@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Entities;
 
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,6 @@ class Assignment extends Model implements SluggableInterface
 
     protected $fillable = ['assignment_name', 'slug'];
     protected $sluggable = ['build_from' => 'assignment_name', 'save_to' => 'slug'];
-
 
     public function users()
     {
@@ -29,7 +29,6 @@ class Assignment extends Model implements SluggableInterface
         return $this->hasOne('Keep\Entities\Task');
     }
 
-    
     public function getRouteKey()
     {
         return $this->slug;

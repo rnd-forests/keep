@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\ViewComposers;
 
 use Illuminate\Contracts\View\View;
@@ -10,10 +11,10 @@ class GroupNotificationForm
     {
         $types = [
             'default' => 'General',
-            'info'    => 'Informative',
+            'info' => 'Informative',
             'success' => 'Successful',
             'warning' => 'Warning',
-            'danger'  => 'Danger'
+            'danger' => 'Danger',
         ];
         $groupRepo = app()->make(UserGroupRepositoryInterface::class);
         $view->with('types', $types);

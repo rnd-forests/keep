@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Jobs\Relations;
 
 use Keep\Jobs\Job;
@@ -119,11 +120,10 @@ abstract class AssignmentRelations extends Job
         );
     }
 
-
     public function getAssignmentRequestData()
     {
         return [
-            'assignment_name' => $this->data['assignment_name']
+            'assignment_name' => $this->data['assignment_name'],
         ];
     }
 
@@ -155,24 +155,24 @@ abstract class AssignmentRelations extends Job
     public function getTaskRequestData()
     {
         return [
-            'title'          => $this->data['title'],
-            'content'        => $this->data['content'],
-            'starting_date'  => $this->data['starting_date'],
+            'title' => $this->data['title'],
+            'content' => $this->data['content'],
+            'starting_date' => $this->data['starting_date'],
             'finishing_date' => $this->data['finishing_date'],
-            'location'       => $this->data['location']
+            'location' => $this->data['location'],
         ];
     }
 
     public function getTaskRequestDataWithRelations()
     {
         return [
-            'title'          => $this->data['title'],
-            'content'        => $this->data['content'],
-            'starting_date'  => $this->data['starting_date'],
+            'title' => $this->data['title'],
+            'content' => $this->data['content'],
+            'starting_date' => $this->data['starting_date'],
             'finishing_date' => $this->data['finishing_date'],
-            'location'       => $this->data['location'],
-            'tag_list'       => array_key_exists('tag_list', $this->data) ? $this->data['tag_list'] : [],
-            'priority_level' => $this->data['priority_level']
+            'location' => $this->data['location'],
+            'tag_list' => array_key_exists('tag_list', $this->data) ? $this->data['tag_list'] : [],
+            'priority_level' => $this->data['priority_level'],
         ];
     }
 }

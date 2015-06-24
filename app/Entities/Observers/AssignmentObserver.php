@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Entities\Observers;
 
 use Keep\Entities\Assignment;
@@ -8,7 +9,7 @@ class AssignmentObserver
     public function deleting(Assignment $assignment)
     {
         $assignment->task()->update([
-            'destroyer_id' => auth()->user()->getAuthIdentifier()
+            'destroyer_id' => auth()->user()->getAuthIdentifier(),
         ]);
         $assignment->task()->delete();
     }
@@ -16,7 +17,7 @@ class AssignmentObserver
     public function restoring(Assignment $assignment)
     {
         $assignment->task()->update([
-            'destroyer_id' => null
+            'destroyer_id' => null,
         ]);
     }
 }

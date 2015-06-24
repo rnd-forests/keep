@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Jobs;
 
 use Keep\Events\UserHasRegistered;
@@ -12,9 +13,9 @@ class RegisterAccount extends Job implements SelfHandling
     /**
      * Create a new job instance.
      *
-     * @param                         $name
-     * @param                         $email
-     * @param                         $password
+     * @param   $name
+     * @param   $email
+     * @param   $password
      */
     public function __construct($name, $email, $password)
     {
@@ -33,7 +34,7 @@ class RegisterAccount extends Job implements SelfHandling
     public function handle(UserRepositoryInterface $users)
     {
         $user = $users->create($this->getCredentials());
-        if (! $user) {
+        if (!$user) {
             return false;
         }
         event(new UserHasRegistered($user));
@@ -49,9 +50,9 @@ class RegisterAccount extends Job implements SelfHandling
     private function getCredentials()
     {
         return [
-            'name'     => $this->name,
-            'email'    => $this->email,
-            'password' => $this->password
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => $this->password,
         ];
     }
 }

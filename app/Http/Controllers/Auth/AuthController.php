@@ -1,4 +1,5 @@
 <?php
+
 namespace Keep\Http\Controllers\Auth;
 
 use Keep\Jobs\RegisterAccount;
@@ -66,16 +67,16 @@ class AuthController extends Controller
     public function postLogin(OpenSessionRequest $request)
     {
         if ($this->dispatchFrom(AuthenticateAccount::class, $request, [
-            'active'   => 1,
-            'remember' => $request->has('remember')])
+            'active' => 1,
+            'remember' => $request->has('remember'), ])
         ) {
             flash()->success('You have been logged in.');
 
             return redirect()->intended('/');
         }
+        session()->flash('login_error', 'Your credentials are wrong or your account has not been activated.');
 
-        return redirect()->route('auth::login')->withInput($request->only('email', 'remember'))
-            ->withErrors(['Your credentials are wrong or your account has not been activated.']);
+        return redirect()->route('auth::login')->withInput($request->only('email', 'remember'));
     }
 
     /**
