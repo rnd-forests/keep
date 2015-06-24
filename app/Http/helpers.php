@@ -114,7 +114,7 @@ if (!function_exists('error_text')) {
     function error_text($errors, $field)
     {
         if ($errors->has($field)) {
-            return '<span class="help-block form-error-text">' . $errors->first($field) . '</span>';
+            return $errors->first($field, '<span class="help-block form-error-text">:message</span>');
         }
     }
 }
