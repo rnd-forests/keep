@@ -67,7 +67,7 @@ class NotificationsController extends Controller
      */
     public function storeMemberNotification(NotificationRequest $request)
     {
-        $this->dispatchFrom(CreateMemberNotification::class, $request);
+        $this->dispatch(new CreateMemberNotification($request->all()));
         flash()->success('The notification was sent to selected members');
 
         return redirect()->back();
@@ -92,7 +92,7 @@ class NotificationsController extends Controller
      */
     public function storeGroupNotification(NotificationRequest $request)
     {
-        $this->dispatchFrom(CreateGroupNotification::class, $request);
+        $this->dispatch(new CreateGroupNotification($request->all()));
         flash()->success('The notification was sent to selected groups');
 
         return redirect()->back();

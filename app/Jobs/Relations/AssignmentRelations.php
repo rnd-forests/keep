@@ -1,5 +1,5 @@
 <?php
-namespace Keep\Jobs\Templates;
+namespace Keep\Jobs\Relations;
 
 use Keep\Jobs\Job;
 use Keep\Entities\Task;
@@ -10,12 +10,14 @@ use Keep\Repositories\User\UserRepositoryInterface;
 use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
 use Keep\Repositories\Assignment\AssignmentRepositoryInterface;
 
-abstract class AssignmentTemplate extends Job
+abstract class AssignmentRelations extends Job
 {
     protected $data;
     protected static $taskRepo, $assignmentRepo, $userRepo, $groupRepo;
 
     /**
+     * Constructor.
+     *
      * @param array $data
      */
     public function __construct(array $data)

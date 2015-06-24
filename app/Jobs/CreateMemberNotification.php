@@ -1,44 +1,18 @@
 <?php
 namespace Keep\Jobs;
 
-use Keep\Jobs\Traits\NotificationTrait;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Keep\Repositories\User\UserRepositoryInterface;
-use Keep\Repositories\Notification\NotificationRepositoryInterface;
+use Keep\Jobs\Relations\NotificationRelations;
 
-class CreateMemberNotification extends Job implements SelfHandling
+class CreateMemberNotification extends NotificationRelations implements SelfHandling
 {
-    use NotificationTrait;
-
-    protected $type, $body, $subject, $userList;
-
     /**
-     * Create a new job instance.
-     *
-     * @param $type
-     * @param $body
-     * @param $subject
-     * @param $user_list
+     * Create member notification.
      */
-    public function __construct($type, $body, $subject, $user_list)
+    public function handle()
     {
-        $this->type = $type;
-        $this->body = $body;
-        $this->subject = $subject;
-        $this->userList = $user_list;
-    }
-
-    /**
-     * Execute the job.
-     *
-     * @param NotificationRepositoryInterface $notiRepo
-     * @param UserRepositoryInterface         $userRepo
-     */
-    public function handle(NotificationRepositoryInterface $notiRepo,
-                           UserRepositoryInterface $userRepo)
-    {
-        $notification = $notiRepo->create($this->getNotificationRequestData());
-        $users = $userRepo->fetchUsersByIds($this->userList);
+        $notification = parent::$notiRepo->create($this->getNotificationRequestData());
+        $users = parent::$userRepo->fetchUsersByIds($this->getUserListRequestData());
         $this->setNotificationPolymorphic($notification, $users);
     }
 }

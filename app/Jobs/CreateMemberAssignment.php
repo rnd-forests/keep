@@ -2,9 +2,9 @@
 namespace Keep\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
-use Keep\Jobs\Templates\AssignmentTemplate;
+use Keep\Jobs\Relations\AssignmentRelations;
 
-class CreateMemberAssignment extends AssignmentTemplate implements SelfHandling
+class CreateMemberAssignment extends AssignmentRelations implements SelfHandling
 {
     /**
      * Create assignment for members.
