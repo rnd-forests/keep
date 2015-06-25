@@ -37,11 +37,11 @@ class AccountController extends Controller
         if ($this->dispatchFrom(ModifyAccountPassword::class, $request, [
             'user' => $this->userRepo->findBySlug($userSlug), ])
         ) {
-            session()->flash('update_password_success', 'Your password has been successfully updated.');
+            session()->flash('update_password_success', trans('authentication.updated_password_success'));
 
             return redirect()->back();
         }
-        session()->flash('update_password_error', 'Uh-oh! Your password could not be changed.');
+        session()->flash('update_password_error', trans('authentication.update_password_error'));
 
         return redirect()->back();
     }
@@ -58,11 +58,11 @@ class AccountController extends Controller
     {
         $user = $this->userRepo->findBySlug($userSlug);
         if ($this->dispatchFrom(ModifyAccountName::class, $request, ['user' => $user])) {
-            session()->flash('update_username_success', 'Your username has been successfully updated.');
+            session()->flash('update_username_success', trans('authentication.update_username_success'));
 
             return redirect()->route('member::profile', $user);
         }
-        session()->flash('update_username_error', 'Uh-oh! Your username could not be changed.');
+        session()->flash('update_username_error', trans('authentication.update_username_error'));
 
         return redirect()->back();
     }

@@ -43,6 +43,6 @@ class GoogleAuthentication extends AuthenticationProvider implements ProviderInt
      */
     protected function getExceptionMessage()
     {
-        return 'Something went wrong with your Google authentication process.';
+        return trans('authentication.google_error');
     }
 }

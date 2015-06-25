@@ -46,7 +46,7 @@ class UsersController extends Controller
     public function update(EditUserProfileRequest $request, $slug)
     {
         $user = $this->userRepo->updateProfile($request->except(['_method', '_token']), $slug);
-        flash()->info('Your profile has been successfully updated.');
+        flash()->info(trans('controller.profile_updated'));
 
         return redirect()->route('member::profile', $user);
     }
@@ -61,7 +61,7 @@ class UsersController extends Controller
     public function destroy($slug)
     {
         $this->userRepo->softDelete($slug);
-        flash()->success('Your account has been deleted.');
+        flash()->success(trans('controller.account_canceled'));
 
         return redirect()->home();
     }

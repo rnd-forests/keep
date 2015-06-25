@@ -44,6 +44,6 @@ class GithubAuthentication extends AuthenticationProvider implements ProviderInt
      */
     public function getExceptionMessage()
     {
-        return 'Something went wrong with your GitHub authentication process.';
+        return trans('authentication.github_error');
     }
 }

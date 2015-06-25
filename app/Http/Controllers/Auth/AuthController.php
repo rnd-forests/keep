@@ -39,7 +39,7 @@ class AuthController extends Controller
     public function postRegister(RegisterUserRequest $request)
     {
         if ($this->dispatchFrom(RegisterAccount::class, $request)) {
-            flash()->info('Check your email address to activate your account.');
+            flash()->info(trans('authentication.account_activation'));
 
             return redirect()->home();
         }
@@ -70,11 +70,11 @@ class AuthController extends Controller
             'active' => 1,
             'remember' => $request->has('remember'), ])
         ) {
-            flash()->success('You have been logged in.');
+            flash()->success(trans('authentication.login_success'));
 
             return redirect()->intended('/');
         }
-        session()->flash('login_error', 'Your credentials are wrong or your account has not been activated.');
+        session()->flash('login_error', trans('authentication.login_error'));
 
         return redirect()->route('auth::login')->withInput($request->only('email', 'remember'));
     }
@@ -87,7 +87,7 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
-        flash()->success('You have been logged out.');
+        flash()->success(trans('authentication.logout'));
 
         return redirect()->home();
     }
@@ -102,11 +102,11 @@ class AuthController extends Controller
     public function activate($code)
     {
         if ($this->dispatch(new ActivateAccount($code))) {
-            flash()->success('Your account has been activated.');
+            flash()->success(trans('authentication.activation_success'));
 
             return redirect()->home();
         }
-        flash()->warning('Something went wrong. Please check your activation link');
+        flash()->warning(trans('authentication.activation_error'));
 
         return redirect()->home();
     }

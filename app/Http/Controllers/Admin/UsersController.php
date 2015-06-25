@@ -70,7 +70,7 @@ class UsersController extends Controller
     public function disableAccount($slug)
     {
         $this->userRepo->softDelete($slug);
-        flash()->info('This account has been disabled.');
+        flash()->info(trans('administrator.account_disabled'));
 
         return redirect()->route('admin::members.active');
     }
@@ -85,7 +85,7 @@ class UsersController extends Controller
     public function restoreAccount($slug)
     {
         $this->userRepo->restore($slug);
-        flash()->info('This account has been restored.');
+        flash()->info(trans('administrator.account_restored'));
 
         return redirect()->back();
     }
@@ -100,7 +100,7 @@ class UsersController extends Controller
     public function forceDeleteAccount($slug)
     {
         $this->userRepo->forceDelete($slug);
-        flash()->info('This account was permanently deleted.');
+        flash()->info(trans('administrator.account_destroyed'));
 
         return redirect()->back();
     }

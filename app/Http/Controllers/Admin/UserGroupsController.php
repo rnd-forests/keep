@@ -53,7 +53,7 @@ class UserGroupsController extends Controller
     public function store(UserGroupRequest $request)
     {
         $this->groupRepo->create($request->all());
-        flash()->success('The new group was successfully created.');
+        flash()->success(trans('administrator.group_created'));
 
         return redirect()->route('admin::groups.active');
     }
@@ -98,7 +98,7 @@ class UserGroupsController extends Controller
     public function update(UserGroupRequest $request, $slug)
     {
         $this->groupRepo->update($slug, $request->all());
-        flash()->info('The information of this group was updated.');
+        flash()->info(trans('administrator.group_updated'));
 
         return redirect()->route('admin::groups.active');
     }
@@ -113,7 +113,7 @@ class UserGroupsController extends Controller
     public function destroy($slug)
     {
         $this->groupRepo->softDelete($slug);
-        flash()->info('This group was successfully sent to trash');
+        flash()->info(trans('administrator.group_trashed'));
 
         return redirect()->back();
     }
@@ -128,7 +128,7 @@ class UserGroupsController extends Controller
     public function restore($slug)
     {
         $this->groupRepo->restore($slug);
-        flash()->success('This group was successfully restored');
+        flash()->success(trans('administrator.group_restored'));
 
         return redirect()->back();
     }
@@ -155,7 +155,7 @@ class UserGroupsController extends Controller
     public function forceDeleteGroup($slug)
     {
         $this->groupRepo->forceDelete($slug);
-        flash()->info('This group was permanently deleted.');
+        flash()->info(trans('administrator.group_destroyed'));
 
         return redirect()->back();
     }
@@ -171,7 +171,7 @@ class UserGroupsController extends Controller
     public function removeUser($groupSlug, $userId)
     {
         $this->groupRepo->findBySlug($groupSlug)->users()->detach($userId);
-        flash()->info('This user was removed form the current group');
+        flash()->info(trans('administrator.group_remove_user'));
 
         return redirect()->back();
     }
@@ -186,7 +186,7 @@ class UserGroupsController extends Controller
     public function flush($groupSlug)
     {
         $this->groupRepo->findBySlug($groupSlug)->users()->detach();
-        flash()->info('All members were removed from this group');
+        flash()->info(trans('administrator.group_flush_users'));
 
         return redirect()->route('admin::groups.active.show', $groupSlug);
     }

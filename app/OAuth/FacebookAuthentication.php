@@ -27,7 +27,7 @@ class FacebookAuthentication extends AuthenticationProvider implements ProviderI
      */
     public function getExceptionMessage()
     {
-        return 'Something went wrong with your Facebook authentication process.';
+        return trans('authentication.facebook_error');
     }
 
     /**

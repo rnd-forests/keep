@@ -44,7 +44,7 @@ class NotificationsController extends Controller
     public function destroy($slug)
     {
         $this->notificationRepo->delete($slug);
-        flash()->info('This notification was successfully deleted');
+        flash()->info(trans('administrator.notification_destroyed'));
 
         return redirect()->route('admin::notifications.all');
     }
@@ -69,7 +69,7 @@ class NotificationsController extends Controller
     public function storeMemberNotification(NotificationRequest $request)
     {
         $this->dispatch(new CreateMemberNotification($request->all()));
-        flash()->success('The notification was sent to selected members');
+        flash()->success(trans('administrator.notification_member'));
 
         return redirect()->back();
     }
@@ -94,7 +94,7 @@ class NotificationsController extends Controller
     public function storeGroupNotification(NotificationRequest $request)
     {
         $this->dispatch(new CreateGroupNotification($request->all()));
-        flash()->success('The notification was sent to selected groups');
+        flash()->success(trans('administrator.notification_group'));
 
         return redirect()->back();
     }

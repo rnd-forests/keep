@@ -75,7 +75,7 @@ class AssignmentsController extends Controller
     public function update(AssignmentRequest $request, $slug)
     {
         $this->dispatch(new ModifyAssignment(array_add($request->all(), 'assignment_slug', $slug)));
-        flash()->info('The assignment was successfully updated');
+        flash()->info(trans('administrator.assignment_updated'));
 
         return redirect()->route('admin::assignments.published');
     }
@@ -90,7 +90,7 @@ class AssignmentsController extends Controller
     public function destroy($slug)
     {
         $this->assignmentRepo->softDelete($slug);
-        flash()->info('This assignment was successfully deleted');
+        flash()->info(trans('administrator.assignment_deleted'));
 
         return redirect()->route('admin::assignments.published');
     }
@@ -115,7 +115,7 @@ class AssignmentsController extends Controller
     public function storeMemberAssignment(AssignmentRequest $request)
     {
         $this->dispatch(new CreateMemberAssignment($request->all()));
-        flash()->success('The assignment was assigned to selected members');
+        flash()->success(trans('administrator.assignment_member'));
 
         return redirect()->back();
     }
@@ -140,7 +140,7 @@ class AssignmentsController extends Controller
     public function storeGroupAssignment(AssignmentRequest $request)
     {
         $this->dispatch(new CreateGroupAssignment($request->all()));
-        flash()->success('The assignment was assigned to selected groups');
+        flash()->success(trans('administrator.assignment_group'));
 
         return redirect()->back();
     }
@@ -167,7 +167,7 @@ class AssignmentsController extends Controller
     public function restore($slug)
     {
         $this->assignmentRepo->restore($slug);
-        flash()->success('This assignment was successfully restored');
+        flash()->success(trans('administrator.assignment_restored'));
 
         return redirect()->back();
     }
@@ -182,7 +182,7 @@ class AssignmentsController extends Controller
     public function forceDeleteAssignment($slug)
     {
         $this->assignmentRepo->forceDelete($slug);
-        flash()->info('This assignment was permanently deleted.');
+        flash()->info(trans('administrator.assignment_destroyed'));
 
         return redirect()->back();
     }

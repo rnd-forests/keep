@@ -53,7 +53,7 @@ class UserTaskController extends Controller
         $author = $this->userRepo->findBySlug($userSlug);
         $task = $author->tasks()->save($this->createTask($request));
         event(new TaskHasPublished($author, $task));
-        flash()->success('Your tasks has been successfully created');
+        flash()->success(trans('controller.task_created'));
 
         return redirect()->route('member::dashboard', $author);
     }
@@ -130,7 +130,7 @@ class UserTaskController extends Controller
     {
         $task = $this->taskRepo->update($request->all(), $userSlug, $taskSlug);
         $this->setRelations($task, $request);
-        flash()->info('Your task was successfully updated');
+        flash()->info(trans('controller.task_updated'));
 
         return redirect()->route('member::dashboard', $this->userRepo->findBySlug($userSlug));
     }
@@ -146,7 +146,7 @@ class UserTaskController extends Controller
     public function destroy($userSlug, $taskSlug)
     {
         $this->taskRepo->deleteWithUserConstraint($userSlug, $taskSlug);
-        flash()->success('Your task was successfully destroyed.');
+        flash()->success(trans('controller.task_deleted'));
 
         return redirect()->route('member::dashboard', $userSlug);
     }
@@ -162,7 +162,7 @@ class UserTaskController extends Controller
     public function complete($userSlug, $taskSlug)
     {
         $this->taskRepo->complete($userSlug, $taskSlug);
-        flash()->success('You changed the completed status of this task.');
+        flash()->success(trans('controller.task_completed'));
 
         return redirect()->back();
     }

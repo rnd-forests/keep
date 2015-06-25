@@ -50,7 +50,7 @@ class PasswordController extends Controller
         });
 
         if ($response == PasswordBroker::RESET_LINK_SENT) {
-            flash()->success('We have e-mailed your password reset link!');
+            flash()->success(trans('authentication.password_reset_email'));
 
             return redirect()->home();
         }
@@ -94,7 +94,7 @@ class PasswordController extends Controller
         });
 
         if ($response == PasswordBroker::PASSWORD_RESET) {
-            flash()->success('Your password has been reset!');
+            flash()->success(trans('authentication.password_reset'));
 
             return redirect()->home();
         }
