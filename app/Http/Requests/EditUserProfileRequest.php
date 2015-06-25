@@ -12,9 +12,9 @@ class EditUserProfileRequest extends Request
     public function rules()
     {
         return [
-            'location' => 'max:300',
+            'location' => 'max:255',
             'bio' => 'max:2500',
-            'website' => 'url',
+            'website' => 'url|active_url',
             'phone' => 'regex:/^([0-9\s\-\+\(\)]*)$/|max:11',
             'twitter_username' => 'max:255',
             'github_username' => 'max:255',

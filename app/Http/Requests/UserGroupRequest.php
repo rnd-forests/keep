@@ -12,7 +12,7 @@ class UserGroupRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|max:255|min:4',
+            'name' => 'required|between:4,255',
         ];
     }
 }

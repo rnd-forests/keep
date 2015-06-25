@@ -29,7 +29,7 @@ class ModifyAccountName extends Job implements SelfHandling
      */
     public function handle()
     {
-        if (!strcasecmp($this->oldUsername, $this->user->name) == 0) {
+        if (strcasecmp($this->oldUsername, $this->newUsername) == 0) {
             return false;
         }
         $this->user->name = $this->newUsername;
