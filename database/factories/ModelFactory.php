@@ -6,7 +6,7 @@ $factory->define(Keep\Entities\User::class, function ($faker) {
     return [
         'name'     => $faker->name,
         'email'    => $faker->email,
-        'password' => '123456',
+        'password' => 'secret',
         'active'   => true
     ];
 });
