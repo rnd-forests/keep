@@ -21,7 +21,7 @@
         @yield('content')
     </div>
     @include('layouts.partials._footer')
-    {!! Html::script('js/all.js') !!}
+    <script src="{{ elixir('js/all.js') }}"></script>
     @yield('footer')
 </body>
 </html>
