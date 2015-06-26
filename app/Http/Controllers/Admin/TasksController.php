@@ -60,7 +60,7 @@ class TasksController extends Controller
         $this->taskRepo->softDelete($slug);
         flash()->info(trans('administrator.task_trashed'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -87,7 +87,7 @@ class TasksController extends Controller
         $this->taskRepo->restore($slug);
         flash()->info(trans('administrator.task_restored'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -102,6 +102,6 @@ class TasksController extends Controller
         $this->taskRepo->forceDelete($slug);
         flash()->info(trans('administrator.task_destroyed'));
 
-        return redirect()->back();
+        return back();
     }
 }

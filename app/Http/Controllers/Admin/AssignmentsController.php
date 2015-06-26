@@ -117,7 +117,7 @@ class AssignmentsController extends Controller
         $this->dispatch(new CreateMemberAssignment($request->all()));
         flash()->success(trans('administrator.assignment_member'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -142,7 +142,7 @@ class AssignmentsController extends Controller
         $this->dispatch(new CreateGroupAssignment($request->all()));
         flash()->success(trans('administrator.assignment_group'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -169,7 +169,7 @@ class AssignmentsController extends Controller
         $this->assignmentRepo->restore($slug);
         flash()->success(trans('administrator.assignment_restored'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -184,6 +184,6 @@ class AssignmentsController extends Controller
         $this->assignmentRepo->forceDelete($slug);
         flash()->info(trans('administrator.assignment_destroyed'));
 
-        return redirect()->back();
+        return back();
     }
 }

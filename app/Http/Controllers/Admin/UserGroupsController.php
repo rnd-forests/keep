@@ -115,7 +115,7 @@ class UserGroupsController extends Controller
         $this->groupRepo->softDelete($slug);
         flash()->info(trans('administrator.group_trashed'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -130,7 +130,7 @@ class UserGroupsController extends Controller
         $this->groupRepo->restore($slug);
         flash()->success(trans('administrator.group_restored'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -157,7 +157,7 @@ class UserGroupsController extends Controller
         $this->groupRepo->forceDelete($slug);
         flash()->info(trans('administrator.group_destroyed'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -173,7 +173,7 @@ class UserGroupsController extends Controller
         $this->groupRepo->findBySlug($groupSlug)->users()->detach($userId);
         flash()->info(trans('administrator.group_remove_user'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -221,7 +221,7 @@ class UserGroupsController extends Controller
         $this->groupRepo->attachUsers($this->groupRepo->findBySlug($slug), $ids);
         flash()->success($this->getUpdateMembersMessage($ids));
 
-        return redirect()->back();
+        return back();
     }
 
     /**

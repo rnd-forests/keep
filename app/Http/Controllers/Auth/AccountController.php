@@ -39,11 +39,11 @@ class AccountController extends Controller
         ) {
             session()->flash('update_password_success', trans('authentication.updated_password_success'));
 
-            return redirect()->back();
+            return back();
         }
         session()->flash('update_password_error', trans('authentication.update_password_error'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -64,6 +64,6 @@ class AccountController extends Controller
         }
         session()->flash('update_username_error', trans('authentication.update_username_error'));
 
-        return redirect()->back();
+        return back();
     }
 }

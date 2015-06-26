@@ -71,7 +71,7 @@ class NotificationsController extends Controller
         $this->dispatch(new CreateMemberNotification($request->all()));
         flash()->success(trans('administrator.notification_member'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -96,6 +96,6 @@ class NotificationsController extends Controller
         $this->dispatch(new CreateGroupNotification($request->all()));
         flash()->success(trans('administrator.notification_group'));
 
-        return redirect()->back();
+        return back();
     }
 }

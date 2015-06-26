@@ -87,7 +87,7 @@ class UsersController extends Controller
         $this->userRepo->restore($slug);
         flash()->info(trans('administrator.account_restored'));
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -102,6 +102,6 @@ class UsersController extends Controller
         $this->userRepo->forceDelete($slug);
         flash()->info(trans('administrator.account_destroyed'));
 
-        return redirect()->back();
+        return back();
     }
 }

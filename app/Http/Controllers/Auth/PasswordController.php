@@ -55,7 +55,7 @@ class PasswordController extends Controller
             return redirect()->home();
         }
 
-        return redirect()->back()->withErrors(['email' => trans($response)]);
+        return back()->withErrors(['email' => trans($response)]);
     }
 
     /**
@@ -99,7 +99,7 @@ class PasswordController extends Controller
             return redirect()->home();
         }
 
-        return redirect()->back()
+        return back()
             ->withInput($request->only('email'))
             ->withErrors(['email' => trans($response)]);
     }

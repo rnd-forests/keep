@@ -164,6 +164,6 @@ class UserTaskController extends Controller
         $this->taskRepo->complete($userSlug, $taskSlug);
         flash()->success(trans('controller.task_completed'));
 
-        return redirect()->back();
+        return back();
     }
 }
