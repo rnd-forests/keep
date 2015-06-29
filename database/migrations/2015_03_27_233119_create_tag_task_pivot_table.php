@@ -12,7 +12,6 @@ class CreateTagTaskPivotTable extends Migration
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->integer('task_id')->unsigned();
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
-            $table->timestamps();
 
             $table->index('tag_id');
             $table->index('task_id');

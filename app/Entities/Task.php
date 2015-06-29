@@ -37,7 +37,7 @@ class Task extends Model implements SluggableInterface
 
     public function tags()
     {
-        return $this->belongsToMany('Keep\Entities\Tag')->withTimestamps();
+        return $this->belongsToMany('Keep\Entities\Tag');
     }
 
     public function priority()

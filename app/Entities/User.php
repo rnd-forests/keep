@@ -2,6 +2,7 @@
 
 namespace Keep\Entities;
 
+use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -45,7 +46,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function groups()
     {
-        return $this->belongsToMany('Keep\Entities\Group')->withTimestamps();
+        return $this->belongsToMany('Keep\Entities\Group');
     }
 
     public function assignments()
@@ -60,7 +61,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function isAdmin()
     {
-        return $this->hasRole('admin');
+        return $this->hasRole(['admin', 'owner']);
     }
 
     public function notify($notification)
@@ -70,7 +71,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function setPasswordAttribute($password)
     {
-        $this->attributes['password'] = bcrypt($password);
+        $this->attributes['password'] = Hash::make($password);
     }
 
     public function getRouteKey()

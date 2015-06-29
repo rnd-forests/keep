@@ -15,7 +15,7 @@ class Tag extends Model implements SluggableInterface
 
     public function tasks()
     {
-        return $this->belongsToMany('Keep\Entities\Task')->withTimestamps();
+        return $this->belongsToMany('Keep\Entities\Task');
     }
 
     public function getRouteKey()
