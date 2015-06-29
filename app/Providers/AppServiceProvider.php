@@ -20,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
                 Log::info($bindings);
             });
         }
+
+        if ($this->app->environment() == 'testing') {
+            config(['database.default' => 'sqlite']);
+        }
     }
 
     /**

@@ -35,8 +35,7 @@
             "database"
         ],
         "files": [
-            "app/Http/helpers.php",
-            "tests/ModelTestHelpers.php"
+            "app/Http/helpers.php"
         ],
         "psr-4": {
             "Keep\\": "app/"
@@ -44,7 +43,13 @@
     },
     "autoload-dev": {
         "classmap": [
-            "tests/TestCase.php"
+            "tests/TestCase.php",
+            "tests/ModelTestCase.php",
+            "tests/ModelTestHelpers.php",
+            "tests/Auth",
+            "tests/Entities",
+            "tests/Helpers",
+            "tests/Repositories"
         ]
     },
     "scripts": {
