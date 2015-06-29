@@ -42,7 +42,7 @@ class Task extends Model implements SluggableInterface
 
     public function priority()
     {
-        return $this->belongsTo('Keep\Entities\Priority', 'priority_id');
+        return $this->belongsTo('Keep\Entities\Priority');
     }
 
     public function assignment()
@@ -52,52 +52,60 @@ class Task extends Model implements SluggableInterface
 
     public function scopeUrgent($query)
     {
-        return $query->where('priority_id', 1)
-            ->where('completed', 0)
-            ->where('is_failed', 0)
+        return $query
+            ->where('priority_id', 1)
+            ->where('completed', false)
+            ->where('is_failed', false)
             ->orderBy('finishing_date', 'asc');
     }
 
     public function scopeCompleted($query)
     {
-        return $query->where('completed', 1);
+        return $query->where('completed', true);
     }
 
     public function scopeNewest($query)
     {
-        return $query->orderBy('created_at', 'desc');
+        return $query
+            ->where('is_failed', false)
+            ->orderBy('created_at', 'desc');
     }
 
     public function scopeToDeadline($query)
     {
-        return $query->where('completed', 0)
-            ->where('is_failed', 0)
+        return $query
+            ->where('completed', false)
+            ->where('is_failed', false)
             ->orderBy('finishing_date', 'asc');
     }
 
     public function scopeRecentlyCompleted($query)
     {
-        return $query->where('completed', 1)
+        return $query
+            ->where('completed', true)
             ->orderBy('finished_at', 'desc');
     }
 
     public function scopeAboutToFail($query)
     {
-        return $query->where('completed', 0)
-            ->where('is_failed', 0)
+        return $query
+            ->where('completed', false)
+            ->where('is_failed', false)
             ->where('finishing_date', '<', Carbon::now());
     }
 
     public function scopeRecentlyFailed($query)
     {
-        return $query->where('is_failed', 1)
+        return $query
+            ->where('is_failed', true)
             ->orderBy('created_at', 'desc');
     }
 
     public function scopeDue($query)
     {
-        return $query->where('is_failed', 0)
-            ->where('completed', 0);
+        return $query
+            ->where('is_failed', false)
+            ->where('completed', false);
     }
 
     public function scopeUserCreated($query)
@@ -107,8 +115,9 @@ class Task extends Model implements SluggableInterface
 
     public function scopeUpcoming($query)
     {
-        return $query->where('completed', 0)
-            ->where('is_failed', 0)
+        return $query
+            ->where('completed', false)
+            ->where('is_failed', false)
             ->whereBetween('finishing_date', [Carbon::now(), Carbon::now()->addDays(5)]);
     }
 
@@ -122,19 +131,9 @@ class Task extends Model implements SluggableInterface
         return $this->completed;
     }
 
-    public function setStartingDateAttribute($date)
-    {
-        $this->attributes['starting_date'] = Carbon::parse($date);
-    }
-
     public function getStartingDateAttribute($date)
     {
         return Carbon::parse($date)->format('m/d/Y h:i A');
-    }
-
-    public function setFinishingDateAttribute($date)
-    {
-        $this->attributes['finishing_date'] = Carbon::parse($date);
     }
 
     public function getFinishingDateAttribute($date)
@@ -144,7 +143,7 @@ class Task extends Model implements SluggableInterface
 
     public function setFinishedAtAttribute($date)
     {
-        if ($this->isCompleted()) {
+        if (! $this->isCompleted()) {
             $this->attributes['finished_at'] = Carbon::parse($date);
         } else {
             $this->attributes['finished_at'] = null;
