@@ -17,7 +17,7 @@
                     @unless($notification->body == '')
                         <p>{{ $notification->body }}</p>
                     @endunless
-                    @if($notification->hasValidObject() && $notification->object_type == 'Keep\Entities\Task')
+                    @if($notification->object_type == 'Keep\Entities\Task')
                         <div class="well">
                             <strong>{{ $notification->getObject()->title }}</strong>
                             <h6>{{ remaining_days($notification->getObject()->finishing_date) }}</h6>

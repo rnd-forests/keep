@@ -31,7 +31,7 @@ class NotificationsController extends Controller
     {
         $notifications = $this->notificationRepo->fetchPersonalNotifications($userSlug);
 
-        return view('users.notifications.all', compact('notifications'));
+        return view('users.notifications.personal', compact('notifications'));
     }
 
     /**
