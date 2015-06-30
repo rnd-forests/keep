@@ -4,7 +4,7 @@ use Keep\Entities\Group;
 use Keep\Entities\Notification;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class GroupEntityTest extends ModelTestCase
+class GroupEntityTest extends EntityTestCase
 {
     use DatabaseTransactions;
 

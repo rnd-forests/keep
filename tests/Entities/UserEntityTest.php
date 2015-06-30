@@ -5,7 +5,7 @@ use Keep\Entities\User;
 use Keep\Entities\Notification;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class UserEntityTest extends ModelTestCase
+class UserEntityTest extends EntityTestCase
 {
     use DatabaseTransactions;
 

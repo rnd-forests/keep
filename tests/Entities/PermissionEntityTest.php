@@ -2,7 +2,7 @@
 
 use Keep\Entities\Permission;
 
-class PermissionEntityTest extends ModelTestCase
+class PermissionEntityTest extends EntityTestCase
 {
     public function testBelongsToManyRoles()
     {

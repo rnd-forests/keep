@@ -1,6 +1,6 @@
 <?php
 
-trait ModelTestHelpers
+abstract class EntityTestCase extends TestCase
 {
     public function assertBelongsToMany($parent, $child)
     {

@@ -2,7 +2,7 @@
 
 use Keep\Entities\Assignment;
 
-class AssignmentEntityTest extends ModelTestCase
+class AssignmentEntityTest extends EntityTestCase
 {
     public function testBelongsToManyUsers()
     {

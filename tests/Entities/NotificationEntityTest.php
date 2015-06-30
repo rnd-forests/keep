@@ -4,7 +4,7 @@ use Carbon\Carbon;
 use Keep\Entities\Notification;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class NotificationEntityTest extends ModelTestCase
+class NotificationEntityTest extends EntityTestCase
 {
     use DatabaseTransactions;
 

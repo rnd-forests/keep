@@ -5,7 +5,7 @@ use Keep\Entities\Tag;
 use Keep\Entities\Task;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class TaskEntityTest extends ModelTestCase
+class TaskEntityTest extends EntityTestCase
 {
     use DatabaseTransactions;
 

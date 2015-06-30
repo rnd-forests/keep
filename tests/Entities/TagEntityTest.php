@@ -2,7 +2,7 @@
 
 use Keep\Entities\Tag;
 
-class TagEntityTest extends ModelTestCase
+class TagEntityTest extends EntityTestCase
 {
     public function testBelongsToManyTasks()
     {

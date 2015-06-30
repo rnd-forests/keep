@@ -2,7 +2,7 @@
 
 use Keep\Entities\Profile;
 
-class ProfileEntityTest extends ModelTestCase
+class ProfileEntityTest extends EntityTestCase
 {
     public function testBelongsToUser()
     {
