@@ -49,8 +49,8 @@ class UserEntityTest extends EntityTestCase
 
     public function testCheckingForAdministratorRole()
     {
-        $owner = Role::find(1);
-        $admin = Role::find(2);
+        $owner = factory(Role::class)->create(['name' => 'owner']);
+        $admin = factory(Role::class)->create(['name' => 'admin']);
 
         $user1 = factory(User::class)->create();
         $user1->attachRole($owner);

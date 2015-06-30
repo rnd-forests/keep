@@ -22,13 +22,13 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
     {
         if ($this->isSortable($params)) {
             return $this->model
-                ->with('owner', 'priority')
+                ->with('user', 'priority')
                 ->orderBy($params['sortBy'], $params['direction'])
                 ->paginate($limit);
         }
 
         return $this->model
-            ->with('owner', 'priority')
+            ->with('user', 'priority')
             ->paginate($limit);
     }
 
@@ -109,9 +109,9 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
 
     public function fetchTrashedTasks($limit)
     {
-        return $this->model->with(['owner' => function ($query) {
+        return $this->model->with(['user' => function ($query) {
             $query->withTrashed();
-        }, 'destroyer', 'priority'])
+        }, 'priority'])
             ->onlyTrashed()
             ->latest('deleted_at')
             ->paginate($limit);

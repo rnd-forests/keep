@@ -46,8 +46,9 @@ if (!function_exists('humans_time')) {
 if (!function_exists('plural')) {
     function plural($pattern, $counter)
     {
-        if (!is_numeric($counter))
+        if (!is_numeric($counter)) {
             throw new InvalidArgumentException;
+        }
 
         return $counter . ' ' . str_plural($pattern, $counter);
     }
@@ -56,8 +57,9 @@ if (!function_exists('plural')) {
 if (!function_exists('plural2')) {
     function plural2($pattern, $middle, $counter)
     {
-        if (!is_numeric($counter))
+        if (!is_numeric($counter)) {
             throw new InvalidArgumentException;
+        }
 
         return $counter . ' ' . $middle . ' ' . str_plural($pattern, $counter);
     }
@@ -75,8 +77,9 @@ if (!function_exists('remaining_days')) {
 if (!function_exists('counting')) {
     function counting($object)
     {
-        if (!($object instanceof Collection or $object instanceof LengthAwarePaginator))
+        if (!($object instanceof Collection or $object instanceof LengthAwarePaginator)) {
             throw new InvalidArgumentException;
+        }
 
         return $object->count();
     }
@@ -96,8 +99,9 @@ if (!function_exists('print_attr')) {
 if (!function_exists('blank')) {
     function blank($object)
     {
-        if (!($object instanceof Collection or $object instanceof LengthAwarePaginator))
+        if (!($object instanceof Collection or $object instanceof LengthAwarePaginator)) {
             throw new InvalidArgumentException;
+        }
 
         return $object->isEmpty();
     }
@@ -106,8 +110,9 @@ if (!function_exists('blank')) {
 if (!function_exists('render_pagination')) {
     function render_pagination($collection)
     {
-        if (!$collection instanceof LengthAwarePaginator)
+        if (!$collection instanceof LengthAwarePaginator) {
             throw new InvalidArgumentException;
+        }
 
         return '<div class="text-center">' . $collection->render() . '</div>';
     }
@@ -116,8 +121,9 @@ if (!function_exists('render_pagination')) {
 if (!function_exists('zero')) {
     function zero($count)
     {
-        if (!is_numeric($count))
+        if (!is_numeric($count)) {
             throw new InvalidArgumentException;
+        }
 
         return $count == 0;
     }

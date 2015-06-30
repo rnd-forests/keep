@@ -2,7 +2,6 @@
 
 namespace Keep\Providers;
 
-use Keep\Entities\Observers\TaskObserver;
 use Keep\Entities\Observers\UserObserver;
 use Keep\Entities\Observers\AssignmentObserver;
 use Keep\Entities\Observers\NotificationObserver;
@@ -39,7 +38,6 @@ class EventServiceProvider extends ServiceProvider
         parent::boot($events);
 
         \Keep\Entities\User::observe(new UserObserver());
-        \Keep\Entities\Task::observe(new TaskObserver());
         \Keep\Entities\Assignment::observe(new AssignmentObserver());
         \Keep\Entities\Notification::observe(new NotificationObserver());
     }

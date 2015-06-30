@@ -13,26 +13,20 @@ class Task extends Model implements SluggableInterface
 {
     use PresentableTrait, SluggableTrait, SoftDeletes;
 
-    protected $touches = ['owner', 'assignment'];
+    protected $touches = ['user', 'assignment'];
     protected $presenter = 'Keep\Presenters\TaskPresenter';
     protected $sluggable = ['build_from' => 'title', 'save_to' => 'slug'];
     protected $dates = ['starting_date', 'finishing_date', 'finished_at', 'deleted_at'];
     protected $casts = ['completed' => 'boolean', 'is_assigned' => 'boolean', 'is_failed' => 'boolean'];
     protected $fillable = [
-        'user_id', 'destroyer_id', 'priority_id', 'assignment_id',
-        'title', 'slug', 'content', 'location', 'starting_date',
-        'finishing_date', 'finished_at', 'completed', 'is_assigned',
-        'deleted_at',
+        'user_id', 'priority_id', 'assignment_id', 'title', 'slug',
+        'content', 'location', 'starting_date', 'finishing_date',
+        'finished_at', 'completed', 'is_assigned', 'deleted_at'
     ];
 
-    public function owner()
+    public function user()
     {
-        return $this->belongsTo('Keep\Entities\User', 'user_id');
-    }
-
-    public function destroyer()
-    {
-        return $this->belongsTo('Keep\Entities\User', 'destroyer_id');
+        return $this->belongsTo('Keep\Entities\User');
     }
 
     public function tags()
@@ -131,6 +125,16 @@ class Task extends Model implements SluggableInterface
         return $this->completed;
     }
 
+    public function setStartingDateAttribute($date)
+    {
+        $this->attributes['starting_date'] = Carbon::parse($date);
+    }
+
+    public function setFinishingDateAttribute($date)
+    {
+        $this->attributes['finishing_date'] = Carbon::parse($date);
+    }
+
     public function getStartingDateAttribute($date)
     {
         return Carbon::parse($date)->format('m/d/Y h:i A');
@@ -143,7 +147,7 @@ class Task extends Model implements SluggableInterface
 
     public function setFinishedAtAttribute($date)
     {
-        if (! $this->isCompleted()) {
+        if (!$this->isCompleted()) {
             $this->attributes['finished_at'] = Carbon::parse($date);
         } else {
             $this->attributes['finished_at'] = null;

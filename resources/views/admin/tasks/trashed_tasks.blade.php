@@ -14,7 +14,6 @@
                     <tr>
                         <th>ID</th>
                         <th>Deleted</th>
-                        <th>Deleted by</th>
                         <th>Author</th>
                         <th>Title</th>
                         <th>Priority</th>
@@ -28,7 +27,6 @@
                             <tr>
                                 <td>{{ $task->id }}</td>
                                 <td>{{ short_time($task->deleted_at) }}</td>
-                                <td>{{ $task->destroyer->name }}</td>
                                 @if(isset($task->owner))
                                     <td>{{ $task->owner->name }}</td>
                                 @else

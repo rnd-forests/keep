@@ -8,7 +8,7 @@
                 @foreach($priorities as $priority)
                     <a class="list-group-item" href="{{ route('member::priorities.task', [$user, $priority]) }}">
                         <span class="badge">
-                            {{ plural('task', counting($priority->tasks()->where('user_id', $user->id))) }}
+                            {{ plural('task', counting($priority->tasks()->where('user_id', $user->id)->get())) }}
                         </span>
                         {{ $priority->name }}
                     </a>

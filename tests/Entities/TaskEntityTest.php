@@ -9,12 +9,9 @@ class TaskEntityTest extends EntityTestCase
 {
     use DatabaseTransactions;
 
-    public function testBelongsToAnOwner()
+    public function testBelongsToUser()
     {
-    }
-
-    public function testBelongsToADestroyer()
-    {
+        $this->assertBelongsTo('user', Task::class);
     }
 
     public function testBelongsToManyTags()
