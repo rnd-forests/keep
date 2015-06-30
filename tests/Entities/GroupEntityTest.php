@@ -28,7 +28,6 @@ class GroupEntityTest extends EntityTestCase
         $group = factory(Group::class)->create();
         $notification = factory(Notification::class)->create();
         $group->notify($notification);
-        $this->assertContainsOnlyInstancesOf(Notification::class, $group->notifications);
         $this->assertTrue($group->notifications->contains($notification));
     }
 }

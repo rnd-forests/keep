@@ -41,10 +41,10 @@ class UserEntityTest extends EntityTestCase
 
     public function testCheckingForActiveState()
     {
-        $user1 = factory(User::class)->create();
-        $this->assertSame(true, $user1->isActive());
-        $user2 = factory(User::class)->create(['active' => false]);
-        $this->assertSame(false, $user2->isActive());
+        $user = factory(User::class)->create();
+        $this->assertSame(true, $user->isActive());
+        $user->update(['active' => false]);
+        $this->assertSame(false, $user->isActive());
     }
 
     public function testCheckingForAdministratorRole()
@@ -73,17 +73,15 @@ class UserEntityTest extends EntityTestCase
         $user = factory(User::class)->create();
         $notification = factory(Notification::class)->create();
         $user->notify($notification);
-        $this->assertContainsOnlyInstancesOf(Notification::class, $user->notifications);
         $this->assertTrue($user->notifications->contains($notification));
     }
 
     public function testHashingPasswordAttributeWhenSet()
     {
         Hash::shouldReceive('make')
-            ->twice()
+            ->once()
             ->andReturn('hashed');
         $user = factory(User::class)->create();
-        $user->password = '123456';
         $this->assertEquals('hashed', $user->password);
     }
 }

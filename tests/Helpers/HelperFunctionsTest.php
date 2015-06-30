@@ -1,7 +1,6 @@
 <?php
 
 use Carbon\Carbon;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class HelperFunctionsTest extends TestCase
@@ -52,7 +51,7 @@ class HelperFunctionsTest extends TestCase
         plural2('person', 'crazy', 'ten');
     }
 
-    public function testCalculateRemainingDaysWithSpecifiedTimestamp()
+    public function testCalculateRemainingDays()
     {
         $this->assertEquals('0 days remaining', remaining_days(Carbon::now()));
         $this->assertEquals('1 day remaining', remaining_days(Carbon::now()->addDay()));
@@ -62,7 +61,7 @@ class HelperFunctionsTest extends TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testCalculateRemainingDaysWithSpecifiedTimestampException()
+    public function testCalculateRemainingDaysException()
     {
         remaining_days(Carbon::now()->subDay());
     }
@@ -99,12 +98,6 @@ class HelperFunctionsTest extends TestCase
     public function testCheckingForBlankCollectionException()
     {
         blank([1, 2, 3]);
-    }
-
-    public function testCheckingForZeroValue()
-    {
-        $this->assertSame(true, zero(0));
-        $this->assertSame(false, zero(1));
     }
 
     /**

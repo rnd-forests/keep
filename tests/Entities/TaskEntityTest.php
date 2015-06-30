@@ -36,7 +36,6 @@ class TaskEntityTest extends EntityTestCase
         factory(Task::class)->create(['priority_id' => 1, 'completed' => true]);
         factory(Task::class)->create(['priority_id' => 1, 'is_failed' => true]);
         factory(Task::class)->create(['priority_id' => 2]);
-        $this->assertCount(5, Task::get());
         $this->assertCount(2, Task::urgent()->get());
         $this->assertEquals('Foo', Task::urgent()->get()->first()->title);
         $this->assertEquals('Bar', Task::urgent()->get()->last()->title);
@@ -46,7 +45,6 @@ class TaskEntityTest extends EntityTestCase
     {
         factory(Task::class, 2)->create(['completed' => true]);
         factory(Task::class, 1)->create();
-        $this->assertCount(3, Task::get());
         $this->assertCount(2, Task::completed()->get());
     }
 
@@ -55,7 +53,6 @@ class TaskEntityTest extends EntityTestCase
         factory(Task::class, 2)->create(['is_failed' => true]);
         factory(Task::class)->create(['title' => 'Foo', 'created_at' => Carbon::now()->subDays(2)]);
         factory(Task::class)->create(['title' => 'Bar', 'created_at' => Carbon::now()->subDays(3)]);
-        $this->assertCount(4, Task::get());
         $this->assertCount(1, Task::newest()->take(1)->get());
         $this->assertCount(2, Task::newest()->take(2)->get());
         $this->assertCount(2, Task::newest()->take(3)->get());
@@ -71,7 +68,6 @@ class TaskEntityTest extends EntityTestCase
         factory(Task::class)->create(['title' => 'Bar', 'finishing_date' => Carbon::now()->addDays(4)->addHours(5)]);
         factory(Task::class)->create(['completed' => true]);
         factory(Task::class)->create(['is_failed' => true]);
-        $this->assertCount(6, Task::get());
         $this->assertCount(1, Task::toDeadline()->take(1)->get());
         $this->assertCount(2, Task::toDeadline()->take(2)->get());
         $this->assertCount(3, Task::toDeadline()->take(3)->get());
@@ -87,7 +83,6 @@ class TaskEntityTest extends EntityTestCase
         factory(Task::class, 2)->create(['completed' => false]);
         factory(Task::class)->create(['title' => 'Foo', 'completed' => true, 'finished_at' => Carbon::now()->addHours(2)]);
         factory(Task::class)->create(['title' => 'Bar', 'completed' => true, 'finished_at' => Carbon::now()->addHours(3)]);
-        $this->assertCount(4, Task::get());
         $this->assertCount(2, Task::recentlyCompleted()->get());
         $this->assertEquals('Foo', Task::recentlyCompleted()->get()->first()->title);
         $this->assertEquals('Bar', Task::recentlyCompleted()->get()->last()->title);
@@ -98,7 +93,6 @@ class TaskEntityTest extends EntityTestCase
         factory(Task::class)->create(['completed' => true, 'finishing_date' => Carbon::now()->subDays(1)]);
         factory(Task::class)->create(['is_failed' => true, 'finishing_date' => Carbon::now()->subDays(2)]);
         factory(Task::class)->create(['finishing_date' => Carbon::now()->subHours(3)]);
-        $this->assertCount(3, Task::get());
         $this->assertCount(1, Task::aboutToFail()->get());
     }
 
@@ -107,7 +101,6 @@ class TaskEntityTest extends EntityTestCase
         factory(Task::class, 2)->create(['is_failed' => false]);
         factory(Task::class)->create(['title' => 'Foo', 'is_failed' => true, 'created_at' => Carbon::now()->subHours(2)]);
         factory(Task::class)->create(['title' => 'Bar', 'is_failed' => true, 'created_at' => Carbon::now()->subHours(3)]);
-        $this->assertCount(4, Task::get());
         $this->assertCount(2, Task::recentlyFailed()->get());
         $this->assertEquals('Foo', Task::recentlyFailed()->get()->first()->title);
         $this->assertEquals('Bar', Task::recentlyFailed()->get()->last()->title);
@@ -118,7 +111,6 @@ class TaskEntityTest extends EntityTestCase
         factory(Task::class)->create(['is_failed' => true]);
         factory(Task::class)->create(['completed' => true]);
         factory(Task::class, 2)->create();
-        $this->assertCount(4, Task::get());
         $this->assertCount(2, Task::due()->get());
     }
 
@@ -126,7 +118,6 @@ class TaskEntityTest extends EntityTestCase
     {
         factory(Task::class)->create(['user_id' => 1]);
         factory(Task::class, 2)->create();
-        $this->assertCount(3, Task::get());
         $this->assertCount(1, Task::userCreated()->get());
     }
 
@@ -138,7 +129,6 @@ class TaskEntityTest extends EntityTestCase
         factory(Task::class)->create(['finishing_date' => Carbon::now()->addDays(3)]);
         factory(Task::class)->create(['finishing_date' => Carbon::now()->addDays(5)]);
         factory(Task::class)->create(['finishing_date' => Carbon::now()->addDays(6)]);
-        $this->assertCount(6, Task::get());
         $this->assertCount(3, Task::upcoming()->get());
     }
 
@@ -149,7 +139,6 @@ class TaskEntityTest extends EntityTestCase
         factory(Task::class)->create(['title' => 'Foo Bar Baz']);
         factory(Task::class)->create(['title' => 'Bar Baz']);
         factory(Task::class)->create(['title' => 'Baz']);
-        $this->assertCount(5, Task::get());
         $this->assertCount(3, Task::search('Foo')->get());
         $this->assertCount(3, Task::search('foo')->get());
         $this->assertCount(3, Task::search('Bar')->get());
