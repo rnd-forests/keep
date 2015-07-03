@@ -46,6 +46,7 @@
             "tests/TestCase.php",
             "tests/EntityTestCase.php",
             "tests/Auth",
+            "tests/Controllers",
             "tests/Entities",
             "tests/Helpers",
             "tests/Repositories"
