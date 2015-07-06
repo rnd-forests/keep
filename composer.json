@@ -44,12 +44,8 @@
     "autoload-dev": {
         "classmap": [
             "tests/TestCase.php",
-            "tests/EntityTestCase.php",
-            "tests/Auth",
-            "tests/Controllers",
-            "tests/Entities",
-            "tests/Helpers",
-            "tests/Repositories"
+            "tests/Integration",
+            "tests/Unit"
         ]
     },
     "scripts": {

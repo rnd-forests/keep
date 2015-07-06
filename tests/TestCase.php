@@ -40,4 +40,9 @@ class TestCase extends LaravelTestCase
     {
         $this->assertSessionHas('flash_notification.message', trans($key));
     }
+
+    public function assertFlashedMessage()
+    {
+        $this->assertSessionHas('flash_notification.message');
+    }
 }

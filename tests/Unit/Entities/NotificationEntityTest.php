@@ -45,7 +45,7 @@ class NotificationEntityTest extends EntityTestCase
     {
         $notification = factory(Notification::class)->create();
         $notification->object_type = User::class;
-        $notification->object_id = 100;
+        $notification->object_id = 1000;
         $notification->getObject();
     }
 }

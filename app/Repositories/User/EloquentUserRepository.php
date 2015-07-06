@@ -64,23 +64,13 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
     public function restore($slug)
     {
         $user = $this->findDisabledUserBySlug($slug);
-        $user->tasks()->withTrashed()->get()->each(function ($task) {
-            $task->restore();
-        });
-        $user->profile()->withTrashed()->restore();
-
-        return $user->restore();
+        $user->restore();
     }
 
     public function softDelete($slug)
     {
         $user = $this->findBySlug($slug);
-        $user->tasks()->get()->each(function ($task) {
-            $task->delete();
-        });
-        $user->profile()->delete();
-
-        return $user->delete();
+        $user->delete();
     }
 
     public function forceDelete($slug)

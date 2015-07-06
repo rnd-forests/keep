@@ -29,7 +29,7 @@ class EloquentTagRepository extends EloquentRepository implements TagRepositoryI
         return $this->model
             ->with('tasks')->whereHas('tasks', function ($query) use ($user) {
                 $query->user_id = $user->id;
-            })->get();
+            })->oldest('name')->get();
     }
 
     public function fetchTasksAssociatedWithTag($userSlug, $tagSlug, $limit)
