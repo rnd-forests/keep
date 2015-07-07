@@ -16,9 +16,8 @@
         "laracasts/presenter": "0.2.*",
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "laravel/socialite": "~2.0",
-        "cviebrock/eloquent-sluggable": ">=3.0.0-beta",
+        "cviebrock/eloquent-sluggable": "~3.0.0",
         "zizaco/entrust": "dev-laravel-5",
-        "intervention/image": "^2.2",
         "iron-io/iron_mq": "~2.0",
         "laracasts/utilities": "~2.0",
         "bugsnag/bugsnag-laravel": "1.*"
@@ -28,7 +27,8 @@
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
         "phpspec/phpspec": "~2.1",
-        "laracasts/generators": "~1.1"
+        "laracasts/generators": "~1.1",
+        "codeception/codeception": "~2.1.*"
     },
     "autoload": {
         "classmap": [
