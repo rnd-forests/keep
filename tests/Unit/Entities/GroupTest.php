@@ -1,32 +1,30 @@
 <?php
 
-use Keep\Entities\Group;
-use Keep\Entities\Notification;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class GroupEntityTest extends EntityTestCase
+class GroupTest extends EntityTestCase
 {
     use DatabaseTransactions;
 
     public function testBelongsToManyUsers()
     {
-        $this->assertBelongsToMany('users', Group::class);
+        $this->assertBelongsToMany('users', 'Keep\Entities\Group');
     }
 
     public function testBelongsToManyAssignments()
     {
-        $this->assertMorphToMany('assignments', Group::class);
+        $this->assertMorphToMany('assignments', 'Keep\Entities\Group');
     }
 
     public function testBelongsToManyNotifications()
     {
-        $this->assertMorphToMany('notifications', Group::class);
+        $this->assertMorphToMany('notifications', 'Keep\Entities\Group');
     }
 
     public function testNotifying()
     {
-        $group = factory(Group::class)->create();
-        $notification = factory(Notification::class)->create();
+        $group = factory('Keep\Entities\Group')->create();
+        $notification = factory('Keep\Entities\Notification')->create();
         $group->notify($notification);
         $this->assertTrue($group->notifications->contains($notification));
     }

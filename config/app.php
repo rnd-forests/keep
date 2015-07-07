@@ -154,7 +154,6 @@ return [
         Laracasts\Utilities\JavaScript\JavascriptServiceProvider::class,
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
         Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class,
 
     ],
@@ -209,7 +208,6 @@ return [
         'Flash'     => Laracasts\Flash\Flash::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
-        'Image'     => Intervention\Image\Facades\Image::class,
         'Bugsnag'   => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
 
     ],

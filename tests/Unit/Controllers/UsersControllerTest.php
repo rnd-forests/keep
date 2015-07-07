@@ -6,9 +6,13 @@ class UsersControllerTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function setUp()
+    protected $mock, $user;
+
+    /**
+     * @before
+     */
+    public function initializeEnv()
     {
-        parent::setUp();
         $this->mock = $this->mock('Keep\Repositories\User\UserRepositoryInterface');
         $this->user = factory('Keep\Entities\User')->create();
         $this->actingAs($this->user);
