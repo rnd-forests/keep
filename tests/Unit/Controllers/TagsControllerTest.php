@@ -11,17 +11,17 @@ class TagsControllerTest extends TestCase
     /**
      * @before
      */
-    public function initializeEnv()
+    public function it_initializes_testing_environment()
     {
         $this->mock = $this->mock('Keep\Repositories\Tag\TagRepositoryInterface');
         $this->user = factory('Keep\Entities\User')->create();
         $this->actingAs($this->user);
     }
 
-    public function testIndex()
+    /** @test */
+    public function it_fetches_all_tags_associated_with_a_user()
     {
         $this->mock->shouldReceive('fetchAttachedTags')->with($this->user->slug)->once()->andReturn(collect([]));
-
         $this->route('GET', 'member::tags.all', ['users' => $this->user->slug]);
 
         $this->assertResponseOk();
@@ -29,7 +29,8 @@ class TagsControllerTest extends TestCase
         $this->assertViewHas('tags', collect([]));
     }
 
-    public function testShow()
+    /** @test */
+    public function it_fetches_all_tasks_of_a_user_associated_with_a_tag()
     {
         $paginator = $this->mockPaginator();
         $tag = factory('Keep\Entities\Tag')->create(['name' => 'personal']);

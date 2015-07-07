@@ -11,14 +11,15 @@ class UsersControllerTest extends TestCase
     /**
      * @before
      */
-    public function initializeEnv()
+    public function it_initializes_testing_environment()
     {
         $this->mock = $this->mock('Keep\Repositories\User\UserRepositoryInterface');
         $this->user = factory('Keep\Entities\User')->create();
         $this->actingAs($this->user);
     }
 
-    public function testShowUserProfile()
+    /** @test */
+    public function it_shows_the_profile_of_the_user()
     {
         $this->mock->shouldReceive('findBySlug')->atLeast()->andReturn($this->user);
 
@@ -48,7 +49,8 @@ class UsersControllerTest extends TestCase
 //        $this->assertRedirectedToRoute('member::profile');
 //    }
 
-    public function testDestroyUserAccount()
+    /** @test */
+    public function it_cancels_the_account_of_the_user()
     {
         $this->withoutMiddleware();
         $this->mock->shouldReceive('softDelete')->with($this->user->slug)->once();

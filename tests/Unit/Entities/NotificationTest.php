@@ -8,17 +8,20 @@ class NotificationTest extends EntityTestCase
 {
     use DatabaseTransactions;
 
-    public function testBelongsToManyUsers()
+    /** @test */
+    public function it_belongs_to_many_users()
     {
         $this->assertMorphedByMany('users', 'Keep\Entities\Notification');
     }
 
-    public function testBelongsToManyGroups()
+    /** @test */
+    public function it_belongs_to_many_groups()
     {
         $this->assertMorphedByMany('groups', 'Keep\Entities\Notification');
     }
 
-    public function testFetchingOldNotifications()
+    /** @test */
+    public function it_fetches_old_notifications()
     {
         factory('Keep\Entities\Notification', 2)->create();
         factory('Keep\Entities\Notification', 3)->create(['sent_at' => Carbon::now()->subDays(15)]);
@@ -26,7 +29,8 @@ class NotificationTest extends EntityTestCase
         $this->assertCount(3, Notification::old()->get());
     }
 
-    public function testGetsObject()
+    /** @test */
+    public function it_fetches_the_associated_object()
     {
         $user = factory('Keep\Entities\User')->create();
         $notification = factory('Keep\Entities\Notification')->create();
@@ -38,9 +42,10 @@ class NotificationTest extends EntityTestCase
     }
 
     /**
+     * @test
      * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function testGetsObjectException()
+    public function it_throws_an_exception_when_the_associated_object_is_not_valid()
     {
         $notification = factory('Keep\Entities\Notification')->create();
         $notification->object_type = 'Keep\Entities\User';

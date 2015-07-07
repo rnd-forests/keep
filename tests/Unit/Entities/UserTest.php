@@ -6,37 +6,44 @@ class UserTest extends EntityTestCase
 {
     use DatabaseTransactions;
 
-    public function testBelongsToManyRoles()
+    /** @test */
+    public function it_belongs_to_many_roles()
     {
         $this->assertBelongsToMany('roles', 'Keep\Entities\User');
     }
 
-    public function testHasOneProfile()
+    /** @test */
+    public function it_has_only_one_profile()
     {
         $this->assertHasOne('profile', 'Keep\Entities\User');
     }
 
-    public function testHasManyTasks()
+    /** @test */
+    public function it_has_many_associated_tasks()
     {
         $this->assertHasMany('tasks', 'Keep\Entities\User');
     }
 
-    public function testBelongsToManyNotifications()
+    /** @test */
+    public function it_belongs_to_many_notifications()
     {
         $this->assertMorphToMany('notifications', 'Keep\Entities\User');
     }
 
-    public function testBelongsToManyGroups()
+    /** @test */
+    public function it_belongs_to_many_groups()
     {
         $this->assertBelongsToMany('groups', 'Keep\Entities\User');
     }
 
-    public function testBelongsToManyAssignments()
+    /** @test */
+    public function it_belongs_to_many_assignments()
     {
         $this->assertMorphToMany('assignments', 'Keep\Entities\User');
     }
 
-    public function testCheckingForActiveState()
+    /** @test */
+    public function it_has_the_correct_active_state()
     {
         $user = factory('Keep\Entities\User')->create();
         $this->assertSame(true, $user->isActive());
@@ -44,7 +51,8 @@ class UserTest extends EntityTestCase
         $this->assertSame(false, $user->isActive());
     }
 
-    public function testCheckingForAdministratorRole()
+    /** @test */
+    public function it_checks_for_correct_administrator_role()
     {
         $owner = factory('Keep\Entities\Role')->create(['name' => 'owner']);
         $admin = factory('Keep\Entities\Role')->create(['name' => 'admin']);
@@ -65,7 +73,8 @@ class UserTest extends EntityTestCase
         $this->assertSame(false, $user4->isAdmin());
     }
 
-    public function testNotifying()
+    /** @test */
+    public function it_can_be_notified()
     {
         $user = factory('Keep\Entities\User')->create();
         $notification = factory('Keep\Entities\Notification')->create();
@@ -73,7 +82,8 @@ class UserTest extends EntityTestCase
         $this->assertTrue($user->notifications->contains($notification));
     }
 
-    public function testHashingPasswordAttributeWhenSet()
+    /** @test */
+    public function it_has_a_hashed_password_when_this_password_is_set()
     {
         Hash::shouldReceive('make')
             ->once()

@@ -6,22 +6,26 @@ class GroupTest extends EntityTestCase
 {
     use DatabaseTransactions;
 
-    public function testBelongsToManyUsers()
+    /** @test */
+    public function it_belongs_to_many_users()
     {
         $this->assertBelongsToMany('users', 'Keep\Entities\Group');
     }
 
-    public function testBelongsToManyAssignments()
+    /** @test */
+    public function it_belongs_to_many_assignments()
     {
         $this->assertMorphToMany('assignments', 'Keep\Entities\Group');
     }
 
-    public function testBelongsToManyNotifications()
+    /** @test */
+    public function it_belongs_to_many_notifications()
     {
         $this->assertMorphToMany('notifications', 'Keep\Entities\Group');
     }
 
-    public function testNotifying()
+    /** @test */
+    public function it_can_be_notified()
     {
         $group = factory('Keep\Entities\Group')->create();
         $notification = factory('Keep\Entities\Notification')->create();

@@ -8,27 +8,32 @@ class TaskTest extends EntityTestCase
 {
     use DatabaseTransactions;
 
-    public function testBelongsToUser()
+    /** @test */
+    public function it_belongs_to_a_user()
     {
         $this->assertBelongsTo('user', 'Keep\Entities\Task');
     }
 
-    public function testBelongsToManyTags()
+    /** @test */
+    public function it_belongs_to_many_tags()
     {
         $this->assertBelongsToMany('tags', 'Keep\Entities\Task');
     }
 
-    public function testBelongsToAPriorityLevel()
+    /** @test */
+    public function it_belongs_to_a_priority_level()
     {
         $this->assertBelongsTo('priority', 'Keep\Entities\Task');
     }
 
-    public function testBelongsToAnAssignment()
+    /** @test */
+    public function it_belongs_to_an_assignment()
     {
         $this->assertBelongsTo('assignment', 'Keep\Entities\Task');
     }
 
-    public function testFetchingUrgentTasks()
+    /** @test */
+    public function it_fetches_urgent_tasks()
     {
         factory('Keep\Entities\Task')->create(['title' => 'Foo', 'priority_id' => 1, 'finishing_date' => Carbon::now()->addDays(2)]);
         factory('Keep\Entities\Task')->create(['title' => 'Bar', 'priority_id' => 1, 'finishing_date' => Carbon::now()->addDays(3)]);
@@ -40,14 +45,16 @@ class TaskTest extends EntityTestCase
         $this->assertEquals('Bar', Task::urgent()->get()->last()->title);
     }
 
-    public function testFetchingCompletedTasks()
+    /** @test */
+    public function it_fetches_completed_tasks()
     {
         factory('Keep\Entities\Task', 2)->create(['completed' => true]);
         factory('Keep\Entities\Task', 1)->create();
         $this->assertCount(2, Task::completed()->get());
     }
 
-    public function testFetchingNewestTasks()
+    /** @test */
+    public function it_fetches_newest_tasks()
     {
         factory('Keep\Entities\Task', 2)->create(['is_failed' => true]);
         factory('Keep\Entities\Task')->create(['title' => 'Foo', 'created_at' => Carbon::now()->subDays(2)]);
@@ -59,7 +66,8 @@ class TaskTest extends EntityTestCase
         $this->assertEquals('Bar', Task::newest()->take(2)->get()->last()->title);
     }
 
-    public function testFetchingDeadlineTasks()
+    /** @test */
+    public function it_fetches_deadline_tasks()
     {
         factory('Keep\Entities\Task')->create(['title' => 'Foo', 'finishing_date' => Carbon::now()->addDays(2)]);
         factory('Keep\Entities\Task')->create(['finishing_date' => Carbon::now()->addDays(3)]);
@@ -77,7 +85,8 @@ class TaskTest extends EntityTestCase
         $this->assertEquals('Bar', Task::toDeadline()->take(4)->get()->last()->title);
     }
 
-    public function testFetchingRecentlyCompletedTasks()
+    /** @test */
+    public function it_fetches_recently_completed_tasks()
     {
         factory('Keep\Entities\Task', 2)->create(['completed' => false]);
         factory('Keep\Entities\Task')->create(['title' => 'Foo', 'completed' => true, 'finished_at' => Carbon::now()->addHours(2)]);
@@ -87,7 +96,8 @@ class TaskTest extends EntityTestCase
         $this->assertEquals('Bar', Task::recentlyCompleted()->get()->last()->title);
     }
 
-    public function testFetchingAboutToFailTasks()
+    /** @test */
+    public function it_fetches_tasks_that_are_about_to_failed()
     {
         factory('Keep\Entities\Task')->create(['completed' => true, 'finishing_date' => Carbon::now()->subDays(1)]);
         factory('Keep\Entities\Task')->create(['is_failed' => true, 'finishing_date' => Carbon::now()->subDays(2)]);
@@ -95,7 +105,8 @@ class TaskTest extends EntityTestCase
         $this->assertCount(1, Task::aboutToFail()->get());
     }
 
-    public function testFetchingRecentlyFailedTasks()
+    /** @test */
+    public function it_fetches_recently_failed_tasks()
     {
         factory('Keep\Entities\Task', 2)->create(['is_failed' => false]);
         factory('Keep\Entities\Task')->create(['title' => 'Foo', 'is_failed' => true, 'created_at' => Carbon::now()->subHours(2)]);
@@ -105,7 +116,8 @@ class TaskTest extends EntityTestCase
         $this->assertEquals('Bar', Task::recentlyFailed()->get()->last()->title);
     }
 
-    public function testFetchingDueTasks()
+    /** @test */
+    public function it_fetches_due_tasks()
     {
         factory('Keep\Entities\Task')->create(['is_failed' => true]);
         factory('Keep\Entities\Task')->create(['completed' => true]);
@@ -113,14 +125,16 @@ class TaskTest extends EntityTestCase
         $this->assertCount(2, Task::due()->get());
     }
 
-    public function testFetchingUserCreatedTasks()
+    /** @test */
+    public function it_fetches_user_created_tasks()
     {
         factory('Keep\Entities\Task')->create(['user_id' => 1]);
         factory('Keep\Entities\Task', 2)->create();
         $this->assertCount(1, Task::userCreated()->get());
     }
 
-    public function testFetchingUpcomingTasks()
+    /** @test */
+    public function it_fetches_upcoming_tasks()
     {
         factory('Keep\Entities\Task')->create(['is_failed' => true]);
         factory('Keep\Entities\Task')->create(['completed' => true]);
@@ -131,7 +145,8 @@ class TaskTest extends EntityTestCase
         $this->assertCount(3, Task::upcoming()->get());
     }
 
-    public function testSearchingForTasks()
+    /** @test */
+    public function it_searches_for_tasks_by_titles()
     {
         factory('Keep\Entities\Task')->create(['title' => 'Foo']);
         factory('Keep\Entities\Task')->create(['title' => 'Foo Bar']);
@@ -145,7 +160,8 @@ class TaskTest extends EntityTestCase
         $this->assertCount(0, Task::search('Dummy')->get());
     }
 
-    public function testCompletedStatus()
+    /** @test */
+    public function it_has_the_correct_completed_status()
     {
         $task1 = factory('Keep\Entities\Task')->create(['completed' => true]);
         $task2 = factory('Keep\Entities\Task')->create(['completed' => false]);
@@ -153,7 +169,8 @@ class TaskTest extends EntityTestCase
         $this->assertSame(false, $task2->isCompleted());
     }
 
-    public function testStartingDateAttributeWhenGet()
+    /** @test */
+    public function it_formats_starting_date_value_when_it_is_retrieved()
     {
         $task1 = factory('Keep\Entities\Task')->create(['starting_date' => Carbon::create(2015, 8, 8, 15, 45, 10)]);
         $task2 = factory('Keep\Entities\Task')->create(['starting_date' => Carbon::create(2014, 8, 8, 5, 45, 10)]);
@@ -161,7 +178,8 @@ class TaskTest extends EntityTestCase
         $this->assertSame('08/08/2014 05:45 AM', $task2->starting_date);
     }
 
-    public function testFinishingDateAttributeWhenGet()
+    /** @test */
+    public function it_formats_finishing_date_value_when_it_is_retrieved()
     {
         $task1 = factory('Keep\Entities\Task')->create(['finishing_date' => Carbon::create(2015, 8, 8, 15, 45, 10)]);
         $task2 = factory('Keep\Entities\Task')->create(['finishing_date' => Carbon::create(2014, 8, 8, 5, 45, 10)]);
@@ -169,12 +187,13 @@ class TaskTest extends EntityTestCase
         $this->assertSame('08/08/2014 05:45 AM', $task2->finishing_date);
     }
 
-    public function testTagListAttributeWhenGet()
+    /** @test */
+    public function it_fetches_the_array_of_id_of_all_associated_tags()
     {
-        $tag1 = factory('Keep\Entities\Tag')->create(['name' => 'Foo']);
-        $tag2 = factory('Keep\Entities\Tag')->create(['name' => 'Bar']);
+        $tag1 = factory('Keep\Entities\Tag')->create();
+        $tag2 = factory('Keep\Entities\Tag')->create();
         $task = factory('Keep\Entities\Task')->create();
-        $task->tags()->sync([$tag1->id, $tag2->id]);
+        $task->tags()->attach([$tag1->id, $tag2->id]);
         $this->assertEquals([$tag1->id, $tag2->id], $task->tag_list);
     }
 }

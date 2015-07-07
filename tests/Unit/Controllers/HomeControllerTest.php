@@ -2,7 +2,8 @@
 
 class HomeControllerTest extends TestCase
 {
-    public function testHome()
+    /** @test */
+    public function it_shows_the_homepage()
     {
         $this->route('GET', 'home');
         $this->assertResponseOk();

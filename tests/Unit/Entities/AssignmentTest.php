@@ -2,17 +2,20 @@
 
 class AssignmentTest extends EntityTestCase
 {
-    public function testBelongsToManyUsers()
+    /** @test */
+    public function it_belongs_to_many_users()
     {
         $this->assertMorphedByMany('users', 'Keep\Entities\Assignment');
     }
 
-    public function testBelongsToManyGroups()
+    /** @test */
+    public function it_belongs_to_many_groups()
     {
         $this->assertMorphedByMany('groups', 'Keep\Entities\Assignment');
     }
 
-    public function testHasOneTask()
+    /** @test */
+    public function it_has_only_one_task()
     {
         $this->assertHasOne('task', 'Keep\Entities\Assignment');
     }

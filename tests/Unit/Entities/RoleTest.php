@@ -2,12 +2,14 @@
 
 class RoleTest extends EntityTestCase
 {
-    public function testBelongsToManyPermissions()
+    /** @test */
+    public function it_belongs_to_many_permissions()
     {
         $this->assertBelongsToMany('perms', 'Keep\Entities\Role');
     }
 
-    public function testBelongsToManyUsers()
+    /** @test */
+    public function it_belongs_to_many_users()
     {
         $this->assertBelongsToMany('users', 'Keep\Entities\Role');
     }
