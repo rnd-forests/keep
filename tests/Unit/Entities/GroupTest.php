@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class GroupTest extends EntityTestCase
+class GroupTest extends TestCase
 {
     use DatabaseTransactions;
 

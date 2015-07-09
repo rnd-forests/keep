@@ -42,9 +42,12 @@
     },
     "autoload-dev": {
         "classmap": [
-            "tests/TestCase.php",
+            "tests/Functional",
             "tests/Integration",
-            "tests/Unit"
+            "tests/Unit",
+            "tests/TestCase.php",
+            "tests/AdditionalHelpersTrait.php",
+            "tests/EloquentRelationsTrait.php"
         ]
     },
     "scripts": {

@@ -4,7 +4,7 @@ use Carbon\Carbon;
 use Keep\Entities\Task;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class TaskTest extends EntityTestCase
+class TaskTest extends TestCase
 {
     use DatabaseTransactions;
 

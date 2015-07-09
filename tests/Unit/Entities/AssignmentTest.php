@@ -1,6 +1,6 @@
 <?php
 
-class AssignmentTest extends EntityTestCase
+class AssignmentTest extends TestCase
 {
     /** @test */
     public function it_belongs_to_many_users()

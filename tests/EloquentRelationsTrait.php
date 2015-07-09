@@ -1,6 +1,6 @@
 <?php
 
-abstract class EntityTestCase extends TestCase
+trait EloquentRelationsTrait
 {
     public function assertBelongsToMany($parent, $child)
     {

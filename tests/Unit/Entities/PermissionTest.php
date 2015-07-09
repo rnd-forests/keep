@@ -1,6 +1,6 @@
 <?php
 
-class PermissionTest extends EntityTestCase
+class PermissionTest extends TestCase
 {
     /** @test */
     public function it_belongs_to_many_roles()
