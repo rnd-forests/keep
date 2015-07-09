@@ -12,7 +12,7 @@ class RegisterUserRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|alpha_dash|max:255',
+            'name' => 'required|alpha_spaces|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ];

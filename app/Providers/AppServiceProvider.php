@@ -4,6 +4,7 @@ namespace Keep\Providers;
 
 use DB;
 use Log;
+use Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() == 'testing') {
             config(['database.default' => 'sqlite']);
         }
+
+        Validator::extend('alpha_spaces', function($attribute, $value)
+        {
+            return preg_match('/^[\pL\s]+$/u', $value);
+        });
     }
 
     /**
