@@ -57,8 +57,6 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
     {
         $user = $this->findBySlug($slug);
         $user->profile()->update($credentials);
-
-        return $user;
     }
 
     public function restore($slug)

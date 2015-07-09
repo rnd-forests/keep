@@ -170,7 +170,7 @@ class TaskTest extends EntityTestCase
     }
 
     /** @test */
-    public function it_formats_starting_date_value_when_it_is_retrieved()
+    public function it_formats_starting_date_value_when_this_value_is_retrieved()
     {
         $task1 = factory('Keep\Entities\Task')->create(['starting_date' => Carbon::create(2015, 8, 8, 15, 45, 10)]);
         $task2 = factory('Keep\Entities\Task')->create(['starting_date' => Carbon::create(2014, 8, 8, 5, 45, 10)]);
@@ -179,7 +179,7 @@ class TaskTest extends EntityTestCase
     }
 
     /** @test */
-    public function it_formats_finishing_date_value_when_it_is_retrieved()
+    public function it_formats_finishing_date_value_when_this_value_is_retrieved()
     {
         $task1 = factory('Keep\Entities\Task')->create(['finishing_date' => Carbon::create(2015, 8, 8, 15, 45, 10)]);
         $task2 = factory('Keep\Entities\Task')->create(['finishing_date' => Carbon::create(2014, 8, 8, 5, 45, 10)]);
