@@ -49,12 +49,7 @@ class EloquentUserRepositoryTest extends TestCase
     public function it_associates_new_user_with_a_empty_profile()
     {
         $user = factory('Keep\Entities\User')->create();
-        $attributes = array_flatten(
-            array_except(
-                $user->profile->toArray(),
-                ['id', 'user_id', 'created_at', 'updated_at']
-            )
-        );
+        $attributes = array_flatten(array_except($user->profile->toArray(), ['id', 'user_id', 'created_at', 'updated_at']));
 
         $this->assertContainsOnly('null', $attributes);
     }

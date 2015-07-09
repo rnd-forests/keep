@@ -30,24 +30,24 @@ class UsersControllerTest extends TestCase
         $this->assertViewHas('user', $this->user);
     }
 
-//    public function testUpdateUserProfile()
-//    {
-//        $this->withoutMiddleware();
-//        $input = [
-//            '_method'  => 'patch',
-//            '_token'   => 'token',
-//            'location' => 'foo',
-//            'bio'      => 'bar'
-//        ];
-//        Input::replace($input);
-//        $this->mock->shouldReceive('updateProfile')->with($input, $this->user->slug)->once();
-//
-//        $this->route('PUT', 'member::update', ['users' => $this->user->slug]);
-//
-//        $this->assertResponseOk();
-//        $this->assertKeyTranslated('controller.profile_updated');
-//        $this->assertRedirectedToRoute('member::profile');
-//    }
+    public function testUpdateUserProfile()
+    {
+        $this->withoutMiddleware();
+        $input = [
+            '_method'  => 'patch',
+            '_token'   => 'token',
+            'location' => 'foo',
+            'bio'      => 'bar'
+        ];
+        Input::replace($input);
+        $this->mock->shouldReceive('updateProfile')->with($input, $this->user->slug)->once()->andReturn(true);
+
+        $this->route('PATCH', 'member::update', ['users' => $this->user->slug]);
+
+        $this->assertResponseOk();
+        $this->assertKeyTranslated('controller.profile_updated');
+        $this->assertRedirectedToRoute('member::profile');
+    }
 
     /** @test */
     public function it_cancels_the_account_of_the_user()
