@@ -14,20 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->environment() == 'local') {
-            DB::listen(function ($sql, $bindings, $time) {
-                Log::info($time);
-                Log::info($sql);
-                Log::info($bindings);
-            });
-        }
+        $this->configureEnvironments();
 
-        if ($this->app->environment() == 'testing') {
-            config(['database.default' => 'sqlite']);
-        }
-
-        Validator::extend('alpha_spaces', function($attribute, $value)
-        {
+        Validator::extend('alpha_spaces', function ($attribute, $value, $parameters) {
             return preg_match('/^[\pL\s]+$/u', $value);
         });
     }
@@ -78,6 +67,31 @@ class AppServiceProvider extends ServiceProvider
 
         if ($this->app->environment() == 'local') {
             $this->app->register(\Laracasts\Generators\GeneratorsServiceProvider::class);
+        }
+    }
+
+    /**
+     * Set different configurations for different application environments.
+     */
+    private function configureEnvironments()
+    {
+        switch ($this->app->environment()) {
+            case 'local':
+                DB::listen(function ($sql, $bindings, $time) {
+                    Log::info($time);
+                    Log::info($sql);
+                    Log::info($bindings);
+                });
+                break;
+            case 'testing':
+                config(['database.default' => 'sqlite']);
+                break;
+            case 'acceptance':
+                config(['database.default' => 'sqlite']);
+                config(['database.connections.sqlite.database' => storage_path() . '/acceptance.sqlite']);
+                break;
+            default:
+                break;
         }
     }
 }

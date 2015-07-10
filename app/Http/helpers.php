@@ -68,10 +68,6 @@ if (!function_exists('plural2')) {
 if (!function_exists('remaining_days')) {
     function remaining_days($finish)
     {
-        if ($finish < Carbon::now()) {
-            throw new InvalidArgumentException;
-        }
-
         $count = (int)Carbon::now()->diffInDays(Carbon::parse($finish));
 
         return $count . ' ' . str_plural('day', $count) . ' remaining';

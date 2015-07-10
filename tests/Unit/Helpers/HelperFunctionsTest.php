@@ -58,14 +58,6 @@ class HelperFunctionsTest extends TestCase
         $this->assertEquals('2 days remaining', remaining_days(Carbon::now()->addDays(2)));
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testCalculateRemainingDaysException()
-    {
-        remaining_days(Carbon::now()->subDay());
-    }
-
     public function testCountingCollection()
     {
         $this->assertSame(0, counting(collect([])));
@@ -98,13 +90,5 @@ class HelperFunctionsTest extends TestCase
     public function testCheckingForBlankCollectionException()
     {
         blank([1, 2, 3]);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testCheckingForZeroValueException()
-    {
-        zero('zero');
     }
 }
