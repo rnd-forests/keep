@@ -1,7 +1,6 @@
 /vendor
 /node_modules
 .env
+.env.*
 _ide_helper.php
 /.idea
-
-tests/_output/*
