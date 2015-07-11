@@ -24,6 +24,18 @@ class RegistrationTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_a_warning_message_in_case_the_email_address_has_been_used()
+    {
+        factory('Keep\Entities\User')->create(['email' => 'foo@bar.com']);
+
+        $this->visit('auth/register')
+            ->type('foo@bar.com', 'email')
+            ->press('Create Account')
+            ->seePageIs('auth/register')
+            ->see('The email has already been taken.');
+    }
+
+    /** @test */
     public function it_returns_warning_messages_when_no_fields_is_filled_in()
     {
         $this->visit('auth/register')

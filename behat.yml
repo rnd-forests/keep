@@ -5,6 +5,8 @@ default:
         authentication:
             paths:
                 - %paths.base%/tests/Acceptance/Authentication
+            contexts:
+                - AuthenticationContext
     extensions:
         Laracasts\Behat:
             env_path: .env.behat
