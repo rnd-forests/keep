@@ -18,7 +18,6 @@ $factory->define(Keep\Entities\Profile::class, function ($faker) {
         'company'           => $faker->company,
         'website'           => $faker->url,
         'phone'             => $faker->phoneNumber,
-        'twitter_username'  => $faker->userName,
         'github_username'   => $faker->userName,
         'facebook_username' => $faker->userName,
         'google_username'   => $faker->userName

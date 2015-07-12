@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Http\ViewComposers;
+namespace Keep\Http\Composers;
 
 use Illuminate\Contracts\View\View;
 use Keep\Repositories\Tag\TagRepositoryInterface;
@@ -10,10 +10,10 @@ class TaskForm
 {
     public function compose(View $view)
     {
-        $tags = app()->make(TagRepositoryInterface::class);
+        $tags = app(TagRepositoryInterface::class);
         $view->with('tags', $tags->lists());
 
-        $priorities = app()->make(PriorityRepositoryInterface::class);
+        $priorities = app(PriorityRepositoryInterface::class);
         $view->with('priorities', $priorities->lists());
     }
 }

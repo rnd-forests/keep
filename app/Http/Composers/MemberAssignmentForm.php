@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Http\ViewComposers;
+namespace Keep\Http\Composers;
 
 use Illuminate\Contracts\View\View;
 use Keep\Repositories\User\UserRepositoryInterface;
@@ -9,7 +9,7 @@ class MemberAssignmentForm
 {
     public function compose(View $view)
     {
-        $userRepo = app()->make(UserRepositoryInterface::class);
+        $userRepo = app(UserRepositoryInterface::class);
         $view->with('users', $userRepo->getAll()->lists('name', 'id'));
     }
 }

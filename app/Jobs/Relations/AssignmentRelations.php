@@ -6,10 +6,6 @@ use Keep\Jobs\Job;
 use Keep\Entities\Task;
 use Keep\Entities\Assignment;
 use Illuminate\Support\Collection;
-use Keep\Repositories\Task\TaskRepositoryInterface;
-use Keep\Repositories\User\UserRepositoryInterface;
-use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
-use Keep\Repositories\Assignment\AssignmentRepositoryInterface;
 
 abstract class AssignmentRelations extends Job
 {
@@ -24,10 +20,10 @@ abstract class AssignmentRelations extends Job
     public function __construct(array $data)
     {
         $this->data = $data;
-        self::$userRepo = app()->make(UserRepositoryInterface::class);
-        self::$taskRepo = app()->make(TaskRepositoryInterface::class);
-        self::$groupRepo = app()->make(UserGroupRepositoryInterface::class);
-        self::$assignmentRepo = app()->make(AssignmentRepositoryInterface::class);
+        self::$userRepo = app('Keep\Repositories\User\UserRepositoryInterface');
+        self::$taskRepo = app('Keep\Repositories\Task\TaskRepositoryInterface');
+        self::$groupRepo = app('Keep\Repositories\UserGroup\UserGroupRepositoryInterface');
+        self::$assignmentRepo = app('Keep\Repositories\Assignment\AssignmentRepositoryInterface');
     }
 
     /**
@@ -155,23 +151,23 @@ abstract class AssignmentRelations extends Job
     public function getTaskRequestData()
     {
         return [
-            'title' => $this->data['title'],
-            'content' => $this->data['content'],
-            'starting_date' => $this->data['starting_date'],
+            'title'          => $this->data['title'],
+            'content'        => $this->data['content'],
+            'starting_date'  => $this->data['starting_date'],
             'finishing_date' => $this->data['finishing_date'],
-            'location' => $this->data['location'],
+            'location'       => $this->data['location'],
         ];
     }
 
     public function getTaskRequestDataWithRelations()
     {
         return [
-            'title' => $this->data['title'],
-            'content' => $this->data['content'],
-            'starting_date' => $this->data['starting_date'],
+            'title'          => $this->data['title'],
+            'content'        => $this->data['content'],
+            'starting_date'  => $this->data['starting_date'],
             'finishing_date' => $this->data['finishing_date'],
-            'location' => $this->data['location'],
-            'tag_list' => array_key_exists('tag_list', $this->data) ? $this->data['tag_list'] : [],
+            'location'       => $this->data['location'],
+            'tag_list'       => array_key_exists('tag_list', $this->data) ? $this->data['tag_list'] : [],
             'priority_level' => $this->data['priority_level'],
         ];
     }

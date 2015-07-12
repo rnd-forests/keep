@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Http\ViewComposers;
+namespace Keep\Http\Composers;
 
 use Illuminate\Contracts\View\View;
 use Keep\Repositories\User\UserRepositoryInterface;
@@ -16,7 +16,7 @@ class MemberNotificationForm
             'warning' => 'Warning',
             'danger' => 'Danger',
         ];
-        $userRepo = app()->make(UserRepositoryInterface::class);
+        $userRepo = app(UserRepositoryInterface::class);
         $view->with('types', $types);
         $view->with('users', $userRepo->getAll()->lists('name', 'id'));
     }

@@ -37,7 +37,7 @@ class EmailUpcomingTasks extends Command
         $this->output->progressStart($upcomingTasks->count());
         $upcomingTasks->each(function ($task) {
             $this->mailer->sendNotificationAboutUpcomingTask(
-                $task->owner, $task
+                $task->user, $task
             );
             $this->output->progressAdvance();
         });

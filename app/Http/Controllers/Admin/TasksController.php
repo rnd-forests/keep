@@ -2,7 +2,6 @@
 
 namespace Keep\Http\Controllers\Admin;
 
-use Request;
 use Keep\Http\Controllers\Controller;
 use Keep\Repositories\Task\TaskRepositoryInterface;
 
@@ -27,8 +26,9 @@ class TasksController extends Controller
      */
     public function activeTasks()
     {
-        $sortBy = Request::get('sortBy');
-        $direction = Request::get('direction');
+        $request = app('request');
+        $sortBy = $request->get('sortBy');
+        $direction = $request->get('direction');
         $tasks = $this->taskRepo->fetchPaginatedTasks(compact('sortBy', 'direction'), 50);
 
         return view('admin.tasks.active_tasks', compact('tasks'));

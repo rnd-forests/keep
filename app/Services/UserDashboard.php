@@ -2,7 +2,7 @@
 
 namespace Keep\Services;
 
-class UserDashboardService
+class UserDashboard
 {
     public function totalTasks()
     {

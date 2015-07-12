@@ -2,7 +2,6 @@
 
 namespace Keep\Http\Controllers;
 
-use Request;
 use Keep\Repositories\User\UserRepositoryInterface;
 use Keep\Repositories\Task\TaskRepositoryInterface;
 
@@ -32,7 +31,7 @@ class SearchController extends Controller
     public function searchTasks($userSlug)
     {
         $user = $this->userRepo->findBySlug($userSlug);
-        $pattern = Request::get('q');
+        $pattern = app('request')->get('q');
         $tasks = $this->taskRepo->searchByTitle($user, $pattern);
 
         return view('users.search', compact('user', 'pattern', 'tasks'));

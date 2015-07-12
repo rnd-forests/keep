@@ -2,7 +2,7 @@
 @section('meta-description', $authUser->name . ' personal dashboard')
 @section('title', 'Dashboard')
 @section('content')
-    @inject('counter', 'Keep\Services\UserDashboardService')
+    @inject('counter', 'Keep\Services\UserDashboard')
     <div class="row">
         <div id="search-keyword-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-sm">

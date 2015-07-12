@@ -61,7 +61,7 @@ return [
     'password' => [
         'email'  => 'emails.auth.reset_password',
         'table'  => 'password_resets',
-        'expire' => 120,
+        'expire' => 60,
     ],
 
 ];

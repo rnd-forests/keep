@@ -146,15 +146,16 @@ return [
         Keep\Providers\EventServiceProvider::class,
         Keep\Providers\RouteServiceProvider::class,
         Keep\Providers\ComposerServiceProvider::class,
+        Keep\Providers\ValidatorServiceProvider::class,
 
         /**
          * Third-party service providers...
          */
         Laracasts\Flash\FlashServiceProvider::class,
-        Laracasts\Utilities\JavaScript\JavascriptServiceProvider::class,
-        Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class,
+        Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
+        Laracasts\Utilities\JavaScript\JavascriptServiceProvider::class,
 
     ],
 

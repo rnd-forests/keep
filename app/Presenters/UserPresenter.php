@@ -21,18 +21,6 @@ class UserPresenter extends Presenter
     }
 
     /**
-     * Link to user twitter profile.
-     *
-     * @param $user
-     *
-     * @return string
-     */
-    public function twitterProfile($user)
-    {
-        return 'http://www.twitter.com/'.$user->profile->twitter_username;
-    }
-
-    /**
      * Link to user GitHub profile.
      *
      * @param $user

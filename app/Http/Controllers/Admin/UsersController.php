@@ -2,7 +2,6 @@
 
 namespace Keep\Http\Controllers\Admin;
 
-use Request;
 use Keep\Http\Controllers\Controller;
 use Keep\Repositories\User\UserRepositoryInterface;
 
@@ -27,8 +26,9 @@ class UsersController extends Controller
      */
     public function activeAccounts()
     {
-        $sortBy = Request::get('sortBy');
-        $direction = Request::get('direction');
+        $request = app('request');
+        $sortBy = $request->get('sortBy');
+        $direction = $request->get('direction');
         $activeAccounts = $this->userRepo->fetchPaginatedUsers(compact('sortBy', 'direction'), 100);
 
         return view('admin.accounts.active_accounts', compact('activeAccounts'));

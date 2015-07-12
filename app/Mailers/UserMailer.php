@@ -2,7 +2,6 @@
 
 namespace Keep\Mailers;
 
-use Carbon\Carbon;
 use Keep\Entities\Task;
 use Keep\Entities\User;
 
@@ -33,12 +32,12 @@ class UserMailer extends Mailer
         $subject = 'Keep - New task notification';
         $view = 'emails.task.new_task';
         $data = [
-            'username' => $user->name,
-            'taskTitle' => $task->title,
-            'taskContent' => $task->content,
-            'startingDate' => Carbon::parse($task->starting_date)->format('Y-m-d'),
-            'finishingDate' => Carbon::parse($task->finishing_date)->format('Y-m-d'),
-            'taskUrl' => $task->present()->url($user, $task),
+            'username'      => $user->name,
+            'taskTitle'     => $task->title,
+            'taskContent'   => $task->content,
+            'startingDate'  => short_time($task->starting_date),
+            'finishingDate' => short_time($task->finishing_date),
+            'taskUrl'       => $task->present()->url($user, $task),
         ];
         $this->sendTo($user, $subject, $view, $data);
     }
@@ -54,13 +53,13 @@ class UserMailer extends Mailer
         $subject = 'Keep - Upcoming task notification';
         $view = 'emails.task.upcoming_task';
         $data = [
-            'username' => $user->name,
-            'taskTitle' => $task->title,
-            'taskContent' => $task->content,
-            'startingDate' => Carbon::parse($task->starting_date)->format('Y-m-d'),
-            'finishingDate' => Carbon::parse($task->finishing_date)->format('Y-m-d'),
-            'remainingDays' => $task->present()->getRemainingDays($task->finishing_date),
-            'taskUrl' => $task->present()->url($user, $task),
+            'username'      => $user->name,
+            'taskTitle'     => $task->title,
+            'taskContent'   => $task->content,
+            'startingDate'  => short_time($task->starting_date),
+            'finishingDate' => short_time($task->finishing_date),
+            'remainingDays' => remaining_days($task->finishing_date),
+            'taskUrl'       => $task->present()->url($user, $task),
         ];
         $this->sendTo($user, $subject, $view, $data);
     }

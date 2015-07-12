@@ -48,13 +48,6 @@
                     </button>
                 </a>
             @endunless
-            @unless(empty($user->profile->twitter_username))
-                <a href="{{ $user->present()->twitterProfile($user) }}">
-                    <button class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Twitter Profile">
-                        <i class="fa fa-twitter"></i>
-                    </button>
-                </a>
-            @endunless
             @unless(empty($user->profile->github_username))
                 <a href="{{ $user->present()->githubProfile($user) }}">
                     <button class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="GitHub Profile">

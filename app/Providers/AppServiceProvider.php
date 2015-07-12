@@ -2,9 +2,6 @@
 
 namespace Keep\Providers;
 
-use DB;
-use Log;
-use Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,10 +12,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureEnvironments();
-
-        Validator::extend('alpha_spaces', function ($attribute, $value, $parameters) {
-            return preg_match('/^[\pL\s]+$/u', $value);
-        });
     }
 
     /**
@@ -30,44 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(
-            \Keep\Repositories\User\UserRepositoryInterface::class,
-            \Keep\Repositories\User\EloquentUserRepository::class
-        );
-
-        $this->app->singleton(
-            \Keep\Repositories\Tag\TagRepositoryInterface::class,
-            \Keep\Repositories\Tag\EloquentTagRepository::class
-        );
-
-        $this->app->singleton(
-            \Keep\Repositories\Task\TaskRepositoryInterface::class,
-            \Keep\Repositories\Task\EloquentTaskRepository::class
-        );
-
-        $this->app->singleton(
-            \Keep\Repositories\Priority\PriorityRepositoryInterface::class,
-            \Keep\Repositories\Priority\EloquentPriorityRepository::class
-        );
-
-        $this->app->singleton(
-            \Keep\Repositories\UserGroup\UserGroupRepositoryInterface::class,
-            \Keep\Repositories\UserGroup\EloquentUserGroupRepository::class
-        );
-
-        $this->app->singleton(
-            \Keep\Repositories\Assignment\AssignmentRepositoryInterface::class,
-            \Keep\Repositories\Assignment\EloquentAssignmentRepository::class
-        );
-
-        $this->app->singleton(
-            \Keep\Repositories\Notification\NotificationRepositoryInterface::class,
-            \Keep\Repositories\Notification\EloquentNotificationRepository::class
-        );
-
-        if ($this->app->environment() == 'local') {
-            $this->app->register(\Laracasts\Generators\GeneratorsServiceProvider::class);
-        }
+        $this->registerRepositoryBindings();
+        $this->registerCustomServiceProviders();
     }
 
     /**
@@ -77,21 +34,67 @@ class AppServiceProvider extends ServiceProvider
     {
         switch ($this->app->environment()) {
             case 'local':
-                DB::listen(function ($sql, $bindings, $time) {
-                    Log::info($time);
-                    Log::info($sql);
-                    Log::info($bindings);
+                $logger = $this->app->make('log');
+                $this->app->make('db')->listen(function ($sql, $bindings, $time) use ($logger) {
+                    $logger->info($time);
+                    $logger->info($sql);
+                    $logger->info($bindings);
                 });
                 break;
             case 'testing':
                 config(['database.default' => 'sqlite']);
                 break;
-            case 'acceptance':
-                config(['database.default' => 'sqlite']);
-                config(['database.connections.sqlite.database' => storage_path() . '/acceptance.sqlite']);
-                break;
-            default:
-                break;
+        }
+    }
+
+    /**
+     * Bind all repository interfaces to their concrete implementations.
+     */
+    private function registerRepositoryBindings()
+    {
+        $this->app->singleton(
+            'Keep\Repositories\Tag\TagRepositoryInterface',
+            'Keep\Repositories\Tag\EloquentTagRepository'
+        );
+
+        $this->app->singleton(
+            'Keep\Repositories\Task\TaskRepositoryInterface',
+            'Keep\Repositories\Task\EloquentTaskRepository'
+        );
+
+        $this->app->singleton(
+            'Keep\Repositories\User\UserRepositoryInterface',
+            'Keep\Repositories\User\EloquentUserRepository'
+        );
+
+        $this->app->singleton(
+            'Keep\Repositories\Priority\PriorityRepositoryInterface',
+            'Keep\Repositories\Priority\EloquentPriorityRepository'
+        );
+
+        $this->app->singleton(
+            'Keep\Repositories\UserGroup\UserGroupRepositoryInterface',
+            'Keep\Repositories\UserGroup\EloquentUserGroupRepository'
+        );
+
+        $this->app->singleton(
+            'Keep\Repositories\Assignment\AssignmentRepositoryInterface',
+            'Keep\Repositories\Assignment\EloquentAssignmentRepository'
+        );
+
+        $this->app->singleton(
+            'Keep\Repositories\Notification\NotificationRepositoryInterface',
+            'Keep\Repositories\Notification\EloquentNotificationRepository'
+        );
+    }
+
+    /**
+     * Register all custom third-party service providers.
+     */
+    private function registerCustomServiceProviders()
+    {
+        if ($this->app->environment() == 'local') {
+            $this->app->register(\Laracasts\Generators\GeneratorsServiceProvider::class);
         }
     }
 }

@@ -11,7 +11,7 @@ class Profile extends Model
 
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'location', 'bio', 'company', 'website', 'phone', 'twitter_username',
+        'location', 'bio', 'company', 'website', 'phone',
         'github_username', 'google_username', 'facebook_username',
     ];
 

@@ -16,7 +16,6 @@ class CreateUserProfilesTable extends Migration
             $table->string('website')->nullable();
             $table->string('phone', 20)->nullable();
             $table->string('facebook_username')->nullable();
-            $table->string('twitter_username')->nullable();
             $table->string('github_username')->nullable();
             $table->string('google_username')->nullable();
             $table->softDeletes();

@@ -25,7 +25,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         view()->composer(
             'layouts.partials._main_navbar',
-            'Keep\Http\ViewComposers\MainNavigationBar'
+            'Keep\Http\Composers\MainNavigationBar'
         );
     }
 
@@ -38,7 +38,7 @@ class ComposerServiceProvider extends ServiceProvider
                 'admin.assignments.create_group_assignment',
                 'admin.assignments.create_member_assignment',
             ],
-            'Keep\Http\ViewComposers\TaskForm'
+            'Keep\Http\Composers\TaskForm'
         );
     }
 
@@ -49,7 +49,7 @@ class ComposerServiceProvider extends ServiceProvider
                 'admin.assignments.edit',
                 'admin.assignments.create_group_assignment',
             ],
-            'Keep\Http\ViewComposers\GroupAssignmentForm'
+            'Keep\Http\Composers\GroupAssignmentForm'
         );
 
         view()->composer(
@@ -57,7 +57,7 @@ class ComposerServiceProvider extends ServiceProvider
                 'admin.assignments.edit',
                 'admin.assignments.create_member_assignment',
             ],
-            'Keep\Http\ViewComposers\MemberAssignmentForm'
+            'Keep\Http\Composers\MemberAssignmentForm'
         );
     }
 
@@ -65,12 +65,12 @@ class ComposerServiceProvider extends ServiceProvider
     {
         view()->composer(
             'admin.notifications.create_member_notification',
-            'Keep\Http\ViewComposers\MemberNotificationForm'
+            'Keep\Http\Composers\MemberNotificationForm'
         );
 
         view()->composer(
             'admin.notifications.create_group_notification',
-            'Keep\Http\ViewComposers\GroupNotificationForm'
+            'Keep\Http\Composers\GroupNotificationForm'
         );
     }
 

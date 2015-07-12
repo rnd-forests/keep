@@ -14,10 +14,8 @@ class RedirectIfNotCorrectUser
      * user is the same as the user in the currently requesting route.
      *
      * @param          $request
-     * @param callable $next
-     *
+     * @param callable|Closure $next
      * @return \Illuminate\Http\RedirectResponse
-     *
      * @throws InvalidUserException
      */
     public function handle($request, Closure $next)

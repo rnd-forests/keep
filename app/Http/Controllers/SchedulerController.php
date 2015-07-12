@@ -30,7 +30,7 @@ class SchedulerController extends Controller
     public function schedule($userSlug)
     {
         $tasks = $this->taskRepo->fetchAllTasksOfAUser($userSlug);
-        \JavaScript::put(['scheduler' => $tasks]);
+        app('JavaScript')->put(['scheduler' => $tasks]);
 
         return view('users.scheduler');
     }

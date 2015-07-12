@@ -10,8 +10,7 @@ class Authenticate
      * Handle an incoming request.
      *
      * @param          $request
-     * @param callable $next
-     *
+     * @param callable|Closure $next
      * @return \Illuminate\Http\RedirectResponse
      */
     public function handle($request, Closure $next)
