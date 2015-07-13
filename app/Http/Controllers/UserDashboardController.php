@@ -36,12 +36,9 @@ class UserDashboardController extends Controller
         $urgentTasks = $this->taskRepo->fetchUserUrgentTasks($user);
         $deadlineTasks = $this->taskRepo->fetchUserDeadlineTasks($user);
         $recentlyCompletedTasks = $this->taskRepo->fetchUserRecentlyCompletedTasks($user);
-        $recentlyFailedTasks = $this->taskRepo->fetchUserRecentlyFailedTasks($user);
-        $newestTasks = $this->taskRepo->fetchUserNewestTasks($user);
 
         return view('users.dashboard.dashboard', compact(
-            'user', 'urgentTasks', 'deadlineTasks', 'recentlyCompletedTasks',
-            'recentlyFailedTasks', 'newestTasks'
+            'user', 'urgentTasks', 'deadlineTasks', 'recentlyCompletedTasks'
         ));
     }
 

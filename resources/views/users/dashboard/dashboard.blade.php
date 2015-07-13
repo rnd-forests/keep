@@ -94,30 +94,6 @@
                     </a>
                 </div>
             </div>
-
-            <div class="panel panel-primary newest-tasks-wrapper">
-                <div class="panel-heading">
-                    <div class="text-center"><i class="fa fa-calendar"></i> Newest Tasks</div>
-                </div>
-                <div class="list-group">
-                    @foreach($newestTasks as $task)
-                        <a href="{{ route('member::tasks.show', [$user, $task]) }}" class="list-group-item">
-                            <h5 class="text-center">{{ $task->title }}</h5>
-                            <div class="task-labels">
-                                <span class="label label-info">{{ humans_time($task->created_at) }}</span>
-                                @if ($task->completed)
-                                    <span class="label label-info">completed</span>
-                                @else
-                                    <span class="label label-danger">uncompleted</span>
-                                @endif
-                                @if($task->is_failed)
-                                    <span class="label label-danger">failed</span>
-                                @endif
-                            </div>
-                        </a>
-                    @endforeach
-                </div>
-            </div>
         </div>
         <div class="col-md-3">
             <div class="panel panel-warning">
@@ -127,16 +103,6 @@
                         <a class="list-group-item" href="{{ route('member::tasks.show', [$user, $task]) }}">
                             <h5>{{ $task->title }}</h5>
                             <h6 class="text-warning">{{ remaining_days($task->finishing_date) }}</h6>
-                        </a>
-                    @endforeach
-                </div>
-            </div>
-            <div class="panel panel-warning">
-                <div class="panel-heading"><i class="fa fa-times"></i> Recently Failed Tasks</div>
-                <div class="list-group">
-                    @foreach($recentlyFailedTasks as $task)
-                        <a class="list-group-item" href="{{ route('member::tasks.show', [$user, $task]) }}">
-                            <h5>{{ $task->title }}</h5>
                         </a>
                     @endforeach
                 </div>

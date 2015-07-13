@@ -8444,12 +8444,6 @@ button.close {
   text-align: center;
   font-size: 14px; }
 
-.user-dashboard .newest-tasks-wrapper {
-  text-align: center; }
-  .user-dashboard .newest-tasks-wrapper .label {
-    margin-bottom: 5px;
-    display: inline-block; }
-
 .user-profile-wrapper .username {
   margin: 25px 0; }
 

@@ -24,8 +24,6 @@ interface TaskRepositoryInterface
     public function fetchUserRecentlyCompletedTasks($user);
     public function findAndUpdateFailedTasks();
     public function recoverFailedTasks();
-    public function fetchUserRecentlyFailedTasks($user);
-    public function fetchUserNewestTasks($user);
     public function fetchUserPaginatedTasksCollection($user);
     public function fetchUserPaginatedCompletedTasks($user);
     public function fetchUserPaginatedFailedTasks($user);

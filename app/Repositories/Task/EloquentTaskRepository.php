@@ -149,7 +149,7 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
     public function fetchUserDeadlineTasks($user)
     {
         return $user->tasks()
-            ->toDeadline()
+            ->deadline()
             ->take(10)
             ->get();
     }
@@ -175,22 +175,6 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
             ->where('is_failed', 1)
             ->where('finishing_date', '>=', Carbon::now())
             ->update(['is_failed' => false]);
-    }
-
-    public function fetchUserRecentlyFailedTasks($user)
-    {
-        return $user->tasks()
-            ->recentlyFailed()
-            ->take(5)
-            ->get();
-    }
-
-    public function fetchUserNewestTasks($user)
-    {
-        return $user->tasks()
-            ->newest()
-            ->take(5)
-            ->get();
     }
 
     public function fetchUserPaginatedTasksCollection($user)

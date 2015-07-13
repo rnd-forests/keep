@@ -58,14 +58,7 @@ class Task extends Model implements SluggableInterface
         return $query->where('completed', true);
     }
 
-    public function scopeNewest($query)
-    {
-        return $query
-            ->where('is_failed', false)
-            ->orderBy('created_at', 'desc');
-    }
-
-    public function scopeToDeadline($query)
+    public function scopeDeadline($query)
     {
         return $query
             ->where('completed', false)

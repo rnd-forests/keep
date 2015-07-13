@@ -30,19 +30,6 @@ class TaskIntegrationTest extends TestCase
     }
 
     /** @test */
-    public function it_fetches_newest_tasks()
-    {
-        factory('Keep\Entities\Task', 2)->create(['is_failed' => true]);
-        factory('Keep\Entities\Task')->create(['title' => 'Foo', 'created_at' => Carbon::now()->subDays(2)]);
-        factory('Keep\Entities\Task')->create(['title' => 'Bar', 'created_at' => Carbon::now()->subDays(3)]);
-        $this->assertCount(1, Task::newest()->take(1)->get());
-        $this->assertCount(2, Task::newest()->take(2)->get());
-        $this->assertCount(2, Task::newest()->take(3)->get());
-        $this->assertEquals('Foo', Task::newest()->take(2)->get()->first()->title);
-        $this->assertEquals('Bar', Task::newest()->take(2)->get()->last()->title);
-    }
-
-    /** @test */
     public function it_fetches_deadline_tasks()
     {
         factory('Keep\Entities\Task')->create(['title' => 'Foo', 'finishing_date' => Carbon::now()->addDays(2)]);
@@ -51,14 +38,14 @@ class TaskIntegrationTest extends TestCase
         factory('Keep\Entities\Task')->create(['title' => 'Bar', 'finishing_date' => Carbon::now()->addDays(4)->addHours(5)]);
         factory('Keep\Entities\Task')->create(['completed' => true]);
         factory('Keep\Entities\Task')->create(['is_failed' => true]);
-        $this->assertCount(1, Task::toDeadline()->take(1)->get());
-        $this->assertCount(2, Task::toDeadline()->take(2)->get());
-        $this->assertCount(3, Task::toDeadline()->take(3)->get());
-        $this->assertCount(4, Task::toDeadline()->take(4)->get());
-        $this->assertCount(4, Task::toDeadline()->take(5)->get());
-        $this->assertCount(4, Task::toDeadline()->take(6)->get());
-        $this->assertEquals('Foo', Task::toDeadline()->take(4)->get()->first()->title);
-        $this->assertEquals('Bar', Task::toDeadline()->take(4)->get()->last()->title);
+        $this->assertCount(1, Task::deadline()->take(1)->get());
+        $this->assertCount(2, Task::deadline()->take(2)->get());
+        $this->assertCount(3, Task::deadline()->take(3)->get());
+        $this->assertCount(4, Task::deadline()->take(4)->get());
+        $this->assertCount(4, Task::deadline()->take(5)->get());
+        $this->assertCount(4, Task::deadline()->take(6)->get());
+        $this->assertEquals('Foo', Task::deadline()->take(4)->get()->first()->title);
+        $this->assertEquals('Bar', Task::deadline()->take(4)->get()->last()->title);
     }
 
     /** @test */
