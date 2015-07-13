@@ -1,6 +1,6 @@
 <?php
 
-class PriorityTest extends TestCase
+class PriorityTest extends UnitTestCase
 {
     /** @test */
     public function it_has_many_associated_tasks()

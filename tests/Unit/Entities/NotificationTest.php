@@ -1,6 +1,6 @@
 <?php
 
-class NotificationTest extends TestCase
+class NotificationTest extends UnitTestCase
 {
     /** @test */
     public function it_belongs_to_many_users()

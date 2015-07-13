@@ -1,12 +1,9 @@
 <?php
 
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class HelperFunctionsTest extends TestCase
+class HelperFunctionsTest extends UnitTestCase
 {
-    use DatabaseTransactions;
-
     public function testShortTimeFormat()
     {
         $timestamp = '2015-08-08 12:57:02';

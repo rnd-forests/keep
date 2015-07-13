@@ -1,6 +1,6 @@
 <?php
 
-class ProfileTest extends TestCase
+class ProfileTest extends UnitTestCase
 {
     /** @test */
     public function it_belongs_to_only_one_user()

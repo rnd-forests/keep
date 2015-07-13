@@ -1,6 +1,6 @@
 <?php
 
-class TagTest extends TestCase
+class TagTest extends UnitTestCase
 {
     /** @test */
     public function it_belongs_to_many_tasks()

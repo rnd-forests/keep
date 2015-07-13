@@ -50,6 +50,7 @@
             "tests/Integration",
             "tests/Unit",
             "tests/TestCase.php",
+            "tests/UnitTestCase.php",
             "tests/AdditionalHelpersTrait.php",
             "tests/EloquentRelationsTrait.php"
         ]
