@@ -21,11 +21,6 @@ Route::group(['prefix' => '{users}', 'as' => 'member::'], function () {
         'uses' => 'UserDashboardController@dashboard',
     ]);
 
-    Route::get('scheduler', [
-        'as' => 'scheduler',
-        'uses' => 'SchedulerController@schedule',
-    ]);
-
     Route::get('tasks/all', [
         'as' => 'tasks.all',
         'uses' => 'UserDashboardController@allTasks',

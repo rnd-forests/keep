@@ -231,27 +231,4 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
             ->upcoming()
             ->get();
     }
-
-    public function fetchAllTasksOfAUser($userSlug)
-    {
-        $user = User::findBySlug($userSlug);
-
-        return $this->model
-            ->where([
-                'user_id' => $user->id,
-                'completed' => 0,
-            ])
-            ->get([
-                'title', 'starting_date',
-                'finishing_date', 'priority_id',
-            ])
-            ->transform(function ($task) {
-                return [
-                    'content' => $task->title,
-                    'endDate' => Carbon::parse($task->finishing_date)->toDayDateTimeString(),
-                    'startDate' => Carbon::parse($task->starting_date)->toDayDateTimeString(),
-                    'color' => $task->priority_id,
-                ];
-            })->toArray();
-    }
 }

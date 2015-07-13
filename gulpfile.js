@@ -22,7 +22,6 @@ elixir(function (mix) {
         "vendor/summernote/summernote.min.js",
         "vendor/summernote/summernote-fontstyle.js",
         "vendor/summernote/summernote-video.js",
-        "vendor/aui-min.js",
         "plugins.js",
         "main.js"
     ]);

@@ -14,22 +14,15 @@
             <ul class="nav navbar-nav">
                 @if (auth()->check())
                     <li><a href="{{ route('member::dashboard', $authUser) }}">Dashboard</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tasks <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('member::tasks.create', $authUser) }}">Schedule New Task</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{{ route('member::scheduler', $authUser) }}">Tasks Scheduler</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{{ route('member::assignments.all', $authUser) }}">Assignments</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="{{ route('member::tasks.create', $authUser) }}">Schedule New Task</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filters <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('member::tags.all', $authUser) }}">Tags</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ route('member::priorities.all', $authUser) }}">Priorities</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ route('member::assignments.all', $authUser) }}">Assignments</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ route('member::groups.all', $authUser) }}">Groups</a></li>

@@ -31,5 +31,4 @@ interface TaskRepositoryInterface
     public function fetchUserPaginatedFailedTasks($user);
     public function fetchUserPaginatedDueTasks($user);
     public function fetchUserUpcomingTasks();
-    public function fetchAllTasksOfAUser($userSlug);
 }
