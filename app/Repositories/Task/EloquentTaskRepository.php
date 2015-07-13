@@ -254,12 +254,4 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
                 ];
             })->toArray();
     }
-
-    public function searchByTitle($user, $pattern)
-    {
-        return $user->tasks()
-            ->search($pattern)
-            ->latest('created_at')
-            ->paginate(15);
-    }
 }

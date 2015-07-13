@@ -145,6 +145,7 @@ return [
         Keep\Providers\AppServiceProvider::class,
         Keep\Providers\EventServiceProvider::class,
         Keep\Providers\RouteServiceProvider::class,
+        Keep\Providers\SearchServiceProvider::class,
         Keep\Providers\ComposerServiceProvider::class,
         Keep\Providers\ValidatorServiceProvider::class,
 
@@ -210,6 +211,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Bugsnag'   => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
+        'Search'    => Keep\Search\Facades\SearchFacade::class,
 
     ],
 

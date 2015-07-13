@@ -25,7 +25,6 @@ class SearchForTasks extends TestCase
             ->see('2 tasks found for')
             ->see('<strong class="text-danger">foo</strong>')
             ->see('foo baz')
-            ->see('foo bar')
-            ->click('foo baz');
+            ->see('foo bar');
     }
 }

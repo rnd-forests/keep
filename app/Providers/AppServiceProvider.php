@@ -52,6 +52,11 @@ class AppServiceProvider extends ServiceProvider
      */
     private function registerRepositoryBindings()
     {
+        $this->app->bind(
+            'Keep\Search\Contracts\SearchInterface',
+            'Keep\Search\DatabaseSearch'
+        );
+
         $this->app->singleton(
             'Keep\Repositories\Tag\TagRepositoryInterface',
             'Keep\Repositories\Tag\EloquentTagRepository'

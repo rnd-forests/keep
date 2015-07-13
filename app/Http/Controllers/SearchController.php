@@ -2,23 +2,23 @@
 
 namespace Keep\Http\Controllers;
 
+use Keep\Search\Contracts\SearchInterface;
 use Keep\Repositories\User\UserRepositoryInterface;
-use Keep\Repositories\Task\TaskRepositoryInterface;
 
 class SearchController extends Controller
 {
-    protected $userRepo, $taskRepo;
+    protected $userRepo, $search;
 
     /**
      * Create new instance of search controller.
      *
      * @param UserRepositoryInterface $userRepo
-     * @param TaskRepositoryInterface $taskRepo
+     * @param SearchInterface $search
      */
-    public function __construct(UserRepositoryInterface $userRepo, TaskRepositoryInterface $taskRepo)
+    public function __construct(UserRepositoryInterface $userRepo, SearchInterface $search)
     {
         $this->userRepo = $userRepo;
-        $this->taskRepo = $taskRepo;
+        $this->search = $search;
     }
 
     /**
@@ -32,7 +32,7 @@ class SearchController extends Controller
     {
         $user = $this->userRepo->findBySlug($userSlug);
         $pattern = app('request')->get('q');
-        $tasks = $this->taskRepo->searchByTitle($user, $pattern);
+        $tasks = $this->search->tasksByTitle($user, $pattern);
 
         return view('users.search', compact('user', 'pattern', 'tasks'));
     }
