@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class SearchForTasks extends TestCase
+class SearchForTasksTest extends TestCase
 {
     use DatabaseTransactions;
 

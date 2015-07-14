@@ -1,13 +1,7 @@
 <?php
 
-class UserTest extends TestCase
+class UserTest extends UnitTestCase
 {
-    /** @test */
-    public function it_belongs_to_many_roles()
-    {
-        $this->assertBelongsToMany('roles', 'Keep\Entities\User');
-    }
-
     /** @test */
     public function it_has_only_one_profile()
     {
@@ -36,22 +30,5 @@ class UserTest extends TestCase
     public function it_belongs_to_many_assignments()
     {
         $this->assertMorphToMany('assignments', 'Keep\Entities\User');
-    }
-
-    /** @test */
-    public function it_has_the_correct_active_state()
-    {
-        $user = factory('Keep\Entities\User')->make(['active' => 0, 'activation_code' => str_random(60)]);
-        $this->assertSame(false, $user->isActive());
-    }
-
-    /** @test */
-    public function it_has_a_hashed_password_when_this_password_is_set()
-    {
-        Hash::shouldReceive('make')
-            ->once()
-            ->andReturn('hashed');
-        $user = factory('Keep\Entities\User')->make();
-        $this->assertEquals('hashed', $user->password);
     }
 }

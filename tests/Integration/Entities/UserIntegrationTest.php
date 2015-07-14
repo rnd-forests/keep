@@ -36,4 +36,21 @@ class UserIntegrationTest extends TestCase
         $user->notify($notification);
         $this->assertTrue($user->notifications->contains($notification));
     }
+
+    /** @test */
+    public function it_has_the_correct_active_state()
+    {
+        $user = factory('Keep\Entities\User')->make(['active' => 0, 'activation_code' => str_random(60)]);
+        $this->assertSame(false, $user->isActive());
+    }
+
+    /** @test */
+    public function it_has_a_hashed_password_when_this_password_is_set()
+    {
+        Hash::shouldReceive('make')
+            ->once()
+            ->andReturn('hashed');
+        $user = factory('Keep\Entities\User')->make();
+        $this->assertEquals('hashed', $user->password);
+    }
 }
