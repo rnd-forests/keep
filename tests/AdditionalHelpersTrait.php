@@ -18,18 +18,11 @@ trait AdditionalHelpersTrait
         return $paginator;
     }
 
-    public function assertViewIs($name)
+    public function setAuthenticatedUser(array $attributes = [])
     {
-        $this->assertEquals($name, $this->response->original->getName());
-    }
+        $user = factory('Keep\Entities\User')->create($attributes);
+        $this->actingAs($user);
 
-    public function assertKeyTranslated($key)
-    {
-        $this->assertSessionHas('flash_notification.message', trans($key));
-    }
-
-    public function assertFlashedMessage()
-    {
-        $this->assertSessionHas('flash_notification.message');
+        return $user;
     }
 }

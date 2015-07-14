@@ -5,7 +5,7 @@ use Illuminate\Foundation\Testing\TestCase as LaravelTestCase;
 
 class TestCase extends LaravelTestCase
 {
-    use EloquentRelationsTrait, AdditionalHelpersTrait;
+    use EloquentRelationsTrait, AdditionalHelpersTrait, AdditionalAssertionsTrait;
 
     protected $baseUrl = 'http://keep.app';
 

@@ -52,6 +52,7 @@
             "tests/TestCase.php",
             "tests/UnitTestCase.php",
             "tests/AdditionalHelpersTrait.php",
+            "tests/AdditionalAssertionsTrait.php",
             "tests/EloquentRelationsTrait.php"
         ]
     },
