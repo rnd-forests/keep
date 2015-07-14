@@ -41,7 +41,7 @@ class UsersControllerTest extends TestCase
         $this->route('PATCH', 'member::update', ['users' => $slug], $input, [], [], ['HTTP_REFERER' => $currentUrl]);
 
         $this->assertResponseStatus(302);
-        $this->assertKeyTranslated('controller.profile_updated');
+        $this->assertFlashedMessage('controller.profile_updated');
         $this->assertRedirectedToRoute('member::profile', ['users' => $slug]);
     }
 
@@ -54,6 +54,7 @@ class UsersControllerTest extends TestCase
 
         $this->route('PATCH', 'member::update', ['users' => $this->user->slug], $input);
 
+        $this->assertResponseStatus(302);
         $this->assertSessionHasErrors(['phone' => 'The phone format is invalid.']);
     }
 
@@ -65,8 +66,8 @@ class UsersControllerTest extends TestCase
 
         $this->route('DELETE', 'member::destroy', ['users' => $this->user->slug]);
 
-        $this->assertFlashedMessage();
-        $this->assertKeyTranslated('controller.account_canceled');
+        $this->assertResponseStatus(302);
         $this->assertRedirectedToRoute('home');
+        $this->assertFlashedMessage('controller.account_canceled');
     }
 }

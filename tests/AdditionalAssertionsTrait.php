@@ -7,13 +7,9 @@ trait AdditionalAssertionsTrait
         $this->assertEquals($name, $this->response->original->getName());
     }
 
-    public function assertKeyTranslated($key)
+    public function assertFlashedMessage($key)
     {
+        $this->assertTrue(Lang::has($key), "Oops! The language key '$key' doesn't exist");
         $this->assertSessionHas('flash_notification.message', trans($key));
-    }
-
-    public function assertFlashedMessage()
-    {
-        $this->assertSessionHas('flash_notification.message');
     }
 }
