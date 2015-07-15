@@ -2,10 +2,10 @@
 
 namespace Keep\Listeners;
 
-use Keep\Mailers\UserMailer;
 use Illuminate\Events\Dispatcher;
 use Keep\Events\TaskHasPublished;
 use Keep\Events\UserHasRegistered;
+use Keep\Mailers\Contracts\MailerInterface;
 
 class UserEventListener
 {
@@ -14,9 +14,9 @@ class UserEventListener
     /**
      * Constructor.
      *
-     * @param UserMailer $mailer
+     * @param MailerInterface $mailer
      */
-    public function __construct(UserMailer $mailer)
+    public function __construct(MailerInterface $mailer)
     {
         $this->mailer = $mailer;
     }
@@ -28,7 +28,7 @@ class UserEventListener
      */
     public function onUserRegister(UserHasRegistered $event)
     {
-        $this->mailer->sendAccountActivationLink(
+        $this->mailer->emailAccountActivationUrl(
             $event->user,
             $event->user->activation_code
         );
@@ -41,7 +41,7 @@ class UserEventListener
      */
     public function onUserScheduleTask(TaskHasPublished $event)
     {
-        $this->mailer->sendNotificationAboutNewTask(
+        $this->mailer->emailNewlyCreatedTask(
             $event->user,
             $event->task
         );

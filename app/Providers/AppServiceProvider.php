@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerMailer();
         $this->registerArtisanGenerator();
     }
 
@@ -44,6 +45,17 @@ class AppServiceProvider extends ServiceProvider
                 config(['database.default' => 'sqlite']);
                 break;
         }
+    }
+
+    /**
+     * Register Mailer binding.
+     */
+    protected function registerMailer()
+    {
+        $this->app->singleton(
+            \Keep\Mailers\Contracts\MailerInterface::class,
+            \Keep\Mailers\Mailer::class
+        );
     }
 
     /**

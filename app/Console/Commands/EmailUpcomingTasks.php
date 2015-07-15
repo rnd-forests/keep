@@ -2,8 +2,8 @@
 
 namespace Keep\Console\Commands;
 
-use Keep\Mailers\UserMailer;
 use Illuminate\Console\Command;
+use Keep\Mailers\Contracts\MailerInterface;
 use Keep\Repositories\Task\TaskRepositoryInterface;
 
 class EmailUpcomingTasks extends Command
@@ -16,10 +16,9 @@ class EmailUpcomingTasks extends Command
      * Create a new command instance.
      *
      * @param TaskRepositoryInterface $tasks
-     * @param UserMailer              $mailer
+     * @param MailerInterface $mailer
      */
-    public function __construct(TaskRepositoryInterface $tasks,
-                                UserMailer $mailer)
+    public function __construct(TaskRepositoryInterface $tasks, MailerInterface $mailer)
     {
         $this->tasks = $tasks;
         $this->mailer = $mailer;
@@ -36,7 +35,7 @@ class EmailUpcomingTasks extends Command
         $upcomingTasks = $this->tasks->fetchUserUpcomingTasks();
         $this->output->progressStart($upcomingTasks->count());
         $upcomingTasks->each(function ($task) {
-            $this->mailer->sendNotificationAboutUpcomingTask(
+            $this->mailer->emailUpcomingTask(
                 $task->user, $task
             );
             $this->output->progressAdvance();
