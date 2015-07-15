@@ -30,12 +30,12 @@ class ClearOldNotifications extends Command
     public function handle()
     {
         $oldNotifications = $this->notifications->fetchOldNotifications();
-        $this->output->progressStart($oldNotifications->count());
+        $this->output->progressStart(counting($oldNotifications));
         $oldNotifications->each(function ($notification) {
             $this->notifications->delete($notification->slug);
             $this->output->progressAdvance();
         });
         $this->output->progressFinish();
-        $this->info('Cleared all old notifications.');
+        $this->info('All old notifications were cleared.');
     }
 }

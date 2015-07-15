@@ -15,7 +15,7 @@ class NotifyUpcomingTasks extends Command
     /**
      * Create a new command instance.
      *
-     * @param TaskRepositoryInterface         $tasks
+     * @param TaskRepositoryInterface $tasks
      * @param NotificationRepositoryInterface $notifications
      */
     public function __construct(TaskRepositoryInterface $tasks,
@@ -34,23 +34,32 @@ class NotifyUpcomingTasks extends Command
     public function handle()
     {
         $upcomingTasks = $this->tasks->fetchUserUpcomingTasks();
-        $this->output->progressStart($upcomingTasks->count());
+        $this->output->progressStart(counting($upcomingTasks));
         $upcomingTasks->each(function ($task) {
-            $notification = $this->notifications->create([
-                'subject' => 'You have a new upcoming task',
-                'body' => '',
-                'type' => 'warning',
-            ]);
-            $notification->update([
-                'sent_from' => 'application',
-                'object_id' => $task->id,
-                'object_type' => 'Keep\Entities\Task',
-            ]);
-            $notification->save();
-            $task->owner->notify($notification);
+            $this->notifyTask($task);
             $this->output->progressAdvance();
         });
         $this->output->progressFinish();
-        $this->info('All possible users have been notified about their upcoming tasks.');
+        $this->info('Notified all upcoming tasks.');
+    }
+
+    /**
+     * Notifying upcoming task.
+     *
+     * @param $task
+     */
+    protected function notifyTask($task)
+    {
+        $notification = $this->notifications->create([
+            'subject' => 'Upcoming task',
+            'body'    => '',
+            'type'    => 'warning'
+        ]);
+        $notification->update([
+            'sent_from'   => 'application',
+            'object_id'   => $task->id,
+            'object_type' => 'Keep\Entities\Task'
+        ]);
+        $task->user->notify($notification);
     }
 }

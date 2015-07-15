@@ -6,6 +6,11 @@ use Keep\Entities\Notification;
 
 class NotificationObserver
 {
+    /**
+     * Hook into notification deleting event.
+     *
+     * @param Notification $notification
+     */
     public function deleting(Notification $notification)
     {
         app('db')->table('notifiables')
