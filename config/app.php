@@ -148,6 +148,7 @@ return [
         Keep\Providers\SearchServiceProvider::class,
         Keep\Providers\ComposerServiceProvider::class,
         Keep\Providers\ValidatorServiceProvider::class,
+        Keep\Providers\RepositoryServiceProvider::class,
 
         /**
          * Third-party service providers...

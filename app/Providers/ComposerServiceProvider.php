@@ -11,17 +11,21 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('*', function ($view) {
-            return $view->with('authUser', auth()->user());
-        });
-
         $this->composeNavbar();
+        $this->composeAllViews();
         $this->composeTaskForm();
         $this->composeAssignmentForm();
         $this->composeNotificationForm();
     }
 
-    private function composeNavbar()
+    protected function composeAllViews()
+    {
+        view()->composer('*', function ($view) {
+            return $view->with('authUser', auth()->user());
+        });
+    }
+
+    protected function composeNavbar()
     {
         view()->composer(
             'layouts.partials._main_navbar',
@@ -29,7 +33,7 @@ class ComposerServiceProvider extends ServiceProvider
         );
     }
 
-    private function composeTaskForm()
+    protected function composeTaskForm()
     {
         view()->composer(
             [
@@ -42,7 +46,7 @@ class ComposerServiceProvider extends ServiceProvider
         );
     }
 
-    private function composeAssignmentForm()
+    protected function composeAssignmentForm()
     {
         view()->composer(
             [
@@ -61,7 +65,7 @@ class ComposerServiceProvider extends ServiceProvider
         );
     }
 
-    private function composeNotificationForm()
+    protected function composeNotificationForm()
     {
         view()->composer(
             'admin.notifications.create_member_notification',

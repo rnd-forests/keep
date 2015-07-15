@@ -13,6 +13,14 @@ class ValidatorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->onlyAlphabeticalCharactersAndSpacesRule();
+    }
+
+    /**
+     * Validate that given pattern contains only alphabetical characters and spaces.
+     */
+    protected function onlyAlphabeticalCharactersAndSpacesRule()
+    {
         $this->app->make('validator')->extend('alpha_spaces', function ($attribute, $value, $parameters) {
             return preg_match('/^[\pL\s]+$/u', $value);
         });

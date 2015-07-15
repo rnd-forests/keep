@@ -11,7 +11,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->configureEnvironments();
+        $this->configureApplicationEnvironments();
     }
 
     /**
@@ -23,14 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerRepositoryBindings();
-        $this->registerCustomServiceProviders();
+        $this->registerArtisanGenerator();
     }
 
     /**
      * Set different configurations for different application environments.
      */
-    private function configureEnvironments()
+    protected function configureApplicationEnvironments()
     {
         switch ($this->app->environment()) {
             case 'local':
@@ -48,55 +47,9 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bind all repository interfaces to their concrete implementations.
+     * Register artisan generator service provider for local development.
      */
-    private function registerRepositoryBindings()
-    {
-        $this->app->bind(
-            'Keep\Search\Contracts\SearchInterface',
-            'Keep\Search\DatabaseSearch'
-        );
-
-        $this->app->singleton(
-            'Keep\Repositories\Tag\TagRepositoryInterface',
-            'Keep\Repositories\Tag\EloquentTagRepository'
-        );
-
-        $this->app->singleton(
-            'Keep\Repositories\Task\TaskRepositoryInterface',
-            'Keep\Repositories\Task\EloquentTaskRepository'
-        );
-
-        $this->app->singleton(
-            'Keep\Repositories\User\UserRepositoryInterface',
-            'Keep\Repositories\User\EloquentUserRepository'
-        );
-
-        $this->app->singleton(
-            'Keep\Repositories\Priority\PriorityRepositoryInterface',
-            'Keep\Repositories\Priority\EloquentPriorityRepository'
-        );
-
-        $this->app->singleton(
-            'Keep\Repositories\UserGroup\UserGroupRepositoryInterface',
-            'Keep\Repositories\UserGroup\EloquentUserGroupRepository'
-        );
-
-        $this->app->singleton(
-            'Keep\Repositories\Assignment\AssignmentRepositoryInterface',
-            'Keep\Repositories\Assignment\EloquentAssignmentRepository'
-        );
-
-        $this->app->singleton(
-            'Keep\Repositories\Notification\NotificationRepositoryInterface',
-            'Keep\Repositories\Notification\EloquentNotificationRepository'
-        );
-    }
-
-    /**
-     * Register all custom third-party service providers.
-     */
-    private function registerCustomServiceProviders()
+    protected function registerArtisanGenerator()
     {
         if ($this->app->environment() == 'local') {
             $this->app->register(\Laracasts\Generators\GeneratorsServiceProvider::class);
