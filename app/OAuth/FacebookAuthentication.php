@@ -2,41 +2,27 @@
 
 namespace Keep\OAuth;
 
-use Keep\Entities\User;
-use Keep\OAuth\Contracts\ProviderInterface;
+use Keep\OAuth\Contracts\OpenAuthenticatable;
 
-class FacebookAuthentication extends AuthenticationProvider implements ProviderInterface
+class FacebookAuthentication extends OpenAuthentication implements OpenAuthenticatable
 {
     /**
-     * Update authenticated user profile.
-     *
-     * @param User $user
-     * @param      $userData
-     *
-     * @return mixed
-     */
-    public function updateAuthenticatedUser(User $user, $userData)
-    {
-        return true;
-    }
-
-    /**
-     * Get authentication exception message.
+     * Get the open authentication provider name.
      *
      * @return string
      */
-    public function getExceptionMessage()
-    {
-        return trans('authentication.facebook_error');
-    }
-
-    /**
-     * Get authentication provider name.
-     *
-     * @return string
-     */
-    protected function getAuthProvider()
+    public function getAuthenticationProvider()
     {
         return 'facebook';
+    }
+
+    /**
+     * Get the authentication exception message.
+     *
+     * @return string
+     */
+    public function getAuthenticationException()
+    {
+        return trans('authentication.facebook_error');
     }
 }

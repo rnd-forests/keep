@@ -6,6 +6,15 @@ use Keep\Mailers\Contracts\MailerInterface;
 
 class Mailer implements MailerInterface
 {
+    /**
+     * Send email to a specific user.
+     *
+     * @param $user
+     * @param $subject
+     * @param $view
+     * @param array $data
+     * @return mixed
+     */
     public function sendTo($user, $subject, $view, $data = [])
     {
         $mailer = app('Illuminate\Mail\Mailer');
@@ -14,6 +23,13 @@ class Mailer implements MailerInterface
         });
     }
 
+    /**
+     * Send an email with account activation link to user.
+     *
+     * @param $user
+     * @param $code
+     * @return mixed
+     */
     public function emailAccountActivationUrl($user, $code)
     {
         $subject = 'Account Activation';
@@ -22,6 +38,13 @@ class Mailer implements MailerInterface
         $this->sendTo($user, $subject, $view, $data);
     }
 
+    /**
+     * Send an email to notify users about their new tasks.
+     *
+     * @param $user
+     * @param $task
+     * @return mixed
+     */
     public function emailNewlyCreatedTask($user, $task)
     {
         $subject = 'Newly Created Task';
@@ -37,6 +60,13 @@ class Mailer implements MailerInterface
         $this->sendTo($user, $subject, $view, $data);
     }
 
+    /**
+     * Send an email to notify users about their upcoming tasks.
+     *
+     * @param $user
+     * @param $task
+     * @return mixed
+     */
     public function emailUpcomingTask($user, $task)
     {
         $subject = 'Upcoming Task';

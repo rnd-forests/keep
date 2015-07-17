@@ -2,12 +2,12 @@
 
 namespace Keep\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
-use Keep\OAuth\GoogleAuthentication;
 use Keep\OAuth\GithubAuthentication;
+use Keep\OAuth\GoogleAuthentication;
 use Keep\Http\Controllers\Controller;
 use Keep\OAuth\FacebookAuthentication;
 use Keep\OAuth\Contracts\OAuthUserListener;
+use Keep\OAuth\Contracts\OpenAuthenticatable;
 
 class OAuthController extends Controller implements OAuthUserListener
 {
@@ -23,53 +23,56 @@ class OAuthController extends Controller implements OAuthUserListener
      * Authenticate user using GitHub provider.
      *
      * @param GithubAuthentication $github
-     * @param Request              $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     *
-     * @throws \Keep\Exceptions\InvalidUserException
+     * @return mixed
      */
-    public function loginWithGithub(GithubAuthentication $github, Request $request)
+    public function loginWithGithub(GithubAuthentication $github)
     {
-        return $github->authenticate($request->has('code'), $this);
+        return $this->loginWith($github);
     }
 
     /**
      * Authenticate user using Facebook provider.
      *
      * @param FacebookAuthentication $facebook
-     * @param Request                $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     *
-     * @throws \Keep\Exceptions\InvalidUserException
+     * @return mixed
      */
-    public function loginWithFacebook(FacebookAuthentication $facebook, Request $request)
+    public function loginWithFacebook(FacebookAuthentication $facebook)
     {
-        return $facebook->authenticate($request->has('code'), $this);
+        return $this->loginWith($facebook);
     }
 
     /**
      * Authenticate user using Google provider.
      *
      * @param GoogleAuthentication $google
-     * @param Request              $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     *
-     * @throws \Keep\Exceptions\InvalidUserException
+     * @return mixed
      */
-    public function loginWithGoogle(GoogleAuthentication $google, Request $request)
+    public function loginWithGoogle(GoogleAuthentication $google)
     {
-        return $google->authenticate($request->has('code'), $this);
+        return $this->loginWith($google);
     }
 
     /**
-     * User has logged in event.
+     * Log the user in the application using the given authentication provider.
+     *
+     * @param OpenAuthenticatable $provider
+     * @return mixed
+     */
+    protected function loginWith(OpenAuthenticatable $provider)
+    {
+        return $provider->authenticate(
+            app('request')->has('code'),
+            $provider->getAuthenticationProvider(),
+            $provider->getAuthenticationException(),
+            $this
+        );
+    }
+
+    /**
+     * Response to open authentication on success event.
      *
      * @param $user
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return mixed
      */
     public function userHasLoggedIn($user)
     {

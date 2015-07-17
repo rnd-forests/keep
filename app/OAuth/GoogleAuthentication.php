@@ -2,46 +2,26 @@
 
 namespace Keep\OAuth;
 
-use Keep\Entities\User;
-use Keep\OAuth\Contracts\ProviderInterface;
+use Keep\OAuth\Contracts\OpenAuthenticatable;
 
-class GoogleAuthentication extends AuthenticationProvider implements ProviderInterface
+class GoogleAuthentication extends OpenAuthentication implements OpenAuthenticatable
 {
     /**
-     * Get authentication provider name.
+     * Get the open authentication provider name.
      *
      * @return string
      */
-    protected function getAuthProvider()
+    public function getAuthenticationProvider()
     {
         return 'google';
     }
 
     /**
-     * Update authenticated user profile.
-     *
-     * @param User $user
-     * @param      $userData
-     *
-     * @return mixed
-     */
-    protected function updateAuthenticatedUser(User $user, $userData)
-    {
-        $user->profile()->update([
-            'bio' => strip_tags($userData->user['aboutMe']),
-            'location' => $userData->user['placesLived'][0]['value'],
-            'google_username' => str_replace('https://plus.google.com/', '', $userData->user['url']),
-        ]);
-
-        return $user->save();
-    }
-
-    /**
-     * Get authentication exception message.
+     * Get the authentication exception message.
      *
      * @return string
      */
-    protected function getExceptionMessage()
+    public function getAuthenticationException()
     {
         return trans('authentication.google_error');
     }

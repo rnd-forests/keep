@@ -2,47 +2,26 @@
 
 namespace Keep\OAuth;
 
-use Keep\Entities\User;
-use Keep\OAuth\Contracts\ProviderInterface;
+use Keep\OAuth\Contracts\OpenAuthenticatable;
 
-class GithubAuthentication extends AuthenticationProvider implements ProviderInterface
+class GithubAuthentication extends OpenAuthentication implements OpenAuthenticatable
 {
     /**
-     * Get authentication provider name.
+     * Get the open authentication provider name.
      *
      * @return string
      */
-    protected function getAuthProvider()
+    public function getAuthenticationProvider()
     {
         return 'github';
     }
 
     /**
-     * Update authenticated user profile.
-     *
-     * @param User $user
-     * @param      $userData
-     *
-     * @return bool
-     */
-    public function updateAuthenticatedUser(User $user, $userData)
-    {
-        $user->profile()->update([
-            'bio' => $userData->user['bio'],
-            'company' => $userData->user['company'],
-            'location' => $userData->user['location'],
-            'github_username' => str_replace('https://github.com/', '', $userData->user['html_url']),
-        ]);
-
-        return $user->save();
-    }
-
-    /**
-     * Get authentication exception message.
+     * Get the authentication exception message.
      *
      * @return string
      */
-    public function getExceptionMessage()
+    public function getAuthenticationException()
     {
         return trans('authentication.github_error');
     }
