@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Presenters;
+namespace Keep\Entities\Presenters;
 
 use Laracasts\Presenter\Presenter;
 

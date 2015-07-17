@@ -14,7 +14,7 @@ class Task extends Model implements SluggableInterface
     use PresentableTrait, SluggableTrait, SoftDeletes;
 
     protected $touches = ['user', 'assignment'];
-    protected $presenter = 'Keep\Presenters\TaskPresenter';
+    protected $presenter = 'Keep\Entities\Presenters\TaskPresenter';
     protected $sluggable = ['build_from' => 'title', 'save_to' => 'slug'];
     protected $dates = ['starting_date', 'finishing_date', 'finished_at', 'deleted_at'];
     protected $casts = ['completed' => 'boolean', 'is_assigned' => 'boolean', 'is_failed' => 'boolean'];

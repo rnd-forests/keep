@@ -20,7 +20,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     protected $dates = ['deleted_at'];
     protected $casts = ['active' => 'boolean'];
-    protected $presenter = 'Keep\Presenters\UserPresenter';
+    protected $presenter = 'Keep\Entities\Presenters\UserPresenter';
     protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
     protected $hidden = ['password', 'remember_token', 'activation_code'];
     protected $fillable = [
