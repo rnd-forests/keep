@@ -151,12 +151,3 @@ if (!function_exists('bcrypt_hasher')) {
         return app('hash');
     }
 }
-
-if (!function_exists('responseTo')) {
-    function responseTo($object, $interface)
-    {
-        $reflection = new ReflectionClass(get_class($object));
-
-        return $reflection->implementsInterface($interface);
-    }
-}

@@ -25,4 +25,20 @@ class GoogleAuthentication extends OpenAuthentication implements OpenAuthenticat
     {
         return trans('authentication.google_error');
     }
+
+    /**
+     * Extract and update user profile from data returned from provider.
+     *
+     * @param $user
+     * @param $data
+     * @return mixed
+     */
+    public function extractAndUpdateProfile($user, $data)
+    {
+        return $user->profile()->update([
+            'bio'             => strip_tags($data->user['aboutMe']),
+            'location'        => $data->user['placesLived'][0]['value'],
+            'google_username' => str_replace('https://plus.google.com/', '', $data->user['url']),
+        ]);
+    }
 }

@@ -4,11 +4,12 @@ namespace Keep\OAuth;
 
 use Keep\Exceptions\InvalidUserException;
 use Keep\OAuth\Contracts\OAuthUserListener;
+use Keep\OAuth\Contracts\ExtractableProviderData;
 use Keep\Repositories\User\UserRepositoryInterface;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 use Laravel\Socialite\Contracts\User as SocialiteUser;
 
-abstract class OpenAuthentication
+abstract class OpenAuthentication implements ExtractableProviderData
 {
     protected $userRepo, $socialite;
 
@@ -44,6 +45,7 @@ abstract class OpenAuthentication
         if (!$user) {
             throw new InvalidUserException($message);
         }
+        $this->extractAndUpdateProfile($user, $data);
         auth()->login($user, true);
 
         return $listener->userHasLoggedIn($user);
@@ -81,8 +83,8 @@ abstract class OpenAuthentication
     {
         return [
             'auth_provider_id' => $data->getId(),
-            'name' => $data->getName(),
-            'email' => $data->getEmail(),
+            'name'             => $data->getName(),
+            'email'            => $data->getEmail(),
         ];
     }
 }
