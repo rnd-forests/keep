@@ -18,6 +18,9 @@ class ComposerServiceProvider extends ServiceProvider
         $this->composeNotificationForm();
     }
 
+    /**
+     * All views will receive an instance of the current authenticated user.
+     */
     protected function composeAllViews()
     {
         view()->composer('*', function ($view) {
@@ -25,14 +28,20 @@ class ComposerServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * Compose main navigation bar.
+     */
     protected function composeNavbar()
     {
         view()->composer(
             'layouts.partials._main_navbar',
-            'Keep\Http\Composers\MainNavigationBar'
+            \Keep\Http\Composers\MainNavigationBar::class
         );
     }
 
+    /**
+     * Compose main task create/update form.
+     */
     protected function composeTaskForm()
     {
         view()->composer(
@@ -42,10 +51,13 @@ class ComposerServiceProvider extends ServiceProvider
                 'admin.assignments.create_group_assignment',
                 'admin.assignments.create_member_assignment',
             ],
-            'Keep\Http\Composers\TaskForm'
+            \Keep\Http\Composers\TaskForm::class
         );
     }
 
+    /**
+     * Compose main assignment create/update form.
+     */
     protected function composeAssignmentForm()
     {
         view()->composer(
@@ -53,7 +65,7 @@ class ComposerServiceProvider extends ServiceProvider
                 'admin.assignments.edit',
                 'admin.assignments.create_group_assignment',
             ],
-            'Keep\Http\Composers\GroupAssignmentForm'
+            \Keep\Http\Composers\GroupAssignmentForm::class
         );
 
         view()->composer(
@@ -61,20 +73,23 @@ class ComposerServiceProvider extends ServiceProvider
                 'admin.assignments.edit',
                 'admin.assignments.create_member_assignment',
             ],
-            'Keep\Http\Composers\MemberAssignmentForm'
+            \Keep\Http\Composers\MemberAssignmentForm::class
         );
     }
 
+    /**
+     * Compose notification create from.
+     */
     protected function composeNotificationForm()
     {
         view()->composer(
             'admin.notifications.create_member_notification',
-            'Keep\Http\Composers\MemberNotificationForm'
+            \Keep\Http\Composers\MemberNotificationForm::class
         );
 
         view()->composer(
             'admin.notifications.create_group_notification',
-            'Keep\Http\Composers\GroupNotificationForm'
+            \Keep\Http\Composers\GroupNotificationForm::class
         );
     }
 
