@@ -5,7 +5,7 @@ namespace Keep\Jobs;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Keep\Repositories\User\UserRepositoryInterface;
 
-class ActivateAccount extends Job implements SelfHandling
+class ActivateUserAccount extends Job implements SelfHandling
 {
     protected $code;
 
@@ -29,12 +29,21 @@ class ActivateAccount extends Job implements SelfHandling
     public function handle(UserRepositoryInterface $users)
     {
         $user = $users->findByActivationCode($this->code);
-        $user->update(['activation_code' => '', 'active' => true]);
-        if (!$user->save()) {
-            return false;
+        if ($this->isActivatable($user)) {
+            auth()->login($user);
+            return true;
         }
-        auth()->login($user);
 
-        return true;
+        return false;
+    }
+
+    /**
+     * Check if user account can be activated or not.
+     *
+     * @param $user
+     */
+    protected function isActivatable($user)
+    {
+        return $user->update(['activation_code' => '', 'active' => true]);
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Keep\Http\Controllers\Auth;
 
-use Keep\Jobs\RegisterAccount;
-use Keep\Jobs\ActivateAccount;
-use Keep\Jobs\AuthenticateAccount;
+use Keep\Jobs\RegisterUserAccount;
+use Keep\Jobs\AuthenticateUser;
+use Keep\Jobs\ActivateUserAccount;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\OpenSessionRequest;
 use Keep\Http\Requests\RegisterUserRequest;
@@ -38,7 +38,7 @@ class AuthController extends Controller
      */
     public function postRegister(RegisterUserRequest $request)
     {
-        if ($this->dispatchFrom(RegisterAccount::class, $request)) {
+        if ($this->dispatchFrom(RegisterUserAccount::class, $request)) {
             flash()->info(trans('authentication.account_activation'));
 
             return redirect()->home();
@@ -66,9 +66,9 @@ class AuthController extends Controller
      */
     public function postLogin(OpenSessionRequest $request)
     {
-        if ($this->dispatchFrom(AuthenticateAccount::class, $request, [
-            'active' => 1,
-            'remember' => $request->has('remember'), ])
+        if ($this->dispatchFrom(AuthenticateUser::class, $request, [
+            'active'   => 1,
+            'remember' => $request->has('remember'),])
         ) {
             flash()->success(trans('authentication.login_success'));
 
@@ -101,7 +101,7 @@ class AuthController extends Controller
      */
     public function activate($code)
     {
-        if ($this->dispatch(new ActivateAccount($code))) {
+        if ($this->dispatch(new ActivateUserAccount($code))) {
             flash()->success(trans('authentication.activation_success'));
 
             return redirect()->home();

@@ -4,7 +4,7 @@ namespace Keep\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class ModifyAccountName extends Job implements SelfHandling
+class ModifyUserName extends Job implements SelfHandling
 {
     protected $user, $oldUsername, $newUsername;
 
@@ -29,9 +29,30 @@ class ModifyAccountName extends Job implements SelfHandling
      */
     public function handle()
     {
-        if (strcasecmp($this->oldUsername, $this->newUsername) == 0) {
+        if ($this->areTheSameNames()) {
             return false;
         }
+
+        return $this->setNewUsername();
+    }
+
+    /**
+     * Check if the new username and old username are the same (case-sensitive).
+     *
+     * @return bool
+     */
+    protected function areTheSameNames()
+    {
+        return strcasecmp($this->oldUsername, $this->newUsername) == 0;
+    }
+
+    /**
+     * Set the new username for the user.
+     *
+     * @return bool
+     */
+    protected function setNewUsername()
+    {
         $this->user->name = $this->newUsername;
 
         return $this->user->save();

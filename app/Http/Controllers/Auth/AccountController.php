@@ -2,8 +2,8 @@
 
 namespace Keep\Http\Controllers\Auth;
 
-use Keep\Jobs\ModifyAccountName;
-use Keep\Jobs\ModifyAccountPassword;
+use Keep\Jobs\ModifyUserName;
+use Keep\Jobs\ModifyUserPassword;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\EditUserPasswordRequest;
 use Keep\Http\Requests\EditUserUsernameRequest;
@@ -34,7 +34,7 @@ class AccountController extends Controller
      */
     public function changePassword($userSlug, EditUserPasswordRequest $request)
     {
-        if ($this->dispatchFrom(ModifyAccountPassword::class, $request, [
+        if ($this->dispatchFrom(ModifyUserPassword::class, $request, [
             'user' => $this->userRepo->findBySlug($userSlug), ])
         ) {
             session()->flash('update_password_success', trans('authentication.updated_password_success'));
@@ -57,7 +57,7 @@ class AccountController extends Controller
     public function changeUsername($userSlug, EditUserUsernameRequest $request)
     {
         $user = $this->userRepo->findBySlug($userSlug);
-        if ($this->dispatchFrom(ModifyAccountName::class, $request, ['user' => $user])) {
+        if ($this->dispatchFrom(ModifyUserName::class, $request, ['user' => $user])) {
             session()->flash('update_username_success', trans('authentication.update_username_success'));
 
             return redirect()->route('member::profile', $user);

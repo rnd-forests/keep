@@ -6,7 +6,7 @@ use Keep\Events\UserHasRegistered;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Keep\Repositories\User\UserRepositoryInterface;
 
-class RegisterAccount extends Job implements SelfHandling
+class RegisterUserAccount extends Job implements SelfHandling
 {
     protected $name, $email, $password;
 
@@ -28,31 +28,22 @@ class RegisterAccount extends Job implements SelfHandling
      * Register new account.
      *
      * @param UserRepositoryInterface $users
-     *
      * @return bool
      */
     public function handle(UserRepositoryInterface $users)
     {
-        $user = $users->create($this->getCredentials());
+        $credentials = [
+            'name'     => $this->name,
+            'email'    => $this->email,
+            'password' => $this->password,
+        ];
+
+        $user = $users->create($credentials);
         if (!$user) {
             return false;
         }
         event(new UserHasRegistered($user));
 
         return true;
-    }
-
-    /**
-     * Get user credentials.
-     *
-     * @return array
-     */
-    private function getCredentials()
-    {
-        return [
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => $this->password,
-        ];
     }
 }

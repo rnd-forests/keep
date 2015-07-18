@@ -66,7 +66,6 @@ abstract class AssignmentRelations extends Job
      *
      * @param $task
      * @param $assignment
-     *
      * @return bool
      */
     public function setAssignmentTaskRelation(Task $task, Assignment $assignment)

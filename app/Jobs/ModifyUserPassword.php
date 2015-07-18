@@ -4,7 +4,7 @@ namespace Keep\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class ModifyAccountPassword extends Job implements SelfHandling
+class ModifyUserPassword extends Job implements SelfHandling
 {
     protected $user, $oldPassword, $newPassword;
 
@@ -29,9 +29,30 @@ class ModifyAccountPassword extends Job implements SelfHandling
      */
     public function handle()
     {
-        if (!bcrypt_hasher()->check($this->oldPassword, $this->user->password)) {
+        if (!$this->isValidOldPassword()) {
             return false;
         }
+
+        return $this->setNewPassword();
+    }
+
+    /**
+     * Check if the old password is correct.
+     *
+     * @return bool
+     */
+    protected function isValidOldPassword()
+    {
+        return bcrypt_hasher()->check($this->oldPassword, $this->user->password);
+    }
+
+    /**
+     * Set the new password for the user.
+     *
+     * @return bool
+     */
+    protected function setNewPassword()
+    {
         $this->user->password = $this->newPassword;
 
         return $this->user->save();
