@@ -13,7 +13,7 @@ class RedirectIfNotCorrectUser
      * This middleware is responsible to check if the current authenticated
      * user is the same as the user in the currently requesting route.
      *
-     * @param          $request
+     * @param $request
      * @param callable|Closure $next
      * @return \Illuminate\Http\RedirectResponse
      * @throws InvalidUserException

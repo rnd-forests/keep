@@ -23,7 +23,6 @@ class ActivateUserAccount extends Job implements SelfHandling
      * Activate user account.
      *
      * @param UserRepositoryInterface $users
-     *
      * @return bool
      */
     public function handle(UserRepositoryInterface $users)

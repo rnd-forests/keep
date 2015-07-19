@@ -12,7 +12,7 @@ class UserGroupController extends Controller
     /**
      * Create new user-group controller instance.
      *
-     * @param UserRepositoryInterface      $userRepo
+     * @param UserRepositoryInterface $userRepo
      * @param UserGroupRepositoryInterface $groupRepo
      */
     public function __construct(UserRepositoryInterface $userRepo, UserGroupRepositoryInterface $groupRepo)
@@ -27,7 +27,6 @@ class UserGroupController extends Controller
      * Get all groups associated with a user.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function index($userSlug)
@@ -42,7 +41,6 @@ class UserGroupController extends Controller
      *
      * @param $userSlug
      * @param $groupSlug
-     *
      * @return \Illuminate\View\View
      */
     public function show($userSlug, $groupSlug)
@@ -50,8 +48,7 @@ class UserGroupController extends Controller
         $user = $this->userRepo->findBySlug($userSlug);
         $group = $this->groupRepo->findBySlug($groupSlug);
         $members = $this->groupRepo->fetchMembersOfGroup($groupSlug);
-        $assignments = $this->groupRepo->fetchAssignmentsOfGroup($groupSlug);
 
-        return view('users.groups.show', compact('user', 'group', 'members', 'assignments'));
+        return view('users.groups.show', compact('user', 'group', 'members'));
     }
 }

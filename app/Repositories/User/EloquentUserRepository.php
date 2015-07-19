@@ -18,13 +18,13 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
     {
         if ($this->isSortable($params)) {
             return $this->model
-                ->with('tasks', 'roles', 'groups', 'assignments')
+                ->with('tasks', 'roles', 'groups')
                 ->orderBy($params['sortBy'], $params['direction'])
                 ->paginate($limit);
         }
 
         return $this->model
-            ->with('tasks', 'roles', 'groups', 'assignments')
+            ->with('tasks', 'roles', 'groups')
             ->paginate($limit);
     }
 

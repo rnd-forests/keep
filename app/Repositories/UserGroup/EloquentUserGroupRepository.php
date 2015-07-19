@@ -26,7 +26,7 @@ class EloquentUserGroupRepository extends EloquentRepository implements UserGrou
     public function findBySlug($slug)
     {
         return $this->model
-            ->with('users', 'assignments.task')
+            ->with('users')
             ->where('slug', $slug)
             ->firstOrFail();
     }
@@ -120,12 +120,5 @@ class EloquentUserGroupRepository extends EloquentRepository implements UserGrou
         $group = $this->findBySlug($groupSlug);
 
         return $group->users()->latest('created_at')->get();
-    }
-
-    public function fetchAssignmentsOfGroup($groupSlug)
-    {
-        $group = $this->findBySlug($groupSlug);
-
-        return $group->assignments()->latest('created_at')->get();
     }
 }

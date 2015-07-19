@@ -24,7 +24,6 @@ class TagsController extends Controller
      * Get all tags associated with a user's tasks.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function index($userSlug)
@@ -39,7 +38,6 @@ class TagsController extends Controller
      *
      * @param $userSlug
      * @param $tagName
-     *
      * @return \Illuminate\View\View
      */
     public function show($userSlug, $tagName)

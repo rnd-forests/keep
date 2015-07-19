@@ -2,7 +2,7 @@
 
 namespace Keep\Http\Requests;
 
-class RegisterUserRequest extends Request
+class RegistrationRequest extends Request
 {
     public function authorize()
     {
@@ -12,8 +12,8 @@ class RegisterUserRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|alpha_spaces|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'name'     => 'required|alpha_spaces|max:255',
+            'email'    => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ];
     }

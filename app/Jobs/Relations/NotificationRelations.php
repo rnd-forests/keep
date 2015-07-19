@@ -19,9 +19,9 @@ abstract class NotificationRelations extends Job
     public function __construct(array $data)
     {
         $this->data = $data;
-        self::$userRepo = app('Keep\Repositories\User\UserRepositoryInterface');
-        self::$groupRepo = app('Keep\Repositories\UserGroup\UserGroupRepositoryInterface');
-        self::$notiRepo = app('Keep\Repositories\Notification\NotificationRepositoryInterface');
+        self::$userRepo = app(\Keep\Repositories\User\UserRepositoryInterface::class);
+        self::$groupRepo = app(\Keep\Repositories\UserGroup\UserGroupRepositoryInterface::class);
+        self::$notiRepo = app(\Keep\Repositories\Notification\NotificationRepositoryInterface::class);
     }
 
     /**

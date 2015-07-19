@@ -1,12 +1,6 @@
 <?php
 
 return [
-    'assignment_updated'     => 'The assignment was successfully updated.',
-    'assignment_deleted'     => 'This assignment was successfully deleted.',
-    'assignment_restored'    => 'This assignment was successfully restored.',
-    'assignment_destroyed'   => 'This assignment was permanently deleted.',
-    'assignment_group'       => 'The assignment was assigned to selected groups.',
-    'assignment_member'      => 'The assignment was assigned to selected members.',
     'notification_destroyed' => 'This notification was successfully deleted.',
     'notification_member'    => 'The notification was sent to selected members.',
     'notification_group'     => 'The notification was sent to selected groups',

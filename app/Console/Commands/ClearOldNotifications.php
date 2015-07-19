@@ -9,7 +9,7 @@ class ClearOldNotifications extends Command
 {
     protected $notifications;
     protected $signature = 'keep:clear-old-notifications';
-    protected $description = 'Clear old notifications from the application.';
+    protected $description = 'Clear old notifications.';
 
     /**
      * Create a new command instance.

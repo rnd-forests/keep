@@ -15,9 +15,9 @@ class DashboardController extends Controller
     /**
      * Create new dashboard controller instance.
      *
-     * @param UserRepositoryInterface         $userRepo
-     * @param TaskRepositoryInterface         $taskRepo
-     * @param UserGroupRepositoryInterface    $groupRepo
+     * @param UserRepositoryInterface $userRepo
+     * @param TaskRepositoryInterface $taskRepo
+     * @param UserGroupRepositoryInterface $groupRepo
      * @param NotificationRepositoryInterface $notificationRepo
      */
     public function __construct(UserRepositoryInterface $userRepo,

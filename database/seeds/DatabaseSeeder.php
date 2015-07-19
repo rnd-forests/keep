@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         'tags',
         'users',
         'groups',
-        'assignments',
     ];
 
     /**
@@ -32,7 +31,6 @@ class DatabaseSeeder extends Seeder
         'TagsTableSeeder',
         'UsersTableSeeder',
         'GroupsTableSeeder',
-        'AssignmentsTableSeeder',
     ];
 
     /**

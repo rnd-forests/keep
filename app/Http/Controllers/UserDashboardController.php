@@ -27,7 +27,6 @@ class UserDashboardController extends Controller
      * User dashboard.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function dashboard($userSlug)
@@ -46,7 +45,6 @@ class UserDashboardController extends Controller
      * Get all tasks of a user.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function allTasks($userSlug)
@@ -61,7 +59,6 @@ class UserDashboardController extends Controller
      * Get all completed tasks of a user.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function completedTasks($userSlug)
@@ -76,7 +73,6 @@ class UserDashboardController extends Controller
      * Get all failed tasks of a user.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function failedTasks($userSlug)
@@ -91,7 +87,6 @@ class UserDashboardController extends Controller
      * Get all due tasks of a user.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function dueTasks($userSlug)

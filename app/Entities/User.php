@@ -20,7 +20,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     protected $dates = ['deleted_at'];
     protected $casts = ['active' => 'boolean'];
-    protected $presenter = 'Keep\Entities\Presenters\UserPresenter';
+    protected $presenter = \Keep\Entities\Presenters\UserPresenter::class;
     protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
     protected $hidden = ['password', 'remember_token', 'activation_code'];
     protected $fillable = [
@@ -30,27 +30,22 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function profile()
     {
-        return $this->hasOne('Keep\Entities\Profile');
+        return $this->hasOne(\Keep\Entities\Profile::class);
     }
 
     public function tasks()
     {
-        return $this->hasMany('Keep\Entities\Task');
+        return $this->hasMany(\Keep\Entities\Task::class);
     }
 
     public function notifications()
     {
-        return $this->morphToMany('Keep\Entities\Notification', 'notifiable');
+        return $this->morphToMany(\Keep\Entities\Notification::class, 'notifiable');
     }
 
     public function groups()
     {
-        return $this->belongsToMany('Keep\Entities\Group');
-    }
-
-    public function assignments()
-    {
-        return $this->morphToMany('Keep\Entities\Assignment', 'assignable');
+        return $this->belongsToMany(\Keep\Entities\Group::class);
     }
 
     public function isActive()

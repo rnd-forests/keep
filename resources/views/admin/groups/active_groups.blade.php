@@ -32,10 +32,6 @@
                                    data-toggle="tooltip" data-placement="bottom" title="Add more users">
                                     <i class="fa fa-plus"></i>
                                 </a>
-                                <a href="#" class="btn btn-warning btn-circle"
-                                   data-toggle="tooltip" data-placement="bottom" title="Send notification">
-                                    <i class="fa fa-bell-o"></i>
-                                </a>
                                 @include('admin.groups.partials._delete_form')
                             </div>
                         </div>

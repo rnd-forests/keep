@@ -2,7 +2,7 @@
 
 namespace Keep\Http\Requests;
 
-class AddUsersToGroupRequest extends Request
+class InitializeSessionRequest extends Request
 {
     public function authorize()
     {
@@ -12,7 +12,8 @@ class AddUsersToGroupRequest extends Request
     public function rules()
     {
         return [
-            'group_new_users' => 'required',
+            'email'    => 'required|email',
+            'password' => 'required',
         ];
     }
 }

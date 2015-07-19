@@ -19,5 +19,4 @@ interface UserGroupRepositoryInterface
     public function fetchGroupsByIds(array $ids);
     public function fetchGroupsOfUser($userSlug);
     public function fetchMembersOfGroup($groupSlug);
-    public function fetchAssignmentsOfGroup($groupSlug);
 }

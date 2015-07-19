@@ -13,7 +13,7 @@ class PrioritiesController extends Controller
      * Create new priorities controller instance.
      *
      * @param PriorityRepositoryInterface $priorityRepo
-     * @param UserRepositoryInterface     $userRepo
+     * @param UserRepositoryInterface $userRepo
      */
     public function __construct(PriorityRepositoryInterface $priorityRepo, UserRepositoryInterface $userRepo)
     {
@@ -27,7 +27,6 @@ class PrioritiesController extends Controller
      * Get all priority levels associated with a user's tasks.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function index($userSlug)
@@ -43,7 +42,6 @@ class PrioritiesController extends Controller
      *
      * @param $userSlug
      * @param $priorityName
-     *
      * @return \Illuminate\View\View
      */
     public function show($userSlug, $priorityName)

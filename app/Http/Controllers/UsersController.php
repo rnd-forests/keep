@@ -2,7 +2,7 @@
 
 namespace Keep\Http\Controllers;
 
-use Keep\Http\Requests\EditUserProfileRequest;
+use Keep\Http\Requests\ModifyProfileRequest;
 use Keep\Repositories\User\UserRepositoryInterface;
 
 class UsersController extends Controller
@@ -25,7 +25,6 @@ class UsersController extends Controller
      * Show profile.
      *
      * @param $slug
-     *
      * @return \Illuminate\View\View
      */
     public function show($slug)
@@ -38,12 +37,11 @@ class UsersController extends Controller
     /**
      * Update profile.
      *
-     * @param EditUserProfileRequest $request
-     * @param                        $slug
-     *
+     * @param ModifyProfileRequest $request
+     * @param $slug
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(EditUserProfileRequest $request, $slug)
+    public function update(ModifyProfileRequest $request, $slug)
     {
         $this->userRepo->updateProfile($request->except(['_method', '_token']), $slug);
         flash()->info(trans('controller.profile_updated'));
@@ -55,7 +53,6 @@ class UsersController extends Controller
      * Cancel account.
      *
      * @param $slug
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($slug)

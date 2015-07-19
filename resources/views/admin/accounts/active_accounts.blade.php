@@ -14,7 +14,6 @@
                         <th>{!! sort_accounts_by('email', 'Email') !!}</th>
                         <th>Tasks</th>
                         <th>Groups</th>
-                        <th>Assignments</th>
                         <th>{!! sort_accounts_by('created_at', 'Joined Date') !!}</th>
                         <th>Actions</th>
                     </tr>
@@ -27,18 +26,13 @@
                             <td>{{ $account->email }}</td>
                             <td>{{ counting($account->tasks) }}</td>
                             <td>{{ counting($account->groups) }}</td>
-                            <td>{{ counting($account->assignments) }}</td>
                             <td>{{ short_time($account->created_at) }}</td>
                             <td>
                                 <a href="{{ route('admin::members.active.profile', $account) }}" class="btn btn-primary btn-circle"
                                    data-toggle="tooltip" data-placement="bottom" title="View Profile">
                                     <i class="fa fa-user"></i>
                                 </a>
-                                <a href="#" class="btn btn-info btn-circle"
-                                   data-toggle="tooltip" data-placement="bottom" title="Send notification">
-                                    <i class="fa fa-bell-o"></i>
-                                </a>
-                                @unless($account->hasRole('admin'))
+                                @unless($account->isAdmin())
                                     @include('admin.accounts.partials._delete_form')
                                 @endunless
                             </td>

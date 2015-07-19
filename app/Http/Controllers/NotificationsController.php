@@ -24,7 +24,6 @@ class NotificationsController extends Controller
      * Fetch all notifications of a user.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function fetchPersonalNotifications($userSlug)
@@ -38,7 +37,6 @@ class NotificationsController extends Controller
      * Fetch all group notifications of a user.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function fetchGroupNotifications($userSlug)

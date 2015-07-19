@@ -2,12 +2,12 @@
 
 namespace Keep\Http\Controllers\Auth;
 
-use Keep\Jobs\RegisterUserAccount;
 use Keep\Jobs\AuthenticateUser;
+use Keep\Jobs\RegisterUserAccount;
 use Keep\Jobs\ActivateUserAccount;
 use Keep\Http\Controllers\Controller;
-use Keep\Http\Requests\OpenSessionRequest;
-use Keep\Http\Requests\RegisterUserRequest;
+use Keep\Http\Requests\RegistrationRequest;
+use Keep\Http\Requests\InitializeSessionRequest;
 
 class AuthController extends Controller
 {
@@ -32,11 +32,10 @@ class AuthController extends Controller
     /**
      * Handle a registration request to the application.
      *
-     * @param RegisterUserRequest $request
-     *
+     * @param RegistrationRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postRegister(RegisterUserRequest $request)
+    public function postRegister(RegistrationRequest $request)
     {
         if ($this->dispatchFrom(RegisterUserAccount::class, $request)) {
             flash()->info(trans('authentication.account_activation'));
@@ -60,11 +59,10 @@ class AuthController extends Controller
     /**
      * Handle a login request to the application.
      *
-     * @param OpenSessionRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @param InitializeSessionRequest $request
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function postLogin(OpenSessionRequest $request)
+    public function postLogin(InitializeSessionRequest $request)
     {
         if ($this->dispatchFrom(AuthenticateUser::class, $request, [
             'active'   => 1,
@@ -96,7 +94,6 @@ class AuthController extends Controller
      * Activate user account.
      *
      * @param $code
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function activate($code)

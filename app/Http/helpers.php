@@ -151,3 +151,10 @@ if (!function_exists('bcrypt_hasher')) {
         return app('hash');
     }
 }
+
+if (!function_exists('get_class_short_name')) {
+    function get_class_short_name($object)
+    {
+        return (new ReflectionClass($object))->getShortName();
+    }
+}

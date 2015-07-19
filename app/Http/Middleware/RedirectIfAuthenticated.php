@@ -9,7 +9,7 @@ class RedirectIfAuthenticated
     /**
      * Handle an incoming request.
      *
-     * @param          $request
+     * @param $request
      * @param callable|Closure $next
      * @return \Illuminate\Http\RedirectResponse
      */

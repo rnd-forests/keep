@@ -9,8 +9,6 @@
             <li>&middot;</li>
             <li><a href="{{ route('member::notifications.personal', $authUser) }}">Notifications</a></li>
             <li>&middot;</li>
-            <li><a href="{{ route('member::assignments.all', $authUser) }}">Assignments</a></li>
-            <li>&middot;</li>
             <li><a href="{{ route('member::groups.all', $authUser) }}">Groups</a></li>
         </ul>
     @endif

@@ -28,10 +28,7 @@ class UserEventListener
      */
     public function onUserRegister(UserHasRegistered $event)
     {
-        $this->mailer->emailAccountActivationUrl(
-            $event->user,
-            $event->user->activation_code
-        );
+        $this->mailer->emailAccountActivationUrl($event->user, $event->user->activation_code);
     }
 
     /**
@@ -41,10 +38,7 @@ class UserEventListener
      */
     public function onUserScheduleTask(TaskHasPublished $event)
     {
-        $this->mailer->emailNewlyCreatedTask(
-            $event->user,
-            $event->task
-        );
+        $this->mailer->emailNewlyCreatedTask($event->user, $event->task);
     }
 
     /**
@@ -55,12 +49,12 @@ class UserEventListener
     public function subscribe(Dispatcher $events)
     {
         $events->listen(
-            'Keep\Events\UserHasRegistered',
+            \Keep\Events\UserHasRegistered::class,
             'Keep\Listeners\UserEventListener@onUserRegister'
         );
 
         $events->listen(
-            'Keep\Events\TaskHasPublished',
+            \Keep\Events\TaskHasPublished::class,
             'Keep\Listeners\UserEventListener@onUserScheduleTask'
         );
     }

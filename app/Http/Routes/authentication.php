@@ -2,41 +2,41 @@
 
 Route::group(['prefix' => 'auth', 'as' => 'auth::', 'namespace' => 'Auth'], function () {
     Route::get('register', [
-        'as' => 'register',
+        'as'   => 'register',
         'uses' => 'AuthController@getRegister',
     ]);
 
     Route::post('register', [
-        'as' => 'register',
+        'as'   => 'register',
         'uses' => 'AuthController@postRegister',
     ]);
 
     Route::get('activate/{code}', [
-        'as' => 'activate',
+        'as'   => 'activate',
         'uses' => 'AuthController@activate',
     ]);
 
     Route::get('login', [
-        'as' => 'login',
+        'as'   => 'login',
         'uses' => 'AuthController@getLogin',
     ]);
     Route::post('login', [
-        'as' => 'login',
+        'as'   => 'login',
         'uses' => 'AuthController@postLogin',
     ]);
 
     Route::get('logout', [
-        'as' => 'logout',
+        'as'   => 'logout',
         'uses' => 'AuthController@logout',
     ]);
 
     Route::patch('{users}/change-password', [
-        'as' => 'change.password',
+        'as'   => 'change.password',
         'uses' => 'AccountController@changePassword',
     ]);
 
     Route::patch('{users}/change-username', [
-        'as' => 'change.username',
+        'as'   => 'change.username',
         'uses' => 'AccountController@changeUsername',
     ]);
 
@@ -45,17 +45,17 @@ Route::group(['prefix' => 'auth', 'as' => 'auth::', 'namespace' => 'Auth'], func
 
 Route::group(['prefix' => 'oauth', 'as' => 'oauth::', 'namespace' => 'Auth'], function () {
     Route::get('github', [
-        'as' => 'github',
+        'as'   => 'github',
         'uses' => 'OAuthController@loginWithGithub',
     ]);
 
     Route::get('facebook', [
-        'as' => 'facebook',
+        'as'   => 'facebook',
         'uses' => 'OAuthController@loginWithFacebook',
     ]);
 
     Route::get('google', [
-        'as' => 'google',
+        'as'   => 'google',
         'uses' => 'OAuthController@loginWithGoogle',
     ]);
 });

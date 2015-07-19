@@ -3,7 +3,6 @@
 namespace Keep\Http\Composers;
 
 use Illuminate\Contracts\View\View;
-use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
 
 class GroupNotificationForm
 {
@@ -11,12 +10,12 @@ class GroupNotificationForm
     {
         $types = [
             'default' => 'General',
-            'info' => 'Informative',
+            'info'    => 'Informative',
             'success' => 'Successful',
             'warning' => 'Warning',
-            'danger' => 'Danger',
+            'danger'  => 'Danger',
         ];
-        $groupRepo = app(UserGroupRepositoryInterface::class);
+        $groupRepo = app(\Keep\Repositories\UserGroup\UserGroupRepositoryInterface::class);
         $view->with('types', $types);
         $view->with('groups', $groupRepo->getAll()->lists('name', 'id'));
     }

@@ -11,10 +11,8 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->composeNavbar();
         $this->composeAllViews();
         $this->composeTaskForm();
-        $this->composeAssignmentForm();
         $this->composeNotificationForm();
     }
 
@@ -29,51 +27,13 @@ class ComposerServiceProvider extends ServiceProvider
     }
 
     /**
-     * Compose main navigation bar.
-     */
-    protected function composeNavbar()
-    {
-        view()->composer(
-            'layouts.partials._main_navbar',
-            \Keep\Http\Composers\MainNavigationBar::class
-        );
-    }
-
-    /**
      * Compose main task create/update form.
      */
     protected function composeTaskForm()
     {
         view()->composer(
-            [
-                'admin.assignments.edit',
-                'users.tasks.partials._main_form',
-                'admin.assignments.create_group_assignment',
-                'admin.assignments.create_member_assignment',
-            ],
+            'users.tasks.partials._main_form',
             \Keep\Http\Composers\TaskForm::class
-        );
-    }
-
-    /**
-     * Compose main assignment create/update form.
-     */
-    protected function composeAssignmentForm()
-    {
-        view()->composer(
-            [
-                'admin.assignments.edit',
-                'admin.assignments.create_group_assignment',
-            ],
-            \Keep\Http\Composers\GroupAssignmentForm::class
-        );
-
-        view()->composer(
-            [
-                'admin.assignments.edit',
-                'admin.assignments.create_member_assignment',
-            ],
-            \Keep\Http\Composers\MemberAssignmentForm::class
         );
     }
 

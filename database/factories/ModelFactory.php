@@ -34,7 +34,6 @@ $factory->define(Keep\Entities\Task::class, function ($faker) {
         'title'          => ucfirst(implode(' ', $faker->words(5))),
         'content'        => implode(' ', $faker->paragraphs(1)),
         'location'       => $faker->address,
-        'is_assigned'    => false,
         'starting_date'  => $timestamp,
         'finishing_date' => $timestamp->addDays(rand(0, 15))->addHours(rand(1, 20)),
         'created_at'     => $timestamp,
@@ -52,12 +51,6 @@ $factory->define(Keep\Entities\Group::class, function ($faker) {
     return [
         'name'        => ucfirst(implode(' ', $faker->words(5))),
         'description' => $faker->paragraph(4)
-    ];
-});
-
-$factory->define(Keep\Entities\Assignment::class, function ($faker) {
-    return [
-        'assignment_name' => ucfirst(implode(' ', $faker->words(6)))
     ];
 });
 

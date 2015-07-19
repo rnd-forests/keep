@@ -10,7 +10,7 @@ class EmailUpcomingTasks extends Command
 {
     protected $tasks, $mailer;
     protected $signature = 'keep:email-upcoming-tasks';
-    protected $description = 'Notify users about their upcoming tasks using their email address.';
+    protected $description = 'Email users about their upcoming tasks.';
 
     /**
      * Create a new command instance.

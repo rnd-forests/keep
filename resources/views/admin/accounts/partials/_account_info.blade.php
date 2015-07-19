@@ -6,7 +6,7 @@
                 <h2 class="username">{{ $user->name }}</h2>
             </div>
         </li>
-        @if($user->hasRole('admin'))
+        @if($user->isAdmin())
             <div class="list-group-item">
                 <span class="label label-primary">Administrator</span>
             </div>

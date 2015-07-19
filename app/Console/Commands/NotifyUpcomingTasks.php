@@ -10,7 +10,7 @@ class NotifyUpcomingTasks extends Command
 {
     protected $tasks, $notifications;
     protected $signature = 'keep:notify-upcoming-tasks';
-    protected $description = 'Notify users about their upcoming tasks using application notification system.';
+    protected $description = 'Notify users about their upcoming tasks.';
 
     /**
      * Create a new command instance.

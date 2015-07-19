@@ -17,6 +17,6 @@ class Profile extends Model
 
     public function user()
     {
-        return $this->belongsTo('Keep\Entities\User');
+        return $this->belongsTo(\Keep\Entities\User::class);
     }
 }

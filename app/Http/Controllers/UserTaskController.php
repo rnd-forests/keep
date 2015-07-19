@@ -30,7 +30,6 @@ class UserTaskController extends Controller
      * Get form to create new task.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function create($userSlug)
@@ -43,9 +42,8 @@ class UserTaskController extends Controller
     /**
      * Persist a new task.
      *
-     * @param             $userSlug
+     * @param $userSlug
      * @param TaskRequest $request
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store($userSlug, TaskRequest $request)
@@ -62,7 +60,6 @@ class UserTaskController extends Controller
      * Create new task.
      *
      * @param TaskRequest $request
-     *
      * @return mixed
      */
     private function createTask(TaskRequest $request)
@@ -76,7 +73,7 @@ class UserTaskController extends Controller
     /**
      * Set proper relations on task updating/creating.
      *
-     * @param             $task
+     * @param $task
      * @param TaskRequest $request
      */
     private function setRelations($task, TaskRequest $request)
@@ -90,7 +87,6 @@ class UserTaskController extends Controller
      *
      * @param $userSlug
      * @param $taskSlug
-     *
      * @return \Illuminate\View\View
      */
     public function show($userSlug, $taskSlug)
@@ -106,7 +102,6 @@ class UserTaskController extends Controller
      *
      * @param $userSlug
      * @param $taskSlug
-     *
      * @return \Illuminate\View\View
      */
     public function edit($userSlug, $taskSlug)
@@ -121,9 +116,8 @@ class UserTaskController extends Controller
      * Update a task.
      *
      * @param TaskRequest $request
-     * @param             $userSlug
-     * @param             $taskSlug
-     *
+     * @param $userSlug
+     * @param $taskSlug
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(TaskRequest $request, $userSlug, $taskSlug)
@@ -140,7 +134,6 @@ class UserTaskController extends Controller
      *
      * @param $userSlug
      * @param $taskSlug
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($userSlug, $taskSlug)
@@ -156,7 +149,6 @@ class UserTaskController extends Controller
      *
      * @param $userSlug
      * @param $taskSlug
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function complete($userSlug, $taskSlug)

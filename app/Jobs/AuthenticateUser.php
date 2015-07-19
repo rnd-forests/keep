@@ -38,7 +38,7 @@ class AuthenticateUser extends Job implements SelfHandling
             'password' => $this->password,
             'active'   => $this->active,
         ];
-        
+
         return $auth->attempt($credentials, $this->remember);
     }
 }

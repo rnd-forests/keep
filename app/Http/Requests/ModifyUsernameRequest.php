@@ -2,7 +2,7 @@
 
 namespace Keep\Http\Requests;
 
-class OpenSessionRequest extends Request
+class ModifyUsernameRequest extends Request
 {
     public function authorize()
     {
@@ -12,8 +12,8 @@ class OpenSessionRequest extends Request
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required',
+            'old_username' => 'required',
+            'new_username' => 'required|different:old_username|max:255',
         ];
     }
 }

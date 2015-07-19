@@ -21,12 +21,12 @@ class Notification extends Model implements SluggableInterface
 
     public function users()
     {
-        return $this->morphedByMany('Keep\Entities\User', 'notifiable');
+        return $this->morphedByMany(\Keep\Entities\User::class, 'notifiable');
     }
 
     public function groups()
     {
-        return $this->morphedByMany('Keep\Entities\Group', 'notifiable');
+        return $this->morphedByMany(\Keep\Entities\Group::class, 'notifiable');
     }
 
     public function scopeOld($query)

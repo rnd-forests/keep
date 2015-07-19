@@ -13,8 +13,8 @@ class NotificationRequest extends Request
     {
         return [
             'subject' => 'required|min:3',
-            'body' => 'required|min:5',
-            'type' => 'required',
+            'body'    => 'required|min:5',
+            'type'    => 'required',
         ];
     }
 }

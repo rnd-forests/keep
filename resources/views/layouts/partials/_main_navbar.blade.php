@@ -21,16 +21,11 @@
                             <li><a href="{{ route('member::tags.all', $authUser) }}">Tags</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ route('member::priorities.all', $authUser) }}">Priorities</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{{ route('member::assignments.all', $authUser) }}">Assignments</a></li>
                         </ul>
                     </li>
                     <li><a href="{{ route('member::groups.all', $authUser) }}">Groups</a></li>
                     <li>
-                        <a href="{{ route('member::notifications.personal', $authUser) }}" class="notification-count">
-                            Notifications
-                            <span class="label">{{ $notificationCount }}</span>
-                        </a>
+                        <a href="{{ route('member::notifications.personal', $authUser) }}">Notifications</a>
                     </li>
                 @endif
             </ul>

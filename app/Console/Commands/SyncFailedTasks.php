@@ -9,7 +9,7 @@ class SyncFailedTasks extends Command
 {
     protected $tasks;
     protected $signature = 'keep:sync-failed-tasks';
-    protected $description = 'Find failed tasks in entire database. Recover failed tasks if available.';
+    protected $description = 'Find/Recover failed tasks in entire database.';
 
     /**
      * Create a new command instance.

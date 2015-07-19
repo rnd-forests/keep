@@ -5,8 +5,8 @@ namespace Keep\Http\Controllers\Auth;
 use Keep\Jobs\ModifyUserName;
 use Keep\Jobs\ModifyUserPassword;
 use Keep\Http\Controllers\Controller;
-use Keep\Http\Requests\EditUserPasswordRequest;
-use Keep\Http\Requests\EditUserUsernameRequest;
+use Keep\Http\Requests\ModifyPasswordRequest;
+use Keep\Http\Requests\ModifyUsernameRequest;
 use Keep\Repositories\User\UserRepositoryInterface;
 
 class AccountController extends Controller
@@ -27,15 +27,14 @@ class AccountController extends Controller
     /**
      * Perform the process of changing user password.
      *
-     * @param                         $userSlug
-     * @param EditUserPasswordRequest $request
-     *
+     * @param $userSlug
+     * @param ModifyPasswordRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function changePassword($userSlug, EditUserPasswordRequest $request)
+    public function changePassword($userSlug, ModifyPasswordRequest $request)
     {
         if ($this->dispatchFrom(ModifyUserPassword::class, $request, [
-            'user' => $this->userRepo->findBySlug($userSlug), ])
+            'user' => $this->userRepo->findBySlug($userSlug),])
         ) {
             session()->flash('update_password_success', trans('authentication.updated_password_success'));
 
@@ -49,12 +48,11 @@ class AccountController extends Controller
     /**
      * Perform the process of changing user username.
      *
-     * @param                         $userSlug
-     * @param EditUserUsernameRequest $request
-     *
+     * @param $userSlug
+     * @param ModifyUsernameRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function changeUsername($userSlug, EditUserUsernameRequest $request)
+    public function changeUsername($userSlug, ModifyUsernameRequest $request)
     {
         $user = $this->userRepo->findBySlug($userSlug);
         if ($this->dispatchFrom(ModifyUserName::class, $request, ['user' => $user])) {

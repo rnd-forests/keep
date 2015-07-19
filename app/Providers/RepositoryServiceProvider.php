@@ -54,11 +54,6 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(
-            \Keep\Repositories\Assignment\AssignmentRepositoryInterface::class,
-            \Keep\Repositories\Assignment\EloquentAssignmentRepository::class
-        );
-
-        $this->app->singleton(
             \Keep\Repositories\Notification\NotificationRepositoryInterface::class,
             \Keep\Repositories\Notification\EloquentNotificationRepository::class
         );
@@ -77,7 +72,6 @@ class RepositoryServiceProvider extends ServiceProvider
             \Keep\Repositories\User\UserRepositoryInterface::class,
             \Keep\Repositories\Priority\PriorityRepositoryInterface::class,
             \Keep\Repositories\UserGroup\UserGroupRepositoryInterface::class,
-            \Keep\Repositories\Assignment\AssignmentRepositoryInterface::class,
             \Keep\Repositories\Notification\NotificationRepositoryInterface::class,
         ];
     }

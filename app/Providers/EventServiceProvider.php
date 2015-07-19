@@ -3,7 +3,6 @@
 namespace Keep\Providers;
 
 use Keep\Entities\Observers\UserObserver;
-use Keep\Entities\Observers\AssignmentObserver;
 use Keep\Entities\Observers\NotificationObserver;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -38,7 +37,6 @@ class EventServiceProvider extends ServiceProvider
         parent::boot($events);
 
         \Keep\Entities\User::observe(new UserObserver);
-        \Keep\Entities\Assignment::observe(new AssignmentObserver);
         \Keep\Entities\Notification::observe(new NotificationObserver);
     }
 }

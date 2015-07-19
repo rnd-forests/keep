@@ -523,29 +523,6 @@
   .add-users-wrapper .list-group-item a:hover, .add-users-wrapper .list-group-item a:active, .add-users-wrapper .list-group-item a:focus {
     color: #1ab394; }
 
-.assignments-wrapper .panel .label {
-  margin-right: 5px; }
-
-.assignments-wrapper .panel .panel-footer form {
-  display: inline-block; }
-
-.assignment-wrapper .assignment-controls form {
-  display: inline-block; }
-
-.assignment-assignables {
-  padding: 0;
-  text-align: center; }
-  .assignment-assignables li {
-    list-style: none;
-    display: inline-block;
-    border-radius: 3px;
-    padding: 5px;
-    margin-bottom: 5px;
-    background-color: #7266ba; }
-    .assignment-assignables li a {
-      font-size: 13px;
-      color: #ffffff; }
-
 .notification-groups {
   margin-bottom: 0;
   background: #ffffff; }
@@ -556,14 +533,6 @@
     background: #ffffff;
     border: none;
     color: #333; }
-
-.notification-count .label {
-  background: 0 0;
-  color: #ff0000;
-  line-height: 12px;
-  position: absolute;
-  right: -8px;
-  top: 8px; }
 
 body {
   font: normal 16px "Source Sans Pro", sans-serif;

@@ -39,16 +39,6 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Assignments <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#" data-toggle="modal" data-target="#assignment-selection-modal">Create</a></li>
-                        <li class="divider"></li>
-                        <li><a href="{{ route('admin::assignments.published') }}">Collection</a></li>
-                        <li class="divider"></li>
-                        <li><a href="{{ route('admin::assignments.trashed') }}">Trash</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Notifications <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#" data-toggle="modal" data-target="#notification-selection-modal">Create</a></li>
@@ -64,5 +54,4 @@
     </div>
 </nav>
 
-@include('admin.layouts.assignment_modal')
 @include('admin.layouts.notification_modal')
