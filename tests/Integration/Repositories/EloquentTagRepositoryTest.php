@@ -13,15 +13,15 @@ class EloquentTagRepositoryTest extends TestCase
      */
     public function it_initializes_the_repository()
     {
-        $this->repo = app('Keep\Repositories\Tag\EloquentTagRepository');
+        $this->repo = app(Keep\Repositories\Tag\EloquentTagRepository::class);
     }
 
     /** @test */
     public function it_lists_all_tags_by_name_and_id()
     {
-        factory('Keep\Entities\Tag')->create(['name' => 'foo']);
-        factory('Keep\Entities\Tag')->create(['name' => 'bar']);
-        factory('Keep\Entities\Tag')->create(['name' => 'baz']);
+        factory(Keep\Entities\Tag::class)->create(['name' => 'foo']);
+        factory(Keep\Entities\Tag::class)->create(['name' => 'bar']);
+        factory(Keep\Entities\Tag::class)->create(['name' => 'baz']);
 
         $tags = $this->repo->lists()->toArray();
 
@@ -33,10 +33,10 @@ class EloquentTagRepositoryTest extends TestCase
     /** @test */
     public function it_fetches_all_tags_associated_with_a_user()
     {
-        $user = factory('Keep\Entities\User')->create();
-        $user->tasks()->saveMany(factory('Keep\Entities\Task', 2)->create());
-        factory('Keep\Entities\Tag')->create(['name' => 'foo']);
-        factory('Keep\Entities\Tag')->create(['name' => 'bar']);
+        $user = factory(Keep\Entities\User::class)->create();
+        $user->tasks()->saveMany(factory(Keep\Entities\Task::class, 2)->create());
+        factory(Keep\Entities\Tag::class)->create(['name' => 'foo']);
+        factory(Keep\Entities\Tag::class)->create(['name' => 'bar']);
         $user->tasks->first()->tags()->attach([1, 2]);
         $user->tasks->last()->tags()->attach(2);
 
@@ -52,10 +52,10 @@ class EloquentTagRepositoryTest extends TestCase
     /** @test */
     public function it_fetches_all_tasks_associated_with_a_user_tag()
     {
-        $user = factory('Keep\Entities\User')->create();
-        $user->tasks()->saveMany(factory('Keep\Entities\Task', 2)->create());
-        factory('Keep\Entities\Tag')->create(['name' => 'foo']);
-        factory('Keep\Entities\Tag')->create(['name' => 'bar']);
+        $user = factory(Keep\Entities\User::class)->create();
+        $user->tasks()->saveMany(factory(Keep\Entities\Task::class, 2)->create());
+        factory(Keep\Entities\Tag::class)->create(['name' => 'foo']);
+        factory(Keep\Entities\Tag::class)->create(['name' => 'bar']);
         $user->tasks->first()->tags()->attach([1, 2]);
         $user->tasks->last()->tags()->attach(2);
 

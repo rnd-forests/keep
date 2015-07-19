@@ -9,7 +9,7 @@ class SignInTest extends TestCase
     /** @test */
     public function it_authenticates_an_active_user()
     {
-        factory('Keep\Entities\User')->create(['email' => 'foo@bar.com']);
+        factory(Keep\Entities\User::class)->create(['email' => 'foo@bar.com']);
 
         $this->visit('/')
             ->click('Login')
@@ -48,7 +48,7 @@ class SignInTest extends TestCase
     /** @test */
     public function it_returns_an_error_message_when_the_attempting_credentials_are_invalid()
     {
-        factory('Keep\Entities\User')->create(['email' => 'foo@bar.com']);
+        factory(Keep\Entities\User::class)->create(['email' => 'foo@bar.com']);
 
         $this->visit('auth/login')
             ->type('foo@bar.com', 'email')

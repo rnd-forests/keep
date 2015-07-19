@@ -13,7 +13,7 @@ class UsersControllerTest extends TestCase
      */
     public function it_initializes_testing_environment()
     {
-        $this->mock = $this->mock('Keep\Repositories\User\UserRepositoryInterface');
+        $this->mock = $this->mock(Keep\Repositories\User\UserRepositoryInterface::class);
         $this->user = $this->setAuthenticatedUser();
     }
 

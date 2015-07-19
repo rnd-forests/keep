@@ -9,10 +9,10 @@ class SearchForTasksTest extends TestCase
     /** @test */
     public function it_searches_for_tasks_using_their_titles()
     {
-        $user = factory('Keep\Entities\User')->create(['name' => 'anonymous']);
-        $user->tasks()->save(factory('Keep\Entities\Task')->create(['title' => 'foo baz']));
-        $user->tasks()->save(factory('Keep\Entities\Task')->create(['title' => 'foo bar']));
-        $user->tasks()->save(factory('Keep\Entities\Task')->create(['title' => 'bar baz']));
+        $user = factory(Keep\Entities\User::class)->create(['name' => 'anonymous']);
+        $user->tasks()->save(factory(Keep\Entities\Task::class)->create(['title' => 'foo baz']));
+        $user->tasks()->save(factory(Keep\Entities\Task::class)->create(['title' => 'foo bar']));
+        $user->tasks()->save(factory(Keep\Entities\Task::class)->create(['title' => 'bar baz']));
 
         $this->actingAs($user);
 

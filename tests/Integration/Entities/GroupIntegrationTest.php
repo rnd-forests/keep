@@ -9,8 +9,8 @@ class GroupIntegrationTest extends TestCase
     /** @test */
     public function it_can_be_notified()
     {
-        $group = factory('Keep\Entities\Group')->create();
-        $notification = factory('Keep\Entities\Notification')->create();
+        $group = factory(Keep\Entities\Group::class)->create();
+        $notification = factory(Keep\Entities\Notification::class)->create();
         $group->notify($notification);
         $this->assertTrue($group->notifications->contains($notification));
     }

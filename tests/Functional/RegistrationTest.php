@@ -26,7 +26,7 @@ class RegistrationTest extends TestCase
     /** @test */
     public function it_returns_a_warning_message_in_case_the_email_address_has_been_used()
     {
-        factory('Keep\Entities\User')->create(['email' => 'foo@bar.com']);
+        factory(Keep\Entities\User::class)->create(['email' => 'foo@bar.com']);
 
         $this->visit('auth/register')
             ->type('foo@bar.com', 'email')

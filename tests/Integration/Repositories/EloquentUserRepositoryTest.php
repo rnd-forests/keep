@@ -14,14 +14,14 @@ class EloquentUserRepositoryTest extends TestCase
      */
     public function it_initializes_the_repository()
     {
-        $this->repo = app('Keep\Repositories\User\EloquentUserRepository');
+        $this->repo = app(Keep\Repositories\User\EloquentUserRepository::class);
     }
 
     /** @test */
     public function it_finds_a_user_by_activation_code_and_current_active_state()
     {
         $code = str_random(100);
-        factory('Keep\Entities\User')->create(['name' => 'foo', 'activation_code' => $code, 'active' => false]);
+        factory(Keep\Entities\User::class)->create(['name' => 'foo', 'activation_code' => $code, 'active' => false]);
 
         $user = $this->repo->findByActivationCode($code, false);
 
@@ -48,7 +48,7 @@ class EloquentUserRepositoryTest extends TestCase
     /** @test */
     public function it_associates_new_user_with_a_empty_profile()
     {
-        $user = factory('Keep\Entities\User')->create();
+        $user = factory(Keep\Entities\User::class)->create();
         $attributes = array_flatten(array_except($user->profile->toArray(), ['id', 'user_id', 'created_at', 'updated_at']));
 
         $this->assertContainsOnly('null', $attributes);
@@ -57,7 +57,7 @@ class EloquentUserRepositoryTest extends TestCase
     /** @test */
     public function it_updates_the_profile_of_an_existing_user()
     {
-        $user = factory('Keep\Entities\User')->create();
+        $user = factory(Keep\Entities\User::class)->create();
         $attributes = ['location' => 'foo', 'bio' => 'foo foo'];
 
         $this->repo->updateProfile($attributes, $user->slug);
@@ -69,7 +69,7 @@ class EloquentUserRepositoryTest extends TestCase
     /** @test */
     public function it_restores_a_soft_deleted_user()
     {
-        $user = factory('Keep\Entities\User')->create(['name' => 'foo']);
+        $user = factory(Keep\Entities\User::class)->create(['name' => 'foo']);
         $user->delete();
 
         $this->assertTrue($user->trashed());
@@ -82,7 +82,7 @@ class EloquentUserRepositoryTest extends TestCase
     /** @test */
     public function it_softly_deletes_a_user()
     {
-        factory('Keep\Entities\User')->create(['name' => 'baz', 'email' => 'foo@baz.com']);
+        factory(Keep\Entities\User::class)->create(['name' => 'baz', 'email' => 'foo@baz.com']);
 
         $this->repo->softDelete('baz');
 
@@ -95,7 +95,7 @@ class EloquentUserRepositoryTest extends TestCase
      */
     public function it_throws_an_exception_when_trying_to_fetch_a_soft_deleted_user()
     {
-        factory('Keep\Entities\User')->create(['name' => 'foo']);
+        factory(Keep\Entities\User::class)->create(['name' => 'foo']);
 
         $this->repo->softDelete('foo');
 
@@ -105,8 +105,8 @@ class EloquentUserRepositoryTest extends TestCase
     /** @test */
     public function it_permanently_deletes_a_soft_deleted_user()
     {
-        $user = factory('Keep\Entities\User')->create(['name' => 'foo', 'email' => 'foo@bar.com']);
-        $user->tasks()->saveMany(factory('Keep\Entities\Task', 2)->create());
+        $user = factory(Keep\Entities\User::class)->create(['name' => 'foo', 'email' => 'foo@bar.com']);
+        $user->tasks()->saveMany(factory(Keep\Entities\Task::class, 2)->create());
         $user->delete();
 
         $this->seeInDatabase('users', ['name' => 'foo', 'email' => 'foo@bar.com']);
@@ -123,10 +123,10 @@ class EloquentUserRepositoryTest extends TestCase
     /** @test */
     public function it_fetches_a_paginated_list_of_soft_deleted_users()
     {
-        factory('Keep\Entities\User')->create();
-        factory('Keep\Entities\User')->create()->delete();
-        factory('Keep\Entities\User')->create()->delete();
-        factory('Keep\Entities\User')->create()->delete();
+        factory(Keep\Entities\User::class)->create();
+        factory(Keep\Entities\User::class)->create()->delete();
+        factory(Keep\Entities\User::class)->create()->delete();
+        factory(Keep\Entities\User::class)->create()->delete();
 
         $result = $this->repo->fetchDisabledUsers(2);
 
@@ -137,7 +137,7 @@ class EloquentUserRepositoryTest extends TestCase
     /** @test */
     public function it_fetches_a_soft_deleted_user_by_slug()
     {
-        factory('Keep\Entities\User')->create(['name' => 'bar', 'email' => 'foo@bar.com'])->delete();
+        factory(Keep\Entities\User::class)->create(['name' => 'bar', 'email' => 'foo@bar.com'])->delete();
 
         $user = $this->repo->findDisabledUserBySlug('bar');
 
@@ -159,12 +159,12 @@ class EloquentUserRepositoryTest extends TestCase
     public function it_fetches_a_collection_of_users_given_an_array_of_ids()
     {
         DB::table('users')->truncate();
-        factory('Keep\Entities\User', 4)->create();
+        factory(Keep\Entities\User::class, 4)->create();
 
         $users = $this->repo->fetchUsersByIds([1, 2, 3]);
 
         $this->assertCount(3, $users);
         $this->assertEquals([1, 2, 3], $users->lists('id')->toArray());
-        $this->assertContainsOnlyInstancesOf('Keep\Entities\User', $users);
+        $this->assertContainsOnlyInstancesOf(Keep\Entities\User::class, $users);
     }
 }
