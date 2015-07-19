@@ -2,6 +2,8 @@
 
 namespace Keep\Entities\Concerns;
 
+use Carbon\Carbon;
+
 trait TaskScopes
 {
     public function scopeUrgent($query)
