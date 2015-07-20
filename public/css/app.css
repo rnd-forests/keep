@@ -530,6 +530,9 @@ body {
   position: relative;
   -webkit-font-smoothing: antialiased; }
 
+a:hover, a:active, a:focus {
+  text-decoration: none; }
+
 .form-error-text {
   font-size: 11px;
   color: #c7254e; }

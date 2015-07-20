@@ -50,10 +50,11 @@ class DashboardController extends Controller
      */
     public function allTasks($userSlug)
     {
+        $type = 'All';
         $user = $this->userRepo->findBySlug($userSlug);
         $tasks = $this->taskRepo->fetchUserPaginatedTasksCollection($user);
 
-        return view('users.dashboard.all_tasks', compact('user', 'tasks'));
+        return view('users.dashboard.task_collection', compact('type', 'user', 'tasks'));
     }
 
     /**
@@ -64,10 +65,11 @@ class DashboardController extends Controller
      */
     public function completedTasks($userSlug)
     {
+        $type = 'Completed';
         $user = $this->userRepo->findBySlug($userSlug);
         $tasks = $this->taskRepo->fetchUserPaginatedCompletedTasks($user);
 
-        return view('users.dashboard.completed_tasks', compact('user', 'tasks'));
+        return view('users.dashboard.task_collection', compact('type', 'user', 'tasks'));
     }
 
     /**
@@ -78,10 +80,11 @@ class DashboardController extends Controller
      */
     public function failedTasks($userSlug)
     {
+        $type = 'Failed';
         $user = $this->userRepo->findBySlug($userSlug);
         $tasks = $this->taskRepo->fetchUserPaginatedFailedTasks($user);
 
-        return view('users.dashboard.failed_tasks', compact('user', 'tasks'));
+        return view('users.dashboard.task_collection', compact('type', 'user', 'tasks'));
     }
 
     /**
@@ -92,9 +95,10 @@ class DashboardController extends Controller
      */
     public function dueTasks($userSlug)
     {
+        $type = 'Processing';
         $user = $this->userRepo->findBySlug($userSlug);
         $tasks = $this->taskRepo->fetchUserPaginatedDueTasks($user);
 
-        return view('users.dashboard.due_tasks', compact('user', 'tasks'));
+        return view('users.dashboard.task_collection', compact('type', 'user', 'tasks'));
     }
 }

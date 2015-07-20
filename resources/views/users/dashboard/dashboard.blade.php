@@ -1,17 +1,8 @@
 @extends('layouts.app')
-@section('meta-description', $authUser->name . ' personal dashboard')
 @section('title', 'Dashboard')
 @section('content')
     @inject('counter', 'Keep\Services\UserDashboard')
     <div class="row">
-        <div id="search-keyword-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header text-center text-warning">Wrong searching pattern</div>
-                    <div class="modal-body text-center">Your searching keyword cannot be blank. Try another keyword.</div>
-                </div>
-            </div>
-        </div>
         <div class="col-md-6 col-md-offset-3">
             @include('users.dashboard.partials._search_form')
         </div>
@@ -19,7 +10,7 @@
     <div class="row user-dashboard">
         <div class="col-md-3">
             <div class="panel panel-danger">
-                <div class="panel-heading"><i class="fa fa-bookmark"></i> Urgent Tasks</div>
+                <div class="panel-heading">Urgent Tasks</div>
                 <div class="list-group">
                     @foreach($urgentTasks as $task)
                         <a class="list-group-item" href="{{ route('member::tasks.show', [$user, $task]) }}">
@@ -29,7 +20,7 @@
                 </div>
             </div>
             <div class="panel panel-info">
-                <div class="panel-heading"><i class="fa fa-check"></i> Recently Completed Tasks</div>
+                <div class="panel-heading">Recently Completed Tasks</div>
                 <div class="list-group">
                     @foreach($recentlyCompletedTasks as $task)
                         <a class="list-group-item" href="{{ route('member::tasks.show', [$user, $task]) }}">
@@ -97,7 +88,7 @@
         </div>
         <div class="col-md-3">
             <div class="panel panel-warning">
-                <div class="panel-heading"><i class="fa fa-bomb"></i> Deadline Tasks</div>
+                <div class="panel-heading">Deadline Tasks</div>
                 <div class="list-group">
                     @foreach($deadlineTasks as $task)
                         <a class="list-group-item" href="{{ route('member::tasks.show', [$user, $task]) }}">
