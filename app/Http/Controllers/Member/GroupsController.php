@@ -1,11 +1,12 @@
 <?php
 
-namespace Keep\Http\Controllers;
+namespace Keep\Http\Controllers\Member;
 
+use Keep\Http\Controllers\Controller;
 use Keep\Repositories\User\UserRepositoryInterface;
 use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
 
-class UserGroupController extends Controller
+class GroupsController extends Controller
 {
     protected $userRepo, $groupRepo;
 

@@ -1,11 +1,12 @@
 <?php
 
-namespace Keep\Http\Controllers;
+namespace Keep\Http\Controllers\Member;
 
+use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\ModifyProfileRequest;
 use Keep\Repositories\User\UserRepositoryInterface;
 
-class UsersController extends Controller
+class ProfileController extends Controller
 {
     protected $userRepo;
 

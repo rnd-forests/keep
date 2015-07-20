@@ -1,13 +1,14 @@
 <?php
 
-namespace Keep\Http\Controllers;
+namespace Keep\Http\Controllers\Member;
 
 use Keep\Events\TaskHasPublished;
 use Keep\Http\Requests\TaskRequest;
+use Keep\Http\Controllers\Controller;
 use Keep\Repositories\Task\TaskRepositoryInterface;
 use Keep\Repositories\User\UserRepositoryInterface;
 
-class UserTaskController extends Controller
+class TasksController extends Controller
 {
     protected $userRepo, $taskRepo;
 

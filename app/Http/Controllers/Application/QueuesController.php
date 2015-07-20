@@ -1,6 +1,8 @@
 <?php
 
-namespace Keep\Http\Controllers;
+namespace Keep\Http\Controllers\Application;
+
+use Keep\Http\Controllers\Controller;
 
 class QueuesController extends Controller
 {

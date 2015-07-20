@@ -1,11 +1,12 @@
 <?php
 
-namespace Keep\Http\Controllers;
+namespace Keep\Http\Controllers\Member;
 
+use Keep\Http\Controllers\Controller;
 use Keep\Repositories\Task\TaskRepositoryInterface;
 use Keep\Repositories\User\UserRepositoryInterface;
 
-class UserDashboardController extends Controller
+class DashboardController extends Controller
 {
     protected $userRepo, $taskRepo;
 

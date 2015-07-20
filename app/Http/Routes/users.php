@@ -1,59 +1,59 @@
 <?php
 
-Route::group(['prefix' => '{users}', 'as' => 'member::'], function () {
+Route::group(['prefix' => '{users}', 'as' => 'member::', 'namespace' => 'Member'], function () {
     Route::get('profile', [
         'as'   => 'profile',
-        'uses' => 'UsersController@show',
+        'uses' => 'ProfileController@show',
     ]);
 
     Route::match(['put', 'patch'], '', [
         'as'   => 'update',
-        'uses' => 'UsersController@update',
+        'uses' => 'ProfileController@update',
     ]);
 
     Route::delete('', [
         'as'   => 'destroy',
-        'uses' => 'UsersController@destroy',
+        'uses' => 'ProfileController@destroy',
     ]);
 
     Route::get('dashboard', [
         'as'   => 'dashboard',
-        'uses' => 'UserDashboardController@dashboard',
+        'uses' => 'DashboardController@dashboard',
     ]);
 
     Route::get('tasks/all', [
         'as'   => 'tasks.all',
-        'uses' => 'UserDashboardController@allTasks',
+        'uses' => 'DashboardController@allTasks',
     ]);
 
     Route::get('tasks/completed', [
         'as'   => 'tasks.completed',
-        'uses' => 'UserDashboardController@completedTasks',
+        'uses' => 'DashboardController@completedTasks',
     ]);
 
     Route::get('tasks/failed', [
         'as'   => 'tasks.failed',
-        'uses' => 'UserDashboardController@failedTasks',
+        'uses' => 'DashboardController@failedTasks',
     ]);
 
     Route::get('tasks/due', [
         'as'   => 'tasks.due',
-        'uses' => 'UserDashboardController@dueTasks',
+        'uses' => 'DashboardController@dueTasks',
     ]);
 
     Route::patch('tasks/{tasks}/complete', [
         'as'   => 'tasks.complete',
-        'uses' => 'UserTaskController@complete',
+        'uses' => 'TasksController@complete',
     ]);
 
     Route::get('groups', [
         'as'   => 'groups.all',
-        'uses' => 'UserGroupController@index',
+        'uses' => 'GroupsController@index',
     ]);
 
     Route::get('groups/{groups}', [
         'as'   => 'groups.show',
-        'uses' => 'UserGroupController@show',
+        'uses' => 'GroupsController@show',
     ]);
 
     Route::get('tags', [
@@ -92,8 +92,8 @@ Route::group(['prefix' => '{users}', 'as' => 'member::'], function () {
     ]);
 });
 
-Route::group(['prefix' => '{users}'], function () {
-    Route::resource('tasks', 'UserTaskController', [
+Route::group(['prefix' => '{users}', 'namespace' => 'Member'], function () {
+    Route::resource('tasks', 'TasksController', [
         'except' => ['index'],
         'names'  => [
             'create'  => 'member::tasks.create',

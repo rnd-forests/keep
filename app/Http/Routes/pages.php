@@ -1,6 +1,8 @@
 <?php
 
-Route::get('/', [
-    'as'   => 'home',
-    'uses' => 'HomeController@home',
-]);
+Route::group(['namespace' => 'Pages'], function () {
+    Route::get('/', [
+        'as'   => 'home',
+        'uses' => 'HomeController@home',
+    ]);
+});
