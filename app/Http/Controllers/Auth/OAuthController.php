@@ -25,9 +25,9 @@ class OAuthController extends Controller implements OAuthUserListener
      * @param GithubAuthentication $github
      * @return mixed
      */
-    public function loginWithGithub(GithubAuthentication $github)
+    public function authenticateWithGithub(GithubAuthentication $github)
     {
-        return $this->loginWith($github);
+        return $this->authenticateWith($github);
     }
 
     /**
@@ -36,9 +36,9 @@ class OAuthController extends Controller implements OAuthUserListener
      * @param FacebookAuthentication $facebook
      * @return mixed
      */
-    public function loginWithFacebook(FacebookAuthentication $facebook)
+    public function authenticateWithFacebook(FacebookAuthentication $facebook)
     {
-        return $this->loginWith($facebook);
+        return $this->authenticateWith($facebook);
     }
 
     /**
@@ -47,9 +47,9 @@ class OAuthController extends Controller implements OAuthUserListener
      * @param GoogleAuthentication $google
      * @return mixed
      */
-    public function loginWithGoogle(GoogleAuthentication $google)
+    public function authenticateWithGoogle(GoogleAuthentication $google)
     {
-        return $this->loginWith($google);
+        return $this->authenticateWith($google);
     }
 
     /**
@@ -58,7 +58,7 @@ class OAuthController extends Controller implements OAuthUserListener
      * @param OpenAuthenticatable $provider
      * @return mixed
      */
-    protected function loginWith(OpenAuthenticatable $provider)
+    protected function authenticateWith(OpenAuthenticatable $provider)
     {
         return $provider->authenticate(
             app('request')->has('code'),

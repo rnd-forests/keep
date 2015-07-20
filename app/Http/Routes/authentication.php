@@ -46,16 +46,16 @@ Route::group(['prefix' => 'auth', 'as' => 'auth::', 'namespace' => 'Auth'], func
 Route::group(['prefix' => 'oauth', 'as' => 'oauth::', 'namespace' => 'Auth'], function () {
     Route::get('github', [
         'as'   => 'github',
-        'uses' => 'OAuthController@loginWithGithub',
+        'uses' => 'OAuthController@authenticateWithGithub',
     ]);
 
     Route::get('facebook', [
         'as'   => 'facebook',
-        'uses' => 'OAuthController@loginWithFacebook',
+        'uses' => 'OAuthController@authenticateWithFacebook',
     ]);
 
     Route::get('google', [
         'as'   => 'google',
-        'uses' => 'OAuthController@loginWithGoogle',
+        'uses' => 'OAuthController@authenticateWithGoogle',
     ]);
 });
