@@ -6,7 +6,9 @@
                     all other things related to your account.</p>
             </div>
             <div class="modal-footer">
-                @include('users.partials._cancel_account_form')
+                {!! Form::open(['route' => ['member::destroy', $user], 'method' => 'DELETE']) !!}
+                    {!! Form::submit('Confirm', ['class' => 'btn btn-danger']) !!}
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

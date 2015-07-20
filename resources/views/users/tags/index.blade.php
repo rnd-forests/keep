@@ -7,9 +7,6 @@
                 <a class="list-group-item active"><i class="fa fa-tags"></i> Task Tags</a>
                 @foreach($tags as $tag)
                     <a class="list-group-item" href="{{ route('member::tags.task', [$authUser, $tag]) }}">
-                        <span class="badge">
-                            {{ plural('task', counting($tag->tasks)) }}
-                        </span>
                         {{ $tag->name }}
                     </a>
                 @endforeach

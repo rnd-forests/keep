@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav">
                 @if (auth()->check())
                     <li><a href="{{ route('member::dashboard', $authUser) }}">Dashboard</a></li>
-                    <li><a href="{{ route('member::tasks.create', $authUser) }}">Schedule New Task</a></li>
+                    <li><a href="{{ route('member::tasks.create', $authUser) }}">Schedule Task</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filters <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -38,6 +38,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $authUser->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('member::profile', $authUser) }}">Profile</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ route('member::account', $authUser) }}">Account Settings</a></li>
                             <li class="divider"></li>
                             @if ($authUser->isAdmin())
                                 <li><a href="{{ route('admin::dashboard') }}">Admin Panel</a></li>

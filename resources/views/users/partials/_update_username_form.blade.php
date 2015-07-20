@@ -8,16 +8,17 @@
 
 {!! Form::open(['method' => 'PATCH', 'route' => ['auth::change.username', $user]]) !!}
     <div class="form-group">
-        {!! Form::label('old_username', 'Old Username', ['class' => 'control-label']) !!}
+        <label for="" class="control-label"></label>
+        {!! Form::label('old_username', 'Current name', ['class' => 'control-label']) !!}
         {!! Form::text('old_username', null, ['class' => 'form-control input-lg']) !!}
         {!! error_text($errors, 'old_username') !!}
     </div>
     <div class="form-group">
-        {!! Form::label('new_username', 'New Username', ['class' => 'control-label']) !!}
+        {!! Form::label('new_username', 'New name', ['class' => 'control-label']) !!}
         {!! Form::text('new_username', null, ['class' => 'form-control input-lg']) !!}
         {!! error_text($errors, 'new_username') !!}
     </div>
     <div class="form-group">
-        {!! Form::submit('Update username', ['class' => 'btn btn-danger']) !!}
+        <button type="submit" class="btn btn-info btn-lg">Confirm</button>
     </div>
 {!! Form::close() !!}

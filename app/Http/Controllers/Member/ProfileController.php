@@ -32,7 +32,20 @@ class ProfileController extends Controller
     {
         $user = $this->userRepo->findBySlug($slug);
 
-        return view('users.show', compact('user'));
+        return view('users.profile', compact('user'));
+    }
+
+    /**
+     * Show account settings.
+     *
+     * @param $slug
+     * @return \Illuminate\View\View
+     */
+    public function account($slug)
+    {
+        $user = $this->userRepo->findBySlug($slug);
+
+        return view('users.account', compact('user'));
     }
 
     /**

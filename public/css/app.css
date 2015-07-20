@@ -21,9 +21,6 @@
   width: 100%;
   margin-top: 30px; }
 
-.panel-profile .form-group .btn {
-  width: auto; }
-
 .btn-circle {
   width: 30px;
   height: 30px;
@@ -387,17 +384,9 @@
   text-align: center;
   font-size: 14px; }
 
-.user-profile-wrapper .username {
-  margin: 25px 0; }
-
-.user-profile-wrapper .tab-content {
-  padding-top: 25px; }
-  .user-profile-wrapper .tab-content .panel .list-group .list-group-item {
-    border: 0;
-    text-align: center; }
-
 .user-avatar {
-  display: block; }
+  display: block;
+  text-align: center; }
   .user-avatar .user-avatar-picture {
     border-radius: 4px; }
 
@@ -535,19 +524,17 @@
     color: #333; }
 
 body {
-  font: normal 16px "Source Sans Pro", sans-serif;
+  font: normal 15px "Source Sans Pro", sans-serif;
   color: #525252;
   padding-top: 70px;
   position: relative;
   -webkit-font-smoothing: antialiased; }
 
-a {
-  transition: all 0.2s ease; }
-  a:hover, a:active, a:focus {
-    text-decoration: none; }
-
 .form-error-text {
   font-size: 11px;
   color: #c7254e; }
+
+.control-label {
+  font-size: 13px; }
 
 /*# sourceMappingURL=app.css.map */

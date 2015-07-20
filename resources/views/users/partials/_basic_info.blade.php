@@ -1,9 +1,9 @@
-<div class="text-center">
-    @include('users.partials._avatar', ['size' => 180])
-    <h2 class="username">{{ $user->name }}</h2>
-</div>
 <div class="panel panel-default">
     <ul class="list-group">
+        <li class="list-group-item">
+            @include('users.partials._avatar', ['size' => 180])
+            <h2 class="text-center">{{ $user->name }}</h2>
+        </li>
         <li class="list-group-item">
             <h6 class="list-group-item-heading">E-Mail Address</h6>
             {{ $user->email }}

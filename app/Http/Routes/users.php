@@ -6,6 +6,11 @@ Route::group(['prefix' => '{users}', 'as' => 'member::', 'namespace' => 'Member'
         'uses' => 'ProfileController@show',
     ]);
 
+    Route::get('account', [
+        'as'   => 'account',
+        'uses' => 'ProfileController@account'
+    ]);
+
     Route::match(['put', 'patch'], '', [
         'as'   => 'update',
         'uses' => 'ProfileController@update',
