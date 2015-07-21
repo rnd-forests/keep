@@ -29,9 +29,9 @@ class UsersController extends Controller
         $request = app('request');
         $sortBy = $request->get('sortBy');
         $direction = $request->get('direction');
-        $activeAccounts = $this->userRepo->fetchPaginatedUsers(compact('sortBy', 'direction'), 100);
+        $activeMembers = $this->userRepo->fetchPaginatedUsers(compact('sortBy', 'direction'), 100);
 
-        return view('admin.accounts.active_accounts', compact('activeAccounts'));
+        return view('admin.members.active_accounts', compact('activeMembers'));
     }
 
     /**
@@ -41,9 +41,9 @@ class UsersController extends Controller
      */
     public function disabledAccounts()
     {
-        $disabledAccounts = $this->userRepo->fetchDisabledUsers(25);
+        $disabledMembers = $this->userRepo->fetchDisabledUsers(25);
 
-        return view('admin.accounts.disabled_accounts', compact('disabledAccounts'));
+        return view('admin.members.disabled_accounts', compact('disabledMembers'));
     }
 
     /**
@@ -56,7 +56,7 @@ class UsersController extends Controller
     {
         $user = $this->userRepo->findBySlugEagerLoadTasks($slug);
 
-        return view('admin.accounts.profile', compact('user'));
+        return view('admin.members.profile', compact('user'));
     }
 
     /**

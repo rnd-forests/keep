@@ -27,28 +27,30 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($tasks as $task)
-                            <tr>
-                                <td>{{ $task->id }}</td>
-                                <td>{{ short_time($task->created_at) }}</td>
-                                @if(isset($task->owner))
-                                    <td>{{ $task->owner->name }}</td>
-                                @else
-                                    <td class="text-navy">Administrator</td>
-                                @endif
-                                <td>{{ $task->title }}</td>
-                                <td>{{ $task->priority->name }}</td>
-                                <td>{{ short_time($task->starting_date) }}</td>
-                                <td>{!! short_time($task->finishing_date) !!}</td>
-                                <td>{!! $task->present()->printStatus($task->completed) !!}</td>
-                                <td>
-                                    <a href="{{ route('admin::tasks.published.show', $task) }}" class="btn btn-primary btn-circle"
-                                       data-toggle="tooltip" data-placement="bottom" title="Show Task">
-                                        <i class="fa fa-arrow-right"></i>
-                                    </a>
-                                    @include('admin.tasks.partials._delete_form')
-                                </td>
-                            </tr>
+                        @foreach($tasks->chunk(10) as $taskStack)
+                            @foreach($taskStack as $task)
+                                <tr>
+                                    <td>{{ $task->id }}</td>
+                                    <td>{{ short_time($task->created_at) }}</td>
+                                    @if(isset($task->owner))
+                                        <td>{{ $task->owner->name }}</td>
+                                    @else
+                                        <td class="text-navy">Administrator</td>
+                                    @endif
+                                    <td>{{ $task->title }}</td>
+                                    <td>{{ $task->priority->name }}</td>
+                                    <td>{{ short_time($task->starting_date) }}</td>
+                                    <td>{!! short_time($task->finishing_date) !!}</td>
+                                    <td>{!! $task->present()->printStatus($task->completed) !!}</td>
+                                    <td>
+                                        <a href="{{ route('admin::tasks.published.show', $task) }}" class="btn btn-primary btn-circle"
+                                           data-toggle="tooltip" data-placement="bottom" title="Show Task">
+                                            <i class="fa fa-arrow-right"></i>
+                                        </a>
+                                        @include('admin.tasks.partials._delete_form')
+                                    </td>
+                                </tr>
+                            @endforeach
                         @endforeach
                     </tbody>
                 </table>

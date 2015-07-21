@@ -23,24 +23,26 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($trashedTasks as $task)
-                            <tr>
-                                <td>{{ $task->id }}</td>
-                                <td>{{ short_time($task->deleted_at) }}</td>
-                                @if(isset($task->owner))
-                                    <td>{{ $task->owner->name }}</td>
-                                @else
-                                    <td class="text-navy">Administrator</td>
-                                @endif
-                                <td>{{ $task->title }}</td>
-                                <td>{{ $task->priority->name }}</td>
-                                <td>{{ short_time($task->starting_date) }}</td>
-                                <td>{{ short_time($task->finishing_date) }}</td>
-                                <td>
-                                    @include('admin.tasks.partials._restore_form')
-                                    @include('admin.tasks.partials._force_delete_form')
-                                </td>
-                            </tr>
+                        @foreach($trashedTasks->chunk(10) as $taskStack)
+                            @foreach($taskStack as $task)
+                                <tr>
+                                    <td>{{ $task->id }}</td>
+                                    <td>{{ short_time($task->deleted_at) }}</td>
+                                    @if(isset($task->owner))
+                                        <td>{{ $task->owner->name }}</td>
+                                    @else
+                                        <td class="text-navy">Administrator</td>
+                                    @endif
+                                    <td>{{ $task->title }}</td>
+                                    <td>{{ $task->priority->name }}</td>
+                                    <td>{{ short_time($task->starting_date) }}</td>
+                                    <td>{{ short_time($task->finishing_date) }}</td>
+                                    <td>
+                                        @include('admin.tasks.partials._restore_form')
+                                        @include('admin.tasks.partials._force_delete_form')
+                                    </td>
+                                </tr>
+                            @endforeach
                         @endforeach
                     </tbody>
                 </table>

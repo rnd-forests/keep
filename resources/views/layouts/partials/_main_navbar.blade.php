@@ -31,21 +31,21 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (auth()->guest())
-                    <li><a href="{{ route('auth::register') }}">Register</a></li>
-                    <li><a href="{{ route('auth::login') }}">Login</a></li>
+                    <li><a href="{{ route('auth::login') }}">Log In</a></li>
+                    <li><a href="{{ route('auth::register') }}">Sign Up</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $authUser->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('member::profile', $authUser) }}">Profile</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ route('member::account', $authUser) }}">Account Settings</a></li>
+                            <li><a href="{{ route('member::account', $authUser) }}">Account</a></li>
                             <li class="divider"></li>
                             @if ($authUser->isAdmin())
                                 <li><a href="{{ route('admin::dashboard') }}">Admin Panel</a></li>
                                 <li class="divider"></li>
                             @endif
-                            <li><a href="{{ route('auth::logout') }}">Logout</a></li>
+                            <li><a href="{{ route('auth::logout') }}">Log out</a></li>
                         </ul>
                     </li>
                 @endif

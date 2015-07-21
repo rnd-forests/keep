@@ -31,7 +31,7 @@ class TasksController extends Controller
         $direction = $request->get('direction');
         $tasks = $this->taskRepo->fetchPaginatedTasks(compact('sortBy', 'direction'), 50);
 
-        return view('admin.tasks.active_tasks', compact('tasks'));
+        return view('admin.tasks.published_tasks', compact('tasks'));
     }
 
     /**
@@ -44,7 +44,7 @@ class TasksController extends Controller
     {
         $task = $this->taskRepo->findBySlug($slug);
 
-        return view('admin.tasks.task', compact('task'));
+        return view('admin.tasks.task_details', compact('task'));
     }
 
     /**

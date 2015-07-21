@@ -20,17 +20,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($trashedGroups as $group)
-                            <tr>
-                                <td>{{ $group->id }}</td>
-                                <td>{{ $group->name }}</td>
-                                <td>{{ count($group->users) }}</td>
-                                <td>{{ full_time($group->deleted_at) }}</td>
-                                <td>
-                                    @include('admin.groups.partials._restore_form')
-                                    @include('admin.groups.partials._force_delete_form')
-                                </td>
-                            </tr>
+                        @foreach($trashedGroups->chunk(10) as $groupStack)
+                            @foreach($groupStack as $group)
+                                <tr>
+                                    <td>{{ $group->id }}</td>
+                                    <td>{{ $group->name }}</td>
+                                    <td>{{ count($group->users) }}</td>
+                                    <td>{{ full_time($group->deleted_at) }}</td>
+                                    <td>
+                                        @include('admin.groups.partials._restore_form')
+                                        @include('admin.groups.partials._force_delete_form')
+                                    </td>
+                                </tr>
+                            @endforeach
                         @endforeach
                     </tbody>
                 </table>

@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary form-wrapper">
-                <div class="panel-heading"><strong>Reset your password</strong></div>
+                <div class="panel-heading"><strong>Reset Password</strong></div>
                 <div class="panel-body">
                     {!! Form::open() !!}
                         {!! Form::hidden('token', $token) !!}

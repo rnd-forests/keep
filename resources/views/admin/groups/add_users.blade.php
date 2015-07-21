@@ -21,9 +21,6 @@
         </div>
         <div class="col-md-7">
             @include('admin.groups.partials._add_users_form')
-            <div class="text-center">
-                <a href="{{ route('admin::groups.active') }}" class="btn btn-primary">Back</a>
-            </div>
         </div>
     </div>
 @stop

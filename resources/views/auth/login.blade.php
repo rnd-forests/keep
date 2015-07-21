@@ -6,7 +6,7 @@
 		<div class="col-md-6 col-md-offset-3">
             @include('auth.partials._social_auth')
             <div class="panel panel-primary form-wrapper">
-                <div class="panel-heading"><strong>Login</strong></div>
+                <div class="panel-heading"><strong>Log In</strong></div>
                 <div class="panel-body">
                     @if(session()->has('login_error'))
                         <div class="alert alert-danger text-center">{!! session()->get('login_error') !!}</div>

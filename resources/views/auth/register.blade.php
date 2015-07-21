@@ -6,7 +6,7 @@
         <div class="col-md-6 col-md-offset-3">
             @include('auth.partials._social_auth')
             <div class="panel panel-primary form-wrapper">
-                <div class="panel-heading"><strong>Register</strong></div>
+                <div class="panel-heading"><strong>Sign Up</strong></div>
                 <div class="panel-body">
                     {!! Form::open() !!}
                         <div class="form-group">

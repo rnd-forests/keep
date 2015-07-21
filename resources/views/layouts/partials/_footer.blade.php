@@ -1,7 +1,7 @@
 <footer class="footer">
     <a href="#" id="scroll-top"></a>
     <p>&copy; Keep 2015 by Vinh Nguyen</p>
-    @if (auth()->check())
+    @if(auth()->check())
         <ul class="footer-links text-muted">
             <li><a href="{{ route('member::profile', $authUser) }}">Profile</a></li>
             <li>&middot;</li>
