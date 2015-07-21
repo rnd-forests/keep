@@ -4,7 +4,7 @@ namespace Keep\Jobs;
 
 use Keep\Events\UserHasRegistered;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Keep\Repositories\User\UserRepositoryInterface;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
 
 class RegisterUserAccount extends Job implements SelfHandling
 {
@@ -27,10 +27,10 @@ class RegisterUserAccount extends Job implements SelfHandling
     /**
      * Register new account.
      *
-     * @param UserRepositoryInterface $users
+     * @param UserRepo $users
      * @return bool
      */
-    public function handle(UserRepositoryInterface $users)
+    public function handle(UserRepo $users)
     {
         $credentials = [
             'name'     => $this->name,

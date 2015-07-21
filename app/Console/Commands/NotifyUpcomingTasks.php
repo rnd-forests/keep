@@ -3,8 +3,8 @@
 namespace Keep\Console\Commands;
 
 use Illuminate\Console\Command;
-use Keep\Repositories\Task\TaskRepositoryInterface;
-use Keep\Repositories\Notification\NotificationRepositoryInterface;
+use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepo;
+use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepo;
 
 class NotifyUpcomingTasks extends Command
 {
@@ -15,11 +15,10 @@ class NotifyUpcomingTasks extends Command
     /**
      * Create a new command instance.
      *
-     * @param TaskRepositoryInterface $tasks
-     * @param NotificationRepositoryInterface $notifications
+     * @param TaskRepo $tasks
+     * @param NotificationRepo $notifications
      */
-    public function __construct(TaskRepositoryInterface $tasks,
-                                NotificationRepositoryInterface $notifications)
+    public function __construct(TaskRepo $tasks, NotificationRepo $notifications)
     {
         $this->tasks = $tasks;
         $this->notifications = $notifications;

@@ -3,9 +3,17 @@
 namespace Keep\Http\Composers;
 
 use Illuminate\Contracts\View\View;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
 
 class MemberNotificationForm
 {
+    protected $repo;
+
+    public function __construct(UserRepo $repo)
+    {
+        $this->repo = $repo;
+    }
+
     public function compose(View $view)
     {
         $types = [
@@ -15,8 +23,7 @@ class MemberNotificationForm
             'warning' => 'Warning',
             'danger'  => 'Danger',
         ];
-        $userRepo = app(\Keep\Repositories\User\UserRepositoryInterface::class);
         $view->with('types', $types);
-        $view->with('users', $userRepo->getAll()->lists('name', 'id'));
+        $view->with('users', $this->repo->getAll()->lists('name', 'id'));
     }
 }

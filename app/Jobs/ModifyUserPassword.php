@@ -43,7 +43,7 @@ class ModifyUserPassword extends Job implements SelfHandling
      */
     protected function isValidOldPassword()
     {
-        return bcrypt_hasher()->check($this->oldPassword, $this->user->password);
+        return app('hash')->check($this->oldPassword, $this->user->password);
     }
 
     /**

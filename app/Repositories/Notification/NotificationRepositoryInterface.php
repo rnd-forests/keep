@@ -4,6 +4,7 @@ namespace Keep\Repositories\Notification;
 
 interface NotificationRepositoryInterface
 {
+    public function countAll();
     public function create(array $data);
     public function delete($slug);
     public function fetchPaginatedNotifications($limit);

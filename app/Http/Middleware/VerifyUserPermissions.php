@@ -3,10 +3,18 @@
 namespace Keep\Http\Middleware;
 
 use Closure;
+use Illuminate\Contracts\Auth\Guard;
 use Keep\Exceptions\InvalidPermissionsException;
 
 class VerifyUserPermissions
 {
+    protected $auth;
+    
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -18,8 +26,8 @@ class VerifyUserPermissions
      */
     public function handle($request, Closure $next, $permissions)
     {
-        $user = auth()->user();
-        if (!(auth()->check() && $user->can($permissions, true))) {
+        $user = $this->auth->user();
+        if (!($this->auth->check() && $user->can($permissions, true))) {
             throw new InvalidPermissionsException($user->name .
                 ' does not have the required permissions to perform this request.');
         }

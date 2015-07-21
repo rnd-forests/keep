@@ -3,10 +3,18 @@
 namespace Keep\Http\Middleware;
 
 use Closure;
+use Illuminate\Contracts\Auth\Guard;
 use Keep\Exceptions\InvalidRolesException;
 
 class VerifyUserRoles
 {
+    protected $auth;
+
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -18,7 +26,7 @@ class VerifyUserRoles
      */
     public function handle($request, Closure $next, $roles)
     {
-        if (!auth()->user()->hasRole($roles, true)) {
+        if (!$this->auth->user()->hasRole($roles, true)) {
             throw new InvalidRolesException('Not enough roles to perform this action.');
         }
 

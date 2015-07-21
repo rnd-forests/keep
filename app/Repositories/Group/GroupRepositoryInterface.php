@@ -1,11 +1,13 @@
 <?php
 
-namespace Keep\Repositories\UserGroup;
+namespace Keep\Repositories\Group;
 
-interface UserGroupRepositoryInterface
+interface GroupRepositoryInterface
 {
-    public function fetchPaginatedGroups($limit);
+    public function getAll();
+    public function countAll();
     public function findBySlug($slug);
+    public function fetchPaginatedGroups($limit);
     public function create(array $data);
     public function update($slug, array $data);
     public function restore($slug);

@@ -5,8 +5,8 @@ namespace Keep\Http\Controllers\Member;
 use Keep\Events\TaskHasPublished;
 use Keep\Http\Requests\TaskRequest;
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Task\TaskRepositoryInterface;
-use Keep\Repositories\User\UserRepositoryInterface;
+use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepo;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
 
 class TasksController extends Controller
 {
@@ -15,11 +15,10 @@ class TasksController extends Controller
     /**
      * Create a new user-task controller instance.
      *
-     * @param UserRepositoryInterface $userRepo
-     * @param TaskRepositoryInterface $taskRepo
+     * @param UserRepo $userRepo
+     * @param TaskRepo $taskRepo
      */
-    public function __construct(UserRepositoryInterface $userRepo,
-                                TaskRepositoryInterface $taskRepo)
+    public function __construct(UserRepo $userRepo, TaskRepo $taskRepo)
     {
         $this->userRepo = $userRepo;
         $this->taskRepo = $taskRepo;

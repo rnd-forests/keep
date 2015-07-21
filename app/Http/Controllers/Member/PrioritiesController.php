@@ -3,8 +3,8 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\User\UserRepositoryInterface;
-use Keep\Repositories\Priority\PriorityRepositoryInterface;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
+use Keep\Repositories\Priority\PriorityRepositoryInterface as PriorityRepo;
 
 class PrioritiesController extends Controller
 {
@@ -13,10 +13,10 @@ class PrioritiesController extends Controller
     /**
      * Create new priorities controller instance.
      *
-     * @param PriorityRepositoryInterface $priorityRepo
-     * @param UserRepositoryInterface $userRepo
+     * @param PriorityRepo $priorityRepo
+     * @param UserRepo $userRepo
      */
-    public function __construct(PriorityRepositoryInterface $priorityRepo, UserRepositoryInterface $userRepo)
+    public function __construct(PriorityRepo $priorityRepo, UserRepo $userRepo)
     {
         $this->priorityRepo = $priorityRepo;
         $this->userRepo = $userRepo;

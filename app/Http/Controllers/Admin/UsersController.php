@@ -3,7 +3,7 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\User\UserRepositoryInterface;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
 
 class UsersController extends Controller
 {
@@ -12,9 +12,9 @@ class UsersController extends Controller
     /**
      * Create new users controller instance.
      *
-     * @param UserRepositoryInterface $userRepo
+     * @param UserRepo $userRepo
      */
-    public function __construct(UserRepositoryInterface $userRepo)
+    public function __construct(UserRepo $userRepo)
     {
         $this->userRepo = $userRepo;
     }

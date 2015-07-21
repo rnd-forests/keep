@@ -1,12 +1,12 @@
 <?php
 
-namespace Keep\Repositories\UserGroup;
+namespace Keep\Repositories\Group;
 
 use Keep\Entities\User;
 use Keep\Entities\Group;
 use Keep\Repositories\EloquentRepository;
 
-class EloquentUserGroupRepository extends EloquentRepository implements UserGroupRepositoryInterface
+class EloquentGroupRepository extends EloquentRepository implements GroupRepositoryInterface
 {
     protected $model;
 

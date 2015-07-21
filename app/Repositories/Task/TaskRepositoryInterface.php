@@ -4,8 +4,9 @@ namespace Keep\Repositories\Task;
 
 interface TaskRepositoryInterface
 {
-    public function fetchPaginatedTasks(array $params, $limit);
+    public function countAll();
     public function findBySlug($slug);
+    public function fetchPaginatedTasks(array $params, $limit);
     public function findCorrectTaskBySlug($userSlug, $taskSlug);
     public function create(array $data);
     public function update(array $data, $userSlug, $taskSlug);

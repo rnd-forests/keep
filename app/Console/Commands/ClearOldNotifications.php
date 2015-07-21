@@ -3,7 +3,7 @@
 namespace Keep\Console\Commands;
 
 use Illuminate\Console\Command;
-use Keep\Repositories\Notification\NotificationRepositoryInterface;
+use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepo;
 
 class ClearOldNotifications extends Command
 {
@@ -14,9 +14,9 @@ class ClearOldNotifications extends Command
     /**
      * Create a new command instance.
      *
-     * @param NotificationRepositoryInterface $notifications
+     * @param NotificationRepo $notifications
      */
-    public function __construct(NotificationRepositoryInterface $notifications)
+    public function __construct(NotificationRepo $notifications)
     {
         $this->notifications = $notifications;
         parent::__construct();

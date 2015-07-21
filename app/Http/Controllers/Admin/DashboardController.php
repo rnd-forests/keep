@@ -3,32 +3,30 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Task\TaskRepositoryInterface;
-use Keep\Repositories\User\UserRepositoryInterface;
-use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
-use Keep\Repositories\Notification\NotificationRepositoryInterface;
+use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepo;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
+use Keep\Repositories\Group\GroupRepositoryInterface as GroupRepo;
+use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepo;
 
 class DashboardController extends Controller
 {
-    protected $userRepo, $taskRepo, $groupRepo, $notificationRepo;
+    protected $users, $tasks, $groups, $notifications;
 
     /**
      * Create new dashboard controller instance.
      *
-     * @param UserRepositoryInterface $userRepo
-     * @param TaskRepositoryInterface $taskRepo
-     * @param UserGroupRepositoryInterface $groupRepo
-     * @param NotificationRepositoryInterface $notificationRepo
+     * @param UserRepo $userRepo
+     * @param TaskRepo $taskRepo
+     * @param GroupRepo $groupRepo
+     * @param NotificationRepo $notificationRepo
      */
-    public function __construct(UserRepositoryInterface $userRepo,
-                                TaskRepositoryInterface $taskRepo,
-                                UserGroupRepositoryInterface $groupRepo,
-                                NotificationRepositoryInterface $notificationRepo)
+    public function __construct(UserRepo $userRepo, TaskRepo $taskRepo,
+                                GroupRepo $groupRepo, NotificationRepo $notificationRepo)
     {
-        $this->userRepo = $userRepo;
-        $this->taskRepo = $taskRepo;
-        $this->groupRepo = $groupRepo;
-        $this->notificationRepo = $notificationRepo;
+        $this->users = $userRepo;
+        $this->tasks = $taskRepo;
+        $this->groups = $groupRepo;
+        $this->notifications = $notificationRepo;
     }
 
     /**
@@ -38,10 +36,10 @@ class DashboardController extends Controller
      */
     public function dashboard()
     {
-        $usersCount = $this->userRepo->countAll();
-        $tasksCount = $this->taskRepo->countAll();
-        $groupsCount = $this->groupRepo->countAll();
-        $notificationCount = $this->notificationRepo->countAll();
+        $usersCount = $this->users->countAll();
+        $tasksCount = $this->tasks->countAll();
+        $groupsCount = $this->groups->countAll();
+        $notificationCount = $this->notifications->countAll();
 
         return view('admin.dashboard', compact('usersCount', 'tasksCount', 'groupsCount', 'notificationCount'));
     }

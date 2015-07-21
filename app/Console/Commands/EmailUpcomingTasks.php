@@ -4,7 +4,7 @@ namespace Keep\Console\Commands;
 
 use Illuminate\Console\Command;
 use Keep\Mailers\Contracts\MailerInterface;
-use Keep\Repositories\Task\TaskRepositoryInterface;
+use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepo;
 
 class EmailUpcomingTasks extends Command
 {
@@ -15,10 +15,10 @@ class EmailUpcomingTasks extends Command
     /**
      * Create a new command instance.
      *
-     * @param TaskRepositoryInterface $tasks
+     * @param TaskRepo $tasks
      * @param MailerInterface $mailer
      */
-    public function __construct(TaskRepositoryInterface $tasks, MailerInterface $mailer)
+    public function __construct(TaskRepo $tasks, MailerInterface $mailer)
     {
         $this->tasks = $tasks;
         $this->mailer = $mailer;

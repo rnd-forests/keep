@@ -3,7 +3,7 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Tag\TagRepositoryInterface;
+use Keep\Repositories\Tag\TagRepositoryInterface as TagRepo;
 
 class TagsController extends Controller
 {
@@ -12,9 +12,9 @@ class TagsController extends Controller
     /**
      * Create new tags controller instance.
      *
-     * @param TagRepositoryInterface $tagRepo
+     * @param TagRepo $tagRepo
      */
-    public function __construct(TagRepositoryInterface $tagRepo)
+    public function __construct(TagRepo $tagRepo)
     {
         $this->tagRepo = $tagRepo;
         $this->middleware('auth');

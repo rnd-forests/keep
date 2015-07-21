@@ -44,13 +44,13 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(
-            \Keep\Repositories\Priority\PriorityRepositoryInterface::class,
-            \Keep\Repositories\Priority\EloquentPriorityRepository::class
+            \Keep\Repositories\Group\GroupRepositoryInterface::class,
+            \Keep\Repositories\Group\EloquentGroupRepository::class
         );
 
         $this->app->singleton(
-            \Keep\Repositories\UserGroup\UserGroupRepositoryInterface::class,
-            \Keep\Repositories\UserGroup\EloquentUserGroupRepository::class
+            \Keep\Repositories\Priority\PriorityRepositoryInterface::class,
+            \Keep\Repositories\Priority\EloquentPriorityRepository::class
         );
 
         $this->app->singleton(
@@ -70,8 +70,8 @@ class RepositoryServiceProvider extends ServiceProvider
             \Keep\Repositories\Tag\TagRepositoryInterface::class,
             \Keep\Repositories\Task\TaskRepositoryInterface::class,
             \Keep\Repositories\User\UserRepositoryInterface::class,
+            \Keep\Repositories\Group\GroupRepositoryInterface::class,
             \Keep\Repositories\Priority\PriorityRepositoryInterface::class,
-            \Keep\Repositories\UserGroup\UserGroupRepositoryInterface::class,
             \Keep\Repositories\Notification\NotificationRepositoryInterface::class,
         ];
     }

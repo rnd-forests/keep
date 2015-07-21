@@ -3,7 +3,7 @@
 namespace Keep\Console\Commands;
 
 use Illuminate\Console\Command;
-use Keep\Repositories\Task\TaskRepositoryInterface;
+use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepo;
 
 class SyncFailedTasks extends Command
 {
@@ -14,9 +14,9 @@ class SyncFailedTasks extends Command
     /**
      * Create a new command instance.
      *
-     * @param TaskRepositoryInterface $tasks
+     * @param TaskRepo $tasks
      */
-    public function __construct(TaskRepositoryInterface $tasks)
+    public function __construct(TaskRepo $tasks)
     {
         $this->tasks = $tasks;
         parent::__construct();

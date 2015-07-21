@@ -5,18 +5,18 @@ namespace Keep\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\UserGroupRequest;
-use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
+use Keep\Repositories\Group\GroupRepositoryInterface as GroupRepo;
 
-class UserGroupsController extends Controller
+class GroupsController extends Controller
 {
     protected $groupRepo;
 
     /**
      * Create new user groups controller instance.
      *
-     * @param UserGroupRepositoryInterface $groupRepo
+     * @param GroupRepo $groupRepo
      */
-    public function __construct(UserGroupRepositoryInterface $groupRepo)
+    public function __construct(GroupRepo $groupRepo)
     {
         $this->groupRepo = $groupRepo;
     }

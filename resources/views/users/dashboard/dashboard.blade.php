@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Dashboard')
 @section('content')
-    @inject('counter', 'Keep\Services\UserDashboard')
+    @inject('counter', 'Keep\Services\UserDashboardService')
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             @include('users.dashboard.partials._search_form')

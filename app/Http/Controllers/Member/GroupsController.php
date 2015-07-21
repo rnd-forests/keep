@@ -3,8 +3,8 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\User\UserRepositoryInterface;
-use Keep\Repositories\UserGroup\UserGroupRepositoryInterface;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
+use Keep\Repositories\Group\GroupRepositoryInterface as GroupRepo;
 
 class GroupsController extends Controller
 {
@@ -13,10 +13,10 @@ class GroupsController extends Controller
     /**
      * Create new user-group controller instance.
      *
-     * @param UserRepositoryInterface $userRepo
-     * @param UserGroupRepositoryInterface $groupRepo
+     * @param UserRepo $userRepo
+     * @param GroupRepo $groupRepo
      */
-    public function __construct(UserRepositoryInterface $userRepo, UserGroupRepositoryInterface $groupRepo)
+    public function __construct(UserRepo $userRepo, GroupRepo $groupRepo)
     {
         $this->userRepo = $userRepo;
         $this->groupRepo = $groupRepo;

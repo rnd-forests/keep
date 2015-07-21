@@ -4,6 +4,9 @@ namespace Keep\Repositories\User;
 
 interface UserRepositoryInterface
 {
+    public function getAll();
+    public function countAll();
+    public function findBySlug($slug);
     public function fetchPaginatedUsers(array $params, $limit);
     public function findBySlugEagerLoadTasks($slug);
     public function findByActivationCode($code, $active = false);

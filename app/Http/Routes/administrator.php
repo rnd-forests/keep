@@ -46,74 +46,74 @@ Route::group([
     Route::group(['prefix' => 'groups/active', 'as' => 'groups.active'], function () {
         Route::get('', [
             'as'   => '',
-            'uses' => 'UserGroupsController@activeGroups',
+            'uses' => 'GroupsController@activeGroups',
         ]);
 
         Route::get('create', [
             'as'   => '.create',
-            'uses' => 'UserGroupsController@create',
+            'uses' => 'GroupsController@create',
         ]);
 
         Route::post('', [
             'as'   => '.store',
-            'uses' => 'UserGroupsController@store',
+            'uses' => 'GroupsController@store',
         ]);
 
         Route::get('{groups}', [
             'as'   => '.show',
-            'uses' => 'UserGroupsController@show',
+            'uses' => 'GroupsController@show',
         ]);
 
         Route::get('{groups}/add', [
             'as'   => '.add.users',
-            'uses' => 'UserGroupsController@addUsers',
+            'uses' => 'GroupsController@addUsers',
         ]);
 
         Route::post('{groups}/add', [
             'as'   => '.sync.users',
-            'uses' => 'UserGroupsController@storeNewUsers',
+            'uses' => 'GroupsController@storeNewUsers',
         ]);
 
         Route::post('{groups}/{users}', [
             'as'   => '.remove.users',
-            'uses' => 'UserGroupsController@removeUser',
+            'uses' => 'GroupsController@removeUser',
         ]);
 
         Route::get('{groups}/edit', [
             'as'   => '.edit',
-            'uses' => 'UserGroupsController@edit',
+            'uses' => 'GroupsController@edit',
         ]);
 
         Route::post('{groups}', [
             'as'   => '.flush',
-            'uses' => 'UserGroupsController@flush',
+            'uses' => 'GroupsController@flush',
         ]);
 
         Route::patch('{groups}', [
             'as'   => '.update',
-            'uses' => 'UserGroupsController@update',
+            'uses' => 'GroupsController@update',
         ]);
 
         Route::delete('{groups}', [
             'as'   => '.delete',
-            'uses' => 'UserGroupsController@destroy',
+            'uses' => 'GroupsController@destroy',
         ]);
     });
 
     Route::group(['prefix' => 'groups/trashed', 'as' => 'groups.trashed'], function () {
         Route::get('', [
             'as'   => '',
-            'uses' => 'UserGroupsController@trashedGroups',
+            'uses' => 'GroupsController@trashedGroups',
         ]);
 
         Route::put('{groups}', [
             'as'   => '.restore',
-            'uses' => 'UserGroupsController@restore',
+            'uses' => 'GroupsController@restore',
         ]);
 
         Route::delete('{groups}', [
             'as'   => '.force.delete',
-            'uses' => 'UserGroupsController@forceDeleteGroup',
+            'uses' => 'GroupsController@forceDeleteGroup',
         ]);
     });
 

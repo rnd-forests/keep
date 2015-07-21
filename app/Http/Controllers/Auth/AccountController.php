@@ -7,7 +7,7 @@ use Keep\Jobs\ModifyUserPassword;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\ModifyPasswordRequest;
 use Keep\Http\Requests\ModifyUsernameRequest;
-use Keep\Repositories\User\UserRepositoryInterface;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
 
 class AccountController extends Controller
 {
@@ -16,9 +16,9 @@ class AccountController extends Controller
     /**
      * Create new account controller instance.
      *
-     * @param UserRepositoryInterface $userRepo
+     * @param UserRepo $userRepo
      */
-    public function __construct(UserRepositoryInterface $userRepo)
+    public function __construct(UserRepo $userRepo)
     {
         $this->userRepo = $userRepo;
         $this->middleware('auth');

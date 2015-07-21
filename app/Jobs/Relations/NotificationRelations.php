@@ -20,7 +20,7 @@ abstract class NotificationRelations extends Job
     {
         $this->data = $data;
         self::$userRepo = app(\Keep\Repositories\User\UserRepositoryInterface::class);
-        self::$groupRepo = app(\Keep\Repositories\UserGroup\UserGroupRepositoryInterface::class);
+        self::$groupRepo = app(\Keep\Repositories\Group\GroupRepositoryInterface::class);
         self::$notiRepo = app(\Keep\Repositories\Notification\NotificationRepositoryInterface::class);
     }
 

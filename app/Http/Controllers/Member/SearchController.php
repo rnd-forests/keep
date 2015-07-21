@@ -4,7 +4,7 @@ namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
 use Keep\Search\Contracts\SearchInterface;
-use Keep\Repositories\User\UserRepositoryInterface;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
 
 class SearchController extends Controller
 {
@@ -13,10 +13,10 @@ class SearchController extends Controller
     /**
      * Create new instance of search controller.
      *
-     * @param UserRepositoryInterface $userRepo
+     * @param UserRepo $userRepo
      * @param SearchInterface $search
      */
-    public function __construct(UserRepositoryInterface $userRepo, SearchInterface $search)
+    public function __construct(UserRepo $userRepo, SearchInterface $search)
     {
         $this->userRepo = $userRepo;
         $this->search = $search;

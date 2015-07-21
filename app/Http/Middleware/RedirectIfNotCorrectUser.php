@@ -3,11 +3,20 @@
 namespace Keep\Http\Middleware;
 
 use Closure;
+use Illuminate\Contracts\Auth\Guard;
 use Keep\Exceptions\InvalidUserException;
-use Keep\Repositories\User\UserRepositoryInterface;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
 
 class RedirectIfNotCorrectUser
 {
+    protected $users, $auth;
+
+    public function __construct(UserRepo $userRepo, Guard $auth)
+    {
+        $this->users = $userRepo;
+        $this->auth = $auth;
+    }
+
     /**
      * Handle an incoming request.
      * This middleware is responsible to check if the current authenticated
@@ -20,10 +29,9 @@ class RedirectIfNotCorrectUser
      */
     public function handle($request, Closure $next)
     {
-        $userRepo = app()->make(UserRepositoryInterface::class);
         if ($request->route('users')) {
-            $user = $userRepo->findBySlug($request->route('users'));
-            if (($user->id != auth()->user()->id) && !auth()->user()->isAdmin()) {
+            $user = $this->users->findBySlug($request->route('users'));
+            if (($user->id != $this->auth->user()->id) && !$this->auth->user()->isAdmin()) {
                 throw new InvalidUserException('You cannot access this page.');
             }
         }

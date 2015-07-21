@@ -6,7 +6,7 @@ use Keep\Http\Controllers\Controller;
 use Keep\Jobs\CreateGroupNotification;
 use Keep\Jobs\CreateMemberNotification;
 use Keep\Http\Requests\NotificationRequest;
-use Keep\Repositories\Notification\NotificationRepositoryInterface;
+use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepo;
 
 class NotificationsController extends Controller
 {
@@ -15,9 +15,9 @@ class NotificationsController extends Controller
     /**
      * Create new notifications controller instance.
      *
-     * @param NotificationRepositoryInterface $notificationRepo
+     * @param NotificationRepo $notificationRepo
      */
-    public function __construct(NotificationRepositoryInterface $notificationRepo)
+    public function __construct(NotificationRepo $notificationRepo)
     {
         $this->notificationRepo = $notificationRepo;
     }

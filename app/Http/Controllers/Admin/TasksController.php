@@ -3,7 +3,7 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Task\TaskRepositoryInterface;
+use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepo;
 
 class TasksController extends Controller
 {
@@ -12,9 +12,9 @@ class TasksController extends Controller
     /**
      * Create new tasks controller instance.
      *
-     * @param TaskRepositoryInterface $taskRepo
+     * @param TaskRepo $taskRepo
      */
-    public function __construct(TaskRepositoryInterface $taskRepo)
+    public function __construct(TaskRepo $taskRepo)
     {
         $this->taskRepo = $taskRepo;
     }

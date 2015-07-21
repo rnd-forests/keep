@@ -20,7 +20,7 @@ class Notification extends Model implements SluggableInterface
     ];
 
     public function users()
-    {
+    { 
         return $this->morphedByMany(\Keep\Entities\User::class, 'notifiable');
     }
 

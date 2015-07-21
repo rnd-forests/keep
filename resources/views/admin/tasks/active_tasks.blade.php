@@ -20,12 +20,8 @@
                         <th>{!! sort_tasks_by('starting_date', 'Starting') !!}</th>
                         <th>{!! sort_tasks_by('finishing_date', 'Ending') !!}</th>
                         <th data-original-title="999" data-container="body"
-                            data-toggle="tooltip" data-placement="top" title="Is this task associated with an assignment?">
-                            {!! sort_tasks_by('is_assigned', 'A?') !!}
-                        </th>
-                        <th data-original-title="999" data-container="body"
                             data-toggle="tooltip" data-placement="top" title="Is this task completed?">
-                            {!! sort_tasks_by('completed', 'C?') !!}
+                            {!! sort_tasks_by('completed', 'Completed?') !!}
                         </th>
                         <th>Actions</th>
                     </tr>
@@ -44,7 +40,6 @@
                                 <td>{{ $task->priority->name }}</td>
                                 <td>{{ short_time($task->starting_date) }}</td>
                                 <td>{!! short_time($task->finishing_date) !!}</td>
-                                <td>{!! $task->present()->printStatus($task->is_assigned) !!}</td>
                                 <td>{!! $task->present()->printStatus($task->completed) !!}</td>
                                 <td>
                                     <a href="{{ route('admin::tasks.published.show', $task) }}" class="btn btn-primary btn-circle"
