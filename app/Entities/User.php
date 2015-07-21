@@ -4,19 +4,28 @@ namespace Keep\Entities;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use Laracasts\Presenter\PresentableTrait;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
+use Keep\Entities\Presenters\Traits\PresentableTrait;
+use Keep\Entities\Presenters\Contracts\PresentableInterface;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract, SluggableInterface
+class User extends Model implements
+    AuthenticatableContract,
+    CanResetPasswordContract,
+    SluggableInterface,
+    PresentableInterface
 {
-    use Authenticatable, CanResetPassword, PresentableTrait,
-        SluggableTrait, SoftDeletes, EntrustUserTrait;
+    use Authenticatable,
+        CanResetPassword,
+        PresentableTrait,
+        SluggableTrait,
+        SoftDeletes,
+        EntrustUserTrait;
 
     protected $dates = ['deleted_at'];
     protected $casts = ['active' => 'boolean'];

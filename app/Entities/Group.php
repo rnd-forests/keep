@@ -9,7 +9,8 @@ use Cviebrock\EloquentSluggable\SluggableInterface;
 
 class Group extends Model implements SluggableInterface
 {
-    use SluggableTrait, SoftDeletes;
+    use SluggableTrait,
+        SoftDeletes;
 
     protected $fillable = ['name', 'slug', 'description'];
     protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];

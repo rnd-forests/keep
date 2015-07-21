@@ -5,14 +5,20 @@ namespace Keep\Entities;
 use Carbon\Carbon;
 use Keep\Entities\Concerns\TaskScopes;
 use Illuminate\Database\Eloquent\Model;
-use Laracasts\Presenter\PresentableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
+use Keep\Entities\Presenters\Traits\PresentableTrait;
+use Keep\Entities\Presenters\Contracts\PresentableInterface;
 
-class Task extends Model implements SluggableInterface
+class Task extends Model implements
+    SluggableInterface,
+    PresentableInterface
 {
-    use TaskScopes, PresentableTrait, SluggableTrait, SoftDeletes;
+    use TaskScopes,
+        PresentableTrait,
+        SluggableTrait,
+        SoftDeletes;
 
     protected $touches = ['user'];
     protected $presenter = \Keep\Entities\Presenters\TaskPresenter::class;

@@ -2,15 +2,12 @@
 
 namespace Keep\Entities\Presenters;
 
-use Laracasts\Presenter\Presenter;
-
 class UserPresenter extends Presenter
 {
     /**
      * Get user gravatar picture.
      *
      * @param int $size
-     *
      * @return string
      */
     public function gravatar($size = 35)
@@ -24,7 +21,6 @@ class UserPresenter extends Presenter
      * Link to user GitHub profile.
      *
      * @param $user
-     *
      * @return string
      */
     public function githubProfile($user)
@@ -36,7 +32,6 @@ class UserPresenter extends Presenter
      * Link to user Google Plus profile.
      *
      * @param $user
-     *
      * @return string
      */
     public function googlePlusProfile($user)
@@ -48,7 +43,6 @@ class UserPresenter extends Presenter
      * Link to user Facebook profile.
      *
      * @param $user
-     *
      * @return string
      */
     public function facebookProfile($user)

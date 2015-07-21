@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5618577342323a30c8116e76d009b97b",
+    "hash": "b784ba6a784806bc7f6b1635012f454d",
     "packages": [
         {
             "name": "bugsnag/bugsnag",
@@ -1428,52 +1428,6 @@
             "time": "2015-02-01 20:07:15"
         },
         {
-            "name": "laracasts/presenter",
-            "version": "0.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laracasts/Presenter.git",
-                "reference": "b284f3137f990efd6e95df49d254f1ccc4541e92"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/Presenter/zipball/b284f3137f990efd6e95df49d254f1ccc4541e92",
-                "reference": "b284f3137f990efd6e95df49d254f1ccc4541e92",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9",
-                "phpspec/phpspec": "~2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Laracasts\\Presenter": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jeffrey Way",
-                    "email": "jeffrey@laracasts.com"
-                }
-            ],
-            "description": "Simple view presenters",
-            "keywords": [
-                "laravel",
-                "presenter",
-                "view"
-            ],
-            "time": "2014-09-13 13:18:07"
-        },
-        {
             "name": "laracasts/utilities",
             "version": "2.0",
             "source": {
@@ -2144,16 +2098,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.5.1",
+            "version": "v0.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "e5a46a767928e85f1f47dda654beda8c680ddd94"
+                "reference": "aaf8772ade08b5f0f6830774a5d5c2f800415975"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/e5a46a767928e85f1f47dda654beda8c680ddd94",
-                "reference": "e5a46a767928e85f1f47dda654beda8c680ddd94",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/aaf8772ade08b5f0f6830774a5d5c2f800415975",
+                "reference": "aaf8772ade08b5f0f6830774a5d5c2f800415975",
                 "shasum": ""
             },
             "require": {
@@ -2212,7 +2166,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2015-07-03 16:48:00"
+            "time": "2015-07-16 15:26:57"
         },
         {
             "name": "swiftmailer/swiftmailer",
