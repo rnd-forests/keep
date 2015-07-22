@@ -1,19 +1,26 @@
 .user-dashboard {
     .stats {
-        .panel-body {
-            border-top: 1px solid #f5f5f5;
-        }
+        .stat-container {
+            background: #455a64;
+            padding: 10px;
+            margin-bottom: 10px;
 
-        .large {
-            color: #16A085;
-            text-align: center;
-            font-size: 25px;
-        }
+            .stat-title {
+                color: #fff;
+                text-align: center;
+            }
 
-        .small {
-            color: #111111;
-            text-align: center;
-            font-size: 14px;
+            .large {
+                color: #fff;
+                text-align: center;
+                font-size: 35px;
+            }
+
+            .small {
+                color: #64ffda;
+                text-align: center;
+                font-size: 16px;
+            }
         }
     }
 }

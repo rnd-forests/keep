@@ -61,6 +61,15 @@ return g("note-image-dialog",a.image.insert,f,h)},link:function(a,b){var c='<div
     $('#user_list').select2({ placeholder: 'Type and search for members' });
     $('#group_list').select2({ placeholder: 'Type and search for groups' });
 
+    Chart.defaults.global.scaleFontFamily = "Source Sans Pro";
+    Chart.defaults.global.tooltipFontFamily = "Source Sans Pro";
+    Chart.defaults.global.scaleFontColor = "#fff";
+    Chart.defaults.global.scaleFontSize = 14;
+    Chart.defaults.global.scaleBeginAtZero = true;
+    Chart.defaults.global.animationSteps = 80;
+    Chart.defaults.global.amimationEasing = "easeInOutExpo";
+    Chart.defaults.global.responsive = true;
+
     $('#summernote').summernote({
         focus: true,
         fontNames: [
