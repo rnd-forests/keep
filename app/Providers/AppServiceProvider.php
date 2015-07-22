@@ -33,6 +33,12 @@ class AppServiceProvider extends ServiceProvider
     protected function configureApplicationEnvironments()
     {
         switch ($this->app->environment()) {
+            case 'production':
+                config(['database.connections.pgsql.host' => parse_url(env('DATABASE_URL'))['host']]);
+                config(['database.connections.pgsql.database' => substr(parse_url(env('DATABASE_URL'))['path'], 1)]);
+                config(['database.connections.pgsql.username' => parse_url(env('DATABASE_URL'))['user']]);
+                config(['database.connections.pgsql.password' => parse_url(env('DATABASE_URL'))['pass']]);
+                break;
             case 'local':
                 $logger = $this->app->make('log');
                 $this->app->make('db')->listen(function ($sql, $bindings, $time) use ($logger) {
