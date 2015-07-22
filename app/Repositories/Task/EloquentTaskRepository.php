@@ -142,7 +142,7 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
     {
         return $user->tasks()
             ->urgent()
-            ->take(10)
+            ->take(5)
             ->get();
     }
 
@@ -150,7 +150,7 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
     {
         return $user->tasks()
             ->deadline()
-            ->take(10)
+            ->take(5)
             ->get();
     }
 
