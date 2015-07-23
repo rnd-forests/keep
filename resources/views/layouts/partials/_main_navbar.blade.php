@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top keep-navigation">
+<nav class="navbar navbar-default keep-navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#keep-nav">
