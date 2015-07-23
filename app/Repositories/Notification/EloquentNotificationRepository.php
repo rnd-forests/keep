@@ -46,7 +46,7 @@ class EloquentNotificationRepository extends EloquentRepository implements Notif
 
         return $user->notifications()
             ->latest('created_at')
-            ->paginate(15);
+            ->simplePaginate(10);
     }
 
     public function countUserNotifications($user)
@@ -75,6 +75,6 @@ class EloquentNotificationRepository extends EloquentRepository implements Notif
             ->with('groups')
             ->whereIn('id', $ids->unique()->toArray())
             ->latest('created_at')
-            ->paginate(15);
+            ->simplePaginate(10);
     }
 }

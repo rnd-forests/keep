@@ -110,10 +110,6 @@ if (!function_exists('blank')) {
 if (!function_exists('render_pagination')) {
     function render_pagination($collection)
     {
-        if (!$collection instanceof LengthAwarePaginator) {
-            throw new InvalidArgumentException;
-        }
-
         return '<div class="text-center">' . $collection->render() . '</div>';
     }
 }

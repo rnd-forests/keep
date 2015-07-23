@@ -517,10 +517,10 @@ a.text-primary:hover {
   color: #14866f;
 }
 .text-success {
-  color: #166699;
+  color: #71a436;
 }
 a.text-success:hover {
-  color: #10486c;
+  color: #577e29;
 }
 .text-info {
   color: #1b9b9d;
@@ -548,10 +548,10 @@ a.bg-primary:hover {
   background-color: #14866f;
 }
 .bg-success {
-  background-color: #1c84c6;
+  background-color: #8bc34a;
 }
 a.bg-success:hover {
-  background-color: #166699;
+  background-color: #71a436;
 }
 .bg-info {
   background-color: #23c6c8;
@@ -1529,14 +1529,14 @@ table th[class*="col-"] {
 .table > thead > tr.success > th,
 .table > tbody > tr.success > th,
 .table > tfoot > tr.success > th {
-  background-color: #1c84c6;
+  background-color: #8bc34a;
 }
 .table-hover > tbody > tr > td.success:hover,
 .table-hover > tbody > tr > th.success:hover,
 .table-hover > tbody > tr.success:hover > td,
 .table-hover > tbody > tr:hover > .success,
 .table-hover > tbody > tr.success:hover > th {
-  background-color: #1975b0;
+  background-color: #7eb73d;
 }
 .table > thead > tr > td.info,
 .table > tbody > tr > td.info,
@@ -1915,23 +1915,23 @@ select[multiple].form-group-lg .form-control {
 .has-success.checkbox label,
 .has-success.radio-inline label,
 .has-success.checkbox-inline label {
-  color: #166699;
+  color: #71a436;
 }
 .has-success .form-control {
-  border-color: #166699;
+  border-color: #71a436;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 .has-success .form-control:focus {
-  border-color: #10486c;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #339ee2;
+  border-color: #577e29;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #a3d070;
 }
 .has-success .input-group-addon {
-  color: #166699;
-  border-color: #166699;
-  background-color: #1c84c6;
+  color: #71a436;
+  border-color: #71a436;
+  background-color: #8bc34a;
 }
 .has-success .form-control-feedback {
-  color: #166699;
+  color: #71a436;
 }
 .has-warning .help-block,
 .has-warning .control-label,
@@ -2230,8 +2230,8 @@ fieldset[disabled] .btn-primary.active {
 }
 .btn-success {
   color: #ffffff;
-  background-color: #1c84c6;
-  border-color: #1975b0;
+  background-color: #8bc34a;
+  border-color: #7eb73d;
 }
 .btn-success:hover,
 .btn-success:focus,
@@ -2240,8 +2240,8 @@ fieldset[disabled] .btn-primary.active {
 .btn-success.active,
 .open > .dropdown-toggle.btn-success {
   color: #ffffff;
-  background-color: #166699;
-  border-color: #11517a;
+  background-color: #71a436;
+  border-color: #5f892d;
 }
 .btn-success:active,
 .btn-success.active,
@@ -2266,11 +2266,11 @@ fieldset[disabled] .btn-success:active,
 .btn-success.disabled.active,
 .btn-success[disabled].active,
 fieldset[disabled] .btn-success.active {
-  background-color: #1c84c6;
-  border-color: #1975b0;
+  background-color: #8bc34a;
+  border-color: #7eb73d;
 }
 .btn-success .badge {
-  color: #1c84c6;
+  color: #8bc34a;
   background-color: #ffffff;
 }
 .btn-info {
@@ -3665,7 +3665,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin-bottom: 18px;
   list-style: none;
   background-color: #f5f5f5;
-  border-radius: 4px;
 }
 .breadcrumb > li {
   display: inline-block;
@@ -3786,7 +3785,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 5px 14px;
   background-color: #ffffff;
   border: 1px solid #dddddd;
-  border-radius: 15px;
 }
 .pager li > a:hover,
 .pager li > a:focus {
@@ -3848,11 +3846,11 @@ a.label:focus {
   background-color: #14866f;
 }
 .label-success {
-  background-color: #1c84c6;
+  background-color: #8bc34a;
 }
 .label-success[href]:hover,
 .label-success[href]:focus {
-  background-color: #166699;
+  background-color: #71a436;
 }
 .label-info {
   background-color: #23c6c8;
@@ -3985,6 +3983,7 @@ a.thumbnail.active {
 .alert {
   padding: 15px;
   margin-bottom: 18px;
+  background-color: #fafafa;
   border: 1px solid transparent;
 }
 .alert h4 {
@@ -4013,12 +4012,12 @@ a.thumbnail.active {
   color: inherit;
 }
 .alert-success {
-  background-color: #1c84c6;
-  border-color: #198eb0;
+  background-color: #8bc34a;
+  border-color: #93b73d;
   color: #ffffff;
 }
 .alert-success hr {
-  border-top-color: #167c99;
+  border-top-color: #83a436;
 }
 .alert-success .alert-link {
   color: #e6e6e6;
@@ -4103,7 +4102,7 @@ a.thumbnail.active {
   animation: progress-bar-stripes 2s linear infinite;
 }
 .progress-bar-success {
-  background-color: #1c84c6;
+  background-color: #8bc34a;
 }
 .progress-striped .progress-bar-success {
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
@@ -4226,26 +4225,26 @@ a.list-group-item:focus {
   color: #a7f2e3;
 }
 .list-group-item-success {
-  color: #166699;
-  background-color: #1c84c6;
+  color: #71a436;
+  background-color: #8bc34a;
 }
 a.list-group-item-success {
-  color: #166699;
+  color: #71a436;
 }
 a.list-group-item-success .list-group-item-heading {
   color: inherit;
 }
 a.list-group-item-success:hover,
 a.list-group-item-success:focus {
-  color: #166699;
-  background-color: #1975b0;
+  color: #71a436;
+  background-color: #7eb73d;
 }
 a.list-group-item-success.active,
 a.list-group-item-success.active:hover,
 a.list-group-item-success.active:focus {
   color: #fff;
-  background-color: #166699;
-  border-color: #166699;
+  background-color: #71a436;
+  border-color: #71a436;
 }
 .list-group-item-info {
   color: #1b9b9d;
@@ -4549,11 +4548,11 @@ a.list-group-item-danger.active:focus {
 }
 .panel-success > .panel-heading {
   color: #fff;
-  background-color: #1c84c6;
+  background-color: #8bc34a;
 }
 .panel-success > .panel-heading .badge {
-  color: #1c84c6;
-  background-color: #166699;
+  color: #8bc34a;
+  background-color: #71a436;
 }
 .panel-info > .panel-heading {
   color: #fff;
@@ -8568,9 +8567,15 @@ button.close {
   margin-bottom: 0;
   background: #ffffff; }
 
-.notification {
-  font-size: 14px; }
-  .notification .well {
+.notification-container .notification-controls {
+  margin-bottom: 15px; }
+
+.notification-container .notification {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  border-color: transparent; }
+  .notification-container .notification .notification-body {
+    font-size: 14px; }
+  .notification-container .notification .well {
     background: #ffffff;
     border: none;
     color: #333; }

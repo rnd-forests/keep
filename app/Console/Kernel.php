@@ -15,7 +15,6 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \Keep\Console\Commands\SyncFailedTasks::class,
         \Keep\Console\Commands\EmailUpcomingTasks::class,
-        \Keep\Console\Commands\NotifyUpcomingTasks::class,
         \Keep\Console\Commands\ClearOldNotifications::class,
     ];
 
@@ -33,10 +32,6 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('keep:sync-failed-tasks')
             ->everyMinute()
-            ->withoutOverlapping();
-
-        $schedule->command('keep:notify-upcoming-tasks')
-            ->weeklyOn(5, '10:00')
             ->withoutOverlapping();
 
         $schedule->command('keep:email-upcoming-tasks')
