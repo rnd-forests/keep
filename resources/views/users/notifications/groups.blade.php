@@ -13,13 +13,11 @@
                     <div class="notification-body">
                         <p>{{ $notification->body }}</p>
                     </div>
-                    <h6>
-                        <div class="breadcrumb notification-groups">
-                            @foreach($notification->groups as $group)
-                                <li><a href="{{ route('member::groups.show', [$authUser, $group]) }}">{{ $group->name }}</a></li>
-                            @endforeach
-                        </div>
-                    </h6>
+                    <ul class="breadcrumb notification-groups">
+                        @foreach($notification->groups as $group)
+                            <li><a href="{{ route('member::groups.show', [$authUser, $group]) }}">{{ $group->name }}</a></li>
+                        @endforeach
+                    </ul>
                 </div>
             @endforeach
             {!! render_pagination($notifications) !!}
