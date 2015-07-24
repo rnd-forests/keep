@@ -3,15 +3,15 @@
 @section('content')
     @inject('counter', 'Keep\Services\UserDashboardService')
     <div class="row user-dashboard">
-        <div class="col-md-6">
+        <div class="col-md-5">
             @include('users.dashboard.partials._search_form')
-            @include('users.dashboard.partials._counters')
             @include('users.dashboard.partials._urgent')
+            @include('users.dashboard.partials._deadline')
             @include('users.dashboard.partials._completed')
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             @include('users.dashboard.partials._chart')
-            @include('users.dashboard.partials._deadline')
+            @include('users.dashboard.partials._counters')
         </div>
     </div>
 @stop
@@ -38,8 +38,7 @@
 
                 new Chart(ctx).Bar(chart, {
                     scaleShowGridLines: true,
-                    scaleGridLineColor: "rgba(255, 255, 255, .2)",
-                    barValueSpacing: 50,
+                    barValueSpacing: 60,
                     barShowStroke: true,
                     barStrokeWidth: 2
                 });

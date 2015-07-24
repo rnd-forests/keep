@@ -1,10 +1,12 @@
 .form-wrapper {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2);
+    background-color: #fafafa;
+    padding: 15px;
+
     .form-link {
         font-size: 14px;
-
         a {
             color: #1ab394;
-
             &:hover, &:focus, &:active {
                 text-decoration: underline;
             }
@@ -12,10 +14,9 @@
     }
 }
 
-.form-group:not(.summernote-container) {
-    .btn {
-        display: block;
-        width: 100%;
-        margin-top: 30px;
-    }
+.social-authentication {
+    padding: 25px 0;
+    text-align: center;
+    background:0 0;
+    border: none;
 }

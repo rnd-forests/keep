@@ -22,6 +22,6 @@
         {!! Form::password('new_password_confirmation', ['class' => 'form-control input-lg']) !!}
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-info btn-lg">Confirm</button>
+        <button type="submit" class="btn btn-info">Change your password</button>
     </div>
 {!! Form::close() !!}

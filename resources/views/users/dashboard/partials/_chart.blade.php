@@ -1,8 +1,10 @@
 @unless(zero($counter->totalTasks()))
-    <div class="stats">
-        <div class="stat-container">
-            <h4 class="stat-title">Task Statistics Chart</h4>
-            <canvas id="user-dashboard-stats" height="180px"></canvas>
+    <div class="i-panel">
+        <div class="i-panel-title">
+            <h5>Task Statistics Chart</h5>
+        </div>
+        <div class="i-panel-content">
+            <canvas id="user-dashboard-stats" height="200px"></canvas>
         </div>
     </div>
 @endunless

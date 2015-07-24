@@ -9,7 +9,6 @@
 
     Chart.defaults.global.scaleFontFamily = "Source Sans Pro";
     Chart.defaults.global.tooltipFontFamily = "Source Sans Pro";
-    Chart.defaults.global.scaleFontColor = "#fff";
     Chart.defaults.global.scaleFontSize = 14;
     Chart.defaults.global.scaleBeginAtZero = true;
     Chart.defaults.global.animationSteps = 80;

@@ -35,3 +35,27 @@ a {
 .control-label {
     font-size: 13px;
 }
+
+.i-panel {
+    clear: both;
+    margin-bottom: 25px;
+    margin-top: 0;
+    padding: 0;
+
+    .i-panel-title {
+        background-color: #ffffff;
+        border: 1px solid #f5f5f5;
+        border-top-width: 4px;
+        border-bottom: 0;
+        color: inherit;
+        margin-bottom: 0;
+        padding: 8px 15px;
+    }
+
+    .i-panel-content {
+        background-color: #ffffff;
+        color: inherit;
+        padding: 15px 0;
+        border: 1px solid #f5f5f5;
+    }
+}

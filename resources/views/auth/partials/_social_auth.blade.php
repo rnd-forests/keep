@@ -1,4 +1,4 @@
-<div class="well text-center">
+<div class="social-authentication">
     <a href="{{ route('oauth::google') }}">
         <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Google authentication">
             <i class="fa fa-google"></i>

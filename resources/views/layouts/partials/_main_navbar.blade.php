@@ -39,6 +39,8 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('member::profile', $authUser) }}">Profile</a></li>
                             <li class="divider"></li>
+                            <li><a href="{{ route('member::edit-profile', $authUser) }}">Edit Profile</a></li>
+                            <li class="divider"></li>
                             <li><a href="{{ route('member::account', $authUser) }}">Account</a></li>
                             <li class="divider"></li>
                             @if ($authUser->isAdmin())

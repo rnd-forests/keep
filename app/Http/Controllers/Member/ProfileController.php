@@ -49,6 +49,19 @@ class ProfileController extends Controller
     }
 
     /**
+     * Load form to edit user profile.
+     *
+     * @param $slug
+     * @return \Illuminate\View\View
+     */
+    public function edit($slug)
+    {
+        $user = $this->userRepo->findBySlug($slug);
+
+        return view('users.edit_profile', compact('user'));
+    }
+
+    /**
      * Update profile.
      *
      * @param ModifyProfileRequest $request

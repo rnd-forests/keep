@@ -31,13 +31,13 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="form-group">
             {!! Form::label('location', 'Location', ['class' => 'control-label']) !!}
             {!! Form::text('location', null, ['class' => 'form-control input-lg']) !!}
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="form-group">
             <div class="form-group">
                 {!! Form::label('tag_list', 'Tags', ['class' => 'control-label']) !!}
@@ -45,12 +45,14 @@
             </div>
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            {!! Form::label('priority_level', 'Priority Level', ['class' => 'control-label']) !!}
+            {!! Form::select('priority_level', $priorities, null, ['class' => 'form-control input-lg']) !!}
+            {!! error_text($errors, 'priority_level') !!}
+        </div>
+    </div>
 </div>
 <div class="form-group">
-    {!! Form::label('priority_level', 'Priority Level', ['class' => 'control-label']) !!}
-    {!! Form::select('priority_level', $priorities, null, ['class' => 'form-control input-lg']) !!}
-    {!! error_text($errors, 'priority_level') !!}
-</div>
-<div class="form-group">
-    {!! Form::submit($taskFormSubmitButton, ['class' => 'btn btn-lg btn-primary']) !!}
+    {!! Form::submit($taskFormSubmitButton, ['class' => 'btn btn-primary']) !!}
 </div>

@@ -3,19 +3,13 @@
 @section('content')
     <div class="row">
         <div class="col-md-4">
-            <div class="panel panel-info">
-                <div class="panel-heading">Change your name</div>
-                <div class="panel-body">
-                    @include('users.partials._update_username_form')
-                </div>
+            <div class="form-wrapper">
+                @include('users.partials._update_username_form')
             </div>
         </div>
         <div class="col-md-4">
-            <div class="panel panel-info">
-                <div class="panel-heading">Change your password</div>
-                <div class="panel-body">
-                    @include('users.partials._update_password_form')
-                </div>
+            <div class="form-wrapper">
+                @include('users.partials._update_password_form')
             </div>
         </div>
         <div class="col-md-4">

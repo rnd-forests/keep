@@ -63,7 +63,6 @@ return g("note-image-dialog",a.image.insert,f,h)},link:function(a,b){var c='<div
 
     Chart.defaults.global.scaleFontFamily = "Source Sans Pro";
     Chart.defaults.global.tooltipFontFamily = "Source Sans Pro";
-    Chart.defaults.global.scaleFontColor = "#fff";
     Chart.defaults.global.scaleFontSize = 14;
     Chart.defaults.global.scaleBeginAtZero = true;
     Chart.defaults.global.animationSteps = 80;
@@ -92,14 +91,14 @@ return g("note-image-dialog",a.image.insert,f,h)},link:function(a,b){var c='<div
     });
 })();
 
-(function() {
-    $('a[data-toggle = "tab"]').on('shown.bs.tab', function() {
-        localStorage.setItem('lastTab', $(this).attr('href'));
-    });
-    var lastTab = localStorage.getItem('lastTab');
-    if (lastTab) $('a[href=' + lastTab + ']').tab('show');
-    else $('a[data-toggle="tab"]:first').tab('show');
-})();
+//(function() {
+//    $('a[data-toggle = "tab"]').on('shown.bs.tab', function() {
+//        localStorage.setItem('lastTab', $(this).attr('href'));
+//    });
+//    var lastTab = localStorage.getItem('lastTab');
+//    if (lastTab) $('a[href=' + lastTab + ']').tab('show');
+//    else $('a[data-toggle="tab"]:first').tab('show');
+//})();
 
 (function() {
     $('.task-wrapper').find('iframe').wrap("<div class='embed-responsive embed-responsive-16by9'></div>");

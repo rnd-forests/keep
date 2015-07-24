@@ -8,5 +8,5 @@
     {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 6]) !!}
 </div>
 <div class="form-group">
-    {!! Form::submit($groupFormSubmitButton, ['class' => 'btn btn-lg btn-primary']) !!}
+    {!! Form::submit($groupFormSubmitButton, ['class' => 'btn btn-primary']) !!}
 </div>

@@ -19,6 +19,6 @@
         {!! error_text($errors, 'new_username') !!}
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-info btn-lg">Confirm</button>
+        <button type="submit" class="btn btn-info">Change your name</button>
     </div>
 {!! Form::close() !!}
