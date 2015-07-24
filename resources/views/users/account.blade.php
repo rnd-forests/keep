@@ -19,7 +19,7 @@
                     <div class="panel-heading">Cancel your account</div>
                     <div class="panel-body">
                         <p>Once you delete your account, there is no going back. Please be careful.</p>
-                        <button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#cancel-account-modal">Cancel account</button>
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#cancel-account-modal">Cancel account</button>
                     </div>
                 </div>
             @endunless

@@ -12,7 +12,7 @@ trait TaskScopes
             ->where('priority_id', 1)
             ->where('completed', false)
             ->where('is_failed', false)
-            ->orderBy('finishing_date', 'asc');
+            ->oldest('finishing_date');
     }
 
     public function scopeCompleted($query)
@@ -25,14 +25,14 @@ trait TaskScopes
         return $query
             ->where('completed', false)
             ->where('is_failed', false)
-            ->orderBy('finishing_date', 'asc');
+            ->oldest('finishing_date');
     }
 
     public function scopeRecentlyCompleted($query)
     {
         return $query
             ->where('completed', true)
-            ->orderBy('finished_at', 'desc');
+            ->latest('finished_at');
     }
 
     public function scopeAboutToFail($query)
@@ -47,7 +47,7 @@ trait TaskScopes
     {
         return $query
             ->where('is_failed', true)
-            ->orderBy('created_at', 'desc');
+            ->latest('created_at');
     }
 
     public function scopeDue($query)
