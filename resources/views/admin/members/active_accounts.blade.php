@@ -6,7 +6,7 @@
             <div class="huge text-center">{{ plural2('account', 'active', $activeMembers->total()) }}</div>
         </div>
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>{!! sort_accounts_by('id', 'ID') !!}</th>

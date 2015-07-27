@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-7">
             @include('users.dashboard.partials._chart')
-            {{--@include('users.dashboard.partials._counters')--}}
+            @include('users.dashboard.partials._counters')
         </div>
     </div>
 @stop

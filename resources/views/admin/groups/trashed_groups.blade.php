@@ -9,7 +9,7 @@
                 <div class="huge text-center">{{ plural2('group', 'trashed', $trashedGroups->total()) }}</div>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th>ID</th>

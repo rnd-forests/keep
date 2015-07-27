@@ -9,7 +9,7 @@
                 <div class="huge text-center">{{ plural2('task', 'published', $tasks->total()) }}</div>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th>{!! sort_tasks_by('id', 'ID') !!}</th>
