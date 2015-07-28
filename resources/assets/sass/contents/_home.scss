@@ -1,16 +1,9 @@
-.home-cover {
-    margin-top: -20px;
-    position: relative;
-
-    img {
-        width: 100%;
-        height: auto;
-    }
-}
-
 .home-contents {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
+    .home-buttons {
+        text-align: center;
+
+        button {
+            margin-bottom: 15px;
+        }
+    }
 }

@@ -8393,19 +8393,10 @@ button.close {
   .summernote-container .note-editor .btn-toolbar {
     margin-left: 0; }
 
-.home-cover {
-  margin-top: -20px;
-  position: relative; }
-  .home-cover img {
-    width: 100%;
-    height: auto; }
-
-.home-contents {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%); }
+.home-contents .home-buttons {
+  text-align: center; }
+  .home-contents .home-buttons button {
+    margin-bottom: 15px; }
 
 .user-dashboard .stats .stat-container {
   border: 1px solid #f5f5f5;
