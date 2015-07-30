@@ -32,7 +32,7 @@ abstract class OpenAuthentication implements ExtractableProviderData
      * @param $provider
      * @param $message
      * @param OAuthUserListener $listener
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return mixed
      * @throws InvalidUserException
      */
     public function authenticate($hasCode, $provider, $message, OAuthUserListener $listener)

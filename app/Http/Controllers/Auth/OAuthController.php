@@ -72,7 +72,7 @@ class OAuthController extends Controller implements OAuthUserListener
      * Response to open authentication on success event.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function userHasLoggedIn($user)
     {
