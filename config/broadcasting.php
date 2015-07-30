@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default'     => env('BROADCAST_DRIVER', 'pusher'),
+    'default' => env('BROADCAST_DRIVER', 'pusher'),
 
     /*
     |--------------------------------------------------------------------------
@@ -35,12 +35,12 @@ return [
             'app_id' => env('PUSHER_APP_ID'),
         ],
 
-        'redis'  => [
+        'redis' => [
             'driver'     => 'redis',
             'connection' => 'default',
         ],
 
-        'log'    => [
+        'log' => [
             'driver' => 'log',
         ],
 
