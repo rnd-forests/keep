@@ -89,14 +89,6 @@ class TaskIntegrationTest extends TestCase
     }
 
     /** @test */
-    public function it_fetches_user_created_tasks()
-    {
-        factory(Keep\Entities\Task::class)->create(['user_id' => 1]);
-        factory(Keep\Entities\Task::class, 2)->create();
-        $this->assertCount(1, Task::userCreated()->get());
-    }
-
-    /** @test */
     public function it_fetches_upcoming_tasks()
     {
         factory(Keep\Entities\Task::class)->create(['is_failed' => true]);

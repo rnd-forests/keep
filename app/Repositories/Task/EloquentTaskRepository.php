@@ -35,10 +35,10 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
     public function create(array $data)
     {
         return $this->model->create([
-            'title' => $data['title'],
-            'content' => $data['content'],
-            'location' => $data['location'],
-            'starting_date' => $data['starting_date'],
+            'title'          => $data['title'],
+            'content'        => $data['content'],
+            'location'       => $data['location'],
+            'starting_date'  => $data['starting_date'],
             'finishing_date' => $data['finishing_date'],
         ]);
     }
@@ -211,7 +211,6 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
     public function fetchUserUpcomingTasks()
     {
         return $this->model
-            ->userCreated()
             ->upcoming()
             ->get();
     }

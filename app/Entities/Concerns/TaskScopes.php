@@ -57,11 +57,6 @@ trait TaskScopes
             ->where('completed', false);
     }
 
-    public function scopeUserCreated($query)
-    {
-        return $query->where('user_id', '<>', 0);
-    }
-
     public function scopeUpcoming($query)
     {
         return $query
