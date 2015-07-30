@@ -9,7 +9,7 @@ use Keep\Exceptions\InvalidPermissionsException;
 class VerifyUserPermissions
 {
     protected $auth;
-    
+
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
@@ -28,8 +28,9 @@ class VerifyUserPermissions
     {
         $user = $this->auth->user();
         if (!($this->auth->check() && $user->can($permissions, true))) {
-            throw new InvalidPermissionsException($user->name .
-                ' does not have the required permissions to perform this request.');
+            throw new InvalidPermissionsException(trans('exception.invalid_permission_exception', [
+                'user' => $user->name
+            ]));
         }
 
         return $next($request);

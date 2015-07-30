@@ -20,7 +20,7 @@ class PasswordController extends Controller
     public function __construct(PasswordBroker $passwords)
     {
         $this->passwords = $passwords;
-        $this->subject = 'Recover your account password at Keep';
+        $this->subject = trans('authentication.password_reset_email_subject');
         $this->middleware('guest');
     }
 

@@ -36,6 +36,6 @@ class ClearOldNotifications extends Command
             $this->output->progressAdvance();
         });
         $this->output->progressFinish();
-        $this->info('All old notifications were cleared.');
+        $this->info(trans('console.cleared_old_notification'));
     }
 }

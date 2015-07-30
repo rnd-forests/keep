@@ -32,7 +32,7 @@ class Mailer implements MailerInterface
      */
     public function emailAccountActivationUrl($user, $code)
     {
-        $subject = 'Account Activation';
+        $subject = trans('mailer.account_activation_subject');
         $view = 'emails.auth.account_activation';
         $data = ['activationLink' => route('auth::activate', $code)];
         $this->sendTo($user, $subject, $view, $data);
@@ -47,7 +47,7 @@ class Mailer implements MailerInterface
      */
     public function emailNewlyCreatedTask($user, $task)
     {
-        $subject = 'Newly Created Task';
+        $subject = trans('mailer.new_task_subject');
         $view = 'emails.task.new_task';
         $data = [
             'username'      => $user->name,
@@ -69,7 +69,7 @@ class Mailer implements MailerInterface
      */
     public function emailUpcomingTask($user, $task)
     {
-        $subject = 'Upcoming Task';
+        $subject = trans('mailer.upcoming_task_subject');
         $view = 'emails.task.upcoming_task';
         $data = [
             'username'      => $user->name,

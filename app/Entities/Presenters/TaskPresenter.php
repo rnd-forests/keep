@@ -13,10 +13,10 @@ class TaskPresenter extends Presenter
     public function printStatus($status)
     {
         if ($status) {
-            return '<i class="text-primary fa fa-check"></i>';
+            return trans('presenter.completed');
         }
 
-        return '<i class="text-danger fa fa-times"></i>';
+        return trans('presenter.not_completed');
     }
 
     /**

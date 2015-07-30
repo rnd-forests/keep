@@ -36,11 +36,13 @@ class Handler extends ExceptionHandler
                 return redirect()->home();
 
             case 'ModelNotFoundException':
-                flash()->warning('The ' . get_class_short_name($e->getModel()) . ' you are looking for, cannot be found.');
+                flash()->warning(trans('exception.model_not_found_exception', [
+                    'model' => get_class_short_name($e->getModel())
+                ]));
                 return redirect()->home();
 
             case 'NotFoundHttpException':
-                flash()->warning('The URL you are looking for cannot be found.');
+                flash()->warning(trans('exception.not_found_http_exception'));
                 return redirect()->home();
         };
 

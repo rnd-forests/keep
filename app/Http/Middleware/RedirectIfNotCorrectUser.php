@@ -32,7 +32,7 @@ class RedirectIfNotCorrectUser
         if ($request->route('users')) {
             $user = $this->users->findBySlug($request->route('users'));
             if (($user->id != $this->auth->user()->id) && !$this->auth->user()->isAdmin()) {
-                throw new InvalidUserException('You cannot access this page.');
+                throw new InvalidUserException(trans('exception.invalid_user_exception'));
             }
         }
 

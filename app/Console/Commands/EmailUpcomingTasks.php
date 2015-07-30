@@ -39,6 +39,6 @@ class EmailUpcomingTasks extends Command
             $this->output->progressAdvance();
         });
         $this->output->progressFinish();
-        $this->info('Notified all upcoming tasks.');
+        $this->info(trans('console.emailed_upcoming_tasks'));
     }
 }
