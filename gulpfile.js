@@ -1,7 +1,7 @@
 var elixir = require("laravel-elixir");
 
 elixir(function (mix) {
-    mix.sass("app.scss", "public/css/app.css");
+    mix.sass("application.scss", "public/css/application.css");
     mix.less("bootstrap/bootstrap.less", "public/css/bootstrap.css");
 
     mix.styles([
@@ -9,7 +9,7 @@ elixir(function (mix) {
         "vendor/font-awesome.css",
         "vendor/datetimepicker.css",
         "vendor/summernote.css",
-        "app.css"
+        "application.css"
     ], null, "public/css");
 
     mix.scripts([
@@ -22,8 +22,7 @@ elixir(function (mix) {
         "vendor/summernote/summernote.min.js",
         "vendor/summernote/summernote-fontstyle.js",
         "vendor/summernote/summernote-video.js",
-        "plugins.js",
-        "main.js"
+        "application.js"
     ]);
 
     mix.version(["public/css/all.css", "public/js/all.js"]);

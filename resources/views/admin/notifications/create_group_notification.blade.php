@@ -4,7 +4,11 @@
     <div class="form-group">
         <div class="form-group">
             {!! Form::label('group_list', 'Choose Groups', ['class' => 'control-label']) !!}
-            {!! Form::select('group_list[]', $groups, null, ['id' => 'group_list', 'class' => 'form-control', 'multiple']) !!}
+            {!! Form::select('group_list[]', $groups, null, [
+                'id' => 'group_list',
+                'class' => 'form-control multiple-selection',
+                'data-description' => 'Type and search for groups...',
+                'multiple']) !!}
             {!! error_text($errors, 'group_list') !!}
         </div>
     </div>

@@ -44,28 +44,5 @@
                 });
             })();
         @endunless
-
-        // Search form
-        (function() {
-            var search_form = $("#search-form");
-            var search_box = $("#keyword");
-            search_box.on("input", function() {
-                var input = $.trim($(this).val());
-                if (!input || input.length === 0) {
-                    return $(this).popover("toggle");
-                } else {
-                    return $(this).popover("hide");
-                }
-            });
-
-            search_form.on("submit", function() {
-                var input = $.trim(search_box.val());
-                if (!input || input.length === 0) {
-                    $("#search-keyword-modal").modal("show");
-                    search_box.popover("hide");
-                    return false;
-                }
-            });
-        })();
     </script>
 @stop

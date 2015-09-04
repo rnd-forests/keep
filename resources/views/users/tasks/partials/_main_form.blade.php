@@ -41,7 +41,11 @@
         <div class="form-group">
             <div class="form-group">
                 {!! Form::label('tag_list', 'Tags', ['class' => 'control-label']) !!}
-                {!! Form::select('tag_list[]', $tags, null, ['id' => 'tag_list', 'class' => 'form-control', 'multiple']) !!}
+                {!! Form::select('tag_list[]', $tags, null, [
+                    'id' => 'tag_list',
+                    'class' => 'form-control multiple-selection',
+                    'data-description' => 'Choose tags for this task...',
+                    'multiple']) !!}
             </div>
         </div>
     </div>
