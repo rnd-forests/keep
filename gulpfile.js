@@ -1,9 +1,9 @@
 var elixir = require("laravel-elixir");
 
 elixir(function (mix) {
-
     mix.sass("app.scss", "public/css/app.css");
     mix.less("bootstrap/bootstrap.less", "public/css/bootstrap.css");
+
     mix.styles([
         "bootstrap.css",
         "vendor/font-awesome.css",
@@ -26,9 +26,5 @@ elixir(function (mix) {
         "main.js"
     ]);
 
-    mix.version([
-        "public/css/all.css",
-        "public/js/all.js"
-    ]);
-
+    mix.version(["public/css/all.css", "public/js/all.js"]);
 });
