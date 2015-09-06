@@ -8,24 +8,31 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Cviebrock\EloquentSluggable\SluggableTrait;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Keep\Entities\Presenters\Traits\PresentableTrait;
 use Keep\Entities\Presenters\Contracts\PresentableInterface;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements
     AuthenticatableContract,
+    AuthorizableContract,
     CanResetPasswordContract,
     SluggableInterface,
     PresentableInterface
 {
     use Authenticatable,
+        Authorizable,
         CanResetPassword,
         PresentableTrait,
         SluggableTrait,
         SoftDeletes,
-        EntrustUserTrait;
+        EntrustUserTrait {
+            // Resolving method conflict
+            EntrustUserTrait::can insteadof Authorizable;
+        }
 
     protected $dates = ['deleted_at'];
     protected $casts = ['active' => 'boolean'];
