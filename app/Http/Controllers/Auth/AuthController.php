@@ -8,6 +8,7 @@ use Keep\Jobs\ActivateUserAccount;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\RegistrationRequest;
 use Keep\Http\Requests\InitializeSessionRequest;
+use Keep\Entities\Concerns\Authentication\ThrottlesLogins;
 
 class AuthController extends Controller
 {
@@ -60,19 +61,27 @@ class AuthController extends Controller
      * Handle a login request to the application.
      *
      * @param InitializeSessionRequest $request
-     * @return $this|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postLogin(InitializeSessionRequest $request)
     {
+        $throttles = app(ThrottlesLogins::class);
+        
+        if ($throttles->hasTooManyLoginAttempts($request)) {
+            return $throttles->sendLockoutResponse($request);
+        }
+
         if ($this->dispatchFrom(AuthenticateUser::class, $request, [
             'active'   => 1,
             'remember' => $request->has('remember'),])
         ) {
             flash()->success(trans('authentication.login_success'));
+            $throttles->clearLoginAttempts($request);
 
             return redirect()->intended('/');
         }
         session()->flash('login_error', trans('authentication.login_error'));
+        $throttles->incrementLoginAttempts($request);
 
         return redirect()->route('auth::login')->withInput($request->only('email', 'remember'));
     }

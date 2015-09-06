@@ -3,9 +3,9 @@
 namespace Keep\Entities;
 
 use Carbon\Carbon;
-use Keep\Entities\Concerns\TaskScopes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Keep\Entities\Concerns\Scopes\TaskScopes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Keep\Entities\Presenters\Traits\PresentableTrait;

@@ -18,4 +18,5 @@ return [
     'facebook_error'               => 'Something went wrong with your Facebook authentication process.',
     'github_error'                 => 'Something went wrong with your GitHub authentication process.',
     'google_error'                 => 'Something went wrong with your Google authentication process.',
+    'throttle'                     => 'Too many login attempts. Please try again in :seconds seconds.',
 ];

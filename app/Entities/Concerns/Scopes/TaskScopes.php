@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Entities\Concerns;
+namespace Keep\Entities\Concerns\Scopes;
 
 use Carbon\Carbon;
 
