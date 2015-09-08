@@ -7,7 +7,7 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href="{{ route('member::tasks.edit', [$user, $task]) }}">Edit</a></li>
                         <li><a href="{{ route('member::dashboard', $user) }}">Dashboard</a></li>
-                        {!! Form::open(['route' => ['member::tasks.destroy', $user, $task], 'method' => 'DELETE', 'id' => 'delete-task-form']) !!}
+                        {!! Form::open(['route' => ['member::tasks.destroy', $user, $task], 'method' => 'DELETE', 'id' => 'task-delete-form']) !!}
                             <li><a href="#">Delete</a></li>
                         {!! Form::close() !!}
                     </ul>

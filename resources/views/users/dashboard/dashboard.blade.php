@@ -19,30 +19,14 @@
 @section('footer')
     <script>
         @unless(zero($counter->totalTasks()))
-            (function () {
-                var ctx = $("#user-dashboard-stats").get(0).getContext("2d");
-                var chart = {
-                    labels: ["Completed", "Failed", "Processing"],
-                    datasets: [{
-                        data: [
-                            Math.round({{ json_encode($counter->countCompletedTasks() / $counter->totalTasks() * 100) }}),
-                            Math.round({{ json_encode($counter->countFailedTasks() / $counter->totalTasks() * 100) }}),
-                            Math.round({{ json_encode($counter->countDueTasks() / $counter->totalTasks() * 100) }})
-                        ],
-                        fillColor: "rgba(26,179,148,0.5)",
-                        strokeColor: "rgba(26,179,148,0.8)",
-                        highlightFill: "rgba(26,179,148,0.75)",
-                        highlightStroke: "rgba(26,179,148,1)"
-                    }]
-                };
-
-                new Chart(ctx).Bar(chart, {
-                    scaleShowGridLines: true,
-                    barValueSpacing: 60,
-                    barShowStroke: true,
-                    barStrokeWidth: 2
-                });
-            })();
+            $(function() {
+                Keep.charts.showUserDashboardChart(
+                    {{ $counter->countCompletedTasks() }},
+                    {{ $counter->countFailedTasks() }},
+                    {{ $counter->countDueTasks() }},
+                    {{ $counter->totalTasks() }}
+                );
+            });
         @endunless
     </script>
 @stop

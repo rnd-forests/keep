@@ -1,4 +1,4 @@
-<div class="modal fade" id="task-complete-modal">
+<div class="modal" id="task-complete-modal">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
