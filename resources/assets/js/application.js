@@ -1,43 +1,16 @@
 var Keep = (function() {
-    /**
-     * Global configurations.
-     *
-     * @type {{
-     * el: {
-     *     top: (*|jQuery|HTMLElement),
-     *     note: (*|jQuery|HTMLElement),
-     *     taskTimer: (*|jQuery|HTMLElement),
-     *     csrf: (*|jQuery|HTMLElement),
-     *     selector: (*|jQuery|HTMLElement),
-     *     tooltips: (*|jQuery|HTMLElement),
-     *     taskIframe: (*|jQuery),
-     *     dismissibleAlerts: (*|jQuery)
-     * },
-     * init: Function,
-     * initAJAX: Function,
-     * initChartJS: Function,
-     * initSummernote: Function,
-     * activateSelect2: Function,
-     * activateDateTimePicker: Function,
-     * activateScrollButton: Function,
-     * activateTooltips: Function, 
-     * dismissAlerts: Function,
-     * wrapIframe: Function
-     * }}
-     * @private
-     */
-    var _global = {
-        "el": {
-            "top": $("#scroll-top"),
-            "note": $("#summernote"),
-            "taskTimer": $(".task-time-form"),
-            "csrf": $("meta[name=csrf-token]"),
-            "selector": $(".multiple-selection"),
-            "tooltips": $("[data-toggle=tooltip]"),
-            "taskIframe": $(".task-wrapper").find("iframe"),
-            "dismissibleAlerts": $(".alert").not(".alert-danger").not(".notification")
+    var Global = {
+        el: {
+            top: $("#scroll-top"),
+            note: $("#summernote"),
+            taskTimer: $(".task-time-form"),
+            csrf: $("meta[name=csrf-token]"),
+            selector: $(".multiple-selection"),
+            tooltips: $("[data-toggle=tooltip]"),
+            taskIframe: $(".task-wrapper").find("iframe"),
+            dismissibleAlerts: $(".alert").not(".alert-danger").not(".notification")
         },
-        "init": function() {
+        init: function() {
             this.initAJAX();
             this.initChartJS();
             this.initSummernote();
@@ -48,20 +21,22 @@ var Keep = (function() {
             this.dismissAlerts();
             this.wrapIframe();
         },
-        "initAJAX": function() {
+        initAJAX: function() {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': this.el.csrf.attr('content')
                 }
             });
         },
-        "initChartJS": function() {
+        initChartJS: function() {
             Chart.defaults.global.responsive = true;
             Chart.defaults.global.scaleFontSize = 14;
             Chart.defaults.global.animationSteps = 80;
             Chart.defaults.global.scaleBeginAtZero = true;
+            Chart.defaults.global.scaleFontFamily = "Source Sans Pro";
+            Chart.defaults.global.tooltipFontFamily = "Source Sans Pro";
         },
-        "initSummernote": function() {
+        initSummernote: function() {
             this.el.note.summernote({
                 focus: true,
                 toolbar: [
@@ -77,41 +52,33 @@ var Keep = (function() {
                 ]
             });
         },
-        "activateSelect2": function() {
+        activateSelect2: function() {
             this.el.selector.select2({
                 placeholder: this.el.selector.data("description")
             });
         },
-        "activateDateTimePicker": function() {
+        activateDateTimePicker: function() {
             this.el.taskTimer.datetimepicker();
         },
-        "activateScrollButton": function() {
+        activateScrollButton: function() {
             this.el.top.on("click", function(event) {
                 event.preventDefault();
                 $('body, html').animate({scrollTop: 0}, 800);
             });
         },
-        "activateTooltips": function() {
+        activateTooltips: function() {
             this.el.tooltips.tooltip();
         },
-        "dismissAlerts": function() {
+        dismissAlerts: function() {
             this.el.dismissibleAlerts.delay(2500).fadeOut();
         },
-        "wrapIframe": function() {
+        wrapIframe: function() {
             this.el.taskIframe.wrap("<div class='embed-responsive embed-responsive-16by9'></div>");
         }
     };
 
-    /**
-     * Chart configurations.
-     *
-     * @type {{
-     * userDashboard: Function
-     * }}
-     * @private
-     */
-    var _charts = {
-        "userDashboard": function(c, f, d, t) {
+    var Charts = {
+        userDashboard: function(c, f, d, t) {
             var ctx = $("#user-dashboard-stats").get(0).getContext("2d");
             var chart = {
                 labels: ["Completed", "Failed", "Processing"],
@@ -128,24 +95,16 @@ var Keep = (function() {
                 }]
             };
             new Chart(ctx).Bar(chart, {
-                scaleShowGridLines: true,
-                barValueSpacing: 60,
+                scaleShowGridLines: false,
+                barValueSpacing: 50,
                 barShowStroke: true,
                 barStrokeWidth: 2
             });
         }
     };
 
-    /**
-     * Search functionality.
-     *
-     * @type {{
-     * init: Function
-     * }}
-     * @private
-     */
-    var _search = {
-        "init": function() {
+    var Search = {
+        init: function() {
             $("#search-form").on("input", "#keyword", function() {
                 var key = $.trim($(this).val());
                 if (!key || key.length == 0) {
@@ -165,41 +124,32 @@ var Keep = (function() {
         }
     };
 
-    /**
-     * Tasks.
-     *
-     * @type {{
-     * init: Function,
-     * deleteForm: Function,
-     * completeForm: Function
-     * }}
-     * @private
-     */
-    var _task = {
-        "el": {
-            "cForm": $("#task-complete-form"),
-            "dForm": $("#task-delete-form")
+    var Tasks = {
+        el: {
+            cForm: $("#task-complete-form"),
+            dForm: $("#task-delete-form")
         },
         init: function() {
             this.deleteForm();
             this.completeForm();
         },
-        "deleteForm": function() {
+        deleteForm: function() {
             this.el.dForm.on("click", "a", function(event) {
                 event.preventDefault();
                 $(this).closest("form").submit();
             });
         },
-        "completeForm": function() {
-            var Completion = {
-                complete: function(form) {
+        completeForm: function() {
+            var TaskCompletion = {
+                using: function(form) {
                     var promise = $.Deferred();
-                    var action = form.prop("action");
-                    var method = form.find("input[name=_method]").val() || "POST";
                     $.ajax({
-                        type: method,
-                        url: action,
+                        type: form.find("input[name=_method]").val() || "POST",
+                        url: form.prop("action"),
                         data: form.serialize(),
+                        beforeSend: function() {
+                            form.find('.loading').removeClass('hidden');
+                        },
                         success: function() {
                             promise.resolve(form.find("#completed").is(":checked"))
                         },
@@ -216,31 +166,31 @@ var Keep = (function() {
             this.el.cForm.on("change", $("#completed"), function(event) {
                 event.preventDefault();
                 var form = $(this).closest('form');
-                var promise = Completion.complete(form);
+                var promise = TaskCompletion.using(form);
                 promise.done(function(response) {
-                    var popup = $("#task-complete-modal");
-                    var message = popup.find(".modal-title");
+                    var message = $(".task-complete-message");
                     if (response) {
                         message.html("You marked this task as <strong class='text-success'>completed</strong>");
                     } else {
                         message.html("You marked this task as <strong class='text-warning'>uncompleted</strong>");
                     }
-                    popup.modal("show");
                 }).fail(function(message) {
                     console.log(message);
+                }).always(function() {
+                    form.find('.loading').addClass('hidden');
                 });
             });
         }
     };
 
     return {
-        "init": function() {
-            _global.init();
-            _search.init();
-            _task.init();
+        init: function() {
+            Global.init();
+            Search.init();
+            Tasks.init();
         },
-        "charts": {
-            "showUserDashboardChart": _charts.userDashboard
+        charts: {
+            showUserDashboardChart: Charts.userDashboard
         }
     };
 })();

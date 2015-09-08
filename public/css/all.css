@@ -8293,7 +8293,7 @@ button.close {
 
 .select2-container--default .select2-selection--multiple {
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #f5f5f5;
   cursor: text; }
   .select2-container--default .select2-selection--multiple .select2-selection__rendered {
     box-sizing: border-box;
@@ -8411,6 +8411,10 @@ button.close {
     color: #555;
     text-align: center;
     font-size: 16px; }
+
+.chart-panel .panel-body {
+  padding: 15px 0;
+  border-top: 1px solid #f5f5f5; }
 
 .user-avatar {
   display: block;
@@ -8575,25 +8579,6 @@ a:hover, a:active, a:focus {
 
 .control-label {
   font-size: 13px; }
-
-.i-panel {
-  clear: both;
-  margin-bottom: 25px;
-  margin-top: 0;
-  padding: 0; }
-  .i-panel .i-panel-title {
-    background-color: #ffffff;
-    border: 1px solid #f5f5f5;
-    border-top-width: 4px;
-    border-bottom: 0;
-    color: inherit;
-    margin-bottom: 0;
-    padding: 8px 15px; }
-  .i-panel .i-panel-content {
-    background-color: #ffffff;
-    color: inherit;
-    padding: 15px 0;
-    border: 1px solid #f5f5f5; }
 
 .cmn-toggle {
   position: absolute;

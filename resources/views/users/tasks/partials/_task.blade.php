@@ -5,16 +5,22 @@
                 <div class="dropdown">
                     <span class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></span>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="{{ route('member::tasks.edit', [$user, $task]) }}">Edit</a></li>
-                        <li><a href="{{ route('member::dashboard', $user) }}">Dashboard</a></li>
-                        {!! Form::open(['route' => ['member::tasks.destroy', $user, $task], 'method' => 'DELETE', 'id' => 'task-delete-form']) !!}
-                            <li><a href="#">Delete</a></li>
-                        {!! Form::close() !!}
+                        <li>
+                            <a href="{{ route('member::tasks.edit', [$user, $task]) }}">
+                                <i class="fa fa-pencil-square"></i>&nbsp; Update
+                            </a>
+                        </li>
+                        @include('users.tasks.partials._delete_form')
+                        <li>
+                            <a href="{{ route('member::dashboard', $user) }}">
+                                <i class="fa fa-arrow-circle-left"></i>&nbsp; Dashboard
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
             <a class="task-title">{{ $task->title }}</a>
-            <h6 class="task-time-ago">{{ humans_time($task->created_at) }}</h6>
+            <h6 class="task-time-ago">Created {{ humans_time($task->created_at) }}</h6>
         </div>
         <div class="panel-body">
             <div class="task-labels">
@@ -25,7 +31,7 @@
                 @if($task->is_failed)
                     <span class="label label-danger">failed</span>
                 @endif
-                <span class="label label-info">{{ $task->priority->name }}</span>
+                <span class="label label-info">{{ $task->priority->name }} priority</span>
             </div>
             <div class="well">{!! $task->content !!}</div>
             @unless (empty($task->location))
