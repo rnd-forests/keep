@@ -6,5 +6,4 @@ return [
     'task_created'     => 'Your tasks has been successfully created.',
     'task_updated'     => 'Your task was successfully updated.',
     'task_deleted'     => 'Your task was successfully destroyed.',
-    'task_completed'   => 'You changed the completed status of this task.',
 ];

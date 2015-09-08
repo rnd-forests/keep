@@ -2,6 +2,7 @@
 
 namespace Keep\Http\Controllers\Member;
 
+use Illuminate\Http\Request;
 use Keep\Events\TaskHasPublished;
 use Keep\Http\Requests\TaskRequest;
 use Keep\Http\Controllers\Controller;
@@ -147,15 +148,14 @@ class TasksController extends Controller
     /**
      * Mark a task a completed.
      *
+     * @param Request $request
      * @param $userSlug
      * @param $taskSlug
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function complete($userSlug, $taskSlug)
+    public function complete(Request $request, $userSlug, $taskSlug)
     {
-        $this->taskRepo->complete($userSlug, $taskSlug);
-        flash()->success(trans('controller.task_completed'));
+        $task = $this->taskRepo->complete($request, $userSlug, $taskSlug);
 
-        return back();
+        return $task->toJson();
     }
 }

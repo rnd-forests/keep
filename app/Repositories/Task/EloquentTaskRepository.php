@@ -117,13 +117,24 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
             ->paginate($limit);
     }
 
-    public function complete($userSlug, $taskSlug)
+    public function complete($request, $userSlug, $taskSlug)
     {
         $task = $this->findCorrectTaskBySlug($userSlug, $taskSlug);
-        $task->completed = Request::input('completed') ? Request::input('completed') : 0;
-        $task->finished_at = Carbon::now();
+        if ($request->ajax()) {
+            if ($request->has('completed')) {
+                $task->update([
+                    'completed'   => 1,
+                    'finished_at' => Carbon::now()
+                ]);
+            } else {
+                $task->update([
+                    'completed'   => 0,
+                    'finished_at' => null
+                ]);
+            }
+        }
 
-        return $task->save();
+        return $task;
     }
 
     public function syncTags($task, array $tags)

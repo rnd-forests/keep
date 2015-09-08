@@ -17,7 +17,7 @@ interface TaskRepositoryInterface
     public function forceDelete($slug);
     public function fetchTrashedTasks($limit);
     public function findTrashedTaskBySlug($slug);
-    public function complete($userSlug, $taskSlug);
+    public function complete($request, $userSlug, $taskSlug);
     public function syncTags($task, array $tags);
     public function associatePriority($task, $priorityId);
     public function fetchUserUrgentTasks($user);

@@ -70,15 +70,6 @@ class Task extends Model implements
         return Carbon::parse($date)->format('m/d/Y h:i A');
     }
 
-    public function setFinishedAtAttribute($date)
-    {
-        if (!$this->isCompleted()) {
-            $this->attributes['finished_at'] = Carbon::parse($date);
-        } else {
-            $this->attributes['finished_at'] = null;
-        }
-    }
-
     public function getTagListAttribute()
     {
         return $this->tags->lists('id')->all();

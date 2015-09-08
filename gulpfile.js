@@ -22,7 +22,10 @@ elixir(function (mix) {
         "vendor/summernote/summernote.min.js",
         "vendor/summernote/summernote-fontstyle.js",
         "vendor/summernote/summernote-video.js",
-        "application.js"
+        "application.js",
+        "task.js",
+        "search.js",
+        "plugins.js"
     ]);
 
     mix.version(["public/css/all.css", "public/js/all.js"]);

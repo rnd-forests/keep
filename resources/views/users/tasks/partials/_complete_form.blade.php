@@ -1,6 +1,16 @@
-{!! Form::model($task, ['method' => 'PATCH', 'route' => ['member::tasks.complete', $user, $task]]) !!}
-    <div class="checkbox">
-        <label>{!! Form::checkbox('completed') !!} Check is box to mark your task as completed</label>
+<div class="modal fade" id="task-complete-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title"></p>
+            </div>
+        </div>
     </div>
-    {!! Form::submit('Change', ['class' => 'btn btn-sm btn-primary']) !!}
+</div>
+
+{!! Form::model($task, ['method' => 'PATCH', 'route' => ['member::tasks.complete', $user, $task], 'id' => 'task-complete-form']) !!}
+    <div class="switch">
+        {!! Form::checkbox('completed', 1, null, ['id' => 'completed', 'class' => 'cmn-toggle cmn-toggle-round-flat']) !!}
+        <label for="completed"></label>
+    </div>
 {!! Form::close() !!}
