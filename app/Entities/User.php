@@ -30,7 +30,6 @@ class User extends Model implements
         SluggableTrait,
         SoftDeletes,
         EntrustUserTrait {
-            // Resolving method conflict
             EntrustUserTrait::can insteadof Authorizable;
         }
 

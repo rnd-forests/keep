@@ -8,7 +8,7 @@ use Keep\Jobs\ActivateUserAccount;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\RegistrationRequest;
 use Keep\Http\Requests\InitializeSessionRequest;
-use Keep\Entities\Concerns\Authentication\ThrottlesLogins;
+use Keep\Entities\Concerns\Auth\ThrottlesLogins;
 
 class AuthController extends Controller
 {
@@ -66,7 +66,7 @@ class AuthController extends Controller
     public function postLogin(InitializeSessionRequest $request)
     {
         $throttles = app(ThrottlesLogins::class);
-        
+
         if ($throttles->hasTooManyLoginAttempts($request)) {
             return $throttles->sendLockoutResponse($request);
         }
