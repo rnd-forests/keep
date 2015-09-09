@@ -2,7 +2,7 @@
     <ul class="list-group">
         <li class="list-group-item">
             <div class="text-center">
-                @include('users.partials._avatar', ['size' => 180])
+                @include('users.account.partials._avatar', ['size' => 180])
                 <h2 class="username">{{ $user->name }}</h2>
             </div>
         </li>

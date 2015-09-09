@@ -34,6 +34,6 @@ class SearchController extends Controller
         $pattern = app('request')->get('q');
         $tasks = $this->search->tasksByTitle($user, $pattern);
 
-        return view('users.search', compact('user', 'pattern', 'tasks'));
+        return view('users.tasks.search', compact('user', 'pattern', 'tasks'));
     }
 }

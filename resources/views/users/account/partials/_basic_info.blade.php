@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <ul class="list-group">
         <li class="list-group-item">
-            @include('users.partials._avatar', ['size' => 180])
+            @include('users.account.partials._avatar', ['size' => 180])
             <h2 class="text-center">{{ $user->name }}</h2>
         </li>
         <li class="list-group-item">

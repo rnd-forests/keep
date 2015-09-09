@@ -43,7 +43,7 @@
                                 <div class="well">
                                     <div class="media">
                                         <div class="media-left">
-                                            @include('users.partials._avatar')
+                                            @include('users.account.partials._avatar')
                                         </div>
                                         <div class="media-body">
                                             <h5 class="media-heading">{{ $user->name  }}</h5>

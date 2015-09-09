@@ -1,10 +1,10 @@
 <div class="form-group">
-    {!! Form::label('title', 'Task Header', ['class' => 'control-label']) !!}
+    {!! Form::label('title', 'Title', ['class' => 'control-label']) !!}
     {!! Form::text('title', null, ['class' => 'form-control input-lg']) !!}
     {!! error_text($errors, 'title') !!}
 </div>
 <div class="form-group summernote-container">
-    {!! Form::label('content', 'Task Details', ['class' => 'control-label']) !!}
+    {!! Form::label('content', 'Details', ['class' => 'control-label']) !!}
     {!! Form::textarea('content', null, ['id' => 'summernote']) !!}
     {!! error_text($errors, 'content') !!}
 </div>

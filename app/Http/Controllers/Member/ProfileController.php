@@ -32,7 +32,7 @@ class ProfileController extends Controller
     {
         $user = $this->userRepo->findBySlug($slug);
 
-        return view('users.profile', compact('user'));
+        return view('users.account.profile', compact('user'));
     }
 
     /**
@@ -45,7 +45,7 @@ class ProfileController extends Controller
     {
         $user = $this->userRepo->findBySlug($slug);
 
-        return view('users.account', compact('user'));
+        return view('users.account.account', compact('user'));
     }
 
     /**
@@ -58,7 +58,7 @@ class ProfileController extends Controller
     {
         $user = $this->userRepo->findBySlug($slug);
 
-        return view('users.edit_profile', compact('user'));
+        return view('users.account.edit_profile', compact('user'));
     }
 
     /**
