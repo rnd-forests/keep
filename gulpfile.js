@@ -1,6 +1,6 @@
 var elixir = require("laravel-elixir");
 
-elixir(function (mix) {
+elixir(function(mix) {
     mix.sass("application.scss", "public/css/application.css");
     mix.less("bootstrap/bootstrap.less", "public/css/bootstrap.css");
 
@@ -25,5 +25,8 @@ elixir(function (mix) {
         "application.js"
     ]);
 
-    mix.version(["public/css/all.css", "public/js/all.js"]);
+    mix.version([
+        "public/css/all.css",
+        "public/js/all.js"
+    ]);
 });

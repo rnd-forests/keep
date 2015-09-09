@@ -24,7 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerMailer();
-        $this->registerArtisanGenerator();
     }
 
     /**
@@ -62,15 +61,5 @@ class AppServiceProvider extends ServiceProvider
             \Keep\Mailers\Contracts\MailerInterface::class,
             \Keep\Mailers\Mailer::class
         );
-    }
-
-    /**
-     * Register artisan generator service provider for local development.
-     */
-    protected function registerArtisanGenerator()
-    {
-        if ($this->app->environment() == 'local') {
-            $this->app->register(\Laracasts\Generators\GeneratorsServiceProvider::class);
-        }
     }
 }
