@@ -17,7 +17,7 @@ elixir(function(mix) {
         "vendor/moment.min.js",
         "vendor/bootstrap.min.js",
         "vendor/chart.min.js",
-        "vendor/datetimepicker.min.js",
+        "vendor/datepicker.min.js",
         "vendor/select2.min.js",
         "vendor/summernote/summernote.min.js",
         "vendor/summernote/summernote-fontstyle.js",

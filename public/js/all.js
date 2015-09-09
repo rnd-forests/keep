@@ -96,8 +96,7 @@ var Keep = (function() {
                 toolbar: [
                     ['action', ['undo', 'redo', 'fullscreen', 'codeview']],
                     ['fontsize', ['fontsize']],
-                    ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
-                    ['fontname', ['fontname']],
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
                     ['color', ['color']],
                     ['layout', ['ul', 'ol']],
                     ['para', ['paragraph']],
