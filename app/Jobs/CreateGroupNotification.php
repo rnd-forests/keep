@@ -12,8 +12,8 @@ class CreateGroupNotification extends NotificationRelations implements SelfHandl
      */
     public function handle()
     {
-        $notification = parent::$notiRepo->create($this->getNotificationRequestData());
-        $groups = parent::$groupRepo->fetchGroupsByIds($this->getGroupListRequestData());
+        $notification = parent::$notifications->create($this->getNotificationRequestData());
+        $groups = parent::$groups->fetchGroupsByIds($this->getGroupListRequestData());
         $this->setNotificationPolymorphic($notification, $groups);
     }
 }

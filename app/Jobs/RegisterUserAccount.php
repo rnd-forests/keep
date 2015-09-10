@@ -4,19 +4,12 @@ namespace Keep\Jobs;
 
 use Keep\Events\UserHasRegistered;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
 
 class RegisterUserAccount extends Job implements SelfHandling
 {
     protected $name, $email, $password;
 
-    /**
-     * Create a new job instance.
-     *
-     * @param   $name
-     * @param   $email
-     * @param   $password
-     */
     public function __construct($name, $email, $password)
     {
         $this->name = $name;
@@ -27,10 +20,10 @@ class RegisterUserAccount extends Job implements SelfHandling
     /**
      * Register new account.
      *
-     * @param UserRepo $users
+     * @param UserRepository $users
      * @return bool
      */
-    public function handle(UserRepo $users)
+    public function handle(UserRepository $users)
     {
         $credentials = [
             'name'     => $this->name,

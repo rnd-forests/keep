@@ -7,21 +7,15 @@ use Keep\OAuth\Contracts\OAuthUserListener;
 use Keep\OAuth\Contracts\ExtractableProviderData;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 use Laravel\Socialite\Contracts\User as SocialiteUser;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
 
 abstract class OpenAuthentication implements ExtractableProviderData
 {
-    protected $userRepo, $socialite;
+    protected $users, $socialite;
 
-    /**
-     * Constructor.
-     *
-     * @param UserRepo $userRepo
-     * @param Socialite $socialite
-     */
-    public function __construct(UserRepo $userRepo, Socialite $socialite)
+    public function __construct(UserRepository $users, Socialite $socialite)
     {
-        $this->userRepo = $userRepo;
+        $this->users = $users;
         $this->socialite = $socialite;
     }
 
@@ -41,7 +35,7 @@ abstract class OpenAuthentication implements ExtractableProviderData
             return $this->getAuthorizationUrl($provider);
         }
         $data = $this->handleProviderCallback($provider);
-        $user = $this->userRepo->findOrCreateNew($this->getUserProviderData($data), $provider);
+        $user = $this->users->findOrCreateNew($this->getUserProviderData($data), $provider);
         if (!$user) {
             throw new InvalidUserException($message);
         }

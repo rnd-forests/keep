@@ -5,15 +5,15 @@ namespace Keep\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Keep\Exceptions\InvalidUserException;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
 
 class RedirectIfNotCorrectUser
 {
     protected $users, $auth;
 
-    public function __construct(UserRepo $userRepo, Guard $auth)
+    public function __construct(UserRepository $users, Guard $auth)
     {
-        $this->users = $userRepo;
+        $this->users = $users;
         $this->auth = $auth;
     }
 

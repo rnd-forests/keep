@@ -3,7 +3,7 @@
 namespace Keep\Console\Commands;
 
 use Illuminate\Console\Command;
-use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepo;
+use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepository;
 
 class ClearOldNotifications extends Command
 {
@@ -11,22 +11,12 @@ class ClearOldNotifications extends Command
     protected $signature = 'keep:clear-old-notifications';
     protected $description = 'Clear old notifications.';
 
-    /**
-     * Create a new command instance.
-     *
-     * @param NotificationRepo $notifications
-     */
-    public function __construct(NotificationRepo $notifications)
+    public function __construct(NotificationRepository $notifications)
     {
         $this->notifications = $notifications;
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
     public function handle()
     {
         $oldNotifications = $this->notifications->fetchOldNotifications();

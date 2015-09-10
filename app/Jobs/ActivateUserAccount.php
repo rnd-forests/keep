@@ -3,17 +3,12 @@
 namespace Keep\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
 
 class ActivateUserAccount extends Job implements SelfHandling
 {
     protected $code;
-
-    /**
-     * Create a new job instance.
-     *
-     * @param $code
-     */
+    
     public function __construct($code)
     {
         $this->code = $code;
@@ -22,10 +17,10 @@ class ActivateUserAccount extends Job implements SelfHandling
     /**
      * Activate user account.
      *
-     * @param UserRepo $users
+     * @param UserRepository $users
      * @return bool
      */
-    public function handle(UserRepo $users)
+    public function handle(UserRepository $users)
     {
         $user = $users->findByActivationCode($this->code);
         if ($this->isActivatable($user)) {

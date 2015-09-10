@@ -9,19 +9,11 @@ class AuthenticateUser extends Job implements SelfHandling
 {
     protected $email, $password, $active, $remember;
 
-    /**
-     * Create a new job instance.
-     *
-     * @param $email
-     * @param $password
-     * @param $active
-     * @param $remember
-     */
     public function __construct($email, $password, $active, $remember)
     {
         $this->email = $email;
-        $this->password = $password;
         $this->active = $active;
+        $this->password = $password;
         $this->remember = $remember;
     }
 

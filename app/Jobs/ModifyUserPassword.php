@@ -8,13 +8,6 @@ class ModifyUserPassword extends Job implements SelfHandling
 {
     protected $user, $oldPassword, $newPassword;
 
-    /**
-     * Create a new job instance.
-     *
-     * @param $user
-     * @param $old_password
-     * @param $new_password
-     */
     public function __construct($user, $old_password, $new_password)
     {
         $this->user = $user;

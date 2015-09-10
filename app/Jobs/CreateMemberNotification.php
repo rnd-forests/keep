@@ -12,8 +12,8 @@ class CreateMemberNotification extends NotificationRelations implements SelfHand
      */
     public function handle()
     {
-        $notification = parent::$notiRepo->create($this->getNotificationRequestData());
-        $users = parent::$userRepo->fetchUsersByIds($this->getUserListRequestData());
+        $notification = parent::$notifications->create($this->getNotificationRequestData());
+        $users = parent::$users->fetchUsersByIds($this->getUserListRequestData());
         $this->setNotificationPolymorphic($notification, $users);
     }
 }

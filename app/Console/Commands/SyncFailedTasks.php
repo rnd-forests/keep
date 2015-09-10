@@ -3,7 +3,7 @@
 namespace Keep\Console\Commands;
 
 use Illuminate\Console\Command;
-use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepo;
+use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepository;
 
 class SyncFailedTasks extends Command
 {
@@ -11,22 +11,12 @@ class SyncFailedTasks extends Command
     protected $signature = 'keep:sync-failed-tasks';
     protected $description = 'Find/Recover failed tasks in entire database.';
 
-    /**
-     * Create a new command instance.
-     *
-     * @param TaskRepo $tasks
-     */
-    public function __construct(TaskRepo $tasks)
+    public function __construct(TaskRepository $tasks)
     {
         $this->tasks = $tasks;
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
     public function handle()
     {
         $this->error(plural2('task', 'failed', $this->tasks->findAndUpdateFailedTasks()) . ' found.');

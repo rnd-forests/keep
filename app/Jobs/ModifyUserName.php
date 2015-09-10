@@ -8,13 +8,6 @@ class ModifyUserName extends Job implements SelfHandling
 {
     protected $user, $oldUsername, $newUsername;
 
-    /**
-     * Create a new job instance.
-     *
-     * @param $user
-     * @param $old_username
-     * @param $new_username
-     */
     public function __construct($user, $old_username, $new_username)
     {
         $this->user = $user;
@@ -33,7 +26,7 @@ class ModifyUserName extends Job implements SelfHandling
             return false;
         }
 
-        return $this->setNewUsername();
+        return $this->setNewName();
     }
 
     /**
@@ -51,7 +44,7 @@ class ModifyUserName extends Job implements SelfHandling
      *
      * @return bool
      */
-    protected function setNewUsername()
+    protected function setNewName()
     {
         $this->user->name = $this->newUsername;
 
