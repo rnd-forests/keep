@@ -32,7 +32,7 @@ class EmailUpcomingTasks extends Command
      */
     public function handle()
     {
-        $upcomingTasks = $this->tasks->fetchUserUpcomingTasks();
+        $upcomingTasks = $this->tasks->fetchUpcomingTasks();
         $this->output->progressStart(counting($upcomingTasks));
         $upcomingTasks->each(function ($task) {
             $this->mailer->emailUpcomingTask($task->user, $task);

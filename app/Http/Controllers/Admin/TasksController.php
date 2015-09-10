@@ -3,20 +3,15 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepo;
+use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepository;
 
 class TasksController extends Controller
 {
-    protected $taskRepo;
+    protected $tasks;
 
-    /**
-     * Create new tasks controller instance.
-     *
-     * @param TaskRepo $taskRepo
-     */
-    public function __construct(TaskRepo $taskRepo)
+    public function __construct(TaskRepository $tasks)
     {
-        $this->taskRepo = $taskRepo;
+        $this->tasks = $tasks;
     }
 
     /**
@@ -29,7 +24,7 @@ class TasksController extends Controller
         $request = app('request');
         $sortBy = $request->get('sortBy');
         $direction = $request->get('direction');
-        $tasks = $this->taskRepo->fetchPaginatedTasks(compact('sortBy', 'direction'), 50);
+        $tasks = $this->tasks->fetchPaginatedTasks(compact('sortBy', 'direction'), 50);
 
         return view('admin.tasks.published_tasks', compact('tasks'));
     }
@@ -42,7 +37,7 @@ class TasksController extends Controller
      */
     public function showTask($slug)
     {
-        $task = $this->taskRepo->findBySlug($slug);
+        $task = $this->tasks->findBySlug($slug);
 
         return view('admin.tasks.task_details', compact('task'));
     }
@@ -55,7 +50,7 @@ class TasksController extends Controller
      */
     public function softDelete($slug)
     {
-        $this->taskRepo->softDelete($slug);
+        $this->tasks->softDelete($slug);
         flash()->info(trans('administrator.task_trashed'));
 
         return back();
@@ -68,7 +63,7 @@ class TasksController extends Controller
      */
     public function trashedTasks()
     {
-        $trashedTasks = $this->taskRepo->fetchTrashedTasks(50);
+        $trashedTasks = $this->tasks->fetchTrashedTasks(50);
 
         return view('admin.tasks.trashed_tasks', compact('trashedTasks'));
     }
@@ -81,7 +76,7 @@ class TasksController extends Controller
      */
     public function restoreTask($slug)
     {
-        $this->taskRepo->restore($slug);
+        $this->tasks->restore($slug);
         flash()->info(trans('administrator.task_restored'));
 
         return back();
@@ -95,7 +90,7 @@ class TasksController extends Controller
      */
     public function forceDeleteTask($slug)
     {
-        $this->taskRepo->forceDelete($slug);
+        $this->tasks->forceDelete($slug);
         flash()->info(trans('administrator.task_destroyed'));
 
         return back();

@@ -6,20 +6,15 @@ use Keep\Http\Controllers\Controller;
 use Keep\Jobs\CreateGroupNotification;
 use Keep\Jobs\CreateMemberNotification;
 use Keep\Http\Requests\NotificationRequest;
-use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepo;
+use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepository;
 
 class NotificationsController extends Controller
 {
-    protected $notificationRepo;
+    protected $notifications;
 
-    /**
-     * Create new notifications controller instance.
-     *
-     * @param NotificationRepo $notificationRepo
-     */
-    public function __construct(NotificationRepo $notificationRepo)
+    public function __construct(NotificationRepository $notifications)
     {
-        $this->notificationRepo = $notificationRepo;
+        $this->notifications = $notifications;
     }
 
     /**
@@ -29,7 +24,7 @@ class NotificationsController extends Controller
      */
     public function index()
     {
-        $notifications = $this->notificationRepo->fetchPaginatedNotifications(20);
+        $notifications = $this->notifications->fetchPaginatedNotifications(20);
 
         return view('admin.notifications.index', compact('notifications'));
     }
@@ -42,7 +37,7 @@ class NotificationsController extends Controller
      */
     public function destroy($slug)
     {
-        $this->notificationRepo->delete($slug);
+        $this->notifications->delete($slug);
         flash()->info(trans('administrator.notification_destroyed'));
 
         return redirect()->route('admin::notifications.all');

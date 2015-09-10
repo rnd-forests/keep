@@ -8,10 +8,10 @@ Route::group(['prefix' => '{users}', 'as' => 'member::', 'namespace' => 'Member'
     Route::delete('', ['as' => 'destroy', 'uses' => 'ProfileController@destroy']);
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@dashboard']);
 
-    Route::get('tasks/all', ['as' => 'tasks.all', 'uses' => 'DashboardController@allTasks']);
-    Route::get('tasks/completed', ['as' => 'tasks.completed', 'uses' => 'DashboardController@completedTasks']);
-    Route::get('tasks/failed', ['as' => 'tasks.failed', 'uses' => 'DashboardController@failedTasks']);
-    Route::get('tasks/processing', ['as' => 'tasks.due', 'uses' => 'DashboardController@dueTasks']);
+    Route::get('tasks/all', ['as' => 'tasks.all', 'uses' => 'DashboardController@all']);
+    Route::get('tasks/completed', ['as' => 'tasks.completed', 'uses' => 'DashboardController@completed']);
+    Route::get('tasks/failed', ['as' => 'tasks.failed', 'uses' => 'DashboardController@failed']);
+    Route::get('tasks/processing', ['as' => 'tasks.due', 'uses' => 'DashboardController@processing']);
     Route::patch('tasks/{tasks}/complete', ['as' => 'tasks.complete', 'uses' => 'TasksController@complete']);
 
     Route::get('groups', ['as' => 'groups.all', 'uses' => 'GroupsController@index']);

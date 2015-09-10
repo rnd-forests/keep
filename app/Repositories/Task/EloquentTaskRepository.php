@@ -2,7 +2,6 @@
 
 namespace Keep\Repositories\Task;
 
-use Request;
 use Carbon\Carbon;
 use Keep\Entities\Task;
 use Keep\Entities\User;
@@ -149,7 +148,7 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
         return $task->save();
     }
 
-    public function fetchUserUrgentTasks($user)
+    public function fetchUrgentTasks($user)
     {
         return $user->tasks()
             ->urgent()
@@ -157,7 +156,7 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
             ->get();
     }
 
-    public function fetchUserDeadlineTasks($user)
+    public function fetchDeadlineTasks($user)
     {
         return $user->tasks()
             ->deadline()
@@ -165,7 +164,7 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
             ->get();
     }
 
-    public function fetchUserRecentlyCompletedTasks($user)
+    public function fetchRecentlyCompletedTasks($user)
     {
         return $user->tasks()
             ->recentlyCompleted()
@@ -188,14 +187,14 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
             ->update(['is_failed' => false]);
     }
 
-    public function fetchUserPaginatedTasksCollection($user)
+    public function fetchPaginatedAllTasks($user)
     {
         return $user->tasks()
             ->latest('created_at')
             ->paginate(30);
     }
 
-    public function fetchUserPaginatedCompletedTasks($user)
+    public function fetchPaginatedCompletedTasks($user)
     {
         return $user->tasks()
             ->completed()
@@ -203,7 +202,7 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
             ->paginate(30);
     }
 
-    public function fetchUserPaginatedFailedTasks($user)
+    public function fetchPaginatedFailedTasks($user)
     {
         return $user->tasks()
             ->where('is_failed', 1)
@@ -211,7 +210,7 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
             ->paginate(30);
     }
 
-    public function fetchUserPaginatedDueTasks($user)
+    public function fetchPaginatedDueTasks($user)
     {
         return $user->tasks()
             ->due()
@@ -219,7 +218,7 @@ class EloquentTaskRepository extends EloquentRepository implements TaskRepositor
             ->paginate(30);
     }
 
-    public function fetchUserUpcomingTasks()
+    public function fetchUpcomingTasks()
     {
         return $this->model
             ->upcoming()

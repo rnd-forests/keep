@@ -3,22 +3,16 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Search\Contracts\SearchInterface;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
+use Keep\Search\Contracts\SearchInterface as SearchContract;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
 
 class SearchController extends Controller
 {
-    protected $userRepo, $search;
+    protected $users, $search;
 
-    /**
-     * Create new instance of search controller.
-     *
-     * @param UserRepo $userRepo
-     * @param SearchInterface $search
-     */
-    public function __construct(UserRepo $userRepo, SearchInterface $search)
+    public function __construct(UserRepository $users, SearchContract $search)
     {
-        $this->userRepo = $userRepo;
+        $this->users = $users;
         $this->search = $search;
     }
 
@@ -30,8 +24,8 @@ class SearchController extends Controller
      */
     public function searchTasks($userSlug)
     {
-        $user = $this->userRepo->findBySlug($userSlug);
         $pattern = app('request')->get('q');
+        $user = $this->users->findBySlug($userSlug);
         $tasks = $this->search->tasksByTitle($user, $pattern);
 
         return view('users.tasks.search', compact('user', 'pattern', 'tasks'));

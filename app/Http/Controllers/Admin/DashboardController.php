@@ -3,30 +3,24 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepo;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
-use Keep\Repositories\Group\GroupRepositoryInterface as GroupRepo;
-use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepo;
+use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepository;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Group\GroupRepositoryInterface as GroupRepository;
+use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepository;
 
 class DashboardController extends Controller
 {
     protected $users, $tasks, $groups, $notifications;
 
-    /**
-     * Create new dashboard controller instance.
-     *
-     * @param UserRepo $userRepo
-     * @param TaskRepo $taskRepo
-     * @param GroupRepo $groupRepo
-     * @param NotificationRepo $notificationRepo
-     */
-    public function __construct(UserRepo $userRepo, TaskRepo $taskRepo,
-                                GroupRepo $groupRepo, NotificationRepo $notificationRepo)
+    public function __construct(UserRepository $users,
+                                TaskRepository $tasks,
+                                GroupRepository $groups,
+                                NotificationRepository $notifications)
     {
-        $this->users = $userRepo;
-        $this->tasks = $taskRepo;
-        $this->groups = $groupRepo;
-        $this->notifications = $notificationRepo;
+        $this->users = $users;
+        $this->tasks = $tasks;
+        $this->groups = $groups;
+        $this->notifications = $notifications;
     }
 
     /**

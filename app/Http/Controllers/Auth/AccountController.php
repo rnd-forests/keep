@@ -7,21 +7,17 @@ use Keep\Jobs\ModifyUserPassword;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\ModifyPasswordRequest;
 use Keep\Http\Requests\ModifyUsernameRequest;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
 
 class AccountController extends Controller
 {
-    protected $userRepo;
+    protected $users;
 
-    /**
-     * Create new account controller instance.
-     *
-     * @param UserRepo $userRepo
-     */
-    public function __construct(UserRepo $userRepo)
+    public function __construct(UserRepository $users)
     {
-        $this->userRepo = $userRepo;
+        $this->users = $users;
         $this->middleware('auth');
+        $this->middleware('valid.user');
     }
 
     /**
@@ -34,7 +30,7 @@ class AccountController extends Controller
     public function changePassword($userSlug, ModifyPasswordRequest $request)
     {
         if ($this->dispatchFrom(ModifyUserPassword::class, $request, [
-            'user' => $this->userRepo->findBySlug($userSlug),])
+            'user' => $this->users->findBySlug($userSlug),])
         ) {
             session()->flash('update_password_success', trans('authentication.updated_password_success'));
 
@@ -54,7 +50,7 @@ class AccountController extends Controller
      */
     public function changeUsername($userSlug, ModifyUsernameRequest $request)
     {
-        $user = $this->userRepo->findBySlug($userSlug);
+        $user = $this->users->findBySlug($userSlug);
         if ($this->dispatchFrom(ModifyUserName::class, $request, ['user' => $user])) {
             session()->flash('update_username_success', trans('authentication.update_username_success'));
 

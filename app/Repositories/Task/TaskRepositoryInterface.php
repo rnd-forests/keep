@@ -20,14 +20,14 @@ interface TaskRepositoryInterface
     public function complete($request, $userSlug, $taskSlug);
     public function syncTags($task, array $tags);
     public function associatePriority($task, $priorityId);
-    public function fetchUserUrgentTasks($user);
-    public function fetchUserDeadlineTasks($user);
-    public function fetchUserRecentlyCompletedTasks($user);
+    public function fetchUrgentTasks($user);
+    public function fetchDeadlineTasks($user);
+    public function fetchRecentlyCompletedTasks($user);
     public function findAndUpdateFailedTasks();
     public function recoverFailedTasks();
-    public function fetchUserPaginatedTasksCollection($user);
-    public function fetchUserPaginatedCompletedTasks($user);
-    public function fetchUserPaginatedFailedTasks($user);
-    public function fetchUserPaginatedDueTasks($user);
-    public function fetchUserUpcomingTasks();
+    public function fetchPaginatedAllTasks($user);
+    public function fetchPaginatedCompletedTasks($user);
+    public function fetchPaginatedFailedTasks($user);
+    public function fetchPaginatedDueTasks($user);
+    public function fetchUpcomingTasks();
 }

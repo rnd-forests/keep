@@ -3,22 +3,17 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Tag\TagRepositoryInterface as TagRepo;
+use Keep\Repositories\Tag\TagRepositoryInterface as TagRepository;
 
 class TagsController extends Controller
 {
-    protected $tagRepo;
+    protected $tags;
 
-    /**
-     * Create new tags controller instance.
-     *
-     * @param TagRepo $tagRepo
-     */
-    public function __construct(TagRepo $tagRepo)
+    public function __construct(TagRepository $tags)
     {
-        $this->tagRepo = $tagRepo;
+        $this->tags = $tags;
         $this->middleware('auth');
-        $this->middleware('auth.correct');
+        $this->middleware('valid.user');
     }
 
     /**
@@ -29,7 +24,7 @@ class TagsController extends Controller
      */
     public function index($userSlug)
     {
-        $tags = $this->tagRepo->fetchAttachedTags($userSlug);
+        $tags = $this->tags->fetchAttachedTags($userSlug);
 
         return view('users.tags.index', compact('tags'));
     }
@@ -43,8 +38,8 @@ class TagsController extends Controller
      */
     public function show($userSlug, $tagName)
     {
-        $tag = $this->tagRepo->findBySlug($tagName);
-        $tasks = $this->tagRepo->fetchTasksAssociatedWithTag($userSlug, $tagName, 10);
+        $tag = $this->tags->findBySlug($tagName);
+        $tasks = $this->tags->fetchTasksAssociatedWithTag($userSlug, $tagName, 10);
 
         return view('users.tags.show', compact('tag', 'tasks'));
     }

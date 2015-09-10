@@ -3,22 +3,17 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepo;
+use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepository;
 
 class NotificationsController extends Controller
 {
-    protected $notificationRepo;
+    protected $notifications;
 
-    /**
-     * Create new notifications controller instance.
-     *
-     * @param NotificationRepo $notificationRepo
-     */
-    public function __construct(NotificationRepo $notificationRepo)
+    public function __construct(NotificationRepository $notifications)
     {
-        $this->notificationRepo = $notificationRepo;
+        $this->notifications = $notifications;
         $this->middleware('auth');
-        $this->middleware('auth.correct');
+        $this->middleware('valid.user');
     }
 
     /**
@@ -29,7 +24,7 @@ class NotificationsController extends Controller
      */
     public function fetchPersonalNotifications($userSlug)
     {
-        $notifications = $this->notificationRepo->fetchPersonalNotifications($userSlug);
+        $notifications = $this->notifications->fetchPersonalNotifications($userSlug);
 
         return view('users.notifications.personal', compact('notifications'));
     }
@@ -42,7 +37,7 @@ class NotificationsController extends Controller
      */
     public function fetchGroupNotifications($userSlug)
     {
-        $notifications = $this->notificationRepo->fetchGroupNotifications($userSlug);
+        $notifications = $this->notifications->fetchGroupNotifications($userSlug);
 
         return view('users.notifications.groups', compact('notifications'));
     }

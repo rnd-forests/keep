@@ -6,25 +6,19 @@ use Illuminate\Http\Request;
 use Keep\Events\TaskHasPublished;
 use Keep\Http\Requests\TaskRequest;
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepo;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
+use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepository;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
 
 class TasksController extends Controller
 {
-    protected $userRepo, $taskRepo;
+    protected $users, $tasks;
 
-    /**
-     * Create a new user-task controller instance.
-     *
-     * @param UserRepo $userRepo
-     * @param TaskRepo $taskRepo
-     */
-    public function __construct(UserRepo $userRepo, TaskRepo $taskRepo)
+    public function __construct(UserRepository $users, TaskRepository $tasks)
     {
-        $this->userRepo = $userRepo;
-        $this->taskRepo = $taskRepo;
+        $this->users = $users;
+        $this->tasks = $tasks;
         $this->middleware('auth');
-        $this->middleware('auth.correct');
+        $this->middleware('valid.user');
     }
 
     /**
@@ -35,7 +29,7 @@ class TasksController extends Controller
      */
     public function create($userSlug)
     {
-        $user = $this->userRepo->findBySlug($userSlug);
+        $user = $this->users->findBySlug($userSlug);
 
         return view('users.tasks.create', compact('user'));
     }
@@ -49,7 +43,7 @@ class TasksController extends Controller
      */
     public function store($userSlug, TaskRequest $request)
     {
-        $author = $this->userRepo->findBySlug($userSlug);
+        $author = $this->users->findBySlug($userSlug);
         $task = $author->tasks()->save($this->createTask($request));
         event(new TaskHasPublished($author, $task));
         flash()->success(trans('controller.task_created'));
@@ -65,7 +59,7 @@ class TasksController extends Controller
      */
     private function createTask(TaskRequest $request)
     {
-        $task = $this->taskRepo->create($request->all());
+        $task = $this->tasks->create($request->all());
         $this->setRelations($task, $request);
 
         return $task;
@@ -79,8 +73,8 @@ class TasksController extends Controller
      */
     private function setRelations($task, TaskRequest $request)
     {
-        $this->taskRepo->syncTags($task, $request->input('tag_list', []));
-        $this->taskRepo->associatePriority($task, $request->input('priority_level'));
+        $this->tasks->syncTags($task, $request->input('tag_list', []));
+        $this->tasks->associatePriority($task, $request->input('priority_level'));
     }
 
     /**
@@ -92,8 +86,8 @@ class TasksController extends Controller
      */
     public function show($userSlug, $taskSlug)
     {
-        $user = $this->userRepo->findBySlug($userSlug);
-        $task = $this->taskRepo->findCorrectTaskBySlug($userSlug, $taskSlug);
+        $user = $this->users->findBySlug($userSlug);
+        $task = $this->tasks->findCorrectTaskBySlug($userSlug, $taskSlug);
 
         return view('users.tasks.show', compact('task', 'user'));
     }
@@ -107,8 +101,8 @@ class TasksController extends Controller
      */
     public function edit($userSlug, $taskSlug)
     {
-        $user = $this->userRepo->findBySlug($userSlug);
-        $task = $this->taskRepo->findCorrectTaskBySlug($userSlug, $taskSlug);
+        $user = $this->users->findBySlug($userSlug);
+        $task = $this->tasks->findCorrectTaskBySlug($userSlug, $taskSlug);
 
         return view('users.tasks.edit', compact('user', 'task'));
     }
@@ -123,11 +117,11 @@ class TasksController extends Controller
      */
     public function update(TaskRequest $request, $userSlug, $taskSlug)
     {
-        $task = $this->taskRepo->update($request->all(), $userSlug, $taskSlug);
+        $task = $this->tasks->update($request->all(), $userSlug, $taskSlug);
         $this->setRelations($task, $request);
         flash()->info(trans('controller.task_updated'));
 
-        return redirect()->route('member::dashboard', $this->userRepo->findBySlug($userSlug));
+        return redirect()->route('member::dashboard', $this->users->findBySlug($userSlug));
     }
 
     /**
@@ -139,7 +133,7 @@ class TasksController extends Controller
      */
     public function destroy($userSlug, $taskSlug)
     {
-        $this->taskRepo->deleteWithUserConstraint($userSlug, $taskSlug);
+        $this->tasks->deleteWithUserConstraint($userSlug, $taskSlug);
         flash()->success(trans('controller.task_deleted'));
 
         return redirect()->route('member::dashboard', $userSlug);
@@ -154,7 +148,7 @@ class TasksController extends Controller
      */
     public function complete(Request $request, $userSlug, $taskSlug)
     {
-        $task = $this->taskRepo->complete($request, $userSlug, $taskSlug);
+        $task = $this->tasks->complete($request, $userSlug, $taskSlug);
 
         return $task->toJson();
     }

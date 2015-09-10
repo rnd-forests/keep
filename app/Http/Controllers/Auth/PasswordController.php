@@ -10,17 +10,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PasswordController extends Controller
 {
-    protected $passwords, $subject;
+    protected $passwords;
 
-    /**
-     * Create a new password controller instance.
-     *
-     * @param PasswordBroker $passwords
-     */
     public function __construct(PasswordBroker $passwords)
     {
         $this->passwords = $passwords;
-        $this->subject = trans('authentication.password_reset_email_subject');
         $this->middleware('guest');
     }
 
@@ -45,12 +39,11 @@ class PasswordController extends Controller
         $this->validate($request, ['email' => 'required|email']);
 
         $response = $this->passwords->sendResetLink($request->only('email'), function ($message) {
-            $message->subject($this->subject);
+            $message->subject(trans('authentication.password_reset_email_subject'));
         });
 
         if ($response == PasswordBroker::RESET_LINK_SENT) {
             flash()->success(trans('authentication.password_reset_email'));
-
             return redirect()->home();
         }
 
@@ -65,9 +58,7 @@ class PasswordController extends Controller
      */
     public function getReset($token = null)
     {
-        if (is_null($token)) {
-            throw new NotFoundHttpException();
-        }
+        if (is_null($token)) throw new NotFoundHttpException();
 
         return view('auth.reset')->with('token', $token);
     }
@@ -92,12 +83,10 @@ class PasswordController extends Controller
 
         if ($response == PasswordBroker::PASSWORD_RESET) {
             flash()->success(trans('authentication.password_reset'));
-
             return redirect()->home();
         }
 
-        return back()
-            ->withInput($request->only('email'))
+        return back()->withInput($request->only('email'))
             ->withErrors(['email' => trans($response)]);
     }
 }

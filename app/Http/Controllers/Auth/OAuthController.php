@@ -11,9 +11,6 @@ use Keep\OAuth\Contracts\OpenAuthenticatable;
 
 class OAuthController extends Controller implements OAuthUserListener
 {
-    /**
-     * Create new oauth controller instance.
-     */
     public function __construct()
     {
         $this->middleware('guest');

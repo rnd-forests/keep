@@ -3,25 +3,19 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
-use Keep\Repositories\Priority\PriorityRepositoryInterface as PriorityRepo;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Priority\PriorityRepositoryInterface as PriorityRepository;
 
 class PrioritiesController extends Controller
 {
-    protected $priorityRepo, $userRepo;
+    protected $users, $priorities;
 
-    /**
-     * Create new priorities controller instance.
-     *
-     * @param PriorityRepo $priorityRepo
-     * @param UserRepo $userRepo
-     */
-    public function __construct(PriorityRepo $priorityRepo, UserRepo $userRepo)
+    public function __construct(UserRepository $users, PriorityRepository $priorities)
     {
-        $this->priorityRepo = $priorityRepo;
-        $this->userRepo = $userRepo;
+        $this->users = $users;
+        $this->priorities = $priorities;
         $this->middleware('auth');
-        $this->middleware('auth.correct');
+        $this->middleware('valid.user');
     }
 
     /**
@@ -32,8 +26,8 @@ class PrioritiesController extends Controller
      */
     public function index($userSlug)
     {
-        $user = $this->userRepo->findBySlug($userSlug);
-        $priorities = $this->priorityRepo->fetchAll();
+        $user = $this->users->findBySlug($userSlug);
+        $priorities = $this->priorities->fetchAll();
 
         return view('users.priorities.index', compact('user', 'priorities'));
     }
@@ -47,8 +41,8 @@ class PrioritiesController extends Controller
      */
     public function show($userSlug, $priorityName)
     {
-        $priority = $this->priorityRepo->findByName($priorityName);
-        $tasks = $this->priorityRepo->fetchTasksAssociatedWithPriority($userSlug, $priorityName, 10);
+        $priority = $this->priorities->findByName($priorityName);
+        $tasks = $this->priorities->fetchTasksAssociatedWithPriority($userSlug, $priorityName, 10);
 
         return view('users.priorities.show', compact('priority', 'tasks'));
     }

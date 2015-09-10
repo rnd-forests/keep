@@ -3,25 +3,19 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepo;
-use Keep\Repositories\Group\GroupRepositoryInterface as GroupRepo;
+use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Group\GroupRepositoryInterface as GroupRepository;
 
 class GroupsController extends Controller
 {
-    protected $userRepo, $groupRepo;
+    protected $users, $groups;
 
-    /**
-     * Create new user-group controller instance.
-     *
-     * @param UserRepo $userRepo
-     * @param GroupRepo $groupRepo
-     */
-    public function __construct(UserRepo $userRepo, GroupRepo $groupRepo)
+    public function __construct(UserRepository $users, GroupRepository $groups)
     {
-        $this->userRepo = $userRepo;
-        $this->groupRepo = $groupRepo;
+        $this->users = $users;
+        $this->groups = $groups;
         $this->middleware('auth');
-        $this->middleware('auth.correct');
+        $this->middleware('valid.user');
     }
 
     /**
@@ -32,7 +26,7 @@ class GroupsController extends Controller
      */
     public function index($userSlug)
     {
-        $groups = $this->groupRepo->fetchGroupsOfUser($userSlug);
+        $groups = $this->groups->fetchGroupsOfUser($userSlug);
 
         return view('users.groups.index', compact('groups'));
     }
@@ -46,9 +40,9 @@ class GroupsController extends Controller
      */
     public function show($userSlug, $groupSlug)
     {
-        $user = $this->userRepo->findBySlug($userSlug);
-        $group = $this->groupRepo->findBySlug($groupSlug);
-        $members = $this->groupRepo->fetchMembersOfGroup($groupSlug);
+        $user = $this->users->findBySlug($userSlug);
+        $group = $this->groups->findBySlug($groupSlug);
+        $members = $this->groups->fetchMembersOfGroup($groupSlug);
 
         return view('users.groups.show', compact('user', 'group', 'members'));
     }

@@ -12,11 +12,11 @@ use Keep\Entities\Concerns\Auth\ThrottlesLogins;
 
 class AuthController extends Controller
 {
-    /**
-     * Create new authentication controller instance.
-     */
-    public function __construct()
+    protected $throttles;
+
+    public function __construct(ThrottlesLogins $throttles)
     {
+        $this->throttles = $throttles;
         $this->middleware('guest', ['except' => 'logout']);
     }
 
@@ -40,7 +40,6 @@ class AuthController extends Controller
     {
         if ($this->dispatchFrom(RegisterUserAccount::class, $request)) {
             flash()->info(trans('authentication.account_activation'));
-
             return redirect()->home();
         }
 
@@ -65,10 +64,8 @@ class AuthController extends Controller
      */
     public function postLogin(InitializeSessionRequest $request)
     {
-        $throttles = app(ThrottlesLogins::class);
-
-        if ($throttles->hasTooManyLoginAttempts($request)) {
-            return $throttles->sendLockoutResponse($request);
+        if ($this->throttles->hasTooManyLoginAttempts($request)) {
+            return $this->throttles->sendLockoutResponse($request);
         }
 
         if ($this->dispatchFrom(AuthenticateUser::class, $request, [
@@ -76,12 +73,11 @@ class AuthController extends Controller
             'remember' => $request->has('remember'),])
         ) {
             flash()->success(trans('authentication.login_success'));
-            $throttles->clearLoginAttempts($request);
-
+            $this->throttles->clearLoginAttempts($request);
             return redirect()->intended('/');
         }
         session()->flash('login_error', trans('authentication.login_error'));
-        $throttles->incrementLoginAttempts($request);
+        $this->throttles->incrementLoginAttempts($request);
 
         return redirect()->route('auth::login')->withInput($request->only('email', 'remember'));
     }
@@ -109,7 +105,6 @@ class AuthController extends Controller
     {
         if ($this->dispatch(new ActivateUserAccount($code))) {
             flash()->success(trans('authentication.activation_success'));
-
             return redirect()->home();
         }
         flash()->warning(trans('authentication.activation_error'));
