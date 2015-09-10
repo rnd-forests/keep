@@ -13,7 +13,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        //
+        \Keep\Entities\User::class => \Keep\Policies\UserPolicy::class,
+        \Keep\Entities\Task::class => \Keep\Policies\TaskPolicy::class,
     ];
 
     /**
@@ -25,6 +26,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(GateContract $gate)
     {
         parent::registerPolicies($gate);
-        //
     }
 }

@@ -39,6 +39,13 @@ class UsersTableSeeder extends Seeder
             })
         );
 
+        
+        $moon = factory(Keep\Entities\User::class, 1)->create([
+            'name'  => 'Hang Dang',
+            'email' => 'hangdang.aa@gmail.com'
+        ]);
+        $moon->profile()->save(factory(Keep\Entities\Profile::class)->make());
+
 
         factory(Keep\Entities\User::class, 100)->create()->each(function ($user) use ($tagIds) {
             $user->profile()->save(factory(Keep\Entities\Profile::class)->make());
