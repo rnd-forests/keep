@@ -52,4 +52,26 @@ class UserDashboardService
     {
         return $this->currentUser->tasks()->due()->count();
     }
+
+    /**
+     * Return the percentage of completed tasks.
+     *
+     * @return float
+     */
+    public function completedPercentage()
+    {
+        return round($this->currentUser->tasks()->completed()->count() /
+            $this->currentUser->tasks()->count() * 100);
+    }
+
+    /**
+     * Return the percentage of processing tasks.
+     *
+     * @return float
+     */
+    public function processingPercentage()
+    {
+        return round($this->currentUser->tasks()->due()->count() /
+            $this->currentUser->tasks()->count() * 100);
+    }
 }

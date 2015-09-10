@@ -5,8 +5,8 @@ namespace Keep\Http\Controllers\Auth;
 use Keep\Jobs\UpdateUserName;
 use Keep\Jobs\UpdateUserPassword;
 use Keep\Http\Controllers\Controller;
-use Keep\Http\Requests\UpdatePasswordRequest;
 use Keep\Http\Requests\UpdateNameRequest;
+use Keep\Http\Requests\UpdatePasswordRequest;
 use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
 
 class AccountController extends Controller

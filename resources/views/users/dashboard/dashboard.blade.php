@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 @section('content')
     @inject('counter', 'Keep\Services\UserDashboardService')
-    <div class="row user-dashboard">
+    <div class="col-md-10 col-md-offset-1 user-dashboard">
         <div class="col-md-6">
             @include('users.dashboard.partials._urgent')
             @include('users.dashboard.partials._deadline')

@@ -1,7 +1,6 @@
- <div id="search-keyword-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+ <div id="search-keyword-modal" class="modal fade">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header text-center text-warning">Wrong searching pattern</div>
             <div class="modal-body text-center">Your searching keyword cannot be blank. Try another keyword.</div>
         </div>
     </div>

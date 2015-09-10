@@ -54,4 +54,4 @@
     </div>
 </nav>
 
-@include('admin.layouts.partials.notification_modal')
+@include('admin.notifications.partials._notification_modal')

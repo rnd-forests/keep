@@ -95,7 +95,7 @@ var Keep = (function() {
             };
             new Chart(ctx).Bar(chart, {
                 scaleShowGridLines: false,
-                barValueSpacing: 50,
+                barValueSpacing: 30,
                 barShowStroke: true,
                 barStrokeWidth: 2
             });

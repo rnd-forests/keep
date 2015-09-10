@@ -1,11 +1,12 @@
-<div class="panel panel-warning">
+<div class="panel panel-primary">
     <div class="panel-heading">Deadline</div>
-    <div class="list-group">
+    <ul class="list-group">
         @foreach($deadline as $task)
-            <a class="list-group-item" href="{{ route('member::tasks.show', [$user, $task]) }}">
+            <li class="list-group-item">
                 <h5>{{ $task->title }}</h5>
                 <h6 class="text-warning">{{ remaining_days($task->finishing_date) }}</h6>
-            </a>
+                @include('users.dashboard.partials._controls')
+            </li>
         @endforeach
-    </div>
+    </ul>
 </div>
