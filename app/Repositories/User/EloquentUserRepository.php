@@ -2,6 +2,7 @@
 
 namespace Keep\Repositories\User;
 
+use Gate;
 use Keep\Entities\User;
 use Keep\Repositories\EloquentRepository;
 
@@ -46,9 +47,9 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
     public function create(array $credentials)
     {
         return $this->model->create([
-            'name' => $credentials['name'],
-            'email' => $credentials['email'],
-            'password' => $credentials['password'],
+            'name'            => $credentials['name'],
+            'email'           => $credentials['email'],
+            'password'        => $credentials['password'],
             'activation_code' => str_random(100),
         ]);
     }
@@ -56,6 +57,9 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
     public function updateProfile(array $credentials, $slug)
     {
         $user = $this->findBySlug($slug);
+        if (Gate::denies('updateAccountAndProfile', $user)) {
+            abort(403);
+        }
         $user->profile()->update($credentials);
     }
 
@@ -68,6 +72,9 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
     public function softDelete($slug)
     {
         $user = $this->findBySlug($slug);
+        if (Gate::denies('updateAccountAndProfile', $user)) {
+            abort(403);
+        }
         $user->delete();
     }
 
@@ -114,8 +121,8 @@ class EloquentUserRepository extends EloquentRepository implements UserRepositor
         if (!$user) {
             $user = $this->model->create($userData);
             $user->update([
-                'auth_provider' => $authProvider,
-                'active' => true,
+                'auth_provider'   => $authProvider,
+                'active'          => true,
                 'activation_code' => '',
             ]);
         }
