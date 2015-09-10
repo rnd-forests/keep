@@ -13,7 +13,7 @@ class EloquentTagRepositoryTest extends TestCase
      */
     public function it_initializes_the_repository()
     {
-        $this->repo = app(Keep\Repositories\Tag\EloquentTagRepository::class);
+        $this->repo = app(Keep\Repositories\Tag\AbstractEloquentTagRepository::class);
     }
 
     /** @test */

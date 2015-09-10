@@ -2,7 +2,7 @@
 
 namespace Keep\OAuth\Contracts;
 
-interface ExtractableProviderData
+interface ExtractableProvider
 {
     /**
      * Extract and update user profile from data returned from provider.
@@ -11,5 +11,5 @@ interface ExtractableProviderData
      * @param $data
      * @return mixed
      */
-    public function extractAndUpdateProfile($user, $data);
+    public function extractAndUpdate($user, $data);
 }

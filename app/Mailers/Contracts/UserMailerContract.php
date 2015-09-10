@@ -2,19 +2,8 @@
 
 namespace Keep\Mailers\Contracts;
 
-interface MailerInterface
+interface UserMailerContract
 {
-    /**
-     * Send email to a specific user.
-     *
-     * @param $user
-     * @param $subject
-     * @param $view
-     * @param array $data
-     * @return mixed
-     */
-    public function sendTo($user, $subject, $view, $data = []);
-
     /**
      * Send an email with account activation link to user.
      *
@@ -22,7 +11,7 @@ interface MailerInterface
      * @param $code
      * @return mixed
      */
-    public function emailAccountActivationUrl($user, $code);
+    public function emailActivationLink($user, $code);
 
     /**
      * Send an email to notify users about their new tasks.

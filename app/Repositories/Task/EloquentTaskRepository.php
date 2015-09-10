@@ -6,9 +6,10 @@ use Carbon\Carbon;
 use Keep\Entities\Task;
 use Keep\Entities\User;
 use Keep\Entities\Priority;
-use Keep\Repositories\EloquentRepository;
+use Keep\Repositories\AbstractEloquentRepository;
 
-class EloquentTaskRepository extends EloquentRepository implements TaskRepositoryInterface
+class EloquentTaskRepository extends AbstractEloquentRepository
+    implements TaskRepositoryInterface
 {
     protected $model;
 

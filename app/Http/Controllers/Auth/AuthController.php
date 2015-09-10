@@ -70,7 +70,7 @@ class AuthController extends Controller
 
         if ($this->dispatchFrom(AuthenticateUser::class, $request, [
             'active'   => 1,
-            'remember' => $request->has('remember'),])
+            'remember' => $request->has('remember'), ])
         ) {
             flash()->success(trans('authentication.login_success'));
             $this->throttles->clearLoginAttempts($request);

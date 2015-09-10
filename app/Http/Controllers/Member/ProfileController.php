@@ -3,7 +3,7 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Http\Requests\ModifyProfileRequest;
+use Keep\Http\Requests\UpdateProfileRequest;
 use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
 
 class ProfileController extends Controller
@@ -60,11 +60,11 @@ class ProfileController extends Controller
     /**
      * Update profile.
      *
-     * @param ModifyProfileRequest $request
+     * @param UpdateProfileRequest $request
      * @param $slug
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(ModifyProfileRequest $request, $slug)
+    public function update(UpdateProfileRequest $request, $slug)
     {
         $this->users->updateProfile($request->except(['_method', '_token']), $slug);
         flash()->info(trans('controller.profile_updated'));

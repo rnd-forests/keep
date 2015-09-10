@@ -6,7 +6,7 @@ use Keep\Entities\Task;
 use Keep\Entities\User;
 use Illuminate\Queue\SerializesModels;
 
-class TaskHasPublished extends Event
+class TaskHasPublished extends AbstractEvent
 {
     use SerializesModels;
 

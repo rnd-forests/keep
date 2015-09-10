@@ -1,7 +1,7 @@
 <?php
 
 foreach (File::allFiles(__DIR__ . '/Routes') as $file) {
-    require $file->getPathname();
+    require_once $file->getPathname();
 }
 
 Route::group(['namespace' => 'Application'], function () {

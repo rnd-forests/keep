@@ -5,10 +5,10 @@ namespace Keep\Jobs;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Keep\Jobs\Relations\NotificationRelations;
 
-class CreateGroupNotification extends NotificationRelations implements SelfHandling
+class SendGroupNotification extends NotificationRelations implements SelfHandling
 {
     /**
-     * Create group notification.
+     * Send group notification.
      */
     public function handle()
     {

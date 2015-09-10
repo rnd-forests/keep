@@ -25,18 +25,21 @@ class RegisterUserAccount extends Job implements SelfHandling
      */
     public function handle(UserRepository $users)
     {
-        $credentials = [
-            'name'     => $this->name,
-            'email'    => $this->email,
-            'password' => $this->password,
-        ];
-
-        $user = $users->create($credentials);
+        $user = $users->create($this->getUserData());
         if (!$user) {
             return false;
         }
         event(new UserHasRegistered($user));
 
         return true;
+    }
+
+    protected function getUserData()
+    {
+        return [
+            'name'     => $this->name,
+            'email'    => $this->email,
+            'password' => $this->password,
+        ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Keep\Http\Requests;
 
-class ModifyPasswordRequest extends Request
+class UpdateNameRequest extends AbstractRequest
 {
     public function authorize()
     {
@@ -12,8 +12,8 @@ class ModifyPasswordRequest extends Request
     public function rules()
     {
         return [
-            'old_password' => 'required',
-            'new_password' => 'required|confirmed|min:6',
+            'old_username' => 'required',
+            'new_username' => 'required|different:old_username|max:255',
         ];
     }
 }

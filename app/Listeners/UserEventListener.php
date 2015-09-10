@@ -5,18 +5,13 @@ namespace Keep\Listeners;
 use Illuminate\Events\Dispatcher;
 use Keep\Events\TaskHasPublished;
 use Keep\Events\UserHasRegistered;
-use Keep\Mailers\Contracts\MailerInterface;
+use Keep\Mailers\Contracts\UserMailerContract;
 
 class UserEventListener
 {
     private $mailer;
 
-    /**
-     * Constructor.
-     *
-     * @param MailerInterface $mailer
-     */
-    public function __construct(MailerInterface $mailer)
+    public function __construct(UserMailerContract $mailer)
     {
         $this->mailer = $mailer;
     }
@@ -28,7 +23,7 @@ class UserEventListener
      */
     public function onUserRegister(UserHasRegistered $event)
     {
-        $this->mailer->emailAccountActivationUrl($event->user, $event->user->activation_code);
+        $this->mailer->emailActivationLink($event->user, $event->user->activation_code);
     }
 
     /**

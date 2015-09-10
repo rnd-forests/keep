@@ -5,9 +5,10 @@ namespace Keep\Repositories\Notification;
 use Carbon\Carbon;
 use Keep\Entities\User;
 use Keep\Entities\Notification;
-use Keep\Repositories\EloquentRepository;
+use Keep\Repositories\AbstractEloquentRepository;
 
-class EloquentNotificationRepository extends EloquentRepository implements NotificationRepositoryInterface
+class EloquentNotificationRepository extends AbstractEloquentRepository
+    implements NotificationRepositoryInterface
 {
     protected $model;
 

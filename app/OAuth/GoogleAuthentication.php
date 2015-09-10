@@ -4,7 +4,7 @@ namespace Keep\OAuth;
 
 use Keep\OAuth\Contracts\OpenAuthenticatable;
 
-class GoogleAuthentication extends OpenAuthentication implements OpenAuthenticatable
+class GoogleAuthentication extends AbstractOAuth implements OpenAuthenticatable
 {
     /**
      * Get the open authentication provider name.
@@ -33,7 +33,7 @@ class GoogleAuthentication extends OpenAuthentication implements OpenAuthenticat
      * @param $data
      * @return mixed
      */
-    public function extractAndUpdateProfile($user, $data)
+    public function extractAndUpdate($user, $data)
     {
         return $user->profile()->update([
             'bio'             => strip_tags($data->user['aboutMe']),

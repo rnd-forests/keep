@@ -4,7 +4,7 @@ namespace Keep\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-abstract class Request extends FormRequest
+abstract class AbstractRequest extends FormRequest
 {
     /**
      * Validate if the current authenticated user is administrator or not.

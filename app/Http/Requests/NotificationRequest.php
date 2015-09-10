@@ -2,7 +2,7 @@
 
 namespace Keep\Http\Requests;
 
-class NotificationRequest extends Request
+class NotificationRequest extends AbstractRequest
 {
     public function authorize()
     {

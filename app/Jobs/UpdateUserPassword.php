@@ -4,7 +4,7 @@ namespace Keep\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class ModifyUserPassword extends Job implements SelfHandling
+class UpdateUserPassword extends Job implements SelfHandling
 {
     protected $user, $oldPassword, $newPassword;
 

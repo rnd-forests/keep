@@ -2,7 +2,7 @@
 
 namespace Keep\Http\Requests;
 
-class InitializeSessionRequest extends Request
+class InitializeSessionRequest extends AbstractRequest
 {
     public function authorize()
     {

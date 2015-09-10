@@ -4,7 +4,7 @@ namespace Keep\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class ModifyUserName extends Job implements SelfHandling
+class UpdateUserName extends Job implements SelfHandling
 {
     protected $user, $oldUsername, $newUsername;
 

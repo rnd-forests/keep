@@ -4,9 +4,10 @@ namespace Keep\Repositories\Group;
 
 use Keep\Entities\User;
 use Keep\Entities\Group;
-use Keep\Repositories\EloquentRepository;
+use Keep\Repositories\AbstractEloquentRepository;
 
-class EloquentGroupRepository extends EloquentRepository implements GroupRepositoryInterface
+class EloquentGroupRepository extends AbstractEloquentRepository
+    implements GroupRepositoryInterface
 {
     protected $model;
 

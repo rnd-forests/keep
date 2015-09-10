@@ -4,7 +4,7 @@ namespace Keep\OAuth;
 
 use Keep\OAuth\Contracts\OpenAuthenticatable;
 
-class GithubAuthentication extends OpenAuthentication implements OpenAuthenticatable
+class GithubAuthentication extends AbstractOAuth implements OpenAuthenticatable
 {
     /**
      * Get the open authentication provider name.
@@ -33,7 +33,7 @@ class GithubAuthentication extends OpenAuthentication implements OpenAuthenticat
      * @param $data
      * @return mixed
      */
-    public function extractAndUpdateProfile($user, $data)
+    public function extractAndUpdate($user, $data)
     {
         return $user->profile()->update([
             'bio'             => $data->user['bio'],

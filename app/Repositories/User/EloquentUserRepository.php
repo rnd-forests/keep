@@ -4,9 +4,10 @@ namespace Keep\Repositories\User;
 
 use Gate;
 use Keep\Entities\User;
-use Keep\Repositories\EloquentRepository;
+use Keep\Repositories\AbstractEloquentRepository;
 
-class EloquentUserRepository extends EloquentRepository implements UserRepositoryInterface
+class EloquentUserRepository extends AbstractEloquentRepository
+    implements UserRepositoryInterface
 {
     protected $model;
 

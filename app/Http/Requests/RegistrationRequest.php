@@ -2,7 +2,7 @@
 
 namespace Keep\Http\Requests;
 
-class RegistrationRequest extends Request
+class RegistrationRequest extends AbstractRequest
 {
     public function authorize()
     {

@@ -2,7 +2,7 @@
 
 namespace Keep\Search\Contracts;
 
-interface SearchInterface
+interface SearchContract
 {
     /**
      * Search for tasks by their titles.

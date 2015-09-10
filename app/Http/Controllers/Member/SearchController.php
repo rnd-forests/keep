@@ -3,7 +3,7 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Search\Contracts\SearchInterface as SearchContract;
+use Keep\Search\Contracts\SearchContract as SearchContract;
 use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
 
 class SearchController extends Controller

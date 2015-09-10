@@ -2,7 +2,7 @@
 
 namespace Keep\Http\Requests;
 
-class UserGroupRequest extends Request
+class UserGroupRequest extends AbstractRequest
 {
     public function authorize()
     {

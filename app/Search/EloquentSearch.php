@@ -2,9 +2,9 @@
 
 namespace Keep\Search;
 
-use Keep\Search\Contracts\SearchInterface;
+use Keep\Search\Contracts\SearchContract;
 
-class DatabaseSearch implements SearchInterface
+class EloquentSearch implements SearchContract
 {
     /**
      * Search for tasks by their titles.

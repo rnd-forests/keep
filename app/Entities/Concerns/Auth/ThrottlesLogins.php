@@ -2,18 +2,13 @@
 
 namespace Keep\Entities\Concerns\Auth;
 
-use Keep\Http\Requests\Request;
+use Illuminate\Http\Request;
 use Illuminate\Cache\RateLimiter;
 
 class ThrottlesLogins
 {
     protected $limiter;
 
-    /**
-     * Constructor.
-     *
-     * @param RateLimiter $limiter
-     */
     public function __construct(RateLimiter $limiter)
     {
         $this->limiter = $limiter;

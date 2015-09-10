@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerMailer();
+        $this->registerUserMailer();
     }
 
     /**
@@ -55,11 +55,11 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register Mailer binding.
      */
-    protected function registerMailer()
+    protected function registerUserMailer()
     {
         $this->app->singleton(
-            \Keep\Mailers\Contracts\MailerInterface::class,
-            \Keep\Mailers\Mailer::class
+            \Keep\Mailers\Contracts\UserMailerContract::class,
+            \Keep\Mailers\UserMailer::class
         );
     }
 }

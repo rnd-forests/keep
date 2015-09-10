@@ -8,7 +8,7 @@ use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
 class ActivateUserAccount extends Job implements SelfHandling
 {
     protected $code;
-    
+
     public function __construct($code)
     {
         $this->code = $code;
@@ -23,7 +23,7 @@ class ActivateUserAccount extends Job implements SelfHandling
     public function handle(UserRepository $users)
     {
         $user = $users->findByActivationCode($this->code);
-        if ($this->isActivatable($user)) {
+        if ($this->canBeActivated($user)) {
             auth()->login($user);
             return true;
         }
@@ -36,7 +36,7 @@ class ActivateUserAccount extends Job implements SelfHandling
      *
      * @param $user
      */
-    protected function isActivatable($user)
+    protected function canBeActivated($user)
     {
         return $user->update(['activation_code' => '', 'active' => true]);
     }

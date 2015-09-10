@@ -25,12 +25,15 @@ class AuthenticateUser extends Job implements SelfHandling
      */
     public function handle(Guard $auth)
     {
-        $credentials = [
+        return $auth->attempt($this->getUserData(), $this->remember);
+    }
+
+    protected function getUserData()
+    {
+        return [
             'email'    => $this->email,
             'password' => $this->password,
             'active'   => $this->active,
         ];
-
-        return $auth->attempt($credentials, $this->remember);
     }
 }

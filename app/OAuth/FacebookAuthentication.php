@@ -4,7 +4,7 @@ namespace Keep\OAuth;
 
 use Keep\OAuth\Contracts\OpenAuthenticatable;
 
-class FacebookAuthentication extends OpenAuthentication implements OpenAuthenticatable
+class FacebookAuthentication extends AbstractOAuth implements OpenAuthenticatable
 {
     /**
      * Get the open authentication provider name.
@@ -33,7 +33,7 @@ class FacebookAuthentication extends OpenAuthentication implements OpenAuthentic
      * @param $data
      * @return mixed
      */
-    public function extractAndUpdateProfile($user, $data)
+    public function extractAndUpdate($user, $data)
     {
         return true;
     }

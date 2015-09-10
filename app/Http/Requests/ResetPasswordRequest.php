@@ -2,7 +2,7 @@
 
 namespace Keep\Http\Requests;
 
-class ResetPasswordRequest extends Request
+class ResetPasswordRequest extends AbstractRequest
 {
     public function authorize()
     {

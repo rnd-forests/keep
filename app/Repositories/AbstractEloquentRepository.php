@@ -2,7 +2,7 @@
 
 namespace Keep\Repositories;
 
-abstract class EloquentRepository
+abstract class AbstractEloquentRepository
 {
     public function getAll()
     {

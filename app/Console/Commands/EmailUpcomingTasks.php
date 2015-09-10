@@ -3,7 +3,7 @@
 namespace Keep\Console\Commands;
 
 use Illuminate\Console\Command;
-use Keep\Mailers\Contracts\MailerInterface as MailerContract;
+use Keep\Mailers\Contracts\UserMailerContract;
 use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepository;
 
 class EmailUpcomingTasks extends Command
@@ -12,7 +12,7 @@ class EmailUpcomingTasks extends Command
     protected $signature = 'keep:email-upcoming-tasks';
     protected $description = 'Email users about their upcoming tasks.';
 
-    public function __construct(TaskRepository $tasks, MailerContract $mailer)
+    public function __construct(TaskRepository $tasks, UserMailerContract $mailer)
     {
         $this->tasks = $tasks;
         $this->mailer = $mailer;

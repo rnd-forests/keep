@@ -2,7 +2,7 @@
 
 namespace Keep\Http\Requests;
 
-class TaskRequest extends Request
+class TaskRequest extends AbstractRequest
 {
     public function authorize()
     {

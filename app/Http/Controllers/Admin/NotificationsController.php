@@ -3,8 +3,8 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Jobs\CreateGroupNotification;
-use Keep\Jobs\CreateMemberNotification;
+use Keep\Jobs\SendGroupNotification;
+use Keep\Jobs\SendMemberNotification;
 use Keep\Http\Requests\NotificationRequest;
 use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepository;
 
@@ -61,7 +61,7 @@ class NotificationsController extends Controller
      */
     public function storeMemberNotification(NotificationRequest $request)
     {
-        $this->dispatch(new CreateMemberNotification($request->all()));
+        $this->dispatch(new SendMemberNotification($request->all()));
         flash()->success(trans('administrator.notification_member'));
 
         return back();
@@ -85,7 +85,7 @@ class NotificationsController extends Controller
      */
     public function storeGroupNotification(NotificationRequest $request)
     {
-        $this->dispatch(new CreateGroupNotification($request->all()));
+        $this->dispatch(new SendGroupNotification($request->all()));
         flash()->success(trans('administrator.notification_group'));
 
         return back();

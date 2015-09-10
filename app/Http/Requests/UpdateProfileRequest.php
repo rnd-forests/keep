@@ -2,7 +2,7 @@
 
 namespace Keep\Http\Requests;
 
-class ModifyProfileRequest extends Request
+class UpdateProfileRequest extends AbstractRequest
 {
     public function authorize()
     {

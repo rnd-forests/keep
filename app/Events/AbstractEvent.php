@@ -2,6 +2,6 @@
 
 namespace Keep\Events;
 
-abstract class Event
+abstract class AbstractEvent
 {
 }

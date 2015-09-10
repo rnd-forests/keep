@@ -30,8 +30,8 @@ class SearchServiceProvider extends ServiceProvider
     protected function registerSearchContract()
     {
         $this->app->singleton(
-            \Keep\Search\Contracts\SearchInterface::class,
-            \Keep\Search\DatabaseSearch::class
+            \Keep\Search\Contracts\SearchContract::class,
+            \Keep\Search\EloquentSearch::class
         );
     }
 
@@ -40,7 +40,7 @@ class SearchServiceProvider extends ServiceProvider
      */
     protected function registerSearchServiceContainerBinding()
     {
-        $this->app->singleton('search', \Keep\Search\Contracts\SearchInterface::class);
+        $this->app->singleton('search', \Keep\Search\Contracts\SearchContract::class);
     }
 
     /**
@@ -52,7 +52,7 @@ class SearchServiceProvider extends ServiceProvider
     {
         return [
             'search',
-            \Keep\Search\Contracts\SearchInterface::class
+            \Keep\Search\Contracts\SearchContract::class
         ];
     }
 }
