@@ -9,7 +9,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth::', 'namespace' => 'Auth'], func
     Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
     Route::patch('{users}/change-password', ['as' => 'change.password', 'uses' => 'AccountController@changePassword']);
     Route::patch('{users}/change-username', ['as' => 'change.username', 'uses' => 'AccountController@changeUsername']);
-    Route::controllers(['password' => 'PasswordController']);
+    Route::controller('password', 'PasswordController');
 });
 
 Route::group(['prefix' => 'oauth', 'as' => 'oauth::', 'namespace' => 'Auth'], function () {

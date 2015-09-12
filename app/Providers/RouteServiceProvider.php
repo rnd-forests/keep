@@ -21,7 +21,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
+        // Some route parameters should contain only 
+        // alpha-numeric characters, dashes, and underscores.
+        // $router->pattern('users', '/^[\pL\pM\pN_-]+$/u');
+
         parent::boot($router);
     }
 
