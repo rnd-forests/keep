@@ -16,14 +16,18 @@ class GroupNotificationForm
 
     public function compose(View $view)
     {
-        $types = [
-            'default' => 'General',
-            'info'    => 'Informative',
-            'success' => 'Successful',
-            'warning' => 'Warning',
-            'danger'  => 'Danger',
-        ];
-        $view->with('types', $types);
+        $view->with('types', $this->getTypes());
         $view->with('groups', $this->groups->getAll()->lists('name', 'id'));
+    }
+
+    protected function getTypes()
+    {
+        return [
+            'default' => 'general',
+            'info' => 'informative',
+            'success' => 'successful',
+            'warning' => 'warning',
+            'danger' => 'danger',
+        ];
     }
 }

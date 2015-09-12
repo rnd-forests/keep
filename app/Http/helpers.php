@@ -9,7 +9,8 @@ if (!function_exists('sort_tasks_by')) {
     {
         $direction = (Request::get('direction') == 'asc') ? 'desc' : 'asc';
 
-        return link_to_route('admin::tasks.published', $body, ['sortBy' => $column, 'direction' => $direction]);
+        return link_to_route('admin::tasks.published', $body, 
+            ['sortBy' => $column, 'direction' => $direction]);
     }
 }
 
@@ -18,7 +19,8 @@ if (!function_exists('sort_accounts_by')) {
     {
         $direction = (Request::get('direction') == 'asc') ? 'desc' : 'asc';
 
-        return link_to_route('admin::members.active', $body, ['sortBy' => $column, 'direction' => $direction]);
+        return link_to_route('admin::members.active', $body, 
+            ['sortBy' => $column, 'direction' => $direction]);
     }
 }
 
@@ -117,11 +119,7 @@ if (!function_exists('render_pagination')) {
 if (!function_exists('zero')) {
     function zero($count)
     {
-        if (!is_numeric($count)) {
-            throw new InvalidArgumentException;
-        }
-
-        return $count == 0;
+        return $count === 0;
     }
 }
 

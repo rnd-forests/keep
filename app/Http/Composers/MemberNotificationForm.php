@@ -16,14 +16,18 @@ class MemberNotificationForm
 
     public function compose(View $view)
     {
-        $types = [
-            'default' => 'General',
-            'info'    => 'Informative',
-            'success' => 'Successful',
-            'warning' => 'Warning',
-            'danger'  => 'Danger',
-        ];
-        $view->with('types', $types);
+        $view->with('types', $this->getTypes());
         $view->with('users', $this->users->getAll()->lists('name', 'id'));
+    }
+
+    protected function getTypes()
+    {
+        return [
+            'default' => 'general',
+            'info' => 'informative',
+            'success' => 'successful',
+            'warning' => 'warning',
+            'danger' => 'danger',
+        ];
     }
 }

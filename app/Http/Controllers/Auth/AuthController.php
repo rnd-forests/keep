@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function __construct(ThrottlesLogins $throttles)
     {
         $this->throttles = $throttles;
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => 'getLogout']);
     }
 
     /**
@@ -87,7 +87,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function logout()
+    public function getLogout()
     {
         auth()->logout();
         flash()->success(trans('authentication.logout'));

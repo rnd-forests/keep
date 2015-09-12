@@ -42,11 +42,8 @@ class DashboardController extends Controller
      */
     public function all($userSlug)
     {
-        $type = 'All';
-        $user = $this->users->findBySlug($userSlug);
-        $tasks = $this->tasks->fetchPaginatedAllTasks($user);
-
-        return view('users.dashboard.task_collection', compact('type', 'user', 'tasks'));
+        return $this->fetchTasks('All', 'users.dashboard.task_collection',
+            $userSlug, 'fetchPaginatedAllTasks');
     }
 
     /**
@@ -57,11 +54,8 @@ class DashboardController extends Controller
      */
     public function completed($userSlug)
     {
-        $type = 'Completed';
-        $user = $this->users->findBySlug($userSlug);
-        $tasks = $this->tasks->fetchPaginatedCompletedTasks($user);
-
-        return view('users.dashboard.task_collection', compact('type', 'user', 'tasks'));
+        return $this->fetchTasks('Completed', 'users.dashboard.task_collection',
+            $userSlug, 'fetchPaginatedCompletedTasks');
     }
 
     /**
@@ -72,25 +66,36 @@ class DashboardController extends Controller
      */
     public function failed($userSlug)
     {
-        $type = 'Failed';
-        $user = $this->users->findBySlug($userSlug);
-        $tasks = $this->tasks->fetchPaginatedFailedTasks($user);
-
-        return view('users.dashboard.task_collection', compact('type', 'user', 'tasks'));
+        return $this->fetchTasks('Failed', 'users.dashboard.task_collection',
+            $userSlug, 'fetchPaginatedFailedTasks');
     }
 
     /**
-     * Get all due tasks of a user.
+     * Get all processing tasks of a user.
      *
      * @param $userSlug
      * @return \Illuminate\View\View
      */
     public function processing($userSlug)
     {
-        $type = 'Processing';
-        $user = $this->users->findBySlug($userSlug);
-        $tasks = $this->tasks->fetchPaginatedDueTasks($user);
+        return $this->fetchTasks('Processing', 'users.dashboard.task_collection',
+            $userSlug, 'fetchPaginatedDueTasks');
+    }
 
-        return view('users.dashboard.task_collection', compact('type', 'user', 'tasks'));
+    /**
+     * A helper method to fetch tasks associated with a type.
+     *         
+     * @param $type      
+     * @param $view      
+     * @param $slug      
+     * @param $repoMethod
+     * @return \Illuminate\View\View
+     */
+    protected function fetchTasks($type, $view, $slug, $repoMethod)
+    {
+        $user = $this->users->findBySlug($slug);
+        $tasks = $this->tasks->$repoMethod($user);
+
+        return view($view, compact('type', 'user', 'tasks'));
     }
 }
