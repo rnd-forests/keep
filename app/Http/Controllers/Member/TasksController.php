@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Http\Controllers\Member;
+namespace Http\Controllers\Member;
 
 use Illuminate\Http\Request;
 use Keep\Events\TaskHasPublished;
@@ -140,7 +140,7 @@ class TasksController extends Controller
     }
 
     /**
-     * Mark a task a completed.
+     * Mark a task as completed.
      *
      * @param Request $request
      * @param $userSlug

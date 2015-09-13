@@ -17,12 +17,12 @@ class Group extends Model implements SluggableInterface
 
     public function users()
     {
-        return $this->belongsToMany(\Keep\Entities\User::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function notifications()
     {
-        return $this->morphToMany(\Keep\Entities\Notification::class, 'notifiable');
+        return $this->morphToMany(Notification::class, 'notifiable');
     }
 
     public function notify($notification)

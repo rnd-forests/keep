@@ -4,6 +4,7 @@ namespace Keep\Entities;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Keep\Entities\Presenters\UserPresenter;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -30,12 +31,12 @@ class User extends Model implements
         SluggableTrait,
         SoftDeletes,
         EntrustUserTrait {
-            Authorizable::can insteadof EntrustUserTrait;
+            EntrustUserTrait::can insteadof Authorizable;
         }
 
     protected $dates = ['deleted_at'];
     protected $casts = ['active' => 'boolean'];
-    protected $presenter = \Keep\Entities\Presenters\UserPresenter::class;
+    protected $presenter = UserPresenter::class;
     protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
     protected $hidden = ['password', 'remember_token', 'activation_code'];
     protected $fillable = [
@@ -45,22 +46,22 @@ class User extends Model implements
 
     public function profile()
     {
-        return $this->hasOne(\Keep\Entities\Profile::class);
+        return $this->hasOne(Profile::class);
     }
 
     public function tasks()
     {
-        return $this->hasMany(\Keep\Entities\Task::class);
+        return $this->hasMany(Task::class);
     }
 
     public function notifications()
     {
-        return $this->morphToMany(\Keep\Entities\Notification::class, 'notifiable');
+        return $this->morphToMany(Notification::class, 'notifiable');
     }
 
     public function groups()
     {
-        return $this->belongsToMany(\Keep\Entities\Group::class);
+        return $this->belongsToMany(Group::class);
     }
 
     public function isActive()

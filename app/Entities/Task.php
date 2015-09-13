@@ -4,6 +4,7 @@ namespace Keep\Entities;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Keep\Entities\Presenters\TaskPresenter;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Keep\Entities\Concerns\Scopes\TaskScopes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
@@ -21,7 +22,7 @@ class Task extends Model implements
         SoftDeletes;
 
     protected $touches = ['user'];
-    protected $presenter = \Keep\Entities\Presenters\TaskPresenter::class;
+    protected $presenter = TaskPresenter::class;
     protected $sluggable = ['build_from' => 'title', 'save_to' => 'slug'];
     protected $dates = ['starting_date', 'finishing_date', 'finished_at', 'deleted_at'];
     protected $casts = ['completed' => 'boolean', 'is_failed' => 'boolean'];
@@ -32,17 +33,17 @@ class Task extends Model implements
 
     public function user()
     {
-        return $this->belongsTo(\Keep\Entities\User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function tags()
     {
-        return $this->belongsToMany(\Keep\Entities\Tag::class);
+        return $this->belongsToMany(Tag::class);
     }
 
     public function priority()
     {
-        return $this->belongsTo(\Keep\Entities\Priority::class);
+        return $this->belongsTo(Priority::class);
     }
 
     public function isCompleted()

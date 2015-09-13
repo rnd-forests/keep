@@ -10,7 +10,7 @@ class Priority extends Model
 
     public function tasks()
     {
-        return $this->hasMany(\Keep\Entities\Task::class);
+        return $this->hasMany(Task::class);
     }
 
     public function getRouteKey()
