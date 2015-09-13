@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Controllers\Member;
+namespace Keep\Http\Controllers\Member;
 
 use Illuminate\Http\Request;
 use Keep\Events\TaskHasPublished;
