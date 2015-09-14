@@ -39,7 +39,7 @@ class TagsController extends Controller
     public function show($userSlug, $tagName)
     {
         $tag = $this->tags->findBySlug($tagName);
-        $tasks = $this->tags->fetchTasksAssociatedWithTag($userSlug, $tagName, 10);
+        $tasks = $this->tags->associatedTasks($userSlug, $tagName, 10);
 
         return view('users.tags.show', compact('tag', 'tasks'));
     }

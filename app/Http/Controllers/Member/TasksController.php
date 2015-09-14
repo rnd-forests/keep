@@ -87,7 +87,7 @@ class TasksController extends Controller
     public function show($userSlug, $taskSlug)
     {
         $user = $this->users->findBySlug($userSlug);
-        $task = $this->tasks->findCorrectTaskBySlug($userSlug, $taskSlug);
+        $task = $this->tasks->find($userSlug, $taskSlug);
 
         return view('users.tasks.show', compact('task', 'user'));
     }
@@ -102,7 +102,7 @@ class TasksController extends Controller
     public function edit($userSlug, $taskSlug)
     {
         $user = $this->users->findBySlug($userSlug);
-        $task = $this->tasks->findCorrectTaskBySlug($userSlug, $taskSlug);
+        $task = $this->tasks->find($userSlug, $taskSlug);
 
         return view('users.tasks.edit', compact('user', 'task'));
     }
@@ -133,7 +133,7 @@ class TasksController extends Controller
      */
     public function destroy($userSlug, $taskSlug)
     {
-        $this->tasks->deleteWithUserConstraint($userSlug, $taskSlug);
+        $this->tasks->delete($userSlug, $taskSlug);
         flash()->success(trans('controller.task_deleted'));
 
         return redirect()->route('member::dashboard', $userSlug);

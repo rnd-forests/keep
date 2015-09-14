@@ -24,7 +24,7 @@ class TasksController extends Controller
         $request = app('request');
         $sortBy = $request->get('sortBy');
         $direction = $request->get('direction');
-        $tasks = $this->tasks->fetchPaginatedTasks(compact('sortBy', 'direction'), 50);
+        $tasks = $this->tasks->paginate(50, compact('sortBy', 'direction'));
 
         return view('admin.tasks.published_tasks', compact('tasks'));
     }
@@ -63,7 +63,7 @@ class TasksController extends Controller
      */
     public function trashedTasks()
     {
-        $trashedTasks = $this->tasks->fetchTrashedTasks(50);
+        $trashedTasks = $this->tasks->trashed(50);
 
         return view('admin.tasks.trashed_tasks', compact('trashedTasks'));
     }

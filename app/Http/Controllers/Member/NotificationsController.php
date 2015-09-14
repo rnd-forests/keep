@@ -24,7 +24,7 @@ class NotificationsController extends Controller
      */
     public function fetchPersonalNotifications($userSlug)
     {
-        $notifications = $this->notifications->fetchPersonalNotifications($userSlug);
+        $notifications = $this->notifications->personalNotifications($userSlug);
 
         return view('users.notifications.personal', compact('notifications'));
     }
@@ -37,7 +37,7 @@ class NotificationsController extends Controller
      */
     public function fetchGroupNotifications($userSlug)
     {
-        $notifications = $this->notifications->fetchGroupNotifications($userSlug);
+        $notifications = $this->notifications->groupNotifications($userSlug);
 
         return view('users.notifications.groups', compact('notifications'));
     }

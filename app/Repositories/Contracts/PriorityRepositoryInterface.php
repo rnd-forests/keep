@@ -7,5 +7,5 @@ interface PriorityRepositoryInterface
     public function fetchAll();
     public function lists();
     public function findByName($name);
-    public function fetchTasksAssociatedWithPriority($userSlug, $priorityName, $limit);
+    public function associatedTasks($userSlug, $priorityName, $limit);
 }

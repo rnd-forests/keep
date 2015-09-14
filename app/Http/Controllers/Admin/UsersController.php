@@ -24,7 +24,7 @@ class UsersController extends Controller
         $request = app('request');
         $sortBy = $request->get('sortBy');
         $direction = $request->get('direction');
-        $activeMembers = $this->users->fetchPaginatedUsers(compact('sortBy', 'direction'), 100);
+        $activeMembers = $this->users->paginate(100, compact('sortBy', 'direction'));
 
         return view('admin.members.active_accounts', compact('activeMembers'));
     }
@@ -36,7 +36,7 @@ class UsersController extends Controller
      */
     public function disabledAccounts()
     {
-        $disabledMembers = $this->users->disabledUsers();
+        $disabledMembers = $this->users->disabled();
 
         return view('admin.members.disabled_accounts', compact('disabledMembers'));
     }

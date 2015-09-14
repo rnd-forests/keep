@@ -4,10 +4,12 @@ namespace Keep\Repositories;
 
 use Keep\Entities\Tag;
 use Keep\Entities\User;
+use Keep\Repositories\Contracts\Common\Findable;
 use Keep\Repositories\Contracts\TagRepositoryInterface;
 
-class EloquentTagRepository extends AbstractEloquentRepository
-    implements TagRepositoryInterface
+class EloquentTagRepository extends AbstractEloquentRepository implements
+    Findable,
+    TagRepositoryInterface
 {
     protected $model;
 
@@ -33,7 +35,7 @@ class EloquentTagRepository extends AbstractEloquentRepository
             })->oldest('name')->get();
     }
 
-    public function fetchTasksAssociatedWithTag($userSlug, $tagSlug, $limit)
+    public function associatedTasks($userSlug, $tagSlug, $limit)
     {
         $user = User::findBySlug($userSlug);
         $tag = $this->findBySlug($tagSlug);

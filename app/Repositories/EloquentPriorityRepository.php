@@ -37,7 +37,7 @@ class EloquentPriorityRepository extends AbstractEloquentRepository
             ->firstOrFail();
     }
 
-    public function fetchTasksAssociatedWithPriority($userSlug, $priorityName, $limit)
+    public function associatedTasks($userSlug, $priorityName, $limit)
     {
         $user = User::findBySlug($userSlug);
         $priority = $this->findByName($priorityName);

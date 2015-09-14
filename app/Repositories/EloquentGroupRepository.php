@@ -4,10 +4,20 @@ namespace Keep\Repositories;
 
 use Keep\Entities\User;
 use Keep\Entities\Group;
+use Keep\Repositories\Contracts\Common\Findable;
+use Keep\Repositories\Contracts\Common\Removable;
+use Keep\Repositories\Contracts\Common\Updateable;
+use Keep\Repositories\Contracts\Common\Paginateable;
 use Keep\Repositories\Contracts\GroupRepositoryInterface;
+use Keep\Repositories\Contracts\Common\RepositoryInterface;
 
-class EloquentGroupRepository extends AbstractEloquentRepository
-    implements GroupRepositoryInterface
+class EloquentGroupRepository extends AbstractEloquentRepository implements
+    Findable,
+    Removable,
+    Updateable,
+    Paginateable,
+    RepositoryInterface,
+    GroupRepositoryInterface
 {
     protected $model;
 
@@ -16,7 +26,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository
         $this->model = $model;
     }
 
-    public function fetchPaginatedGroups($limit)
+    public function paginate($limit, array $params = null)
     {
         return $this->model
             ->with('users')
@@ -40,9 +50,9 @@ class EloquentGroupRepository extends AbstractEloquentRepository
         ]);
     }
 
-    public function update($slug, array $data)
+    public function update(array $data, $identifier1, $identifier2 = null)
     {
-        $group = $this->findBySlug($slug);
+        $group = $this->findBySlug($identifier1);
         $group->update($data);
 
         return $group;
@@ -50,7 +60,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository
 
     public function restore($slug)
     {
-        $group = $this->findTrashedGroupBySlug($slug);
+        $group = $this->findTrashedGroup($slug);
 
         return $group->restore();
     }
@@ -62,11 +72,11 @@ class EloquentGroupRepository extends AbstractEloquentRepository
 
     public function forceDelete($slug)
     {
-        $group = $this->findTrashedGroupBySlug($slug);
+        $group = $this->findTrashedGroup($slug);
         $group->forceDelete();
     }
 
-    public function fetchTrashedGroups($limit)
+    public function trashed($limit)
     {
         return $this->model
             ->with('users')
@@ -75,7 +85,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository
             ->paginate($limit);
     }
 
-    public function findTrashedGroupBySlug($slug)
+    public function findTrashedGroup($slug)
     {
         return $this->model
             ->onlyTrashed()
@@ -83,14 +93,14 @@ class EloquentGroupRepository extends AbstractEloquentRepository
             ->firstOrFail();
     }
 
-    public function fetchPaginatedAssociatedUsers($group, $limit)
+    public function associatedUsers($group, $limit)
     {
         return $group->users()
             ->oldest('name')
             ->paginate($limit);
     }
 
-    public function fetchOutsiders($slug)
+    public function outsiders($slug)
     {
         $group = $this->findBySlug($slug);
         $ids = $group->users->lists('id')->toArray();
@@ -104,19 +114,19 @@ class EloquentGroupRepository extends AbstractEloquentRepository
         $group->users()->attach($users);
     }
 
-    public function fetchGroupsByIds(array $ids)
+    public function fetchByIds(array $ids)
     {
         return $this->model->whereIn('id', $ids)->get();
     }
 
-    public function fetchGroupsOfUser($userSlug)
+    public function joinedGroups($userSlug)
     {
         $user = User::findBySlug($userSlug);
 
         return $user->groups()->paginate(10);
     }
 
-    public function fetchMembersOfGroup($groupSlug)
+    public function fetchMembers($groupSlug)
     {
         $group = $this->findBySlug($groupSlug);
 

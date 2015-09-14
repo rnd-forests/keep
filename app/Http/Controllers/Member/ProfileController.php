@@ -66,7 +66,7 @@ class ProfileController extends Controller
      */
     public function update(UpdateProfileRequest $request, $slug)
     {
-        $this->users->updateProfile($request->except(['_method', '_token']), $slug);
+        $this->users->update($request->except(['_method', '_token']), $slug);
         flash()->info(trans('controller.profile_updated'));
 
         return redirect()->back();

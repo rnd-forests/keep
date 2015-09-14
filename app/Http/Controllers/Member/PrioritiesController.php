@@ -42,7 +42,7 @@ class PrioritiesController extends Controller
     public function show($userSlug, $priorityName)
     {
         $priority = $this->priorities->findByName($priorityName);
-        $tasks = $this->priorities->fetchTasksAssociatedWithPriority($userSlug, $priorityName, 10);
+        $tasks = $this->priorities->associatedTasks($userSlug, $priorityName, 10);
 
         return view('users.priorities.show', compact('priority', 'tasks'));
     }

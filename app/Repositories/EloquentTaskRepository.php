@@ -6,10 +6,20 @@ use Carbon\Carbon;
 use Keep\Entities\Task;
 use Keep\Entities\User;
 use Keep\Entities\Priority;
+use Keep\Repositories\Contracts\Common\Findable;
+use Keep\Repositories\Contracts\Common\Removable;
+use Keep\Repositories\Contracts\Common\Updateable;
+use Keep\Repositories\Contracts\Common\Paginateable;
 use Keep\Repositories\Contracts\TaskRepositoryInterface;
+use Keep\Repositories\Contracts\Common\RepositoryInterface;
 
-class EloquentTaskRepository extends AbstractEloquentRepository
-    implements TaskRepositoryInterface
+class EloquentTaskRepository extends AbstractEloquentRepository implements
+    Findable,
+    Removable,
+    Updateable,
+    Paginateable,
+    RepositoryInterface,
+    TaskRepositoryInterface
 {
     protected $model;
 
@@ -18,7 +28,7 @@ class EloquentTaskRepository extends AbstractEloquentRepository
         $this->model = $model;
     }
 
-    public function fetchPaginatedTasks(array $params, $limit)
+    public function paginate($limit, array $params = null)
     {
         if ($this->isSortable($params)) {
             return $this->model
@@ -43,9 +53,9 @@ class EloquentTaskRepository extends AbstractEloquentRepository
         ]);
     }
 
-    public function update(array $data, $userSlug, $taskSlug)
+    public function update(array $data, $userSlug, $taskSlug = null)
     {
-        $task = $this->findCorrectTaskBySlug($userSlug, $taskSlug);
+        $task = $this->find($userSlug, $taskSlug);
         $task->update($data);
 
         return $task;
@@ -58,7 +68,7 @@ class EloquentTaskRepository extends AbstractEloquentRepository
         return $task;
     }
 
-    public function findCorrectTaskBySlug($userSlug, $taskSlug)
+    public function find($userSlug, $taskSlug)
     {
         $user = User::findBySlug($userSlug);
 
@@ -68,9 +78,9 @@ class EloquentTaskRepository extends AbstractEloquentRepository
             ->firstOrFail();
     }
 
-    public function deleteWithUserConstraint($userSlug, $taskSlug)
+    public function delete($userSlug, $taskSlug)
     {
-        return $this->findCorrectTaskBySlug($userSlug, $taskSlug)->delete();
+        return $this->find($userSlug, $taskSlug)->delete();
     }
 
     public function softDelete($slug)
@@ -88,12 +98,12 @@ class EloquentTaskRepository extends AbstractEloquentRepository
 
     public function restore($slug)
     {
-        $task = $this->findTrashedTaskBySlug($slug);
+        $task = $this->findTrashedTask($slug);
 
         return $task->restore();
     }
 
-    public function findTrashedTaskBySlug($slug)
+    public function findTrashedTask($slug)
     {
         return $this->model
             ->onlyTrashed()
@@ -103,11 +113,11 @@ class EloquentTaskRepository extends AbstractEloquentRepository
 
     public function forceDelete($slug)
     {
-        $task = $this->findTrashedTaskBySlug($slug);
+        $task = $this->findTrashedTask($slug);
         $task->forceDelete();
     }
 
-    public function fetchTrashedTasks($limit)
+    public function trashed($limit)
     {
         return $this->model->with(['user' => function ($query) {
             $query->withTrashed();
@@ -119,7 +129,7 @@ class EloquentTaskRepository extends AbstractEloquentRepository
 
     public function complete($request, $userSlug, $taskSlug)
     {
-        $task = $this->findCorrectTaskBySlug($userSlug, $taskSlug);
+        $task = $this->find($userSlug, $taskSlug);
         if ($request->ajax()) {
             if ($request->has('completed')) {
                 $task->update([
@@ -149,7 +159,7 @@ class EloquentTaskRepository extends AbstractEloquentRepository
         return $task->save();
     }
 
-    public function fetchUrgentTasks($user)
+    public function urgentTasks($user)
     {
         return $user->tasks()
             ->urgent()
@@ -157,7 +167,7 @@ class EloquentTaskRepository extends AbstractEloquentRepository
             ->get();
     }
 
-    public function fetchDeadlineTasks($user)
+    public function deadlineTasks($user)
     {
         return $user->tasks()
             ->deadline()
@@ -165,7 +175,7 @@ class EloquentTaskRepository extends AbstractEloquentRepository
             ->get();
     }
 
-    public function fetchRecentlyCompletedTasks($user)
+    public function recentlyCompletedTasks($user)
     {
         return $user->tasks()
             ->recentlyCompleted()
@@ -188,14 +198,14 @@ class EloquentTaskRepository extends AbstractEloquentRepository
             ->update(['is_failed' => false]);
     }
 
-    public function fetchPaginatedAllTasks($user)
+    public function allTasks($user)
     {
         return $user->tasks()
             ->latest('created_at')
             ->paginate(30);
     }
 
-    public function fetchPaginatedCompletedTasks($user)
+    public function completedTasks($user)
     {
         return $user->tasks()
             ->completed()
@@ -203,7 +213,7 @@ class EloquentTaskRepository extends AbstractEloquentRepository
             ->paginate(30);
     }
 
-    public function fetchPaginatedFailedTasks($user)
+    public function failedTasks($user)
     {
         return $user->tasks()
             ->where('is_failed', 1)
@@ -211,7 +221,7 @@ class EloquentTaskRepository extends AbstractEloquentRepository
             ->paginate(30);
     }
 
-    public function fetchPaginatedDueTasks($user)
+    public function processingTasks($user)
     {
         return $user->tasks()
             ->due()
@@ -219,7 +229,7 @@ class EloquentTaskRepository extends AbstractEloquentRepository
             ->paginate(30);
     }
 
-    public function fetchUpcomingTasks()
+    public function upcomingTasks()
     {
         return $this->model
             ->upcoming()

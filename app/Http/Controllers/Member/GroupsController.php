@@ -26,7 +26,7 @@ class GroupsController extends Controller
      */
     public function index($userSlug)
     {
-        $groups = $this->groups->fetchGroupsOfUser($userSlug);
+        $groups = $this->groups->joinedGroups($userSlug);
 
         return view('users.groups.index', compact('groups'));
     }
@@ -42,7 +42,7 @@ class GroupsController extends Controller
     {
         $user = $this->users->findBySlug($userSlug);
         $group = $this->groups->findBySlug($groupSlug);
-        $members = $this->groups->fetchMembersOfGroup($groupSlug);
+        $members = $this->groups->fetchMembers($groupSlug);
 
         return view('users.groups.show', compact('user', 'group', 'members'));
     }

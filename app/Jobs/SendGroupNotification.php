@@ -13,7 +13,7 @@ class SendGroupNotification extends NotificationRelations implements SelfHandlin
     public function handle()
     {
         $notification = parent::$notifications->create($this->getNotificationRequestData());
-        $groups = parent::$groups->fetchGroupsByIds($this->getGroupListRequestData());
+        $groups = parent::$groups->fetchByIds($this->getGroupListRequestData());
         $this->setNotificationPolymorphic($notification, $groups);
     }
 }

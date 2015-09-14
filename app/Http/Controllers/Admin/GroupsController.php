@@ -23,7 +23,7 @@ class GroupsController extends Controller
      */
     public function activeGroups()
     {
-        $groups = $this->groups->fetchPaginatedGroups(15);
+        $groups = $this->groups->paginate(15);
 
         return view('admin.groups.active_groups', compact('groups'));
     }
@@ -61,7 +61,7 @@ class GroupsController extends Controller
     public function show($slug)
     {
         $group = $this->groups->findBySlug($slug);
-        $users = $this->groups->fetchPaginatedAssociatedUsers($group, 16);
+        $users = $this->groups->associatedUsers($group, 16);
 
         return view('admin.groups.show', compact('group', 'users'));
     }
@@ -129,7 +129,7 @@ class GroupsController extends Controller
      */
     public function trashedGroups()
     {
-        $trashedGroups = $this->groups->fetchTrashedGroups(10);
+        $trashedGroups = $this->groups->trashed(10);
 
         return view('admin.groups.trashed_groups', compact('trashedGroups'));
     }
@@ -186,8 +186,8 @@ class GroupsController extends Controller
     public function addUsers($slug)
     {
         $group = $this->groups->findBySlug($slug);
-        $users = $this->groups->fetchPaginatedAssociatedUsers($group, 30);
-        $outsiders = $this->groups->fetchOutsiders($slug)->lists('name', 'id');
+        $users = $this->groups->associatedUsers($group, 30);
+        $outsiders = $this->groups->outsiders($slug)->lists('name', 'id');
 
         return view('admin.groups.add_users', compact('group', 'users', 'outsiders'));
     }

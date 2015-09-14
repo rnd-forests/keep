@@ -27,9 +27,9 @@ class DashboardController extends Controller
     public function dashboard($userSlug)
     {
         $user = $this->users->findBySlug($userSlug);
-        $urgent = $this->tasks->fetchUrgentTasks($user);
-        $deadline = $this->tasks->fetchDeadlineTasks($user);
-        $completed = $this->tasks->fetchRecentlyCompletedTasks($user);
+        $urgent = $this->tasks->urgentTasks($user);
+        $deadline = $this->tasks->deadlineTasks($user);
+        $completed = $this->tasks->recentlyCompletedTasks($user);
 
         return view('users.dashboard.dashboard', compact('user', 'urgent', 'deadline', 'completed'));
     }
@@ -43,7 +43,7 @@ class DashboardController extends Controller
     public function all($userSlug)
     {
         return $this->fetchTasks('All', 'users.dashboard.task_collection',
-            $userSlug, 'fetchPaginatedAllTasks');
+            $userSlug, 'allTasks');
     }
 
     /**
@@ -55,7 +55,7 @@ class DashboardController extends Controller
     public function completed($userSlug)
     {
         return $this->fetchTasks('Completed', 'users.dashboard.task_collection',
-            $userSlug, 'fetchPaginatedCompletedTasks');
+            $userSlug, 'completedTasks');
     }
 
     /**
@@ -67,7 +67,7 @@ class DashboardController extends Controller
     public function failed($userSlug)
     {
         return $this->fetchTasks('Failed', 'users.dashboard.task_collection',
-            $userSlug, 'fetchPaginatedFailedTasks');
+            $userSlug, 'failedTasks');
     }
 
     /**
@@ -79,7 +79,7 @@ class DashboardController extends Controller
     public function processing($userSlug)
     {
         return $this->fetchTasks('Processing', 'users.dashboard.task_collection',
-            $userSlug, 'fetchPaginatedDueTasks');
+            $userSlug, 'processingTasks');
     }
 
     /**

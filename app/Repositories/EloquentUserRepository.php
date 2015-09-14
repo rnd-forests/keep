@@ -4,10 +4,20 @@ namespace Keep\Repositories;
 
 use Gate;
 use Keep\Entities\User;
+use Keep\Repositories\Contracts\Common\Findable;
+use Keep\Repositories\Contracts\Common\Removable;
+use Keep\Repositories\Contracts\Common\Updateable;
+use Keep\Repositories\Contracts\Common\Paginateable;
 use Keep\Repositories\Contracts\UserRepositoryInterface;
+use Keep\Repositories\Contracts\Common\RepositoryInterface;
 
-class EloquentUserRepository extends AbstractEloquentRepository
-    implements UserRepositoryInterface
+class EloquentUserRepository extends AbstractEloquentRepository implements
+    Findable,
+    Removable,
+    Updateable,
+    Paginateable,
+    RepositoryInterface,
+    UserRepositoryInterface
 {
     protected $model;
 
@@ -16,7 +26,7 @@ class EloquentUserRepository extends AbstractEloquentRepository
         $this->model = $model;
     }
 
-    public function fetchPaginatedUsers(array $params, $limit)
+    public function paginate($limit, array $params = null)
     {
         if ($this->isSortable($params)) {
             return $this->model
@@ -30,64 +40,49 @@ class EloquentUserRepository extends AbstractEloquentRepository
             ->paginate($limit);
     }
 
-    public function findBySlugWithTasks($slug)
+    public function restore($identifier)
     {
-        return $this->model->with(['tasks' => function ($query) {
-            $query->latest('created_at');
-        }, 'roles'])->where('slug', $slug)->firstOrFail();
-    }
-
-    public function findByActivationCode($code, $active = false)
-    {
-        return $this->model
-            ->where('activation_code', $code)
-            ->where('active', $active)
-            ->firstOrFail();
-    }
-
-    public function create(array $credentials)
-    {
-        return $this->model->create([
-            'name'            => $credentials['name'],
-            'email'           => $credentials['email'],
-            'password'        => $credentials['password'],
-            'activation_code' => str_random(100),
-        ]);
-    }
-
-    public function updateProfile(array $credentials, $slug)
-    {
-        $user = $this->findBySlug($slug);
-        if (Gate::denies('updateAccountAndProfile', $user)) {
-            abort(403);
-        }
-        $user->profile()->update($credentials);
-    }
-
-    public function restore($slug)
-    {
-        $user = $this->disabledUser($slug);
+        $user = $this->findDisabledUser($identifier);
         $user->restore();
     }
 
-    public function softDelete($slug)
+    public function softDelete($identifier)
     {
-        $user = $this->findBySlug($slug);
+        $user = $this->findBySlug($identifier);
         if (Gate::denies('updateAccountAndProfile', $user)) {
             abort(403);
         }
         $user->delete();
     }
 
-    public function forceDelete($slug)
+    public function forceDelete($identifier)
     {
-        $user = $this->disabledUser($slug);
+        $user = $this->findDisabledUser($identifier);
         $user->tasks()->withTrashed()->forceDelete();
         $user->profile()->withTrashed()->forceDelete();
         $user->forceDelete();
     }
 
-    public function disabledUsers()
+    public function create(array $data)
+    {
+        return $this->model->create([
+            'name'            => $data['name'],
+            'email'           => $data['email'],
+            'password'        => $data['password'],
+            'activation_code' => str_random(100),
+        ]);
+    }
+
+    public function update(array $data, $identifier1, $identifier2 = null)
+    {
+        $user = $this->findBySlug($identifier1);
+        if (Gate::denies('updateAccountAndProfile', $user)) {
+            abort(403);
+        }
+        $user->profile()->update($data);
+    }
+
+    public function disabled()
     {
         return $this->model
             ->onlyTrashed()
@@ -95,7 +90,12 @@ class EloquentUserRepository extends AbstractEloquentRepository
             ->paginate(25);
     }
 
-    public function disabledUser($slug)
+    public function fetchByIds(array $ids)
+    {
+        return $this->model->whereIn('id', $ids)->get();
+    }
+
+    public function findDisabledUser($slug)
     {
         return $this->model
             ->onlyTrashed()
@@ -103,9 +103,11 @@ class EloquentUserRepository extends AbstractEloquentRepository
             ->firstOrFail();
     }
 
-    public function fetchByIds(array $ids)
+    public function findBySlugWithTasks($slug)
     {
-        return $this->model->whereIn('id', $ids)->get();
+        return $this->model->with(['tasks' => function ($query) {
+            $query->latest('created_at');
+        }, 'roles'])->where('slug', $slug)->firstOrFail();
     }
 
     public function findOrCreate(array $userData, $authProvider)
@@ -129,5 +131,13 @@ class EloquentUserRepository extends AbstractEloquentRepository
         }
 
         return $user;
+    }
+
+    public function findByActivationCode($code, $active = false)
+    {
+        return $this->model
+            ->where('activation_code', $code)
+            ->where('active', $active)
+            ->firstOrFail();
     }
 }
