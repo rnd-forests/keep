@@ -22,7 +22,7 @@ class UpdateUserName extends Job implements SelfHandling
      */
     public function handle()
     {
-        if ($this->areTheSameNames()) {
+        if (!$this->isCorrectOldName() || $this->areTheSameNames()) {
             return false;
         }
 
@@ -30,17 +30,27 @@ class UpdateUserName extends Job implements SelfHandling
     }
 
     /**
-     * Check if the new username and old username are the same (case-sensitive).
+     * Check if the new name and old name are the same (case-sensitive).
      *
      * @return bool
      */
     protected function areTheSameNames()
     {
-        return strcasecmp($this->oldUsername, $this->newUsername) == 0;
+        return strcasecmp($this->oldUsername, $this->newUsername) === 0;
     }
 
     /**
-     * Set the new username for the user.
+     * Check if the old name is correct.
+     *
+     * @return bool
+     */
+    protected function isCorrectOldName()
+    {
+        return strcasecmp($this->oldUsername, auth()->user()->name) === 0;
+    }
+
+    /**
+     * Set the new name for the user.
      *
      * @return bool
      */
