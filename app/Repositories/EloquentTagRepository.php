@@ -18,6 +18,11 @@ class EloquentTagRepository extends AbstractEloquentRepository implements
         $this->model = $model;
     }
 
+    /**
+     * Listing tags by pairs of name and id.
+     *
+     * @return mixed
+     */
     public function lists()
     {
         return $this->model
@@ -25,6 +30,12 @@ class EloquentTagRepository extends AbstractEloquentRepository implements
             ->lists('name', 'id');
     }
 
+    /**
+     * Fetching tags associated with a user.
+     *
+     * @param $userSlug
+     * @return mixed
+     */
     public function fetchAttachedTags($userSlug)
     {
         $user = User::findBySlug($userSlug);
@@ -35,6 +46,14 @@ class EloquentTagRepository extends AbstractEloquentRepository implements
             })->oldest('name')->get();
     }
 
+    /**
+     * Fetching tasks associated with a tag.
+     *
+     * @param $userSlug
+     * @param $tagSlug
+     * @param $limit
+     * @return mixed
+     */
     public function associatedTasks($userSlug, $tagSlug, $limit)
     {
         $user = User::findBySlug($userSlug);

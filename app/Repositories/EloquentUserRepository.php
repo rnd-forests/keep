@@ -26,6 +26,13 @@ class EloquentUserRepository extends AbstractEloquentRepository implements
         $this->model = $model;
     }
 
+    /**
+     * Paginate a collection of models.
+     *
+     * @param $limit
+     * @param array|null $params
+     * @return mixed
+     */
     public function paginate($limit, array $params = null)
     {
         if ($this->isSortable($params)) {
@@ -40,12 +47,24 @@ class EloquentUserRepository extends AbstractEloquentRepository implements
             ->paginate($limit);
     }
 
+    /**
+     * Restore a soft deleted model instance.
+     *
+     * @param $identifier
+     * @return mixed
+     */
     public function restore($identifier)
     {
         $user = $this->findDisabledUser($identifier);
         $user->restore();
     }
 
+    /**
+     * Soft delete a model instance.
+     *
+     * @param $identifier
+     * @return mixed
+     */
     public function softDelete($identifier)
     {
         $user = $this->findBySlug($identifier);
@@ -55,6 +74,12 @@ class EloquentUserRepository extends AbstractEloquentRepository implements
         $user->delete();
     }
 
+    /**
+     * Permanently delete a soft deleted model instance.
+     *
+     * @param $identifier
+     * @return mixed
+     */
     public function forceDelete($identifier)
     {
         $user = $this->findDisabledUser($identifier);
@@ -63,6 +88,12 @@ class EloquentUserRepository extends AbstractEloquentRepository implements
         $user->forceDelete();
     }
 
+    /**
+     * Create a new model instance.
+     *
+     * @param array $data
+     * @return mixed
+     */
     public function create(array $data)
     {
         return $this->model->create([
@@ -73,6 +104,14 @@ class EloquentUserRepository extends AbstractEloquentRepository implements
         ]);
     }
 
+    /**
+     * Update a model instance.
+     *
+     * @param array $data
+     * @param $identifier1
+     * @param null $identifier2
+     * @return mixed
+     */
     public function update(array $data, $identifier1, $identifier2 = null)
     {
         $user = $this->findBySlug($identifier1);
@@ -82,6 +121,11 @@ class EloquentUserRepository extends AbstractEloquentRepository implements
         $user->profile()->update($data);
     }
 
+    /**
+     * Fetching a paginated collection of disabled users.
+     *
+     * @return mixed
+     */
     public function disabled()
     {
         return $this->model
@@ -90,11 +134,23 @@ class EloquentUserRepository extends AbstractEloquentRepository implements
             ->paginate(25);
     }
 
+    /**
+     * Fetching a collection of users using an array of ids.
+     *
+     * @param array $ids
+     * @return mixed
+     */
     public function fetchByIds(array $ids)
     {
         return $this->model->whereIn('id', $ids)->get();
     }
 
+    /**
+     * Finding a disabled user.
+     *
+     * @param $slug
+     * @return mixed
+     */
     public function findDisabledUser($slug)
     {
         return $this->model
@@ -103,6 +159,12 @@ class EloquentUserRepository extends AbstractEloquentRepository implements
             ->firstOrFail();
     }
 
+    /**
+     * Fetching a user and user's associated tasks.
+     *
+     * @param $slug
+     * @return mixed
+     */
     public function findBySlugWithTasks($slug)
     {
         return $this->model->with(['tasks' => function ($query) {
@@ -110,6 +172,13 @@ class EloquentUserRepository extends AbstractEloquentRepository implements
         }, 'roles'])->where('slug', $slug)->firstOrFail();
     }
 
+    /**
+     * Finding a user or creating a new user if the user does not exist.
+     *
+     * @param array $userData
+     * @param $authProvider
+     * @return mixed
+     */
     public function findOrCreate(array $userData, $authProvider)
     {
         $user = $this->model
@@ -133,6 +202,13 @@ class EloquentUserRepository extends AbstractEloquentRepository implements
         return $user;
     }
 
+    /**
+     * Find a user by activation code.
+     *
+     * @param $code
+     * @param bool|false $active
+     * @return mixed
+     */
     public function findByActivationCode($code, $active = false)
     {
         return $this->model

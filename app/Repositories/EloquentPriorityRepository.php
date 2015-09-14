@@ -16,6 +16,11 @@ class EloquentPriorityRepository extends AbstractEloquentRepository
         $this->model = $model;
     }
 
+    /**
+     * Fetching all priority levels.
+     *
+     * @return mixed
+     */
     public function fetchAll()
     {
         return $this->model
@@ -23,6 +28,11 @@ class EloquentPriorityRepository extends AbstractEloquentRepository
             ->get(['id', 'name']);
     }
 
+    /**
+     * Listing priority levels by pairs of name and id.
+     *
+     * @return mixed
+     */
     public function lists()
     {
         return $this->model
@@ -30,6 +40,12 @@ class EloquentPriorityRepository extends AbstractEloquentRepository
             ->lists('name', 'id');
     }
 
+    /**
+     * Find a priority level by its name.
+     *
+     * @param $name
+     * @return mixed
+     */
     public function findByName($name)
     {
         return $this->model
@@ -37,6 +53,14 @@ class EloquentPriorityRepository extends AbstractEloquentRepository
             ->firstOrFail();
     }
 
+    /**
+     * Fetching tasks associated with a priority level.
+     *
+     * @param $userSlug
+     * @param $priorityName
+     * @param $limit
+     * @return mixed
+     */
     public function associatedTasks($userSlug, $priorityName, $limit)
     {
         $user = User::findBySlug($userSlug);

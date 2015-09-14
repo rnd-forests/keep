@@ -21,30 +21,23 @@ class EloquentNotificationRepository extends AbstractEloquentRepository implemen
         $this->model = $model;
     }
 
-    public function create(array $data)
-    {
-        return $this->model->create([
-            'sent_from' => 'admin',
-            'subject'   => $data['subject'],
-            'body'      => $data['body'],
-            'type'      => $data['type'],
-            'sent_at'   => Carbon::now(),
-        ]);
-    }
-
+    /**
+     * Delete a notification.
+     *
+     * @param $slug
+     * @return mixed
+     */
     public function delete($slug)
     {
         return $this->findBySlug($slug)->delete();
     }
 
-    public function paginate($limit, array $params = null)
-    {
-        return $this->model
-            ->where('sent_from', 'admin')
-            ->latest('created_at')
-            ->paginate($limit);
-    }
-
+    /**
+     * Fetching personal notifications of a user.
+     *
+     * @param $userSlug
+     * @return mixed
+     */
     public function personalNotifications($userSlug)
     {
         $user = User::findBySlug($userSlug);
@@ -54,6 +47,12 @@ class EloquentNotificationRepository extends AbstractEloquentRepository implemen
             ->simplePaginate(10);
     }
 
+    /**
+     * Fetching joined group notifications of a user.
+     *
+     * @param $userSlug
+     * @return mixed
+     */
     public function groupNotifications($userSlug)
     {
         $ids = collect();
@@ -71,10 +70,47 @@ class EloquentNotificationRepository extends AbstractEloquentRepository implemen
             ->simplePaginate(10);
     }
 
+    /**
+     * Fetching old notifications.
+     *
+     * @return mixed
+     */
     public function oldNotifications()
     {
         return $this->model
             ->old()
             ->get();
+    }
+
+    /**
+     * Paginate a collection of models.
+     *
+     * @param $limit
+     * @param array|null $params
+     * @return mixed
+     */
+    public function paginate($limit, array $params = null)
+    {
+        return $this->model
+            ->where('sent_from', 'admin')
+            ->latest('created_at')
+            ->paginate($limit);
+    }
+
+    /**
+     * Create a new model instance.
+     *
+     * @param array $data
+     * @return mixed
+     */
+    public function create(array $data)
+    {
+        return $this->model->create([
+            'sent_from' => 'admin',
+            'subject'   => $data['subject'],
+            'body'      => $data['body'],
+            'type'      => $data['type'],
+            'sent_at'   => Carbon::now(),
+        ]);
     }
 }

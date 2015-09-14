@@ -26,56 +26,12 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
         $this->model = $model;
     }
 
-    public function paginate($limit, array $params = null)
-    {
-        return $this->model
-            ->with('users')
-            ->latest('created_at')
-            ->paginate($limit);
-    }
-
-    public function findBySlug($slug)
-    {
-        return $this->model
-            ->with('users')
-            ->where('slug', $slug)
-            ->firstOrFail();
-    }
-
-    public function create(array $data)
-    {
-        return $this->model->create([
-            'name' => $data['name'],
-            'description' => $data['description'],
-        ]);
-    }
-
-    public function update(array $data, $identifier1, $identifier2 = null)
-    {
-        $group = $this->findBySlug($identifier1);
-        $group->update($data);
-
-        return $group;
-    }
-
-    public function restore($slug)
-    {
-        $group = $this->findTrashedGroup($slug);
-
-        return $group->restore();
-    }
-
-    public function softDelete($slug)
-    {
-        return $this->findBySlug($slug)->delete();
-    }
-
-    public function forceDelete($slug)
-    {
-        $group = $this->findTrashedGroup($slug);
-        $group->forceDelete();
-    }
-
+    /**
+     * Fetching trashed groups.
+     *
+     * @param $limit
+     * @return mixed
+     */
     public function trashed($limit)
     {
         return $this->model
@@ -85,6 +41,12 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
             ->paginate($limit);
     }
 
+    /**
+     * Finding a trashed group.
+     *
+     * @param $slug
+     * @return mixed
+     */
     public function findTrashedGroup($slug)
     {
         return $this->model
@@ -93,6 +55,13 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
             ->firstOrFail();
     }
 
+    /**
+     * Finding associated users of a group.
+     *
+     * @param $group
+     * @param $limit
+     * @return mixed
+     */
     public function associatedUsers($group, $limit)
     {
         return $group->users()
@@ -100,6 +69,12 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
             ->paginate($limit);
     }
 
+    /**
+     * Finding users who do not belong to a group.
+     *
+     * @param $slug
+     * @return mixed
+     */
     public function outsiders($slug)
     {
         $group = $this->findBySlug($slug);
@@ -109,16 +84,35 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
             ->oldest('name')->get();
     }
 
+    /**
+     * Adding users to a group.
+     *
+     * @param $group
+     * @param array $users
+     * @return mixed
+     */
     public function attachUsers($group, array $users)
     {
         $group->users()->attach($users);
     }
 
+    /**
+     * Fetching a collection of users using an array of ids.
+     *
+     * @param array $ids
+     * @return mixed
+     */
     public function fetchByIds(array $ids)
     {
         return $this->model->whereIn('id', $ids)->get();
     }
 
+    /**
+     * Fetching groups of a user.
+     *
+     * @param $userSlug
+     * @return mixed
+     */
     public function joinedGroups($userSlug)
     {
         $user = User::findBySlug($userSlug);
@@ -126,10 +120,111 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
         return $user->groups()->paginate(10);
     }
 
+    /**
+     * Fetching members of a group.
+     *
+     * @param $groupSlug
+     * @return mixed
+     */
     public function fetchMembers($groupSlug)
     {
         $group = $this->findBySlug($groupSlug);
 
         return $group->users()->latest('created_at')->get();
+    }
+
+    /**
+     * Paginate a collection of models.
+     *
+     * @param $limit
+     * @param array|null $params
+     * @return mixed
+     */
+    public function paginate($limit, array $params = null)
+    {
+        return $this->model
+            ->with('users')
+            ->latest('created_at')
+            ->paginate($limit);
+    }
+
+    /**
+     * Restore a soft deleted model instance.
+     *
+     * @param $identifier
+     * @return mixed
+     */
+    public function restore($identifier)
+    {
+        $group = $this->findTrashedGroup($identifier);
+
+        return $group->restore();
+    }
+
+    /**
+     * Soft delete a model instance.
+     *
+     * @param $identifier
+     * @return mixed
+     */
+    public function softDelete($identifier)
+    {
+        return $this->findBySlug($identifier)->delete();
+    }
+
+    /**
+     * Permanently delete a soft deleted model instance.
+     *
+     * @param $identifier
+     * @return mixed
+     */
+    public function forceDelete($identifier)
+    {
+        $group = $this->findTrashedGroup($identifier);
+        $group->forceDelete();
+    }
+
+    /**
+     * Create a new model instance.
+     *
+     * @param array $data
+     * @return mixed
+     */
+    public function create(array $data)
+    {
+        return $this->model->create([
+            'name'        => $data['name'],
+            'description' => $data['description'],
+        ]);
+    }
+
+    /**
+     * Update a model instance.
+     *
+     * @param array $data
+     * @param $identifier1
+     * @param null $identifier2
+     * @return mixed
+     */
+    public function update(array $data, $identifier1, $identifier2 = null)
+    {
+        $group = $this->findBySlug($identifier1);
+        $group->update($data);
+
+        return $group;
+    }
+
+    /**
+     * Find a model instance by its slug.
+     *
+     * @param $slug
+     * @return mixed
+     */
+    public function findBySlug($slug)
+    {
+        return $this->model
+            ->with('users')
+            ->where('slug', $slug)
+            ->firstOrFail();
     }
 }
