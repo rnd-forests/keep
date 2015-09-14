@@ -1,11 +1,11 @@
 <?php
 
-namespace Keep\Repositories\Notification;
+namespace Keep\Repositories;
 
 use Carbon\Carbon;
 use Keep\Entities\User;
 use Keep\Entities\Notification;
-use Keep\Repositories\AbstractEloquentRepository;
+use Keep\Repositories\Contracts\NotificationRepositoryInterface;
 
 class EloquentNotificationRepository extends AbstractEloquentRepository
     implements NotificationRepositoryInterface

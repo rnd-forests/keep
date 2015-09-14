@@ -3,8 +3,8 @@
 namespace Keep\Http\Composers;
 
 use Illuminate\Contracts\View\View;
-use Keep\Repositories\Tag\TagRepositoryInterface as TagRepository;
-use Keep\Repositories\Priority\PriorityRepositoryInterface as PriorityRepository;
+use Keep\Repositories\Contracts\TagRepositoryInterface as TagRepository;
+use Keep\Repositories\Contracts\PriorityRepositoryInterface as PriorityRepository;
 
 class TaskForm
 {

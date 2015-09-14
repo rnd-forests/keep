@@ -3,7 +3,7 @@
 namespace Keep\Http\Composers;
 
 use Illuminate\Contracts\View\View;
-use Keep\Repositories\Group\GroupRepositoryInterface as GroupRepository;
+use Keep\Repositories\Contracts\GroupRepositoryInterface as GroupRepository;
 
 class GroupNotificationForm
 {

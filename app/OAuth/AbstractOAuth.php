@@ -7,7 +7,7 @@ use Keep\OAuth\Contracts\OAuthUserListener;
 use Keep\OAuth\Contracts\ExtractableProvider;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 use Laravel\Socialite\Contracts\User as SocialiteUser;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
 
 abstract class AbstractOAuth implements ExtractableProvider
 {
@@ -35,7 +35,7 @@ abstract class AbstractOAuth implements ExtractableProvider
             return $this->getAuthorizationUrl($provider);
         }
         $data = $this->handleProviderCallback($provider);
-        $user = $this->users->findOrCreateNew($this->getUserProviderData($data), $provider);
+        $user = $this->users->findOrCreate($this->getUserProviderData($data), $provider);
         if (!$user) {
             throw new InvalidUserException($message);
         }

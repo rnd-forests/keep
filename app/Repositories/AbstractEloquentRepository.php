@@ -26,6 +26,6 @@ abstract class AbstractEloquentRepository
 
     public function isSortable(array $params)
     {
-        return $params['sortBy'] and $params['direction'];
+        return $params['sortBy'] && $params['direction'];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Repositories\Task;
+namespace Keep\Repositories\Contracts;
 
 interface TaskRepositoryInterface
 {

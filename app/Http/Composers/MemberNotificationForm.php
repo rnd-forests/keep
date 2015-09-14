@@ -3,7 +3,7 @@
 namespace Keep\Http\Composers;
 
 use Illuminate\Contracts\View\View;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
 
 class MemberNotificationForm
 {

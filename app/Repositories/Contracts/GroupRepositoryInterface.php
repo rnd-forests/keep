@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Repositories\Group;
+namespace Keep\Repositories\Contracts;
 
 interface GroupRepositoryInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Repositories\Notification;
+namespace Keep\Repositories\Contracts;
 
 interface NotificationRepositoryInterface
 {

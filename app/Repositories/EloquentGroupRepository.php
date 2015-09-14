@@ -1,10 +1,10 @@
 <?php
 
-namespace Keep\Repositories\Group;
+namespace Keep\Repositories;
 
 use Keep\Entities\User;
 use Keep\Entities\Group;
-use Keep\Repositories\AbstractEloquentRepository;
+use Keep\Repositories\Contracts\GroupRepositoryInterface;
 
 class EloquentGroupRepository extends AbstractEloquentRepository
     implements GroupRepositoryInterface

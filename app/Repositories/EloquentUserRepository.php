@@ -1,10 +1,10 @@
 <?php
 
-namespace Keep\Repositories\User;
+namespace Keep\Repositories;
 
 use Gate;
 use Keep\Entities\User;
-use Keep\Repositories\AbstractEloquentRepository;
+use Keep\Repositories\Contracts\UserRepositoryInterface;
 
 class EloquentUserRepository extends AbstractEloquentRepository
     implements UserRepositoryInterface
@@ -30,7 +30,7 @@ class EloquentUserRepository extends AbstractEloquentRepository
             ->paginate($limit);
     }
 
-    public function findBySlugEagerLoadTasks($slug)
+    public function findBySlugWithTasks($slug)
     {
         return $this->model->with(['tasks' => function ($query) {
             $query->latest('created_at');
@@ -66,7 +66,7 @@ class EloquentUserRepository extends AbstractEloquentRepository
 
     public function restore($slug)
     {
-        $user = $this->findDisabledUserBySlug($slug);
+        $user = $this->disabledUser($slug);
         $user->restore();
     }
 
@@ -81,21 +81,21 @@ class EloquentUserRepository extends AbstractEloquentRepository
 
     public function forceDelete($slug)
     {
-        $user = $this->findDisabledUserBySlug($slug);
+        $user = $this->disabledUser($slug);
         $user->tasks()->withTrashed()->forceDelete();
         $user->profile()->withTrashed()->forceDelete();
         $user->forceDelete();
     }
 
-    public function fetchDisabledUsers($limit)
+    public function disabledUsers()
     {
         return $this->model
             ->onlyTrashed()
             ->latest('deleted_at')
-            ->paginate($limit);
+            ->paginate(25);
     }
 
-    public function findDisabledUserBySlug($slug)
+    public function disabledUser($slug)
     {
         return $this->model
             ->onlyTrashed()
@@ -103,12 +103,12 @@ class EloquentUserRepository extends AbstractEloquentRepository
             ->firstOrFail();
     }
 
-    public function fetchUsersByIds(array $ids)
+    public function fetchByIds(array $ids)
     {
         return $this->model->whereIn('id', $ids)->get();
     }
 
-    public function findOrCreateNew(array $userData, $authProvider)
+    public function findOrCreate(array $userData, $authProvider)
     {
         $user = $this->model
             ->where('auth_provider_id', $userData['auth_provider_id'])

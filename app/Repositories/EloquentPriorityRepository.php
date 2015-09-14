@@ -1,10 +1,10 @@
 <?php
 
-namespace Keep\Repositories\Priority;
+namespace Keep\Repositories;
 
 use Keep\Entities\User;
 use Keep\Entities\Priority;
-use Keep\Repositories\AbstractEloquentRepository;
+use Keep\Repositories\Contracts\PriorityRepositoryInterface;
 
 class EloquentPriorityRepository extends AbstractEloquentRepository
     implements PriorityRepositoryInterface

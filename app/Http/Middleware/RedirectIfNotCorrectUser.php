@@ -5,7 +5,7 @@ namespace Keep\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Keep\Exceptions\InvalidUserException;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
 
 class RedirectIfNotCorrectUser
 {

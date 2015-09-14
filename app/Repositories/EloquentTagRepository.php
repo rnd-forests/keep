@@ -1,10 +1,10 @@
 <?php
 
-namespace Keep\Repositories\Tag;
+namespace Keep\Repositories;
 
 use Keep\Entities\Tag;
 use Keep\Entities\User;
-use Keep\Repositories\AbstractEloquentRepository;
+use Keep\Repositories\Contracts\TagRepositoryInterface;
 
 class EloquentTagRepository extends AbstractEloquentRepository
     implements TagRepositoryInterface

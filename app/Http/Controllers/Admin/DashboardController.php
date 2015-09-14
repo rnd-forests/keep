@@ -3,10 +3,10 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepository;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
-use Keep\Repositories\Group\GroupRepositoryInterface as GroupRepository;
-use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepository;
+use Keep\Repositories\Contracts\TaskRepositoryInterface as TaskRepository;
+use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\GroupRepositoryInterface as GroupRepository;
+use Keep\Repositories\Contracts\NotificationRepositoryInterface as NotificationRepository;
 
 class DashboardController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Repositories\Tag;
+namespace Keep\Repositories\Contracts;
 
 interface TagRepositoryInterface
 {

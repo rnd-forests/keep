@@ -3,7 +3,7 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
 
 class UsersController extends Controller
 {
@@ -36,7 +36,7 @@ class UsersController extends Controller
      */
     public function disabledAccounts()
     {
-        $disabledMembers = $this->users->fetchDisabledUsers(25);
+        $disabledMembers = $this->users->disabledUsers();
 
         return view('admin.members.disabled_accounts', compact('disabledMembers'));
     }
@@ -49,7 +49,7 @@ class UsersController extends Controller
      */
     public function profile($slug)
     {
-        $user = $this->users->findBySlugEagerLoadTasks($slug);
+        $user = $this->users->findBySlugWithTasks($slug);
 
         return view('admin.members.profile', compact('user'));
     }

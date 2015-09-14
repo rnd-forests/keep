@@ -4,7 +4,7 @@ namespace Keep\Jobs;
 
 use Keep\Events\UserHasRegistered;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
 
 class RegisterUserAccount extends Job implements SelfHandling
 {

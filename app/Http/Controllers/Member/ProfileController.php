@@ -4,7 +4,7 @@ namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\UpdateProfileRequest;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
 
 class ProfileController extends Controller
 {

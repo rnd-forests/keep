@@ -13,7 +13,7 @@ class SendMemberNotification extends NotificationRelations implements SelfHandli
     public function handle()
     {
         $notification = parent::$notifications->create($this->getNotificationRequestData());
-        $users = parent::$users->fetchUsersByIds($this->getUserListRequestData());
+        $users = parent::$users->fetchByIds($this->getUserListRequestData());
         $this->setNotificationPolymorphic($notification, $users);
     }
 }

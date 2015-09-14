@@ -3,7 +3,7 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepository;
+use Keep\Repositories\Contracts\TaskRepositoryInterface as TaskRepository;
 
 class TasksController extends Controller
 {

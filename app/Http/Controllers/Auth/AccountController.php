@@ -7,7 +7,7 @@ use Keep\Jobs\UpdateUserPassword;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\UpdateNameRequest;
 use Keep\Http\Requests\UpdatePasswordRequest;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
 
 class AccountController extends Controller
 {

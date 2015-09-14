@@ -1,12 +1,12 @@
 <?php
 
-namespace Keep\Repositories\Task;
+namespace Keep\Repositories;
 
 use Carbon\Carbon;
 use Keep\Entities\Task;
 use Keep\Entities\User;
 use Keep\Entities\Priority;
-use Keep\Repositories\AbstractEloquentRepository;
+use Keep\Repositories\Contracts\TaskRepositoryInterface;
 
 class EloquentTaskRepository extends AbstractEloquentRepository
     implements TaskRepositoryInterface

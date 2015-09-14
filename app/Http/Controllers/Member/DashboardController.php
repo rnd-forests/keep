@@ -3,8 +3,8 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Task\TaskRepositoryInterface as TaskRepository;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\TaskRepositoryInterface as TaskRepository;
+use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
 
 class DashboardController extends Controller
 {

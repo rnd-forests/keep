@@ -3,7 +3,7 @@
 namespace Keep\Console\Commands;
 
 use Illuminate\Console\Command;
-use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepository;
+use Keep\Repositories\Contracts\NotificationRepositoryInterface as NotificationRepository;
 
 class ClearOldNotifications extends Command
 {

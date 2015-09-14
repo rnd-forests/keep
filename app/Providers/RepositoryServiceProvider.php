@@ -29,33 +29,33 @@ class RepositoryServiceProvider extends ServiceProvider
     protected function registerRepositories()
     {
         $this->app->singleton(
-            \Keep\Repositories\Tag\TagRepositoryInterface::class,
-            \Keep\Repositories\Tag\EloquentTagRepository::class
+            \Keep\Repositories\Contracts\TagRepositoryInterface::class,
+            \Keep\Repositories\EloquentTagRepository::class
         );
 
         $this->app->singleton(
-            \Keep\Repositories\Task\TaskRepositoryInterface::class,
-            \Keep\Repositories\Task\EloquentTaskRepository::class
+            \Keep\Repositories\Contracts\TaskRepositoryInterface::class,
+            \Keep\Repositories\EloquentTaskRepository::class
         );
 
         $this->app->singleton(
-            \Keep\Repositories\User\UserRepositoryInterface::class,
-            \Keep\Repositories\User\EloquentUserRepository::class
+            \Keep\Repositories\Contracts\UserRepositoryInterface::class,
+            \Keep\Repositories\EloquentUserRepository::class
         );
 
         $this->app->singleton(
-            \Keep\Repositories\Group\GroupRepositoryInterface::class,
-            \Keep\Repositories\Group\EloquentGroupRepository::class
+            \Keep\Repositories\Contracts\GroupRepositoryInterface::class,
+            \Keep\Repositories\EloquentGroupRepository::class
         );
 
         $this->app->singleton(
-            \Keep\Repositories\Priority\PriorityRepositoryInterface::class,
-            \Keep\Repositories\Priority\EloquentPriorityRepository::class
+            \Keep\Repositories\Contracts\PriorityRepositoryInterface::class,
+            \Keep\Repositories\EloquentPriorityRepository::class
         );
 
         $this->app->singleton(
-            \Keep\Repositories\Notification\NotificationRepositoryInterface::class,
-            \Keep\Repositories\Notification\EloquentNotificationRepository::class
+            \Keep\Repositories\Contracts\NotificationRepositoryInterface::class,
+            \Keep\Repositories\EloquentNotificationRepository::class
         );
     }
 
@@ -67,12 +67,12 @@ class RepositoryServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            \Keep\Repositories\Tag\TagRepositoryInterface::class,
-            \Keep\Repositories\Task\TaskRepositoryInterface::class,
-            \Keep\Repositories\User\UserRepositoryInterface::class,
-            \Keep\Repositories\Group\GroupRepositoryInterface::class,
-            \Keep\Repositories\Priority\PriorityRepositoryInterface::class,
-            \Keep\Repositories\Notification\NotificationRepositoryInterface::class,
+            \Keep\Repositories\Contracts\TagRepositoryInterface::class,
+            \Keep\Repositories\Contracts\TaskRepositoryInterface::class,
+            \Keep\Repositories\Contracts\UserRepositoryInterface::class,
+            \Keep\Repositories\Contracts\GroupRepositoryInterface::class,
+            \Keep\Repositories\Contracts\PriorityRepositoryInterface::class,
+            \Keep\Repositories\Contracts\NotificationRepositoryInterface::class,
         ];
     }
 }

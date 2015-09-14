@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Repositories\Priority;
+namespace Keep\Repositories\Contracts;
 
 interface PriorityRepositoryInterface
 {

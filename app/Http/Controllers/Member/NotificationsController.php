@@ -3,7 +3,7 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Notification\NotificationRepositoryInterface as NotificationRepository;
+use Keep\Repositories\Contracts\NotificationRepositoryInterface as NotificationRepository;
 
 class NotificationsController extends Controller
 {

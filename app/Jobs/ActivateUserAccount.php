@@ -3,7 +3,7 @@
 namespace Keep\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
 
 class ActivateUserAccount extends Job implements SelfHandling
 {

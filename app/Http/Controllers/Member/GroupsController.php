@@ -3,8 +3,8 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\User\UserRepositoryInterface as UserRepository;
-use Keep\Repositories\Group\GroupRepositoryInterface as GroupRepository;
+use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\GroupRepositoryInterface as GroupRepository;
 
 class GroupsController extends Controller
 {
