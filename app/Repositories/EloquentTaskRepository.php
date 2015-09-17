@@ -367,13 +367,13 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Update a model instance.
      *
      * @param array $data
-     * @param $identifier1
-     * @param null $identifier2
+     * @param $identifier
+     * @param null $optionalIdentifier
      * @return mixed
      */
-    public function update(array $data, $identifier1, $identifier2 = null)
+    public function update(array $data, $identifier, $optionalIdentifier = null)
     {
-        $task = $this->find($identifier1, $identifier2);
+        $task = $this->find($identifier, $optionalIdentifier);
         $task->update($data);
 
         return $task;

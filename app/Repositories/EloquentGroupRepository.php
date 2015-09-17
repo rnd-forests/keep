@@ -202,13 +202,13 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      * Update a model instance.
      *
      * @param array $data
-     * @param $identifier1
-     * @param null $identifier2
+     * @param $identifier
+     * @param null $optionalIdentifier
      * @return mixed
      */
-    public function update(array $data, $identifier1, $identifier2 = null)
+    public function update(array $data, $identifier, $optionalIdentifier = null)
     {
-        $group = $this->findBySlug($identifier1);
+        $group = $this->findBySlug($identifier);
         $group->update($data);
 
         return $group;
