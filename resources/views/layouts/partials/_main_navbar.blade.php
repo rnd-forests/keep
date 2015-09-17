@@ -25,7 +25,7 @@
                     </li>
                     <li><a href="{{ route('member::groups.all', $authUser) }}">Groups</a></li>
                     <li>
-                        <a href="{{ route('member::notifications.personal', $authUser) }}">Notifications</a>
+                        <a href="{{ route('member::notifications', ['users' => $authUser, 'type' => 'personal']) }}">Notifications</a>
                     </li>
                 @endif
             </ul>

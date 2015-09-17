@@ -23,9 +23,7 @@ Route::group(['prefix' => '{users}', 'as' => 'member::', 'namespace' => 'Member'
     Route::get('priorities', ['as' => 'priorities.all', 'uses' => 'PrioritiesController@index']);
     Route::get('priorities/{priorities}/tasks', ['as' => 'priorities.task', 'uses' => 'PrioritiesController@show']);
 
-    Route::get('notifications', ['as' => 'notifications.personal', 'uses' => 'NotificationsController@fetchPersonalNotifications']);
-    Route::get('group-notifications', ['as' => 'notifications.group', 'uses' => 'NotificationsController@fetchGroupNotifications']);
-
+    Route::get('notifications', ['as' => 'notifications', 'uses' => 'NotificationsController@fetchNotifications']);
     Route::get('search', ['as' => 'tasks.search', 'uses' => 'SearchController@searchTasks']);
 });
 

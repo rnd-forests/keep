@@ -2,8 +2,10 @@
 
 namespace Keep\Http\Controllers\Member;
 
+use Illuminate\Http\Request;
 use Keep\Http\Controllers\Controller;
 use Keep\Repositories\Contracts\NotificationRepositoryInterface as NotificationRepository;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class NotificationsController extends Controller
 {
@@ -19,26 +21,37 @@ class NotificationsController extends Controller
     /**
      * Fetch all notifications of a user.
      *
+     * @param Request $request
      * @param $userSlug
      * @return \Illuminate\View\View
      */
-    public function fetchPersonalNotifications($userSlug)
+    public function fetchNotifications(Request $request, $userSlug)
     {
-        $notifications = $this->notifications->personalNotifications($userSlug);
-
-        return view('users.notifications.personal', compact('notifications'));
+        $type = $request->get('type');
+        if (!$this->isCorrectType($type)) {
+            throw new NotFoundHttpException;
+        }
+        if ($type == 'personal') {
+            $notifications = $this->notifications->personalNotifications($userSlug);
+            return view('users.notifications.personal', compact('notifications'));
+        }
+        $notifications = $this->notifications->groupNotifications($userSlug);
+        return view('users.notifications.groups', compact('notifications'));
     }
 
     /**
-     * Fetch all group notifications of a user.
+     * Check the correctness of the query string in the url.
      *
-     * @param $userSlug
-     * @return \Illuminate\View\View
+     * @param $currentType
+     * @return bool
      */
-    public function fetchGroupNotifications($userSlug)
+    protected function isCorrectType($currentType)
     {
-        $notifications = $this->notifications->groupNotifications($userSlug);
+        $possibleTypes = ['personal', 'group'];
+        if (!$currentType || !in_array($currentType, $possibleTypes)) {
+            return false;
+        }
 
-        return view('users.notifications.groups', compact('notifications'));
+        return true;
     }
 }
