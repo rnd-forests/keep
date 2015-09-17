@@ -4,8 +4,8 @@ namespace Keep\Http\Controllers\Member;
 
 use Illuminate\Http\Request;
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Contracts\NotificationRepositoryInterface as NotificationRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Keep\Repositories\Contracts\NotificationRepositoryInterface as NotificationRepository;
 
 class NotificationsController extends Controller
 {
