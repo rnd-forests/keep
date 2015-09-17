@@ -1,10 +1,10 @@
 <?php
 
-namespace Keep\OAuth;
+namespace Keep\Core\OAuth;
 
-use Keep\OAuth\Contracts\OpenAuthenticatable;
+use Keep\Core\OAuth\Contracts\OpenAuthenticatable;
 
-class FacebookAuthentication extends AbstractOAuth implements OpenAuthenticatable
+class GoogleAuthentication extends AbstractOAuth implements OpenAuthenticatable
 {
     /**
      * Get the open authentication provider name.
@@ -13,7 +13,7 @@ class FacebookAuthentication extends AbstractOAuth implements OpenAuthenticatabl
      */
     public function getAuthenticationProvider()
     {
-        return 'facebook';
+        return 'google';
     }
 
     /**
@@ -23,7 +23,7 @@ class FacebookAuthentication extends AbstractOAuth implements OpenAuthenticatabl
      */
     public function getAuthenticationException()
     {
-        return trans('authentication.facebook_error');
+        return trans('authentication.google_error');
     }
 
     /**
@@ -35,6 +35,10 @@ class FacebookAuthentication extends AbstractOAuth implements OpenAuthenticatabl
      */
     public function extractAndUpdate($user, $data)
     {
-        return true;
+        return $user->profile()->update([
+            'bio'             => strip_tags($data->user['aboutMe']),
+            'location'        => $data->user['placesLived'][0]['value'],
+            'google_username' => str_replace('https://plus.google.com/', '', $data->user['url']),
+        ]);
     }
 }

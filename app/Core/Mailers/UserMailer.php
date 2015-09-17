@@ -1,8 +1,8 @@
 <?php
 
-namespace Keep\Mailers;
+namespace Keep\Core\Mailers;
 
-use Keep\Mailers\Contracts\UserMailerContract;
+use Keep\Core\Mailers\Contracts\UserMailerContract;
 
 class UserMailer extends AbstractMailer implements UserMailerContract
 {

@@ -214,7 +214,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Bugsnag'   => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
-        'Search'    => Keep\Search\Facades\SearchFacade::class,
+        'Search'    => Keep\Core\Search\Facades\SearchFacade::class,
 
     ],
 

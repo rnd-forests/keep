@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Search\Contracts;
+namespace Keep\Core\Search\Contracts;
 
 interface SearchContract
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Keep\Search;
+namespace Keep\Core\Search;
 
-use Keep\Search\Contracts\SearchContract;
+use Keep\Core\Search\Contracts\SearchContract;
 
 class EloquentSearch implements SearchContract
 {

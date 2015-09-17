@@ -5,7 +5,7 @@ namespace Keep\Listeners;
 use Illuminate\Events\Dispatcher;
 use Keep\Events\TaskHasPublished;
 use Keep\Events\UserHasRegistered;
-use Keep\Mailers\Contracts\UserMailerContract;
+use Keep\Core\Mailers\Contracts\UserMailerContract;
 
 class UserEventListener
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Keep\OAuth;
+namespace Keep\Core\OAuth;
 
-use Keep\OAuth\Contracts\OpenAuthenticatable;
+use Keep\Core\OAuth\Contracts\OpenAuthenticatable;
 
 class GithubAuthentication extends AbstractOAuth implements OpenAuthenticatable
 {

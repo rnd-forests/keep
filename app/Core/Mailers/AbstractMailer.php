@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Mailers;
+namespace Keep\Core\Mailers;
 
 abstract class AbstractMailer
 {

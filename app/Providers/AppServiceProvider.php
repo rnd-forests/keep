@@ -58,8 +58,8 @@ class AppServiceProvider extends ServiceProvider
     protected function registerUserMailer()
     {
         $this->app->singleton(
-            \Keep\Mailers\Contracts\UserMailerContract::class,
-            \Keep\Mailers\UserMailer::class
+            \Keep\Core\Mailers\Contracts\UserMailerContract::class,
+            \Keep\Core\Mailers\UserMailer::class
         );
     }
 }

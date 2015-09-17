@@ -2,12 +2,12 @@
 
 namespace Keep\Http\Controllers\Auth;
 
-use Keep\OAuth\GithubAuthentication;
-use Keep\OAuth\GoogleAuthentication;
 use Keep\Http\Controllers\Controller;
-use Keep\OAuth\FacebookAuthentication;
-use Keep\OAuth\Contracts\OAuthUserListener;
-use Keep\OAuth\Contracts\OpenAuthenticatable;
+use Keep\Core\OAuth\GithubAuthentication;
+use Keep\Core\OAuth\GoogleAuthentication;
+use Keep\Core\OAuth\FacebookAuthentication;
+use Keep\Core\OAuth\Contracts\OAuthUserListener;
+use Keep\Core\OAuth\Contracts\OpenAuthenticatable;
 
 class OAuthController extends Controller implements OAuthUserListener
 {

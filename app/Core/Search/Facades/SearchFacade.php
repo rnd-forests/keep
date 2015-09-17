@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Search\Facades;
+namespace Keep\Core\Search\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

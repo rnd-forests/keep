@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\OAuth\Contracts;
+namespace Keep\Core\OAuth\Contracts;
 
 interface OpenAuthenticatable
 {

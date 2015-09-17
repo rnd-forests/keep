@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Mailers\Contracts;
+namespace Keep\Core\Mailers\Contracts;
 
 interface UserMailerContract
 {
