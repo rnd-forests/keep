@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
             <div class="form-wrapper">
-                {!! Form::open() !!}
+                {!! Form::open(['route' => 'auth::password.reset']) !!}
                     {!! Form::hidden('token', $token) !!}
                     <div class="form-group">
                         {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}

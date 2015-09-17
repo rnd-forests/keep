@@ -7,9 +7,16 @@ Route::group(['prefix' => 'auth', 'as' => 'auth::', 'namespace' => 'Auth'], func
     Route::get('login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
     Route::post('login', ['as' => 'login', 'uses' => 'AuthController@postLogin']);
     Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@getLogout']);
+
+    // Account setting routes
     Route::patch('{users}/change-password', ['as' => 'change.password', 'uses' => 'AccountController@changePassword']);
     Route::patch('{users}/change-username', ['as' => 'change.username', 'uses' => 'AccountController@changeUsername']);
-    Route::controller('password', 'PasswordController');
+
+    // Password Reset routes
+    Route::get('password/email', 'PasswordController@getEmail');
+    Route::post('password/email', 'PasswordController@postEmail');
+    Route::get('password/reset/{token}', 'PasswordController@getReset');
+    Route::post('password/reset', ['as' => 'password.reset', 'uses' => 'PasswordController@postReset']);
 });
 
 Route::group(['prefix' => 'oauth', 'as' => 'oauth::', 'namespace' => 'Auth'], function () {
