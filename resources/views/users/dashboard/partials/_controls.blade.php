@@ -1,4 +1,4 @@
-<i class="fa fa-arrow-circle-down task-dashboard-control"
+<i class="fa fa-arrow-circle-down task-dashboard-control task-content-toggle"
    data-toggle="collapse"
    data-target="#{{ $task->id }}-task-collapse"></i>
 <a href="{{ route('member::tasks.show', [$user, $task]) }}">

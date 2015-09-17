@@ -180,11 +180,13 @@ var Keep = (function() {
     var Tasks = {
         el: {
             cForm: $("#task-complete-form"),
-            dForm: $("#task-delete-form")
+            dForm: $("#task-delete-form"),
+            toggleButton: $(".task-content-toggle")
         },
         init: function() {
             this.deleteForm();
             this.completeForm();
+            this.changeToggleButton();
         },
         deleteForm: function() {
             this.el.dForm.on("click", "a", function(event) {
@@ -232,6 +234,11 @@ var Keep = (function() {
                 }).always(function() {
                     form.find('.loading').addClass('hidden');
                 });
+            });
+        },
+        changeToggleButton: function() {
+            this.el.toggleButton.on("click", function() {
+                $(this).toggleClass("fa-arrow-circle-up fa-arrow-circle-down");
             });
         }
     };
