@@ -21,7 +21,9 @@ class VerifyUserPermissions
      * @param $request
      * @param Closure $next
      * @param $permissions
+     *
      * @return mixed
+     *
      * @throws InvalidPermissionsException
      */
     public function handle($request, Closure $next, $permissions)
@@ -29,7 +31,7 @@ class VerifyUserPermissions
         $user = $this->auth->user();
         if (!($this->auth->check() && $user->can($permissions, true))) {
             throw new InvalidPermissionsException(trans('exception.invalid_permission_exception', [
-                'user' => $user->name
+                'user' => $user->name,
             ]));
         }
 

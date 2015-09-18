@@ -49,10 +49,10 @@ if (!function_exists('plural')) {
     function plural($pattern, $counter)
     {
         if (!is_numeric($counter)) {
-            throw new InvalidArgumentException;
+            throw new InvalidArgumentException();
         }
 
-        return $counter . ' ' . str_plural($pattern, $counter);
+        return $counter.' '.str_plural($pattern, $counter);
     }
 }
 
@@ -60,19 +60,19 @@ if (!function_exists('plural2')) {
     function plural2($pattern, $middle, $counter)
     {
         if (!is_numeric($counter)) {
-            throw new InvalidArgumentException;
+            throw new InvalidArgumentException();
         }
 
-        return $counter . ' ' . $middle . ' ' . str_plural($pattern, $counter);
+        return $counter.' '.$middle.' '.str_plural($pattern, $counter);
     }
 }
 
 if (!function_exists('remaining_days')) {
     function remaining_days($finish)
     {
-        $count = (int)Carbon::now()->diffInDays(Carbon::parse($finish));
+        $count = (int) Carbon::now()->diffInDays(Carbon::parse($finish));
 
-        return $count . ' ' . str_plural('day', $count) . ' remaining';
+        return $count.' '.str_plural('day', $count).' remaining';
     }
 }
 
@@ -80,7 +80,7 @@ if (!function_exists('counting')) {
     function counting($object)
     {
         if (!($object instanceof Collection or $object instanceof LengthAwarePaginator)) {
-            throw new InvalidArgumentException;
+            throw new InvalidArgumentException();
         }
 
         return $object->count();
@@ -102,7 +102,7 @@ if (!function_exists('blank')) {
     function blank($object)
     {
         if (!($object instanceof Collection or $object instanceof LengthAwarePaginator)) {
-            throw new InvalidArgumentException;
+            throw new InvalidArgumentException();
         }
 
         return $object->isEmpty();
@@ -113,9 +113,9 @@ if (!function_exists('render_pagination')) {
     function render_pagination($collection, array $queries = null)
     {
         if (!$queries) {
-            return '<div class="text-center">' . $collection->render() . '</div>';
+            return '<div class="text-center">'.$collection->render().'</div>';
         } else {
-            return '<div class="text-center">' . $collection->appends($queries)->render() . '</div>';
+            return '<div class="text-center">'.$collection->appends($queries)->render().'</div>';
         }
     }
 }

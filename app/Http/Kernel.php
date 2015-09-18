@@ -26,10 +26,10 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth'        => \Keep\Http\Middleware\Authenticate::class,
-        'auth.basic'  => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest'       => \Keep\Http\Middleware\RedirectIfAuthenticated::class,
-        'valid.user'  => \Keep\Http\Middleware\RedirectIfNotCorrectUser::class,
+        'auth' => \Keep\Http\Middleware\Authenticate::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'guest' => \Keep\Http\Middleware\RedirectIfAuthenticated::class,
+        'valid.user' => \Keep\Http\Middleware\RedirectIfNotCorrectUser::class,
         'valid.perms' => \Keep\Http\Middleware\VerifyUserPermissions::class,
         'valid.roles' => \Keep\Http\Middleware\VerifyUserRoles::class,
     ];

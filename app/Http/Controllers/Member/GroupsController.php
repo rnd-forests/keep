@@ -22,6 +22,7 @@ class GroupsController extends Controller
      * Get all groups associated with a user.
      *
      * @param $userSlug
+     *
      * @return \Illuminate\View\View
      */
     public function index($userSlug)
@@ -36,6 +37,7 @@ class GroupsController extends Controller
      *
      * @param $userSlug
      * @param $groupSlug
+     *
      * @return \Illuminate\View\View
      */
     public function show($userSlug, $groupSlug)

@@ -18,6 +18,7 @@ interface OpenAuthenticatable
      * @param $provider
      * @param $message
      * @param OAuthUserListener $listener
+     *
      * @return mixed
      */
     public function authenticate($hasCode, $provider, $message, OAuthUserListener $listener);

@@ -22,6 +22,7 @@ class DashboardController extends Controller
      * User dashboard.
      *
      * @param $userSlug
+     *
      * @return \Illuminate\View\View
      */
     public function dashboard($userSlug)
@@ -38,6 +39,7 @@ class DashboardController extends Controller
      * Get all tasks of a user.
      *
      * @param $userSlug
+     *
      * @return \Illuminate\View\View
      */
     public function all($userSlug)
@@ -50,6 +52,7 @@ class DashboardController extends Controller
      * Get all completed tasks of a user.
      *
      * @param $userSlug
+     *
      * @return \Illuminate\View\View
      */
     public function completed($userSlug)
@@ -62,6 +65,7 @@ class DashboardController extends Controller
      * Get all failed tasks of a user.
      *
      * @param $userSlug
+     *
      * @return \Illuminate\View\View
      */
     public function failed($userSlug)
@@ -74,6 +78,7 @@ class DashboardController extends Controller
      * Get all processing tasks of a user.
      *
      * @param $userSlug
+     *
      * @return \Illuminate\View\View
      */
     public function processing($userSlug)
@@ -89,6 +94,7 @@ class DashboardController extends Controller
      * @param $view      
      * @param $slug      
      * @param $repoMethod
+     *
      * @return \Illuminate\View\View
      */
     protected function fetchTasks($type, $view, $slug, $repoMethod)

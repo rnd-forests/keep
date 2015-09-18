@@ -24,7 +24,9 @@ class RedirectIfNotCorrectUser
      *
      * @param $request
      * @param callable|Closure $next
+     *
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws InvalidUserException
      */
     public function handle($request, Closure $next)

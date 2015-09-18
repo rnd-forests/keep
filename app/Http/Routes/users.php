@@ -30,12 +30,12 @@ Route::group(['prefix' => '{users}', 'as' => 'member::', 'namespace' => 'Member'
 Route::group(['prefix' => '{users}', 'namespace' => 'Member'], function () {
     Route::resource('tasks', 'TasksController', [
         'except' => ['index'],
-        'names'  => [
-            'create'  => 'member::tasks.create',
-            'store'   => 'member::tasks.store',
-            'show'    => 'member::tasks.show',
-            'edit'    => 'member::tasks.edit',
-            'update'  => 'member::tasks.update',
+        'names' => [
+            'create' => 'member::tasks.create',
+            'store' => 'member::tasks.store',
+            'show' => 'member::tasks.show',
+            'edit' => 'member::tasks.edit',
+            'update' => 'member::tasks.update',
             'destroy' => 'member::tasks.destroy',
         ],
     ]);

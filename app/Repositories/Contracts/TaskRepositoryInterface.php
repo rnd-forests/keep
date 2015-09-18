@@ -9,6 +9,7 @@ interface TaskRepositoryInterface
      *
      * @param $userSlug
      * @param $taskSlug
+     *
      * @return mixed
      */
     public function find($userSlug, $taskSlug);
@@ -18,6 +19,7 @@ interface TaskRepositoryInterface
      *
      * @param array $data
      * @param $task
+     *
      * @return mixed
      */
     public function adminUpdate(array $data, $task);
@@ -27,6 +29,7 @@ interface TaskRepositoryInterface
      *
      * @param $userSlug
      * @param $taskSlug
+     *
      * @return mixed
      */
     public function delete($userSlug, $taskSlug);
@@ -35,6 +38,7 @@ interface TaskRepositoryInterface
      * Fetching trashed tasks.
      *
      * @param $limit
+     *
      * @return mixed
      */
     public function trashed($limit);
@@ -43,6 +47,7 @@ interface TaskRepositoryInterface
      * Finding a trashed task.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function findTrashedTask($slug);
@@ -53,6 +58,7 @@ interface TaskRepositoryInterface
      * @param $request
      * @param $userSlug
      * @param $taskSlug
+     *
      * @return mixed
      */
     public function complete($request, $userSlug, $taskSlug);
@@ -62,6 +68,7 @@ interface TaskRepositoryInterface
      *
      * @param $task
      * @param array $tags
+     *
      * @return mixed
      */
     public function syncTags($task, array $tags);
@@ -71,6 +78,7 @@ interface TaskRepositoryInterface
      *
      * @param $task
      * @param $priorityId
+     *
      * @return mixed
      */
     public function associatePriority($task, $priorityId);
@@ -79,6 +87,7 @@ interface TaskRepositoryInterface
      * Fetching urgent tasks.
      *
      * @param $user
+     *
      * @return mixed
      */
     public function urgentTasks($user);
@@ -87,6 +96,7 @@ interface TaskRepositoryInterface
      * Fetching deadline tasks.
      *
      * @param $user
+     *
      * @return mixed
      */
     public function deadlineTasks($user);
@@ -95,6 +105,7 @@ interface TaskRepositoryInterface
      * Fetching recently completed tasks.
      *
      * @param $user
+     *
      * @return mixed
      */
     public function recentlyCompletedTasks($user);
@@ -117,6 +128,7 @@ interface TaskRepositoryInterface
      * Fetching all tasks of a user.
      *
      * @param $user
+     *
      * @return mixed
      */
     public function allTasks($user);
@@ -125,6 +137,7 @@ interface TaskRepositoryInterface
      * Fetching completed tasks of a user.
      *
      * @param $user
+     *
      * @return mixed
      */
     public function completedTasks($user);
@@ -133,6 +146,7 @@ interface TaskRepositoryInterface
      * Fetching failed tasks of a user.
      *
      * @param $user
+     *
      * @return mixed
      */
     public function failedTasks($user);
@@ -141,6 +155,7 @@ interface TaskRepositoryInterface
      * Fetching processing tasks of a user.
      *
      * @param $user
+     *
      * @return mixed
      */
     public function processingTasks($user);

@@ -30,6 +30,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      * Fetching trashed groups.
      *
      * @param $limit
+     *
      * @return mixed
      */
     public function trashed($limit)
@@ -45,6 +46,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      * Finding a trashed group.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function findTrashedGroup($slug)
@@ -60,6 +62,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      *
      * @param $group
      * @param $limit
+     *
      * @return mixed
      */
     public function associatedUsers($group, $limit)
@@ -73,6 +76,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      * Finding users who do not belong to a group.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function outsiders($slug)
@@ -89,6 +93,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      *
      * @param $group
      * @param array $users
+     *
      * @return mixed
      */
     public function attachUsers($group, array $users)
@@ -100,6 +105,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      * Fetching a collection of users using an array of ids.
      *
      * @param array $ids
+     *
      * @return mixed
      */
     public function fetchByIds(array $ids)
@@ -111,6 +117,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      * Fetching groups of a user.
      *
      * @param $userSlug
+     *
      * @return mixed
      */
     public function joinedGroups($userSlug)
@@ -124,6 +131,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      * Fetching members of a group.
      *
      * @param $groupSlug
+     *
      * @return mixed
      */
     public function fetchMembers($groupSlug)
@@ -138,6 +146,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      *
      * @param $limit
      * @param array|null $params
+     *
      * @return mixed
      */
     public function paginate($limit, array $params = null)
@@ -152,6 +161,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      * Restore a soft deleted model instance.
      *
      * @param $identifier
+     *
      * @return mixed
      */
     public function restore($identifier)
@@ -165,6 +175,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      * Soft delete a model instance.
      *
      * @param $identifier
+     *
      * @return mixed
      */
     public function softDelete($identifier)
@@ -176,6 +187,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      * Permanently delete a soft deleted model instance.
      *
      * @param $identifier
+     *
      * @return mixed
      */
     public function forceDelete($identifier)
@@ -188,12 +200,13 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      * Create a new model instance.
      *
      * @param array $data
+     *
      * @return mixed
      */
     public function create(array $data)
     {
         return $this->model->create([
-            'name'        => $data['name'],
+            'name' => $data['name'],
             'description' => $data['description'],
         ]);
     }
@@ -204,6 +217,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      * @param array $data
      * @param $identifier
      * @param null $optionalIdentifier
+     *
      * @return mixed
      */
     public function update(array $data, $identifier, $optionalIdentifier = null)
@@ -218,6 +232,7 @@ class EloquentGroupRepository extends AbstractEloquentRepository implements
      * Find a model instance by its slug.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function findBySlug($slug)

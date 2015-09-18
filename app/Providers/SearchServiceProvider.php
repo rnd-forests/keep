@@ -15,8 +15,6 @@ class SearchServiceProvider extends ServiceProvider
 
     /**
      * Register the application services.
-     *
-     * @return void
      */
     public function register()
     {
@@ -52,7 +50,7 @@ class SearchServiceProvider extends ServiceProvider
     {
         return [
             'search',
-            \Keep\Core\Search\Contracts\SearchContract::class
+            \Keep\Core\Search\Contracts\SearchContract::class,
         ];
     }
 }

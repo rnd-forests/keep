@@ -15,6 +15,7 @@ interface UserRepositoryInterface
      * Fetching a collection of users using an array of ids.
      *
      * @param array $ids
+     *
      * @return mixed
      */
     public function fetchByIds(array $ids);
@@ -23,6 +24,7 @@ interface UserRepositoryInterface
      * Finding a disabled user.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function findDisabledUser($slug);
@@ -31,6 +33,7 @@ interface UserRepositoryInterface
      * Fetching a user and user's associated tasks.
      *
      * @param $slug
+     *
      * @return mixed
      */
     public function findBySlugWithTasks($slug);
@@ -40,6 +43,7 @@ interface UserRepositoryInterface
      *
      * @param array $userData
      * @param $authProvider
+     *
      * @return mixed
      */
     public function findOrCreate(array $userData, $authProvider);
@@ -49,6 +53,7 @@ interface UserRepositoryInterface
      *
      * @param $code
      * @param bool|false $active
+     *
      * @return mixed
      */
     public function findByActivationCode($code, $active = false);

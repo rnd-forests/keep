@@ -15,6 +15,7 @@ interface TagRepositoryInterface
      * Fetching tags associated with a user.
      *
      * @param $userSlug
+     *
      * @return mixed
      */
     public function fetchAttachedTags($userSlug);
@@ -25,6 +26,7 @@ interface TagRepositoryInterface
      * @param $userSlug
      * @param $tagSlug
      * @param $limit
+     *
      * @return mixed
      */
     public function associatedTasks($userSlug, $tagSlug, $limit);

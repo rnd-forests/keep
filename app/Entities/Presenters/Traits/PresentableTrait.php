@@ -12,6 +12,7 @@ trait PresentableTrait
      * Prepare a new or retrieve old presenter instance.
      *
      * @return mixed
+     *
      * @throws PresenterException
      */
     public function present()

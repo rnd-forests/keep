@@ -22,6 +22,7 @@ interface PriorityRepositoryInterface
      * Find a priority level by its name.
      *
      * @param $name
+     *
      * @return mixed
      */
     public function findByName($name);
@@ -32,6 +33,7 @@ interface PriorityRepositoryInterface
      * @param $userSlug
      * @param $priorityName
      * @param $limit
+     *
      * @return mixed
      */
     public function associatedTasks($userSlug, $priorityName, $limit);

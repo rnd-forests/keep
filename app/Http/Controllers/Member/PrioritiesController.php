@@ -22,6 +22,7 @@ class PrioritiesController extends Controller
      * Get all priority levels associated with a user's tasks.
      *
      * @param $userSlug
+     *
      * @return \Illuminate\View\View
      */
     public function index($userSlug)
@@ -37,6 +38,7 @@ class PrioritiesController extends Controller
      *
      * @param $userSlug
      * @param $priorityName
+     *
      * @return \Illuminate\View\View
      */
     public function show($userSlug, $priorityName)

@@ -25,6 +25,7 @@ class AccountController extends Controller
      *
      * @param $userSlug
      * @param UpdatePasswordRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function changePassword($userSlug, UpdatePasswordRequest $request)
@@ -46,6 +47,7 @@ class AccountController extends Controller
      *
      * @param $userSlug
      * @param UpdateNameRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function changeUsername($userSlug, UpdateNameRequest $request)

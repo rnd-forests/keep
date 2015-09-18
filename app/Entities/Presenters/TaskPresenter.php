@@ -8,6 +8,7 @@ class TaskPresenter extends Presenter
      * Print task status.
      *
      * @param $status
+     *
      * @return string
      */
     public function printStatus($status)
@@ -24,6 +25,7 @@ class TaskPresenter extends Presenter
      *
      * @param $user
      * @param $task
+     *
      * @return string
      */
     public function url($user, $task)

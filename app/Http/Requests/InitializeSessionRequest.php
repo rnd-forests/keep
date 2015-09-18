@@ -12,7 +12,7 @@ class InitializeSessionRequest extends AbstractRequest
     public function rules()
     {
         return [
-            'email'    => 'required|email',
+            'email' => 'required|email',
             'password' => 'required',
         ];
     }

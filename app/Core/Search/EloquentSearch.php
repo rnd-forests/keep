@@ -11,6 +11,7 @@ class EloquentSearch implements SearchContract
      *
      * @param $user
      * @param $pattern
+     *
      * @return mixed
      */
     public function tasksByTitle($user, $pattern)

@@ -31,13 +31,14 @@ class GoogleAuthentication extends AbstractOAuth implements OpenAuthenticatable
      *
      * @param $user
      * @param $data
+     *
      * @return mixed
      */
     public function extractAndUpdate($user, $data)
     {
         return $user->profile()->update([
-            'bio'             => strip_tags($data->user['aboutMe']),
-            'location'        => $data->user['placesLived'][0]['value'],
+            'bio' => strip_tags($data->user['aboutMe']),
+            'location' => $data->user['placesLived'][0]['value'],
             'google_username' => str_replace('https://plus.google.com/', '', $data->user['url']),
         ]);
     }

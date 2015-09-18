@@ -11,6 +11,7 @@ class UserMailer extends AbstractMailer implements UserMailerContract
      *
      * @param $user
      * @param $code
+     *
      * @return mixed
      */
     public function emailActivationLink($user, $code)
@@ -26,6 +27,7 @@ class UserMailer extends AbstractMailer implements UserMailerContract
      *
      * @param $user
      * @param $task
+     *
      * @return mixed
      */
     public function emailNewlyCreatedTask($user, $task)
@@ -33,12 +35,12 @@ class UserMailer extends AbstractMailer implements UserMailerContract
         $subject = trans('mailer.new_task_subject');
         $view = 'emails.task.new_task';
         $data = [
-            'username'      => $user->name,
-            'taskTitle'     => $task->title,
-            'taskContent'   => $task->content,
-            'startingDate'  => short_time($task->starting_date),
+            'username' => $user->name,
+            'taskTitle' => $task->title,
+            'taskContent' => $task->content,
+            'startingDate' => short_time($task->starting_date),
             'finishingDate' => short_time($task->finishing_date),
-            'taskUrl'       => $task->present()->url($user, $task),
+            'taskUrl' => $task->present()->url($user, $task),
         ];
         $this->sendTo($user, $subject, $view, $data);
     }
@@ -48,6 +50,7 @@ class UserMailer extends AbstractMailer implements UserMailerContract
      *
      * @param $user
      * @param $task
+     *
      * @return mixed
      */
     public function emailUpcomingTask($user, $task)
@@ -55,13 +58,13 @@ class UserMailer extends AbstractMailer implements UserMailerContract
         $subject = trans('mailer.upcoming_task_subject');
         $view = 'emails.task.upcoming_task';
         $data = [
-            'username'      => $user->name,
-            'taskTitle'     => $task->title,
-            'taskContent'   => $task->content,
-            'startingDate'  => short_time($task->starting_date),
+            'username' => $user->name,
+            'taskTitle' => $task->title,
+            'taskContent' => $task->content,
+            'startingDate' => short_time($task->starting_date),
             'finishingDate' => short_time($task->finishing_date),
             'remainingDays' => remaining_days($task->finishing_date),
-            'taskUrl'       => $task->present()->url($user, $task),
+            'taskUrl' => $task->present()->url($user, $task),
         ];
         $this->sendTo($user, $subject, $view, $data);
     }

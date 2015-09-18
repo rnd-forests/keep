@@ -21,6 +21,7 @@ class AuthenticateUser extends Job implements SelfHandling
      * Authenticate user into application.
      *
      * @param Guard $auth
+     *
      * @return bool
      */
     public function handle(Guard $auth)
@@ -31,9 +32,9 @@ class AuthenticateUser extends Job implements SelfHandling
     protected function getUserData()
     {
         return [
-            'email'    => $this->email,
+            'email' => $this->email,
             'password' => $this->password,
-            'active'   => $this->active,
+            'active' => $this->active,
         ];
     }
 }

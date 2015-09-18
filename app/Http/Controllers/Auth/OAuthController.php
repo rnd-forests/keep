@@ -20,6 +20,7 @@ class OAuthController extends Controller implements OAuthUserListener
      * Authenticate user using GitHub provider.
      *
      * @param GithubAuthentication $github
+     *
      * @return mixed
      */
     public function authenticateWithGithub(GithubAuthentication $github)
@@ -31,6 +32,7 @@ class OAuthController extends Controller implements OAuthUserListener
      * Authenticate user using Facebook provider.
      *
      * @param FacebookAuthentication $facebook
+     *
      * @return mixed
      */
     public function authenticateWithFacebook(FacebookAuthentication $facebook)
@@ -42,6 +44,7 @@ class OAuthController extends Controller implements OAuthUserListener
      * Authenticate user using Google provider.
      *
      * @param GoogleAuthentication $google
+     *
      * @return mixed
      */
     public function authenticateWithGoogle(GoogleAuthentication $google)
@@ -53,6 +56,7 @@ class OAuthController extends Controller implements OAuthUserListener
      * Log the user in the application using the given authentication provider.
      *
      * @param OpenAuthenticatable $provider
+     *
      * @return mixed
      */
     protected function authenticateWith(OpenAuthenticatable $provider)
@@ -69,6 +73,7 @@ class OAuthController extends Controller implements OAuthUserListener
      * Response to open authentication on success event.
      *
      * @param $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function userHasLoggedIn($user)

@@ -32,6 +32,7 @@ class PasswordController extends Controller
      * Send a reset link to the given user.
      *
      * @param Request $request
+     *
      * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function postEmail(Request $request)
@@ -44,6 +45,7 @@ class PasswordController extends Controller
 
         if ($response == PasswordBroker::RESET_LINK_SENT) {
             flash()->success(trans('authentication.password_reset_email'));
+
             return redirect()->home();
         }
 
@@ -54,6 +56,7 @@ class PasswordController extends Controller
      * Display the password reset view for the given token.
      *
      * @param null $token
+     *
      * @return $this
      */
     public function getReset($token = null)
@@ -69,6 +72,7 @@ class PasswordController extends Controller
      * Reset the given user's password.
      *
      * @param ResetPasswordRequest $request
+     *
      * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function postReset(ResetPasswordRequest $request)
@@ -85,6 +89,7 @@ class PasswordController extends Controller
 
         if ($response == PasswordBroker::PASSWORD_RESET) {
             flash()->success(trans('authentication.password_reset'));
+
             return redirect()->home();
         }
 

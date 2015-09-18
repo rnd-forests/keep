@@ -34,12 +34,14 @@ class AuthController extends Controller
      * Handle a registration request to the application.
      *
      * @param RegistrationRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postRegister(RegistrationRequest $request)
     {
         if ($this->dispatchFrom(RegisterUserAccount::class, $request)) {
             flash()->info(trans('authentication.account_activation'));
+
             return redirect()->home();
         }
 
@@ -60,6 +62,7 @@ class AuthController extends Controller
      * Handle a login request to the application.
      *
      * @param InitializeSessionRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postLogin(InitializeSessionRequest $request)
@@ -69,11 +72,12 @@ class AuthController extends Controller
         }
 
         if ($this->dispatchFrom(AuthenticateUser::class, $request, [
-            'active'   => 1,
+            'active' => 1,
             'remember' => $request->has('remember'), ])
         ) {
             flash()->success(trans('authentication.login_success'));
             $this->throttles->clearLoginAttempts($request);
+
             return redirect()->intended('/');
         }
         session()->flash('login_error', trans('authentication.login_error'));
@@ -99,12 +103,14 @@ class AuthController extends Controller
      * Activate user account.
      *
      * @param $code
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function activate($code)
     {
         if ($this->dispatch(new ActivateUserAccount($code))) {
             flash()->success(trans('authentication.activation_success'));
+
             return redirect()->home();
         }
         flash()->warning(trans('authentication.activation_error'));

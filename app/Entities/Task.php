@@ -28,7 +28,7 @@ class Task extends Model implements
     protected $casts = ['completed' => 'boolean', 'is_failed' => 'boolean'];
     protected $fillable = [
         'user_id', 'priority_id', 'title', 'slug', 'content', 'location', 'starting_date',
-        'finishing_date', 'is_failed', 'finished_at', 'completed', 'deleted_at'
+        'finishing_date', 'is_failed', 'finished_at', 'completed', 'deleted_at',
     ];
 
     public function user()

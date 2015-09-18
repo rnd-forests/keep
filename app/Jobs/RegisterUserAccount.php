@@ -21,6 +21,7 @@ class RegisterUserAccount extends Job implements SelfHandling
      * Register new account.
      *
      * @param UserRepository $users
+     *
      * @return bool
      */
     public function handle(UserRepository $users)
@@ -37,8 +38,8 @@ class RegisterUserAccount extends Job implements SelfHandling
     protected function getUserData()
     {
         return [
-            'name'     => $this->name,
-            'email'    => $this->email,
+            'name' => $this->name,
+            'email' => $this->email,
             'password' => $this->password,
         ];
     }

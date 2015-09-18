@@ -33,6 +33,7 @@ class TasksController extends Controller
      * Display a task.
      *
      * @param $slug
+     *
      * @return \Illuminate\View\View
      */
     public function showTask($slug)
@@ -46,6 +47,7 @@ class TasksController extends Controller
      * Soft delete a task.
      *
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function softDelete($slug)
@@ -72,6 +74,7 @@ class TasksController extends Controller
      * Restore a soft deleted task.
      *
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function restoreTask($slug)
@@ -86,6 +89,7 @@ class TasksController extends Controller
      * Permanently delete a task.
      *
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function forceDeleteTask($slug)

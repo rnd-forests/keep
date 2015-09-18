@@ -20,6 +20,7 @@ class ProfileController extends Controller
      * Show public profile.
      *
      * @param $slug
+     *
      * @return \Illuminate\View\View
      */
     public function show($slug)
@@ -33,6 +34,7 @@ class ProfileController extends Controller
      * Show account settings.
      *
      * @param $slug
+     *
      * @return \Illuminate\View\View
      */
     public function account($slug)
@@ -47,6 +49,7 @@ class ProfileController extends Controller
      * Load the form to edit profile.
      *
      * @param $slug
+     *
      * @return \Illuminate\View\View
      */
     public function edit($slug)
@@ -62,6 +65,7 @@ class ProfileController extends Controller
      *
      * @param UpdateProfileRequest $request
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateProfileRequest $request, $slug)
@@ -76,6 +80,7 @@ class ProfileController extends Controller
      * Cancel account.
      *
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($slug)

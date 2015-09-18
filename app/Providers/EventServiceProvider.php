@@ -36,7 +36,7 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
-        \Keep\Entities\User::observe(new UserObserver);
-        \Keep\Entities\Notification::observe(new NotificationObserver);
+        \Keep\Entities\User::observe(new UserObserver());
+        \Keep\Entities\Notification::observe(new NotificationObserver());
     }
 }

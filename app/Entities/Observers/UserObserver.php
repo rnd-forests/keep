@@ -14,7 +14,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        $user->profile()->save(new Profile);
+        $user->profile()->save(new Profile());
     }
 
     /**

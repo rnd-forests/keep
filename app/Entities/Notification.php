@@ -37,7 +37,7 @@ class Notification extends Model implements SluggableInterface
     public function getObject()
     {
         $this->attachedObject = call_user_func_array(
-            $this->object_type . '::findOrFail',
+            $this->object_type.'::findOrFail',
             [$this->object_id]
         );
 

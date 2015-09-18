@@ -18,6 +18,7 @@ class ActivateUserAccount extends Job implements SelfHandling
      * Activate user account.
      *
      * @param UserRepository $users
+     *
      * @return bool
      */
     public function handle(UserRepository $users)
@@ -25,6 +26,7 @@ class ActivateUserAccount extends Job implements SelfHandling
         $user = $users->findByActivationCode($this->code);
         if ($this->canBeActivated($user)) {
             auth()->login($user);
+
             return true;
         }
 

@@ -9,6 +9,7 @@ interface UserMailerContract
      *
      * @param $user
      * @param $code
+     *
      * @return mixed
      */
     public function emailActivationLink($user, $code);
@@ -18,6 +19,7 @@ interface UserMailerContract
      *
      * @param $user
      * @param $task
+     *
      * @return mixed
      */
     public function emailNewlyCreatedTask($user, $task);
@@ -27,6 +29,7 @@ interface UserMailerContract
      *
      * @param $user
      * @param $task
+     *
      * @return mixed
      */
     public function emailUpcomingTask($user, $task);

@@ -11,6 +11,7 @@ class RedirectIfAuthenticated
      *
      * @param $request
      * @param callable|Closure $next
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function handle($request, Closure $next)

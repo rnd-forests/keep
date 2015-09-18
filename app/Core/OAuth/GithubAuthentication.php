@@ -31,14 +31,15 @@ class GithubAuthentication extends AbstractOAuth implements OpenAuthenticatable
      *
      * @param $user
      * @param $data
+     *
      * @return mixed
      */
     public function extractAndUpdate($user, $data)
     {
         return $user->profile()->update([
-            'bio'             => $data->user['bio'],
-            'company'         => $data->user['company'],
-            'location'        => $data->user['location'],
+            'bio' => $data->user['bio'],
+            'company' => $data->user['company'],
+            'location' => $data->user['location'],
             'github_username' => str_replace('https://github.com/', '', $data->user['html_url']),
         ]);
     }

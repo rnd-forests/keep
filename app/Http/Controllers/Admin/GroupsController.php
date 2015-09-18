@@ -42,6 +42,7 @@ class GroupsController extends Controller
      * Persist new group.
      *
      * @param UserGroupRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(UserGroupRequest $request)
@@ -56,6 +57,7 @@ class GroupsController extends Controller
      * Display a group.
      *
      * @param $slug
+     *
      * @return \Illuminate\View\View
      */
     public function show($slug)
@@ -70,6 +72,7 @@ class GroupsController extends Controller
      * Get form to update a group.
      *
      * @param $slug
+     *
      * @return \Illuminate\View\View
      */
     public function edit($slug)
@@ -84,6 +87,7 @@ class GroupsController extends Controller
      *
      * @param UserGroupRequest $request
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UserGroupRequest $request, $slug)
@@ -98,6 +102,7 @@ class GroupsController extends Controller
      * Soft delete a group.
      *
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($slug)
@@ -112,6 +117,7 @@ class GroupsController extends Controller
      * Restore a soft deleted group.
      *
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function restore($slug)
@@ -138,6 +144,7 @@ class GroupsController extends Controller
      * Permanently delete a group.
      *
      * @param $slug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function forceDeleteGroup($slug)
@@ -153,6 +160,7 @@ class GroupsController extends Controller
      *
      * @param $groupSlug
      * @param $userId
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function removeUser($groupSlug, $userId)
@@ -167,6 +175,7 @@ class GroupsController extends Controller
      * Remove all users from a specific group.
      *
      * @param $groupSlug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function flush($groupSlug)
@@ -181,6 +190,7 @@ class GroupsController extends Controller
      * Get view to add new users to a group.
      *
      * @param $slug
+     *
      * @return \Illuminate\View\View
      */
     public function addUsers($slug)
@@ -197,6 +207,7 @@ class GroupsController extends Controller
      *
      * @param $slug
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function storeNewUsers($slug, Request $request)
@@ -213,10 +224,11 @@ class GroupsController extends Controller
      * Get the flash message after adding users.
      *
      * @param array $ids
+     *
      * @return string
      */
     private function getUpdateMembersMessage(array $ids)
     {
-        return plural2('member', 'new', count($ids)) . ' added to this group.';
+        return plural2('member', 'new', count($ids)).' added to this group.';
     }
 }

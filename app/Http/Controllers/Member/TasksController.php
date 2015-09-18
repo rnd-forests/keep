@@ -25,6 +25,7 @@ class TasksController extends Controller
      * Get form to create new task.
      *
      * @param $userSlug
+     *
      * @return \Illuminate\View\View
      */
     public function create($userSlug)
@@ -39,6 +40,7 @@ class TasksController extends Controller
      *
      * @param $userSlug
      * @param TaskRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store($userSlug, TaskRequest $request)
@@ -55,6 +57,7 @@ class TasksController extends Controller
      * Create new task.
      *
      * @param TaskRequest $request
+     *
      * @return mixed
      */
     private function createTask(TaskRequest $request)
@@ -82,6 +85,7 @@ class TasksController extends Controller
      *
      * @param $userSlug
      * @param $taskSlug
+     *
      * @return \Illuminate\View\View
      */
     public function show($userSlug, $taskSlug)
@@ -97,6 +101,7 @@ class TasksController extends Controller
      *
      * @param $userSlug
      * @param $taskSlug
+     *
      * @return \Illuminate\View\View
      */
     public function edit($userSlug, $taskSlug)
@@ -113,6 +118,7 @@ class TasksController extends Controller
      * @param TaskRequest $request
      * @param $userSlug
      * @param $taskSlug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(TaskRequest $request, $userSlug, $taskSlug)
@@ -129,6 +135,7 @@ class TasksController extends Controller
      *
      * @param $userSlug
      * @param $taskSlug
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($userSlug, $taskSlug)
