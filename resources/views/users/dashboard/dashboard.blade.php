@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Dashboard')
 @section('content')
-    @inject('counter', 'Keep\Services\UserDashboardService')
+    @inject('counter', 'Keep\Services\UserDashboard')
     <div class="row user-dashboard">
         <div class="col-md-8">
             <div class="row">

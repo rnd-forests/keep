@@ -8560,11 +8560,11 @@ button.close {
   margin: 10px 0;
   font-size: 11px; }
 
-.notification-container .notification-controls {
-  margin-bottom: 15px; }
-
 .notification-container .notification {
+  cursor: pointer;
   margin-bottom: 10px; }
+  .notification-container .notification .notification-time {
+    font-size: 11px; }
 
 body {
   font: normal 15px "Source Sans Pro", sans-serif;

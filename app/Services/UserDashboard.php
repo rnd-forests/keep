@@ -4,7 +4,7 @@ namespace Keep\Services;
 
 use Illuminate\Contracts\Auth\Guard;
 
-class UserDashboardService
+class UserDashboard
 {
     protected $currentUser;
 

@@ -4,11 +4,12 @@
 }
 
 .notification-container {
-    .notification-controls {
-        margin-bottom: 15px;
-    }
-
     .notification {
+        cursor: pointer;
         margin-bottom: 10px;
+
+        .notification-time {
+            font-size: 11px;
+        }
     }
 }

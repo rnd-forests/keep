@@ -46,7 +46,7 @@ class EloquentNotificationRepository extends AbstractEloquentRepository implemen
 
         return $user->notifications()
             ->latest('created_at')
-            ->simplePaginate(10);
+            ->paginate(20);
     }
 
     /**
@@ -70,7 +70,7 @@ class EloquentNotificationRepository extends AbstractEloquentRepository implemen
             ->with('groups')
             ->whereIn('id', $ids->unique()->toArray())
             ->latest('created_at')
-            ->simplePaginate(10);
+            ->paginate(20);
     }
 
     /**

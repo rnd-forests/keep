@@ -1,17 +1,33 @@
 @extends('layouts.app')
-@section('title', 'Group Notifications')
+@section('title', ucfirst(Request::get('type')) . ' Notifications')
 @section('content')
+    @inject('counter', 'Keep\Services\UserNotification')
     <div class="row">
-        <div class="col-md-6 col-md-offset-3 notification-container">
-            @include('users.notifications.partials._controls')
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Choose your category</div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="{{ route('member::notifications', ['users' => $authUser, 'type' => 'personal']) }}">
+                            Personal notifications
+                        </a>
+                        <span class="badge">{{ $counter->countPersonalNotifications() }}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{ route('member::notifications', ['users' => $authUser, 'type' => 'group']) }}">
+                            Group notifications
+                        </a>
+                        <span class="badge">{{ $counter->countGroupNotifications() }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8 notification-container">
             <div class="list-group">
                 @foreach($notifications as $notification)
-                    <div class="list-group-item notification">
+                    <div class="list-group-item notification" data-toggle="collapse" data-target="#{{ $notification->id }}-noti-collapse">
                         <strong class="text-{{ $notification->type }}">{{ $notification->subject }}</strong>
-                        <h6 class="notification-time">
-                            {{ humans_time($notification->created_at) }}
-                        </h6>
-                        <i class="fa fa-angle-down" data-toggle="collapse" data-target="#{{ $notification->id }}-noti-collapse"></i>
+                        <span class="notification-time">{{ humans_time($notification->created_at) }}</span>
                         <div class="collapse" id="{{ $notification->id }}-noti-collapse">
                             <div class="collapse-content">
                                 {{ $notification->body }}
@@ -27,11 +43,7 @@
                     </div>
                 @endforeach
             </div>
-            @if(Request::get('type') == 'group')
-                {!! render_pagination($notifications, ['type' => 'group']) !!}
-            @else
-                {!! render_pagination($notifications, ['type' => 'personal']) !!}
-            @endif
+            {!! render_pagination($notifications, ['type' => Request::get('type')]) !!}
         </div>
     </div>
 @stop
