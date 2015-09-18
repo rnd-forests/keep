@@ -60,8 +60,8 @@ var Keep = (function() {
             this.el.taskTimer.datetimepicker();
         },
         activateScrollButton: function() {
-            this.el.top.on("click", function(event) {
-                event.preventDefault();
+            this.el.top.on("click", function(e) {
+                e.preventDefault();
                 $('body, html').animate({scrollTop: 0}, 800);
             });
         },
@@ -123,7 +123,7 @@ var Keep = (function() {
         }
     };
 
-    var Tasks = {
+    var Task = {
         el: {
             cForm: $("#task-complete-form"),
             dForm: $("#task-delete-form"),
@@ -132,11 +132,11 @@ var Keep = (function() {
         init: function() {
             this.deleteForm();
             this.completeForm();
-            this.changeToggleButton();
+            this.toggleContentButton();
         },
         deleteForm: function() {
-            this.el.dForm.on("click", "a", function(event) {
-                event.preventDefault();
+            this.el.dForm.on("click", "a", function(e) {
+                e.preventDefault();
                 $(this).closest("form").submit();
             });
         },
@@ -164,8 +164,8 @@ var Keep = (function() {
                 }
             };
 
-            this.el.cForm.on("change", $("#completed"), function(event) {
-                event.preventDefault();
+            this.el.cForm.on("change", $("#completed"), function(e) {
+                e.preventDefault();
                 var form = $(this).closest('form');
                 var promise = TaskCompletion.using(form);
                 promise.done(function(response) {
@@ -182,7 +182,7 @@ var Keep = (function() {
                 });
             });
         },
-        changeToggleButton: function() {
+        toggleContentButton: function() {
             this.el.toggleButton.on("click", function() {
                 $(this).toggleClass("fa-arrow-circle-up fa-arrow-circle-down");
             });
@@ -193,7 +193,7 @@ var Keep = (function() {
         init: function() {
             Global.init();
             Search.init();
-            Tasks.init();
+            Task.init();
         },
         charts: {
             showUserDashboardChart: Charts.userDashboard

@@ -22,20 +22,20 @@ class NotificationsController extends Controller
      * Fetch all notifications of a user.
      *
      * @param Request $request
-     * @param $userSlug
+     * @param $user
      * @return \Illuminate\View\View
      */
-    public function fetchNotifications(Request $request, $userSlug)
+    public function fetchNotifications(Request $request, $user)
     {
         $type = $request->get('type');
         if (!$this->isCorrectType($type)) {
             throw new NotFoundHttpException;
         }
         if ($type == 'personal') {
-            $notifications = $this->notifications->personalNotifications($userSlug);
+            $notifications = $this->notifications->personalNotificationsFor($user);
             return view('users.notifications.personal', compact('notifications'));
         }
-        $notifications = $this->notifications->groupNotifications($userSlug);
+        $notifications = $this->notifications->groupNotificationsFor($user);
         return view('users.notifications.groups', compact('notifications'));
     }
 

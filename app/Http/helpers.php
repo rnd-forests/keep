@@ -110,9 +110,13 @@ if (!function_exists('blank')) {
 }
 
 if (!function_exists('render_pagination')) {
-    function render_pagination($collection)
+    function render_pagination($collection, array $queries = null)
     {
-        return '<div class="text-center">' . $collection->render() . '</div>';
+        if (!$queries) {
+            return '<div class="text-center">' . $collection->render() . '</div>';
+        } else {
+            return '<div class="text-center">' . $collection->appends($queries)->render() . '</div>';
+        }
     }
 }
 

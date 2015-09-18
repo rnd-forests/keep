@@ -4,8 +4,8 @@
 @section('content')
     <div class="row">
 		<div class="col-md-6 col-md-offset-3">
-            @include('auth.partials._social_auth')
             <div class="form-wrapper">
+                @include('auth.partials._social_auth')
                 @if(session()->has('login_error'))
                     <div class="alert alert-danger text-center">{!! session()->get('login_error') !!}</div>
                 @endif

@@ -4,8 +4,8 @@
 @section('content')
 	<div class="row">
         <div class="col-md-6 col-md-offset-3">
-            @include('auth.partials._social_auth')
             <div class="form-wrapper">
+                @include('auth.partials._social_auth')
                 {!! Form::open() !!}
                     <div class="form-group">
                         {!! Form::label('name', 'Name', ['class' => 'control-label']) !!}

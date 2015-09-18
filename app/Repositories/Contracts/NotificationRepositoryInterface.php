@@ -15,18 +15,18 @@ interface NotificationRepositoryInterface
     /**
      * Fetching personal notifications of a user.
      *
-     * @param $userSlug
+     * @param $user
      * @return mixed
      */
-    public function personalNotifications($userSlug);
+    public function personalNotificationsFor($user);
 
     /**
      * Fetching joined group notifications of a user.
      *
-     * @param $userSlug
+     * @param $user
      * @return mixed
      */
-    public function groupNotifications($userSlug);
+    public function groupNotificationsFor($user);
 
     /**
      * Fetching old notifications.

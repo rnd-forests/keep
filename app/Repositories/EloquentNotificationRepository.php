@@ -35,12 +35,12 @@ class EloquentNotificationRepository extends AbstractEloquentRepository implemen
     /**
      * Fetching personal notifications of a user.
      *
-     * @param $userSlug
+     * @param $user
      * @return mixed
      */
-    public function personalNotifications($userSlug)
+    public function personalNotificationsFor($user)
     {
-        $user = User::findBySlug($userSlug);
+        $user = User::findBySlug($user);
 
         return $user->notifications()
             ->latest('created_at')
@@ -50,13 +50,13 @@ class EloquentNotificationRepository extends AbstractEloquentRepository implemen
     /**
      * Fetching joined group notifications of a user.
      *
-     * @param $userSlug
+     * @param $user
      * @return mixed
      */
-    public function groupNotifications($userSlug)
+    public function groupNotificationsFor($user)
     {
         $ids = collect();
-        $user = User::findBySlug($userSlug);
+        $user = User::findBySlug($user);
         $user->groups->each(function ($group) use ($ids) {
             $group->notifications->lists('id')->each(function ($id) use ($ids) {
                 $ids->push($id);
