@@ -3,24 +3,26 @@
 @section('content')
     <div class="admin-contents-wrapper">
         @if (blank($trashedTasks))
-            <div class="well text-center">Currently, there is no trashed task.</div>
+            <div class="well text-center">No trashed task available.</div>
         @else
             <div class="well">
-                <div class="huge text-center">{{ plural2('task', 'trashed', $trashedTasks->total()) }}</div>
+                <div class="huge text-center">
+                    {{ plural2('task', 'trashed', counting($trashedTasks)) }}
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Deleted</th>
-                        <th>Author</th>
-                        <th>Title</th>
-                        <th>Priority</th>
-                        <th>Starting</th>
-                        <th>Ending</th>
-                        <th>Actions</th>
-                    </tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>Deleted</th>
+                            <th>Author</th>
+                            <th>Title</th>
+                            <th>Priority</th>
+                            <th>Starting</th>
+                            <th>Ending</th>
+                            <th>Actions</th>
+                        </tr>
                     </thead>
                     <tbody>
                         @foreach($trashedTasks->chunk(10) as $taskStack)
@@ -31,7 +33,7 @@
                                     @if(isset($task->owner))
                                         <td>{{ $task->owner->name }}</td>
                                     @else
-                                        <td class="text-navy">Administrator</td>
+                                        <td class="text-navy">Admin</td>
                                     @endif
                                     <td>{{ $task->title }}</td>
                                     <td>{{ $task->priority->name }}</td>

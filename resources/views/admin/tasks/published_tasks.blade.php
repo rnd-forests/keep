@@ -3,10 +3,12 @@
 @section('content')
     <div class="admin-contents-wrapper">
         @if(blank($tasks))
-            <div class="well text-center">Currently, there is no published task available.</div>
+            <div class="well text-center">No published task available.</div>
         @else
             <div class="well">
-                <div class="huge text-center">{{ plural2('task', 'published', $tasks->total()) }}</div>
+                <div class="huge text-center">
+                    {{ plural2('task', 'published', counting($tasks)) }}
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
@@ -19,10 +21,7 @@
                         <th>Priority</th>
                         <th>{!! sort_tasks_by('starting_date', 'Starting') !!}</th>
                         <th>{!! sort_tasks_by('finishing_date', 'Ending') !!}</th>
-                        <th data-original-title="999" data-container="body"
-                            data-toggle="tooltip" data-placement="top" title="Is this task completed?">
-                            {!! sort_tasks_by('completed', 'Completed?') !!}
-                        </th>
+                        <th>{!! sort_tasks_by('completed', 'Completed?') !!}</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -35,7 +34,7 @@
                                     @if(isset($task->owner))
                                         <td>{{ $task->owner->name }}</td>
                                     @else
-                                        <td class="text-navy">Administrator</td>
+                                        <td class="text-navy">Admin</td>
                                     @endif
                                     <td>{{ $task->title }}</td>
                                     <td>{{ $task->priority->name }}</td>
@@ -43,8 +42,11 @@
                                     <td>{!! short_time($task->finishing_date) !!}</td>
                                     <td>{!! $task->present()->printStatus($task->completed) !!}</td>
                                     <td>
-                                        <a href="{{ route('admin::tasks.published.show', $task) }}" class="btn btn-primary btn-circle"
-                                           data-toggle="tooltip" data-placement="bottom" title="Show Task">
+                                        <a href="{{ route('admin::tasks.published.show', $task) }}"
+                                           class="btn btn-primary btn-circle"
+                                           data-toggle="tooltip"
+                                           data-placement="bottom"
+                                           title="Show Task">
                                             <i class="fa fa-arrow-right"></i>
                                         </a>
                                         @include('admin.tasks.partials._delete_form')

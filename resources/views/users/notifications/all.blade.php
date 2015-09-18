@@ -8,16 +8,22 @@
                 <div class="panel-heading">Choose your category</div>
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a href="{{ route('member::notifications', ['users' => $authUser, 'type' => 'personal']) }}">
+                        <a href="{{ route('member::notifications',
+                            ['users' => $authUser, 'type' => 'personal']) }}">
                             Personal notifications
                         </a>
-                        <span class="badge">{{ $counter->countPersonalNotifications() }}</span>
+                        <span class="badge">
+                            {{ $counter->countPersonalNotifications() }}
+                        </span>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{ route('member::notifications', ['users' => $authUser, 'type' => 'group']) }}">
+                        <a href="{{ route('member::notifications',
+                            ['users' => $authUser, 'type' => 'group']) }}">
                             Group notifications
                         </a>
-                        <span class="badge">{{ $counter->countGroupNotifications() }}</span>
+                        <span class="badge">
+                            {{ $counter->countGroupNotifications() }}
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -25,16 +31,26 @@
         <div class="col-md-8 notification-container">
             <div class="list-group">
                 @foreach($notifications as $notification)
-                    <div class="list-group-item notification" data-toggle="collapse" data-target="#{{ $notification->id }}-noti-collapse">
-                        <strong class="text-{{ $notification->type }}">{{ $notification->subject }}</strong>
-                        <span class="notification-time">{{ humans_time($notification->created_at) }}</span>
+                    <div class="list-group-item notification"
+                         data-toggle="collapse"
+                         data-target="#{{ $notification->id }}-noti-collapse">
+                        <strong class="text-{{ $notification->type }}">
+                            {{ $notification->subject }}
+                        </strong>
+                        <span class="notification-time">
+                            {{ humans_time($notification->created_at) }}
+                        </span>
                         <div class="collapse" id="{{ $notification->id }}-noti-collapse">
                             <div class="collapse-content">
                                 {{ $notification->body }}
                                 @if(Request::get('type') == 'group')
                                     <ul class="breadcrumb notification-groups">
                                         @foreach($notification->groups as $group)
-                                            <li><a href="{{ route('member::groups.show', [$authUser, $group]) }}">{{ $group->name }}</a></li>
+                                            <li>
+                                                <a href="{{ route('member::groups.show', [$authUser, $group]) }}">
+                                                    {{ $group->name }}
+                                                </a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 @endif

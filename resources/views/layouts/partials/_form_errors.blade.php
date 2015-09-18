@@ -1,6 +1,6 @@
 @if(count($errors) > 0)
     <div class="alert alert-danger">
-        <strong>Oops!</strong> Please correct the errors in order to submit your form.<br>
+        Please correct the errors in order to submit your form.<br>
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>

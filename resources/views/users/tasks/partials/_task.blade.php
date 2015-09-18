@@ -35,7 +35,9 @@
             </div>
             <div class="well">{!! $task->content !!}</div>
             @unless (empty($task->location))
-                <div class="well"><i class="fa fa-map-marker"></i><strong>{{ $task->location }}</strong></div>
+                <div class="well">
+                    <i class="fa fa-map-marker"></i><strong>{{ $task->location }}</strong>
+                </div>
             @endunless
             @unless (blank($task->tags))
                 <div class="well">

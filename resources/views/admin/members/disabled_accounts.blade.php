@@ -3,10 +3,12 @@
 @section('content')
     <div class="admin-contents-wrapper">
         @if (blank($disabledMembers))
-            <div class="well text-center">Currently, there is no disabled account.</div>
+            <div class="well text-center">No disabled account available.</div>
         @else
             <div class="well">
-                <div class="huge text-center">{{ plural2('account', 'disabled', $disabledMembers->total()) }}</div>
+                <div class="huge text-center">
+                    {{ plural2('account', 'disabled', counting($disabledMembers)) }}
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">

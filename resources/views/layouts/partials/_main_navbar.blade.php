@@ -1,7 +1,10 @@
 <nav class="navbar navbar-default keep-navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#keep-nav">
+            <button type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#keep-nav">
                 <span class="sr-only">Toggle Navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -16,7 +19,11 @@
                     <li><a href="{{ route('member::dashboard', $authUser) }}">Dashboard</a></li>
                     <li><a href="{{ route('member::tasks.create', $authUser) }}">Schedule Task</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filters <span class="caret"></span></a>
+                        <a href="#"
+                           class="dropdown-toggle"
+                           data-toggle="dropdown">
+                            Filters <span class="caret"></span>
+                        </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('member::tags.all', $authUser) }}">Tags</a></li>
                             <li class="divider"></li>
@@ -25,7 +32,10 @@
                     </li>
                     <li><a href="{{ route('member::groups.all', $authUser) }}">Groups</a></li>
                     <li>
-                        <a href="{{ route('member::notifications', ['users' => $authUser, 'type' => 'personal']) }}">Notifications</a>
+                        <a href="{{ route('member::notifications',
+                            ['users' => $authUser, 'type' => 'personal']) }}">
+                            Notifications
+                        </a>
                     </li>
                 @endif
             </ul>
@@ -35,7 +45,11 @@
                     <li><a href="{{ route('auth::register') }}">Sign Up</a></li>
                 @else
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $authUser->name }} <span class="caret"></span></a>
+                        <a href="#"
+                           class="dropdown-toggle"
+                           data-toggle="dropdown">
+                            {{ $authUser->name }} <span class="caret"></span>
+                        </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('member::profile', $authUser) }}">Profile</a></li>
                             <li class="divider"></li>

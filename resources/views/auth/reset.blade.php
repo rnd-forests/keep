@@ -9,7 +9,8 @@
                     {!! Form::hidden('token', $token) !!}
                     <div class="form-group">
                         {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
-                        {!! Form::email('email', null, ['class' => 'form-control input-lg', 'placeholder' => 'username@example.com']) !!}
+                        {!! Form::email('email', null, ['class' => 'form-control input-lg',
+                            'placeholder' => 'username@example.com']) !!}
                         {!! error_text($errors, 'email') !!}
                     </div>
                     <div class="form-group">

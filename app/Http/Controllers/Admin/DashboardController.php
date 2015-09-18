@@ -30,11 +30,11 @@ class DashboardController extends Controller
      */
     public function dashboard()
     {
-        $usersCount = $this->users->countAll();
-        $tasksCount = $this->tasks->countAll();
-        $groupsCount = $this->groups->countAll();
+        $userCount = $this->users->countAll();
+        $taskCount = $this->tasks->countAll();
+        $groupCount = $this->groups->countAll();
         $notificationCount = $this->notifications->countAll();
 
-        return view('admin.dashboard', compact('usersCount', 'tasksCount', 'groupsCount', 'notificationCount'));
+        return view('admin.dashboard', compact('userCount', 'taskCount', 'groupCount', 'notificationCount'));
     }
 }

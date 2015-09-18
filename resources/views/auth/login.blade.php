@@ -7,7 +7,9 @@
             <div class="form-wrapper">
                 @include('auth.partials._social_auth')
                 @if(session()->has('login_error'))
-                    <div class="alert alert-danger text-center">{!! session()->get('login_error') !!}</div>
+                    <div class="alert alert-danger text-center">
+                        {!! session()->get('login_error') !!}
+                    </div>
                 @endif
                 {!! Form::open() !!}
                     <div class="form-group">
