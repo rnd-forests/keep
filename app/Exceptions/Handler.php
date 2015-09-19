@@ -2,6 +2,7 @@
 
 namespace Keep\Exceptions;
 
+use Bugsnag;
 use Exception;
 use Bugsnag\BugsnagLaravel\BugsnagExceptionHandler as ExceptionHandler;
 
@@ -17,10 +18,30 @@ class Handler extends ExceptionHandler
     ];
 
     /**
+     * Report or log an exception.
+     *
+     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
+     *
+     * @param  \Exception $e
+     * @return void
+     */
+    public function report(Exception $e)
+    {
+        if (auth()->check()) {
+            Bugsnag::setUser([
+                'name' => auth()->user()->name,
+                'email' => auth()->user()->email,
+            ]);
+        }
+
+        return parent::report($e);
+    }
+
+    /**
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Exception               $e
+     * @param \Exception $e
      *
      * @return \Illuminate\Http\Response
      */
