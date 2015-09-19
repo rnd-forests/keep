@@ -2,13 +2,8 @@
 
 namespace Keep\Http\Requests;
 
-class InitializeSessionRequest extends AbstractRequest
+class SignInRequest extends AbstractRequest
 {
-    public function authorize()
-    {
-        return true;
-    }
-
     public function rules()
     {
         return [

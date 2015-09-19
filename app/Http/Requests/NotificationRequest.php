@@ -4,11 +4,6 @@ namespace Keep\Http\Requests;
 
 class NotificationRequest extends AbstractRequest
 {
-    public function authorize()
-    {
-        return true;
-    }
-
     public function rules()
     {
         return [

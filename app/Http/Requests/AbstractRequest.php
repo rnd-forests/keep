@@ -7,12 +7,14 @@ use Illuminate\Foundation\Http\FormRequest;
 abstract class AbstractRequest extends FormRequest
 {
     /**
-     * Validate if the current authenticated user is administrator or not.
+     * Because we use middleware to control accesses to
+     * different paths of the application, we simply return
+     * truthy value here.
      *
-     * @return mixed
+     * @return bool
      */
-    public function validateAdmin()
+    public function authorize()
     {
-        return auth()->user()->hasRole(['admin', 'owner']);
+        return true;
     }
 }

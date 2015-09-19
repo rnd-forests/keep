@@ -2,13 +2,8 @@
 
 namespace Keep\Http\Requests;
 
-class UserGroupRequest extends AbstractRequest
+class GroupRequest extends AbstractRequest
 {
-    public function authorize()
-    {
-        return true;
-    }
-
     public function rules()
     {
         return [

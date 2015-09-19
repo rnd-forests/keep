@@ -3,8 +3,8 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Keep\Http\Requests\GroupRequest;
 use Keep\Http\Controllers\Controller;
-use Keep\Http\Requests\UserGroupRequest;
 use Keep\Repositories\Contracts\GroupRepositoryInterface as GroupRepository;
 
 class GroupsController extends Controller
@@ -41,11 +41,11 @@ class GroupsController extends Controller
     /**
      * Persist new group.
      *
-     * @param UserGroupRequest $request
+     * @param GroupRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserGroupRequest $request)
+    public function store(GroupRequest $request)
     {
         $this->groups->create($request->all());
         flash()->success(trans('administrator.group_created'));
@@ -85,12 +85,12 @@ class GroupsController extends Controller
     /**
      * Update information of a group.
      *
-     * @param UserGroupRequest $request
+     * @param GroupRequest $request
      * @param $slug
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserGroupRequest $request, $slug)
+    public function update(GroupRequest $request, $slug)
     {
         $this->groups->update($slug, $request->all());
         flash()->info(trans('administrator.group_updated'));
@@ -229,6 +229,6 @@ class GroupsController extends Controller
      */
     private function getUpdateMembersMessage(array $ids)
     {
-        return plural2('member', 'new', count($ids)).' added to this group.';
+        return plural2('member', 'new', count($ids)) . ' added to this group.';
     }
 }

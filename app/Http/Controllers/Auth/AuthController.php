@@ -5,8 +5,8 @@ namespace Keep\Http\Controllers\Auth;
 use Keep\Events\UserHasRegistered;
 use Illuminate\Contracts\Auth\Guard;
 use Keep\Http\Controllers\Controller;
+use Keep\Http\Requests\SignInRequest;
 use Keep\Http\Requests\RegistrationRequest;
-use Keep\Http\Requests\InitializeSessionRequest;
 use Keep\Entities\Concerns\Auth\ThrottlesLogins;
 use Keep\Repositories\Contracts\UserRepositoryInterface;
 
@@ -67,11 +67,11 @@ class AuthController extends Controller
     /**
      * Handle a login request to the application.
      *
-     * @param InitializeSessionRequest $request
+     * @param SignInRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postLogin(InitializeSessionRequest $request)
+    public function postLogin(SignInRequest $request)
     {
         if ($this->throttles->hasTooManyLoginAttempts($request)) {
             return $this->throttles->sendLockoutResponse($request);
