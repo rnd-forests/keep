@@ -10,7 +10,6 @@ interface Updateable
      * @param array $data
      * @param $identifier
      * @param null $optionalIdentifier
-     *
      * @return mixed
      */
     public function update(array $data, $identifier, $optionalIdentifier = null);

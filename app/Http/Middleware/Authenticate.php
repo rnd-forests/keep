@@ -11,7 +11,6 @@ class Authenticate
      *
      * @param $request
      * @param Closure $next
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function handle($request, Closure $next)

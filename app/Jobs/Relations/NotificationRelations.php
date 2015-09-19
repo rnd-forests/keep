@@ -26,7 +26,7 @@ abstract class NotificationRelations extends Job
      * Set the proper polymorphic associations of a notification.
      *
      * @param Notification $notification
-     * @param Collection   $entities
+     * @param Collection $entities
      */
     public function setNotificationPolymorphic(Notification $notification, Collection $entities)
     {

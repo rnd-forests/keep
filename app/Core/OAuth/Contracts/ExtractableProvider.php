@@ -9,7 +9,6 @@ interface ExtractableProvider
      *
      * @param $user
      * @param $data
-     *
      * @return mixed
      */
     public function extractAndUpdate($user, $data);

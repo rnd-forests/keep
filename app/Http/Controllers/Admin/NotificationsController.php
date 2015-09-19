@@ -33,7 +33,6 @@ class NotificationsController extends Controller
      * Delete a specific notification.
      *
      * @param $slug
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($slug)
@@ -60,7 +59,6 @@ class NotificationsController extends Controller
      * Persist notification for members to database.
      *
      * @param NotificationRequest $request
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function storeMemberNotification(NotificationRequest $request)
@@ -87,7 +85,6 @@ class NotificationsController extends Controller
      * Persist notification for groups to database.
      *
      * @param NotificationRequest $request
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function storeGroupNotification(NotificationRequest $request)

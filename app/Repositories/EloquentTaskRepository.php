@@ -33,7 +33,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      *
      * @param $limit
      * @param array|null $params
-     *
      * @return mixed
      */
     public function paginate($limit, array $params = null)
@@ -54,7 +53,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Restore a soft deleted model instance.
      *
      * @param $identifier
-     *
      * @return mixed
      */
     public function restore($identifier)
@@ -68,7 +66,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Soft delete a model instance.
      *
      * @param $identifier
-     *
      * @return mixed
      */
     public function softDelete($identifier)
@@ -80,7 +77,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Permanently delete a soft deleted model instance.
      *
      * @param $identifier
-     *
      * @return mixed
      */
     public function forceDelete($identifier)
@@ -93,7 +89,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Create a new model instance.
      *
      * @param array $data
-     *
      * @return mixed
      */
     public function create(array $data)
@@ -112,7 +107,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      *
      * @param $userSlug
      * @param $taskSlug
-     *
      * @return mixed
      */
     public function find($userSlug, $taskSlug)
@@ -130,7 +124,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      *
      * @param array $data
      * @param $task
-     *
      * @return mixed
      */
     public function adminUpdate(array $data, $task)
@@ -145,7 +138,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      *
      * @param $userSlug
      * @param $taskSlug
-     *
      * @return mixed
      */
     public function delete($userSlug, $taskSlug)
@@ -157,7 +149,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Fetching trashed tasks.
      *
      * @param $limit
-     *
      * @return mixed
      */
     public function trashed($limit)
@@ -174,7 +165,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Finding a trashed task.
      *
      * @param $slug
-     *
      * @return mixed
      */
     public function findTrashedTask($slug)
@@ -191,7 +181,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * @param $request
      * @param $userSlug
      * @param $taskSlug
-     *
      * @return mixed
      */
     public function complete($request, $userSlug, $taskSlug)
@@ -219,7 +208,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      *
      * @param $task
      * @param array $tags
-     *
      * @return mixed
      */
     public function syncTags($task, array $tags)
@@ -232,7 +220,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      *
      * @param $task
      * @param $priorityId
-     *
      * @return mixed
      */
     public function associatePriority($task, $priorityId)
@@ -246,7 +233,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Fetching urgent tasks.
      *
      * @param $user
-     *
      * @return mixed
      */
     public function urgentTasks($user)
@@ -261,7 +247,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Fetching deadline tasks.
      *
      * @param $user
-     *
      * @return mixed
      */
     public function deadlineTasks($user)
@@ -276,7 +261,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Fetching recently completed tasks.
      *
      * @param $user
-     *
      * @return mixed
      */
     public function recentlyCompletedTasks($user)
@@ -316,7 +300,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Fetching all tasks of a user.
      *
      * @param $user
-     *
      * @return mixed
      */
     public function allTasks($user)
@@ -330,7 +313,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Fetching completed tasks of a user.
      *
      * @param $user
-     *
      * @return mixed
      */
     public function completedTasks($user)
@@ -345,7 +327,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Fetching failed tasks of a user.
      *
      * @param $user
-     *
      * @return mixed
      */
     public function failedTasks($user)
@@ -360,7 +341,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Fetching processing tasks of a user.
      *
      * @param $user
-     *
      * @return mixed
      */
     public function processingTasks($user)
@@ -389,7 +369,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * @param array $data
      * @param $identifier
      * @param null $optionalIdentifier
-     *
      * @return mixed
      */
     public function update(array $data, $identifier, $optionalIdentifier = null)
@@ -404,7 +383,6 @@ class EloquentTaskRepository extends AbstractEloquentRepository implements
      * Find a model instance by its slug.
      *
      * @param $slug
-     *
      * @return mixed
      */
     public function findBySlug($slug)

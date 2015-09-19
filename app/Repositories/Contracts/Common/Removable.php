@@ -8,7 +8,6 @@ interface Removable
      * Restore a soft deleted model instance.
      *
      * @param $identifier
-     *
      * @return mixed
      */
     public function restore($identifier);
@@ -17,7 +16,6 @@ interface Removable
      * Soft delete a model instance.
      *
      * @param $identifier
-     *
      * @return mixed
      */
     public function softDelete($identifier);
@@ -26,7 +24,6 @@ interface Removable
      * Permanently delete a soft deleted model instance.
      *
      * @param $identifier
-     *
      * @return mixed
      */
     public function forceDelete($identifier);

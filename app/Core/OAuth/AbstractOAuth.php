@@ -26,9 +26,7 @@ abstract class AbstractOAuth implements ExtractableProvider
      * @param $provider
      * @param $message
      * @param OAuthUserListener $listener
-     *
      * @return mixed
-     *
      * @throws InvalidUserException
      */
     public function authenticate($hasCode, $provider, $message, OAuthUserListener $listener)
@@ -51,7 +49,6 @@ abstract class AbstractOAuth implements ExtractableProvider
      * Get the provider authorization URL.
      *
      * @param $provider
-     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     protected function getAuthorizationUrl($provider)
@@ -63,7 +60,6 @@ abstract class AbstractOAuth implements ExtractableProvider
      * Handler provider callback.
      *
      * @param $provider
-     *
      * @return SocialiteUser
      */
     protected function handleProviderCallback($provider)
@@ -75,7 +71,6 @@ abstract class AbstractOAuth implements ExtractableProvider
      * Get data from provider returned information.
      *
      * @param SocialiteUser $data
-     *
      * @return array
      */
     protected function getUserProviderData(SocialiteUser $data)

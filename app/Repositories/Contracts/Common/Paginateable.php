@@ -9,7 +9,6 @@ interface Paginateable
      *
      * @param $limit
      * @param array|null $params
-     *
      * @return mixed
      */
     public function paginate($limit, array $params = null);

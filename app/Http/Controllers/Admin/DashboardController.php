@@ -3,26 +3,13 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Contracts\TaskRepositoryInterface as TaskRepository;
-use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
-use Keep\Repositories\Contracts\GroupRepositoryInterface as GroupRepository;
-use Keep\Repositories\Contracts\NotificationRepositoryInterface as NotificationRepository;
+use Keep\Repositories\Contracts\TaskRepositoryInterface;
+use Keep\Repositories\Contracts\UserRepositoryInterface;
+use Keep\Repositories\Contracts\GroupRepositoryInterface;
+use Keep\Repositories\Contracts\NotificationRepositoryInterface;
 
 class DashboardController extends Controller
 {
-    protected $users, $tasks, $groups, $notifications;
-
-    public function __construct(UserRepository $users,
-                                TaskRepository $tasks,
-                                GroupRepository $groups,
-                                NotificationRepository $notifications)
-    {
-        $this->users = $users;
-        $this->tasks = $tasks;
-        $this->groups = $groups;
-        $this->notifications = $notifications;
-    }
-
     /**
      * Get dashboard page.
      *
@@ -30,11 +17,18 @@ class DashboardController extends Controller
      */
     public function dashboard()
     {
-        $userCount = $this->users->countAll();
-        $taskCount = $this->tasks->countAll();
-        $groupCount = $this->groups->countAll();
-        $notificationCount = $this->notifications->countAll();
+        $userCount = app(UserRepositoryInterface::class)->countAll();
+        $taskCount = app(TaskRepositoryInterface::class)->countAll();
+        $groupCount = app(GroupRepositoryInterface::class)->countAll();
+        $notificationCount = app(NotificationRepositoryInterface::class)->countAll();
 
-        return view('admin.dashboard', compact('userCount', 'taskCount', 'groupCount', 'notificationCount'));
+        return view('admin.dashboard',
+            compact(
+                'userCount',
+                'taskCount',
+                'groupCount',
+                'notificationCount'
+            )
+        );
     }
 }

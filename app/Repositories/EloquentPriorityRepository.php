@@ -44,7 +44,6 @@ class EloquentPriorityRepository extends AbstractEloquentRepository
      * Find a priority level by its name.
      *
      * @param $name
-     *
      * @return mixed
      */
     public function findByName($name)
@@ -60,7 +59,6 @@ class EloquentPriorityRepository extends AbstractEloquentRepository
      * @param $userSlug
      * @param $priorityName
      * @param $limit
-     *
      * @return mixed
      */
     public function associatedTasks($userSlug, $priorityName, $limit)

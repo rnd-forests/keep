@@ -38,7 +38,6 @@ class AuthController extends Controller
      * Handle a registration request to the application.
      *
      * @param RegistrationRequest $request
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postRegister(RegistrationRequest $request)
@@ -68,7 +67,6 @@ class AuthController extends Controller
      * Handle a login request to the application.
      *
      * @param SignInRequest $request
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postLogin(SignInRequest $request)
@@ -88,10 +86,14 @@ class AuthController extends Controller
             return redirect()->intended('/');
         }
 
-        session()->flash('login_error', trans('authentication.login_error'));
+        session()->flash(
+            'login_error',
+            trans('authentication.login_error')
+        );
         $this->throttles->incrementLoginAttempts($request);
 
-        return redirect()->route('auth::login')->withInput($request->only('email', 'remember'));
+        return redirect()->route('auth::login')
+            ->withInput($request->only('email', 'remember'));
     }
 
     /**
@@ -111,7 +113,6 @@ class AuthController extends Controller
      * Activate user account.
      *
      * @param $code
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function activate($code)
@@ -132,6 +133,7 @@ class AuthController extends Controller
      * Check if user account can be activated or not.
      *
      * @param $user
+     * @return bool
      */
     protected function canBeActivated($user)
     {

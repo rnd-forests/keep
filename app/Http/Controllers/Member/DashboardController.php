@@ -22,7 +22,6 @@ class DashboardController extends Controller
      * User dashboard.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function dashboard($userSlug)
@@ -39,62 +38,73 @@ class DashboardController extends Controller
      * Get all tasks of a user.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function all($userSlug)
     {
-        return $this->fetchTasks('All', 'users.dashboard.task_collection',
-            $userSlug, 'allTasks');
+        return $this->fetchTasks(
+            'All',
+            'users.dashboard.task_collection',
+            $userSlug,
+            'allTasks'
+        );
     }
 
     /**
      * Get all completed tasks of a user.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function completed($userSlug)
     {
-        return $this->fetchTasks('Completed', 'users.dashboard.task_collection',
-            $userSlug, 'completedTasks');
+        return $this->fetchTasks(
+            'Completed',
+            'users.dashboard.task_collection',
+            $userSlug,
+            'completedTasks'
+        );
     }
 
     /**
      * Get all failed tasks of a user.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function failed($userSlug)
     {
-        return $this->fetchTasks('Failed', 'users.dashboard.task_collection',
-            $userSlug, 'failedTasks');
+        return $this->fetchTasks(
+            'Failed',
+            'users.dashboard.task_collection',
+            $userSlug,
+            'failedTasks'
+        );
     }
 
     /**
      * Get all processing tasks of a user.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function processing($userSlug)
     {
-        return $this->fetchTasks('Processing', 'users.dashboard.task_collection',
-            $userSlug, 'processingTasks');
+        return $this->fetchTasks(
+            'Processing',
+            'users.dashboard.task_collection',
+            $userSlug,
+            'processingTasks'
+        );
     }
 
     /**
      * A helper method to fetch tasks associated with a type.
-     *         
-     * @param $type      
-     * @param $view      
-     * @param $slug      
-     * @param $repoMethod
      *
+     * @param $type
+     * @param $view
+     * @param $slug
+     * @param $repoMethod
      * @return \Illuminate\View\View
      */
     protected function fetchTasks($type, $view, $slug, $repoMethod)

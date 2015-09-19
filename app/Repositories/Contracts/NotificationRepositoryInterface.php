@@ -8,7 +8,6 @@ interface NotificationRepositoryInterface
      * Delete a notification.
      *
      * @param $slug
-     *
      * @return mixed
      */
     public function delete($slug);
@@ -17,7 +16,6 @@ interface NotificationRepositoryInterface
      * Fetching personal notifications of a user.
      *
      * @param $user
-     *
      * @return mixed
      */
     public function personalNotificationsFor($user);
@@ -26,7 +24,6 @@ interface NotificationRepositoryInterface
      * Fetching joined group notifications of a user.
      *
      * @param $user
-     *
      * @return mixed
      */
     public function groupNotificationsFor($user);

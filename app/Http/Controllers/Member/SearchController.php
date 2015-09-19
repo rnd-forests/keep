@@ -20,7 +20,6 @@ class SearchController extends Controller
      * Search tasks of a user by their titles.
      *
      * @param $userSlug
-     *
      * @return \Illuminate\View\View
      */
     public function searchTasks($userSlug)

@@ -31,7 +31,6 @@ class FacebookAuthentication extends AbstractOAuth implements OpenAuthenticatabl
      *
      * @param $user
      * @param $data
-     *
      * @return mixed
      */
     public function extractAndUpdate($user, $data)

@@ -18,13 +18,12 @@ class ThrottlesLogins
      * Check if too many failed login attempts have been made.
      *
      * @param Request $request
-     *
      * @return bool
      */
     public function hasTooManyLoginAttempts(Request $request)
     {
         return $this->limiter->tooManyAttempts(
-            $request->input($this->loginUsername()).$request->ip(),
+            $request->input($this->loginUsername()) . $request->ip(),
             $this->maxLoginAttempts(), $this->lockoutTime() / 60
         );
     }
@@ -37,7 +36,7 @@ class ThrottlesLogins
     public function incrementLoginAttempts(Request $request)
     {
         $this->limiter->hit(
-            $request->input($this->loginUsername()).$request->ip()
+            $request->input($this->loginUsername()) . $request->ip()
         );
     }
 
@@ -45,13 +44,12 @@ class ThrottlesLogins
      * When the maximum login attempts has been reached. Lockout the user.
      *
      * @param Request $request
-     *
      * @return $this
      */
     public function sendLockoutResponse(Request $request)
     {
         $seconds = $this->limiter->availableIn(
-            $request->input($this->loginUsername()).$request->ip()
+            $request->input($this->loginUsername()) . $request->ip()
         );
 
         return redirect($this->loginPath())
@@ -69,7 +67,7 @@ class ThrottlesLogins
     public function clearLoginAttempts(Request $request)
     {
         $this->limiter->clear(
-            $request->input($this->loginUsername()).$request->ip()
+            $request->input($this->loginUsername()) . $request->ip()
         );
     }
 
@@ -77,7 +75,6 @@ class ThrottlesLogins
      * Get the login lockout error message.
      *
      * @param $seconds
-     *
      * @return string
      */
     protected function getLockoutErrorMessage($seconds)

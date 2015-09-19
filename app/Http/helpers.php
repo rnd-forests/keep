@@ -26,7 +26,6 @@ if (!function_exists('sort_tasks_by')) {
      *
      * @param $attribute
      * @param $text
-     *
      * @return string
      */
     function sort_tasks_by($attribute, $text)
@@ -44,7 +43,6 @@ if (!function_exists('sort_accounts_by')) {
      *
      * @param $attribute
      * @param $text
-     *
      * @return string
      */
     function sort_accounts_by($attribute, $text)
@@ -61,7 +59,6 @@ if (!function_exists('short_time')) {
      * Return a short format of a timestamp.
      *
      * @param $timestamp
-     *
      * @return string
      */
     function short_time($timestamp)
@@ -75,7 +72,6 @@ if (!function_exists('full_time')) {
      * Return a full format of a timestamp.
      *
      * @param $timestamp
-     *
      * @return string
      */
     function full_time($timestamp)
@@ -89,7 +85,6 @@ if (!function_exists('humans_time')) {
      * Return the human-friendly difference time interval.
      *
      * @param $timestamp
-     *
      * @return string
      */
     function humans_time($timestamp)
@@ -104,7 +99,6 @@ if (!function_exists('plural')) {
      *
      * @param $pattern
      * @param $counter
-     *
      * @return string
      */
     function plural($pattern, $counter)
@@ -113,7 +107,7 @@ if (!function_exists('plural')) {
             throw new InvalidArgumentException();
         }
 
-        return $counter.' '.str_plural($pattern, $counter);
+        return $counter . ' ' . str_plural($pattern, $counter);
     }
 }
 
@@ -125,7 +119,6 @@ if (!function_exists('plural2')) {
      * @param $pattern
      * @param $middle
      * @param $counter
-     *
      * @return string
      */
     function plural2($pattern, $middle, $counter)
@@ -134,7 +127,7 @@ if (!function_exists('plural2')) {
             throw new InvalidArgumentException();
         }
 
-        return $counter.' '.$middle.' '.str_plural($pattern, $counter);
+        return $counter . ' ' . $middle . ' ' . str_plural($pattern, $counter);
     }
 }
 
@@ -144,14 +137,13 @@ if (!function_exists('remaining_days')) {
      * timestamp and current time.
      *
      * @param $finish
-     *
      * @return string
      */
     function remaining_days($finish)
     {
-        $count = (int) carbon()->now()->diffInDays(carbon()->parse($finish));
+        $count = (int)carbon()->now()->diffInDays(carbon()->parse($finish));
 
-        return $count.' '.str_plural('day', $count).' remaining';
+        return $count . ' ' . str_plural('day', $count) . ' remaining';
     }
 }
 
@@ -161,7 +153,6 @@ if (!function_exists('counting')) {
      * paginated collection.
      *
      * @param $object
-     *
      * @return int
      */
     function counting($object)
@@ -183,7 +174,6 @@ if (!function_exists('print_attr')) {
      * Print attribute of object or return a default value.
      *
      * @param $attribute
-     *
      * @return string
      */
     function print_attr($attribute)
@@ -202,7 +192,6 @@ if (!function_exists('blank')) {
      * collection is empty or not.
      *
      * @param $object
-     *
      * @return bool
      */
     function blank($object)
@@ -223,15 +212,14 @@ if (!function_exists('render_pagination')) {
      *
      * @param $collection
      * @param array|null $queries
-     *
      * @return string
      */
     function render_pagination($collection, array $queries = null)
     {
         if (!$queries) {
-            return '<div class="text-center">'.$collection->render().'</div>';
+            return '<div class="text-center">' . $collection->render() . '</div>';
         } else {
-            return '<div class="text-center">'.$collection->appends($queries)->render().'</div>';
+            return '<div class="text-center">' . $collection->appends($queries)->render() . '</div>';
         }
     }
 }
@@ -241,7 +229,6 @@ if (!function_exists('zero')) {
      * Check for a "zeroed" value.
      *
      * @param $count
-     *
      * @return bool
      */
     function zero($count)
@@ -255,7 +242,6 @@ if (!function_exists('array_random_val')) {
      * Generate random values from a given array.
      *
      * @param array $arr
-     *
      * @return mixed
      */
     function array_random_val(array $arr)
@@ -270,7 +256,6 @@ if (!function_exists('error_text')) {
      *
      * @param ViewErrorBag $errors
      * @param $field
-     *
      * @return mixed
      */
     function error_text(ViewErrorBag $errors, $field)
@@ -287,7 +272,6 @@ if (!function_exists('get_class_short_name')) {
      * fully qualified class name.
      *
      * @param $object
-     *
      * @return string
      */
     function get_class_short_name($object)

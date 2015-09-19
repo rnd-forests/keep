@@ -73,13 +73,13 @@ class AccountController extends Controller
     /**
      * Show account settings.
      *
-     * @param $slug
+     * @param $userSlug
      *
      * @return \Illuminate\View\View
      */
-    public function account($slug)
+    public function account($userSlug)
     {
-        $user = $this->users->findBySlug($slug);
+        $user = $this->users->findBySlug($userSlug);
 
         return view('users.account.account', compact('user'));
     }
@@ -87,13 +87,13 @@ class AccountController extends Controller
     /**
      * Cancel account.
      *
-     * @param $slug
+     * @param $userSlug
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($slug)
+    public function destroy($userSlug)
     {
-        $this->users->softDelete($slug);
+        $this->users->softDelete($userSlug);
         flash()->success(trans('controller.account_canceled'));
 
         return redirect()->home();

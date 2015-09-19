@@ -19,7 +19,6 @@ class Handler extends ExceptionHandler
 
     /**
      * Report or log an exception.
-     *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
      * @param \Exception $e
@@ -40,8 +39,7 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Exception               $e
-     *
+     * @param \Exception $e
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $e)
@@ -58,9 +56,10 @@ class Handler extends ExceptionHandler
                 return redirect()->home();
 
             case 'ModelNotFoundException':
-                flash()->warning(trans('exception.model_not_found_exception', [
-                    'model' => get_class_short_name($e->getModel()),
-                ]));
+                flash()->warning(trans(
+                    'exception.model_not_found_exception',
+                    ['model' => get_class_short_name($e->getModel())]
+                ));
 
                 return redirect()->home();
 

@@ -11,7 +11,6 @@ class UserMailer extends AbstractMailer implements UserMailerContract
      *
      * @param $user
      * @param $code
-     *
      * @return mixed
      */
     public function emailActivationLink($user, $code)
@@ -27,7 +26,6 @@ class UserMailer extends AbstractMailer implements UserMailerContract
      *
      * @param $user
      * @param $task
-     *
      * @return mixed
      */
     public function emailNewlyCreatedTask($user, $task)
@@ -50,7 +48,6 @@ class UserMailer extends AbstractMailer implements UserMailerContract
      *
      * @param $user
      * @param $task
-     *
      * @return mixed
      */
     public function emailUpcomingTask($user, $task)

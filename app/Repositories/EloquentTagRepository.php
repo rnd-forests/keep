@@ -34,7 +34,6 @@ class EloquentTagRepository extends AbstractEloquentRepository implements
      * Fetching tags associated with a user.
      *
      * @param $userSlug
-     *
      * @return mixed
      */
     public function fetchAttachedTags($userSlug)
@@ -53,7 +52,6 @@ class EloquentTagRepository extends AbstractEloquentRepository implements
      * @param $userSlug
      * @param $tagSlug
      * @param $limit
-     *
      * @return mixed
      */
     public function associatedTasks($userSlug, $tagSlug, $limit)

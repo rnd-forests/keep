@@ -31,7 +31,6 @@ class GoogleAuthentication extends AbstractOAuth implements OpenAuthenticatable
      *
      * @param $user
      * @param $data
-     *
      * @return mixed
      */
     public function extractAndUpdate($user, $data)

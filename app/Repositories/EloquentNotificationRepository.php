@@ -25,7 +25,6 @@ class EloquentNotificationRepository extends AbstractEloquentRepository implemen
      * Delete a notification.
      *
      * @param $slug
-     *
      * @return mixed
      */
     public function delete($slug)
@@ -37,7 +36,6 @@ class EloquentNotificationRepository extends AbstractEloquentRepository implemen
      * Fetching personal notifications of a user.
      *
      * @param $user
-     *
      * @return mixed
      */
     public function personalNotificationsFor($user)
@@ -53,7 +51,6 @@ class EloquentNotificationRepository extends AbstractEloquentRepository implemen
      * Fetching joined group notifications of a user.
      *
      * @param $user
-     *
      * @return mixed
      */
     public function groupNotificationsFor($user)
@@ -90,7 +87,6 @@ class EloquentNotificationRepository extends AbstractEloquentRepository implemen
      *
      * @param $limit
      * @param array|null $params
-     *
      * @return mixed
      */
     public function paginate($limit, array $params = null)
@@ -105,7 +101,6 @@ class EloquentNotificationRepository extends AbstractEloquentRepository implemen
      * Create a new model instance.
      *
      * @param array $data
-     *
      * @return mixed
      */
     public function create(array $data)

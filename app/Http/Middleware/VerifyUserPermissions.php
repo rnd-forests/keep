@@ -21,9 +21,7 @@ class VerifyUserPermissions
      * @param $request
      * @param Closure $next
      * @param $permissions
-     *
      * @return mixed
-     *
      * @throws InvalidPermissionsException
      */
     public function handle($request, Closure $next, $permissions)

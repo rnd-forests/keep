@@ -45,7 +45,6 @@ class UsersController extends Controller
      * Get account profile.
      *
      * @param $slug
-     *
      * @return \Illuminate\View\View
      */
     public function profile($slug)
@@ -59,7 +58,6 @@ class UsersController extends Controller
      * Disable an account.
      *
      * @param $slug
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function disableAccount($slug)
@@ -74,7 +72,6 @@ class UsersController extends Controller
      * Restore a disabled account.
      *
      * @param $slug
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function restoreAccount($slug)
@@ -89,7 +86,6 @@ class UsersController extends Controller
      * Permanently delete an account.
      *
      * @param $slug
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function forceDeleteAccount($slug)

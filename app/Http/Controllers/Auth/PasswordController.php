@@ -32,7 +32,6 @@ class PasswordController extends Controller
      * Send a reset link to the given user.
      *
      * @param Request $request
-     *
      * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function postEmail(Request $request)
@@ -56,7 +55,6 @@ class PasswordController extends Controller
      * Display the password reset view for the given token.
      *
      * @param null $token
-     *
      * @return $this
      */
     public function getReset($token = null)
@@ -72,7 +70,6 @@ class PasswordController extends Controller
      * Reset the given user's password.
      *
      * @param ResetPasswordRequest $request
-     *
      * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function postReset(ResetPasswordRequest $request)

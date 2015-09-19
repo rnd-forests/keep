@@ -21,9 +21,7 @@ class VerifyUserRoles
      * @param $request
      * @param Closure $next
      * @param $roles
-     *
      * @return mixed
-     *
      * @throws InvalidRolesException
      */
     public function handle($request, Closure $next, $roles)

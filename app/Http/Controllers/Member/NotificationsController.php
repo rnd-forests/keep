@@ -23,7 +23,6 @@ class NotificationsController extends Controller
      *
      * @param Request $request
      * @param $user
-     *
      * @return \Illuminate\View\View
      */
     public function fetchNotifications(Request $request, $user)
@@ -45,7 +44,6 @@ class NotificationsController extends Controller
      * Check the correctness of the query string in the url.
      *
      * @param $currentType
-     *
      * @return bool
      */
     protected function isCorrectType($currentType)

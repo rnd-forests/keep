@@ -28,7 +28,6 @@ abstract class AbstractEloquentRepository
      * Find a model instance by its id.
      *
      * @param $id
-     *
      * @return mixed
      */
     public function findById($id)
@@ -40,7 +39,6 @@ abstract class AbstractEloquentRepository
      * Find a model instance by its slug.
      *
      * @param $slug
-     *
      * @return mixed
      */
     public function findBySlug($slug)
@@ -52,7 +50,6 @@ abstract class AbstractEloquentRepository
      * Check if a collections of model instances can be sorted.
      *
      * @param array $params
-     *
      * @return bool
      */
     public function isSortable(array $params)
