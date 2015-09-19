@@ -14,6 +14,7 @@ class ProfileController extends Controller
     {
         $this->users = $users;
         $this->middleware('auth');
+        $this->middleware('valid.user', ['except' => ['show']]);
     }
 
     /**

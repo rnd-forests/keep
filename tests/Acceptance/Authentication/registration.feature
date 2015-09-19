@@ -5,7 +5,7 @@ Feature: Account Registration
 
     Scenario: I correctly fill out the form
         Given I am on the homepage
-        And I click on the link "Register"
+        And I click on the link "Sign Up"
         And I submitted the form with all valid values
         Then I should be on the homepage
         And I should see "Check your email address to activate your account."

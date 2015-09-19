@@ -13,7 +13,7 @@ class EloquentTagRepositoryTest extends TestCase
      */
     public function it_initializes_the_repository()
     {
-        $this->repo = app(Keep\Repositories\Tag\AbstractEloquentTagRepository::class);
+        $this->repo = app(Keep\Repositories\EloquentTagRepository::class);
     }
 
     /** @test */
@@ -59,9 +59,9 @@ class EloquentTagRepositoryTest extends TestCase
         $user->tasks->first()->tags()->attach([1, 2]);
         $user->tasks->last()->tags()->attach(2);
 
-        $foos = $this->repo->fetchTasksAssociatedWithTag($user->slug, 'foo', 2);
-        $bars = $this->repo->fetchTasksAssociatedWithTag($user->slug, 'bar', 2);
-        $limited = $this->repo->fetchTasksAssociatedWithTag($user->slug, 'bar', 1);
+        $foos = $this->repo->associatedTasks($user->slug, 'foo', 2);
+        $bars = $this->repo->associatedTasks($user->slug, 'bar', 2);
+        $limited = $this->repo->associatedTasks($user->slug, 'bar', 1);
 
         $this->assertCount(1, $foos);
         $this->assertCount(2, $bars);

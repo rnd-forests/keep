@@ -12,7 +12,7 @@ class SignInTest extends TestCase
         factory(Keep\Entities\User::class)->create(['email' => 'foo@bar.com']);
 
         $this->visit('/')
-            ->click('Login')
+            ->click('Log In')
             ->seePageIs('auth/login')
             ->type('foo@bar.com', 'email')
             ->type('secret', 'password')

@@ -1,31 +1,33 @@
 <?php
 
+use Keep\Repositories\EloquentUserRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class UsersControllerTest extends TestCase
+class ProfileControllerTest extends TestCase
 {
     use DatabaseTransactions;
 
     protected $mock, $user;
 
-    /**
-     * @before
-     */
+    /** @before */
     public function it_initializes_testing_environment()
     {
-        $this->mock = $this->mock(Keep\Repositories\User\UserRepositoryInterface::class);
+        $this->mock = $this->mock(EloquentUserRepository::class);
         $this->user = $this->setAuthenticatedUser();
     }
 
     /** @test */
     public function it_shows_the_profile_of_the_user()
     {
-        $this->mock->shouldReceive('findBySlug')->atLeast()->once()->andReturn($this->user);
+        $this->mock->shouldReceive('findBySlug')
+            ->atLeast()
+            ->once()
+            ->andReturn($this->user);
 
         $this->route('GET', 'member::profile', ['users' => $this->user->slug]);
 
         $this->assertResponseOk();
-        $this->assertViewIs('users.show');
+        $this->assertViewIs('users.account.profile');
         $this->assertViewHas('user', $this->user);
     }
 
@@ -36,9 +38,12 @@ class UsersControllerTest extends TestCase
         $slug = $this->user->slug;
         $currentUrl = route('member::profile', $this->user);
         $input = ["github_username" => "fizz", "facebook_username" => "buzz"];
-        $this->mock->shouldReceive('updateProfile')->with($input, $slug)->once();
+        $this->mock->shouldReceive('update')
+            ->with($input, $slug)
+            ->once();
 
-        $this->route('PATCH', 'member::update', ['users' => $slug], $input, [], [], ['HTTP_REFERER' => $currentUrl]);
+        $this->route('PATCH', 'member::update', ['users' => $slug], $input,
+            [], [], ['HTTP_REFERER' => $currentUrl]);
 
         $this->assertResponseStatus(302);
         $this->assertFlashedMessage('controller.profile_updated');
@@ -62,7 +67,9 @@ class UsersControllerTest extends TestCase
     public function it_cancels_the_account_of_the_user()
     {
         $this->withoutMiddleware();
-        $this->mock->shouldReceive('softDelete')->with($this->user->slug)->once();
+        $this->mock->shouldReceive('softDelete')
+            ->with($this->user->slug)
+            ->once();
 
         $this->route('DELETE', 'member::destroy', ['users' => $this->user->slug]);
 

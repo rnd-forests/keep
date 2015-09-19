@@ -14,7 +14,7 @@ class EloquentUserRepositoryTest extends TestCase
      */
     public function it_initializes_the_repository()
     {
-        $this->repo = app(Keep\Repositories\User\AbstractEloquentUserRepository::class);
+        $this->repo = app(Keep\Repositories\EloquentUserRepository::class);
     }
 
     /** @test */
@@ -60,7 +60,7 @@ class EloquentUserRepositoryTest extends TestCase
         $user = factory(Keep\Entities\User::class)->create();
         $attributes = ['location' => 'foo', 'bio' => 'foo foo'];
 
-        $this->repo->updateProfile($attributes, $user->slug);
+        $this->repo->update($attributes, $user->slug);
 
         $this->assertEquals('foo', $user->profile->location);
         $this->assertEquals('foo foo', $user->profile->bio);
@@ -121,16 +121,15 @@ class EloquentUserRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function it_fetches_a_paginated_list_of_soft_deleted_users()
+    public function it_fetches_a_list_of_soft_deleted_users()
     {
         factory(Keep\Entities\User::class)->create();
         factory(Keep\Entities\User::class)->create()->delete();
         factory(Keep\Entities\User::class)->create()->delete();
         factory(Keep\Entities\User::class)->create()->delete();
 
-        $result = $this->repo->fetchDisabledUsers(2);
+        $result = $this->repo->disabled();
 
-        $this->assertCount(2, $result);
         $this->assertEquals(3, $result->total());
     }
 
@@ -139,7 +138,7 @@ class EloquentUserRepositoryTest extends TestCase
     {
         factory(Keep\Entities\User::class)->create(['name' => 'bar', 'email' => 'foo@bar.com'])->delete();
 
-        $user = $this->repo->findDisabledUserBySlug('bar');
+        $user = $this->repo->findDisabledUser('bar');
 
         $this->assertTrue($user->trashed());
         $this->assertEquals('bar', $user->name);
@@ -152,7 +151,7 @@ class EloquentUserRepositoryTest extends TestCase
      */
     public function it_throws_an_exception_when_trying_to_fetch_an_unavailable_soft_deleted_user()
     {
-        $this->repo->findDisabledUserBySlug('bar');
+        $this->repo->findDisabledUser('bar');
     }
 
     /** @test */
@@ -161,7 +160,7 @@ class EloquentUserRepositoryTest extends TestCase
         DB::table('users')->truncate();
         factory(Keep\Entities\User::class, 4)->create();
 
-        $users = $this->repo->fetchUsersByIds([1, 2, 3]);
+        $users = $this->repo->fetchByIds([1, 2, 3]);
 
         $this->assertCount(3, $users);
         $this->assertEquals([1, 2, 3], $users->lists('id')->toArray());

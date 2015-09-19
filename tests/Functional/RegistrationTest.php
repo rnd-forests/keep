@@ -10,7 +10,7 @@ class RegistrationTest extends TestCase
     public function it_creates_a_new_user()
     {
         $this->visit('/')
-            ->click('Register')
+            ->click('Sign Up')
             ->seePageIs('auth/register')
             ->type('Foo Bar', 'name')
             ->type('foo@bar.com', 'email')

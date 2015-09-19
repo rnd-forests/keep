@@ -2,7 +2,6 @@
 
 namespace Keep\Repositories;
 
-use Gate;
 use Keep\Entities\User;
 use Keep\Repositories\Contracts\Common\Findable;
 use Keep\Repositories\Contracts\Common\Removable;
@@ -71,9 +70,6 @@ class EloquentUserRepository extends AbstractEloquentRepository implements
     public function softDelete($identifier)
     {
         $user = $this->findBySlug($identifier);
-        if (Gate::denies('updateAccountAndProfile', $user)) {
-            abort(403);
-        }
         $user->delete();
     }
 
@@ -121,9 +117,6 @@ class EloquentUserRepository extends AbstractEloquentRepository implements
     public function update(array $data, $identifier, $optionalIdentifier = null)
     {
         $user = $this->findBySlug($identifier);
-        if (Gate::denies('updateAccountAndProfile', $user)) {
-            abort(403);
-        }
         $user->profile()->update($data);
     }
 

@@ -55,8 +55,8 @@ class TaskIntegrationTest extends TestCase
         factory(Keep\Entities\Task::class)->create(['title' => 'Foo', 'completed' => true, 'finished_at' => Carbon::now()->addHours(2)]);
         factory(Keep\Entities\Task::class)->create(['title' => 'Bar', 'completed' => true, 'finished_at' => Carbon::now()->addHours(3)]);
         $this->assertCount(2, Task::recentlyCompleted()->get());
-        $this->assertEquals('Foo', Task::recentlyCompleted()->get()->first()->title);
-        $this->assertEquals('Bar', Task::recentlyCompleted()->get()->last()->title);
+        $this->assertEquals('Bar', Task::recentlyCompleted()->get()->first()->title);
+        $this->assertEquals('Foo', Task::recentlyCompleted()->get()->last()->title);
     }
 
     /** @test */
