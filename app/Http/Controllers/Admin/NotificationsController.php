@@ -52,6 +52,7 @@ class NotificationsController extends Controller
     public function createMemberNotification()
     {
         session(['current.view' => 'member.noti']);
+
         return view('admin.notifications.create_member_notification');
     }
 
@@ -78,6 +79,7 @@ class NotificationsController extends Controller
     public function createGroupNotification()
     {
         session(['current.view' => 'group.noti']);
+
         return view('admin.notifications.create_group_notification');
     }
 

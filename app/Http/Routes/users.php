@@ -3,9 +3,13 @@
 Route::group(['prefix' => '{users}', 'as' => 'member::', 'namespace' => 'Member'], function () {
     Route::get('profile', ['as' => 'profile', 'uses' => 'ProfileController@show']);
     Route::get('profile/edit', ['as' => 'edit-profile', 'uses' => 'ProfileController@edit']);
-    Route::get('account', ['as' => 'account', 'uses' => 'ProfileController@account']);
     Route::match(['put', 'patch'], '', ['as' => 'update', 'uses' => 'ProfileController@update']);
-    Route::delete('', ['as' => 'destroy', 'uses' => 'ProfileController@destroy']);
+
+    Route::get('account', ['as' => 'account', 'uses' => 'AccountController@account']);
+    Route::delete('', ['as' => 'destroy', 'uses' => 'AccountController@destroy']);
+    Route::patch('change-password', ['as' => 'change.password', 'uses' => 'AccountController@changePassword']);
+    Route::patch('change-username', ['as' => 'change.username', 'uses' => 'AccountController@changeUsername']);
+
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@dashboard']);
 
     Route::get('tasks/all', ['as' => 'tasks.all', 'uses' => 'DashboardController@all']);

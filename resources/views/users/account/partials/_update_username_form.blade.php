@@ -1,22 +1,18 @@
-@if (session('update_username_error'))
-    <div class="alert alert-warning">{{ session('update_username_error') }}</div>
+@if (session('invalid.name'))
+    <div class="alert alert-warning">{{ session('invalid.name') }}</div>
 @endif
 
-@if (session('update_username_success'))
-    <div class="alert alert-success">{{ session('update_username_success') }}</div>
-@endif
-
-{!! Form::open(['method' => 'PATCH', 'route' => ['auth::change.username', $user]]) !!}
+{!! Form::open(['method' => 'PATCH', 'route' => ['member::change.username', $user]]) !!}
     <div class="form-group">
         <label for="" class="control-label"></label>
-        {!! Form::label('old_username', 'Current name', ['class' => 'control-label']) !!}
-        {!! Form::text('old_username', null, ['class' => 'form-control input-lg']) !!}
-        {!! error_text($errors, 'old_username') !!}
+        {!! Form::label('old_name', 'Current name', ['class' => 'control-label']) !!}
+        {!! Form::text('old_name', null, ['class' => 'form-control input-lg']) !!}
+        {!! error_text($errors, 'old_name') !!}
     </div>
     <div class="form-group">
-        {!! Form::label('new_username', 'New name', ['class' => 'control-label']) !!}
-        {!! Form::text('new_username', null, ['class' => 'form-control input-lg']) !!}
-        {!! error_text($errors, 'new_username') !!}
+        {!! Form::label('new_name', 'New name', ['class' => 'control-label']) !!}
+        {!! Form::text('new_name', null, ['class' => 'form-control input-lg']) !!}
+        {!! error_text($errors, 'new_name') !!}
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-info">Change your name</button>

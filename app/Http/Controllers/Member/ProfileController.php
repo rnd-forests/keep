@@ -32,21 +32,6 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show account settings.
-     *
-     * @param $slug
-     *
-     * @return \Illuminate\View\View
-     */
-    public function account($slug)
-    {
-        $user = $this->users->findBySlug($slug);
-        $this->authorize('updateAccountAndProfile', $user);
-
-        return view('users.account.account', compact('user'));
-    }
-
-    /**
      * Load the form to edit profile.
      *
      * @param $slug
@@ -75,20 +60,5 @@ class ProfileController extends Controller
         flash()->info(trans('controller.profile_updated'));
 
         return redirect()->back();
-    }
-
-    /**
-     * Cancel account.
-     *
-     * @param $slug
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function destroy($slug)
-    {
-        $this->users->softDelete($slug);
-        flash()->success(trans('controller.account_canceled'));
-
-        return redirect()->home();
     }
 }

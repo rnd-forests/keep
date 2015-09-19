@@ -229,6 +229,6 @@ class GroupsController extends Controller
      */
     private function getUpdateMembersMessage(array $ids)
     {
-        return plural2('member', 'new', count($ids)) . ' added to this group.';
+        return plural2('member', 'new', count($ids)).' added to this group.';
     }
 }

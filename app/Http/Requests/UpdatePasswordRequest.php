@@ -7,8 +7,8 @@ class UpdatePasswordRequest extends AbstractRequest
     public function rules()
     {
         return [
-            'old_password' => 'required',
-            'new_password' => 'required|confirmed|min:6',
+            'old_pass' => 'required',
+            'new_pass' => 'required|confirmed|min:6',
         ];
     }
 }

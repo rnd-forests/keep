@@ -21,7 +21,7 @@ class NotificationForm
         $view->with('types', $this->getTypes());
         if (session('current.view') == 'member.noti') {
             $view->with('users', $this->listUsers());
-        } else if (session('current.view') == 'group.noti') {
+        } elseif (session('current.view') == 'group.noti') {
             $view->with('groups', $this->listGroups());
         }
     }
