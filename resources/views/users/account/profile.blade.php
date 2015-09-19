@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.default')
 @section('title', 'Public Profile')
 @section('content')
     <div class="row">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.default')
 @section('meta-description', 'Keep - Register new account')
 @section('title', 'Registration')
 @section('content')

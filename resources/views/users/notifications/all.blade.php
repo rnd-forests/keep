@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.default')
 @section('title', ucfirst(Request::get('type')) . ' Notifications')
 @section('content')
     @inject('counter', 'Keep\Services\UserNotification')

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.default')
 @section('title', 'Dashboard')
 @section('content')
     @inject('counter', 'Keep\Services\UserDashboard')

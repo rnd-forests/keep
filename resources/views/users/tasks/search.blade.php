@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.default')
 @section('title', 'Search Results')
 @section('content')
     <div class="row">

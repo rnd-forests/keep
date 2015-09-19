@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.default')
 @section('meta-description', 'Keep - Login')
 @section('title', 'Login')
 @section('content')

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.default')
 @section('title', ucfirst($priority->name))
 @section('content')
     <div class="row">
