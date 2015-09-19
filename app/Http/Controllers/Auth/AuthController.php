@@ -2,20 +2,24 @@
 
 namespace Keep\Http\Controllers\Auth;
 
-use Keep\Jobs\AuthenticateUser;
-use Keep\Jobs\RegisterUserAccount;
-use Keep\Jobs\ActivateUserAccount;
+use Keep\Events\UserHasRegistered;
+use Illuminate\Contracts\Auth\Guard;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\RegistrationRequest;
 use Keep\Http\Requests\InitializeSessionRequest;
 use Keep\Entities\Concerns\Auth\ThrottlesLogins;
+use Keep\Repositories\Contracts\UserRepositoryInterface;
 
 class AuthController extends Controller
 {
-    protected $throttles;
+    protected $users, $auth, $throttles;
 
-    public function __construct(ThrottlesLogins $throttles)
+    public function __construct(UserRepositoryInterface $users,
+                                Guard $auth,
+                                ThrottlesLogins $throttles)
     {
+        $this->users = $users;
+        $this->auth = $auth;
         $this->throttles = $throttles;
         $this->middleware('guest', ['except' => 'getLogout']);
     }
@@ -39,13 +43,15 @@ class AuthController extends Controller
      */
     public function postRegister(RegistrationRequest $request)
     {
-        if ($this->dispatchFrom(RegisterUserAccount::class, $request)) {
-            flash()->info(trans('authentication.account_activation'));
-
-            return redirect()->home();
+        $credentials = $request->only(['name', 'email', 'password']);
+        $user = $this->users->create($credentials);
+        if (!$user) {
+            return redirect()->route('auth::register');
         }
+        event(new UserHasRegistered($user));
+        flash()->info(trans('authentication.account_activation'));
 
-        return redirect()->route('auth::register');
+        return redirect()->home();
     }
 
     /**
@@ -71,15 +77,17 @@ class AuthController extends Controller
             return $this->throttles->sendLockoutResponse($request);
         }
 
-        if ($this->dispatchFrom(AuthenticateUser::class, $request, [
-            'active' => 1,
-            'remember' => $request->has('remember'), ])
-        ) {
+        $credentials = array_merge(
+            $request->only(['email', 'password']), ['active' => 1]
+        );
+
+        if ($this->auth->attempt($credentials, $request->has('remember'))) {
             flash()->success(trans('authentication.login_success'));
             $this->throttles->clearLoginAttempts($request);
 
             return redirect()->intended('/');
         }
+
         session()->flash('login_error', trans('authentication.login_error'));
         $this->throttles->incrementLoginAttempts($request);
 
@@ -93,7 +101,7 @@ class AuthController extends Controller
      */
     public function getLogout()
     {
-        auth()->logout();
+        $this->auth->logout();
         flash()->success(trans('authentication.logout'));
 
         return redirect()->home();
@@ -108,7 +116,9 @@ class AuthController extends Controller
      */
     public function activate($code)
     {
-        if ($this->dispatch(new ActivateUserAccount($code))) {
+        $user = $this->users->findByActivationCode($code);
+        if ($this->canBeActivated($user)) {
+            $this->auth->login($user);
             flash()->success(trans('authentication.activation_success'));
 
             return redirect()->home();
@@ -116,5 +126,15 @@ class AuthController extends Controller
         flash()->warning(trans('authentication.activation_error'));
 
         return redirect()->home();
+    }
+
+    /**
+     * Check if user account can be activated or not.
+     *
+     * @param $user
+     */
+    protected function canBeActivated($user)
+    {
+        return $user->update(['activation_code' => '', 'active' => true]);
     }
 }
