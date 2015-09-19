@@ -27,29 +27,27 @@ class ComposerServiceProvider extends ServiceProvider
     }
 
     /**
-     * Compose main task create/update form.
+     * Compose task form.
      */
     protected function composeTaskForm()
     {
         view()->composer(
             'users.tasks.partials._main_form',
-            \Keep\Http\Composers\TaskForm::class
+            \Keep\Core\Composers\TaskForm::class
         );
     }
 
     /**
-     * Compose notification create from.
+     * Compose notification forms.
      */
     protected function composeNotificationForm()
     {
         view()->composer(
-            'admin.notifications.create_member_notification',
-            \Keep\Http\Composers\MemberNotificationForm::class
-        );
-
-        view()->composer(
-            'admin.notifications.create_group_notification',
-            \Keep\Http\Composers\GroupNotificationForm::class
+            [
+                'admin.notifications.create_member_notification',
+                'admin.notifications.create_group_notification'
+            ],
+            \Keep\Core\Composers\NotificationForm::class
         );
     }
 

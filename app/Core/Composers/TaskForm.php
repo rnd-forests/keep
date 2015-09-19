@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Http\Composers;
+namespace Keep\Core\Composers;
 
 use Illuminate\Contracts\View\View;
 use Keep\Repositories\Contracts\TagRepositoryInterface as TagRepository;
