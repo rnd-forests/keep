@@ -24,7 +24,7 @@
         </a>
     </div>
     <div class="col-md-3">
-        <a href="{{ route('member::tasks.due', $user) }}">
+        <a href="{{ route('member::tasks.processing', $user) }}">
             <div class="stat-container">
                 <div class="large">{{ $counter->countDueTasks() }}</div>
                 <div class="small">processing</div>

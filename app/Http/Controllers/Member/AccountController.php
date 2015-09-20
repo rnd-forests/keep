@@ -26,7 +26,7 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function changeUsername($userSlug, UpdateNameRequest $request)
+    public function changeName($userSlug, UpdateNameRequest $request)
     {
         $oldName = $request->get('old_name');
         $newName = $request->get('new_name');
@@ -77,7 +77,7 @@ class AccountController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function account($userSlug)
+    public function show($userSlug)
     {
         $user = $this->users->findBySlug($userSlug);
 

@@ -3,7 +3,7 @@
     <p>&copy; Keep 2015 by Vinh Nguyen</p>
     @if(auth()->check())
         <ul class="footer-links text-muted">
-            <li><a href="{{ route('member::profile', $authUser) }}">Profile</a></li>
+            <li><a href="{{ route('member::profile.show', $authUser) }}">Profile</a></li>
             <li>&middot;</li>
             <li><a href="{{ route('member::dashboard', $authUser) }}">Dashboard</a></li>
             <li>&middot;</li>

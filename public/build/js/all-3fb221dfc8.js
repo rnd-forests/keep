@@ -66,6 +66,7 @@ var Keep = (function($) {
         _setupAjaxHeader();
         _setupSummernote();
         _responsiveFrame();
+        _storeTabPosition();
         _dismissibleAlerts();
     };
 
@@ -210,6 +211,21 @@ var Keep = (function($) {
                 return false;
             }
         });
+    };
+
+    /**
+     * Store current position of tab in Bootstrap.
+     *
+     * @private
+     */
+    var _storeTabPosition = function() {
+        $('a[data-toggle=tab]').on('shown.bs.tab', function() {
+            localStorage.setItem('lastTab', $(this).attr('href'));
+        });
+        var $last = localStorage.getItem('lastTab');
+        if ($last) {
+            $('[href=' + $last + ']').tab('show');
+        }
     };
 
     /**

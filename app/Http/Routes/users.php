@@ -1,21 +1,21 @@
 <?php
 
 Route::group(['prefix' => '{users}', 'as' => 'member::', 'namespace' => 'Member'], function () {
-    Route::get('profile', ['as' => 'profile', 'uses' => 'ProfileController@show']);
-    Route::get('profile/edit', ['as' => 'edit-profile', 'uses' => 'ProfileController@edit']);
-    Route::match(['put', 'patch'], '', ['as' => 'update', 'uses' => 'ProfileController@update']);
+    Route::get('profile', ['as' => 'profile.show', 'uses' => 'ProfileController@show']);
+    Route::get('profile/edit', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+    Route::match(['put', 'patch'], '', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 
-    Route::get('account', ['as' => 'account', 'uses' => 'AccountController@account']);
-    Route::delete('', ['as' => 'destroy', 'uses' => 'AccountController@destroy']);
-    Route::patch('change-password', ['as' => 'change.password', 'uses' => 'AccountController@changePassword']);
-    Route::patch('change-username', ['as' => 'change.username', 'uses' => 'AccountController@changeUsername']);
+    Route::get('account', ['as' => 'account.show', 'uses' => 'AccountController@show']);
+    Route::delete('', ['as' => 'account.destroy', 'uses' => 'AccountController@destroy']);
+    Route::patch('change-name', ['as' => 'account.change.name', 'uses' => 'AccountController@changeName']);
+    Route::patch('change-password', ['as' => 'account.change.password', 'uses' => 'AccountController@changePassword']);
 
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@dashboard']);
 
     Route::get('tasks/all', ['as' => 'tasks.all', 'uses' => 'DashboardController@all']);
-    Route::get('tasks/completed', ['as' => 'tasks.completed', 'uses' => 'DashboardController@completed']);
     Route::get('tasks/failed', ['as' => 'tasks.failed', 'uses' => 'DashboardController@failed']);
-    Route::get('tasks/processing', ['as' => 'tasks.due', 'uses' => 'DashboardController@processing']);
+    Route::get('tasks/completed', ['as' => 'tasks.completed', 'uses' => 'DashboardController@completed']);
+    Route::get('tasks/processing', ['as' => 'tasks.processing', 'uses' => 'DashboardController@processing']);
     Route::patch('tasks/{tasks}/complete', ['as' => 'tasks.complete', 'uses' => 'TasksController@complete']);
 
     Route::get('groups', ['as' => 'groups.all', 'uses' => 'GroupsController@index']);

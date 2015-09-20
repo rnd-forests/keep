@@ -115,7 +115,7 @@ class AuthController extends Controller
      * @param $code
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function activate($code)
+    public function getActivate($code)
     {
         $user = $this->users->findByActivationCode($code);
         if ($this->canBeActivated($user)) {

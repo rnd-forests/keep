@@ -51,11 +51,11 @@
                             {{ $authUser->name }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('member::profile', $authUser) }}">Profile</a></li>
+                            <li><a href="{{ route('member::profile.show', $authUser) }}">Profile</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ route('member::edit-profile', $authUser) }}">Edit Profile</a></li>
+                            <li><a href="{{ route('member::profile.edit', $authUser) }}">Edit Profile</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ route('member::account', $authUser) }}">Account</a></li>
+                            <li><a href="{{ route('member::account.show', $authUser) }}">Account</a></li>
                             <li class="divider"></li>
                             @if ($authUser->isAdmin())
                                 <li><a href="{{ route('admin::dashboard') }}">Admin Panel</a></li>

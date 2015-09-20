@@ -6,7 +6,7 @@
                     all other things related to your account.</p>
             </div>
             <div class="modal-footer">
-                {!! Form::open(['route' => ['member::destroy', $user], 'method' => 'DELETE']) !!}
+                {!! Form::open(['route' => ['member::account.destroy', $user], 'method' => 'DELETE']) !!}
                     {!! Form::submit('Confirm', ['class' => 'btn btn-danger']) !!}
                 {!! Form::close() !!}
             </div>
