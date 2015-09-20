@@ -22,7 +22,9 @@
         </li>
         <li class="list-group-item">
             <h6 class="list-group-item-heading">Personal Website</h6>
-            {{ print_attr($user->profile->website) }}
+            <a href="{{ print_attr($user->profile->website) }}">
+                {{ print_attr($user->profile->website) }}
+            </a>
         </li>
         <li class="list-group-item">
             <h6 class="list-group-item-heading">Phone Number</h6>

@@ -41,7 +41,6 @@ class ProfileController extends Controller
     public function edit($slug)
     {
         $user = $this->users->findBySlug($slug);
-        $this->authorize('updateAccountAndProfile', $user);
 
         return view('users.account.edit_profile', compact('user'));
     }
