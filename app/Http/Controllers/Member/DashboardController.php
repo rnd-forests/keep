@@ -5,6 +5,7 @@ namespace Keep\Http\Controllers\Member;
 use Keep\Http\Controllers\Controller;
 use Keep\Repositories\Contracts\TaskRepository;
 use Keep\Repositories\Contracts\UserRepository;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DashboardController extends Controller
 {
@@ -31,87 +32,46 @@ class DashboardController extends Controller
         $deadline = $this->tasks->deadlineTasks($user);
         $completed = $this->tasks->recentlyCompletedTasks($user);
 
-        return view('users.dashboard.dashboard', compact('user', 'urgent', 'deadline', 'completed'));
+        return view('users.dashboard.dashboard', compact(
+            'user', 'urgent', 'deadline', 'completed'));
     }
 
     /**
-     * Get all tasks of a user.
+     * Fetching tasks according to types.
      *
      * @param $userSlug
      * @return \Illuminate\View\View
      */
-    public function all($userSlug)
+    public function showTasks($userSlug)
     {
-        return $this->fetchTasks(
-            'All',
-            'users.dashboard.task_collection',
-            $userSlug,
-            'allTasks'
-        );
-    }
+        $tasks = null;
+        $type = request()->get('type');
+        $user = $this->users->findBySlug($userSlug);
+        $possibleTypes = ['all', 'completed', 'failed', 'processing'];
 
-    /**
-     * Get all completed tasks of a user.
-     *
-     * @param $userSlug
-     * @return \Illuminate\View\View
-     */
-    public function completed($userSlug)
-    {
-        return $this->fetchTasks(
-            'Completed',
-            'users.dashboard.task_collection',
-            $userSlug,
-            'completedTasks'
-        );
-    }
+        if (!validate_query_string($type, $possibleTypes)) {
+            throw new NotFoundHttpException;
+        }
 
-    /**
-     * Get all failed tasks of a user.
-     *
-     * @param $userSlug
-     * @return \Illuminate\View\View
-     */
-    public function failed($userSlug)
-    {
-        return $this->fetchTasks(
-            'Failed',
-            'users.dashboard.task_collection',
-            $userSlug,
-            'failedTasks'
-        );
-    }
+        switch ($type) {
+            case 'all':
+                $tasks = $this->tasks->allTasks($user);
+                break;
+            case 'completed':
+                $tasks = $this->tasks->completedTasks($user);
+                break;
+            case 'failed':
+                $tasks = $this->tasks->failedTasks($user);
+                break;
+            case 'processing':
+                $tasks = $this->tasks->processingTasks($user);
+                break;
+        }
 
-    /**
-     * Get all processing tasks of a user.
-     *
-     * @param $userSlug
-     * @return \Illuminate\View\View
-     */
-    public function processing($userSlug)
-    {
-        return $this->fetchTasks(
-            'Processing',
-            'users.dashboard.task_collection',
-            $userSlug,
-            'processingTasks'
-        );
-    }
-
-    /**
-     * A helper method to fetch tasks associated with a type.
-     *
-     * @param $type
-     * @param $view
-     * @param $slug
-     * @param $repoMethod
-     * @return \Illuminate\View\View
-     */
-    protected function fetchTasks($type, $view, $slug, $repoMethod)
-    {
-        $user = $this->users->findBySlug($slug);
-        $tasks = $this->tasks->$repoMethod($user);
-
-        return view($view, compact('type', 'user', 'tasks'));
+        return view('users.dashboard.task_collection', [
+            'type' => ucfirst($type),
+            'user' => $user,
+            'tasks' => $tasks
+        ]);
     }
 }

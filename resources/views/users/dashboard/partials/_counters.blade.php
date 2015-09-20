@@ -1,6 +1,6 @@
 <div class="row stats">
     <div class="col-md-3">
-        <a href="{{ route('member::tasks.all', $user) }}">
+        <a href="{{ route('member::tasks', ['users' => $user, 'type' => 'all']) }}">
             <div class="stat-container">
                 <div class="large">{{ $counter->totalTasks() }}</div>
                 <div class="small">in total</div>
@@ -8,7 +8,7 @@
         </a>
     </div>
     <div class="col-md-3">
-        <a href="{{ route('member::tasks.completed', $user) }}">
+        <a href="{{ route('member::tasks', ['users' => $user, 'type' => 'completed']) }}">
             <div class="stat-container">
                 <div class="large">{{ $counter->countCompletedTasks() }}</div>
                 <div class="small">completed</div>
@@ -16,7 +16,7 @@
         </a>
     </div>
     <div class="col-md-3">
-        <a href="{{ route('member::tasks.failed', $user) }}">
+        <a href="{{ route('member::tasks', ['users' => $user, 'type' => 'failed']) }}">
             <div class="stat-container">
                 <div class="large">{{ $counter->countFailedTasks() }}</div>
                 <div class="small">failed</div>
@@ -24,7 +24,7 @@
         </a>
     </div>
     <div class="col-md-3">
-        <a href="{{ route('member::tasks.processing', $user) }}">
+        <a href="{{ route('member::tasks', ['users' => $user, 'type' => 'processing']) }}">
             <div class="stat-container">
                 <div class="large">{{ $counter->countDueTasks() }}</div>
                 <div class="small">processing</div>

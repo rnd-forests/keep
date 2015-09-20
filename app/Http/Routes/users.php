@@ -12,10 +12,7 @@ Route::group(['prefix' => '{users}', 'as' => 'member::', 'namespace' => 'Member'
 
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@dashboard']);
 
-    Route::get('tasks/all', ['as' => 'tasks.all', 'uses' => 'DashboardController@all']);
-    Route::get('tasks/failed', ['as' => 'tasks.failed', 'uses' => 'DashboardController@failed']);
-    Route::get('tasks/completed', ['as' => 'tasks.completed', 'uses' => 'DashboardController@completed']);
-    Route::get('tasks/processing', ['as' => 'tasks.processing', 'uses' => 'DashboardController@processing']);
+    Route::get('tasks', ['as' => 'tasks', 'uses' => 'DashboardController@showTasks']);
     Route::patch('tasks/{tasks}/complete', ['as' => 'tasks.complete', 'uses' => 'TasksController@complete']);
 
     Route::get('groups', ['as' => 'groups.all', 'uses' => 'GroupsController@index']);

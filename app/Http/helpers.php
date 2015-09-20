@@ -283,3 +283,22 @@ if (!function_exists('get_class_short_name')) {
         return (new ReflectionClass($object))->getShortName();
     }
 }
+
+if (!function_exists('validate_query_string')) {
+    /**
+     * Check if the current query string is in the allowed set of
+     * query strings.
+     *
+     * @param $current
+     * @param array $possible
+     * @return bool
+     */
+    function validate_query_string($current, array $possible)
+    {
+        if (!$current || !in_array($current, $possible)) {
+            return false;
+        }
+
+        return true;
+    }
+}
