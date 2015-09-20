@@ -7,19 +7,19 @@ use Illuminate\Contracts\Auth\Guard;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\SignInRequest;
 use Keep\Http\Requests\RegistrationRequest;
+use Keep\Repositories\Contracts\UserRepository;
 use Keep\Entities\Concerns\Auth\ThrottlesLogins;
-use Keep\Repositories\Contracts\UserRepositoryInterface;
 
 class AuthController extends Controller
 {
     protected $users, $auth, $throttles;
 
-    public function __construct(UserRepositoryInterface $users,
-                                Guard $auth,
+    public function __construct(Guard $auth,
+                                UserRepository $users,
                                 ThrottlesLogins $throttles)
     {
-        $this->users = $users;
         $this->auth = $auth;
+        $this->users = $users;
         $this->throttles = $throttles;
         $this->middleware('guest', ['except' => 'getLogout']);
     }

@@ -5,7 +5,7 @@ namespace Keep\Http\Controllers\Member;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\UpdateNameRequest;
 use Keep\Http\Requests\UpdatePasswordRequest;
-use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\UserRepository;
 
 class AccountController extends Controller
 {

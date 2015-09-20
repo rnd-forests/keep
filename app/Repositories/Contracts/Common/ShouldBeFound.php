@@ -2,7 +2,7 @@
 
 namespace Keep\Repositories\Contracts\Common;
 
-interface Findable
+interface ShouldBeFound
 {
     /**
      * Find a model instance by its id.

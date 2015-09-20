@@ -6,7 +6,7 @@ use Keep\Jobs\SendGroupNotification;
 use Keep\Jobs\SendMemberNotification;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\NotificationRequest;
-use Keep\Repositories\Contracts\NotificationRepositoryInterface as NotificationRepository;
+use Keep\Repositories\Contracts\NotificationRepository;
 
 class NotificationsController extends Controller
 {

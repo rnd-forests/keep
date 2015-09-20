@@ -2,7 +2,7 @@
 
 namespace Keep\Repositories\Contracts;
 
-interface TagRepositoryInterface
+interface TagRepository
 {
     /**
      * Listing tags by pairs of name and id.

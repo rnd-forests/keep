@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Keep\Repositories\Contracts\TagRepositoryInterface;
+use Keep\Repositories\Contracts\TagRepository;
 
 class TagsControllerTest extends TestCase
 {
@@ -12,7 +12,7 @@ class TagsControllerTest extends TestCase
     /** @before */
     public function it_initializes_testing_environment()
     {
-        $this->mock = $this->mock(TagRepositoryInterface::class);
+        $this->mock = $this->mock(TagRepository::class);
         $this->user = $this->setAuthenticatedUser();
     }
 

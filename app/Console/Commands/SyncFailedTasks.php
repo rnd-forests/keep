@@ -3,7 +3,7 @@
 namespace Keep\Console\Commands;
 
 use Illuminate\Console\Command;
-use Keep\Repositories\Contracts\TaskRepositoryInterface as TaskRepository;
+use Keep\Repositories\Contracts\TaskRepository as TaskRepository;
 
 class SyncFailedTasks extends Command
 {

@@ -4,10 +4,10 @@ namespace Keep\Repositories;
 
 use Keep\Entities\User;
 use Keep\Entities\Priority;
-use Keep\Repositories\Contracts\PriorityRepositoryInterface;
+use Keep\Repositories\Contracts\PriorityRepository;
 
-class EloquentPriorityRepository extends AbstractEloquentRepository
-    implements PriorityRepositoryInterface
+class EloquentPriorityRepository extends AbstractRepository
+    implements PriorityRepository
 {
     protected $model;
 

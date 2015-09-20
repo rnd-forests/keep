@@ -3,20 +3,20 @@
 namespace Keep\Repositories;
 
 use Keep\Entities\User;
-use Keep\Repositories\Contracts\Common\Findable;
-use Keep\Repositories\Contracts\Common\Removable;
-use Keep\Repositories\Contracts\Common\Updateable;
-use Keep\Repositories\Contracts\Common\Paginateable;
-use Keep\Repositories\Contracts\UserRepositoryInterface;
-use Keep\Repositories\Contracts\Common\RepositoryInterface;
+use Keep\Repositories\Contracts\UserRepository;
+use Keep\Repositories\Contracts\Common\CanBeRemoved;
+use Keep\Repositories\Contracts\Common\CanBeUpdated;
+use Keep\Repositories\Contracts\Common\ShouldBeFound;
+use Keep\Repositories\Contracts\Common\ModelRepository;
+use Keep\Repositories\Contracts\Common\ShouldBePaginated;
 
-class EloquentUserRepository extends AbstractEloquentRepository implements
-    Findable,
-    Removable,
-    Updateable,
-    Paginateable,
-    RepositoryInterface,
-    UserRepositoryInterface
+class EloquentUserRepository extends AbstractRepository implements
+    ShouldBeFound,
+    CanBeRemoved,
+    CanBeUpdated,
+    ShouldBePaginated,
+    ModelRepository,
+    UserRepository
 {
     protected $model;
 

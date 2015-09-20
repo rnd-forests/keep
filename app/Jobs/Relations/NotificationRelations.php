@@ -5,21 +5,23 @@ namespace Keep\Jobs\Relations;
 use Keep\Jobs\Job;
 use Keep\Entities\Notification;
 use Illuminate\Support\Collection;
-use Keep\Repositories\Contracts\UserRepositoryInterface;
-use Keep\Repositories\Contracts\GroupRepositoryInterface;
-use Keep\Repositories\Contracts\NotificationRepositoryInterface;
+use Keep\Repositories\Contracts\UserRepository;
+use Keep\Repositories\Contracts\GroupRepository;
+use Keep\Repositories\Contracts\NotificationRepository;
 
 abstract class NotificationRelations extends Job
 {
     protected $data;
-    protected static $users, $groups, $notifications;
+    protected static $users;
+    protected static $groups;
+    protected static $notifications;
 
     public function __construct(array $data)
     {
         $this->data = $data;
-        self::$users = app(UserRepositoryInterface::class);
-        self::$groups = app(GroupRepositoryInterface::class);
-        self::$notifications = app(NotificationRepositoryInterface::class);
+        self::$users = app(UserRepository::class);
+        self::$groups = app(GroupRepository::class);
+        self::$notifications = app(NotificationRepository::class);
     }
 
     /**

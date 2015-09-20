@@ -2,7 +2,7 @@
 
 namespace Keep\Repositories\Contracts\Common;
 
-interface Removable
+interface CanBeRemoved
 {
     /**
      * Restore a soft deleted model instance.

@@ -4,20 +4,20 @@ namespace Keep\Repositories;
 
 use Keep\Entities\User;
 use Keep\Entities\Group;
-use Keep\Repositories\Contracts\Common\Findable;
-use Keep\Repositories\Contracts\Common\Removable;
-use Keep\Repositories\Contracts\Common\Updateable;
-use Keep\Repositories\Contracts\Common\Paginateable;
-use Keep\Repositories\Contracts\GroupRepositoryInterface;
-use Keep\Repositories\Contracts\Common\RepositoryInterface;
+use Keep\Repositories\Contracts\GroupRepository;
+use Keep\Repositories\Contracts\Common\CanBeRemoved;
+use Keep\Repositories\Contracts\Common\CanBeUpdated;
+use Keep\Repositories\Contracts\Common\ShouldBeFound;
+use Keep\Repositories\Contracts\Common\ModelRepository;
+use Keep\Repositories\Contracts\Common\ShouldBePaginated;
 
-class EloquentGroupRepository extends AbstractEloquentRepository implements
-    Findable,
-    Removable,
-    Updateable,
-    Paginateable,
-    RepositoryInterface,
-    GroupRepositoryInterface
+class EloquentGroupRepository extends AbstractRepository implements
+    ShouldBeFound,
+    CanBeRemoved,
+    CanBeUpdated,
+    ShouldBePaginated,
+    ModelRepository,
+    GroupRepository
 {
     protected $model;
 

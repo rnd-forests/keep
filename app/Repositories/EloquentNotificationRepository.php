@@ -5,14 +5,14 @@ namespace Keep\Repositories;
 use Carbon\Carbon;
 use Keep\Entities\User;
 use Keep\Entities\Notification;
-use Keep\Repositories\Contracts\Common\Paginateable;
-use Keep\Repositories\Contracts\Common\RepositoryInterface;
-use Keep\Repositories\Contracts\NotificationRepositoryInterface;
+use Keep\Repositories\Contracts\Common\ModelRepository;
+use Keep\Repositories\Contracts\NotificationRepository;
+use Keep\Repositories\Contracts\Common\ShouldBePaginated;
 
-class EloquentNotificationRepository extends AbstractEloquentRepository implements
-    Paginateable,
-    RepositoryInterface,
-    NotificationRepositoryInterface
+class EloquentNotificationRepository extends AbstractRepository implements
+    ShouldBePaginated,
+    ModelRepository,
+    NotificationRepository
 {
     protected $model;
 

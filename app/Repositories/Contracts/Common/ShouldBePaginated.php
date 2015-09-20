@@ -2,7 +2,7 @@
 
 namespace Keep\Repositories\Contracts\Common;
 
-interface Paginateable
+interface ShouldBePaginated
 {
     /**
      * Paginate a collection of models.

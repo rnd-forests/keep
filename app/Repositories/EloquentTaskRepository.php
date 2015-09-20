@@ -6,20 +6,20 @@ use Carbon\Carbon;
 use Keep\Entities\Task;
 use Keep\Entities\User;
 use Keep\Entities\Priority;
-use Keep\Repositories\Contracts\Common\Findable;
-use Keep\Repositories\Contracts\Common\Removable;
-use Keep\Repositories\Contracts\Common\Updateable;
-use Keep\Repositories\Contracts\Common\Paginateable;
-use Keep\Repositories\Contracts\TaskRepositoryInterface;
-use Keep\Repositories\Contracts\Common\RepositoryInterface;
+use Keep\Repositories\Contracts\TaskRepository;
+use Keep\Repositories\Contracts\Common\CanBeRemoved;
+use Keep\Repositories\Contracts\Common\CanBeUpdated;
+use Keep\Repositories\Contracts\Common\ShouldBeFound;
+use Keep\Repositories\Contracts\Common\ModelRepository;
+use Keep\Repositories\Contracts\Common\ShouldBePaginated;
 
-class EloquentTaskRepository extends AbstractEloquentRepository implements
-    Findable,
-    Removable,
-    Updateable,
-    Paginateable,
-    RepositoryInterface,
-    TaskRepositoryInterface
+class EloquentTaskRepository extends AbstractRepository implements
+    ShouldBeFound,
+    CanBeRemoved,
+    CanBeUpdated,
+    ShouldBePaginated,
+    ModelRepository,
+    TaskRepository
 {
     protected $model;
 

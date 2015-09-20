@@ -2,7 +2,7 @@
 
 namespace Keep\Repositories\Contracts;
 
-interface PriorityRepositoryInterface
+interface PriorityRepository
 {
     /**
      * Fetching all priority levels.

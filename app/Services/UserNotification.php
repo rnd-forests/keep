@@ -2,7 +2,7 @@
 
 namespace Keep\Services;
 
-use Keep\Repositories\Contracts\NotificationRepositoryInterface;
+use Keep\Repositories\Contracts\NotificationRepository;
 
 class UserNotification
 {
@@ -23,7 +23,7 @@ class UserNotification
      */
     public function countGroupNotifications()
     {
-        return app()->make(NotificationRepositoryInterface::class)
+        return app()->make(NotificationRepository::class)
             ->groupNotificationsFor(auth()->user()->slug)->total();
     }
 }

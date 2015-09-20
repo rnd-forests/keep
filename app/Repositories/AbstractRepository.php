@@ -2,7 +2,7 @@
 
 namespace Keep\Repositories;
 
-abstract class AbstractEloquentRepository
+abstract class AbstractRepository
 {
     /**
      * Get a collection of all model instances.

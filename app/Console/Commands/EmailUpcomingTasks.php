@@ -3,8 +3,8 @@
 namespace Keep\Console\Commands;
 
 use Illuminate\Console\Command;
+use Keep\Repositories\Contracts\TaskRepository;
 use Keep\Core\Mailers\Contracts\UserMailerContract;
-use Keep\Repositories\Contracts\TaskRepositoryInterface as TaskRepository;
 
 class EmailUpcomingTasks extends Command
 {

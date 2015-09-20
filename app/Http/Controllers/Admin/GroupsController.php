@@ -5,7 +5,7 @@ namespace Keep\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Keep\Http\Requests\GroupRequest;
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Contracts\GroupRepositoryInterface as GroupRepository;
+use Keep\Repositories\Contracts\GroupRepository;
 
 class GroupsController extends Controller
 {

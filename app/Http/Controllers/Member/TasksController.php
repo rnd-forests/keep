@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Keep\Events\TaskHasPublished;
 use Keep\Http\Requests\TaskRequest;
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Contracts\TaskRepositoryInterface as TaskRepository;
-use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\TaskRepository;
+use Keep\Repositories\Contracts\UserRepository;
 
 class TasksController extends Controller
 {

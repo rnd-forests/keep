@@ -2,7 +2,7 @@
 
 namespace Keep\Repositories\Contracts;
 
-interface UserRepositoryInterface
+interface UserRepository
 {
     /**
      * Fetching a paginated collection of disabled users.

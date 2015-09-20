@@ -4,12 +4,12 @@ namespace Keep\Repositories;
 
 use Keep\Entities\Tag;
 use Keep\Entities\User;
-use Keep\Repositories\Contracts\Common\Findable;
-use Keep\Repositories\Contracts\TagRepositoryInterface;
+use Keep\Repositories\Contracts\TagRepository;
+use Keep\Repositories\Contracts\Common\ShouldBeFound;
 
-class EloquentTagRepository extends AbstractEloquentRepository implements
-    Findable,
-    TagRepositoryInterface
+class EloquentTagRepository extends AbstractRepository implements
+    ShouldBeFound,
+    TagRepository
 {
     protected $model;
 

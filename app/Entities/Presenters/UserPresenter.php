@@ -12,10 +12,9 @@ class UserPresenter extends Presenter
      */
     public function gravatar($size = 35)
     {
-        return trans(
-            'presenter.gravatar_link',
-            ['email' => md5($this->email), 'size' => $size]
-        );
+        return trans('presenter.gravatar_link', [
+            'email' => md5($this->email), 'size' => $size
+        ]);
     }
 
     /**
@@ -26,10 +25,9 @@ class UserPresenter extends Presenter
      */
     public function githubProfile($user)
     {
-        return trans(
-            'presenter.github_profile',
-            ['username' => $user->profile->github_username]
-        );
+        return trans('presenter.github_profile', [
+            'username' => $user->profile->github_username
+        ]);
     }
 
     /**
@@ -40,10 +38,9 @@ class UserPresenter extends Presenter
      */
     public function googlePlusProfile($user)
     {
-        return trans(
-            'presenter.google_profile',
-            ['username' => $user->profile->google_username]
-        );
+        return trans('presenter.google_profile', [
+            'username' => $user->profile->google_username
+        ]);
     }
 
     /**
@@ -54,9 +51,8 @@ class UserPresenter extends Presenter
      */
     public function facebookProfile($user)
     {
-        return trans(
-            'presenter.facebook_profile',
-            ['username' => $user->profile->facebook_username]
-        );
+        return trans('presenter.facebook_profile', [
+            'username' => $user->profile->facebook_username
+        ]);
     }
 }

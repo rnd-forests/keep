@@ -3,10 +3,10 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Contracts\TaskRepositoryInterface;
-use Keep\Repositories\Contracts\UserRepositoryInterface;
-use Keep\Repositories\Contracts\GroupRepositoryInterface;
-use Keep\Repositories\Contracts\NotificationRepositoryInterface;
+use Keep\Repositories\Contracts\TaskRepository;
+use Keep\Repositories\Contracts\UserRepository;
+use Keep\Repositories\Contracts\GroupRepository;
+use Keep\Repositories\Contracts\NotificationRepository;
 
 class DashboardController extends Controller
 {
@@ -17,10 +17,10 @@ class DashboardController extends Controller
      */
     public function dashboard()
     {
-        $userCount = app(UserRepositoryInterface::class)->countAll();
-        $taskCount = app(TaskRepositoryInterface::class)->countAll();
-        $groupCount = app(GroupRepositoryInterface::class)->countAll();
-        $notificationCount = app(NotificationRepositoryInterface::class)->countAll();
+        $userCount = app(UserRepository::class)->countAll();
+        $taskCount = app(TaskRepository::class)->countAll();
+        $groupCount = app(GroupRepository::class)->countAll();
+        $notificationCount = app(NotificationRepository::class)->countAll();
 
         return view('admin.dashboard',
             compact(

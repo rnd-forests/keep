@@ -2,7 +2,7 @@
 
 namespace Keep\Repositories\Contracts;
 
-interface GroupRepositoryInterface
+interface GroupRepository
 {
     /**
      * Fetching trashed groups.

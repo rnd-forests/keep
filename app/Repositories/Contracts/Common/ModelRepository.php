@@ -2,7 +2,7 @@
 
 namespace Keep\Repositories\Contracts\Common;
 
-interface RepositoryInterface
+interface ModelRepository
 {
     /**
      * Get a collection of all model instances.

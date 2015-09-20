@@ -2,7 +2,7 @@
 
 namespace Keep\Repositories\Contracts\Common;
 
-interface Updateable
+interface CanBeUpdated
 {
     /**
      * Update a model instance.

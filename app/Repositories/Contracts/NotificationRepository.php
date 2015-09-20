@@ -2,7 +2,7 @@
 
 namespace Keep\Repositories\Contracts;
 
-interface NotificationRepositoryInterface
+interface NotificationRepository
 {
     /**
      * Delete a notification.

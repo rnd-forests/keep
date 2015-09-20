@@ -3,7 +3,7 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
+use Keep\Repositories\Contracts\UserRepository;
 
 class UsersController extends Controller
 {

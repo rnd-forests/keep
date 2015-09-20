@@ -3,8 +3,8 @@
 namespace Keep\Core\Composers;
 
 use Illuminate\Contracts\View\View;
-use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
-use Keep\Repositories\Contracts\GroupRepositoryInterface as GroupRepository;
+use Keep\Repositories\Contracts\UserRepository;
+use Keep\Repositories\Contracts\GroupRepository;
 
 class NotificationForm
 {

@@ -3,8 +3,8 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Contracts\UserRepositoryInterface as UserRepository;
-use Keep\Repositories\Contracts\PriorityRepositoryInterface as PriorityRepository;
+use Keep\Repositories\Contracts\UserRepository;
+use Keep\Repositories\Contracts\PriorityRepository;
 
 class PrioritiesController extends Controller
 {

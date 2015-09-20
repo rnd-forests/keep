@@ -2,7 +2,7 @@
 
 namespace Keep\Repositories\Contracts;
 
-interface TaskRepositoryInterface
+interface TaskRepository
 {
     /**
      * Finding a task.
