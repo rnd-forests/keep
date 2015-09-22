@@ -10,7 +10,6 @@ var Keep = (function($) {
         _setupChartJs();
         _dateTimePicker();
         _setupAjaxHeader();
-        _setupSummernote();
         _responsiveFrame();
         _storeTabPosition();
         _dismissibleAlerts();
@@ -43,29 +42,6 @@ var Keep = (function($) {
         Chart.defaults.global.scaleBeginAtZero = true;
         Chart.defaults.global.scaleFontFamily = "Source Sans Pro";
         Chart.defaults.global.tooltipFontFamily = "Source Sans Pro";
-    };
-
-    /**
-     * Global configurations for Summernote plugin.
-     *
-     * @private
-     */
-    var _setupSummernote = function() {
-        var $container = $('#summernote');
-
-        $container.summernote({
-            focus: true,
-            toolbar: [
-                ['action', ['undo', 'redo', 'fullscreen', 'codeview']],
-                ['fontsize', ['fontsize']],
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['color', ['color']],
-                ['layout', ['ul', 'ol']],
-                ['para', ['paragraph']],
-                ['height', ['height']],
-                ['insert', ['picture', 'link', 'video', 'table']]
-            ]
-        });
     };
 
     /**

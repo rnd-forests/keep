@@ -8,7 +8,6 @@ elixir(function(mix) {
         "bootstrap.css",
         "vendor/font-awesome.css",
         "vendor/datetimepicker.css",
-        "vendor/summernote.css",
         "application.css"
     ], null, "public/css");
 
@@ -19,9 +18,6 @@ elixir(function(mix) {
         "vendor/chart.min.js",
         "vendor/datepicker.min.js",
         "vendor/select2.min.js",
-        "vendor/summernote/summernote.min.js",
-        "vendor/summernote/summernote-fontstyle.js",
-        "vendor/summernote/summernote-video.js",
         "application.js"
     ]);
 

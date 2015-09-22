@@ -5,7 +5,7 @@
 </div>
 <div class="form-group summernote-container">
     {!! Form::label('content', 'Details', ['class' => 'control-label']) !!}
-    {!! Form::textarea('content', null, ['id' => 'summernote']) !!}
+    {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
     {!! error_text($errors, 'content') !!}
 </div>
 <div class="row">

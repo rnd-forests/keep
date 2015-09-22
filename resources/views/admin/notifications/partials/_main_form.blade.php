@@ -17,7 +17,7 @@
 </div>
 <div class="form-group summernote-container">
     {!! Form::label('body', 'Notification Details', ['class' => 'control-label']) !!}
-    {!! Form::textarea('body', null, ['id' => 'summernote']) !!}
+    {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
     {!! error_text($errors, 'body') !!}
 </div>
 @yield('notifiable-objects')
