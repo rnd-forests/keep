@@ -5,9 +5,9 @@ elixir(function(mix) {
     mix.less("bootstrap/bootstrap.less", "public/css/bootstrap.css");
 
     mix.styles([
-        "bootstrap.css",
         "vendor/font-awesome.css",
         "vendor/datetimepicker.css",
+        "bootstrap.css",
         "application.css"
     ], null, "public/css");
 

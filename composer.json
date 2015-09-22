@@ -16,8 +16,6 @@
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "laravel/socialite": "~2.0",
         "cviebrock/eloquent-sluggable": "~3.0.0",
-        "michelf/php-markdown": "1.4.*",
-        "league/html-to-markdown": "~4.0",
         "zizaco/entrust": "1.4.*",
         "iron-io/iron_mq": "~2.0",
         "laracasts/utilities": "~2.0",
