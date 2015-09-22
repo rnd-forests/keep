@@ -24,7 +24,7 @@ class ProfileControllerTest extends TestCase
             ->once()
             ->andReturn($this->user);
 
-        $this->route('GET', 'member::profile', ['users' => $this->user->slug]);
+        $this->route('GET', 'member::profile.show', ['users' => $this->user->slug]);
 
         $this->assertResponseOk();
         $this->assertViewIs('users.account.profile');
@@ -36,18 +36,18 @@ class ProfileControllerTest extends TestCase
     {
         $this->withoutMiddleware();
         $slug = $this->user->slug;
-        $currentUrl = route('member::profile', $this->user);
+        $currentUrl = route('member::profile.show', $this->user);
         $input = ["github_username" => "fizz", "facebook_username" => "buzz"];
         $this->mock->shouldReceive('update')
             ->with($input, $slug)
             ->once();
 
-        $this->route('PATCH', 'member::update', ['users' => $slug], $input,
+        $this->route('PATCH', 'member::profile.update', ['users' => $slug], $input,
             [], [], ['HTTP_REFERER' => $currentUrl]);
 
         $this->assertResponseStatus(302);
         $this->assertFlashedMessage('controller.profile_updated');
-        $this->assertRedirectedToRoute('member::profile', ['users' => $slug]);
+        $this->assertRedirectedToRoute('member::profile.show', ['users' => $slug]);
     }
 
     /** @test */
@@ -57,7 +57,7 @@ class ProfileControllerTest extends TestCase
         $input = ['phone' => '12345abc'];
         $this->mock->shouldReceive('updateProfile')->never();
 
-        $this->route('PATCH', 'member::update', ['users' => $this->user->slug], $input);
+        $this->route('PATCH', 'member::profile.update', ['users' => $this->user->slug], $input);
 
         $this->assertResponseStatus(302);
         $this->assertSessionHasErrors(['phone' => 'The phone format is invalid.']);
@@ -71,7 +71,7 @@ class ProfileControllerTest extends TestCase
             ->with($this->user->slug)
             ->once();
 
-        $this->route('DELETE', 'member::destroy', ['users' => $this->user->slug]);
+        $this->route('DELETE', 'member::account.destroy', ['users' => $this->user->slug]);
 
         $this->assertResponseStatus(302);
         $this->assertRedirectedToRoute('home');
