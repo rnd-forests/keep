@@ -33,7 +33,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      *
      * @param $limit
      * @param array|null $params
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function paginate($limit, array $params = null)
     {
@@ -53,7 +53,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Restore a soft deleted model instance.
      *
      * @param $identifier
-     * @return mixed
+     * @return bool|null
      */
     public function restore($identifier)
     {
@@ -66,7 +66,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Soft delete a model instance.
      *
      * @param $identifier
-     * @return mixed
+     * @return bool|null
      */
     public function softDelete($identifier)
     {
@@ -77,7 +77,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Permanently delete a soft deleted model instance.
      *
      * @param $identifier
-     * @return mixed
+     * @return void
      */
     public function forceDelete($identifier)
     {
@@ -89,7 +89,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Create a new model instance.
      *
      * @param array $data
-     * @return mixed
+     * @return static
      */
     public function create(array $data)
     {
@@ -107,7 +107,8 @@ class EloquentTaskRepository extends AbstractRepository implements
      *
      * @param $userSlug
      * @param $taskSlug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function find($userSlug, $taskSlug)
     {
@@ -124,7 +125,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      *
      * @param array $data
      * @param $task
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function adminUpdate(array $data, $task)
     {
@@ -138,7 +139,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      *
      * @param $userSlug
      * @param $taskSlug
-     * @return mixed
+     * @return bool|null
      */
     public function delete($userSlug, $taskSlug)
     {
@@ -149,7 +150,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Fetching trashed tasks.
      *
      * @param $limit
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function trashed($limit)
     {
@@ -165,7 +166,8 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Finding a trashed task.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findTrashedTask($slug)
     {
@@ -181,7 +183,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * @param $request
      * @param $userSlug
      * @param $taskSlug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function complete($request, $userSlug, $taskSlug)
     {
@@ -208,7 +210,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      *
      * @param $task
      * @param array $tags
-     * @return mixed
+     * @return array
      */
     public function syncTags($task, array $tags)
     {
@@ -220,7 +222,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      *
      * @param $task
      * @param $priorityId
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function associatePriority($task, $priorityId)
     {
@@ -233,7 +235,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Fetching urgent tasks.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function urgentTasks($user)
     {
@@ -247,7 +249,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Fetching deadline tasks.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function deadlineTasks($user)
     {
@@ -261,7 +263,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Fetching recently completed tasks.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function recentlyCompletedTasks($user)
     {
@@ -274,7 +276,7 @@ class EloquentTaskRepository extends AbstractRepository implements
     /**
      * Finding and marking tasks as failed.
      *
-     * @return mixed
+     * @return bool|int
      */
     public function findAndUpdateFailedTasks()
     {
@@ -286,7 +288,7 @@ class EloquentTaskRepository extends AbstractRepository implements
     /**
      * Finding and recovering failed tasks.
      *
-     * @return mixed
+     * @return bool|int
      */
     public function recoverFailedTasks()
     {
@@ -300,7 +302,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Fetching all tasks of a user.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function allTasks($user)
     {
@@ -313,7 +315,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Fetching completed tasks of a user.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function completedTasks($user)
     {
@@ -327,7 +329,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Fetching failed tasks of a user.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function failedTasks($user)
     {
@@ -341,7 +343,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Fetching processing tasks of a user.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function processingTasks($user)
     {
@@ -354,7 +356,7 @@ class EloquentTaskRepository extends AbstractRepository implements
     /**
      * Fetching upcoming tasks of all users.
      *
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function upcomingTasks()
     {
@@ -369,7 +371,7 @@ class EloquentTaskRepository extends AbstractRepository implements
      * @param array $data
      * @param $identifier
      * @param null $optionalIdentifier
-     * @return mixed
+     * @return bool|int
      */
     public function update(array $data, $identifier, $optionalIdentifier = null)
     {
@@ -383,7 +385,8 @@ class EloquentTaskRepository extends AbstractRepository implements
      * Find a model instance by its slug.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findBySlug($slug)
     {

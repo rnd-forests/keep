@@ -8,7 +8,7 @@ interface GroupRepository
      * Fetching trashed groups.
      *
      * @param $limit
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function trashed($limit);
 
@@ -16,7 +16,8 @@ interface GroupRepository
      * Finding a trashed group.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findTrashedGroup($slug);
 
@@ -25,7 +26,7 @@ interface GroupRepository
      *
      * @param $group
      * @param $limit
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function associatedUsers($group, $limit);
 
@@ -33,7 +34,7 @@ interface GroupRepository
      * Finding users who do not belong to a group.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function outsiders($slug);
 
@@ -42,7 +43,7 @@ interface GroupRepository
      *
      * @param $group
      * @param array $users
-     * @return mixed
+     * @return void
      */
     public function attachUsers($group, array $users);
 
@@ -50,7 +51,7 @@ interface GroupRepository
      * Fetching a collection of users using an array of ids.
      *
      * @param array $ids
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function fetchByIds(array $ids);
 
@@ -58,7 +59,7 @@ interface GroupRepository
      * Fetching groups of a user.
      *
      * @param $userSlug
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function joinedGroups($userSlug);
 
@@ -66,7 +67,7 @@ interface GroupRepository
      * Fetching members of a group.
      *
      * @param $groupSlug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function fetchMembers($groupSlug);
 }

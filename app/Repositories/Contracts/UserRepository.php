@@ -7,7 +7,7 @@ interface UserRepository
     /**
      * Fetching a paginated collection of disabled users.
      *
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function disabled();
 
@@ -15,7 +15,7 @@ interface UserRepository
      * Fetching a collection of users using an array of ids.
      *
      * @param array $ids
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function fetchByIds(array $ids);
 
@@ -23,7 +23,8 @@ interface UserRepository
      * Finding a disabled user.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findDisabledUser($slug);
 
@@ -31,7 +32,8 @@ interface UserRepository
      * Fetching a user and user's associated tasks.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findBySlugWithTasks($slug);
 
@@ -40,7 +42,7 @@ interface UserRepository
      *
      * @param array $userData
      * @param $authProvider
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function findOrCreate(array $userData, $authProvider);
 
@@ -49,7 +51,7 @@ interface UserRepository
      *
      * @param $code
      * @param bool|false $active
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function findByActivationCode($code, $active = false);
 }

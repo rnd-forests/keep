@@ -25,7 +25,7 @@ class EloquentNotificationRepository extends AbstractRepository implements
      * Delete a notification.
      *
      * @param $slug
-     * @return mixed
+     * @return bool|null
      */
     public function delete($slug)
     {
@@ -36,7 +36,7 @@ class EloquentNotificationRepository extends AbstractRepository implements
      * Fetching personal notifications of a user.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function personalNotificationsFor($user)
     {
@@ -51,7 +51,7 @@ class EloquentNotificationRepository extends AbstractRepository implements
      * Fetching joined group notifications of a user.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function groupNotificationsFor($user)
     {
@@ -73,7 +73,7 @@ class EloquentNotificationRepository extends AbstractRepository implements
     /**
      * Fetching old notifications.
      *
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function oldNotifications()
     {
@@ -87,7 +87,7 @@ class EloquentNotificationRepository extends AbstractRepository implements
      *
      * @param $limit
      * @param array|null $params
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function paginate($limit, array $params = null)
     {
@@ -101,7 +101,7 @@ class EloquentNotificationRepository extends AbstractRepository implements
      * Create a new model instance.
      *
      * @param array $data
-     * @return mixed
+     * @return static
      */
     public function create(array $data)
     {

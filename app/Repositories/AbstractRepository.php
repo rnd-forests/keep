@@ -7,7 +7,7 @@ abstract class AbstractRepository
     /**
      * Get a collection of all model instances.
      *
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getAll()
     {
@@ -17,7 +17,7 @@ abstract class AbstractRepository
     /**
      * Count the number of total instances.
      *
-     * @return mixed
+     * @return int
      */
     public function countAll()
     {
@@ -28,7 +28,8 @@ abstract class AbstractRepository
      * Find a model instance by its id.
      *
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findById($id)
     {
@@ -39,7 +40,8 @@ abstract class AbstractRepository
      * Find a model instance by its slug.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findBySlug($slug)
     {

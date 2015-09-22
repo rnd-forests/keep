@@ -30,7 +30,7 @@ class EloquentUserRepository extends AbstractRepository implements
      *
      * @param $limit
      * @param array|null $params
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function paginate($limit, array $params = null)
     {
@@ -50,7 +50,7 @@ class EloquentUserRepository extends AbstractRepository implements
      * Restore a soft deleted model instance.
      *
      * @param $identifier
-     * @return mixed
+     * @return bool|null
      */
     public function restore($identifier)
     {
@@ -62,7 +62,7 @@ class EloquentUserRepository extends AbstractRepository implements
      * Soft delete a model instance.
      *
      * @param $identifier
-     * @return mixed
+     * @return bool|null
      */
     public function softDelete($identifier)
     {
@@ -74,7 +74,7 @@ class EloquentUserRepository extends AbstractRepository implements
      * Permanently delete a soft deleted model instance.
      *
      * @param $identifier
-     * @return mixed
+     * @return void
      */
     public function forceDelete($identifier)
     {
@@ -88,7 +88,7 @@ class EloquentUserRepository extends AbstractRepository implements
      * Create a new model instance.
      *
      * @param array $data
-     * @return mixed
+     * @return static
      */
     public function create(array $data)
     {
@@ -106,7 +106,7 @@ class EloquentUserRepository extends AbstractRepository implements
      * @param array $data
      * @param $identifier
      * @param null $optionalIdentifier
-     * @return mixed
+     * @return bool|int
      */
     public function update(array $data, $identifier, $optionalIdentifier = null)
     {
@@ -117,7 +117,7 @@ class EloquentUserRepository extends AbstractRepository implements
     /**
      * Fetching a paginated collection of disabled users.
      *
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function disabled()
     {
@@ -131,7 +131,7 @@ class EloquentUserRepository extends AbstractRepository implements
      * Fetching a collection of users using an array of ids.
      *
      * @param array $ids
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function fetchByIds(array $ids)
     {
@@ -142,7 +142,8 @@ class EloquentUserRepository extends AbstractRepository implements
      * Finding a disabled user.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findDisabledUser($slug)
     {
@@ -156,7 +157,8 @@ class EloquentUserRepository extends AbstractRepository implements
      * Fetching a user and user's associated tasks.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findBySlugWithTasks($slug)
     {
@@ -170,7 +172,7 @@ class EloquentUserRepository extends AbstractRepository implements
      *
      * @param array $userData
      * @param $authProvider
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function findOrCreate(array $userData, $authProvider)
     {
@@ -200,7 +202,8 @@ class EloquentUserRepository extends AbstractRepository implements
      *
      * @param $code
      * @param bool|false $active
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findByActivationCode($code, $active = false)
     {

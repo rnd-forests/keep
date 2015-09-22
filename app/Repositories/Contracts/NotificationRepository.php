@@ -8,7 +8,7 @@ interface NotificationRepository
      * Delete a notification.
      *
      * @param $slug
-     * @return mixed
+     * @return bool|null
      */
     public function delete($slug);
 
@@ -16,7 +16,7 @@ interface NotificationRepository
      * Fetching personal notifications of a user.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function personalNotificationsFor($user);
 
@@ -24,14 +24,14 @@ interface NotificationRepository
      * Fetching joined group notifications of a user.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function groupNotificationsFor($user);
 
     /**
      * Fetching old notifications.
      *
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function oldNotifications();
 }

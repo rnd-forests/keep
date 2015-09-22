@@ -30,7 +30,7 @@ class EloquentGroupRepository extends AbstractRepository implements
      * Fetching trashed groups.
      *
      * @param $limit
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function trashed($limit)
     {
@@ -45,7 +45,8 @@ class EloquentGroupRepository extends AbstractRepository implements
      * Finding a trashed group.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findTrashedGroup($slug)
     {
@@ -60,7 +61,7 @@ class EloquentGroupRepository extends AbstractRepository implements
      *
      * @param $group
      * @param $limit
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function associatedUsers($group, $limit)
     {
@@ -73,7 +74,7 @@ class EloquentGroupRepository extends AbstractRepository implements
      * Finding users who do not belong to a group.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function outsiders($slug)
     {
@@ -89,7 +90,7 @@ class EloquentGroupRepository extends AbstractRepository implements
      *
      * @param $group
      * @param array $users
-     * @return mixed
+     * @return void
      */
     public function attachUsers($group, array $users)
     {
@@ -100,7 +101,7 @@ class EloquentGroupRepository extends AbstractRepository implements
      * Fetching a collection of users using an array of ids.
      *
      * @param array $ids
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function fetchByIds(array $ids)
     {
@@ -111,7 +112,7 @@ class EloquentGroupRepository extends AbstractRepository implements
      * Fetching groups of a user.
      *
      * @param $userSlug
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function joinedGroups($userSlug)
     {
@@ -124,7 +125,7 @@ class EloquentGroupRepository extends AbstractRepository implements
      * Fetching members of a group.
      *
      * @param $groupSlug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function fetchMembers($groupSlug)
     {
@@ -138,7 +139,7 @@ class EloquentGroupRepository extends AbstractRepository implements
      *
      * @param $limit
      * @param array|null $params
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function paginate($limit, array $params = null)
     {
@@ -152,7 +153,7 @@ class EloquentGroupRepository extends AbstractRepository implements
      * Restore a soft deleted model instance.
      *
      * @param $identifier
-     * @return mixed
+     * @return bool|null
      */
     public function restore($identifier)
     {
@@ -165,7 +166,7 @@ class EloquentGroupRepository extends AbstractRepository implements
      * Soft delete a model instance.
      *
      * @param $identifier
-     * @return mixed
+     * @return bool|null
      */
     public function softDelete($identifier)
     {
@@ -176,7 +177,7 @@ class EloquentGroupRepository extends AbstractRepository implements
      * Permanently delete a soft deleted model instance.
      *
      * @param $identifier
-     * @return mixed
+     * @return void
      */
     public function forceDelete($identifier)
     {
@@ -188,7 +189,7 @@ class EloquentGroupRepository extends AbstractRepository implements
      * Create a new model instance.
      *
      * @param array $data
-     * @return mixed
+     * @return static
      */
     public function create(array $data)
     {
@@ -204,7 +205,7 @@ class EloquentGroupRepository extends AbstractRepository implements
      * @param array $data
      * @param $identifier
      * @param null $optionalIdentifier
-     * @return mixed
+     * @return bool|int
      */
     public function update(array $data, $identifier, $optionalIdentifier = null)
     {
@@ -218,7 +219,8 @@ class EloquentGroupRepository extends AbstractRepository implements
      * Find a model instance by its slug.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findBySlug($slug)
     {

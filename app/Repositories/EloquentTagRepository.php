@@ -21,7 +21,7 @@ class EloquentTagRepository extends AbstractRepository implements
     /**
      * Listing tags by pairs of name and id.
      *
-     * @return mixed
+     * @return \Illuminate\Support\Collection
      */
     public function lists()
     {
@@ -34,7 +34,7 @@ class EloquentTagRepository extends AbstractRepository implements
      * Fetching tags associated with a user.
      *
      * @param $userSlug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function fetchAttachedTags($userSlug)
     {
@@ -52,7 +52,7 @@ class EloquentTagRepository extends AbstractRepository implements
      * @param $userSlug
      * @param $tagSlug
      * @param $limit
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function associatedTasks($userSlug, $tagSlug, $limit)
     {

@@ -7,14 +7,14 @@ interface ModelRepository
     /**
      * Get a collection of all model instances.
      *
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getAll();
 
     /**
      * Count the number of total instances.
      *
-     * @return mixed
+     * @return int
      */
     public function countAll();
 
@@ -22,7 +22,7 @@ interface ModelRepository
      * Create a new model instance.
      *
      * @param array $data
-     * @return mixed
+     * @return static
      */
     public function create(array $data);
 }

@@ -8,7 +8,7 @@ interface CanBeRemoved
      * Restore a soft deleted model instance.
      *
      * @param $identifier
-     * @return mixed
+     * @return bool|null
      */
     public function restore($identifier);
 
@@ -16,7 +16,7 @@ interface CanBeRemoved
      * Soft delete a model instance.
      *
      * @param $identifier
-     * @return mixed
+     * @return bool|null
      */
     public function softDelete($identifier);
 
@@ -24,7 +24,7 @@ interface CanBeRemoved
      * Permanently delete a soft deleted model instance.
      *
      * @param $identifier
-     * @return mixed
+     * @return void
      */
     public function forceDelete($identifier);
 }

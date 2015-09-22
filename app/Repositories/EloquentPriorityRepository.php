@@ -19,7 +19,7 @@ class EloquentPriorityRepository extends AbstractRepository
     /**
      * Fetching all priority levels.
      *
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function fetchAll()
     {
@@ -31,7 +31,7 @@ class EloquentPriorityRepository extends AbstractRepository
     /**
      * Listing priority levels by pairs of name and id.
      *
-     * @return mixed
+     * @return \Illuminate\Support\Collection
      */
     public function lists()
     {
@@ -44,7 +44,8 @@ class EloquentPriorityRepository extends AbstractRepository
      * Find a priority level by its name.
      *
      * @param $name
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findByName($name)
     {
@@ -59,7 +60,7 @@ class EloquentPriorityRepository extends AbstractRepository
      * @param $userSlug
      * @param $priorityName
      * @param $limit
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function associatedTasks($userSlug, $priorityName, $limit)
     {

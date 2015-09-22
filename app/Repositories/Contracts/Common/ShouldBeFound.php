@@ -8,7 +8,8 @@ interface ShouldBeFound
      * Find a model instance by its id.
      *
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findById($id);
 
@@ -16,7 +17,8 @@ interface ShouldBeFound
      * Find a model instance by its slug.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findBySlug($slug);
 }

@@ -9,7 +9,8 @@ interface TaskRepository
      *
      * @param $userSlug
      * @param $taskSlug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function find($userSlug, $taskSlug);
 
@@ -18,7 +19,7 @@ interface TaskRepository
      *
      * @param array $data
      * @param $task
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function adminUpdate(array $data, $task);
 
@@ -27,7 +28,7 @@ interface TaskRepository
      *
      * @param $userSlug
      * @param $taskSlug
-     * @return mixed
+     * @return bool|null
      */
     public function delete($userSlug, $taskSlug);
 
@@ -35,7 +36,7 @@ interface TaskRepository
      * Fetching trashed tasks.
      *
      * @param $limit
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function trashed($limit);
 
@@ -43,7 +44,8 @@ interface TaskRepository
      * Finding a trashed task.
      *
      * @param $slug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findTrashedTask($slug);
 
@@ -53,7 +55,7 @@ interface TaskRepository
      * @param $request
      * @param $userSlug
      * @param $taskSlug
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function complete($request, $userSlug, $taskSlug);
 
@@ -62,7 +64,7 @@ interface TaskRepository
      *
      * @param $task
      * @param array $tags
-     * @return mixed
+     * @return array
      */
     public function syncTags($task, array $tags);
 
@@ -71,7 +73,7 @@ interface TaskRepository
      *
      * @param $task
      * @param $priorityId
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function associatePriority($task, $priorityId);
 
@@ -79,7 +81,7 @@ interface TaskRepository
      * Fetching urgent tasks.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function urgentTasks($user);
 
@@ -87,7 +89,7 @@ interface TaskRepository
      * Fetching deadline tasks.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function deadlineTasks($user);
 
@@ -95,21 +97,21 @@ interface TaskRepository
      * Fetching recently completed tasks.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function recentlyCompletedTasks($user);
 
     /**
      * Finding and marking tasks as failed.
      *
-     * @return mixed
+     * @return bool|int
      */
     public function findAndUpdateFailedTasks();
 
     /**
      * Finding and recovering failed tasks.
      *
-     * @return mixed
+     * @return bool|int
      */
     public function recoverFailedTasks();
 
@@ -117,7 +119,7 @@ interface TaskRepository
      * Fetching all tasks of a user.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function allTasks($user);
 
@@ -125,7 +127,7 @@ interface TaskRepository
      * Fetching completed tasks of a user.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function completedTasks($user);
 
@@ -133,7 +135,7 @@ interface TaskRepository
      * Fetching failed tasks of a user.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function failedTasks($user);
 
@@ -141,14 +143,14 @@ interface TaskRepository
      * Fetching processing tasks of a user.
      *
      * @param $user
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function processingTasks($user);
 
     /**
      * Fetching upcoming tasks of all users.
      *
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function upcomingTasks();
 }

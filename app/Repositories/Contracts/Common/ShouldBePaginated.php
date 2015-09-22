@@ -9,7 +9,7 @@ interface ShouldBePaginated
      *
      * @param $limit
      * @param array|null $params
-     * @return mixed
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function paginate($limit, array $params = null);
 }

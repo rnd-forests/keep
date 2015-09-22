@@ -10,7 +10,7 @@ interface CanBeUpdated
      * @param array $data
      * @param $identifier
      * @param null $optionalIdentifier
-     * @return mixed
+     * @return bool|int
      */
     public function update(array $data, $identifier, $optionalIdentifier = null);
 }
