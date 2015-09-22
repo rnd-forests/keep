@@ -1,5 +1,5 @@
 <div class="form-wrapper">
-    {!! Form::open(['route' => ['admin::groups.active.sync.users', $group]]) !!}
+    {!! Form::open(['route' => ['admin::groups.sync', $group]]) !!}
         <div class="form-group">
             <div class="form-group">
                 {!! Form::select('group_new_users[]', $outsiders, null,

@@ -5,7 +5,7 @@ namespace Keep\Http\Controllers\Admin;
 use Keep\Http\Controllers\Controller;
 use Keep\Repositories\Contracts\UserRepository;
 
-class UsersController extends Controller
+class MembersController extends Controller
 {
     protected $users;
 
@@ -19,7 +19,7 @@ class UsersController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function activeAccounts()
+    public function index()
     {
         $request = app('request');
         $sortBy = $request->get('sortBy');
@@ -30,24 +30,12 @@ class UsersController extends Controller
     }
 
     /**
-     * Get disabled accounts.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function disabledAccounts()
-    {
-        $disabledMembers = $this->users->disabled();
-
-        return view('admin.members.disabled_accounts', compact('disabledMembers'));
-    }
-
-    /**
      * Get account profile.
      *
      * @param $slug
      * @return \Illuminate\View\View
      */
-    public function profile($slug)
+    public function show($slug)
     {
         $user = $this->users->findBySlugWithTasks($slug);
 
@@ -60,39 +48,11 @@ class UsersController extends Controller
      * @param $slug
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function disableAccount($slug)
+    public function destroy($slug)
     {
         $this->users->softDelete($slug);
         flash()->info(trans('administrator.account_disabled'));
 
-        return redirect()->route('admin::members.active');
-    }
-
-    /**
-     * Restore a disabled account.
-     *
-     * @param $slug
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function restoreAccount($slug)
-    {
-        $this->users->restore($slug);
-        flash()->info(trans('administrator.account_restored'));
-
-        return back();
-    }
-
-    /**
-     * Permanently delete an account.
-     *
-     * @param $slug
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function forceDeleteAccount($slug)
-    {
-        $this->users->forceDelete($slug);
-        flash()->info(trans('administrator.account_destroyed'));
-
-        return back();
+        return redirect()->route('admin::members');
     }
 }

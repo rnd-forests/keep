@@ -1,4 +1,4 @@
-{!! Form::open(['method' => 'DELETE', 'route' => ['admin::groups.active.delete', $group]]) !!}
+{!! Form::open(['method' => 'DELETE', 'route' => ['admin::groups.delete', $group]]) !!}
     <button type="submit"
             class="btn btn-danger btn-circle btn-sm"
             data-toggle="tooltip"

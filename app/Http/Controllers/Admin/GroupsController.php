@@ -2,7 +2,6 @@
 
 namespace Keep\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Keep\Http\Requests\GroupRequest;
 use Keep\Http\Controllers\Controller;
 use Keep\Repositories\Contracts\GroupRepository;
@@ -21,7 +20,7 @@ class GroupsController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function activeGroups()
+    public function index()
     {
         $groups = $this->groups->paginate(15);
 
@@ -49,7 +48,7 @@ class GroupsController extends Controller
         $this->groups->create($request->all());
         flash()->success(trans('administrator.group_created'));
 
-        return redirect()->route('admin::groups.active');
+        return redirect()->route('admin::groups');
     }
 
     /**
@@ -88,10 +87,10 @@ class GroupsController extends Controller
      */
     public function update(GroupRequest $request, $slug)
     {
-        $this->groups->update($slug, $request->all());
+        $this->groups->update($request->all(), $slug);
         flash()->info(trans('administrator.group_updated'));
 
-        return redirect()->route('admin::groups.active');
+        return redirect()->route('admin::groups');
     }
 
     /**
@@ -106,117 +105,5 @@ class GroupsController extends Controller
         flash()->info(trans('administrator.group_trashed'));
 
         return back();
-    }
-
-    /**
-     * Restore a soft deleted group.
-     *
-     * @param $slug
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function restore($slug)
-    {
-        $this->groups->restore($slug);
-        flash()->success(trans('administrator.group_restored'));
-
-        return back();
-    }
-
-    /**
-     * Get trashed groups.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function trashedGroups()
-    {
-        $trashedGroups = $this->groups->trashed(10);
-
-        return view('admin.groups.trashed_groups', compact('trashedGroups'));
-    }
-
-    /**
-     * Permanently delete a group.
-     *
-     * @param $slug
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function forceDeleteGroup($slug)
-    {
-        $this->groups->forceDelete($slug);
-        flash()->info(trans('administrator.group_destroyed'));
-
-        return back();
-    }
-
-    /**
-     * Remove a user from a specific group.
-     *
-     * @param $groupSlug
-     * @param $userId
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function removeUser($groupSlug, $userId)
-    {
-        $this->groups->findBySlug($groupSlug)->users()->detach($userId);
-        flash()->info(trans('administrator.group_remove_user'));
-
-        return back();
-    }
-
-    /**
-     * Remove all users from a specific group.
-     *
-     * @param $groupSlug
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function flush($groupSlug)
-    {
-        $this->groups->findBySlug($groupSlug)->users()->detach();
-        flash()->info(trans('administrator.group_flush_users'));
-
-        return redirect()->route('admin::groups.active.show', $groupSlug);
-    }
-
-    /**
-     * Get view to add new users to a group.
-     *
-     * @param $slug
-     * @return \Illuminate\View\View
-     */
-    public function addUsers($slug)
-    {
-        $group = $this->groups->findBySlug($slug);
-        $users = $this->groups->associatedUsers($group, 30);
-        $outsiders = $this->groups->outsiders($slug)->lists('name', 'id');
-
-        return view('admin.groups.add_users', compact('group', 'users', 'outsiders'));
-    }
-
-    /**
-     * Add new users to a group.
-     *
-     * @param $slug
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function storeNewUsers($slug, Request $request)
-    {
-        $this->validate($request, ['group_new_users' => 'required']);
-        $ids = $request->input('group_new_users');
-        $this->groups->attachUsers($this->groups->findBySlug($slug), $ids);
-        flash()->success($this->getUpdateMembersMessage($ids));
-
-        return back();
-    }
-
-    /**
-     * Get the flash message after adding users.
-     *
-     * @param array $ids
-     * @return string
-     */
-    private function getUpdateMembersMessage(array $ids)
-    {
-        return plural2('member', 'new', count($ids)) . ' added to this group.';
     }
 }

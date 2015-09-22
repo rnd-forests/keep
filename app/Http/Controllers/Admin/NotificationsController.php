@@ -40,7 +40,7 @@ class NotificationsController extends Controller
         $this->notifications->delete($slug);
         flash()->info(trans('administrator.notification_destroyed'));
 
-        return redirect()->route('admin::notifications.all');
+        return redirect()->route('admin::notifications');
     }
 
     /**
@@ -48,7 +48,7 @@ class NotificationsController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function createMemberNotification()
+    public function createForMember()
     {
         session(['current.view' => 'member.noti']);
 
@@ -61,7 +61,7 @@ class NotificationsController extends Controller
      * @param NotificationRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeMemberNotification(NotificationRequest $request)
+    public function storeForMember(NotificationRequest $request)
     {
         $this->dispatch(new SendMemberNotification($request->all()));
         flash()->success(trans('administrator.notification_member'));
@@ -74,7 +74,7 @@ class NotificationsController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function createGroupNotification()
+    public function createForGroup()
     {
         session(['current.view' => 'group.noti']);
 
@@ -87,7 +87,7 @@ class NotificationsController extends Controller
      * @param NotificationRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeGroupNotification(NotificationRequest $request)
+    public function storeForGroup(NotificationRequest $request)
     {
         $this->dispatch(new SendGroupNotification($request->all()));
         flash()->success(trans('administrator.notification_group'));

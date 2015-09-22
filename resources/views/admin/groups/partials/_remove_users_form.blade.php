@@ -1,4 +1,4 @@
-{!! Form::open(['route' => ['admin::groups.active.remove.users', $group, $user->id]]) !!}
+{!! Form::open(['route' => ['admin::groups.remove', $group, $user->id]]) !!}
     <button type="submit"
             class="btn btn-warning btn-xs"
             data-toggle="tooltip"

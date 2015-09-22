@@ -26,7 +26,7 @@
                         Members <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('admin::members.active') }}">Active</a></li>
+                        <li><a href="{{ route('admin::members') }}">Active</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ route('admin::members.disabled') }}">Disabled</a></li>
                     </ul>
@@ -40,9 +40,9 @@
                         Groups <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('admin::groups.active.create') }}">Create</a></li>
+                        <li><a href="{{ route('admin::groups.create') }}">Create</a></li>
                         <li class="divider"></li>
-                        <li><a href="{{ route('admin::groups.active') }}">Active</a></li>
+                        <li><a href="{{ route('admin::groups') }}">Active</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ route('admin::groups.trashed') }}">Trash</a></li>
                     </ul>
@@ -56,7 +56,7 @@
                         Tasks <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('admin::tasks.published') }}">Published</a></li>
+                        <li><a href="{{ route('admin::tasks') }}">Published</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ route('admin::tasks.trashed') }}">Trash</a></li>
                     </ul>
@@ -77,7 +77,7 @@
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="{{ route('admin::notifications.all') }}">Collection</a></li>
+                        <li><a href="{{ route('admin::notifications') }}">Collection</a></li>
                     </ul>
                 </li>
             </ul>

@@ -25,21 +25,21 @@
                                     </div>
                                 </div>
                                 <div class="panel-footer text-center">
-                                    <a href="{{ route('admin::groups.active.show', $group) }}"
+                                    <a href="{{ route('admin::groups.show', $group) }}"
                                        class="btn btn-info btn-circle"
                                        data-toggle="tooltip"
                                        data-placement="bottom"
                                        title="View group details">
                                         <i class="fa fa-arrow-right"></i>
                                     </a>
-                                    <a href="{{ route('admin::groups.active.edit', $group) }}"
+                                    <a href="{{ route('admin::groups.edit', $group) }}"
                                        class="btn btn-primary btn-circle"
                                        data-toggle="tooltip"
                                        data-placement="bottom"
                                        title="Edit group information">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <a href="{{ route('admin::groups.active.add.users', $group) }}"
+                                    <a href="{{ route('admin::groups.add', $group) }}"
                                        class="btn btn-default btn-circle"
                                        data-toggle="tooltip"
                                        data-placement="bottom"

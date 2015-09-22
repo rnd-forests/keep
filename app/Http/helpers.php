@@ -5,8 +5,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-define('TASK_VIEW', 'admin::tasks.published');
-define('ACCOUNT_VIEW', 'admin::members.active');
+define('TASK_VIEW', 'admin::tasks');
+define('ACCOUNT_VIEW', 'admin::members');
 
 if (!function_exists('carbon')) {
     /**

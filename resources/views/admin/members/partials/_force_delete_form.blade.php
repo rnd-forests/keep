@@ -1,4 +1,4 @@
-{!! Form::open(['method' => 'DELETE', 'route' => ['admin::members.disabled.force.delete', $member]]) !!}
+{!! Form::open(['method' => 'DELETE', 'route' => ['admin::members.disabled.delete', $member]]) !!}
     <button type="submit"
             class="btn btn-danger btn-circle btn-sm"
             data-toggle="tooltip"

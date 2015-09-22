@@ -41,7 +41,7 @@ class TasksController extends Controller
      * @param TaskRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store($userSlug, TaskRequest $request)
+    public function store(TaskRequest $request, $userSlug)
     {
         $author = $this->users->findBySlug($userSlug);
         $task = $author->tasks()->save($this->createTask($request));

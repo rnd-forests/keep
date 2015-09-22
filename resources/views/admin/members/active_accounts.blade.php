@@ -31,7 +31,7 @@
                                 <td>{{ counting($member->groups) }}</td>
                                 <td>{{ short_time($member->created_at) }}</td>
                                 <td>
-                                    <a href="{{ route('admin::members.active.profile', $member) }}"
+                                    <a href="{{ route('admin::members.show', $member) }}"
                                        class="btn btn-primary btn-circle"
                                        data-toggle="tooltip"
                                        data-placement="bottom"

@@ -19,7 +19,7 @@ class TasksController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function activeTasks()
+    public function index()
     {
         $request = app('request');
         $sortBy = $request->get('sortBy');
@@ -35,7 +35,7 @@ class TasksController extends Controller
      * @param $slug
      * @return \Illuminate\View\View
      */
-    public function showTask($slug)
+    public function show($slug)
     {
         $task = $this->tasks->findBySlug($slug);
 
@@ -48,50 +48,10 @@ class TasksController extends Controller
      * @param $slug
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function softDelete($slug)
+    public function destroy($slug)
     {
         $this->tasks->softDelete($slug);
         flash()->info(trans('administrator.task_trashed'));
-
-        return back();
-    }
-
-    /**
-     * Get trashed tasks.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function trashedTasks()
-    {
-        $trashedTasks = $this->tasks->trashed(50);
-
-        return view('admin.tasks.trashed_tasks', compact('trashedTasks'));
-    }
-
-    /**
-     * Restore a soft deleted task.
-     *
-     * @param $slug
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function restoreTask($slug)
-    {
-        $this->tasks->restore($slug);
-        flash()->info(trans('administrator.task_restored'));
-
-        return back();
-    }
-
-    /**
-     * Permanently delete a task.
-     *
-     * @param $slug
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function forceDeleteTask($slug)
-    {
-        $this->tasks->forceDelete($slug);
-        flash()->info(trans('administrator.task_destroyed'));
 
         return back();
     }

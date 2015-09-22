@@ -1,4 +1,4 @@
-{!! Form::open(['method' => 'DELETE', 'route' => ['admin::tasks.trashed.force.delete', $task]]) !!}
+{!! Form::open(['method' => 'DELETE', 'route' => ['admin::tasks.trashed.delete', $task]]) !!}
     <button type="submit"
             class="btn btn-danger btn-circle btn-sm"
             data-toggle="tooltip"
