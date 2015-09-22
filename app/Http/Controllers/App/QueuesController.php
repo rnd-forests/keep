@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Http\Controllers\Application;
+namespace Keep\Http\Controllers\App;
 
 use Keep\Http\Controllers\Controller;
 
