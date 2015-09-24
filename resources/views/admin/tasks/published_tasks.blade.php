@@ -5,11 +5,6 @@
         @if(blank($tasks))
             <div class="well text-center">No published task available.</div>
         @else
-            <div class="well">
-                <div class="huge text-center">
-                    {{ plural2('task', 'published', counting($tasks)) }}
-                </div>
-            </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>

@@ -31,7 +31,7 @@ class User extends Model implements
         SluggableTrait,
         SoftDeletes,
         EntrustUserTrait {
-            EntrustUserTrait::can insteadof Authorizable;
+            Authorizable::can insteadof EntrustUserTrait;
         }
 
     protected $dates = ['deleted_at'];

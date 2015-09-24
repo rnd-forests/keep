@@ -3,20 +3,17 @@
     background-color: rgba(250, 250, 250, .5);
     padding: 15px;
 
-    .form-link {
+    .social-auth {
+        cursor: pointer;
+    }
+
+    .breadcrumb {
         font-size: 14px;
-        a {
-            color: #1ab394;
-            &:hover, &:focus, &:active {
-                text-decoration: underline;
-            }
-        }
     }
 }
 
-.social-authentication {
-    padding: 0;
-    text-align: center;
-    background:0 0;
-    border: none;
+#social-auth {
+    .modal-content {
+        padding: 15px;
+    }
 }

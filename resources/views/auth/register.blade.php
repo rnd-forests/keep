@@ -1,6 +1,5 @@
 @extends('layouts.default')
-@section('meta-description', 'Keep - Register new account')
-@section('title', 'Registration')
+@section('title', 'Sign Up . Keep')
 @section('content')
 	<div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -18,22 +17,29 @@
                             'placeholder' => 'username@example.com']) !!}
                         {!! error_text($errors, 'email') !!}
                     </div>
-                    <div class="form-group">
-                        {!! Form::label('password', 'Password', ['class' => 'control-label']) !!}
-                        {!! Form::password('password', ['class' => 'form-control input-lg']) !!}
-                        {!! error_text($errors, 'password') !!}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {!! Form::label('password', 'Password', ['class' => 'control-label']) !!}
+                                {!! Form::password('password', ['class' => 'form-control input-lg']) !!}
+                                {!! error_text($errors, 'password') !!}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {!! Form::label('password_confirmation', 'Password Confirmation', ['class' => 'control-label']) !!}
+                                {!! Form::password('password_confirmation', ['class' => 'form-control input-lg']) !!}
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        {!! Form::label('password_confirmation', 'Password Confirmation', ['class' => 'control-label']) !!}
-                        {!! Form::password('password_confirmation', ['class' => 'form-control input-lg']) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::submit('Create Account', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit('Create an Account', ['class' => 'btn btn-primary']) !!}
                     </div>
                 {!! Form::close() !!}
-                <div class="form-link">
-                    Already had an account? <a href="{{ route('auth::login') }}"> Login here</a>
-                </div>
+                <ol class="breadcrumb">
+                    <li><a class="social-auth" data-toggle="modal" data-target="#social-auth">Social Authentication</a></li>
+                    <li><a href="{{ route('auth::login') }}">Sign In</a></li>
+                </ol>
             </div>
         </div>
     </div>

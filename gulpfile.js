@@ -8,6 +8,8 @@ elixir(function(mix) {
         "vendor/font-awesome.css",
         "vendor/datetimepicker.css",
         "bootstrap.css",
+        "vendor/bootstrap-social.css",
+        "vendor/sweet-alert.css",
         "application.css"
     ], null, "public/css");
 
@@ -18,6 +20,7 @@ elixir(function(mix) {
         "vendor/chart.min.js",
         "vendor/datepicker.min.js",
         "vendor/select2.min.js",
+        "vendor/sweet-alert.min.js",
         "application.js"
     ]);
 

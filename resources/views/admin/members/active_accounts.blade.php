@@ -2,11 +2,6 @@
 @section('title', 'Active Members')
 @section('content')
     <div class="admin-contents-wrapper">
-        <div class="well">
-            <div class="huge text-center">
-                {{ plural2('account', 'active', counting($activeMembers)) }}
-            </div>
-        </div>
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
                 <thead>
@@ -31,13 +26,6 @@
                                 <td>{{ counting($member->groups) }}</td>
                                 <td>{{ short_time($member->created_at) }}</td>
                                 <td>
-                                    <a href="{{ route('admin::members.show', $member) }}"
-                                       class="btn btn-primary btn-circle"
-                                       data-toggle="tooltip"
-                                       data-placement="bottom"
-                                       title="View Profile">
-                                        <i class="fa fa-user"></i>
-                                    </a>
                                     @unless($member->isAdmin())
                                         @include('admin.members.partials._delete_form')
                                     @endunless

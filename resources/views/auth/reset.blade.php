@@ -1,6 +1,5 @@
 @extends('layouts.default')
-@section('meta-description', 'Keep - Reset account password')
-@section('title', 'Password Reset')
+@section('title', 'Password Reset . Keep')
 @section('content')
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">

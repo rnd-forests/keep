@@ -13,10 +13,9 @@ Route::group(['middleware' => ['auth', 'valid.roles:admin'],
         Route::delete('{members}', ['as' => 'disabled.delete', 'uses' => 'MembersDisabledController@destroy']);
     });
     Route::resource('members', 'MembersController', [
-        'only' => ['index', 'show', 'destroy'],
+        'only' => ['index', 'destroy'],
         'names' => [
             'index' => 'members',
-            'show' => 'members.show',
             'destroy' => 'members.delete'
         ]
     ]);

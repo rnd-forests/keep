@@ -1,6 +1,5 @@
 @extends('layouts.default')
-@section('meta-description', 'Keep - Recover user password')
-@section('title', 'Password Recovery')
+@section('title', 'Password Recovery . Keep')
 @section('content')
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
@@ -16,10 +15,10 @@
                         {!! Form::submit('Send Password Reset Link', ['class' => 'btn btn-primary']) !!}
                     </div>
                 {!! Form::close() !!}
-                <div class="form-link">
-                    Trying to <a href="{{ route('auth::login') }}"> Login</a><br>
-                    Don't have an account? <a href="{{ route('auth::register') }}"> Create a free account</a>
-                </div>
+                <ol class="breadcrumb">
+                    <li><a href="{{ route('auth::login') }}">Sign In</a></li>
+                    <li><a href="{{ route('auth::register') }}">Sign Up</a></li>
+                </ol>
             </div>
 		</div>
 	</div>

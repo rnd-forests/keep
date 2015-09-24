@@ -1,26 +1,21 @@
-<div class="social-authentication">
-    <a href="{{ route('oauth::google') }}">
-        <button class="btn btn-danger"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="Google authentication">
-            <i class="fa fa-google"></i>
-        </button>
-    </a>
-    <a href="{{ route('oauth::github') }}">
-        <button class="btn btn-default"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="GitHub authentication">
-            <i class="fa fa-github"></i>
-        </button>
-    </a>
-    <a href="{{ route('oauth::facebook') }}">
-        <button class="btn btn-success"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="Facebook authentication">
-            <i class="fa fa-facebook"></i>
-        </button>
-    </a>
+<div class="modal fade" id="social-auth">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <a class="btn btn-block btn-social btn-lg btn-google"
+               href="{{ route('oauth::google') }}">
+                <i class="fa fa-google"></i>
+                Sign in with Google
+            </a>
+            <a class="btn btn-block btn-social btn-lg btn-github"
+               href="{{ route('oauth::github') }}">
+                <i class="fa fa-github"></i>
+                Sign in with GitHub
+            </a>
+            <a class="btn btn-block btn-social btn-lg btn-facebook"
+               href="{{ route('oauth::facebook') }}">
+                <i class="fa fa-facebook"></i>
+                Sign in with Facebook
+            </a>
+        </div>
+    </div>
 </div>

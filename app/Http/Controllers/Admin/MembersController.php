@@ -30,19 +30,6 @@ class MembersController extends Controller
     }
 
     /**
-     * Get account profile.
-     *
-     * @param $slug
-     * @return \Illuminate\View\View
-     */
-    public function show($slug)
-    {
-        $user = $this->users->findBySlugWithTasks($slug);
-
-        return view('admin.members.profile', compact('user'));
-    }
-
-    /**
      * Disable an account.
      *
      * @param $slug

@@ -81,9 +81,6 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ route('auth::logout') }}">Logout</a></li>
-            </ul>
         </div>
     </div>
 </nav>

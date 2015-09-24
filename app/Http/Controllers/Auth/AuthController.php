@@ -80,7 +80,7 @@ class AuthController extends Controller
         );
 
         if ($this->auth->attempt($credentials, $request->has('remember'))) {
-            flash()->success(trans('authentication.login_success'));
+            session()->flash('app_status', 'login_success');
             $this->throttles->clearLoginAttempts($request);
 
             return redirect()->intended('/');
@@ -104,7 +104,7 @@ class AuthController extends Controller
     public function getLogout()
     {
         $this->auth->logout();
-        flash()->success(trans('authentication.logout'));
+        session()->flash('app_status', 'logged_out');
 
         return redirect()->home();
     }

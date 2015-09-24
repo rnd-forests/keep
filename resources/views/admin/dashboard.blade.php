@@ -17,8 +17,6 @@
                         </div>
                     </div>
                 </a>
-            </div>
-            <div class="col-md-3">
                 <a href="{{ route('admin::tasks') }}">
                     <div class="panel widget bg-green">
                         <div class="row row-table">
@@ -47,8 +45,6 @@
                         </div>
                     </div>
                 </a>
-            </div>
-            <div class="col-md-3">
                 <a href="{{ route('admin::notifications') }}">
                     <div class="panel widget bg-yellow">
                         <div class="row row-table">
