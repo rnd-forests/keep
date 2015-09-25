@@ -307,6 +307,11 @@ var KeepTask = (function($) {
         });
     };
 
+    /**
+     * Syncing failed tasks form.
+     *
+     * @private
+     */
     var _syncFailedTasks = function() {
         var $form = $('#sync-failed-tasks-form'),
             $_promise = function($_form) {
