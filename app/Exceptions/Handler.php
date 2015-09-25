@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        switch (get_class_short_name($e)) {
+        switch (class_basename($e)) {
             case 'InvalidUserException':
                 flash()->warning($e->getMessage());
                 return redirect()->home();

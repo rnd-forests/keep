@@ -266,24 +266,6 @@ if (!function_exists('error_text')) {
     }
 }
 
-if (!function_exists('get_class_short_name')) {
-    /**
-     * Return the short name of the class from the
-     * fully qualified class name.
-     *
-     * @param $object
-     * @return string
-     */
-    function get_class_short_name($object)
-    {
-        if (!is_object($object)) {
-            throw new InvalidArgumentException();
-        }
-
-        return (new ReflectionClass($object))->getShortName();
-    }
-}
-
 if (!function_exists('validate_query_string')) {
     /**
      * Check if the current query string is in the allowed set of
