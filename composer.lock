@@ -1556,16 +1556,16 @@
         },
         {
             "name": "laravel/socialite",
-            "version": "v2.0.12",
+            "version": "v2.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/socialite.git",
-                "reference": "0bb08c8666f4c01e55e3b3b0e42f2b5075be6a6e"
+                "reference": "5995d2c9c60b47362412a84286e2a0707e0db386"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/0bb08c8666f4c01e55e3b3b0e42f2b5075be6a6e",
-                "reference": "0bb08c8666f4c01e55e3b3b0e42f2b5075be6a6e",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/5995d2c9c60b47362412a84286e2a0707e0db386",
+                "reference": "5995d2c9c60b47362412a84286e2a0707e0db386",
                 "shasum": ""
             },
             "require": {
@@ -1606,7 +1606,7 @@
                 "laravel",
                 "oauth"
             ],
-            "time": "2015-08-30 01:12:56"
+            "time": "2015-09-24 20:59:56"
         },
         {
             "name": "laravelcollective/html",
@@ -1660,16 +1660,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.13",
+            "version": "1.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "76caed01a57527599b55919f0746104f288b3d56"
+                "reference": "202c7775d959f377e2e302d93e7127c47604438a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/76caed01a57527599b55919f0746104f288b3d56",
-                "reference": "76caed01a57527599b55919f0746104f288b3d56",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/202c7775d959f377e2e302d93e7127c47604438a",
+                "reference": "202c7775d959f377e2e302d93e7127c47604438a",
                 "shasum": ""
             },
             "require": {
@@ -1740,7 +1740,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-09-20 13:05:34"
+            "time": "2015-09-22 19:18:28"
         },
         {
             "name": "league/oauth1-client",

@@ -13,7 +13,7 @@
                 title: "Hi, Again!",
                 text:  "You are now logged in.",
                 type: "success",
-                timer: 3000,
+                timer: 1800,
                 showConfirmButton: false
             });
             @endif
@@ -22,7 +22,7 @@
                     title: "Sorry to see you go!",
                     text:  "You have been logged out.",
                     type: "warning",
-                    timer: 3000,
+                    timer: 1800,
                     showConfirmButton: false
                 });
             @endif
