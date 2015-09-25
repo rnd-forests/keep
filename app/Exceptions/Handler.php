@@ -4,6 +4,8 @@ namespace Keep\Exceptions;
 
 use Bugsnag;
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Bugsnag\BugsnagLaravel\BugsnagExceptionHandler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -14,7 +16,8 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        'Symfony\Component\HttpKernel\Exception\HttpException',
+        HttpException::class,
+        ModelNotFoundException::class,
     ];
 
     /**
