@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'cleared_old_notification' => 'All old notifications were cleared.',
-    'emailed_upcoming_tasks' => 'Notified all upcoming tasks.'
+    'cleared_old_notification' => "\nAll old notifications were cleared.\n",
+    'emailed_upcoming_tasks' => "\nNotified all users about their upcoming tasks.\n",
 ];

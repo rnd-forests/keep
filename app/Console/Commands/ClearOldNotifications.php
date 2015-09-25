@@ -13,19 +13,19 @@ class ClearOldNotifications extends Command
 
     public function __construct(NotificationRepository $notifications)
     {
-        $this->notifications = $notifications;
         parent::__construct();
+        $this->notifications = $notifications;
     }
 
     public function handle()
     {
         $oldNotifications = $this->notifications->oldNotifications();
-        $this->output->progressStart(counting($oldNotifications));
-        $oldNotifications->each(function ($notification) {
+        $bar = $this->output->createProgressBar(counting($oldNotifications));
+        $oldNotifications->each(function ($notification) use ($bar) {
             $this->notifications->delete($notification->slug);
-            $this->output->progressAdvance();
+            $bar->advance();
         });
-        $this->output->progressFinish();
+        $bar->finish();
         $this->info(trans('console.cleared_old_notification'));
     }
 }

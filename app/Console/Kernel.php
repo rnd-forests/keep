@@ -13,7 +13,6 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \Keep\Console\Commands\SyncFailedTasks::class,
         \Keep\Console\Commands\EmailUpcomingTasks::class,
         \Keep\Console\Commands\ClearOldNotifications::class,
     ];

@@ -153,4 +153,12 @@ interface TaskRepository
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function upcomingTasks();
+
+    /**
+     * Fetching upcoming tasks of all users with only
+     * some attributes.
+     *
+     * @return array
+     */
+    public function upcomingTasksForConsole();
 }

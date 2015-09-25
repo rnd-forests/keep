@@ -14,20 +14,21 @@ class EmailUpcomingTasks extends Command
 
     public function __construct(TaskRepository $tasks, UserMailerContract $mailer)
     {
+        parent::__construct();
         $this->tasks = $tasks;
         $this->mailer = $mailer;
-        parent::__construct();
     }
 
     public function handle()
     {
         $upcomingTasks = $this->tasks->upcomingTasks();
-        $this->output->progressStart(counting($upcomingTasks));
-        $upcomingTasks->each(function ($task) {
+        $bar = $this->output->createProgressBar(counting($upcomingTasks));
+        $upcomingTasks->each(function ($task) use ($bar) {
             $this->mailer->emailUpcomingTask($task->user, $task);
-            $this->output->progressAdvance();
+            $bar->advance();
         });
-        $this->output->progressFinish();
+        $bar->finish();
         $this->info(trans('console.emailed_upcoming_tasks'));
+        $this->table(['ID', 'Title'], $this->tasks->upcomingTasksForConsole());
     }
 }

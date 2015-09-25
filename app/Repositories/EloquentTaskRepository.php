@@ -366,6 +366,20 @@ class EloquentTaskRepository extends AbstractRepository implements
     }
 
     /**
+     * Fetching upcoming tasks of all users with only
+     * some attributes.
+     *
+     * @return array
+     */
+    public function upcomingTasksForConsole()
+    {
+        return $this->model
+            ->upcoming()
+            ->get(['id', 'title'])
+            ->toArray();
+    }
+
+    /**
      * Update a model instance.
      *
      * @param array $data
