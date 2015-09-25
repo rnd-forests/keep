@@ -199,6 +199,7 @@ var KeepTask = (function($) {
         _deleteForm();
         _completeForm();
         _toggleContent();
+        _syncFailedTasks();
     };
 
     /**
@@ -254,6 +255,39 @@ var KeepTask = (function($) {
             }).always(function() {
                 $_form.find('.loading').addClass('hidden');
             });
+        });
+    };
+
+    var _syncFailedTasks = function() {
+        var $form = $('#sync-failed-tasks-form'),
+            $_promise = function($_form) {
+                var $promise = $.Deferred(),
+                    $button = $_form.find('.btn');
+                $.ajax({
+                    data: $_form.serialize(),
+                    url: $_form.prop('action'),
+                    type: 'POST',
+                    beforeSend: function() {
+                        $button.attr('disabled', 'disabled');
+                    },
+                    success: function() {
+                        $button.removeAttr('disabled');
+                        swal({
+                            title: 'Syncing Completed!',
+                            text: 'Refreshing your dashboard to see updated information',
+                            type: 'info',
+                            timer: 1500,
+                            showConfirmButton: false
+                        });
+                    }
+                });
+
+                return $promise;
+            };
+
+        $form.on('submit', function(e) {
+            e.preventDefault();
+            $_promise($(this));
         });
     };
 

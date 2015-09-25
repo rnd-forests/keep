@@ -145,11 +145,24 @@ class TasksController extends Controller
      * @param Request $request
      * @param $userSlug
      * @param $taskSlug
+     * @return string
      */
     public function complete(Request $request, $userSlug, $taskSlug)
     {
         $task = $this->tasks->complete($request, $userSlug, $taskSlug);
 
         return $task->toJson();
+    }
+
+    /**
+     * Sync up failed tasks of a user.
+     *
+     * @param Request $request
+     * @param $userSlug
+     */
+    public function syncFailedTasks(Request $request, $userSlug)
+    {
+        $user = $this->users->findBySlug($userSlug);
+        $this->tasks->syncFailedTasks($request, $user);
     }
 }

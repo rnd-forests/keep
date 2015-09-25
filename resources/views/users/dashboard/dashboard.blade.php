@@ -17,6 +17,7 @@
         <div class="col-md-4">
             @include('users.dashboard.partials._search_form')
             @include('users.dashboard.partials._chart')
+            @include('users.dashboard.partials._sync_failed_tasks')
             @include('users.dashboard.partials._counters')
             @include('users.dashboard.partials._priorities')
         </div>

@@ -1,7 +1,7 @@
 <div class="row stats">
     <div class="col-md-12">
         <div class="page-header">
-            <h5>Tasks according to priorities <small>not including completed tasks</small></h5>
+            <h5>Tasks According to Priorities <small>not including completed tasks</small></h5>
         </div>
     </div>
     <div class="col-md-3">

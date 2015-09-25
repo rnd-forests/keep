@@ -103,17 +103,13 @@ interface TaskRepository
 
     /**
      * Finding and marking tasks as failed.
-     *
-     * @return bool|int
-     */
-    public function findAndUpdateFailedTasks();
-
-    /**
      * Finding and recovering failed tasks.
      *
+     * @param $request
+     * @param $user
      * @return bool|int
      */
-    public function recoverFailedTasks();
+    public function syncFailedTasks($request, $user);
 
     /**
      * Fetching all tasks of a user.

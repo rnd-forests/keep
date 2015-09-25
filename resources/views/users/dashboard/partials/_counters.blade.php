@@ -1,7 +1,7 @@
 <div class="row stats">
     <div class="col-md-12">
         <div class="page-header">
-            <h5>Tasks according to status <small>sorted by finishing date</small></h5>
+            <h5>Tasks According to Status <small>sorted by finishing date</small></h5>
         </div>
     </div>
     <div class="col-md-3">

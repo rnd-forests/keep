@@ -13,6 +13,7 @@ Route::group(['prefix' => '{users}', 'as' => 'member::', 'namespace' => 'Member'
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@dashboard']);
 
     Route::get('tasks', ['as' => 'tasks', 'uses' => 'DashboardController@showTasks']);
+    Route::post('tasks/sync', ['as' => 'tasks.sync', 'uses' => 'TasksController@syncFailedTasks']);
     Route::patch('tasks/{tasks}/complete', ['as' => 'tasks.complete', 'uses' => 'TasksController@complete']);
 
     Route::get('groups', ['as' => 'groups.all', 'uses' => 'GroupsController@index']);

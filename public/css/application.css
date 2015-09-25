@@ -388,6 +388,9 @@
   cursor: pointer;
   color: #111; }
 
+.failed-tasks-panel {
+  margin-top: 36px; }
+
 .task-wrapper .panel {
   background: #f9f9fa; }
 

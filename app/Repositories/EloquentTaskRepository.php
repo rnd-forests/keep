@@ -276,26 +276,21 @@ class EloquentTaskRepository extends AbstractRepository implements
     /**
      * Finding and marking tasks as failed.
      *
+     * @param $request
+     * @param $user
      * @return bool|int
      */
-    public function findAndUpdateFailedTasks()
+    public function syncFailedTasks($request, $user)
     {
-        return $this->model
-            ->aboutToFail()
-            ->update(['is_failed' => true]);
-    }
-
-    /**
-     * Finding and recovering failed tasks.
-     *
-     * @return bool|int
-     */
-    public function recoverFailedTasks()
-    {
-        return $this->model
-            ->where('is_failed', 1)
-            ->where('finishing_date', '>=', Carbon::now())
-            ->update(['is_failed' => false]);
+        if ($request->ajax()) {
+            $user->tasks()
+                ->aboutToFail()
+                ->update(['is_failed' => true]);
+            $user->tasks()
+                ->where('is_failed', 1)
+                ->where('finishing_date', '>=', Carbon::now())
+                ->update(['is_failed' => false]);
+        }
     }
 
     /**
