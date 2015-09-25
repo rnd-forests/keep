@@ -50,25 +50,14 @@ class Handler extends ExceptionHandler
         switch (get_class_short_name($e)) {
             case 'InvalidUserException':
                 flash()->warning($e->getMessage());
-
                 return redirect()->home();
 
             case 'InvalidRolesException':
                 flash()->warning($e->getMessage());
-
-                return redirect()->home();
-
-            case 'ModelNotFoundException':
-                flash()->warning(trans(
-                    'exception.model_not_found_exception',
-                    ['model' => get_class_short_name($e->getModel())]
-                ));
-
                 return redirect()->home();
 
             case 'NotFoundHttpException':
                 flash()->warning(trans('exception.not_found_http_exception'));
-
                 return redirect()->home();
         };
 
