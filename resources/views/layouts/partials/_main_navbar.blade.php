@@ -33,7 +33,6 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('member::groups.all', $authUser) }}">Groups</a></li>
                             <li><a href="{{ route('member::tags.all', $authUser) }}">Tags</a></li>
-                            <li><a href="{{ route('member::priorities.all', $authUser) }}">Priorities</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

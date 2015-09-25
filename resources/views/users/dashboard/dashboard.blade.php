@@ -18,6 +18,7 @@
             @include('users.dashboard.partials._search_form')
             @include('users.dashboard.partials._chart')
             @include('users.dashboard.partials._counters')
+            @include('users.dashboard.partials._priorities')
         </div>
     </div>
 @stop

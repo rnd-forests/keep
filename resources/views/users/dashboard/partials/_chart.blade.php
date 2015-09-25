@@ -4,7 +4,9 @@
             <canvas id="user-dashboard-stats" height="200px"></canvas>
         </div>
     </div>
-    <h6>Percentage of Completion</h6>
+    <div class="page-header">
+        <h5>Percentage of Completion</h5>
+    </div>
     <div class="progress">
         <div class="progress-bar progress-bar-success progress-bar-striped active"
              aria-valuenow="{{ $counter->completedPercentage() }}"
@@ -14,7 +16,9 @@
             <span>{{ $counter->completedPercentage() }}%</span>
         </div>
     </div>
-    <h6>Percentage of Currently Processing</h6>
+    <div class="page-header">
+        <h5>Percentage of Currently Processing</h5>
+    </div>
     <div class="progress">
         <div class="progress-bar progress-bar-danger progress-bar-striped active"
              aria-valuenow="{{ $counter->processingPercentage() }}"

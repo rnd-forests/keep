@@ -9073,7 +9073,8 @@ body.stop-scrolling {
   background: #f6f9fa;
   border-bottom-color: #e9f0f3; }
   .keep-navigation .dropdown-menu {
-    background-color: #f6f9fa; }
+    background-color: #f6f9fa;
+    border-color: #e9f0f3; }
   .keep-navigation .divider {
     margin: 3px 0;
     background-color: #ecf2f5; }
@@ -9414,8 +9415,7 @@ body.stop-scrolling {
 
 .user-dashboard .stats .stat-container {
   border: 1px solid #f5f5f5;
-  padding: 10px 0;
-  margin-bottom: 25px; }
+  padding: 10px 0; }
   .user-dashboard .stats .stat-container .large {
     color: #1ab394;
     text-align: center;
@@ -9427,6 +9427,18 @@ body.stop-scrolling {
 
 .user-dashboard .collapse .collapse-content {
   color: #d62c1a; }
+
+.user-dashboard .task-title {
+  font-weight: initial;
+  font-size: 16px;
+  margin: 5px 0; }
+
+.user-dashboard .page-header {
+  margin-bottom: 8px;
+  padding-bottom: 0; }
+
+.user-dashboard .progress {
+  margin-bottom: 0; }
 
 .chart-panel .panel-body {
   padding: 15px 0;

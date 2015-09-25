@@ -15,6 +15,33 @@ trait TaskScopes
             ->oldest('finishing_date');
     }
 
+    public function scopeHigh($query)
+    {
+        return $query
+            ->where('priority_id', 2)
+            ->where('completed', false)
+            ->where('is_failed', false)
+            ->oldest('finishing_date');
+    }
+
+    public function scopeNormal($query)
+    {
+        return $query
+            ->where('priority_id', 3)
+            ->where('completed', false)
+            ->where('is_failed', false)
+            ->oldest('finishing_date');
+    }
+
+    public function scopeLow($query)
+    {
+        return $query
+            ->where('priority_id', 4)
+            ->where('completed', false)
+            ->where('is_failed', false)
+            ->oldest('finishing_date');
+    }
+
     public function scopeCompleted($query)
     {
         return $query->where('completed', true);

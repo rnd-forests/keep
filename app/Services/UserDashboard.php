@@ -16,7 +16,7 @@ class UserDashboard
     /**
      * Count the number of all tasks for current authenticated user.
      *
-     * @return mixed
+     * @return int
      */
     public function totalTasks()
     {
@@ -26,7 +26,7 @@ class UserDashboard
     /**
      * Count the number of completed tasks for current authenticated user.
      *
-     * @return mixed
+     * @return int
      */
     public function countCompletedTasks()
     {
@@ -36,7 +36,7 @@ class UserDashboard
     /**
      * Count the number of failed tasks for current authenticated user.
      *
-     * @return mixed
+     * @return int
      */
     public function countFailedTasks()
     {
@@ -46,7 +46,7 @@ class UserDashboard
     /**
      * Count the number of processing tasks for current authenticated user.
      *
-     * @return mixed
+     * @return int
      */
     public function countDueTasks()
     {
@@ -73,5 +73,45 @@ class UserDashboard
     {
         return round($this->currentUser->tasks()->due()->count() /
             $this->currentUser->tasks()->count() * 100);
+    }
+
+    /**
+     * Count the total number of urgent priority tasks of a user.
+     *
+     * @return int
+     */
+    public function countUrgentPriorityTasks()
+    {
+        return $this->currentUser->tasks()->urgent()->count();
+    }
+
+    /**
+     * Count the total number of high priority tasks of a user.
+     *
+     * @return int
+     */
+    public function countHighPriorityTasks()
+    {
+        return $this->currentUser->tasks()->high()->count();
+    }
+
+    /**
+     * Count the total number of normal priority tasks of a user.
+     *
+     * @return int
+     */
+    public function countNormalPriorityTasks()
+    {
+        return $this->currentUser->tasks()->normal()->count();
+    }
+
+    /**
+     * Count the total number of low priority tasks of a user.
+     *
+     * @return int
+     */
+    public function countLowPriorityTasks()
+    {
+        return $this->currentUser->tasks()->low()->count();
     }
 }

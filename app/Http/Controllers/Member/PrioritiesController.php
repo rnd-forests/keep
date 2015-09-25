@@ -3,33 +3,17 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Contracts\UserRepository;
 use Keep\Repositories\Contracts\PriorityRepository;
 
 class PrioritiesController extends Controller
 {
-    protected $users, $priorities;
+    protected $priorities;
 
-    public function __construct(UserRepository $users, PriorityRepository $priorities)
+    public function __construct(PriorityRepository $priorities)
     {
-        $this->users = $users;
         $this->priorities = $priorities;
         $this->middleware('auth');
         $this->middleware('valid.user');
-    }
-
-    /**
-     * Get all priority levels associated with a user's tasks.
-     *
-     * @param $userSlug
-     * @return \Illuminate\View\View
-     */
-    public function index($userSlug)
-    {
-        $user = $this->users->findBySlug($userSlug);
-        $priorities = $this->priorities->fetchAll();
-
-        return view('users.priorities.index', compact('user', 'priorities'));
     }
 
     /**

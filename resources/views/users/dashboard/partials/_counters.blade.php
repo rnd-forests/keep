@@ -1,4 +1,9 @@
 <div class="row stats">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h5>Tasks according to status <small>sorted by finishing date</small></h5>
+        </div>
+    </div>
     <div class="col-md-3">
         <a href="{{ route('member::tasks', ['users' => $user, 'type' => 'all']) }}">
             <div class="stat-container">
