@@ -1,53 +1,47 @@
 .task-wrapper {
-    .panel {
-        background: #f9f9fa;
+  .panel {
+    background: #f9f9fa;
+  }
+
+  .panel-heading {
+    text-align: center;
+
+    .task-time-ago {
+      margin: 5px 0;
+    }
+  }
+
+  .panel-body {
+    .task-labels {
+      margin-bottom: 15px;
+      text-align: center;
+
+      .label {
+        margin-bottom: 5px;
+        display: inline-block;
+      }
     }
 
-    .panel-heading {
-        text-align: center;
+    .well {
+      background: #ffffff;
 
-        .task-title {
-            font-size: 25px;
-            color: #ffffff;
-        }
+      .label {
+        display: inline-block;
+        margin-bottom: 3px;
+        margin-right: 3px;
+      }
 
-        .task-time-ago {
-            color: #ffffff;
-            margin: 5px 0;
-        }
+      .fa {
+        padding-right: 5px;
+      }
     }
-
-    .panel-body {
-        .task-labels {
-            margin-bottom: 15px;
-            text-align: center;
-
-            .label {
-                margin-bottom: 5px;
-                display: inline-block;
-            }
-        }
-        
-        .well {
-            background: #ffffff;
-
-            .label {
-                display: inline-block;
-                margin-bottom: 3px;
-                margin-right: 3px;
-            }
-
-            .fa {
-                padding-right: 5px;
-            }
-        }
-    }
+  }
 }
 
 .task-controls {
-    margin: 10px 0;
-    
-    form {
-        display: inline-block;
-    }
+  margin: 10px 0;
+
+  form {
+    display: inline-block;
+  }
 }

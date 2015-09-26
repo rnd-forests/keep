@@ -1,6 +1,6 @@
 <div class="form-group">
     {!! Form::label('name', 'Group Name', ['class' => 'control-label']) !!}
-    {!! Form::text('name', null, ['class' => 'form-control input-lg']) !!}
+    {!! Form::text('name', null, ['class' => 'form-control']) !!}
     {!! error_text($errors, 'name') !!}
 </div>
 <div class="form-group">

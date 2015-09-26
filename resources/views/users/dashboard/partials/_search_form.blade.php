@@ -14,7 +14,7 @@
                 'data-toggle' => 'popover',
                 'data-placement' => 'bottom',
                 'data-content' => 'Searching pattern cannot be blank.',
-                'class' => 'form-control input-lg',
+                'class' => 'form-control',
                 'placeholder' => 'Search for tasks...'
             ]) !!}
         </div>

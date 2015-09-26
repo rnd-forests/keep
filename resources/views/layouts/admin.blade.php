@@ -1,7 +1,7 @@
 @extends('layouts.root')
 @section('content-layout')
     @include('admin.layouts.nav')
-    <div class="container-fluid">
+    <div class="container">
         @include('flash::message')
         @yield('content')
     </div>

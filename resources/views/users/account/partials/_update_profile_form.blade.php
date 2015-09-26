@@ -12,20 +12,20 @@
         </div>
         <div class="form-group">
             {!! Form::label('company', 'Company', ['class' => 'control-label']) !!}
-            {!! Form::text('company', null, ['class' => 'form-control input-lg']) !!}
+            {!! Form::text('company', null, ['class' => 'form-control']) !!}
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     {!! Form::label('website', 'Website', ['class' => 'control-label']) !!}
-                    {!! Form::text('website', null, ['class' => 'form-control input-lg']) !!}
+                    {!! Form::text('website', null, ['class' => 'form-control']) !!}
                     {!! error_text($errors, 'website') !!}
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     {!! Form::label('phone', 'Phone number', ['class' => 'control-label']) !!}
-                    {!! Form::text('phone', null, ['class' => 'form-control input-lg']) !!}
+                    {!! Form::text('phone', null, ['class' => 'form-control']) !!}
                     {!! error_text($errors, 'phone') !!}
                 </div>
             </div>
@@ -34,21 +34,21 @@
             <div class="col-md-4">
                 <div class="form-group">
                     {!! Form::label('github_username', 'GitHub', ['class' => 'control-label']) !!}
-                    {!! Form::text('github_username', null, ['class' => 'form-control input-lg']) !!}
+                    {!! Form::text('github_username', null, ['class' => 'form-control']) !!}
                     {!! error_text($errors, 'github_username') !!}
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     {!! Form::label('google_username', 'Google+', ['class' => 'control-label']) !!}
-                    {!! Form::text('google_username', null, ['class' => 'form-control input-lg']) !!}
+                    {!! Form::text('google_username', null, ['class' => 'form-control']) !!}
                     {!! error_text($errors, 'google_username') !!}
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     {!! Form::label('facebook_username', 'Facebook', ['class' => 'control-label']) !!}
-                    {!! Form::text('facebook_username', null, ['class' => 'form-control input-lg']) !!}
+                    {!! Form::text('facebook_username', null, ['class' => 'form-control']) !!}
                     {!! error_text($errors, 'facebook_username') !!}
                 </div>
             </div>

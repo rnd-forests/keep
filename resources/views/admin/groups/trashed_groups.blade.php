@@ -3,13 +3,8 @@
 @section('content')
     <div class="admin-contents-wrapper">
         @if(blank($trashedGroups))
-            <div class="well text-center">No trashed group available.</div>
+            <div class="text-center text-warning">No trashed group available.</div>
         @else
-            <div class="well">
-                <div class="huge text-center">
-                    {{ plural2('group', 'trashed', counting($trashedGroups)) }}
-                </div>
-            </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>

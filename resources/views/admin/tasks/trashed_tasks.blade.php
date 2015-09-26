@@ -3,13 +3,8 @@
 @section('content')
     <div class="admin-contents-wrapper">
         @if (blank($trashedTasks))
-            <div class="well text-center">No trashed task available.</div>
+            <div class="text-center text-warning">No trashed task available.</div>
         @else
-            <div class="well">
-                <div class="huge text-center">
-                    {{ plural2('task', 'trashed', counting($trashedTasks)) }}
-                </div>
-            </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>

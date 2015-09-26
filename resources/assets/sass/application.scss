@@ -1,90 +1,88 @@
-@import "components/nav";
+@import "bootstrap";
 @import "components/form";
-@import "components/button";
 @import "components/footer";
 @import "components/flash";
 @import "components/top_button";
-@import "components/select2/core";
-
 @import "contents/home";
 @import "contents/user";
 @import "contents/task";
 @import "contents/admin";
 @import "contents/group";
 @import "contents/notification";
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700,200italic,400italic,700italic);
 
 body {
-    font: normal 15px "Source Sans Pro", sans-serif;
-    color: #525252;
-    position: relative;
-    -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  padding-top: 70px;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
-    &:hover, &:active, &:focus {
-        text-decoration: none;
-    }
+  &:hover, &:active, &:focus {
+    text-decoration: none;
+  }
 }
 
 .form-error-text {
-    font-size: 11px;
-    color: #c7254e;
+  font-size: 11px;
+  color: #c7254e;
 }
 
 .control-label {
-    font-size: 13px;
+  font-size: 14px;
 }
 
 .cmn-toggle {
-    position: absolute;
-    margin-left: -9999px;
-    visibility: hidden;
-    + label {
-        display: block;
-        position: relative;
-        cursor: pointer;
-        outline: none;
-        user-select: none;
-    }
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+  + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+  }
 }
 
 input.cmn-toggle-round-flat {
-    + label {
-        padding: 2px;
-        width: 80px;
-        height: 30px;
-        background-color: #dddddd;
-        border-radius: 30px;
-        transition: background 0.4s;
-        &:before, &:after {
-            display: block;
-            position: absolute;
-            content: "";
-        }
-        &:before {
-            top: 2px;
-            left: 2px;
-            bottom: 2px;
-            right: 2px;
-            background-color: #fff;
-            border-radius: 30px;
-            transition: background 0.4s;
-        }
-        &:after {
-            top: 4px;
-            left: 4px;
-            bottom: 4px;
-            width: 22px;
-            background-color: #dddddd;
-            border-radius: 22px;
-            transition: margin 0.4s, background 0.4s;
-        }
+  + label {
+    padding: 2px;
+    width: 80px;
+    height: 30px;
+    background-color: #dddddd;
+    border-radius: 30px;
+    transition: background 0.4s;
+    &:before, &:after {
+      display: block;
+      position: absolute;
+      content: "";
     }
-    &:checked + label {
-        background-color: #8ce196;
-        &:after {
-            margin-left: 50px;
-            background-color: #8ce196;
-        }
+    &:before {
+      top: 2px;
+      left: 2px;
+      bottom: 2px;
+      right: 2px;
+      background-color: #fff;
+      border-radius: 30px;
+      transition: background 0.4s;
     }
+    &:after {
+      top: 4px;
+      left: 4px;
+      bottom: 4px;
+      width: 22px;
+      background-color: #dddddd;
+      border-radius: 22px;
+      transition: margin 0.4s, background 0.4s;
+    }
+  }
+  &:checked + label {
+    background-color: #8ce196;
+    &:after {
+      margin-left: 50px;
+      background-color: #8ce196;
+    }
+  }
 }

@@ -40,8 +40,8 @@ var Keep = (function($) {
         Chart.defaults.global.scaleFontSize = 14;
         Chart.defaults.global.animationSteps = 80;
         Chart.defaults.global.scaleBeginAtZero = true;
-        Chart.defaults.global.scaleFontFamily = "Source Sans Pro";
-        Chart.defaults.global.tooltipFontFamily = "Source Sans Pro";
+        Chart.defaults.global.scaleFontFamily = 'Source Sans Pro';
+        Chart.defaults.global.tooltipFontFamily = 'Source Sans Pro';
     };
 
     /**
@@ -53,7 +53,7 @@ var Keep = (function($) {
         var $selector = $('.multiple-selection');
 
         $selector.select2({
-            placeholder: $selector.data("description")
+            placeholder: $selector.data('description')
         });
     };
 
@@ -168,7 +168,7 @@ var Keep = (function($) {
                     Math.round(f / t * 100),
                     Math.round(d / t * 100)
                 ],
-                fillColor: "rgba(26,179,148,0.5)",
+                fillColor: "rgba(26,179,148,0.2)",
                 strokeColor: "rgba(26,179,148,0.8)",
                 highlightFill: "rgba(26,179,148,0.75)",
                 highlightStroke: "rgba(26,179,148,1)"
@@ -176,7 +176,7 @@ var Keep = (function($) {
         };
         new Chart($context).Bar($chart, {
             scaleShowGridLines: false,
-            barValueSpacing: 30,
+            barValueSpacing: 40,
             barShowStroke: true,
             barStrokeWidth: 2
         });

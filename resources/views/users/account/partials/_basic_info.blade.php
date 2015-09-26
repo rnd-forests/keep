@@ -1,4 +1,5 @@
 <div class="panel panel-default">
+    <div class="panel-heading">Public profile</div>
     <ul class="list-group">
         <li class="list-group-item">
             @include('users.account.partials._avatar', ['size' => 180])

@@ -1,21 +1,21 @@
 #scroll-top {
-    display: block;
-    width: 40px;
-    height: 40px;
-    position: fixed;
-    background-color: #1ab394;
-    bottom: 15px;
-    right: 15px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  background-color: #1ab394;
+  bottom: 15px;
+  right: 15px;
 
-    &:after {
-        content: "";
-        position: absolute;
-        width:0;
-        height:0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-bottom: 5px solid #ffffff;
-        top: 17px;
-        left: 15px;
-    }
+  &:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #ffffff;
+    top: 17px;
+    left: 15px;
+  }
 }

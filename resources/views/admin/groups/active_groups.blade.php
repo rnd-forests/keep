@@ -9,38 +9,36 @@
                 @foreach($groupStack as $group)
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
-                            <div class="panel panel-primary">
+                            <div class="panel panel-default">
                                 <div class="panel-heading text-center">
-                                    <strong>{{ $group->name }}</strong>
+                                    <h4>{{ $group->name }}</h4>
+                                    <h6>{{ humans_time($group->created_at) }}</h6>
                                 </div>
                                 <div class="panel-body">
                                     <div class="text-center">
-                                    <span class="label label-primary">
-                                        {{ plural('member', counting($group->users)) }}
-                                    </span>
+                                        <span class="label label-primary">
+                                            {{ plural('member', counting($group->users)) }}
+                                        </span>
                                     </div>
-                                    <div class="well">{{ $group->description }}</div>
-                                    <div class="text-center">
-                                        <h5>{{ humans_time($group->created_at) }}</h5>
-                                    </div>
+                                    <p class="group-description text-info">{{ $group->description }}</p>
                                 </div>
                                 <div class="panel-footer text-center">
                                     <a href="{{ route('admin::groups.show', $group) }}"
-                                       class="btn btn-info btn-circle"
+                                       class="btn btn-info btn-sm"
                                        data-toggle="tooltip"
                                        data-placement="bottom"
                                        title="View group details">
                                         <i class="fa fa-arrow-right"></i>
                                     </a>
                                     <a href="{{ route('admin::groups.edit', $group) }}"
-                                       class="btn btn-primary btn-circle"
+                                       class="btn btn-primary btn-sm"
                                        data-toggle="tooltip"
                                        data-placement="bottom"
                                        title="Edit group information">
                                         <i class="fa fa-pencil"></i>
                                     </a>
                                     <a href="{{ route('admin::groups.add', $group) }}"
-                                       class="btn btn-default btn-circle"
+                                       class="btn btn-default btn-sm"
                                        data-toggle="tooltip"
                                        data-placement="bottom"
                                        title="Add more users">

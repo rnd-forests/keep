@@ -1,6 +1,6 @@
 {!! Form::open(['method' => 'DELETE', 'route' => ['admin::tasks.delete', $task]]) !!}
     <button type="submit"
-            class="btn btn-danger btn-circle btn-sm"
+            class="btn btn-danger btn-sm"
             data-toggle="tooltip"
             data-placement="bottom"
             title="Send to trash">

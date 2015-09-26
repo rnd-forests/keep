@@ -9,12 +9,12 @@
                         <div class="list-group-item notification"
                              data-toggle="collapse"
                              data-target="#{{ $notification->id }}-noti-collapse">
-                            <strong class="text-{{ $notification->type }}">
+                            <h5 class="text-{{ $notification->type }}">
                                 {{ $notification->subject }}
-                            </strong>
-                            <span class="notification-time">
-                                {{ humans_time($notification->created_at) }}
-                            </span>
+                                <span class="notification-time">
+                                    {{ humans_time($notification->created_at) }}
+                                </span>
+                            </h5>
                             <div class="collapse" id="{{ $notification->id }}-noti-collapse">
                                 <div class="collapse-content">
                                     {{ $notification->body }}

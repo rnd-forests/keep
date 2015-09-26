@@ -16,12 +16,15 @@
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="form-wrapper">
-                {!! Form::model($notification = new \Keep\Entities\Notification,
-                    ['route' => ['admin::notifications.member.store']]) !!}
-                    @include('admin.notifications.partials._main_form',
-                        ['notificationButton' => 'Notify'])
-                {!! Form::close() !!}
+            <div class="panel panel-default form-wrapper">
+                <div class="panel-heading">Create new notification for members</div>
+                <div class="panel-body">
+                    {!! Form::model($notification = new \Keep\Entities\Notification,
+                        ['route' => ['admin::notifications.member.store']]) !!}
+                        @include('admin.notifications.partials._main_form',
+                            ['notificationButton' => 'Notify'])
+                    {!! Form::close() !!}
+                </div>
             </div>
         </div>
     </div>

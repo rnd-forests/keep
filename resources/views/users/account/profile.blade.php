@@ -2,7 +2,7 @@
 @section('title', $user->name . ' Profile')
 @section('content')
     <div class="row">
-        <div class="col-md-6 col-md-offset-3 user-profile-wrapper">
+        <div class="col-md-6 col-md-offset-3">
             @include('users.account.partials._basic_info')
             @if($user->can('act-as-current-user'))
                 <div class="text-center">

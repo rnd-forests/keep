@@ -20,7 +20,12 @@
             {!! render_pagination($users) !!}
         </div>
         <div class="col-md-7">
-            @include('admin.groups.partials._add_users_form')
+            <div class="panel panel-default form-wrapper">
+                <div class="panel-heading">Find and add users to this group</div>
+                <div class="panel-body">
+                    @include('admin.groups.partials._add_users_form')
+                </div>
+            </div>
         </div>
     </div>
 @stop

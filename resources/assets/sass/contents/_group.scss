@@ -1,38 +1,36 @@
 .groups-wrapper {
-    .panel {
-        .well {
-            border: 0;
-            background: 0 0;
-            text-align: center;
-        }
-
-        .panel-footer {
-            form {
-                display: inline-block;
-            }
-        }
+  .panel {
+    .group-description {
+      margin: 15px 0;
     }
+
+    .panel-footer {
+      form {
+        display: inline-block;
+      }
+    }
+  }
 }
 
 .group-wrapper {
-    .group-wrapper__users {
-        margin-top: 40px;
-    }
+  .group-wrapper__users {
+    margin-top: 40px;
+  }
 
-    form {
-        display: inline-block;
-    }
+  form {
+    display: inline-block;
+  }
 }
 
 .add-users-wrapper {
-    .list-group-item {
-        a {
-            color: #333333;
-            vertical-align: middle;
+  .list-group-item {
+    a {
+      color: #333333;
+      vertical-align: middle;
 
-            &:hover, &:active, &:focus {
-                color: #1ab394;
-            }
-        }
+      &:hover, &:active, &:focus {
+        color: #1ab394;
+      }
     }
+  }
 }

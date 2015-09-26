@@ -1,5 +1,5 @@
 <div class="task-wrapper">
-    <div class="panel panel-primary">
+    <div class="panel panel-success">
         <div class="panel-heading">
             <div class="pull-right">
                 <div class="dropdown">
@@ -19,19 +19,19 @@
                     </ul>
                 </div>
             </div>
-            <a class="task-title">{{ $task->title }}</a>
+            <h4>{{ $task->title }}</h4>
             <h6 class="task-time-ago">Created {{ humans_time($task->created_at) }}</h6>
         </div>
         <div class="panel-body">
             <div class="task-labels">
-                <span class="label label-primary">
+                <span class="label label-default">
                     {{ short_time($task->starting_date) }} to {{ short_time($task->finishing_date) }}
                 </span>
-                <span class="label label-primary">{{ remaining_days($task->finishing_date) }}</span>
+                <span class="label label-default">{{ remaining_days($task->finishing_date) }}</span>
                 @if($task->is_failed)
                     <span class="label label-danger">failed</span>
                 @endif
-                <span class="label label-info">{{ $task->priority->name }} priority</span>
+                <span class="label label-warning">{{ $task->priority->name }} priority</span>
             </div>
             <div class="well">{!! $task->content !!}</div>
             @unless (empty($task->location))

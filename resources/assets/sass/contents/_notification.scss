@@ -1,15 +1,15 @@
 .notification-groups {
-    margin: 10px 0;
-    font-size: 11px;
+  margin: 10px 0;
+  font-size: 11px;
 }
 
 .notification-container {
-    .notification {
-        cursor: pointer;
-        margin-bottom: 10px;
+  .notification {
+    cursor: pointer;
+    margin-bottom: 10px;
 
-        .notification-time {
-            font-size: 11px;
-        }
+    .notification-time {
+      font-size: 11px;
     }
+  }
 }

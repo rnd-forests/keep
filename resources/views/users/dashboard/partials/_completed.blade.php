@@ -1,5 +1,5 @@
 @unless(blank($completed))
-    <div class="panel panel-primary">
+    <div class="panel panel-success">
         <div class="panel-heading">Recently Completed</div>
         <ul class="list-group">
             @foreach($completed as $task)

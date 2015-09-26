@@ -30,8 +30,6 @@
                         </div>
                     </div>
                 </a>
-            </div>
-            <div class="col-md-3">
                 <a href="{{ route('admin::groups') }}">
                     <div class="panel widget bg-red">
                         <div class="row row-table">

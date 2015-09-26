@@ -1,5 +1,5 @@
 @unless(blank($urgent))
-    <div class="panel panel-primary">
+    <div class="panel panel-danger">
         <div class="panel-heading">Urgent</div>
         <ul class="list-group">
             @foreach($urgent as $task)

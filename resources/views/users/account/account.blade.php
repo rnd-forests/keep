@@ -15,12 +15,18 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="update-name">
                     <div class="form-wrapper">
-                        @include('users.account.partials._update_name_form')
+                        <div class="panel panel-default form-wrapper">
+                            <div class="panel-body">
+                                @include('users.account.partials._update_name_form')
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="update-password">
-                    <div class="form-wrapper">
-                        @include('users.account.partials._update_password_form')
+                    <div class="panel panel-default form-wrapper">
+                        <div class="panel-body">
+                            @include('users.account.partials._update_password_form')
+                        </div>
                     </div>
                 </div>
                 @unless($user->isAdmin())

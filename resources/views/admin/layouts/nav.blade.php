@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default keep-navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top keep-navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button"
@@ -27,7 +27,6 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ route('admin::members') }}">Active</a></li>
-                        <li class="divider"></li>
                         <li><a href="{{ route('admin::members.disabled') }}">Disabled</a></li>
                     </ul>
                 </li>
@@ -41,9 +40,7 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ route('admin::groups.create') }}">Create</a></li>
-                        <li class="divider"></li>
                         <li><a href="{{ route('admin::groups') }}">Active</a></li>
-                        <li class="divider"></li>
                         <li><a href="{{ route('admin::groups.trashed') }}">Trash</a></li>
                     </ul>
                 </li>
@@ -57,7 +54,6 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ route('admin::tasks') }}">Published</a></li>
-                        <li class="divider"></li>
                         <li><a href="{{ route('admin::tasks.trashed') }}">Trash</a></li>
                     </ul>
                 </li>
@@ -76,7 +72,6 @@
                                 Create
                             </a>
                         </li>
-                        <li class="divider"></li>
                         <li><a href="{{ route('admin::notifications') }}">Collection</a></li>
                     </ul>
                 </li>

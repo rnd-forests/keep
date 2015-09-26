@@ -3,7 +3,7 @@
 @section('content')
     @inject('counter', 'Keep\Services\UserDashboard')
     <div class="row user-dashboard">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="row">
                 <div class="col-md-6">
                     @include('users.dashboard.partials._urgent')
@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             @include('users.dashboard.partials._search_form')
             @include('users.dashboard.partials._chart')
             @include('users.dashboard.partials._sync_failed_tasks')

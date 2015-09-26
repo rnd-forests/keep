@@ -1,101 +1,99 @@
 .admin-contents-wrapper {
-    .table {
-        th {
-            text-align: center;
-        }
-
-        td {
-            font-size: 15px;
-            vertical-align: middle;
-            text-align: center;
-
-            form {
-                display: inline-block;
-            }
-        }
+  .table {
+    th {
+      text-align: center;
     }
+
+    td {
+      font-size: 15px;
+      vertical-align: middle;
+      text-align: center;
+
+      form {
+        display: inline-block;
+      }
+    }
+  }
 }
 
 .huge {
-    font-size: 35px;
+  font-size: 35px;
 }
 
 .pv-lg {
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
 }
-
 
 .admin-dashboard {
-    .panel {
-        color: #ffffff;
+  .panel {
+    color: #ffffff;
+  }
+
+  .row-table {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+
+    & > [class*=col-] {
+      display: table-cell;
+      float: none;
+      table-layout: fixed;
+      vertical-align: middle;
     }
+  }
 
-    .row-table {
-        display: table;
-        table-layout: fixed;
-        height: 100%;
-        width: 100%;
-        margin: 0;
+  .widget {
+    margin-bottom: 20px;
 
-        & > [class*=col-] {
-            display: table-cell;
-            float: none;
-            table-layout: fixed;
-            vertical-align: middle;
-        }
+    &.panel {
+      overflow: hidden;
     }
+  }
 
-    .widget {
-        margin-bottom: 20px;
+  .bg-purple {
+    background: #7266ba;
+  }
 
-        &.panel {
-            overflow: hidden;
-        }
-    }
+  .bg-purple-dark {
+    background: darken(#7266ba, 10%);
+  }
 
-    .bg-purple {
-        background: #7266ba;
-    }
+  .bg-green {
+    background: #16A085;
+  }
 
-    .bg-purple-dark {
-        background: darken(#7266ba, 10%);
-    }
+  .bg-green-dark {
+    background: darken(#16A085, 10%);
+  }
 
-    .bg-green {
-        background: #16A085;
-    }
+  .bg-red {
+    background: #E74C3C;
+  }
 
-    .bg-green-dark {
-        background: darken(#16A085, 10%);
-    }
+  .bg-red-dark {
+    background: darken(#E74C3C, 10%);
+  }
 
-    .bg-red {
-        background: #E74C3C;
-    }
+  .bg-yellow {
+    background: #fad733;
+  }
 
-    .bg-red-dark {
-        background: darken(#E74C3C, 10%);
-    }
-
-    .bg-yellow {
-        background: #fad733;
-    }
-
-    .bg-yellow-dark {
-        background: darken(#fad733, 10%);
-    }
+  .bg-yellow-dark {
+    background: darken(#fad733, 10%);
+  }
 }
 
-
 .account-profile {
-    .panel {
-        background: 0 0;
-    }
+  .panel {
+    background: 0 0;
+  }
 
-    .list-group-item {
-        background: 0 0;
-        border: none;
-        text-align: center;
-    }
+  .list-group-item {
+    background: 0 0;
+    border: none;
+    text-align: center;
+  }
 }

@@ -1,5 +1,5 @@
 @unless(blank($deadline))
-    <div class="panel panel-primary">
+    <div class="panel panel-warning">
         <div class="panel-heading">Deadline</div>
         <ul class="list-group">
             @foreach($deadline as $task)

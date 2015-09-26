@@ -1,24 +1,24 @@
 .footer {
-    padding: 40px 0;
-    color: #777777;
-    text-align: center;
-    clear: both;
+  padding: 40px 0;
+  color: #777777;
+  text-align: center;
+  clear: both;
 
-    .footer-links {
-        padding-left: 0;
-        margin-top: 20px;
+  .footer-links {
+    padding-left: 0;
+    margin-top: 20px;
 
-        li {
-            display: inline;
-            padding: 0 2px;
-        }
-
-        a {
-            color: #8c989e;
-
-            &:hover, &:active, &:focus {
-                color: #4bc970;
-            }
-        }
+    li {
+      display: inline;
+      padding: 0 2px;
     }
+
+    a {
+      color: #8c989e;
+
+      &:hover, &:active, &:focus {
+        color: #4bc970;
+      }
+    }
+  }
 }

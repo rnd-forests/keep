@@ -38,7 +38,7 @@
                                     <td>{!! $task->present()->printStatus($task->completed) !!}</td>
                                     <td>
                                         <a href="{{ route('admin::tasks.show', $task) }}"
-                                           class="btn btn-primary btn-circle"
+                                           class="btn btn-primary btn-sm"
                                            data-toggle="tooltip"
                                            data-placement="bottom"
                                            title="Show Task">

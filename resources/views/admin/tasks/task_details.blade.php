@@ -4,22 +4,22 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="task-wrapper">
-                <div class="panel panel-primary">
+                <div class="panel panel-success">
                     <div class="panel-heading">
-                        <a class="task-title">{{ $task->title }}</a>
+                        <h4>{{ $task->title }}</h4>
                         <h6 class="task-time-ago">
                             {{ humans_time($task->created_at) }}
                         </h6>
                     </div>
                     <div class="panel-body">
                         <div class="task-labels">
-                            <span class="label label-primary">
+                            <span class="label label-default">
                                 {{ short_time($task->starting_date) }} to {{ short_time($task->finishing_date) }}
                             </span>
-                            <span class="label label-primary">
+                            <span class="label label-default">
                                 {{ remaining_days($task->finishing_date) }}
                             </span>
-                            <span class="label label-info">
+                            <span class="label label-warning">
                                 {{ $task->priority->name }}
                             </span>
                         </div>

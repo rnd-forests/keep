@@ -4,7 +4,7 @@
     @inject('counter', 'Keep\Services\UserNotification')
     <div class="row">
         <div class="col-md-4">
-            <div class="panel panel-primary">
+            <div class="panel panel-default">
                 <div class="panel-heading">Choose your category</div>
                 <ul class="list-group">
                     <li class="list-group-item">
@@ -34,12 +34,12 @@
                     <div class="list-group-item notification"
                          data-toggle="collapse"
                          data-target="#{{ $notification->id }}-noti-collapse">
-                        <strong class="text-{{ $notification->type }}">
+                        <h5 class="text-{{ $notification->type }}">
                             {{ $notification->subject }}
-                        </strong>
-                        <span class="notification-time">
-                            {{ humans_time($notification->created_at) }}
-                        </span>
+                            <span class="notification-time">
+                                {{ humans_time($notification->created_at) }}
+                            </span>
+                        </h5>
                         <div class="collapse" id="{{ $notification->id }}-noti-collapse">
                             <div class="collapse-content">
                                 {{ $notification->body }}
