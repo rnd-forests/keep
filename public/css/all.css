@@ -5090,6 +5090,21 @@ button.close {
 .user-dashboard .progress {
   margin-bottom: 0; }
 
+.user-dashboard .tag-cloud a {
+  color: #333;
+  display: block;
+  float: left;
+  padding: 4px 10px;
+  border-radius: 3px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px; }
+  .user-dashboard .tag-cloud a:hover {
+    background-color: #555;
+    color: #fff; }
+
 .chart-panel .panel-body {
   padding: 15px 0; }
 

@@ -3,18 +3,22 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
+use Keep\Repositories\Contracts\TagRepository;
 use Keep\Repositories\Contracts\TaskRepository;
 use Keep\Repositories\Contracts\UserRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DashboardController extends Controller
 {
-    protected $users, $tasks;
+    protected $users, $tasks, $tags;
 
-    public function __construct(UserRepository $users, TaskRepository $tasks)
+    public function __construct(UserRepository $users,
+                                TaskRepository $tasks,
+                                TagRepository $tags)
     {
         $this->users = $users;
         $this->tasks = $tasks;
+        $this->tags = $tags;
         $this->middleware('auth');
         $this->middleware('valid.user');
     }
@@ -30,10 +34,11 @@ class DashboardController extends Controller
         $user = $this->users->findBySlug($userSlug);
         $urgent = $this->tasks->urgentTasks($user);
         $deadline = $this->tasks->deadlineTasks($user);
+        $tags = $this->tags->fetchAttachedTags($userSlug);
         $completed = $this->tasks->recentlyCompletedTasks($user);
 
         return view('users.dashboard.dashboard', compact(
-            'user', 'urgent', 'deadline', 'completed'));
+            'user', 'urgent', 'deadline', 'completed', 'tags'));
     }
 
     /**

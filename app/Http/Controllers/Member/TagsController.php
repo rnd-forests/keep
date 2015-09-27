@@ -17,19 +17,6 @@ class TagsController extends Controller
     }
 
     /**
-     * Get all tags associated with a user's tasks.
-     *
-     * @param $userSlug
-     * @return \Illuminate\View\View
-     */
-    public function index($userSlug)
-    {
-        $tags = $this->tags->fetchAttachedTags($userSlug);
-
-        return view('users.tags.index', compact('tags'));
-    }
-
-    /**
      * Get all tasks of a user that is associated with a given tag.
      *
      * @param $userSlug

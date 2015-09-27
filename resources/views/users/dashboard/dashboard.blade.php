@@ -7,6 +7,7 @@
             <div class="row">
                 <div class="col-md-6">
                     @include('users.dashboard.partials._urgent')
+                    @include('users.dashboard.partials._tag_cloud')
                 </div>
                 <div class="col-md-6">
                     @include('users.dashboard.partials._deadline')

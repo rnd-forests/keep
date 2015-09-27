@@ -19,9 +19,7 @@ Route::group(['prefix' => '{users}', 'as' => 'member::', 'namespace' => 'Member'
     Route::get('groups', ['as' => 'groups.all', 'uses' => 'GroupsController@index']);
     Route::get('groups/{groups}', ['as' => 'groups.show', 'uses' => 'GroupsController@show']);
 
-    Route::get('tags', ['as' => 'tags.all', 'uses' => 'TagsController@index']);
     Route::get('tags/{tags}', ['as' => 'tags.task', 'uses' => 'TagsController@show']);
-
     Route::get('priorities/{priorities}', ['as' => 'priorities.task', 'uses' => 'PrioritiesController@show']);
 
     Route::get('notifications', ['as' => 'notifications', 'uses' => 'NotificationsController@fetchNotifications']);

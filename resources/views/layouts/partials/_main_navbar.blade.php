@@ -24,17 +24,7 @@
                             Notifications
                         </a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#"
-                           class="dropdown-toggle"
-                           data-toggle="dropdown">
-                            Extras <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('member::groups.all', $authUser) }}">Groups</a></li>
-                            <li><a href="{{ route('member::tags.all', $authUser) }}">Tags</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="{{ route('member::groups.all', $authUser) }}">Groups</a></li>
                     <li class="dropdown">
                         <a href="#"
                            class="dropdown-toggle"
