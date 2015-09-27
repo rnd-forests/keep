@@ -30,10 +30,16 @@ if (!function_exists('sort_tasks_by')) {
      */
     function sort_tasks_by($attribute, $text)
     {
-        return link_to_route(TASK_VIEW, $text, [
+        $sorting = [
             'sortBy' => $attribute,
-            'direction' => (request()->get('direction') == 'asc') ? 'desc' : 'asc',
-        ]);
+            'direction' => request('direction') == 'asc' ? 'desc' : 'asc',
+        ];
+
+        if (request('page')) {
+            $sorting = array_merge(['page' => request('page')], $sorting);
+        }
+
+        return link_to_route(TASK_VIEW, $text, $sorting);
     }
 }
 
@@ -47,10 +53,16 @@ if (!function_exists('sort_accounts_by')) {
      */
     function sort_accounts_by($attribute, $text)
     {
-        return link_to_route(ACCOUNT_VIEW, $text, [
+        $sorting = [
             'sortBy' => $attribute,
-            'direction' => (request()->get('direction') == 'asc') ? 'desc' : 'asc',
-        ]);
+            'direction' => (request('direction') == 'asc') ? 'desc' : 'asc',
+        ];
+
+        if (request('page')) {
+            $sorting = array_merge(['page' => request('page')], $sorting);
+        }
+
+        return link_to_route(ACCOUNT_VIEW, $text, $sorting);
     }
 }
 
