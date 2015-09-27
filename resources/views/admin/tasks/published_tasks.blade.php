@@ -52,7 +52,7 @@
                     </tbody>
                 </table>
             </div>
-            {!! render_pagination($tasks) !!}
+            {!! paginate($tasks) !!}
         @endif
     </div>
 @stop

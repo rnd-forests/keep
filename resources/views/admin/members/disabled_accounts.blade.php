@@ -35,6 +35,6 @@
                 </table>
             </div>
         @endif
-        {!! render_pagination($disabledMembers) !!}
+        {!! paginate($disabledMembers) !!}
     </div>
 @stop

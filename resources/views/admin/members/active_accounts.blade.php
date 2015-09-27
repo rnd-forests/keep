@@ -36,6 +36,6 @@
                 </tbody>
             </table>
         </div>
-        {!! render_pagination($activeMembers) !!}
+        {!! paginate($activeMembers) !!}
     </div>
 @stop

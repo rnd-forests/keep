@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', ucfirst(Request::get('type')) . ' Notifications')
+@section('title', ucfirst(request('type')) . ' Notifications')
 @section('content')
     @inject('counter', 'Keep\Services\UserNotification')
     <div class="row">
@@ -43,7 +43,7 @@
                         <div class="collapse" id="{{ $notification->id }}-noti-collapse">
                             <div class="collapse-content">
                                 {{ $notification->body }}
-                                @if(Request::get('type') == 'group')
+                                @if(request('type') == 'group')
                                     <ul class="breadcrumb notification-groups">
                                         @foreach($notification->groups as $group)
                                             <li>
@@ -59,7 +59,7 @@
                     </div>
                 @endforeach
             </div>
-            {!! render_pagination($notifications, ['type' => Request::get('type')]) !!}
+            {!! paginate($notifications, ['type' => request('type')]) !!}
         </div>
     </div>
 @stop

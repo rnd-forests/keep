@@ -18,7 +18,7 @@
                     <div class="text-center text-warning">No {{ strtolower($type) }} tasks available.</div>
                 @endunless
             </div>
-            {!! render_pagination($tasks) !!}
+            {!! paginate($tasks) !!}
         </div>
     </div>
 @stop

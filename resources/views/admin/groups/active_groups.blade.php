@@ -51,7 +51,7 @@
                     </div>
                 @endforeach
             @endforeach
-            {!! render_pagination($groups) !!}
+            {!! paginate($groups) !!}
         @endif
     </div>
 @stop

@@ -45,6 +45,6 @@
                 </table>
             </div>
         @endif
-        {!! render_pagination($trashedTasks) !!}
+        {!! paginate($trashedTasks) !!}
     </div>
 @stop

@@ -17,7 +17,7 @@
                     </div>
                 @endforeach
             </div>
-            {!! render_pagination($users) !!}
+            {!! paginate($users) !!}
         </div>
         <div class="col-md-7">
             <div class="panel panel-default form-wrapper">

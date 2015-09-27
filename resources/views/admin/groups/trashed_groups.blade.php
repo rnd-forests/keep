@@ -35,6 +35,6 @@
                 </table>
             </div>
         @endif
-        {!! render_pagination($trashedGroups) !!}
+        {!! paginate($trashedGroups) !!}
     </div>
 @stop

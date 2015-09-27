@@ -27,7 +27,7 @@
                     @endforeach
                 @endforeach
             </div>
-            {!! render_pagination($notifications) !!}
+            {!! paginate($notifications) !!}
         </div>
     </div>
 @stop

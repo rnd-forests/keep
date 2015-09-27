@@ -5,9 +5,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-define('TASK_VIEW', 'admin::tasks');
-define('ACCOUNT_VIEW', 'admin::members');
-
 if (!function_exists('carbon')) {
     /**
      * Return a new instance of the Carbon library class.
@@ -32,14 +29,16 @@ if (!function_exists('sort_tasks_by')) {
     {
         $sorting = [
             'sortBy' => $attribute,
-            'direction' => request('direction') == 'asc' ? 'desc' : 'asc',
+            'direction' => request('direction') == 'asc'
+                ? 'desc'
+                : 'asc'
         ];
 
         if (request('page')) {
-            $sorting = array_merge(['page' => request('page')], $sorting);
+            $sorting = array_merge($sorting, ['page' => request('page')]);
         }
 
-        return link_to_route(TASK_VIEW, $text, $sorting);
+        return link_to_route('admin::tasks', $text, $sorting);
     }
 }
 
@@ -55,14 +54,16 @@ if (!function_exists('sort_accounts_by')) {
     {
         $sorting = [
             'sortBy' => $attribute,
-            'direction' => (request('direction') == 'asc') ? 'desc' : 'asc',
+            'direction' => request('direction') == 'asc'
+                ? 'desc'
+                : 'asc'
         ];
 
         if (request('page')) {
-            $sorting = array_merge(['page' => request('page')], $sorting);
+            $sorting = array_merge($sorting, ['page' => request('page')]);
         }
 
-        return link_to_route(ACCOUNT_VIEW, $text, $sorting);
+        return link_to_route('admin::members', $text, $sorting);
     }
 }
 
@@ -216,7 +217,7 @@ if (!function_exists('blank')) {
     }
 }
 
-if (!function_exists('render_pagination')) {
+if (!function_exists('paginate')) {
     /**
      * Generate the pagination URL. There two cases:
      *  - The normal case with no query string.
@@ -226,8 +227,22 @@ if (!function_exists('render_pagination')) {
      * @param array|null $queries
      * @return string
      */
-    function render_pagination($collection, array $queries = null)
+    function paginate($collection, array $queries = null)
     {
+        if (request()->has(['sortBy', 'direction'])) {
+            if (is_array($queries)) {
+                $queries = array_merge($queries, [
+                    'sortBy' => request('sortBy'),
+                    'direction' => request('direction')
+                ]);
+            } else {
+                $queries = [
+                    'sortBy' => request('sortBy'),
+                    'direction' => request('direction')
+                ];
+            }
+        }
+
         if (!$queries) {
             return '<div class="text-center">' . $collection->render() . '</div>';
         } else {

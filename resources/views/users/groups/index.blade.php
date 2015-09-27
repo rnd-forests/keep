@@ -14,7 +14,7 @@
                     </a>
                 @endforeach
             </div>
-            {!! render_pagination($groups) !!}
+            {!! paginate($groups) !!}
         </div>
     </div>
 @stop

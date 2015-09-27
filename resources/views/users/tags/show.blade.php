@@ -17,7 +17,7 @@
                     </a>
                 @endforeach
             </div>
-            {!! render_pagination($tasks) !!}
+            {!! paginate($tasks) !!}
         </div>
     </div>
 @stop

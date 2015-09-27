@@ -63,7 +63,7 @@
                         @endforeach
                     </div>
                 @endforeach
-                {!! render_pagination($users) !!}
+                {!! paginate($users) !!}
             @endif
         </div>
     </div>
