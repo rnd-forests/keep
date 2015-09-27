@@ -7,6 +7,6 @@
     {!! Form::label('description', 'Group Description', ['class' => 'control-label']) !!}
     {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 6]) !!}
 </div>
-<div class="form-group">
+<div class="form-group form-submit">
     {!! Form::submit($groupFormSubmitButton, ['class' => 'btn btn-primary']) !!}
 </div>

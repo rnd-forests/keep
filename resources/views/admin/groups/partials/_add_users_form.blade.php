@@ -9,7 +9,7 @@
             {!! error_text($errors, 'group_new_users') !!}
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group form-submit">
         {!! Form::submit('Find and add users', ['class' => 'btn btn-primary']) !!}
     </div>
 {!! Form::close() !!}

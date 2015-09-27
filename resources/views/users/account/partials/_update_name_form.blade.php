@@ -13,7 +13,7 @@
         {!! Form::text('new_name', null, ['class' => 'form-control']) !!}
         {!! error_text($errors, 'new_name') !!}
     </div>
-    <div class="form-group">
+    <div class="form-group form-submit">
         <button type="submit" class="btn btn-primary">Change your name</button>
     </div>
 {!! Form::close() !!}

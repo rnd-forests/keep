@@ -23,6 +23,6 @@
     {!! error_text($errors, 'body') !!}
 </div>
 @yield('notifiable-objects')
-<div class="form-group">
+<div class="form-group form-submit">
     {!! Form::submit($notificationButton, ['class' => 'btn btn-primary']) !!}
 </div>

@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group form-submit">
                             {!! Form::submit('Create an Account', ['class' => 'btn btn-primary']) !!}
                         </div>
                     {!! Form::close() !!}

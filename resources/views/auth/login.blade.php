@@ -28,7 +28,7 @@
                                 <label><input type="checkbox" name="remember"> Remember me</label>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group form-submit">
                             {!! Form::submit('Sign In', ['class' => 'btn btn-primary']) !!}
                         </div>
                     {!! Form::close() !!}

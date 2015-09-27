@@ -5007,6 +5007,9 @@ button.close {
 .form-wrapper .list-inline {
   margin-bottom: 0; }
 
+.form-wrapper .form-submit {
+  margin-bottom: 0; }
+
 #social-auth .modal-content {
   padding: 15px; }
 

@@ -7,7 +7,7 @@
                 <div class="text-center">
                     <h3>{{ $group->name }}</h3>
                     <a href="{{ route('admin::groups') }}">
-                        <button class="btn btn-circle btn-primary"
+                        <button class="btn btn-primary btn-xs"
                                 data-toggle="tooltip"
                                 data-placement="bottom"
                                 title="Back to active groups collection">
@@ -16,7 +16,7 @@
                     </a>
                     @include('admin.groups.partials._flush_form')
                     <a href="{{ route('admin::groups.add', $group) }}">
-                        <button class="btn btn-circle btn-primary"
+                        <button class="btn btn-primary btn-xs"
                                 data-toggle="tooltip"
                                 data-placement="bottom"
                                 title="Add new users to this group">
@@ -24,7 +24,7 @@
                         </button>
                     </a>
                     <a href="#">
-                        <button class="btn btn-circle btn-warning"
+                        <button class="btn btn-warning btn-xs"
                                 data-toggle="tooltip"
                                 data-placement="bottom"
                                 title="Send notification">

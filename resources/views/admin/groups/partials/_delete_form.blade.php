@@ -1,6 +1,6 @@
 {!! Form::open(['method' => 'DELETE', 'route' => ['admin::groups.delete', $group]]) !!}
     <button type="submit"
-            class="btn btn-danger btn-sm"
+            class="btn btn-danger btn-xs"
             data-toggle="tooltip"
             data-placement="bottom"
             title="Trash this group">

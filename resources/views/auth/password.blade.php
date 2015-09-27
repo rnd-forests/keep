@@ -13,7 +13,7 @@
                                 'placeholder' => 'username@example.com']) !!}
                             {!! error_text($errors, 'email') !!}
                         </div>
-                        <div class="form-group">
+                        <div class="form-group form-submit">
                             {!! Form::submit('Send Password Reset Link', ['class' => 'btn btn-primary']) !!}
                         </div>
                     {!! Form::close() !!}

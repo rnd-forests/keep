@@ -9,6 +9,9 @@
                         <div class="list-group-item notification"
                              data-toggle="collapse"
                              data-target="#{{ $notification->id }}-noti-collapse">
+                            <div class="pull-right">
+                                @include('admin.notifications.partials._delete_form')
+                            </div>
                             <h5 class="text-{{ $notification->type }}">
                                 {{ $notification->subject }}
                                 <span class="notification-time">
@@ -18,9 +21,6 @@
                             <div class="collapse" id="{{ $notification->id }}-noti-collapse">
                                 <div class="collapse-content">
                                     {{ $notification->body }}
-                                    <div class="text-center" style="margin-top: 10px">
-                                        @include('admin.notifications.partials._delete_form')
-                                    </div>
                                 </div>
                             </div>
                         </div>
