@@ -38,24 +38,21 @@
         <li class="list-group-item">
             <h6 class="list-group-item-heading">Social Network Profile</h6>
             @unless(empty($user->profile->google_username))
-                <a href="{{ $user->present()->googlePlusProfile($user) }}">
-                    <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Google Plus Profile">
-                        <i class="fa fa-google"></i>
-                    </button>
+                <a href="{{ $user->present()->googlePlusProfile($user) }}"
+                   class="btn btn-social-icon btn-google">
+                    <i class="fa fa-google"></i>
                 </a>
             @endunless
             @unless(empty($user->profile->facebook_username))
-                <a href="{{ $user->present()->facebookProfile($user) }}">
-                    <button class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Facebook Profile">
-                        <i class="fa fa-facebook"></i>
-                    </button>
+                <a href="{{ $user->present()->facebookProfile($user) }}"
+                   class="btn btn-social-icon btn-facebook">
+                    <i class="fa fa-facebook"></i>
                 </a>
             @endunless
             @unless(empty($user->profile->github_username))
-                <a href="{{ $user->present()->githubProfile($user) }}">
-                    <button class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="GitHub Profile">
-                        <i class="fa fa-github"></i>
-                    </button>
+                <a href="{{ $user->present()->githubProfile($user) }}"
+                   class="btn btn-social-icon btn-github">
+                    <i class="fa fa-github"></i>
                 </a>
             @endunless
         </li>
