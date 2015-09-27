@@ -2,7 +2,9 @@
 
 namespace Keep\Providers;
 
+use Keep\Core\Mailers\UserMailer;
 use Illuminate\Support\ServiceProvider;
+use Keep\Core\Mailers\Contracts\UserMailerContract;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,18 +34,11 @@ class AppServiceProvider extends ServiceProvider
     {
         switch ($this->app->environment()) {
             case 'production':
-                config(['database.connections.pgsql.host' => parse_url(env('DATABASE_URL'))['host']]);
-                config(['database.connections.pgsql.database' => substr(parse_url(env('DATABASE_URL'))['path'], 1)]);
-                config(['database.connections.pgsql.username' => parse_url(env('DATABASE_URL'))['user']]);
-                config(['database.connections.pgsql.password' => parse_url(env('DATABASE_URL'))['pass']]);
+                $this->configurePgsql();
                 break;
             case 'local':
-                $logger = $this->app->make('log');
-                $this->app->make('db')->listen(function ($sql, $bindings, $time) use ($logger) {
-                    $logger->info($time);
-                    $logger->info($sql);
-                    $logger->info($bindings);
-                });
+                $this->logDatabaseQueries();
+                $this->configureMailtrap();
                 break;
             case 'testing':
                 config(['database.default' => 'sqlite']);
@@ -57,8 +52,44 @@ class AppServiceProvider extends ServiceProvider
     protected function registerUserMailer()
     {
         $this->app->singleton(
-            \Keep\Core\Mailers\Contracts\UserMailerContract::class,
-            \Keep\Core\Mailers\UserMailer::class
+            UserMailerContract::class,
+            UserMailer::class
         );
+    }
+
+    /**
+     * Log database queries for local development.
+     */
+    protected function logDatabaseQueries()
+    {
+        $logger = $this->app->make('log');
+        $this->app->make('db')->listen(function ($sql, $bindings, $time) use ($logger) {
+            $logger->info($time);
+            $logger->info($sql);
+            $logger->info($bindings);
+        });
+    }
+
+    /**
+     * Configure PostgreSQL for production.
+     */
+    protected function configurePgsql()
+    {
+        config(['database.connections.pgsql.host' => parse_url(env('DATABASE_URL'))['host']]);
+        config(['database.connections.pgsql.database' => substr(parse_url(env('DATABASE_URL'))['path'], 1)]);
+        config(['database.connections.pgsql.username' => parse_url(env('DATABASE_URL'))['user']]);
+        config(['database.connections.pgsql.password' => parse_url(env('DATABASE_URL'))['pass']]);
+    }
+
+    /**
+     * Configure Mailtrap for testing emails sent from application.
+     */
+    protected function configureMailtrap()
+    {
+        config(['mail.driver' => 'smtp']);
+        config(['mail.host' => 'mailtrap.io']);
+        config(['mail.port' => '2525']);
+        config(['mail.username' => env('MAILTRAP_USERNAME')]);
+        config(['mail.password' => env('MAILTRAP_PASSWORD')]);
     }
 }
