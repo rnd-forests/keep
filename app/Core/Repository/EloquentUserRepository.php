@@ -171,28 +171,17 @@ class EloquentUserRepository extends AbstractRepository implements
      * Finding a user or creating a new user if the user does not exist.
      *
      * @param array $userData
-     * @param $authProvider
+     * @param $provider
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function findOrCreate(array $userData, $authProvider)
+    public function findOrCreate(array $userData, $provider)
     {
-        $user = $this->model
-            ->where('auth_provider_id', $userData['auth_provider_id'])
-            ->first();
-        $userExisted = $this->model
-            ->where('email', $userData['email'])
-            ->first();
-        if (!$user && $userExisted) {
-            return false;
-        }
-        if (!$user) {
-            $user = $this->model->create($userData);
-            $user->update([
-                'auth_provider' => $authProvider,
-                'active' => true,
-                'activation_code' => '',
-            ]);
-        }
+        $user = $this->model->firstOrCreate($userData);
+        $user->update([
+            'auth_provider' => $provider,
+            'active' => true,
+            'activation_code' => '',
+        ]);
 
         return $user;
     }
