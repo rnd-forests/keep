@@ -8,7 +8,8 @@ use Keep\Core\Repository\Contracts\GroupRepository;
 
 class NotificationForm
 {
-    protected $users, $groups;
+    protected $users;
+    protected $groups;
 
     public function __construct(UserRepository $users, GroupRepository $groups)
     {
