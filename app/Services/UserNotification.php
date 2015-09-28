@@ -2,7 +2,7 @@
 
 namespace Keep\Services;
 
-use Keep\Repositories\Contracts\NotificationRepository;
+use Keep\Core\Repository\Contracts\NotificationRepository;
 
 class UserNotification
 {

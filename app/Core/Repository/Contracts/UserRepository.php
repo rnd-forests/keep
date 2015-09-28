@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Repositories\Contracts;
+namespace Keep\Core\Repository\Contracts;
 
 interface UserRepository
 {

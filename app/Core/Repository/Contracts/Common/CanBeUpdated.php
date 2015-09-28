@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Repositories\Contracts\Common;
+namespace Keep\Core\Repository\Contracts\Common;
 
 interface CanBeUpdated
 {

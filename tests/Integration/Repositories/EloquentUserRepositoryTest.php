@@ -14,7 +14,7 @@ class EloquentUserRepositoryTest extends TestCase
      */
     public function it_initializes_the_repository()
     {
-        $this->repo = app(Keep\Repositories\EloquentUserRepository::class);
+        $this->repo = app(Keep\Core\Repository\EloquentUserRepository::class);
     }
 
     /** @test */

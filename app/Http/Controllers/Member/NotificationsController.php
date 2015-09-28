@@ -3,7 +3,7 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Contracts\NotificationRepository;
+use Keep\Core\Repository\Contracts\NotificationRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class NotificationsController extends Controller

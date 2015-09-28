@@ -13,7 +13,7 @@ if (!function_exists('carbon')) {
      */
     function carbon()
     {
-        return app()->make(Carbon::class);
+        return app(Carbon::class);
     }
 }
 
@@ -76,7 +76,7 @@ if (!function_exists('short_time')) {
      */
     function short_time($timestamp)
     {
-        return carbon()->parse($timestamp)->format('Y-m-d');
+        return Carbon::parse($timestamp)->format('Y-m-d');
     }
 }
 
@@ -89,7 +89,7 @@ if (!function_exists('full_time')) {
      */
     function full_time($timestamp)
     {
-        return carbon()->parse($timestamp)->format('Y-m-d, H:i:s');
+        return Carbon::parse($timestamp)->format('Y-m-d, H:i:s');
     }
 }
 
@@ -102,7 +102,7 @@ if (!function_exists('humans_time')) {
      */
     function humans_time($timestamp)
     {
-        return carbon()->parse($timestamp)->diffForHumans();
+        return Carbon::parse($timestamp)->diffForHumans();
     }
 }
 
@@ -154,7 +154,7 @@ if (!function_exists('remaining_days')) {
      */
     function remaining_days($finish)
     {
-        $count = (int)carbon()->now()->diffInDays(carbon()->parse($finish));
+        $count = (int)Carbon::now()->diffInDays(Carbon::parse($finish));
 
         return $count . ' ' . str_plural('day', $count) . ' remaining';
     }

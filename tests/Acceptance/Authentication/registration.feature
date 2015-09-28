@@ -12,7 +12,7 @@ Feature: Account Registration
 
     Scenario: I submit registration form with all blank fields
         Given I am on registration page
-        And I press "Create Account"
+        And I press "Sign Up"
         Then I should be redirected back
         And I should see "The name field is required."
         And I should see "The email field is required."

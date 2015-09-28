@@ -4,7 +4,7 @@ namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
 use Keep\Core\Search\Contracts\SearchContract;
-use Keep\Repositories\Contracts\UserRepository;
+use Keep\Core\Repository\Contracts\UserRepository;
 
 class SearchController extends Controller
 {

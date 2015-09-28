@@ -1,11 +1,11 @@
 <?php
 
-namespace Keep\Repositories;
+namespace Keep\Core\Repository;
 
 use Keep\Entities\Tag;
 use Keep\Entities\User;
-use Keep\Repositories\Contracts\TagRepository;
-use Keep\Repositories\Contracts\Common\ShouldBeFound;
+use Keep\Core\Repository\Contracts\TagRepository;
+use Keep\Core\Repository\Contracts\Common\ShouldBeFound;
 
 class EloquentTagRepository extends AbstractRepository implements
     ShouldBeFound,

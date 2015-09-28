@@ -23,7 +23,7 @@ class AuthenticationContext extends CoreFeatureContext
         $this->fillField('email', 'vinhnguyen@hust.com');
         $this->fillField('password', 'secret');
         $this->fillField('password_confirmation', 'secret');
-        $this->pressButton('Create Account');
+        $this->pressButton('Sign Up');
     }
 
     /**
@@ -35,7 +35,7 @@ class AuthenticationContext extends CoreFeatureContext
         $this->fillField('email', 'vinhnguyen@hust.com');
         $this->fillField('password', 'secret');
         $this->fillField('password_confirmation', 'secret-secret');
-        $this->pressButton('Create Account');
+        $this->pressButton('Sign Up');
     }
 
     /**
@@ -44,7 +44,7 @@ class AuthenticationContext extends CoreFeatureContext
     public function iSubmittedTheFormWithAnInvalidUsername()
     {
         $this->fillField('name', 'Vinh Nguyen 111');
-        $this->pressButton('Create Account');
+        $this->pressButton('Sign Up');
     }
 
     /**
@@ -53,7 +53,7 @@ class AuthenticationContext extends CoreFeatureContext
     public function iSubmittedTheFormWithAnInvalidEmailAddress()
     {
         $this->fillField('email', 'foo@bar');
-        $this->pressButton('Create Account');
+        $this->pressButton('Sign Up');
     }
 
     /**
@@ -63,6 +63,6 @@ class AuthenticationContext extends CoreFeatureContext
     {
         $this->fillField('password', '123');
         $this->fillField('password_confirmation', '123');
-        $this->pressButton('Create Account');
+        $this->pressButton('Sign Up');
     }
 }

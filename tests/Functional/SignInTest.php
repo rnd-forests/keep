@@ -12,14 +12,13 @@ class SignInTest extends TestCase
         factory(Keep\Entities\User::class)->create(['email' => 'foo@bar.com']);
 
         $this->visit('/')
-            ->click('Log In')
+            ->click('Sign In')
             ->seePageIs('auth/login')
             ->type('foo@bar.com', 'email')
             ->type('secret', 'password')
             ->check('remember')
-            ->press('Login')
-            ->seePageIs('/')
-            ->see('You have been logged in.');
+            ->press('Sign In')
+            ->seePageIs('/');
 
         $this->assertEquals(60, strlen(auth()->user()->remember_token));
     }
@@ -28,7 +27,7 @@ class SignInTest extends TestCase
     public function it_returns_warning_messages_when_no_fields_is_filled_in()
     {
         $this->visit('auth/login')
-            ->press('Login')
+            ->press('Sign In')
             ->seePageIs('auth/login')
             ->see('The email field is required')
             ->see('The password field is required');
@@ -39,7 +38,7 @@ class SignInTest extends TestCase
     {
         $this->visit('auth/login')
             ->type('foo@bar.com', 'email')
-            ->press('Login')
+            ->press('Sign In')
             ->seePageIs('auth/login')
             ->see('foo@bar.com')
             ->see('The password field is required');
@@ -53,7 +52,7 @@ class SignInTest extends TestCase
         $this->visit('auth/login')
             ->type('foo@bar.com', 'email')
             ->type('wrong-password', 'password')
-            ->press('Login')
+            ->press('Sign In')
             ->seePageIs('auth/login')
             ->see('foo@bar.com')
             ->see('Your credentials are wrong or your account has not been activated.');
@@ -63,11 +62,11 @@ class SignInTest extends TestCase
     public function it_contains_valid_helper_links()
     {
         $this->visit('auth/login')
-            ->click('Reset here')
+            ->click('Reset your Password')
             ->seePageIs('auth/password/email');
 
         $this->visit('auth/login')
-            ->click('Create a free account')
+            ->click('Sign Up')
             ->seePageIs('auth/register');
     }
 }

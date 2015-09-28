@@ -1,13 +1,13 @@
 <?php
 
-namespace Keep\Repositories;
+namespace Keep\Core\Repository;
 
 use Carbon\Carbon;
 use Keep\Entities\User;
 use Keep\Entities\Notification;
-use Keep\Repositories\Contracts\Common\ModelRepository;
-use Keep\Repositories\Contracts\NotificationRepository;
-use Keep\Repositories\Contracts\Common\ShouldBePaginated;
+use Keep\Core\Repository\Contracts\Common\ModelRepository;
+use Keep\Core\Repository\Contracts\NotificationRepository;
+use Keep\Core\Repository\Contracts\Common\ShouldBePaginated;
 
 class EloquentNotificationRepository extends AbstractRepository implements
     ShouldBePaginated,

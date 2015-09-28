@@ -1,8 +1,8 @@
 <?php
 
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Keep\Entities\Task;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class TaskIntegrationTest extends TestCase
 {

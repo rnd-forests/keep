@@ -3,7 +3,7 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Contracts\TagRepository;
+use Keep\Core\Repository\Contracts\TagRepository;
 
 class TagsController extends Controller
 {

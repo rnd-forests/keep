@@ -5,9 +5,9 @@ namespace Keep\Jobs\Relations;
 use Keep\Jobs\Job;
 use Keep\Entities\Notification;
 use Illuminate\Support\Collection;
-use Keep\Repositories\Contracts\UserRepository;
-use Keep\Repositories\Contracts\GroupRepository;
-use Keep\Repositories\Contracts\NotificationRepository;
+use Keep\Core\Repository\Contracts\UserRepository;
+use Keep\Core\Repository\Contracts\GroupRepository;
+use Keep\Core\Repository\Contracts\NotificationRepository;
 
 abstract class NotificationRelations extends Job
 {

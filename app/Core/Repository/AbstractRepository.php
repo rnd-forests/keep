@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Repositories;
+namespace Keep\Core\Repository;
 
 abstract class AbstractRepository
 {

@@ -16,7 +16,7 @@ class RegistrationTest extends TestCase
             ->type('foo@bar.com', 'email')
             ->type('123456', 'password')
             ->type('123456', 'password_confirmation')
-            ->press('Create Account')
+            ->press('Sign Up')
             ->seePageIs('/')
             ->see('Check your email address to activate your account.');
 
@@ -30,7 +30,7 @@ class RegistrationTest extends TestCase
 
         $this->visit('auth/register')
             ->type('foo@bar.com', 'email')
-            ->press('Create Account')
+            ->press('Sign Up')
             ->seePageIs('auth/register')
             ->see('The email has already been taken.');
     }
@@ -39,7 +39,7 @@ class RegistrationTest extends TestCase
     public function it_returns_warning_messages_when_no_fields_is_filled_in()
     {
         $this->visit('auth/register')
-            ->press('Create Account')
+            ->press('Sign Up')
             ->seePageIs('auth/register')
             ->see('The name field is required.')
             ->see('The email field is required.')
@@ -52,7 +52,7 @@ class RegistrationTest extends TestCase
         $this->visit('auth/register')
             ->type('Foo', 'name')
             ->type('foo@bar.com', 'email')
-            ->press('Create Account')
+            ->press('Sign Up')
             ->seePageIs('auth/register')
             ->see('The password field is required.');
     }
@@ -62,7 +62,7 @@ class RegistrationTest extends TestCase
     {
         $this->visit('auth/register')
             ->type('Foo 111', 'name')
-            ->press('Create Account')
+            ->press('Sign Up')
             ->seePageIs('auth/register')
             ->see('The name may only contain letters and spaces.');
     }
@@ -72,7 +72,7 @@ class RegistrationTest extends TestCase
     {
         $this->visit('auth/register')
             ->type('foo@bar', 'email')
-            ->press('Create Account')
+            ->press('Sign Up')
             ->seePageIs('auth/register')
             ->see('The email must be a valid email address.');
     }
@@ -83,7 +83,7 @@ class RegistrationTest extends TestCase
         $this->visit('auth/register')
             ->type('12345', 'password')
             ->type('12345', 'password_confirmation')
-            ->press('Create Account')
+            ->press('Sign Up')
             ->seePageIs('auth/register')
             ->see('The password must be at least 6 characters.');
     }
@@ -94,7 +94,7 @@ class RegistrationTest extends TestCase
         $this->visit('auth/register')
             ->type('123456', 'password')
             ->type('1234567', 'password_confirmation')
-            ->press('Create Account')
+            ->press('Sign Up')
             ->seePageIs('auth/register')
             ->see('The password confirmation does not match.');
     }
@@ -105,7 +105,7 @@ class RegistrationTest extends TestCase
         $this->visit('auth/register')
             ->type('Bar', 'name')
             ->type('foo@bar.com', 'email')
-            ->press('Create Account')
+            ->press('Sign Up')
             ->seePageIs('auth/register')
             ->see('Bar')
             ->see('foo@bar.com')
@@ -116,7 +116,7 @@ class RegistrationTest extends TestCase
     public function it_contains_valid_helper_links()
     {
         $this->visit('auth/register')
-            ->click('Login here')
+            ->click('Sign In')
             ->seePageIs('auth/login');
     }
 }

@@ -3,8 +3,8 @@
 namespace Keep\Core\OAuth;
 
 use Keep\Exceptions\InvalidUserException;
-use Keep\Repositories\Contracts\UserRepository;
 use Keep\Core\OAuth\Contracts\OAuthUserListener;
+use Keep\Core\Repository\Contracts\UserRepository;
 use Keep\Core\OAuth\Contracts\ExtractableProvider;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 use Laravel\Socialite\Contracts\User as SocialiteUser;

@@ -3,7 +3,7 @@
 namespace Keep\Http\Controllers\Admin;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Contracts\UserRepository;
+use Keep\Core\Repository\Contracts\UserRepository;
 
 class MembersDisabledController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-use Keep\Repositories\EloquentUserRepository;
+use Keep\Core\Repository\EloquentUserRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ProfileControllerTest extends TestCase

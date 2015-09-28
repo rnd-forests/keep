@@ -1,17 +1,17 @@
 <?php
 
-namespace Keep\Repositories;
+namespace Keep\Core\Repository;
 
 use Carbon\Carbon;
 use Keep\Entities\Task;
 use Keep\Entities\User;
 use Keep\Entities\Priority;
-use Keep\Repositories\Contracts\TaskRepository;
-use Keep\Repositories\Contracts\Common\CanBeRemoved;
-use Keep\Repositories\Contracts\Common\CanBeUpdated;
-use Keep\Repositories\Contracts\Common\ShouldBeFound;
-use Keep\Repositories\Contracts\Common\ModelRepository;
-use Keep\Repositories\Contracts\Common\ShouldBePaginated;
+use Keep\Core\Repository\Contracts\TaskRepository;
+use Keep\Core\Repository\Contracts\Common\CanBeRemoved;
+use Keep\Core\Repository\Contracts\Common\CanBeUpdated;
+use Keep\Core\Repository\Contracts\Common\ShouldBeFound;
+use Keep\Core\Repository\Contracts\Common\ModelRepository;
+use Keep\Core\Repository\Contracts\Common\ShouldBePaginated;
 
 class EloquentTaskRepository extends AbstractRepository implements
     ShouldBeFound,

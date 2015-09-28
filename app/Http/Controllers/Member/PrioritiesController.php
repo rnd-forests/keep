@@ -3,7 +3,7 @@
 namespace Keep\Http\Controllers\Member;
 
 use Keep\Http\Controllers\Controller;
-use Keep\Repositories\Contracts\PriorityRepository;
+use Keep\Core\Repository\Contracts\PriorityRepository;
 
 class PrioritiesController extends Controller
 {
