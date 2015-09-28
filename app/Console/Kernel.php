@@ -29,10 +29,6 @@ class Kernel extends ConsoleKernel
             ->withoutOverlapping()
             ->environments('production');
 
-        $schedule->command('keep:sync-failed-tasks')
-            ->everyMinute()
-            ->withoutOverlapping();
-
         $schedule->command('keep:email-upcoming-tasks')
             ->weeklyOn(5, '8:00')
             ->withoutOverlapping()
