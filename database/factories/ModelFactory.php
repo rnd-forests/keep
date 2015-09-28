@@ -69,7 +69,6 @@ $factory->define(Keep\Entities\Notification::class, function ($faker) {
 $factory->define(Keep\Entities\Role::class, function ($faker) {
     return [
         'name'         => $faker->word,
-        'display_name' => implode(' ', $faker->words(2)),
         'description'  => $faker->sentence
     ];
 });

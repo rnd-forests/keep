@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Entities\Concerns\Auth;
+namespace Keep\Core\Throttles;
 
 use Illuminate\Http\Request;
 use Illuminate\Cache\RateLimiter;

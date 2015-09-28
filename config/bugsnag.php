@@ -3,7 +3,7 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Bugsnag application programming interface key
+    | Bugsnag API key
     |--------------------------------------------------------------------------
     */
     'api_key' => env('BUGSNAG_API_KEY')

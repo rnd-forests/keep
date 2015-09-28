@@ -10,12 +10,10 @@ class RolesTableSeeder extends Seeder
         $roles = [
             [
                 'name'         => 'owner',
-                'display_name' => 'Keep Owner',
                 'description'  => 'User is the owner of Keep'
             ],
             [
                 'name'         => 'admin',
-                'display_name' => 'Keep Administrator',
                 'description'  => 'User is allowed to manage and edit other users/tasks/assignments/notifications'
             ]
         ];

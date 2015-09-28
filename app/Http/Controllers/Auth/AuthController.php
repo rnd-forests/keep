@@ -6,8 +6,8 @@ use Keep\Events\UserHasRegistered;
 use Illuminate\Contracts\Auth\Guard;
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\SignInRequest;
+use Keep\Core\Throttles\ThrottlesLogins;
 use Keep\Http\Requests\RegistrationRequest;
-use Keep\Entities\Concerns\Auth\ThrottlesLogins;
 use Keep\Core\Repository\Contracts\UserRepository;
 
 class AuthController extends Controller

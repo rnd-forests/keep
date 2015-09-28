@@ -27,7 +27,7 @@ class VerifyUserPermissions
     public function handle($request, Closure $next, $permissions)
     {
         $user = $this->auth->user();
-        if (!($this->auth->check() && $user->can($permissions, true))) {
+        if (!($this->auth->check() && $user->canDo($permissions, true))) {
             throw new InvalidPermissionsException(trans('exception.invalid_permission_exception', [
                 'user' => $user->name,
             ]));

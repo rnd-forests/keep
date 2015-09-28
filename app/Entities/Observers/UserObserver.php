@@ -28,6 +28,10 @@ class UserObserver
         $user->tasks()->get()->each(function ($task) {
             $task->delete();
         });
+
+        if (!method_exists($user, 'bootSoftDeletes')) {
+            $user->roles()->sync([]);
+        }
     }
 
     /**

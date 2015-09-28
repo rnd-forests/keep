@@ -154,7 +154,6 @@ return [
          * Third-party service providers...
          */
         Laracasts\Flash\FlashServiceProvider::class,
-        Zizaco\Entrust\EntrustServiceProvider::class,
         Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class,
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
         Laracasts\Utilities\JavaScript\JavascriptServiceProvider::class,
@@ -212,7 +211,6 @@ return [
         'Html'      => Collective\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Bugsnag'   => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
         'Search'    => Keep\Core\Search\Facades\SearchFacade::class,
 

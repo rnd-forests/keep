@@ -5,7 +5,6 @@ namespace Keep\Entities;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Keep\Entities\Presenters\UserPresenter;
-use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Cviebrock\EloquentSluggable\SluggableTrait;
@@ -29,10 +28,7 @@ class User extends Model implements
         CanResetPassword,
         PresentableTrait,
         SluggableTrait,
-        SoftDeletes,
-        EntrustUserTrait {
-            Authorizable::can insteadof EntrustUserTrait;
-        }
+        SoftDeletes;
 
     protected $dates = ['deleted_at'];
     protected $casts = ['active' => 'boolean'];
@@ -62,6 +58,103 @@ class User extends Model implements
     public function groups()
     {
         return $this->belongsToMany(Group::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function hasRole($name, $requireAll = false)
+    {
+        if (is_array($name)) {
+            foreach ($name as $roleName) {
+                $hasRole = $this->hasRole($roleName);
+
+                if ($hasRole && !$requireAll) {
+                    return true;
+                } elseif (!$hasRole && $requireAll) {
+                    return false;
+                }
+            }
+
+            return $requireAll;
+        } else {
+            foreach ($this->roles as $role) {
+                if ($role->name == $name) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function canDo($permission, $requireAll = false)
+    {
+        if (is_array($permission)) {
+            foreach ($permission as $permName) {
+                $hasPerm = $this->can($permName);
+
+                if ($hasPerm && !$requireAll) {
+                    return true;
+                } elseif (!$hasPerm && $requireAll) {
+                    return false;
+                }
+            }
+
+            return $requireAll;
+        } else {
+            foreach ($this->roles as $role) {
+                foreach ($role->permissions as $perm) {
+                    if ($perm->name == $permission) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function attachRole($role)
+    {
+        if (is_object($role)) {
+            $role = $role->getKey();
+        }
+
+        if (is_array($role)) {
+            $role = $role['id'];
+        }
+
+        $this->roles()->attach($role);
+    }
+
+    public function detachRole($role)
+    {
+        if (is_object($role)) {
+            $role = $role->getKey();
+        }
+
+        if (is_array($role)) {
+            $role = $role['id'];
+        }
+
+        $this->roles()->detach($role);
+    }
+
+    public function attachRoles($roles)
+    {
+        foreach ($roles as $role) {
+            $this->attachRole($role);
+        }
+    }
+
+    public function detachRoles($roles)
+    {
+        foreach ($roles as $role) {
+            $this->detachRole($role);
+        }
     }
 
     public function isActive()

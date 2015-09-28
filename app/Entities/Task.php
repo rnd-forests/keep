@@ -3,10 +3,10 @@
 namespace Keep\Entities;
 
 use Carbon\Carbon;
+use Keep\Entities\Scopes\TaskScopes;
 use Illuminate\Database\Eloquent\Model;
 use Keep\Entities\Presenters\TaskPresenter;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Keep\Entities\Concerns\Scopes\TaskScopes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Keep\Entities\Presenters\Traits\PresentableTrait;

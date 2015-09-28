@@ -2,9 +2,18 @@
 
 namespace Keep\Entities;
 
-use Zizaco\Entrust\EntrustPermission;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Permission extends EntrustPermission
+class Permission extends Model
 {
-    protected $fillable = ['name', 'display_name', 'description'];
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+    protected $fillable = ['name', 'description'];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
 }
