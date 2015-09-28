@@ -156,7 +156,6 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class,
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
-        Laracasts\Utilities\JavaScript\JavascriptServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
     ],
