@@ -6,6 +6,12 @@ use Carbon\Carbon;
 
 trait TaskScopes
 {
+    /**
+     * Scope query for urgent tasks.
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeUrgent($query)
     {
         return $query
@@ -15,6 +21,12 @@ trait TaskScopes
             ->oldest('finishing_date');
     }
 
+    /**
+     * Scope query for high priority level tasks.
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeHigh($query)
     {
         return $query
@@ -24,6 +36,12 @@ trait TaskScopes
             ->oldest('finishing_date');
     }
 
+    /**
+     * Scope query for normal priority level tasks.
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeNormal($query)
     {
         return $query
@@ -33,6 +51,12 @@ trait TaskScopes
             ->oldest('finishing_date');
     }
 
+    /**
+     * Scope query for low priority level tasks.
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeLow($query)
     {
         return $query
@@ -42,11 +66,23 @@ trait TaskScopes
             ->oldest('finishing_date');
     }
 
+    /**
+     * Scope query for completed tasks.
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeCompleted($query)
     {
         return $query->where('completed', true);
     }
 
+    /**
+     * Scope query for deadline tasks.
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeDeadline($query)
     {
         return $query
@@ -55,6 +91,12 @@ trait TaskScopes
             ->oldest('finishing_date');
     }
 
+    /**
+     * Scope query for recently completedt tasks.
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeRecentlyCompleted($query)
     {
         return $query
@@ -62,6 +104,12 @@ trait TaskScopes
             ->latest('finished_at');
     }
 
+    /**
+     * Scope query for failed tasks.
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeAboutToFail($query)
     {
         return $query
@@ -70,6 +118,12 @@ trait TaskScopes
             ->where('finishing_date', '<', Carbon::now());
     }
 
+    /**
+     * Scope query for recently failed tasks.
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeRecentlyFailed($query)
     {
         return $query
@@ -77,6 +131,12 @@ trait TaskScopes
             ->latest('created_at');
     }
 
+    /**
+     * Scope query for processing tasks.
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeDue($query)
     {
         return $query
@@ -84,6 +144,12 @@ trait TaskScopes
             ->where('completed', false);
     }
 
+    /**
+     * Scope query for upcoming tasks.
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeUpcoming($query)
     {
         return $query
@@ -92,6 +158,13 @@ trait TaskScopes
             ->whereBetween('finishing_date', [Carbon::now(), Carbon::now()->addDays(5)]);
     }
 
+    /**
+     * Search for tasks by title.
+     *
+     * @param $query
+     * @param $pattern
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeSearch($query, $pattern)
     {
         return $query->where('title', 'LIKE', "%$pattern%");

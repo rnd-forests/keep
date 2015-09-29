@@ -12,6 +12,11 @@ class Permission extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = ['name', 'description'];
 
+    /**
+     * Roles associated with a permissions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function roles()
     {
         return $this->belongsToMany(Role::class);

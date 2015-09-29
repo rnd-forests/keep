@@ -13,11 +13,21 @@ class Tag extends Model implements SluggableInterface
     protected $fillable = ['name'];
     protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
 
+    /**
+     * Associated tasks of a tag.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function tasks()
     {
         return $this->belongsToMany(Task::class);
     }
 
+    /**
+     * Set the route key.
+     *
+     * @return string
+     */
     public function getRouteKey()
     {
         return $this->slug;

@@ -15,21 +15,42 @@ class Group extends Model implements SluggableInterface
     protected $fillable = ['name', 'slug', 'description'];
     protected $sluggable = ['build_from' => 'name', 'save_to' => 'slug'];
 
+    /**
+     * Members of a group.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function users()
     {
         return $this->belongsToMany(User::class);
     }
 
+    /**
+     * Notifications of a group.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
     public function notifications()
     {
         return $this->morphToMany(Notification::class, 'notifiable');
     }
 
+    /**
+     * Notify a group.
+     *
+     * @param $notification
+     * @return Model
+     */
     public function notify($notification)
     {
         return $this->notifications()->save($notification);
     }
 
+    /**
+     * Set the route key.
+     *
+     * @return string
+     */
     public function getRouteKey()
     {
         return $this->slug;

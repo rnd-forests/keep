@@ -12,30 +12,47 @@ class Role extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = ['name', 'description'];
 
+    /**
+     * Users have been assigned to a role.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function users()
     {
         return $this->belongsToMany(User::class);
     }
 
+    /**
+     * Permissions associated with a role.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function permissions()
     {
         return $this->belongsToMany(Permission::class);
     }
 
-    public function hasPermission($name, $requireAll = false)
+    /**
+     * Check if a role contains a role or a set of roles.
+     *
+     * @param $name
+     * @param bool|false $all
+     * @return bool
+     */
+    public function hasPermission($name, $all = false)
     {
         if (is_array($name)) {
             foreach ($name as $permissionName) {
                 $hasPermission = $this->hasPermission($permissionName);
 
-                if ($hasPermission && !$requireAll) {
+                if ($hasPermission && !$all) {
                     return true;
-                } elseif (!$hasPermission && $requireAll) {
+                } elseif (!$hasPermission && $all) {
                     return false;
                 }
             }
 
-            return $requireAll;
+            return $all;
         } else {
             foreach ($this->perms as $permission) {
                 if ($permission->name == $name) {
@@ -47,6 +64,11 @@ class Role extends Model
         return false;
     }
 
+    /**
+     * Save a set of permissions for a role.
+     *
+     * @param $permissions
+     */
     public function savePermissions($permissions)
     {
         if (!empty($permissions)) {
@@ -56,6 +78,11 @@ class Role extends Model
         }
     }
 
+    /**
+     * Assign a permission to a role.
+     *
+     * @param $permission
+     */
     public function attachPermission($permission)
     {
         if (is_object($permission)) {
@@ -69,6 +96,11 @@ class Role extends Model
         $this->permissions()->attach($permission);
     }
 
+    /**
+     * Remove a permission from a role.
+     *
+     * @param $permission
+     */
     public function detachPermission($permission)
     {
         if (is_object($permission))
@@ -80,6 +112,11 @@ class Role extends Model
         $this->permissions()->detach($permission);
     }
 
+    /**
+     * Assign permissions to a role.
+     *
+     * @param $permissions
+     */
     public function attachPermissions($permissions)
     {
         foreach ($permissions as $permission) {
@@ -87,6 +124,11 @@ class Role extends Model
         }
     }
 
+    /**
+     * Remove permissions from a role.
+     *
+     * @param $permissions
+     */
     public function detachPermissions($permissions)
     {
         foreach ($permissions as $permission) {
