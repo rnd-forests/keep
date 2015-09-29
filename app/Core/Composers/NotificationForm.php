@@ -20,9 +20,9 @@ class NotificationForm
     public function compose(View $view)
     {
         $view->with('types', $this->getTypes());
-        if (session('current.view') == 'member.noti') {
+        if (certify_session_key('noti.for', 'members')) {
             $view->with('users', $this->listUsers());
-        } elseif (session('current.view') == 'group.noti') {
+        } elseif (certify_session_key('noti.for', 'groups')) {
             $view->with('groups', $this->listGroups());
         }
     }

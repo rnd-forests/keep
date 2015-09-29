@@ -44,8 +44,8 @@ class ComposerServiceProvider extends ServiceProvider
     {
         view()->composer(
             [
-                'admin.notifications.create_member_notification',
-                'admin.notifications.create_group_notification',
+                'admin.notifications.create_for_member',
+                'admin.notifications.create_for_group',
             ],
             \Keep\Core\Composers\NotificationForm::class
         );

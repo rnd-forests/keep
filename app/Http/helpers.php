@@ -325,3 +325,25 @@ if (!function_exists('get_by_key')) {
         return array_key_exists($key, $data) ? $data[$key] : [];
     }
 }
+
+if (!function_exists('check_session_key')) {
+    /**
+     * Check if a session key exists and equal to a vlue.
+     *
+     * @param $key
+     * @param $value
+     * @return bool
+     */
+    function certify_session_key($key, $value)
+    {
+        if (!session()->has($key)) {
+            return false;
+        }
+
+        if (session($key) === $value) {
+            return true;
+        }
+
+        return false;
+    }
+}

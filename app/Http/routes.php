@@ -57,11 +57,10 @@ Route::group(['middleware' => ['auth', 'valid.roles:admin'],
     ]);
 
     Route::get('notifications', ['as' => 'notifications', 'uses' => 'NotificationsController@index']);
-    Route::delete('notifications/{notifications}', ['as' => 'notifications.delete', 'uses' => 'NotificationsController@destroy']);
-    Route::get('notifications/member/create', ['as' => 'notifications.member.create', 'uses' => 'NotificationsController@createForMember']);
-    Route::post('notifications/member', ['as' => 'notifications.member.store', 'uses' => 'NotificationsController@storeForMember']);
-    Route::get('notifications/group/create', ['as' => 'notifications.group.create', 'uses' => 'NotificationsController@createForGroup']);
-    Route::post('notifications/group', ['as' => 'notifications.group.store', 'uses' => 'NotificationsController@storeForGroup']);
+    Route::post('notifications', ['as' => 'notifications.store', 'uses' => 'NotificationsController@store']);
+    Route::delete('notifications/{noti}', ['as' => 'notifications.delete', 'uses' => 'NotificationsController@destroy']);
+    Route::get('notify/member', ['as' => 'notifications.member.create', 'uses' => 'NotificationsController@notifyMembers']);
+    Route::get('notify/group', ['as' => 'notifications.group.create', 'uses' => 'NotificationsController@notifyGroups']);
 });
 
 

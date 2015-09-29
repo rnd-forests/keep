@@ -30,6 +30,50 @@ class NotificationsController extends Controller
     }
 
     /**
+     * Get form to create new notification for members.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function notifyMembers()
+    {
+        session(['noti.for' => 'members']);
+
+        return view('admin.notifications.create_for_member');
+    }
+
+    /**
+     * Get form to create new notification for groups.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function notifyGroups()
+    {
+        session(['noti.for' => 'groups']);
+
+        return view('admin.notifications.create_for_group');
+    }
+
+    /**
+     * Store new notification.
+     *
+     * @param NotificationRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(NotificationRequest $request)
+    {
+        $data = $request->except(['_token, _method']);
+        if (certify_session_key('noti.for', 'members')) {
+            $this->dispatch(new NotifyMembers($data));
+            flash()->success(trans('administrator.notification_member'));
+        } else {
+            $this->dispatch(new NotifyGroups($data));
+            flash()->success(trans('administrator.notification_group'));
+        }
+
+        return back();
+    }
+
+    /**
      * Delete a specific notification.
      *
      * @param $slug
@@ -41,57 +85,5 @@ class NotificationsController extends Controller
         flash()->info(trans('administrator.notification_destroyed'));
 
         return redirect()->route('admin::notifications');
-    }
-
-    /**
-     * Get form to create new notification for members.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function createForMember()
-    {
-        session(['current.view' => 'member.noti']);
-
-        return view('admin.notifications.create_member_notification');
-    }
-
-    /**
-     * Persist notification for members to database.
-     *
-     * @param NotificationRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function storeForMember(NotificationRequest $request)
-    {
-        $this->dispatch(new NotifyMembers($request->all()));
-        flash()->success(trans('administrator.notification_member'));
-
-        return back();
-    }
-
-    /**
-     * Get form to create new notification for groups.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function createForGroup()
-    {
-        session(['current.view' => 'group.noti']);
-
-        return view('admin.notifications.create_group_notification');
-    }
-
-    /**
-     * Persist notification for groups to database.
-     *
-     * @param NotificationRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function storeForGroup(NotificationRequest $request)
-    {
-        $this->dispatch(new NotifyGroups($request->all()));
-        flash()->success(trans('administrator.notification_group'));
-
-        return back();
     }
 }
