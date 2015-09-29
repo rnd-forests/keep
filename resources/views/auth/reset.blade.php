@@ -6,7 +6,7 @@
             <div class="panel panel-default form-wrapper">
                 <div class="panel-heading">Reset your password</div>
                 <div class="panel-body">
-                    {!! Form::open(['route' => 'auth::password.reset']) !!}
+                    {!! Form::open(['url' => url('auth/password/reset')]) !!}
                         {!! Form::hidden('token', $token) !!}
                         <div class="form-group">
                             {!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
