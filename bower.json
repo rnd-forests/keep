@@ -1,0 +1,23 @@
+{
+  "name": "Keep",
+  "description": "Personal Tasks Management",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "vendor/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "fontawesome": "~4.4.0",
+    "chartjs": "~1.0.2",
+    "moment": "~2.10.6",
+    "eonasdan-bootstrap-datetimepicker": "~4.17.37",
+    "select2": "~4.0.0",
+    "sweetalert": "~1.1.0",
+    "bootstrap": "~3.3.5",
+    "bootstrap-sass-official": "~3.3.5",
+    "bootstrap-social": "~4.10.1"
+  }
+}

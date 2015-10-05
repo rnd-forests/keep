@@ -6,7 +6,7 @@
             <div class="panel panel-default form-wrapper">
                 <div class="panel-heading">Schedule your task</div>
                 <div class="panel-body">
-                    {!! Form::model($task = new \Keep\Entities\Task, ['route' => ['member::tasks.store', $user]]) !!}
+                    {!! Form::model($task = new \Keep\Entities\Task, ['route' => ['user.tasks.store', $user]]) !!}
                         @include('users.tasks.partials._main_form', ['taskFormSubmitButton' => 'Schedule Task'])
                     {!! Form::close() !!}
                 </div>

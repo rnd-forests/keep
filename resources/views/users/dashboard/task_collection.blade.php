@@ -9,7 +9,7 @@
                         <div class="text-center">{{ $type }}</div>
                     </div>
                     @foreach($tasks as $task)
-                        <a href="{{ route('member::tasks.show', [$user, $task]) }}" class="list-group-item">
+                        <a href="{{ route('user.tasks.show', [$user, $task]) }}" class="list-group-item">
                             <span class="badge">{{ humans_time($task->created_at) }}</span>
                             {{ $task->title }}
                         </a>

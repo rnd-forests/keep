@@ -9,7 +9,7 @@
             </div>
             <div class="list-group">
                 @foreach($tasks as $task)
-                    <a href="{{ route('member::tasks.show', [$user, $task]) }}" class="list-group-item">{{ $task->title }}</a>
+                    <a href="{{ route('user.tasks.show', [$user, $task]) }}" class="list-group-item">{{ $task->title }}</a>
                 @endforeach
             </div>
         </div>

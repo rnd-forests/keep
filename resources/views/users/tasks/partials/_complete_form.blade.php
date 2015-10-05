@@ -1,6 +1,6 @@
 {!! Form::model($task,
     ['method' => 'PATCH',
-    'route' => ['member::tasks.complete', $user, $task],
+    'route' => ['user.tasks.complete', $user, $task],
     'id' => 'task-complete-form']) !!}
     {!! Form::checkbox('completed', 1, null,
         ['id' => 'completed',

@@ -6,13 +6,13 @@
                     <span class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></span>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
-                            <a href="{{ route('member::tasks.edit', [$user, $task]) }}">
+                            <a href="{{ route('user.tasks.edit', [$user, $task]) }}">
                                 <i class="fa fa-pencil-square"></i>&nbsp; Update
                             </a>
                         </li>
                         @include('users.tasks.partials._delete_form')
                         <li>
-                            <a href="{{ route('member::dashboard', $user) }}">
+                            <a href="{{ route('user.dashboard', $user) }}">
                                 <i class="fa fa-arrow-circle-left"></i>&nbsp; Dashboard
                             </a>
                         </li>
@@ -43,7 +43,7 @@
                 <div class="well">
                     <i class="fa fa-tags"></i>
                     @foreach($task->tags as $tag)
-                        <a href="{{ route('member::tags.task', [$authUser, $tag]) }}">
+                        <a href="{{ route('user.tags.task', [$authUser, $tag]) }}">
                             <span class="label label-default">{{ $tag->name }}</span>
                         </a>
                     @endforeach

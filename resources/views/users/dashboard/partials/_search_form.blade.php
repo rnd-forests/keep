@@ -5,7 +5,7 @@
         </div>
     </div>
 </div>
-{!! Form::open(['method' => 'GET', 'route' => ['member::tasks.search', $authUser], 'id' => 'search-form']) !!}
+{!! Form::open(['method' => 'GET', 'route' => ['user.tasks.search', $authUser], 'id' => 'search-form']) !!}
     <div class="form-group has-feedback">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-search"></i></span>

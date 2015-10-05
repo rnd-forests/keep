@@ -8,7 +8,7 @@
                 <div class="panel-heading">Choose your category</div>
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a href="{{ route('member::notifications',
+                        <a href="{{ route('user.notifications',
                             ['users' => $authUser, 'type' => 'personal']) }}">
                             Personal notifications
                         </a>
@@ -17,7 +17,7 @@
                         </span>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{ route('member::notifications',
+                        <a href="{{ route('user.notifications',
                             ['users' => $authUser, 'type' => 'group']) }}">
                             Group notifications
                         </a>
@@ -47,7 +47,7 @@
                                     <ul class="breadcrumb notification-groups">
                                         @foreach($notification->groups as $group)
                                             <li>
-                                                <a href="{{ route('member::groups.show', [$authUser, $group]) }}">
+                                                <a href="{{ route('user.groups.show', [$authUser, $group]) }}">
                                                     {{ $group->name }}
                                                 </a>
                                             </li>

@@ -6,7 +6,7 @@
             <div class="list-group">
                 <a href="#" class="list-group-item active">Current Groups</a>
                 @foreach($groups as $group)
-                    <a href="{{ route('member::groups.show', [$authUser, $group]) }}" class="list-group-item">
+                    <a href="{{ route('user.groups.show', [$authUser, $group]) }}" class="list-group-item">
                         <span class="badge">
                             {{ plural('member', counting($group->users)) }}
                         </span>
