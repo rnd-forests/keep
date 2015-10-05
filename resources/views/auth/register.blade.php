@@ -42,7 +42,7 @@
                 <div class="panel-footer">
                     <ul class="list-inline">
                         <li><a class="social-auth" data-toggle="modal" data-target="#social-auth">Social Authentication</a></li>
-                        <li><a href="{{ route('auth::login') }}">Sign In</a></li>
+                        <li><a href="{{ route('auth.login') }}">Sign In</a></li>
                     </ul>
                 </div>
             </div>

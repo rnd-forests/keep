@@ -40,6 +40,6 @@ class MembersController extends Controller
         $this->users->softDelete($slug);
         flash()->info(trans('administrator.account_disabled'));
 
-        return redirect()->route('admin::members');
+        return redirect()->route('admin.members');
     }
 }

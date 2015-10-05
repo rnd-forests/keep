@@ -20,7 +20,7 @@
                 <div class="panel-heading">Create new notification for members</div>
                 <div class="panel-body">
                     {!! Form::model($notification = new \Keep\Entities\Notification,
-                        ['route' => ['admin::notifications.store']]) !!}
+                        ['route' => ['admin.notifications.store']]) !!}
                         @include('admin.notifications.partials._main_form',
                             ['notificationButton' => 'Notify'])
                     {!! Form::close() !!}

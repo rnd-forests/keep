@@ -1,10 +1,11 @@
 <?php
 
 // Administration routes
-Route::group(['middleware' => ['auth', 'valid.roles:admin'],
+Route::group([
+    'as' => 'admin.',
     'prefix' => 'admin',
-    'as' => 'admin::',
-    'namespace' => 'Admin'], function () {
+    'namespace' => 'Admin',
+    'middleware' => ['auth', 'valid.roles:admin']], function () {
 
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@dashboard']);
 
@@ -65,7 +66,7 @@ Route::group(['middleware' => ['auth', 'valid.roles:admin'],
 
 
 // Authentication
-Route::group(['prefix' => 'auth', 'as' => 'auth::', 'namespace' => 'Auth'], function () {
+Route::group(['prefix' => 'auth', 'as' => 'auth.', 'namespace' => 'Auth'], function () {
     Route::get('register', ['as' => 'register', 'uses' => 'AuthController@getRegister']);
     Route::post('register', ['as' => 'register', 'uses' => 'AuthController@postRegister']);
     Route::get('activate/{code}', ['as' => 'activate', 'uses' => 'AuthController@getActivate']);
@@ -80,7 +81,7 @@ Route::group(['prefix' => 'auth', 'as' => 'auth::', 'namespace' => 'Auth'], func
 });
 
 // Social (open) authentication
-Route::group(['prefix' => 'oauth', 'as' => 'oauth::', 'namespace' => 'Auth'], function () {
+Route::group(['prefix' => 'oauth', 'as' => 'oauth.', 'namespace' => 'Auth'], function () {
     Route::get('github', ['as' => 'github', 'uses' => 'OAuthController@authenticateWithGithub']);
     Route::get('facebook', ['as' => 'facebook', 'uses' => 'OAuthController@authenticateWithFacebook']);
     Route::get('google', ['as' => 'google', 'uses' => 'OAuthController@authenticateWithGoogle']);
@@ -100,10 +101,10 @@ Route::group(['namespace' => 'Pages'], function () {
 
 
 // Member routes
-Route::group(['prefix' => '{users}', 'as' => 'member::', 'namespace' => 'Member'], function () {
+Route::group(['prefix' => '{users}', 'as' => 'user.', 'namespace' => 'User'], function () {
     Route::get('profile', ['as' => 'profile.show', 'uses' => 'ProfileController@show']);
     Route::get('profile/edit', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
-    Route::match(['put', 'patch'], '', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+    Route::patch('', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::get('account', ['as' => 'account.show', 'uses' => 'AccountController@show']);
     Route::delete('', ['as' => 'account.destroy', 'uses' => 'AccountController@destroy']);
     Route::patch('change-name', ['as' => 'account.change.name', 'uses' => 'AccountController@changeName']);
@@ -118,18 +119,15 @@ Route::group(['prefix' => '{users}', 'as' => 'member::', 'namespace' => 'Member'
     Route::get('priorities/{priorities}', ['as' => 'priorities.task', 'uses' => 'PrioritiesController@show']);
     Route::get('notifications', ['as' => 'notifications', 'uses' => 'NotificationsController@fetchNotifications']);
     Route::get('search', ['as' => 'tasks.search', 'uses' => 'SearchController@searchTasks']);
-});
-
-Route::group(['prefix' => '{users}', 'namespace' => 'Member'], function () {
     Route::resource('tasks', 'TasksController', [
         'except' => ['index'],
         'names' => [
-            'create' => 'member::tasks.create',
-            'store' => 'member::tasks.store',
-            'show' => 'member::tasks.show',
-            'edit' => 'member::tasks.edit',
-            'update' => 'member::tasks.update',
-            'destroy' => 'member::tasks.destroy',
-        ],
+            'create' => 'tasks.create',
+            'store' => 'tasks.store',
+            'show' => 'tasks.show',
+            'edit' => 'tasks.edit',
+            'update' => 'tasks.update',
+            'destroy' => 'tasks.destroy',
+        ]
     ]);
 });

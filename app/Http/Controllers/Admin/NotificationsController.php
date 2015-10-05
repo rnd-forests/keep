@@ -84,6 +84,6 @@ class NotificationsController extends Controller
         $this->notifications->delete($slug);
         flash()->info(trans('administrator.notification_destroyed'));
 
-        return redirect()->route('admin::notifications');
+        return redirect()->route('admin.notifications');
     }
 }

@@ -20,8 +20,8 @@
                 </div>
                 <div class="panel-footer">
                     <ol class="list-inline">
-                        <li><a href="{{ route('auth::login') }}">Sign In</a></li>
-                        <li><a href="{{ route('auth::register') }}">Sign Up</a></li>
+                        <li><a href="{{ route('auth.login') }}">Sign In</a></li>
+                        <li><a href="{{ route('auth.register') }}">Sign Up</a></li>
                     </ol>
                 </div>
             </div>

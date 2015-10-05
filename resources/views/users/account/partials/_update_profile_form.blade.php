@@ -1,4 +1,4 @@
-{!! Form::model($user->profile, ['method' => 'PATCH', 'route' => ['member::profile.update', $user]]) !!}
+{!! Form::model($user->profile, ['method' => 'PATCH', 'route' => ['user.profile.update', $user]]) !!}
     <div class="form-group">
         {!! Form::label('location', 'Current location', ['class' => 'control-label']) !!}
         {!! Form::textarea('location', null, ['class' => 'form-control', 'rows' => 3]) !!}

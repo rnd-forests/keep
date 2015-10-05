@@ -38,7 +38,7 @@ if (!function_exists('sort_tasks_by')) {
             $sorting = array_merge($sorting, ['page' => request('page')]);
         }
 
-        return link_to_route('admin::tasks', $text, $sorting);
+        return link_to_route('admin.tasks', $text, $sorting);
     }
 }
 
@@ -63,7 +63,7 @@ if (!function_exists('sort_accounts_by')) {
             $sorting = array_merge($sorting, ['page' => request('page')]);
         }
 
-        return link_to_route('admin::members', $text, $sorting);
+        return link_to_route('admin.members', $text, $sorting);
     }
 }
 

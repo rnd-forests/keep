@@ -37,7 +37,7 @@
                     <ol class="list-inline">
                         <li><a class="social-auth" data-toggle="modal" data-target="#social-auth">Social Authentication</a></li>
                         <li><a href="{{ url('auth/password/email') }}">Reset your Password</a></li>
-                        <li><a href="{{ route('auth::register') }}">Sign Up</a></li>
+                        <li><a href="{{ route('auth.register') }}">Sign Up</a></li>
                     </ol>
                 </div>
             </div>

@@ -6,7 +6,7 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="text-center">
                     <h3>{{ $group->name }}</h3>
-                    <a href="{{ route('admin::groups') }}">
+                    <a href="{{ route('admin.groups') }}">
                         <button class="btn btn-primary btn-xs"
                                 data-toggle="tooltip"
                                 data-placement="bottom"
@@ -15,7 +15,7 @@
                         </button>
                     </a>
                     @include('admin.groups.partials._flush_form')
-                    <a href="{{ route('admin::groups.add', $group) }}">
+                    <a href="{{ route('admin.groups.add', $group) }}">
                         <button class="btn btn-primary btn-xs"
                                 data-toggle="tooltip"
                                 data-placement="bottom"

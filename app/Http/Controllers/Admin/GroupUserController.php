@@ -73,7 +73,7 @@ class GroupUserController extends Controller
         $this->groups->findBySlug($groupSlug)->users()->detach();
         flash()->info(trans('administrator.group_flush_users'));
 
-        return redirect()->route('admin::groups.show', $groupSlug);
+        return redirect()->route('admin.groups.show', $groupSlug);
     }
 
     /**

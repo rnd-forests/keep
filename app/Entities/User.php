@@ -133,7 +133,7 @@ class User extends Model implements
     {
         if (is_array($permission)) {
             foreach ($permission as $permName) {
-                $hasPerm = $this->can($permName);
+                $hasPerm = $this->canDo($permName);
 
                 if ($hasPerm && !$all) {
                     return true;

@@ -1,4 +1,4 @@
-{!! Form::open(['method' => 'DELETE', 'route' => ['admin::notifications.delete', $notification]]) !!}
+{!! Form::open(['method' => 'DELETE', 'route' => ['admin.notifications.delete', $notification]]) !!}
     <button type="submit"
             class="btn btn-danger btn-xs"
             data-toggle="tooltip"

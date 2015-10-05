@@ -1,4 +1,4 @@
-{!! Form::open(['method' => 'PUT', 'route' => ['admin::tasks.trashed.restore', $task]]) !!}
+{!! Form::open(['method' => 'PUT', 'route' => ['admin.tasks.trashed.restore', $task]]) !!}
     <button type="submit"
             class="btn btn-info btn-xs"
             data-toggle="tooltip"

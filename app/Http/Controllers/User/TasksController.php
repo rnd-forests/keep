@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Http\Controllers\Member;
+namespace Keep\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Keep\Events\TaskHasPublished;
@@ -48,7 +48,7 @@ class TasksController extends Controller
         event(new TaskHasPublished($author, $task));
         flash()->success(trans('controller.task_created'));
 
-        return redirect()->route('member::dashboard', $author);
+        return redirect()->route('user.dashboard', $author);
     }
 
     /**
@@ -121,7 +121,7 @@ class TasksController extends Controller
         $this->setRelations($task, $request);
         flash()->info(trans('controller.task_updated'));
 
-        return redirect()->route('member::dashboard', $this->users->findBySlug($userSlug));
+        return redirect()->route('user.dashboard', $this->users->findBySlug($userSlug));
     }
 
     /**
@@ -136,7 +136,7 @@ class TasksController extends Controller
         $this->tasks->delete($userSlug, $taskSlug);
         flash()->success(trans('controller.task_deleted'));
 
-        return redirect()->route('member::dashboard', $userSlug);
+        return redirect()->route('user.dashboard', $userSlug);
     }
 
     /**

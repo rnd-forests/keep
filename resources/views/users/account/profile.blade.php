@@ -6,7 +6,7 @@
             @include('users.account.partials._basic_info')
             @if($user->can('act-as-current-user'))
                 <div class="text-center">
-                    <a href="{{ route('member::profile.edit', $authUser) }}"
+                    <a href="{{ route('user.profile.edit', $authUser) }}"
                        class="btn btn-primary btn-sm">Update Profile</a>
                 </div>
             @endcan

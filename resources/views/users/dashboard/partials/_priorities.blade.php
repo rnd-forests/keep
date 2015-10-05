@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="col-md-3">
-        <a href="{{ route('member::priorities.task', [$user, 'urgent']) }}">
+        <a href="{{ route('user.priorities.task', [$user, 'urgent']) }}">
             <div class="stat-container">
                 <div class="large">{{ $counter->countUrgentPriorityTasks() }}</div>
                 <div class="small">urgent</div>
@@ -13,7 +13,7 @@
         </a>
     </div>
     <div class="col-md-3">
-        <a href="{{ route('member::priorities.task', [$user, 'high']) }}">
+        <a href="{{ route('user.priorities.task', [$user, 'high']) }}">
             <div class="stat-container">
                 <div class="large">{{ $counter->countHighPriorityTasks() }}</div>
                 <div class="small">high</div>
@@ -21,7 +21,7 @@
         </a>
     </div>
     <div class="col-md-3">
-        <a href="{{ route('member::priorities.task', [$user, 'normal']) }}">
+        <a href="{{ route('user.priorities.task', [$user, 'normal']) }}">
             <div class="stat-container">
                 <div class="large">{{ $counter->countNormalPriorityTasks() }}</div>
                 <div class="small">normal</div>
@@ -29,7 +29,7 @@
         </a>
     </div>
     <div class="col-md-3">
-        <a href="{{ route('member::priorities.task', [$user, 'low']) }}">
+        <a href="{{ route('user.priorities.task', [$user, 'low']) }}">
             <div class="stat-container">
                 <div class="large">{{ $counter->countLowPriorityTasks() }}</div>
                 <div class="small">low</div>

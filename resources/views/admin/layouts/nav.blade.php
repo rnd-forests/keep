@@ -16,7 +16,7 @@
         </div>
         <div id="keep-navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{{ route('admin::dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                 <li class="dropdown">
                     <a href="#"
                        class="dropdown-toggle"
@@ -26,8 +26,8 @@
                         Members <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('admin::members') }}">Active</a></li>
-                        <li><a href="{{ route('admin::members.disabled') }}">Disabled</a></li>
+                        <li><a href="{{ route('admin.members') }}">Active</a></li>
+                        <li><a href="{{ route('admin.members.disabled') }}">Disabled</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -39,9 +39,9 @@
                         Groups <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('admin::groups.create') }}">Create</a></li>
-                        <li><a href="{{ route('admin::groups') }}">Active</a></li>
-                        <li><a href="{{ route('admin::groups.trashed') }}">Trash</a></li>
+                        <li><a href="{{ route('admin.groups.create') }}">Create</a></li>
+                        <li><a href="{{ route('admin.groups') }}">Active</a></li>
+                        <li><a href="{{ route('admin.groups.trashed') }}">Trash</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -53,8 +53,8 @@
                         Tasks <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('admin::tasks') }}">Published</a></li>
-                        <li><a href="{{ route('admin::tasks.trashed') }}">Trash</a></li>
+                        <li><a href="{{ route('admin.tasks') }}">Published</a></li>
+                        <li><a href="{{ route('admin.tasks.trashed') }}">Trash</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -72,7 +72,7 @@
                                 Create
                             </a>
                         </li>
-                        <li><a href="{{ route('admin::notifications') }}">Collection</a></li>
+                        <li><a href="{{ route('admin.notifications') }}">Collection</a></li>
                     </ul>
                 </li>
             </ul>

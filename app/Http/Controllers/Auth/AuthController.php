@@ -45,7 +45,7 @@ class AuthController extends Controller
         $credentials = $request->only(['name', 'email', 'password']);
         $user = $this->users->create($credentials);
         if (!$user) {
-            return redirect()->route('auth::register');
+            return redirect()->route('auth.register');
         }
         event(new UserHasRegistered($user));
         flash()->info(trans('authentication.account_activation'));
@@ -92,7 +92,7 @@ class AuthController extends Controller
         );
         $this->throttles->incrementLoginAttempts($request);
 
-        return redirect()->route('auth::login')
+        return redirect()->route('auth.login')
             ->withInput($request->only('email', 'remember'));
     }
 

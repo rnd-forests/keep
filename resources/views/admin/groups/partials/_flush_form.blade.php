@@ -1,4 +1,4 @@
-{!! Form::open(['route' => ['admin::groups.flush', $group]]) !!}
+{!! Form::open(['route' => ['admin.groups.flush', $group]]) !!}
     <button type="submit"
             class="btn btn-danger btn-xs"
             data-toggle="tooltip"

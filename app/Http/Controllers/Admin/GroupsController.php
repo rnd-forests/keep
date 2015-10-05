@@ -48,7 +48,7 @@ class GroupsController extends Controller
         $this->groups->create($request->all());
         flash()->success(trans('administrator.group_created'));
 
-        return redirect()->route('admin::groups');
+        return redirect()->route('admin.groups');
     }
 
     /**
@@ -90,7 +90,7 @@ class GroupsController extends Controller
         $this->groups->update($request->all(), $slug);
         flash()->info(trans('administrator.group_updated'));
 
-        return redirect()->route('admin::groups');
+        return redirect()->route('admin.groups');
     }
 
     /**

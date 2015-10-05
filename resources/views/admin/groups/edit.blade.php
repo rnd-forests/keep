@@ -6,7 +6,7 @@
             <div class="panel panel-default form-wrapper">
                 <div class="panel-heading">Create new group</div>
                 <div class="panel-body">
-                    {!! Form::model($group, ['method' => 'PATCH', 'route' => ['admin::groups.update', $group]]) !!}
+                    {!! Form::model($group, ['method' => 'PATCH', 'route' => ['admin.groups.update', $group]]) !!}
                         @include('admin.groups.partials._main_form', ['groupFormSubmitButton' => 'Update Group'])
                     {!! Form::close() !!}
                 </div>

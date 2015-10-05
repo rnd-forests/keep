@@ -37,7 +37,7 @@
                                     <td>{!! short_time($task->finishing_date) !!}</td>
                                     <td>{!! $task->present()->printStatus($task->completed) !!}</td>
                                     <td>
-                                        <a href="{{ route('admin::tasks.show', $task) }}"
+                                        <a href="{{ route('admin.tasks.show', $task) }}"
                                            class="btn btn-primary btn-xs"
                                            data-toggle="tooltip"
                                            data-placement="bottom"

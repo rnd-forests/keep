@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Http\Controllers\Member;
+namespace Keep\Http\Controllers\User;
 
 use Keep\Http\Controllers\Controller;
 use Keep\Core\Repository\Contracts\UserRepository;

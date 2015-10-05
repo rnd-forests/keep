@@ -1,6 +1,6 @@
 <?php
 
-namespace Keep\Http\Controllers\Member;
+namespace Keep\Http\Controllers\User;
 
 use Keep\Http\Controllers\Controller;
 use Keep\Http\Requests\UpdateNameRequest;
@@ -170,6 +170,6 @@ class AccountController extends Controller
         $user->update(['name' => $newName]);
         flash()->success(trans('controller.valid_name'));
 
-        return redirect()->route('member::profile', $user);
+        return redirect()->route('user.profile.show', $user);
     }
 }
